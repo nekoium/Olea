@@ -30,6 +30,7 @@ export function catalog() {
   for (const name of ['permission-denied', 'revocation', 'stop', 'cancel', 'no-replay']) add(`phone.${name}`, `Native ${name} boundary independently observed with no unauthorized effect.`, ['runtime.modern']);
   for (const name of ['agent-update', 'runtime-update', 'failed-update', 'interrupted-update', 'recovery-hashes', 'credential-preservation']) add(`preserve.${name}`, `Record before/after hashes and durable identity for ${name}; no reset/uninstall to claim preservation.`, ['runtime.fresh']);
   for (const name of ['child-death', 'backend-death', 'whole-app-death', 'app-switch', 'lock', 'reboot']) add(`lifecycle.${name}`, `Distinguish live execution from saved/restored state after ${name}; verify native stop/permissions and descendants.`, ['runtime.modern']);
+  for (const name of ['output-bytes', 'timeout', 'inherited-pipes']) add(`native.${name}`, `Independently assert native ${name} bounds; do not infer shared-backend buffering or generic descendant cleanup.`, ['runtime.modern']);
   for (const name of ['setup-time', 'install-size', 'cold-start', 'idle-cpu', 'first-event', 'first-text', 'stream-stalls', 'one-session', 'two-sessions', 'direct-managed', 'output-frame', 'output-queue', 'timeout', 'cleanup', 'constrained-core', 'constrained-model', 'allocation-restore']) add(`cost.${name}`, `Measure ${name} with actual identities/allocation/units and incomplete accounting limits.`, ['backend.shared']);
   for (const name of ['abi', 'unix', 'agents', 'phone', 'battery', 'thermals']) add(`physical.${name}`, `Measure physical Android14 ${name}; emulator is not ARM64 proof.`, [], 'physical-phone');
   return rows;
@@ -76,14 +77,19 @@ export function readGitArtifact(spec) {
 }
 export async function verifyArtifacts(receipts, root) {
   const base = resolve(root);
+  const verified = new Set();
   for (const r of receipts) for (const artifact of r.artifacts) {
+    const key = `${artifact.path}:${artifact.sha256}`;
+    if (verified.has(key)) continue;
     if (artifact.path.startsWith('git:')) {
       if (sha256(readGitArtifact(artifact.path)) !== artifact.sha256) throw Error('artifact_hash_mismatch');
+      verified.add(key);
       continue;
     }
     const path = resolve(base, artifact.path);
     if (!path.startsWith(base + '/') && !path.startsWith(base + '\\')) throw Error('artifact_outside_root');
     if (sha256(await readFile(path)) !== artifact.sha256) throw Error('artifact_hash_mismatch');
+    verified.add(key);
   }
 }
 const esc = s => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');

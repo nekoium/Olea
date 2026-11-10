@@ -1445,5 +1445,1794 @@
       "Not a complete sandbox security audit",
       "Not Android or Linux evidence"
     ]
+  },
+  {
+    "attemptId": "runtime-candidate-a01-modern",
+    "caseId": "runtime.modern",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "fail",
+    "startedAt": "2026-11-10T17:08:01.864Z",
+    "endedAt": "2026-11-10T17:08:03.059Z",
+    "summary": "First service candidate returned wrapper exit0 but guest shell and Node markers were127: linux.sh missing during provisioning race. Do not trust wrapper exit0.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/candidate-a01.json",
+        "sha256": "8034297c1ed56a6f964a30868b9115155585d1f18968bbcfdf5ca5aa58fb5134"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/candidate-a01.sh",
+        "sha256": "1e8f3122f0ddc4233af010f0822f3aa47f9546cbdc82040d4fdc8396e408e6c8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/first-source-hashes.txt",
+        "sha256": "8d580e9dd957e3e7972fb8dfb935d3a5ec54a4d47b03653568fda4ea1a4ea7fd"
+      }
+    ],
+    "assertions": [],
+    "execution": {
+      "hostPid": 3870,
+      "realUid": 10216,
+      "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "targetSdk": 36,
+      "androidApi": 36,
+      "childPid": null,
+      "apkSha256": "375870be5efcf79a1cd16fb60e95e0a91b68904634164b1c308bdbcb3f99b0ab"
+    },
+    "provider": {
+      "topLevelPrompts": 0
+    },
+    "retryOf": null,
+    "limits": [
+      "Initial APK hash is distinct from later eacb/dbd APKs; no retroactive binary credit.",
+      "Ignored glibc LD_PRELOAD warnings retained; later environment cleanup cannot erase them.",
+      "No generic cleanup or full fresh-install/update acceptance."
+    ]
+  },
+  {
+    "attemptId": "runtime-candidate-a02-modern",
+    "caseId": "runtime.modern",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:08:47.825Z",
+    "endedAt": "2026-11-10T17:08:49.757Z",
+    "summary": "After staging launcher, actual target36 app service executed read-only APK PRoot/loaders and writable guest shell/upstream Node24.20.0 x64; inner shell/Node exit0. Candidate source also checks child exit/stdout42 but no separate child identity retained in this attempt.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/candidate-a02.json",
+        "sha256": "ba1064a1954163509a6fc0958c63c9ee9c2371c0ab961e07fa486d5b2d47c576"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/candidate-a01.sh",
+        "sha256": "1e8f3122f0ddc4233af010f0822f3aa47f9546cbdc82040d4fdc8396e408e6c8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/first-source-hashes.txt",
+        "sha256": "8d580e9dd957e3e7972fb8dfb935d3a5ec54a4d47b03653568fda4ea1a4ea7fd"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "native_domain_and_inner_exit_markers",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "hostPid": 3870,
+      "realUid": 10216,
+      "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "targetSdk": 36,
+      "androidApi": 36,
+      "childPid": null,
+      "apkSha256": "375870be5efcf79a1cd16fb60e95e0a91b68904634164b1c308bdbcb3f99b0ab"
+    },
+    "provider": {
+      "topLevelPrompts": 0
+    },
+    "retryOf": "runtime-candidate-a01-modern",
+    "limits": [
+      "Initial APK hash is distinct from later eacb/dbd APKs; no retroactive binary credit.",
+      "Ignored glibc LD_PRELOAD warnings retained; later environment cleanup cannot erase them.",
+      "No generic cleanup or full fresh-install/update acceptance."
+    ]
+  },
+  {
+    "attemptId": "runtime-core-a01-runtime-modern",
+    "caseId": "runtime.modern",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:23:02.713Z",
+    "endedAt": "2026-11-10T17:23:12.150Z",
+    "summary": "Actual target36 Kotlin service/UID10216/untrusted_app supervised writable guest Node and deterministic core with packaged read-only PRoot/loader payload hashes corroborated in native stdout.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core.mjs",
+        "sha256": "c8b4d325c4920bda0f3289bdd08cac2e7fd74b504919e6f85ae9a7ff30aec4d0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core-a01.sh",
+        "sha256": "d90efe39dd9b1f7868fddd6d893dc02b2227f82650b338600f824cc6cd84bd90"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/linux.sh",
+        "sha256": "3673a0001302c5d8e27cb7390579a5ac7b058db8454b1f9498a754c16befbb0f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/artifact-manifest.json",
+        "sha256": "af480a721970682c3b1839f280c18a2f8c4ed008adfb397642e9943abdbe80f0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01.json",
+        "sha256": "5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01-native.json",
+        "sha256": "b1c8392a869badf0596375f706f4db3d8ff98db3c4a87d5fcc86267f942636bb"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/fixed-apk-hash.txt",
+        "sha256": "57f495093e9cd5a5728b1d7f9bb9e8825a59027cfbd7168cf9772ac5cf41079d"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "actual_native_service_domain",
+        "independent": true,
+        "passed": true
+      },
+      {
+        "name": "native_payload_hashes_match",
+        "independent": true,
+        "passed": true
+      },
+      {
+        "name": "guest_node_exit_zero",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"
+    },
+    "provenance": {
+      "sourceCommit": "b1b8a74",
+      "nativePayloadSha256": {
+        "libproot.so": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d",
+        "libloader.so": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341",
+        "libloader32.so": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9",
+        "libtalloc.so": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90",
+        "libandroid-shmem.so": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+      },
+      "components": [
+        {
+          "name": "Gradle",
+          "version": "9.1.0",
+          "url": "https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip",
+          "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806",
+          "license": "Apache-2.0, build tool only"
+        },
+        {
+          "name": "Ubuntu Base",
+          "version": "24.04.3 amd64",
+          "url": "https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz",
+          "sha256": "6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9",
+          "license": "Mixed; retain /usr/share/doc copyright and applicable corresponding source"
+        },
+        {
+          "name": "Node",
+          "version": "24.20.0 Linux x64",
+          "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz",
+          "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2",
+          "license": "MIT plus bundled notices"
+        },
+        {
+          "name": "Termux PRoot",
+          "version": "5.1.107.102 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb",
+          "sha256": "2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758",
+          "license": "GPL-2.0; corresponding source/notices required before redistribution",
+          "source": "https://github.com/termux/proot"
+        },
+        {
+          "name": "libtalloc",
+          "version": "2.5.0 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb",
+          "sha256": "b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530",
+          "license": "LGPL-3.0-or-later; source/relinking obligations",
+          "source": "https://talloc.samba.org/"
+        },
+        {
+          "name": "libandroid-shmem",
+          "version": "0.7 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb",
+          "sha256": "ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797",
+          "license": "BSD-3-Clause; retain copyright/disclaimer",
+          "source": "https://github.com/termux/libandroid-shmem"
+        }
+      ],
+      "licenseLimits": "No publishing; source obligations inventory is not distribution clearance; original MIT does not relicense dependencies",
+      "transform": "Verified native regular-file bytes renamed to Android lib*.so packaging names, no binary edits; debug symbols retained; PackageManager extraction requested through AGP useLegacyPackaging"
+    },
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "limits": [
+      "Actual target36 service domain, not development run-as.",
+      "Emulator x64 only; advertised arm64-v8a is not physical ARM64 execution.",
+      "Core deterministic work is not stock-agent/provider/shared-backend acceptance.",
+      "Single staged rootfs with manual recovery is not repeated corrected fresh install/update/recovery proof.",
+      "Native childPid null; source-controlled inner /proc identities corroborate actual children.",
+      "Residual linkerconfig warning retained; old glibc preload warnings belong earlier APK/launcher attempts.",
+      "Root exit and bounded pipe drain do not establish all descendant exit."
+    ],
+    "currentState": {
+      "observedAt": "2026-11-10T17:23:12.150Z",
+      "hostPidDuringCase": 6197,
+      "phonePermissionsAndStop": "not queried by this deterministic case",
+      "laterProcessState": "unknown from this snapshot"
+    }
+  },
+  {
+    "attemptId": "runtime-core-a01-unix-shell",
+    "caseId": "unix.shell",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:23:02.713Z",
+    "endedAt": "2026-11-10T17:23:12.150Z",
+    "summary": "Actual /bin/sh test independently asserted printf42 and emitted SHELL_ASSERT_OK.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core.mjs",
+        "sha256": "c8b4d325c4920bda0f3289bdd08cac2e7fd74b504919e6f85ae9a7ff30aec4d0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core-a01.sh",
+        "sha256": "d90efe39dd9b1f7868fddd6d893dc02b2227f82650b338600f824cc6cd84bd90"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/linux.sh",
+        "sha256": "3673a0001302c5d8e27cb7390579a5ac7b058db8454b1f9498a754c16befbb0f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/artifact-manifest.json",
+        "sha256": "af480a721970682c3b1839f280c18a2f8c4ed008adfb397642e9943abdbe80f0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01.json",
+        "sha256": "5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01-native.json",
+        "sha256": "b1c8392a869badf0596375f706f4db3d8ff98db3c4a87d5fcc86267f942636bb"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/fixed-apk-hash.txt",
+        "sha256": "57f495093e9cd5a5728b1d7f9bb9e8825a59027cfbd7168cf9772ac5cf41079d"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "shell_expression_exit_stdout",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"
+    },
+    "provenance": {
+      "sourceCommit": "b1b8a74",
+      "nativePayloadSha256": {
+        "libproot.so": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d",
+        "libloader.so": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341",
+        "libloader32.so": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9",
+        "libtalloc.so": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90",
+        "libandroid-shmem.so": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+      },
+      "components": [
+        {
+          "name": "Gradle",
+          "version": "9.1.0",
+          "url": "https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip",
+          "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806",
+          "license": "Apache-2.0, build tool only"
+        },
+        {
+          "name": "Ubuntu Base",
+          "version": "24.04.3 amd64",
+          "url": "https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz",
+          "sha256": "6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9",
+          "license": "Mixed; retain /usr/share/doc copyright and applicable corresponding source"
+        },
+        {
+          "name": "Node",
+          "version": "24.20.0 Linux x64",
+          "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz",
+          "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2",
+          "license": "MIT plus bundled notices"
+        },
+        {
+          "name": "Termux PRoot",
+          "version": "5.1.107.102 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb",
+          "sha256": "2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758",
+          "license": "GPL-2.0; corresponding source/notices required before redistribution",
+          "source": "https://github.com/termux/proot"
+        },
+        {
+          "name": "libtalloc",
+          "version": "2.5.0 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb",
+          "sha256": "b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530",
+          "license": "LGPL-3.0-or-later; source/relinking obligations",
+          "source": "https://talloc.samba.org/"
+        },
+        {
+          "name": "libandroid-shmem",
+          "version": "0.7 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb",
+          "sha256": "ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797",
+          "license": "BSD-3-Clause; retain copyright/disclaimer",
+          "source": "https://github.com/termux/libandroid-shmem"
+        }
+      ],
+      "licenseLimits": "No publishing; source obligations inventory is not distribution clearance; original MIT does not relicense dependencies",
+      "transform": "Verified native regular-file bytes renamed to Android lib*.so packaging names, no binary edits; debug symbols retained; PackageManager extraction requested through AGP useLegacyPackaging"
+    },
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "limits": [
+      "Actual target36 service domain, not development run-as.",
+      "Emulator x64 only; advertised arm64-v8a is not physical ARM64 execution.",
+      "Core deterministic work is not stock-agent/provider/shared-backend acceptance.",
+      "Single staged rootfs with manual recovery is not repeated corrected fresh install/update/recovery proof.",
+      "Native childPid null; source-controlled inner /proc identities corroborate actual children.",
+      "Residual linkerconfig warning retained; old glibc preload warnings belong earlier APK/launcher attempts.",
+      "Root exit and bounded pipe drain do not establish all descendant exit."
+    ],
+    "currentState": {
+      "observedAt": "2026-11-10T17:23:12.150Z",
+      "hostPidDuringCase": 6197,
+      "phonePermissionsAndStop": "not queried by this deterministic case",
+      "laterProcessState": "unknown from this snapshot"
+    }
+  },
+  {
+    "attemptId": "runtime-core-a01-unix-node",
+    "caseId": "unix.node",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:23:02.713Z",
+    "endedAt": "2026-11-10T17:23:12.150Z",
+    "summary": "Stock upstream Node24.20.0 Linux x64 /opt/node/bin/node executed under real Android UID10216/untrusted_app, clean guest loader environment.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core.mjs",
+        "sha256": "c8b4d325c4920bda0f3289bdd08cac2e7fd74b504919e6f85ae9a7ff30aec4d0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core-a01.sh",
+        "sha256": "d90efe39dd9b1f7868fddd6d893dc02b2227f82650b338600f824cc6cd84bd90"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/linux.sh",
+        "sha256": "3673a0001302c5d8e27cb7390579a5ac7b058db8454b1f9498a754c16befbb0f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/artifact-manifest.json",
+        "sha256": "af480a721970682c3b1839f280c18a2f8c4ed008adfb397642e9943abdbe80f0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01.json",
+        "sha256": "5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01-native.json",
+        "sha256": "b1c8392a869badf0596375f706f4db3d8ff98db3c4a87d5fcc86267f942636bb"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/fixed-apk-hash.txt",
+        "sha256": "57f495093e9cd5a5728b1d7f9bb9e8825a59027cfbd7168cf9772ac5cf41079d"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "node_version_arch_real_uid_exe",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"
+    },
+    "provenance": {
+      "sourceCommit": "b1b8a74",
+      "nativePayloadSha256": {
+        "libproot.so": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d",
+        "libloader.so": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341",
+        "libloader32.so": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9",
+        "libtalloc.so": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90",
+        "libandroid-shmem.so": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+      },
+      "components": [
+        {
+          "name": "Gradle",
+          "version": "9.1.0",
+          "url": "https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip",
+          "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806",
+          "license": "Apache-2.0, build tool only"
+        },
+        {
+          "name": "Ubuntu Base",
+          "version": "24.04.3 amd64",
+          "url": "https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz",
+          "sha256": "6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9",
+          "license": "Mixed; retain /usr/share/doc copyright and applicable corresponding source"
+        },
+        {
+          "name": "Node",
+          "version": "24.20.0 Linux x64",
+          "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz",
+          "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2",
+          "license": "MIT plus bundled notices"
+        },
+        {
+          "name": "Termux PRoot",
+          "version": "5.1.107.102 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb",
+          "sha256": "2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758",
+          "license": "GPL-2.0; corresponding source/notices required before redistribution",
+          "source": "https://github.com/termux/proot"
+        },
+        {
+          "name": "libtalloc",
+          "version": "2.5.0 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb",
+          "sha256": "b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530",
+          "license": "LGPL-3.0-or-later; source/relinking obligations",
+          "source": "https://talloc.samba.org/"
+        },
+        {
+          "name": "libandroid-shmem",
+          "version": "0.7 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb",
+          "sha256": "ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797",
+          "license": "BSD-3-Clause; retain copyright/disclaimer",
+          "source": "https://github.com/termux/libandroid-shmem"
+        }
+      ],
+      "licenseLimits": "No publishing; source obligations inventory is not distribution clearance; original MIT does not relicense dependencies",
+      "transform": "Verified native regular-file bytes renamed to Android lib*.so packaging names, no binary edits; debug symbols retained; PackageManager extraction requested through AGP useLegacyPackaging"
+    },
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "limits": [
+      "Actual target36 service domain, not development run-as.",
+      "Emulator x64 only; advertised arm64-v8a is not physical ARM64 execution.",
+      "Core deterministic work is not stock-agent/provider/shared-backend acceptance.",
+      "Single staged rootfs with manual recovery is not repeated corrected fresh install/update/recovery proof.",
+      "Native childPid null; source-controlled inner /proc identities corroborate actual children.",
+      "Residual linkerconfig warning retained; old glibc preload warnings belong earlier APK/launcher attempts.",
+      "Root exit and bounded pipe drain do not establish all descendant exit."
+    ],
+    "currentState": {
+      "observedAt": "2026-11-10T17:23:12.150Z",
+      "hostPidDuringCase": 6197,
+      "phonePermissionsAndStop": "not queried by this deterministic case",
+      "laterProcessState": "unknown from this snapshot"
+    }
+  },
+  {
+    "attemptId": "runtime-core-a01-unix-child",
+    "caseId": "unix.child",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:23:02.713Z",
+    "endedAt": "2026-11-10T17:23:12.150Z",
+    "summary": "Core Node6333->child6343, recorded PPID/stat/startticks and child exit0; source-controlled spawnSync and result assertions executed.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core.mjs",
+        "sha256": "c8b4d325c4920bda0f3289bdd08cac2e7fd74b504919e6f85ae9a7ff30aec4d0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core-a01.sh",
+        "sha256": "d90efe39dd9b1f7868fddd6d893dc02b2227f82650b338600f824cc6cd84bd90"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/linux.sh",
+        "sha256": "3673a0001302c5d8e27cb7390579a5ac7b058db8454b1f9498a754c16befbb0f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/artifact-manifest.json",
+        "sha256": "af480a721970682c3b1839f280c18a2f8c4ed008adfb397642e9943abdbe80f0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01.json",
+        "sha256": "5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01-native.json",
+        "sha256": "b1c8392a869badf0596375f706f4db3d8ff98db3c4a87d5fcc86267f942636bb"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/fixed-apk-hash.txt",
+        "sha256": "57f495093e9cd5a5728b1d7f9bb9e8825a59027cfbd7168cf9772ac5cf41079d"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "actual_child_parentage_status",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887",
+      "child": {
+        "childStatus": 0,
+        "pid": 6343,
+        "ppid": 6333,
+        "stat": "6343 (MainThread) R 6333 489 0 0 -1 4194304 3036 2973 0 0 3 2 2 4 20 0 7 0 133870 1306537984 11313 18446744073709551615 105553116266496 105553116267640 140733956138352 0 0 0 0 16781312 17922 0 0 0 17 2 0 0 0 0 0 105553116284024 105553116284168 105553507201024 140733956140191 140733956140745 140733956140745 140733956140942 0\n",
+        "nestedStatus": 0,
+        "nested": {
+          "value": 42,
+          "pid": 6350,
+          "ppid": 6343,
+          "stat": "6350 (MainThread) R 6343 489 0 0 -1 4194304 2743 0 0 0 1 3 0 0 20 0 7 0 133882 1306271744 10621 18446744073709551615 105553116266496 105553116267640 140733069096912 0 0 0 0 16781312 17922 0 0 0 17 3 0 0 0 0 0 105553116284024 105553116284168 105554054823936 140733069098442 140733069098697 140733069098697 140733069098894 0\n",
+          "uid": "Uid:\t10216\t10216\t10216\t10216"
+        }
+      }
+    },
+    "provenance": {
+      "sourceCommit": "b1b8a74",
+      "nativePayloadSha256": {
+        "libproot.so": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d",
+        "libloader.so": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341",
+        "libloader32.so": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9",
+        "libtalloc.so": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90",
+        "libandroid-shmem.so": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+      },
+      "components": [
+        {
+          "name": "Gradle",
+          "version": "9.1.0",
+          "url": "https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip",
+          "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806",
+          "license": "Apache-2.0, build tool only"
+        },
+        {
+          "name": "Ubuntu Base",
+          "version": "24.04.3 amd64",
+          "url": "https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz",
+          "sha256": "6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9",
+          "license": "Mixed; retain /usr/share/doc copyright and applicable corresponding source"
+        },
+        {
+          "name": "Node",
+          "version": "24.20.0 Linux x64",
+          "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz",
+          "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2",
+          "license": "MIT plus bundled notices"
+        },
+        {
+          "name": "Termux PRoot",
+          "version": "5.1.107.102 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb",
+          "sha256": "2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758",
+          "license": "GPL-2.0; corresponding source/notices required before redistribution",
+          "source": "https://github.com/termux/proot"
+        },
+        {
+          "name": "libtalloc",
+          "version": "2.5.0 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb",
+          "sha256": "b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530",
+          "license": "LGPL-3.0-or-later; source/relinking obligations",
+          "source": "https://talloc.samba.org/"
+        },
+        {
+          "name": "libandroid-shmem",
+          "version": "0.7 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb",
+          "sha256": "ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797",
+          "license": "BSD-3-Clause; retain copyright/disclaimer",
+          "source": "https://github.com/termux/libandroid-shmem"
+        }
+      ],
+      "licenseLimits": "No publishing; source obligations inventory is not distribution clearance; original MIT does not relicense dependencies",
+      "transform": "Verified native regular-file bytes renamed to Android lib*.so packaging names, no binary edits; debug symbols retained; PackageManager extraction requested through AGP useLegacyPackaging"
+    },
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "limits": [
+      "Actual target36 service domain, not development run-as.",
+      "Emulator x64 only; advertised arm64-v8a is not physical ARM64 execution.",
+      "Core deterministic work is not stock-agent/provider/shared-backend acceptance.",
+      "Single staged rootfs with manual recovery is not repeated corrected fresh install/update/recovery proof.",
+      "Native childPid null; source-controlled inner /proc identities corroborate actual children.",
+      "Residual linkerconfig warning retained; old glibc preload warnings belong earlier APK/launcher attempts.",
+      "Root exit and bounded pipe drain do not establish all descendant exit."
+    ],
+    "currentState": {
+      "observedAt": "2026-11-10T17:23:12.150Z",
+      "hostPidDuringCase": 6197,
+      "phonePermissionsAndStop": "not queried by this deterministic case",
+      "laterProcessState": "unknown from this snapshot"
+    }
+  },
+  {
+    "attemptId": "runtime-core-a01-unix-nested-child",
+    "caseId": "unix.nested-child",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:23:02.713Z",
+    "endedAt": "2026-11-10T17:23:12.150Z",
+    "summary": "Child6343->nested6350 realUID10216, parentage/stat/startticks, nested value42 and status0 asserted. This is direct deterministic work, not model child causality.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core.mjs",
+        "sha256": "c8b4d325c4920bda0f3289bdd08cac2e7fd74b504919e6f85ae9a7ff30aec4d0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core-a01.sh",
+        "sha256": "d90efe39dd9b1f7868fddd6d893dc02b2227f82650b338600f824cc6cd84bd90"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/linux.sh",
+        "sha256": "3673a0001302c5d8e27cb7390579a5ac7b058db8454b1f9498a754c16befbb0f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/artifact-manifest.json",
+        "sha256": "af480a721970682c3b1839f280c18a2f8c4ed008adfb397642e9943abdbe80f0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01.json",
+        "sha256": "5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01-native.json",
+        "sha256": "b1c8392a869badf0596375f706f4db3d8ff98db3c4a87d5fcc86267f942636bb"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/fixed-apk-hash.txt",
+        "sha256": "57f495093e9cd5a5728b1d7f9bb9e8825a59027cfbd7168cf9772ac5cf41079d"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "actual_nested_parentage_uid_exit_value",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887",
+      "child": {
+        "childStatus": 0,
+        "pid": 6343,
+        "ppid": 6333,
+        "stat": "6343 (MainThread) R 6333 489 0 0 -1 4194304 3036 2973 0 0 3 2 2 4 20 0 7 0 133870 1306537984 11313 18446744073709551615 105553116266496 105553116267640 140733956138352 0 0 0 0 16781312 17922 0 0 0 17 2 0 0 0 0 0 105553116284024 105553116284168 105553507201024 140733956140191 140733956140745 140733956140745 140733956140942 0\n",
+        "nestedStatus": 0,
+        "nested": {
+          "value": 42,
+          "pid": 6350,
+          "ppid": 6343,
+          "stat": "6350 (MainThread) R 6343 489 0 0 -1 4194304 2743 0 0 0 1 3 0 0 20 0 7 0 133882 1306271744 10621 18446744073709551615 105553116266496 105553116267640 140733069096912 0 0 0 0 16781312 17922 0 0 0 17 3 0 0 0 0 0 105553116284024 105553116284168 105554054823936 140733069098442 140733069098697 140733069098697 140733069098894 0\n",
+          "uid": "Uid:\t10216\t10216\t10216\t10216"
+        }
+      }
+    },
+    "provenance": {
+      "sourceCommit": "b1b8a74",
+      "nativePayloadSha256": {
+        "libproot.so": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d",
+        "libloader.so": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341",
+        "libloader32.so": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9",
+        "libtalloc.so": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90",
+        "libandroid-shmem.so": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+      },
+      "components": [
+        {
+          "name": "Gradle",
+          "version": "9.1.0",
+          "url": "https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip",
+          "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806",
+          "license": "Apache-2.0, build tool only"
+        },
+        {
+          "name": "Ubuntu Base",
+          "version": "24.04.3 amd64",
+          "url": "https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz",
+          "sha256": "6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9",
+          "license": "Mixed; retain /usr/share/doc copyright and applicable corresponding source"
+        },
+        {
+          "name": "Node",
+          "version": "24.20.0 Linux x64",
+          "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz",
+          "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2",
+          "license": "MIT plus bundled notices"
+        },
+        {
+          "name": "Termux PRoot",
+          "version": "5.1.107.102 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb",
+          "sha256": "2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758",
+          "license": "GPL-2.0; corresponding source/notices required before redistribution",
+          "source": "https://github.com/termux/proot"
+        },
+        {
+          "name": "libtalloc",
+          "version": "2.5.0 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb",
+          "sha256": "b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530",
+          "license": "LGPL-3.0-or-later; source/relinking obligations",
+          "source": "https://talloc.samba.org/"
+        },
+        {
+          "name": "libandroid-shmem",
+          "version": "0.7 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb",
+          "sha256": "ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797",
+          "license": "BSD-3-Clause; retain copyright/disclaimer",
+          "source": "https://github.com/termux/libandroid-shmem"
+        }
+      ],
+      "licenseLimits": "No publishing; source obligations inventory is not distribution clearance; original MIT does not relicense dependencies",
+      "transform": "Verified native regular-file bytes renamed to Android lib*.so packaging names, no binary edits; debug symbols retained; PackageManager extraction requested through AGP useLegacyPackaging"
+    },
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "limits": [
+      "Actual target36 service domain, not development run-as.",
+      "Emulator x64 only; advertised arm64-v8a is not physical ARM64 execution.",
+      "Core deterministic work is not stock-agent/provider/shared-backend acceptance.",
+      "Single staged rootfs with manual recovery is not repeated corrected fresh install/update/recovery proof.",
+      "Native childPid null; source-controlled inner /proc identities corroborate actual children.",
+      "Residual linkerconfig warning retained; old glibc preload warnings belong earlier APK/launcher attempts.",
+      "Root exit and bounded pipe drain do not establish all descendant exit."
+    ],
+    "currentState": {
+      "observedAt": "2026-11-10T17:23:12.150Z",
+      "hostPidDuringCase": 6197,
+      "phonePermissionsAndStop": "not queried by this deterministic case",
+      "laterProcessState": "unknown from this snapshot"
+    }
+  },
+  {
+    "attemptId": "runtime-core-a01-unix-git-object",
+    "caseId": "unix.git-object",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:23:02.713Z",
+    "endedAt": "2026-11-10T17:23:12.150Z",
+    "summary": "Fresh Git2.43.0 commitc854baa1c0030681859ea52e276157f4b3b76dcd; independent git-show exact randomized value check SHA256e046cee369496fcc10e9b7759ee794fcc62c70117b103997338c8dda89293fe0.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core.mjs",
+        "sha256": "c8b4d325c4920bda0f3289bdd08cac2e7fd74b504919e6f85ae9a7ff30aec4d0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core-a01.sh",
+        "sha256": "d90efe39dd9b1f7868fddd6d893dc02b2227f82650b338600f824cc6cd84bd90"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/linux.sh",
+        "sha256": "3673a0001302c5d8e27cb7390579a5ac7b058db8454b1f9498a754c16befbb0f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/artifact-manifest.json",
+        "sha256": "af480a721970682c3b1839f280c18a2f8c4ed008adfb397642e9943abdbe80f0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01.json",
+        "sha256": "5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01-native.json",
+        "sha256": "b1c8392a869badf0596375f706f4db3d8ff98db3c4a87d5fcc86267f942636bb"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/fixed-apk-hash.txt",
+        "sha256": "57f495093e9cd5a5728b1d7f9bb9e8825a59027cfbd7168cf9772ac5cf41079d"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "fresh_git_commit_object_exact_value",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"
+    },
+    "provenance": {
+      "sourceCommit": "b1b8a74",
+      "nativePayloadSha256": {
+        "libproot.so": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d",
+        "libloader.so": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341",
+        "libloader32.so": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9",
+        "libtalloc.so": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90",
+        "libandroid-shmem.so": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+      },
+      "components": [
+        {
+          "name": "Gradle",
+          "version": "9.1.0",
+          "url": "https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip",
+          "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806",
+          "license": "Apache-2.0, build tool only"
+        },
+        {
+          "name": "Ubuntu Base",
+          "version": "24.04.3 amd64",
+          "url": "https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz",
+          "sha256": "6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9",
+          "license": "Mixed; retain /usr/share/doc copyright and applicable corresponding source"
+        },
+        {
+          "name": "Node",
+          "version": "24.20.0 Linux x64",
+          "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz",
+          "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2",
+          "license": "MIT plus bundled notices"
+        },
+        {
+          "name": "Termux PRoot",
+          "version": "5.1.107.102 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb",
+          "sha256": "2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758",
+          "license": "GPL-2.0; corresponding source/notices required before redistribution",
+          "source": "https://github.com/termux/proot"
+        },
+        {
+          "name": "libtalloc",
+          "version": "2.5.0 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb",
+          "sha256": "b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530",
+          "license": "LGPL-3.0-or-later; source/relinking obligations",
+          "source": "https://talloc.samba.org/"
+        },
+        {
+          "name": "libandroid-shmem",
+          "version": "0.7 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb",
+          "sha256": "ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797",
+          "license": "BSD-3-Clause; retain copyright/disclaimer",
+          "source": "https://github.com/termux/libandroid-shmem"
+        }
+      ],
+      "licenseLimits": "No publishing; source obligations inventory is not distribution clearance; original MIT does not relicense dependencies",
+      "transform": "Verified native regular-file bytes renamed to Android lib*.so packaging names, no binary edits; debug symbols retained; PackageManager extraction requested through AGP useLegacyPackaging"
+    },
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "limits": [
+      "Actual target36 service domain, not development run-as.",
+      "Emulator x64 only; advertised arm64-v8a is not physical ARM64 execution.",
+      "Core deterministic work is not stock-agent/provider/shared-backend acceptance.",
+      "Single staged rootfs with manual recovery is not repeated corrected fresh install/update/recovery proof.",
+      "Native childPid null; source-controlled inner /proc identities corroborate actual children.",
+      "Residual linkerconfig warning retained; old glibc preload warnings belong earlier APK/launcher attempts.",
+      "Root exit and bounded pipe drain do not establish all descendant exit."
+    ],
+    "currentState": {
+      "observedAt": "2026-11-10T17:23:12.150Z",
+      "hostPidDuringCase": 6197,
+      "phonePermissionsAndStop": "not queried by this deterministic case",
+      "laterProcessState": "unknown from this snapshot"
+    }
+  },
+  {
+    "attemptId": "runtime-core-a01-unix-dns-tls",
+    "caseId": "unix.dns-tls",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:23:02.713Z",
+    "endedAt": "2026-11-10T17:23:12.150Z",
+    "summary": "DNS registry lookup resolved; default certificate-validated TLS metadata HTTP200, socket authorized=true, expected version7.0.0 asserted.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core.mjs",
+        "sha256": "c8b4d325c4920bda0f3289bdd08cac2e7fd74b504919e6f85ae9a7ff30aec4d0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core-a01.sh",
+        "sha256": "d90efe39dd9b1f7868fddd6d893dc02b2227f82650b338600f824cc6cd84bd90"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/linux.sh",
+        "sha256": "3673a0001302c5d8e27cb7390579a5ac7b058db8454b1f9498a754c16befbb0f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/artifact-manifest.json",
+        "sha256": "af480a721970682c3b1839f280c18a2f8c4ed008adfb397642e9943abdbe80f0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01.json",
+        "sha256": "5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01-native.json",
+        "sha256": "b1c8392a869badf0596375f706f4db3d8ff98db3c4a87d5fcc86267f942636bb"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/fixed-apk-hash.txt",
+        "sha256": "57f495093e9cd5a5728b1d7f9bb9e8825a59027cfbd7168cf9772ac5cf41079d"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "dns_lookup",
+        "independent": true,
+        "passed": true
+      },
+      {
+        "name": "tls_authorized_http200_metadata",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"
+    },
+    "provenance": {
+      "sourceCommit": "b1b8a74",
+      "nativePayloadSha256": {
+        "libproot.so": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d",
+        "libloader.so": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341",
+        "libloader32.so": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9",
+        "libtalloc.so": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90",
+        "libandroid-shmem.so": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+      },
+      "components": [
+        {
+          "name": "Gradle",
+          "version": "9.1.0",
+          "url": "https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip",
+          "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806",
+          "license": "Apache-2.0, build tool only"
+        },
+        {
+          "name": "Ubuntu Base",
+          "version": "24.04.3 amd64",
+          "url": "https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz",
+          "sha256": "6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9",
+          "license": "Mixed; retain /usr/share/doc copyright and applicable corresponding source"
+        },
+        {
+          "name": "Node",
+          "version": "24.20.0 Linux x64",
+          "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz",
+          "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2",
+          "license": "MIT plus bundled notices"
+        },
+        {
+          "name": "Termux PRoot",
+          "version": "5.1.107.102 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb",
+          "sha256": "2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758",
+          "license": "GPL-2.0; corresponding source/notices required before redistribution",
+          "source": "https://github.com/termux/proot"
+        },
+        {
+          "name": "libtalloc",
+          "version": "2.5.0 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb",
+          "sha256": "b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530",
+          "license": "LGPL-3.0-or-later; source/relinking obligations",
+          "source": "https://talloc.samba.org/"
+        },
+        {
+          "name": "libandroid-shmem",
+          "version": "0.7 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb",
+          "sha256": "ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797",
+          "license": "BSD-3-Clause; retain copyright/disclaimer",
+          "source": "https://github.com/termux/libandroid-shmem"
+        }
+      ],
+      "licenseLimits": "No publishing; source obligations inventory is not distribution clearance; original MIT does not relicense dependencies",
+      "transform": "Verified native regular-file bytes renamed to Android lib*.so packaging names, no binary edits; debug symbols retained; PackageManager extraction requested through AGP useLegacyPackaging"
+    },
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "limits": [
+      "Actual target36 service domain, not development run-as.",
+      "Emulator x64 only; advertised arm64-v8a is not physical ARM64 execution.",
+      "Core deterministic work is not stock-agent/provider/shared-backend acceptance.",
+      "Single staged rootfs with manual recovery is not repeated corrected fresh install/update/recovery proof.",
+      "Native childPid null; source-controlled inner /proc identities corroborate actual children.",
+      "Residual linkerconfig warning retained; old glibc preload warnings belong earlier APK/launcher attempts.",
+      "Root exit and bounded pipe drain do not establish all descendant exit."
+    ],
+    "currentState": {
+      "observedAt": "2026-11-10T17:23:12.150Z",
+      "hostPidDuringCase": 6197,
+      "phonePermissionsAndStop": "not queried by this deterministic case",
+      "laterProcessState": "unknown from this snapshot"
+    }
+  },
+  {
+    "attemptId": "runtime-core-a01-unix-dependency",
+    "caseId": "unix.dependency",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:23:02.713Z",
+    "endedAt": "2026-11-10T17:23:12.150Z",
+    "summary": "Ordinary upstream npm install is-number@7.0.0 with retries0 succeeded; independent require accepts42 and rejects olea.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core.mjs",
+        "sha256": "c8b4d325c4920bda0f3289bdd08cac2e7fd74b504919e6f85ae9a7ff30aec4d0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/core-a01.sh",
+        "sha256": "d90efe39dd9b1f7868fddd6d893dc02b2227f82650b338600f824cc6cd84bd90"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/linux.sh",
+        "sha256": "3673a0001302c5d8e27cb7390579a5ac7b058db8454b1f9498a754c16befbb0f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/artifact-manifest.json",
+        "sha256": "af480a721970682c3b1839f280c18a2f8c4ed008adfb397642e9943abdbe80f0"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01.json",
+        "sha256": "5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01-native.json",
+        "sha256": "b1c8392a869badf0596375f706f4db3d8ff98db3c4a87d5fcc86267f942636bb"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/fixed-apk-hash.txt",
+        "sha256": "57f495093e9cd5a5728b1d7f9bb9e8825a59027cfbd7168cf9772ac5cf41079d"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "installed_dependency_fresh_behavior",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"
+    },
+    "provenance": {
+      "sourceCommit": "b1b8a74",
+      "nativePayloadSha256": {
+        "libproot.so": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d",
+        "libloader.so": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341",
+        "libloader32.so": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9",
+        "libtalloc.so": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90",
+        "libandroid-shmem.so": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+      },
+      "components": [
+        {
+          "name": "Gradle",
+          "version": "9.1.0",
+          "url": "https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip",
+          "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806",
+          "license": "Apache-2.0, build tool only"
+        },
+        {
+          "name": "Ubuntu Base",
+          "version": "24.04.3 amd64",
+          "url": "https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz",
+          "sha256": "6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9",
+          "license": "Mixed; retain /usr/share/doc copyright and applicable corresponding source"
+        },
+        {
+          "name": "Node",
+          "version": "24.20.0 Linux x64",
+          "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz",
+          "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2",
+          "license": "MIT plus bundled notices"
+        },
+        {
+          "name": "Termux PRoot",
+          "version": "5.1.107.102 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb",
+          "sha256": "2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758",
+          "license": "GPL-2.0; corresponding source/notices required before redistribution",
+          "source": "https://github.com/termux/proot"
+        },
+        {
+          "name": "libtalloc",
+          "version": "2.5.0 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb",
+          "sha256": "b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530",
+          "license": "LGPL-3.0-or-later; source/relinking obligations",
+          "source": "https://talloc.samba.org/"
+        },
+        {
+          "name": "libandroid-shmem",
+          "version": "0.7 x86_64",
+          "url": "https://packages.termux.dev/apt/termux-main/pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb",
+          "sha256": "ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797",
+          "license": "BSD-3-Clause; retain copyright/disclaimer",
+          "source": "https://github.com/termux/libandroid-shmem"
+        }
+      ],
+      "licenseLimits": "No publishing; source obligations inventory is not distribution clearance; original MIT does not relicense dependencies",
+      "transform": "Verified native regular-file bytes renamed to Android lib*.so packaging names, no binary edits; debug symbols retained; PackageManager extraction requested through AGP useLegacyPackaging"
+    },
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "limits": [
+      "Actual target36 service domain, not development run-as.",
+      "Emulator x64 only; advertised arm64-v8a is not physical ARM64 execution.",
+      "Core deterministic work is not stock-agent/provider/shared-backend acceptance.",
+      "Single staged rootfs with manual recovery is not repeated corrected fresh install/update/recovery proof.",
+      "Native childPid null; source-controlled inner /proc identities corroborate actual children.",
+      "Residual linkerconfig warning retained; old glibc preload warnings belong earlier APK/launcher attempts.",
+      "Root exit and bounded pipe drain do not establish all descendant exit."
+    ],
+    "currentState": {
+      "observedAt": "2026-11-10T17:23:12.150Z",
+      "hostPidDuringCase": 6197,
+      "phonePermissionsAndStop": "not queried by this deterministic case",
+      "laterProcessState": "unknown from this snapshot"
+    }
+  },
+  {
+    "attemptId": "runtime-boot-a02-historical-state-preservation",
+    "caseId": "historical.state-preservation",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "blocked",
+    "startedAt": "2026-11-10T17:34:33.333Z",
+    "endedAt": "2026-11-10T17:34:33.333Z",
+    "summary": "Current intended emulator has no dev.olea.spike package; historical host artifact/cache path missing. M1 original-state preservation cannot be reverified; cause unproved, no deletion/reset by new worker. Independent M2 fresh state remains separate.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/boot-attempts.json",
+        "sha256": "8952a0504a97c93080b1a7a5fa147e8a1cf8d474cdddbb5306f22622019174f8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/baseline-query-a02.txt",
+        "sha256": "d695b43a520d226fd72de0a54bbdbdacf1eb220e4b273d38f7cada3941348aa8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/emulator-identity-a02.txt",
+        "sha256": "c934583778d9370e3d9425cf48102de360352eac80d7e7d730c9ca822ca6a7c7"
+      }
+    ],
+    "assertions": [],
+    "execution": {
+      "timestampBasis": "Assessment time; original boot attempt UTC and emulator identities retained in artifact.",
+      "avd": "Olea_API_36",
+      "serial": "emulator-5554",
+      "allocation": {
+        "onlineCpus": "0-3",
+        "memTotalKiB": 4013812
+      }
+    },
+    "limits": [
+      "No baseline reinstall, reset, deletion or snapshot restoration performed.",
+      "Missing original M1 app/cache cause unproved; historical M1 evidence unchanged.",
+      "No physical ABI inference from emulator."
+    ]
+  },
+  {
+    "attemptId": "runtime-boot-a02-physical-abi",
+    "caseId": "physical.abi",
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "blocked",
+    "startedAt": "2026-11-10T17:34:33.333Z",
+    "endedAt": "2026-11-10T17:34:33.333Z",
+    "summary": "No connected physical device; physical Android14 ABI and dependent device measurements blocked.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/boot-attempts.json",
+        "sha256": "8952a0504a97c93080b1a7a5fa147e8a1cf8d474cdddbb5306f22622019174f8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/baseline-query-a02.txt",
+        "sha256": "d695b43a520d226fd72de0a54bbdbdacf1eb220e4b273d38f7cada3941348aa8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/emulator-identity-a02.txt",
+        "sha256": "c934583778d9370e3d9425cf48102de360352eac80d7e7d730c9ca822ca6a7c7"
+      }
+    ],
+    "assertions": [],
+    "execution": {
+      "timestampBasis": "Assessment time; original boot attempt UTC and emulator identities retained in artifact.",
+      "avd": "Olea_API_36",
+      "serial": "emulator-5554",
+      "allocation": {
+        "onlineCpus": "0-3",
+        "memTotalKiB": 4013812
+      }
+    },
+    "limits": [
+      "No baseline reinstall, reset, deletion or snapshot restoration performed.",
+      "Missing original M1 app/cache cause unproved; historical M1 evidence unchanged.",
+      "No physical ABI inference from emulator."
+    ]
+  },
+  {
+    "attemptId": "runtime-boot-a02-physical-unix",
+    "caseId": "physical.unix",
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "blocked",
+    "startedAt": "2026-11-10T17:34:33.333Z",
+    "endedAt": "2026-11-10T17:34:33.333Z",
+    "summary": "No connected physical device; physical Android14 ABI and dependent device measurements blocked.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/boot-attempts.json",
+        "sha256": "8952a0504a97c93080b1a7a5fa147e8a1cf8d474cdddbb5306f22622019174f8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/baseline-query-a02.txt",
+        "sha256": "d695b43a520d226fd72de0a54bbdbdacf1eb220e4b273d38f7cada3941348aa8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/emulator-identity-a02.txt",
+        "sha256": "c934583778d9370e3d9425cf48102de360352eac80d7e7d730c9ca822ca6a7c7"
+      }
+    ],
+    "assertions": [],
+    "execution": {
+      "timestampBasis": "Assessment time; original boot attempt UTC and emulator identities retained in artifact.",
+      "avd": "Olea_API_36",
+      "serial": "emulator-5554",
+      "allocation": {
+        "onlineCpus": "0-3",
+        "memTotalKiB": 4013812
+      }
+    },
+    "limits": [
+      "No baseline reinstall, reset, deletion or snapshot restoration performed.",
+      "Missing original M1 app/cache cause unproved; historical M1 evidence unchanged.",
+      "No physical ABI inference from emulator."
+    ]
+  },
+  {
+    "attemptId": "runtime-boot-a02-physical-agents",
+    "caseId": "physical.agents",
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "blocked",
+    "startedAt": "2026-11-10T17:34:33.333Z",
+    "endedAt": "2026-11-10T17:34:33.333Z",
+    "summary": "No connected physical device; physical Android14 ABI and dependent device measurements blocked.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/boot-attempts.json",
+        "sha256": "8952a0504a97c93080b1a7a5fa147e8a1cf8d474cdddbb5306f22622019174f8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/baseline-query-a02.txt",
+        "sha256": "d695b43a520d226fd72de0a54bbdbdacf1eb220e4b273d38f7cada3941348aa8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/emulator-identity-a02.txt",
+        "sha256": "c934583778d9370e3d9425cf48102de360352eac80d7e7d730c9ca822ca6a7c7"
+      }
+    ],
+    "assertions": [],
+    "execution": {
+      "timestampBasis": "Assessment time; original boot attempt UTC and emulator identities retained in artifact.",
+      "avd": "Olea_API_36",
+      "serial": "emulator-5554",
+      "allocation": {
+        "onlineCpus": "0-3",
+        "memTotalKiB": 4013812
+      }
+    },
+    "limits": [
+      "No baseline reinstall, reset, deletion or snapshot restoration performed.",
+      "Missing original M1 app/cache cause unproved; historical M1 evidence unchanged.",
+      "No physical ABI inference from emulator."
+    ]
+  },
+  {
+    "attemptId": "runtime-boot-a02-physical-phone",
+    "caseId": "physical.phone",
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "blocked",
+    "startedAt": "2026-11-10T17:34:33.333Z",
+    "endedAt": "2026-11-10T17:34:33.333Z",
+    "summary": "No connected physical device; physical Android14 ABI and dependent device measurements blocked.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/boot-attempts.json",
+        "sha256": "8952a0504a97c93080b1a7a5fa147e8a1cf8d474cdddbb5306f22622019174f8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/baseline-query-a02.txt",
+        "sha256": "d695b43a520d226fd72de0a54bbdbdacf1eb220e4b273d38f7cada3941348aa8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/emulator-identity-a02.txt",
+        "sha256": "c934583778d9370e3d9425cf48102de360352eac80d7e7d730c9ca822ca6a7c7"
+      }
+    ],
+    "assertions": [],
+    "execution": {
+      "timestampBasis": "Assessment time; original boot attempt UTC and emulator identities retained in artifact.",
+      "avd": "Olea_API_36",
+      "serial": "emulator-5554",
+      "allocation": {
+        "onlineCpus": "0-3",
+        "memTotalKiB": 4013812
+      }
+    },
+    "limits": [
+      "No baseline reinstall, reset, deletion or snapshot restoration performed.",
+      "Missing original M1 app/cache cause unproved; historical M1 evidence unchanged.",
+      "No physical ABI inference from emulator."
+    ]
+  },
+  {
+    "attemptId": "runtime-boot-a02-physical-battery",
+    "caseId": "physical.battery",
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "blocked",
+    "startedAt": "2026-11-10T17:34:33.333Z",
+    "endedAt": "2026-11-10T17:34:33.333Z",
+    "summary": "No connected physical device; physical Android14 ABI and dependent device measurements blocked.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/boot-attempts.json",
+        "sha256": "8952a0504a97c93080b1a7a5fa147e8a1cf8d474cdddbb5306f22622019174f8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/baseline-query-a02.txt",
+        "sha256": "d695b43a520d226fd72de0a54bbdbdacf1eb220e4b273d38f7cada3941348aa8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/emulator-identity-a02.txt",
+        "sha256": "c934583778d9370e3d9425cf48102de360352eac80d7e7d730c9ca822ca6a7c7"
+      }
+    ],
+    "assertions": [],
+    "execution": {
+      "timestampBasis": "Assessment time; original boot attempt UTC and emulator identities retained in artifact.",
+      "avd": "Olea_API_36",
+      "serial": "emulator-5554",
+      "allocation": {
+        "onlineCpus": "0-3",
+        "memTotalKiB": 4013812
+      }
+    },
+    "limits": [
+      "No baseline reinstall, reset, deletion or snapshot restoration performed.",
+      "Missing original M1 app/cache cause unproved; historical M1 evidence unchanged.",
+      "No physical ABI inference from emulator."
+    ]
+  },
+  {
+    "attemptId": "runtime-boot-a02-physical-thermals",
+    "caseId": "physical.thermals",
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "blocked",
+    "startedAt": "2026-11-10T17:34:33.333Z",
+    "endedAt": "2026-11-10T17:34:33.333Z",
+    "summary": "No connected physical device; physical Android14 ABI and dependent device measurements blocked.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/boot-attempts.json",
+        "sha256": "8952a0504a97c93080b1a7a5fa147e8a1cf8d474cdddbb5306f22622019174f8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/baseline-query-a02.txt",
+        "sha256": "d695b43a520d226fd72de0a54bbdbdacf1eb220e4b273d38f7cada3941348aa8"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/emulator-identity-a02.txt",
+        "sha256": "c934583778d9370e3d9425cf48102de360352eac80d7e7d730c9ca822ca6a7c7"
+      }
+    ],
+    "assertions": [],
+    "execution": {
+      "timestampBasis": "Assessment time; original boot attempt UTC and emulator identities retained in artifact.",
+      "avd": "Olea_API_36",
+      "serial": "emulator-5554",
+      "allocation": {
+        "onlineCpus": "0-3",
+        "memTotalKiB": 4013812
+      }
+    },
+    "limits": [
+      "No baseline reinstall, reset, deletion or snapshot restoration performed.",
+      "Missing original M1 app/cache cause unproved; historical M1 evidence unchanged.",
+      "No physical ABI inference from emulator."
+    ]
+  },
+  {
+    "attemptId": "runtime-prepare-a01-fresh",
+    "caseId": "runtime.fresh",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "fail",
+    "startedAt": "2026-11-10T17:10:02.845Z",
+    "endedAt": "2026-11-10T17:10:08.851Z",
+    "summary": "Fresh staged setup first preparation exited2 after tar sys Cannot utime Permission denied. Initial provisioning guard source also failed closedness review; no observed overwrite/preservation loss asserted.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/provision-a01.txt",
+        "sha256": "91f4f1595be8bd182c65634fcdda8e767eff31bee9ea5ea596f0932118d34622"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/prepare-a01.json",
+        "sha256": "be8dc82b6e715e7f818149a7d1a62b7889daad11e877f98a5b38496b35a2df6c"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/prepare-a01.sh",
+        "sha256": "ad4410d2a782e586e2f8aa5d207b29c60540c52d721ad4deb66173d2ccd8da99"
+      }
+    ],
+    "assertions": [],
+    "failureClass": "runtime",
+    "limits": [
+      "A corrected source guard/host refusal test is not a repeated fresh Android provisioning pass.",
+      "Existing M2 rootfs was preserved and not rerun as fresh."
+    ]
+  },
+  {
+    "attemptId": "runtime-prepare-a02-fresh",
+    "caseId": "runtime.fresh",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "fail",
+    "startedAt": "2026-11-10T17:34:33.333Z",
+    "endedAt": "2026-11-10T17:34:33.333Z",
+    "summary": "Second preparation reached240s during dpkg CA configuration; uncaught native InterruptedIOException killed host4134 before terminal JSON. Native receipt absent, not clean timeout/exit proof. Later bounded recovery yielded passing core but no repeat corrected fresh procedure.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/prepare-a02.json",
+        "sha256": "771deaf8d9e313ab2f64d3f645401257e3228ea63ff40ed028c4992e28d8dbba"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/prepare-a02-native-crash.txt",
+        "sha256": "e1c40b47c42ebe0eafff65565bac326cecd4965934c77556ab9a724c39f33a80"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/core-a01.json",
+        "sha256": "5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e"
+      }
+    ],
+    "assertions": [],
+    "failureClass": "runtime",
+    "retryOf": "runtime-prepare-a01-fresh",
+    "limits": [
+      "Assessment timestamp only; source retains crash UTC2026-11-10T17:16:12.716Z.",
+      "Source-only guard defect does not prove any actual data loss.",
+      "New drain fix and core result do not erase original crash."
+    ]
+  },
+  {
+    "attemptId": "runtime-harness-a01-timeout",
+    "caseId": "native.timeout",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:21:47.294Z",
+    "endedAt": "2026-11-10T17:21:52.516Z",
+    "summary": "5s native timeout caught with same host6197 surviving; rootExitObserved true. Root-only signaling and separate fixture observation do not establish general descendant cleanup.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/harness-assertions.json",
+        "sha256": "e19547eded6483e1565963994e16cd843098f62241f266d163cba564d0a3f4f1"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/assess-harness.mjs",
+        "sha256": "13289ce28cc8cbc5eed2ad7edfb3c6f29cfe908b30de5b44fff24930ac82f3a9"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/timeout-check-a01.json",
+        "sha256": "0ee4d794aad6569cad0270516c26d8500221d4c2946b6beea7c86ddc82ba8c6f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/utf8-drain-a01.json",
+        "sha256": "de89342cd93a1322ccb967aba806e02a0f79ea937bdbbee43abdcd7ec6c7851c"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/inherited-pipe-a01.json",
+        "sha256": "8105018ee8baf705e6a7294ab634ff42051633fdf4c3bb7f79f3598852fc16c1"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "retained_narrow_native_harness_assertion",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"
+    },
+    "limits": [
+      "Native harness fixtures only; shared backend buffering remains untested.",
+      "Raw drain InterruptedIOException recorded but caught; original old-APK crash remains separate.",
+      "No model/provider calls; no generic descendant exit claim."
+    ]
+  },
+  {
+    "attemptId": "runtime-harness-a01-output-bytes",
+    "caseId": "native.output-bytes",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:22:15.765Z",
+    "endedAt": "2026-11-10T17:22:16.092Z",
+    "summary": "Actual multibyte flood stdout90000/stderr80107 bytes retained65536 bytes per stream, outputTruncated true; no live drainers. This is native byte capture, not backend protocol-frame/queue acceptance.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/harness-assertions.json",
+        "sha256": "e19547eded6483e1565963994e16cd843098f62241f266d163cba564d0a3f4f1"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/assess-harness.mjs",
+        "sha256": "13289ce28cc8cbc5eed2ad7edfb3c6f29cfe908b30de5b44fff24930ac82f3a9"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/timeout-check-a01.json",
+        "sha256": "0ee4d794aad6569cad0270516c26d8500221d4c2946b6beea7c86ddc82ba8c6f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/utf8-drain-a01.json",
+        "sha256": "de89342cd93a1322ccb967aba806e02a0f79ea937bdbbee43abdcd7ec6c7851c"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/inherited-pipe-a01.json",
+        "sha256": "8105018ee8baf705e6a7294ab634ff42051633fdf4c3bb7f79f3598852fc16c1"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "retained_narrow_native_harness_assertion",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"
+    },
+    "limits": [
+      "Native harness fixtures only; shared backend buffering remains untested.",
+      "Raw drain InterruptedIOException recorded but caught; original old-APK crash remains separate.",
+      "No model/provider calls; no generic descendant exit claim."
+    ]
+  },
+  {
+    "attemptId": "runtime-harness-a01-inherited-pipes",
+    "caseId": "native.inherited-pipes",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:22:40.395Z",
+    "endedAt": "2026-11-10T17:22:44.536Z",
+    "summary": "Root exited while fixture descendant held pipes; native reported inheritedPipesAfterJoin true, settled4141ms, no live drainers. Descendant exit not established.",
+    "artifacts": [
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/harness-assertions.json",
+        "sha256": "e19547eded6483e1565963994e16cd843098f62241f266d163cba564d0a3f4f1"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/assess-harness.mjs",
+        "sha256": "13289ce28cc8cbc5eed2ad7edfb3c6f29cfe908b30de5b44fff24930ac82f3a9"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/timeout-check-a01.json",
+        "sha256": "0ee4d794aad6569cad0270516c26d8500221d4c2946b6beea7c86ddc82ba8c6f"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/utf8-drain-a01.json",
+        "sha256": "de89342cd93a1322ccb967aba806e02a0f79ea937bdbbee43abdcd7ec6c7851c"
+      },
+      {
+        "path": "git:b1b8a74:spike/m2/runtime/evidence/inherited-pipe-a01.json",
+        "sha256": "8105018ee8baf705e6a7294ab634ff42051633fdf4c3bb7f79f3598852fc16c1"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "retained_narrow_native_harness_assertion",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "execution": {
+      "package": "dev.olea.m2.runtime",
+      "targetSdk": 36,
+      "compileSdk": 36,
+      "minSdk": 26,
+      "androidApi": 36,
+      "measuredNodeArch": "x64",
+      "advertisedAbis": "x86_64,arm64-v8a",
+      "actualDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+      "realUid": 10216,
+      "hostPid": 6197,
+      "nodePid": 6333,
+      "nodePpid": 6330,
+      "nodeProcExe": "/opt/node/bin/node",
+      "loaderEnvAbsent": true,
+      "apkSha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"
+    },
+    "limits": [
+      "Native harness fixtures only; shared backend buffering remains untested.",
+      "Raw drain InterruptedIOException recorded but caught; original old-APK crash remains separate.",
+      "No model/provider calls; no generic descendant exit claim."
+    ]
   }
 ]
