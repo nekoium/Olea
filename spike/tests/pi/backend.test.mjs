@@ -40,7 +40,9 @@ test('host-only: two sessions, explicit resume and no silent prompt replay', asy
   const stateDir = await mkdtemp(join(tempRoot, 'sessions-'));
   const backend = new Backend({ entry: fixture, workspace: root, stateDir }, () => {});
   try {
-    await backend.start('a'); await backend.start('b');
+    const starts = await Promise.allSettled([backend.start('a'), backend.start('b'), backend.start('c')]);
+    assert.equal(starts.filter(result => result.status === 'fulfilled').length, 2);
+    assert.equal(starts[2].status, 'rejected');
     assert.equal(backend.status().length, 2);
     await assert.rejects(backend.start('c'), /session_limit/);
     await assert.rejects(backend.start('../escape'), /invalid_session/);

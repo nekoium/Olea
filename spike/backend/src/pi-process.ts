@@ -3,6 +3,7 @@ import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import { EventEmitter } from 'node:events';
 import { StringDecoder } from 'node:string_decoder';
 import { randomUUID } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
 
 export type RecordData = Record<string, any>;
 export const MAX_RECORD_BYTES = 256 * 1024;
@@ -83,14 +84,33 @@ export class PiProcess extends EventEmitter {
 
   async stop() {
     if (this.closing) return;
+    // Pi shell tools create separate process groups. Capture those descendants
+    // before shutdown can reparent them, then clean them even if Pi is wedged.
+    const descendants: number[] = [];
+    if (process.platform === 'linux' && this.child.pid) {
+      const discover = async (pid: number) => {
+        if (descendants.length >= 256) { this.emit('fault', 'descendant_limit'); return; }
+        try {
+          const children = (await readFile(`/proc/${pid}/task/${pid}/children`, 'utf8')).trim().split(/\s+/).filter(Boolean).map(Number);
+          for (const child of children) {
+            if (!descendants.includes(child)) { descendants.push(child); await discover(child); }
+          }
+        } catch { /* Process may have exited during the snapshot. */ }
+      };
+      await discover(this.child.pid);
+    }
     this.closing = true;
     this.failPending('pi_stopped');
     this.child.stdin.end();
     // Kill the whole Unix process group even if the parent already exited.
     const kill = (signal: NodeJS.Signals) => {
       try {
-        if (process.platform !== 'win32' && this.child.pid) process.kill(-this.child.pid, signal);
-        else this.child.kill(signal);
+        if (process.platform !== 'win32' && this.child.pid) {
+          for (const pid of [...descendants].reverse()) {
+            try { process.kill(-pid, signal); } catch { try { process.kill(pid, signal); } catch {} }
+          }
+          process.kill(-this.child.pid, signal);
+        } else this.child.kill(signal);
       } catch (error: any) { if (error.code !== 'ESRCH') this.emit('fault', 'process_group_cleanup_failed'); }
     };
     await new Promise(resolve => setTimeout(resolve, 200));

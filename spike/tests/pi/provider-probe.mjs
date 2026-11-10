@@ -17,8 +17,18 @@ export async function providerProbe(path = authorizedProviderFile) {
           tool_choice: { type: 'function', function: { name: 'echo_test' } } }), signal: AbortSignal.timeout(45_000),
       });
       // Never retain authentication responses or request headers.
-      const text = await response.text();
-      if (text.length > 64 * 1024) throw new Error('response_limit');
+      const reader = response.body?.getReader();
+      if (!reader) throw new Error('empty_response');
+      const chunks = [];
+      let bytes = 0;
+      while (true) {
+        const next = await reader.read();
+        if (next.done) break;
+        bytes += next.value.length;
+        if (bytes > 64 * 1024) { await reader.cancel(); throw new Error('response_limit'); }
+        chunks.push(next.value);
+      }
+      const text = Buffer.concat(chunks).toString('utf8');
       let body;
       try { body = JSON.parse(text); } catch { body = {}; }
       const call = body.choices?.[0]?.message?.tool_calls?.[0];

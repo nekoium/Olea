@@ -15,13 +15,18 @@ await mkdir(workspace, { recursive: true });
 await mkdir(stateDir, { recursive: true, mode: 0o700 });
 const report = { scope: process.platform === 'linux' ? 'linux-runtime' : 'host-only',
   platform: process.platform, arch: process.arch, node: process.version,
-  piVersion: process.env.OLEA_PI_VERSION ?? 'unrecorded', cases: [], phoneCalls: [], measurements: {} };
+  piVersion: process.env.OLEA_PI_VERSION ?? 'unrecorded', cases: [], phoneCalls: [], measurements: {}, usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }, retryEvents: 0, eventCount: 0 };
 const events = new Map();
 const backend = new Backend({ entry, workspace, stateDir }, event => {
   if (event.type === 'event') {
+    report.eventCount++;
+    if (/retry/i.test(event.record.type)) report.retryEvents++;
+    const usage = event.record.type === 'message_end' ? event.record.message?.usage : undefined;
+    if (usage) for (const key of ['input', 'output', 'cacheRead', 'cacheWrite']) report.usage[key] += Number(usage[key] ?? 0);
     const list = events.get(event.session) ?? [];
     // Retain only bounded metadata, never raw model/provider content.
-    if (list.length < 4096) list.push({ type: event.record.type, toolName: event.record.toolName });
+    if (list.length >= 4096) throw new Error('event_limit');
+    list.push({ type: event.record.type, toolName: event.record.toolName });
     events.set(event.session, list);
   }
 });
@@ -32,7 +37,8 @@ async function caseRun(name, run) {
   catch (error) { report.cases.push({ name, status: 'fail', reason: error?.code === 'ENOENT' ? 'independent_file_missing' : /^[a-z_]+$/.test(error?.message ?? '') ? error.message : 'assertion_or_runtime_failure', durationMs: Math.round(performance.now() - start) }); }
 }
 async function prompt(session, message, timeout = 120_000) {
-  const before = (events.get(session) ?? []).length;
+  events.set(session, []);
+  const before = 0;
   await backend.command(session, { type: 'prompt', message });
   const deadline = Date.now() + timeout;
   while (Date.now() < deadline) {
