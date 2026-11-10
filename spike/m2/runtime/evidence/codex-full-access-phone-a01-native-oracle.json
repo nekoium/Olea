@@ -1,0 +1,105 @@
+{
+  "attemptId": "codex-full-access-phone-a01-native-oracle",
+  "allocationId": "m2-android-codex-phone-01",
+  "status": "pass",
+  "nativeSupervision": {
+    "timedOut": true,
+    "exitCode": null,
+    "rootExitObserved": false,
+    "descendantExitVerified": false,
+    "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+  },
+  "hostRealUid": 10216,
+  "fixtureRealUid": 10217,
+  "hostOracleReadDenied": true,
+  "allRegisteredToolsExcludeOracle": true,
+  "oracleOutsideSharedWorkspace": true,
+  "oracleEqualsUnixValue": true,
+  "valueSha256": "f5fd70b0c4978751e9061cc5e21ebd46ad957f5ff7ca39d9acd68b269457a97c",
+  "launcherPackage": "com.google.android.apps.nexuslauncher",
+  "targetPackage": "dev.olea.m2.fixture",
+  "before": {
+    "atMs": 1794337083448,
+    "package": "com.google.android.apps.nexuslauncher"
+  },
+  "launcher": {
+    "atMs": 1794337099290,
+    "action": "ACTION_CLICK",
+    "beforePackage": "com.google.android.apps.nexuslauncher",
+    "nodeId": "42b17ae7:18"
+  },
+  "foreground": {
+    "atMs": 1794337100177,
+    "package": "dev.olea.m2.fixture"
+  },
+  "fixtureAction": {
+    "atMs": 1794337115104
+  },
+  "interveningLaunchIntentCount": 0,
+  "automaticReplayCount": 0,
+  "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+  "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+  "canonicalResume": true,
+  "actualMcpItems": 6,
+  "actualCommandItems": 1,
+  "audit": [
+    {
+      "atMs": 1794337075174,
+      "operation": "capabilities",
+      "beforePackage": "dev.olea.m2.runtime",
+      "afterPackage": "dev.olea.m2.runtime"
+    },
+    {
+      "atMs": 1794337082528,
+      "operation": "global_action",
+      "beforePackage": "dev.olea.m2.runtime",
+      "afterPackage": "dev.olea.m2.runtime"
+    },
+    {
+      "atMs": 1794337088311,
+      "operation": "swipe",
+      "beforePackage": "com.google.android.apps.nexuslauncher",
+      "afterPackage": "com.google.android.apps.nexuslauncher"
+    },
+    {
+      "atMs": 1794337094331,
+      "operation": "accessibility_tree",
+      "beforePackage": "com.google.android.apps.nexuslauncher",
+      "afterPackage": "com.google.android.apps.nexuslauncher"
+    },
+    {
+      "atMs": 1794337099290,
+      "operation": "accessibility_click",
+      "beforePackage": "com.google.android.apps.nexuslauncher",
+      "afterPackage": "com.google.android.apps.nexuslauncher",
+      "nodeId": "42b17ae7:18",
+      "action": "ACTION_CLICK"
+    },
+    {
+      "atMs": 1794337115104,
+      "operation": "fixture_action",
+      "beforePackage": "dev.olea.m2.fixture",
+      "afterPackage": "dev.olea.m2.fixture"
+    }
+  ],
+  "toolSurfaceAudit": "Manual exact deployed phone-mcp.js/native fixture contract inspection; six narrow tools/no oracle reader, separate fixture UI hides value; measured hostUID read denial is independent. Runner MCP receipt omits individual tool names; native audit records correlated operation names.",
+  "phoneMcpSha256": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+  "filesystemIsolation": false,
+  "approvalPolicy": "never",
+  "topLevelPrompts": 1,
+  "lastCumulativeUsage": {
+    "totalTokens": 153240,
+    "inputTokens": 152758,
+    "cachedInputTokens": 127403,
+    "cacheWriteInputTokens": 0,
+    "outputTokens": 482,
+    "reasoningOutputTokens": 0
+  },
+  "errors": [],
+  "elapsedMs": 64679.9341,
+  "assertion": {
+    "independent": true,
+    "passed": true,
+    "name": "separate_uid_causal_phone_oracle"
+  }
+}

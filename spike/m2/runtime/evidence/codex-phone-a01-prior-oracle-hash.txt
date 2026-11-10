@@ -1,0 +1,1 @@
+96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6 *.setup/codex-phone-a01-prior-oracle.txt

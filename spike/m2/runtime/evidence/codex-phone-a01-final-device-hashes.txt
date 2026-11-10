@@ -1,0 +1,8 @@
+7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32  files/rootfs/opt/olea/spike/tests/codex/run-stock.mjs
+d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c  files/rootfs/opt/olea/spike/backend/dist/backend.js
+9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90  files/rootfs/opt/olea/spike/backend/dist/codex-session.js
+34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6  files/rootfs/opt/olea/spike/backend/dist/phone-mcp.js
+cdcb45aaa01d0f14e298985e09465aebccd47f64ecd298aea44814af7b62bbda  files/rootfs/opt/agents/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/bin/codex
+600
+600
+600

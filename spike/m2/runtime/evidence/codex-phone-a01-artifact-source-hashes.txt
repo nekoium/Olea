@@ -1,0 +1,6 @@
+dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887 *.setup/runtime-a07.apk
+41d0e4d85dd5f8226b7c1e3bf259ee399169bc563aac9f4722181002cda0ce57 *.setup/codex-phone-a01-owned-cleanup.sh
+8dca25f8aaf1d6abbb8c615dc27b93f67c31dd64d6480783829bd6e79852359b *spike/m2/runtime/codex-full-access-phone-a01.sh
+f112a43974e10b34c63d778c58b0017eca0b4c262510a2406e35e7c4713b778a *spike/m2/runtime/codex-phone-direct-a01.mjs
+cd223050362590712c700e7dc45527a634c647a171596f898987bf39a84ffbb0 *spike/m2/runtime/assess-codex-phone-a01.mjs
+a41d5eb4b10aa21ccbdadcb418954709abbc6e065bdf08eaa2bb37f8c56f2133 *spike/m2/runtime/stop-after-codex-phone-a01.mjs

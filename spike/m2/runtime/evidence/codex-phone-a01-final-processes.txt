@@ -1,0 +1,8 @@
+Tue Nov 10 19:04:42 UTC 2026
+10216  9619   489 dev.olea.m2.runtime
+10217  9732   489 dev.olea.m2.fixture
+10218 12459   489 dev.olea.m2.repeat
+10216 16364  9619 libproot.so
+10216 16514     1 git
+10216 16516 16514 git-remote-https
+    topResumedActivity=ActivityRecord{37392680 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t18}

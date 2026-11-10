@@ -1,0 +1,11 @@
+8dca25f8aaf1d6abbb8c615dc27b93f67c31dd64d6480783829bd6e79852359b *spike/m2/runtime/codex-full-access-phone-a01.sh
+f112a43974e10b34c63d778c58b0017eca0b4c262510a2406e35e7c4713b778a *spike/m2/runtime/codex-phone-direct-a01.mjs
+cd223050362590712c700e7dc45527a634c647a171596f898987bf39a84ffbb0 *spike/m2/runtime/assess-codex-phone-a01.mjs
+a41d5eb4b10aa21ccbdadcb418954709abbc6e065bdf08eaa2bb37f8c56f2133 *spike/m2/runtime/stop-after-codex-phone-a01.mjs
+143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f *spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md
+a0f3736b1355b2b2fd4b07bbfe059c5d891828b30f136d63c77c74ecdcf74117 *spike/m2/runtime/evidence/codex-full-access-phone-a01.json
+2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68 *spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json
+00caab8889e9a95f95a8763a0d7e09c346e2765ccc7df1b715202d19de49f951 *spike/m2/runtime/evidence/codex-full-access-phone-a01-native-oracle.json
+5b5e87889f0eea4b23a63037e45a2e15c159246380acfa97e2ab16518ec22f6e *spike/m2/runtime/evidence/codex-phone-a01-stop.json
+a8e695c6a4d83678a52c285a8f6fc620aa805365119eb421b520998c6d8db946 *spike/m2/runtime/evidence/codex-phone-a01-owned-cleanup.txt
+0354ef4630f3e7795a7241eef307360714b69e4e6df7d23bc4ce7bfeff3ffd6d *spike/m2/runtime/evidence/codex-phone-a01-after-targeted-cleanup.txt

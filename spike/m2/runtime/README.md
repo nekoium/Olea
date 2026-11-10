@@ -8,6 +8,8 @@ A later explicitly selected stock full-access policy passed deterministic inside
 
 The subsequently activated single stock Codex provider-backed Unix attempt and canonical resume also passed: [CODEX_FULL_ACCESS_UNIX.md](CODEX_FULL_ACCESS_UNIX.md). It consumed one prompt, bringing manager-reported global usage to4/8, and preserved two reconnect notifications plus unknown HTTP/billing counts.
 
+The final allocated Codex phone case passed actual MCP/Unix/causal separate-UID oracle, canonical resume and native stop/no-effect rejection: [CODEX_FULL_ACCESS_PHONE.md](CODEX_FULL_ACCESS_PHONE.md). Global consumption reached5/8; native post-case supervision failed at210s and later exact targeted cleanup settled it, both results preserved separately.
+
 ## Measured result
 
 On Olea_API_36, Android16/API36 x86_64, target36/min26/compile36 `dev.olea.m2.runtime` executes unmodified Termux PRoot5.1.107.102 from PackageManager's read-only nativeLibraryDir. Its stock packaged loader executes writable Ubuntu24.04.3 shell, upstream Node24.20.0 and nested children in the **actual Kotlin service domain**, `u:r:untrusted_app`, real UID10216. Development run-as is provisioning/observation only.

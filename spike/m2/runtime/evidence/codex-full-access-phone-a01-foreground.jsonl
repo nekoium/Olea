@@ -1,0 +1,6 @@
+{"atMs":1794337060761,"detail":"topResumedActivity=ActivityRecord{103042190 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t18}"}
+{"atMs":1794337061099,"detail":"topResumedActivity=ActivityRecord{224096032 u0 dev.olea.m2.runtime/dev.olea.spike.MainActivity t35}"}
+{"atMs":1794337083448,"detail":"topResumedActivity=ActivityRecord{89564721 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t2}"}
+{"atMs":1794337100177,"detail":"topResumedActivity=ActivityRecord{103042190 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t18}"}
+{"atMs":1794337115976,"detail":"topResumedActivity=ActivityRecord{37392680 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t18}"}
+{"endedAtMs":1794337210818,"samples":519,"bounded":true}
