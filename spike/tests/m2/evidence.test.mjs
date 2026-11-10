@@ -8,6 +8,7 @@ import { catalog, validateReceipt, assess, render, sha256, verifyArtifacts, read
 import { challenge, unixPrompt, assertUnix, assertPhone, assertPreserved, parseStat, observeProcess, exited } from './assertions.mjs';
 import { descendantChains, observeTree } from './observe-tree.mjs';
 import { immutableArtifact, appendReceipts, readReceipts, pinLegacyOffline } from './receipt-store.mjs';
+import { collectResources } from './resources.mjs';
 import { bounded, runPiSingle, classifyProviderError } from './pi-single.mjs';
 import { supervise, sampleResources } from './supervise.mjs';
 function receipt(extra = {}) {
@@ -156,6 +157,15 @@ test('supervisor bounds timeout, frame flood, aggregate output and secret enviro
 test('resource sampler records incomplete roots instead of zero-cost full total', () => temporary(async dir => {
   const r = await sampleResources([20], dir);
   assert.equal(r.completeRequestedSet, false); assert.equal(r.processes[0].status, 'absent');
+}));
+test('resource collection preserves missing roots and bounded raw CPU identity intervals', () => temporary(async proc => {
+  const result = await collectResources([20], { proc, samples: 2, intervalMs: 1, context: 'host' });
+  assert.equal(result.samples.length, 2);
+  assert.equal(result.samples[0].completeRequestedSet, false);
+  assert.equal(result.cpuIntervals[0].status, 'unverifiable');
+  assert.equal(result.cpuIntervals[0].deltaRawTicks, null);
+  await assert.rejects(collectResources([20], { samples: 31, context: 'host' }), /invalid_resource_bounds/);
+  await assert.rejects(collectResources([20], { context: 'guessed-android' }), /invalid_resource_bounds/);
 }));
 test('model prompt requests actual 1500ms child timers for observable nested arithmetic', () => {
   const c = challenge(); const prompt = unixPrompt(c);
