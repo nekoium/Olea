@@ -1,0 +1,1524 @@
+[
+  {
+    "id": "provenance",
+    "expected": "Pin source URLs, licenses, notices, versions and actual payload SHA256.",
+    "prerequisites": [],
+    "context": "artifacts",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "runtime.modern",
+    "expected": "Execute supplied complete runtime from target36 Activity/service actual app UID, not run-as.",
+    "prerequisites": [],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "historical.state-preservation",
+    "expected": "Reverify original M1 app/rootfs/workspace state without deletion or replacement; missing current state blocks original preservation, not independent M2 fresh tests.",
+    "prerequisites": [],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "runtime.target28",
+    "expected": "Retain target28 comparison separately; never modern acceptance.",
+    "prerequisites": [],
+    "context": "target28-comparison",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "runtime.fresh",
+    "expected": "Reproduce fresh disposable install from verified artifacts with bounded step receipts.",
+    "prerequisites": [
+      "provenance",
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "unix.shell",
+    "expected": "Independently assert real shell under native supervision.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "unix.node",
+    "expected": "Independently assert real node under native supervision.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "unix.git-object",
+    "expected": "Independently assert real git-object under native supervision.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "unix.dns-tls",
+    "expected": "Independently assert real dns-tls under native supervision.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "unix.dependency",
+    "expected": "Independently assert real dependency under native supervision.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "unix.child",
+    "expected": "Independently assert real child under native supervision.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "unix.nested-child",
+    "expected": "Independently assert real nested-child under native supervision.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "backend.shared",
+    "expected": "Kotlin supervises ONE persistent backend with Pi and Codex adapters and real process identities.",
+    "prerequisites": [
+      "unix.node"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.install",
+    "expected": "Stock pi supported install, declared executable and artifact hashes.",
+    "prerequisites": [
+      "unix.node",
+      "unix.dns-tls"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.initialize",
+    "expected": "Stock pi: independently establish initialize; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.turn",
+    "expected": "Stock pi: independently establish turn; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.stream",
+    "expected": "Stock pi: independently establish stream; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.file",
+    "expected": "Stock pi: independently establish file; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.shell",
+    "expected": "Stock pi: independently establish shell; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.dependency",
+    "expected": "Stock pi: independently establish dependency; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.child",
+    "expected": "Stock pi: independently establish child; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.nested-child",
+    "expected": "Stock pi: independently establish nested-child; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.resume",
+    "expected": "Stock pi: independently establish resume; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.cancel",
+    "expected": "Stock pi: independently establish cancel; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.error",
+    "expected": "Stock pi: independently establish error; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "pi.update",
+    "expected": "Stock pi: independently establish update; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "pi.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.install",
+    "expected": "Stock codex supported install, declared executable and artifact hashes.",
+    "prerequisites": [
+      "unix.node",
+      "unix.dns-tls"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.initialize",
+    "expected": "Stock codex: independently establish initialize; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.turn",
+    "expected": "Stock codex: independently establish turn; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.stream",
+    "expected": "Stock codex: independently establish stream; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.file",
+    "expected": "Stock codex: independently establish file; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.shell",
+    "expected": "Stock codex: independently establish shell; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.dependency",
+    "expected": "Stock codex: independently establish dependency; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.child",
+    "expected": "Stock codex: independently establish child; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.nested-child",
+    "expected": "Stock codex: independently establish nested-child; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.resume",
+    "expected": "Stock codex: independently establish resume; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.cancel",
+    "expected": "Stock codex: independently establish cancel; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.error",
+    "expected": "Stock codex: independently establish error; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.update",
+    "expected": "Stock codex: independently establish update; preserve thread/transcript/workspace and original failures.",
+    "prerequisites": [
+      "codex.install",
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.sandbox",
+    "expected": "Prove supported Codex sandbox without sandbox/approval bypass.",
+    "prerequisites": [
+      "codex.initialize"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.approval",
+    "expected": "Prove supported Codex approval without sandbox/approval bypass.",
+    "prerequisites": [
+      "codex.initialize"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.rejection",
+    "expected": "Prove supported Codex rejection without sandbox/approval bypass.",
+    "prerequisites": [
+      "codex.initialize"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.initialized-notification",
+    "expected": "Prove supported Codex initialized-notification without sandbox/approval bypass.",
+    "prerequisites": [
+      "codex.initialize"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.thread-identity",
+    "expected": "Prove supported Codex thread-identity without sandbox/approval bypass.",
+    "prerequisites": [
+      "codex.initialize"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "codex.tool-registration",
+    "expected": "Prove supported Codex tool-registration without sandbox/approval bypass.",
+    "prerequisites": [
+      "codex.initialize"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.direct.accessibility-launch",
+    "expected": "Independently verify accessibility-launch; dispatch/model claim alone insufficient.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.pi.accessibility-launch",
+    "expected": "pi selects registered tools and independently completes accessibility-launch.",
+    "prerequisites": [
+      "phone.direct.accessibility-launch",
+      "pi.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.codex.accessibility-launch",
+    "expected": "codex selects registered tools and independently completes accessibility-launch.",
+    "prerequisites": [
+      "phone.direct.accessibility-launch",
+      "codex.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.direct.intent-url",
+    "expected": "Independently verify intent-url; dispatch/model claim alone insufficient.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.pi.intent-url",
+    "expected": "pi selects registered tools and independently completes intent-url.",
+    "prerequisites": [
+      "phone.direct.intent-url",
+      "pi.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.codex.intent-url",
+    "expected": "codex selects registered tools and independently completes intent-url.",
+    "prerequisites": [
+      "phone.direct.intent-url",
+      "codex.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.direct.structured-api",
+    "expected": "Independently verify structured-api; dispatch/model claim alone insufficient.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.pi.structured-api",
+    "expected": "pi selects registered tools and independently completes structured-api.",
+    "prerequisites": [
+      "phone.direct.structured-api",
+      "pi.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.codex.structured-api",
+    "expected": "codex selects registered tools and independently completes structured-api.",
+    "prerequisites": [
+      "phone.direct.structured-api",
+      "codex.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.direct.files-media",
+    "expected": "Independently verify files-media; dispatch/model claim alone insufficient.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.pi.files-media",
+    "expected": "pi selects registered tools and independently completes files-media.",
+    "prerequisites": [
+      "phone.direct.files-media",
+      "pi.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.codex.files-media",
+    "expected": "codex selects registered tools and independently completes files-media.",
+    "prerequisites": [
+      "phone.direct.files-media",
+      "codex.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.direct.notification",
+    "expected": "Independently verify notification; dispatch/model claim alone insufficient.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.pi.notification",
+    "expected": "pi selects registered tools and independently completes notification.",
+    "prerequisites": [
+      "phone.direct.notification",
+      "pi.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.codex.notification",
+    "expected": "codex selects registered tools and independently completes notification.",
+    "prerequisites": [
+      "phone.direct.notification",
+      "codex.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.direct.capture",
+    "expected": "Independently verify capture; dispatch/model claim alone insufficient.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.pi.capture",
+    "expected": "pi selects registered tools and independently completes capture.",
+    "prerequisites": [
+      "phone.direct.capture",
+      "pi.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.codex.capture",
+    "expected": "codex selects registered tools and independently completes capture.",
+    "prerequisites": [
+      "phone.direct.capture",
+      "codex.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.direct.app-integration",
+    "expected": "Independently verify app-integration; dispatch/model claim alone insufficient.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.pi.app-integration",
+    "expected": "pi selects registered tools and independently completes app-integration.",
+    "prerequisites": [
+      "phone.direct.app-integration",
+      "pi.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.codex.app-integration",
+    "expected": "codex selects registered tools and independently completes app-integration.",
+    "prerequisites": [
+      "phone.direct.app-integration",
+      "codex.turn"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.oracle",
+    "expected": "Separate real Android UID oracle is inaccessible through ALL agent tools/shared workspace.",
+    "prerequisites": [],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.pi.combined",
+    "expected": "Unix random value equals separate-UID private fixture receipt; causal launcher ACTION_CLICK precedes foreground and fixture integration.",
+    "prerequisites": [
+      "phone.pi.accessibility-launch",
+      "phone.oracle"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.codex.combined",
+    "expected": "Unix random value equals separate-UID private fixture receipt; causal launcher ACTION_CLICK precedes foreground and fixture integration.",
+    "prerequisites": [
+      "phone.codex.accessibility-launch",
+      "phone.oracle"
+    ],
+    "context": "android-app",
+    "mode": "model",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.permission-denied",
+    "expected": "Native permission-denied boundary independently observed with no unauthorized effect.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.revocation",
+    "expected": "Native revocation boundary independently observed with no unauthorized effect.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.stop",
+    "expected": "Native stop boundary independently observed with no unauthorized effect.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.cancel",
+    "expected": "Native cancel boundary independently observed with no unauthorized effect.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "phone.no-replay",
+    "expected": "Native no-replay boundary independently observed with no unauthorized effect.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "preserve.agent-update",
+    "expected": "Record before/after hashes and durable identity for agent-update; no reset/uninstall to claim preservation.",
+    "prerequisites": [
+      "runtime.fresh"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "preserve.runtime-update",
+    "expected": "Record before/after hashes and durable identity for runtime-update; no reset/uninstall to claim preservation.",
+    "prerequisites": [
+      "runtime.fresh"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "preserve.failed-update",
+    "expected": "Record before/after hashes and durable identity for failed-update; no reset/uninstall to claim preservation.",
+    "prerequisites": [
+      "runtime.fresh"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "preserve.interrupted-update",
+    "expected": "Record before/after hashes and durable identity for interrupted-update; no reset/uninstall to claim preservation.",
+    "prerequisites": [
+      "runtime.fresh"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "preserve.recovery-hashes",
+    "expected": "Record before/after hashes and durable identity for recovery-hashes; no reset/uninstall to claim preservation.",
+    "prerequisites": [
+      "runtime.fresh"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "preserve.credential-preservation",
+    "expected": "Record before/after hashes and durable identity for credential-preservation; no reset/uninstall to claim preservation.",
+    "prerequisites": [
+      "runtime.fresh"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "lifecycle.child-death",
+    "expected": "Distinguish live execution from saved/restored state after child-death; verify native stop/permissions and descendants.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "lifecycle.backend-death",
+    "expected": "Distinguish live execution from saved/restored state after backend-death; verify native stop/permissions and descendants.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "lifecycle.whole-app-death",
+    "expected": "Distinguish live execution from saved/restored state after whole-app-death; verify native stop/permissions and descendants.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "lifecycle.app-switch",
+    "expected": "Distinguish live execution from saved/restored state after app-switch; verify native stop/permissions and descendants.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "lifecycle.lock",
+    "expected": "Distinguish live execution from saved/restored state after lock; verify native stop/permissions and descendants.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "lifecycle.reboot",
+    "expected": "Distinguish live execution from saved/restored state after reboot; verify native stop/permissions and descendants.",
+    "prerequisites": [
+      "runtime.modern"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.setup-time",
+    "expected": "Measure setup-time with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.install-size",
+    "expected": "Measure install-size with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.cold-start",
+    "expected": "Measure cold-start with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.idle-cpu",
+    "expected": "Measure idle-cpu with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.first-event",
+    "expected": "Measure first-event with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.first-text",
+    "expected": "Measure first-text with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.stream-stalls",
+    "expected": "Measure stream-stalls with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.one-session",
+    "expected": "Measure one-session with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.two-sessions",
+    "expected": "Measure two-sessions with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.direct-managed",
+    "expected": "Measure direct-managed with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.output-frame",
+    "expected": "Measure output-frame with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [
+      {
+        "attemptId": "offline-tooling-output-frame-01",
+        "caseId": "cost.output-frame",
+        "context": "host",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:04:34.989Z",
+        "endedAt": "2026-11-10T17:04:37.819Z",
+        "summary": "Host tooling tests for output-frame completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
+        "artifacts": [
+          {
+            "path": "spike/m2/evidence/evidence/offline-checks.json",
+            "sha256": "725ae1ba6c246c854f267e1cc17c51b7210b3ff0399f21f332b82e9ecd3b5aab"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "host_tooling_suite_exit_zero",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "limits": [
+          "No provider, stock agent or Android execution.",
+          "Supervisor tests do not establish Android backend backpressure/cleanup."
+        ]
+      }
+    ],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.output-queue",
+    "expected": "Measure output-queue with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [
+      {
+        "attemptId": "offline-tooling-output-queue-01",
+        "caseId": "cost.output-queue",
+        "context": "host",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:04:34.989Z",
+        "endedAt": "2026-11-10T17:04:37.819Z",
+        "summary": "Host tooling tests for output-queue completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
+        "artifacts": [
+          {
+            "path": "spike/m2/evidence/evidence/offline-checks.json",
+            "sha256": "725ae1ba6c246c854f267e1cc17c51b7210b3ff0399f21f332b82e9ecd3b5aab"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "host_tooling_suite_exit_zero",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "limits": [
+          "No provider, stock agent or Android execution.",
+          "Supervisor tests do not establish Android backend backpressure/cleanup."
+        ]
+      }
+    ],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.timeout",
+    "expected": "Measure timeout with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [
+      {
+        "attemptId": "offline-tooling-timeout-01",
+        "caseId": "cost.timeout",
+        "context": "host",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:04:34.989Z",
+        "endedAt": "2026-11-10T17:04:37.819Z",
+        "summary": "Host tooling tests for timeout completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
+        "artifacts": [
+          {
+            "path": "spike/m2/evidence/evidence/offline-checks.json",
+            "sha256": "725ae1ba6c246c854f267e1cc17c51b7210b3ff0399f21f332b82e9ecd3b5aab"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "host_tooling_suite_exit_zero",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "limits": [
+          "No provider, stock agent or Android execution.",
+          "Supervisor tests do not establish Android backend backpressure/cleanup."
+        ]
+      }
+    ],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.cleanup",
+    "expected": "Measure cleanup with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.constrained-core",
+    "expected": "Measure constrained-core with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.constrained-model",
+    "expected": "Measure constrained-model with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "cost.allocation-restore",
+    "expected": "Measure allocation-restore with actual identities/allocation/units and incomplete accounting limits.",
+    "prerequisites": [
+      "backend.shared"
+    ],
+    "context": "android-app",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "physical.abi",
+    "expected": "Measure physical Android14 abi; emulator is not ARM64 proof.",
+    "prerequisites": [],
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "physical.unix",
+    "expected": "Measure physical Android14 unix; emulator is not ARM64 proof.",
+    "prerequisites": [],
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "physical.agents",
+    "expected": "Measure physical Android14 agents; emulator is not ARM64 proof.",
+    "prerequisites": [],
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "physical.phone",
+    "expected": "Measure physical Android14 phone; emulator is not ARM64 proof.",
+    "prerequisites": [],
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "physical.battery",
+    "expected": "Measure physical Android14 battery; emulator is not ARM64 proof.",
+    "prerequisites": [],
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  },
+  {
+    "id": "physical.thermals",
+    "expected": "Measure physical Android14 thermals; emulator is not ARM64 proof.",
+    "prerequisites": [],
+    "context": "physical-phone",
+    "mode": "direct",
+    "status": "untested",
+    "actual": "No retained matching execution receipt.",
+    "attempts": [],
+    "actualAttemptId": null
+  }
+]

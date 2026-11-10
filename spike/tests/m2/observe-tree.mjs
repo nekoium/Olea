@@ -45,6 +45,10 @@ export async function observeTree(rootPid, { durationMs = 120000, intervalMs = 1
     if (remaining > 0) await new Promise(r => setTimeout(r, Math.min(intervalMs, remaining)));
   }
   result.endedAt = new Date().toISOString();
+  // The retained diagnostic bound includes pretty-print whitespace and headers.
+  while (Buffer.byteLength(JSON.stringify(result, null, 2) + '\n') > 1048576 && result.samples.length) {
+    result.samples.splice(Math.floor(result.samples.length / 2)); result.status = 'unverifiable'; result.reason = 'serialized_retention_limit';
+  }
   return result;
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {

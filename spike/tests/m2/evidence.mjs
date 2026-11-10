@@ -9,6 +9,7 @@ export function catalog() {
   const add = (id, expected, prerequisites = [], context = 'android-app', mode = 'direct') => rows.push({ id, expected, prerequisites, context, mode });
   add('provenance', 'Pin source URLs, licenses, notices, versions and actual payload SHA256.', [], 'artifacts');
   add('runtime.modern', 'Execute supplied complete runtime from target36 Activity/service actual app UID, not run-as.');
+  add('historical.state-preservation', 'Reverify original M1 app/rootfs/workspace state without deletion or replacement; missing current state blocks original preservation, not independent M2 fresh tests.');
   add('runtime.target28', 'Retain target28 comparison separately; never modern acceptance.', [], 'target28-comparison');
   add('runtime.fresh', 'Reproduce fresh disposable install from verified artifacts with bounded step receipts.', ['provenance', 'runtime.modern']);
   for (const name of ['shell', 'node', 'git-object', 'dns-tls', 'dependency', 'child', 'nested-child']) add(`unix.${name}`, `Independently assert real ${name} under native supervision.`, ['runtime.modern']);
@@ -44,10 +45,12 @@ export function validateReceipt(r) {
   for (const a of r.artifacts) if (typeof a.path !== 'string' || !/^[a-f0-9]{64}$/.test(a.sha256)) throw Error('invalid_artifact');
   if (r.assertions.some(a => typeof a.name !== 'string' || typeof a.independent !== 'boolean' || typeof a.passed !== 'boolean')) throw Error('invalid_assertion');
   if (r.status === 'pass' && (!r.artifacts.length || !r.assertions.length || r.assertions.some(a => a.independent !== true || a.passed !== true))) throw Error('pass_requires_independent_evidence');
+  if (Buffer.byteLength(JSON.stringify(r)) > 1048576) throw Error('receipt_size_limit');
   if (/apiKey|authorization|bearer |sk-[A-Za-z0-9]{10}/i.test(JSON.stringify(r))) throw Error('potential_secret');
   return r;
 }
 export function assess(receipts) {
+  if (!Array.isArray(receipts) || receipts.length > 512) throw Error('receipt_count_limit');
   const seen = new Set();
   for (const r of receipts) { validateReceipt(r); if (seen.has(r.attemptId)) throw Error('duplicate_attempt'); seen.add(r.attemptId); }
   const rows = catalog().map(c => {
@@ -75,8 +78,9 @@ const esc = s => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').repl
 export function render(receipts) {
   const rows = assess(receipts);
   const counts = Object.fromEntries(['pass', 'fail', 'blocked', 'untested'].map(s => [s, rows.filter(r => r.status === s).length]));
-  const heading = `# Olea M2 expected versus retained actual\n\n${JSON.stringify(counts)}\n\nRecommendation: ${counts.fail ? 'revise' : 'insufficient-evidence'}. No automatic production acceptance.\n\nHost/run-as/target28 receipts never establish modern Android app-domain or model outcomes. Historical M1 evidence stays unchanged. Tooling tests are not workflow passes. Missing physical access remains untested unless a retained blocked receipt establishes it.\n`;
-  const md = heading + rows.map(r => `\n## ${r.id}: ${r.status}\nExpected: ${r.expected}\n\nActual: ${r.actual}\n\nContext: ${r.context}; mode: ${r.mode}; prerequisites: ${r.prerequisites.join(', ') || 'none'}.\n\nAttempts: ${r.attempts.map(a => `${a.attemptId} (${a.context}/${a.mode ?? 'direct'} ${a.status}): ${a.summary}; artifacts ${a.artifacts.map(x => `${x.path} SHA256 ${x.sha256}`).join(', ')}`).join('; ') || 'none'}.\n`).join('');
+  const recommendation = counts.fail ? 'revise' : counts.blocked || counts.untested ? 'insufficient-evidence' : 'accept bounded milestone';
+  const heading = `# Olea M2 expected versus retained actual\n\n${JSON.stringify(counts)}\n\nRecommendation: ${recommendation}. No automatic production acceptance.\n\nHost/run-as/target28 receipts never establish modern Android app-domain or model outcomes. Historical M1 evidence stays unchanged. Tooling tests are not workflow passes. Missing physical access remains untested unless a retained blocked receipt establishes it.\n`;
+  const md = heading + rows.map(r => `\n## ${r.id}: ${r.status}\nExpected: ${r.expected}\n\nActual: ${r.actual}\n\nContext: ${r.context}; mode: ${r.mode}; prerequisites: ${r.prerequisites.join(', ') || 'none'}.\n\nAttempts: ${r.attempts.map(a => `${a.attemptId} (${a.context}/${a.mode ?? 'direct'} ${a.status}): ${a.summary}; artifacts ${a.artifacts.map(x => `${x.path} SHA256 ${x.sha256}`).join(', ')}; metadata ${JSON.stringify({ failureClass: a.failureClass, retryOf: a.retryOf, fallbackOf: a.fallbackOf, provider: a.provider, execution: a.execution, provenance: a.provenance, limits: a.limits, commandsActuallyRun: a.commandsActuallyRun, sourceOnlyCommands: a.sourceOnlyCommands, currentState: a.currentState })}`).join('; ') || 'none'}.\n`).join('');
   return { rows, counts, md, html: `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Olea M2 evidence</title><style>body{max-width:90ch;margin:2rem auto;padding:1rem;font:16px/1.5 system-ui}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style><body><pre>${esc(md)}</pre></body></html>` };
 }
 export async function report(input, output, root) {

@@ -1,0 +1,83 @@
+[
+  {
+    "attemptId": "offline-tooling-output-frame-01",
+    "caseId": "cost.output-frame",
+    "context": "host",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:04:34.989Z",
+    "endedAt": "2026-11-10T17:04:37.819Z",
+    "summary": "Host tooling tests for output-frame completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
+    "artifacts": [
+      {
+        "path": "spike/m2/evidence/evidence/offline-checks.json",
+        "sha256": "725ae1ba6c246c854f267e1cc17c51b7210b3ff0399f21f332b82e9ecd3b5aab"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "host_tooling_suite_exit_zero",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "limits": [
+      "No provider, stock agent or Android execution.",
+      "Supervisor tests do not establish Android backend backpressure/cleanup."
+    ]
+  },
+  {
+    "attemptId": "offline-tooling-output-queue-01",
+    "caseId": "cost.output-queue",
+    "context": "host",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:04:34.989Z",
+    "endedAt": "2026-11-10T17:04:37.819Z",
+    "summary": "Host tooling tests for output-queue completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
+    "artifacts": [
+      {
+        "path": "spike/m2/evidence/evidence/offline-checks.json",
+        "sha256": "725ae1ba6c246c854f267e1cc17c51b7210b3ff0399f21f332b82e9ecd3b5aab"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "host_tooling_suite_exit_zero",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "limits": [
+      "No provider, stock agent or Android execution.",
+      "Supervisor tests do not establish Android backend backpressure/cleanup."
+    ]
+  },
+  {
+    "attemptId": "offline-tooling-timeout-01",
+    "caseId": "cost.timeout",
+    "context": "host",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:04:34.989Z",
+    "endedAt": "2026-11-10T17:04:37.819Z",
+    "summary": "Host tooling tests for timeout completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
+    "artifacts": [
+      {
+        "path": "spike/m2/evidence/evidence/offline-checks.json",
+        "sha256": "725ae1ba6c246c854f267e1cc17c51b7210b3ff0399f21f332b82e9ecd3b5aab"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "host_tooling_suite_exit_zero",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "limits": [
+      "No provider, stock agent or Android execution.",
+      "Supervisor tests do not establish Android backend backpressure/cleanup."
+    ]
+  }
+]
