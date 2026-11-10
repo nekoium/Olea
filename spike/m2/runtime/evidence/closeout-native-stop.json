@@ -1,0 +1,10 @@
+{
+  "status": 200,
+  "body": {
+    "id": "m2-1794334993693",
+    "ok": true,
+    "result": {
+      "stopped": true
+    }
+  }
+}

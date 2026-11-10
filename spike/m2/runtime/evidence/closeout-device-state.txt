@@ -1,0 +1,9 @@
+Tue Nov 10 18:23:13 UTC 2026
+10216  9619   489 dev.olea.m2.runtime
+10217  9732   489 dev.olea.m2.fixture
+10218 12459   489 dev.olea.m2.repeat
+  mWakefulness=Asleep
+  mWakefulnessChanging=false
+dev.olea.m2.runtime/dev.olea.spike.PhoneAccessibility
+0-3
+MemTotal:        4013812 kB

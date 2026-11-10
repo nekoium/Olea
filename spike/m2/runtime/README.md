@@ -2,7 +2,7 @@
 
 Disposable MIT integration source; runtime components retain their upstream licenses. This checkpoint proves a useful modern-target path, not the complete milestone or production acceptance.
 
-Latest actual continuation, reproduction commands, fresh-repeat/update/resource/lifecycle results and current state: [CHECKPOINT_AFTER_REPEAT.md](CHECKPOINT_AFTER_REPEAT.md). Earlier snapshot paragraphs below retain their stated observation times.
+Latest actual continuation, reproduction commands, fresh-repeat/update/resource/lifecycle results: [CHECKPOINT_AFTER_REPEAT.md](CHECKPOINT_AFTER_REPEAT.md). Final graceful stop/current state and explicit **lease relinquishment**: [lease-closeout.json](evidence/lease-closeout.json). Earlier snapshot paragraphs below retain their stated observation times.
 
 ## Measured result
 
