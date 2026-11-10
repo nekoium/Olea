@@ -1,0 +1,103 @@
+{
+  "scope": "android-service-supervised-linux",
+  "node": "v24.20.0",
+  "pid": 15017,
+  "attempts": [
+    {
+      "version": "1.0.0",
+      "install": {
+        "command": "npm",
+        "args": [
+          "install",
+          "--prefix",
+          "/opt/olea/.setup/pi-matrix/stock",
+          "--no-audit",
+          "--no-fund",
+          "--maxsockets=2",
+          "--fetch-retries=1",
+          "--fetch-timeout=60000",
+          "@earendil-works/pi-coding-agent@1.0.0"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "overflow": false,
+        "pipeClosureTimeout": false,
+        "treeKillExitCode": null,
+        "elapsedMs": 49245,
+        "stdout": "\nadded 146 packages, removed 153 packages, and changed 1 package in 49s\n",
+        "stderr": "npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead\nnpm warn install-scripts 3 packages have install scripts not yet covered by allowScripts:\nnpm warn install-scripts   @google/genai@2.21.0 (preinstall: echo 'preinstall: no-op')\nnpm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)\nnpm warn install-scripts   protobufjs@7.6.6 (postinstall: node scripts/postinstall)\nnpm warn install-scripts\nnpm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.\n"
+      },
+      "preservation": {
+        "preserved": true,
+        "existingTranscriptFiles": 4,
+        "beforeSentinel": "8be42757834fdc33101b315815fd7124788a4c93366be72c9eb5196df0a431af",
+        "afterSentinel": "8be42757834fdc33101b315815fd7124788a4c93366be72c9eb5196df0a431af"
+      },
+      "actualVersion": "1.0.0",
+      "runner": {
+        "command": "/opt/node/bin/node",
+        "args": [
+          "/opt/olea/spike/tests/pi/run-stock.mjs"
+        ],
+        "exitCode": 1,
+        "signal": null,
+        "timedOut": false,
+        "overflow": false,
+        "pipeClosureTimeout": false,
+        "treeKillExitCode": null,
+        "elapsedMs": 27616,
+        "stdout": "{\n  \"scope\": \"linux-runtime\",\n  \"platform\": \"linux\",\n  \"arch\": \"x64\",\n  \"node\": \"v24.20.0\",\n  \"piVersion\": \"1.0.0\",\n  \"runnerSha256\": \"a5d05b61b605649460a116aa8ad35002b483ce06156504c6cbd20d1851e4f7ca\",\n  \"backendSha256\": \"f248c0aa913445493e2030f76b2d34637ce8149e197486995fba9886c59fcd7b\",\n  \"cases\": [\n    {\n      \"name\": \"stock_startup_and_persistent_rpc\",\n      \"status\": \"pass\",\n      \"durationMs\": 1414,\n      \"pid\": 15496,\n      \"startupMs\": 1409\n    },\n    {\n      \"name\": \"model_unix_dependency_child_and_file\",\n      \"status\": \"fail\",\n      \"reason\": \"independent_file_missing\",\n      \"durationMs\": 2531\n    },\n    {\n      \"name\": \"restart_resume_without_replaying_actions\",\n      \"status\": \"pass\",\n      \"durationMs\": 1884,\n      \"persistedTranscriptVerified\": true,\n      \"uncertainActionsReplayed\": false\n    },\n    {\n      \"name\": \"two_persistent_sessions\",\n      \"status\": \"fail\",\n      \"reason\": \"independent_file_missing\",\n      \"durationMs\": 16919\n    },\n    {\n      \"name\": \"cancel_shell_and_descendant_cleanup\",\n      \"status\": \"pass\",\n      \"durationMs\": 614,\n      \"descendantPid\": 15702,\n      \"independentProcAssertion\": true\n    },\n    {\n      \"name\": \"backend_shutdown_descendant_cleanup\",\n      \"status\": \"pass\",\n      \"durationMs\": 1842,\n      \"descendantPid\": 15707,\n      \"independentProcAssertion\": true,\n      \"explicitResume\": true,\n      \"uncertainActionsReplayed\": false,\n      \"cleanupEvidence\": {\n        \"before\": {\n          \"status\": \"observed\",\n          \"state\": \"S\",\n          \"parentPid\": 15706,\n          \"processGroup\": 15706,\n          \"sessionId\": 15706,\n          \"startTime\": \"1363054\"\n        },\n        \"immediateAfter\": {\n          \"status\": \"absent\"\n        },\n        \"observation\": {\n          \"exited\": true,\n          \"observations\": [\n            {\n              \"status\": \"absent\"\n            }\n          ]\n        }\n      }\n    },\n    {\n      \"name\": \"model_combined_unix_phone_tools\",\n      \"status\": \"untested\",\n      \"reason\": \"native_bridge_execution_not_requested\"\n    },\n    {\n      \"name\": \"direct_pi_same_state_workload_comparison\",\n      \"status\": \"pass\",\n      \"durationMs\": 1773,\n      \"workload\": \"ten_get_state_commands\",\n      \"limitation\": \"not_model_latency_or_android_total_memory\"\n    }\n  ],\n  \"phoneCalls\": [],\n  \"cleanupFaults\": [],\n  \"measurements\": {\n    \"managedStartupMs\": 1408.698,\n    \"directStartupMs\": 1139.9085999999988,\n    \"directTenStateMs\": 97.83429999999862,\n    \"managedTenStateMs\": 22.74460000000181,\n    \"finalBackendSessionCount\": 0\n  },\n  \"usage\": {\n    \"input\": 3114,\n    \"output\": 104,\n    \"cacheRead\": 0,\n    \"cacheWrite\": 0\n  },\n  \"retryEvents\": 0,\n  \"eventCount\": 164\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "version": "1.5.2",
+      "install": {
+        "command": "npm",
+        "args": [
+          "install",
+          "--prefix",
+          "/opt/olea/.setup/pi-matrix/stock",
+          "--no-audit",
+          "--no-fund",
+          "--maxsockets=2",
+          "--fetch-retries=1",
+          "--fetch-timeout=60000",
+          "@earendil-works/pi-coding-agent@1.5.2"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "overflow": false,
+        "pipeClosureTimeout": false,
+        "treeKillExitCode": null,
+        "elapsedMs": 112661,
+        "stdout": "\nadded 108 packages, removed 141 packages, and changed 1 package in 2m\n",
+        "stderr": "npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead\nnpm warn install-scripts 2 packages have install scripts not yet covered by allowScripts:\nnpm warn install-scripts   @google/genai@2.21.0 (preinstall: echo 'preinstall: no-op')\nnpm warn install-scripts   protobufjs@7.6.6 (postinstall: node scripts/postinstall)\nnpm warn install-scripts\nnpm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.\n"
+      },
+      "preservation": {
+        "preserved": true,
+        "existingTranscriptFiles": 8,
+        "beforeSentinel": "8be42757834fdc33101b315815fd7124788a4c93366be72c9eb5196df0a431af",
+        "afterSentinel": "8be42757834fdc33101b315815fd7124788a4c93366be72c9eb5196df0a431af"
+      },
+      "actualVersion": "1.5.2",
+      "runner": {
+        "command": "/opt/node/bin/node",
+        "args": [
+          "/opt/olea/spike/tests/pi/run-stock.mjs"
+        ],
+        "exitCode": 1,
+        "signal": null,
+        "timedOut": false,
+        "overflow": false,
+        "pipeClosureTimeout": false,
+        "treeKillExitCode": null,
+        "elapsedMs": 89512,
+        "stdout": "{\n  \"scope\": \"linux-runtime\",\n  \"platform\": \"linux\",\n  \"arch\": \"x64\",\n  \"node\": \"v24.20.0\",\n  \"piVersion\": \"1.5.2\",\n  \"runnerSha256\": \"a5d05b61b605649460a116aa8ad35002b483ce06156504c6cbd20d1851e4f7ca\",\n  \"backendSha256\": \"f248c0aa913445493e2030f76b2d34637ce8149e197486995fba9886c59fcd7b\",\n  \"cases\": [\n    {\n      \"name\": \"stock_startup_and_persistent_rpc\",\n      \"status\": \"pass\",\n      \"durationMs\": 1472,\n      \"pid\": 16544,\n      \"startupMs\": 1467\n    },\n    {\n      \"name\": \"model_unix_dependency_child_and_file\",\n      \"status\": \"fail\",\n      \"reason\": \"independent_file_missing\",\n      \"durationMs\": 10662\n    },\n    {\n      \"name\": \"restart_resume_without_replaying_actions\",\n      \"status\": \"pass\",\n      \"durationMs\": 1889,\n      \"persistedTranscriptVerified\": true,\n      \"uncertainActionsReplayed\": false\n    },\n    {\n      \"name\": \"two_persistent_sessions\",\n      \"status\": \"fail\",\n      \"reason\": \"independent_file_missing\",\n      \"durationMs\": 15988\n    },\n    {\n      \"name\": \"cancel_shell_and_descendant_cleanup\",\n      \"status\": \"pass\",\n      \"durationMs\": 617,\n      \"descendantPid\": 16805,\n      \"independentProcAssertion\": true\n    },\n    {\n      \"name\": \"backend_shutdown_descendant_cleanup\",\n      \"status\": \"pass\",\n      \"durationMs\": 1903,\n      \"descendantPid\": 16813,\n      \"independentProcAssertion\": true,\n      \"explicitResume\": true,\n      \"uncertainActionsReplayed\": false,\n      \"cleanupEvidence\": {\n        \"before\": {\n          \"status\": \"observed\",\n          \"state\": \"S\",\n          \"parentPid\": 16812,\n          \"processGroup\": 16812,\n          \"sessionId\": 16812,\n          \"startTime\": \"1377812\"\n        },\n        \"immediateAfter\": {\n          \"status\": \"absent\"\n        },\n        \"observation\": {\n          \"exited\": true,\n          \"observations\": [\n            {\n              \"status\": \"absent\"\n            }\n          ]\n        }\n      }\n    },\n    {\n      \"name\": \"model_combined_unix_phone_tools\",\n      \"status\": \"awaiting-independent-oracle\",\n      \"durationMs\": 54571,\n      \"unixValueFile\": \"phone-value-97dda6e0-4dd4-47dc-adc2-21971af35a9b.txt\",\n      \"toolDiscoveryAndInvocationVerified\": true,\n      \"reason\": \"runtime_owner_must_compare_fixture_private_oracle_and_foreground_click_evidence\"\n    },\n    {\n      \"name\": \"direct_pi_same_state_workload_comparison\",\n      \"status\": \"pass\",\n      \"durationMs\": 1763,\n      \"workload\": \"ten_get_state_commands\",\n      \"limitation\": \"not_model_latency_or_android_total_memory\"\n    }\n  ],\n  \"phoneCalls\": [\n    \"phone_capabilities\",\n    \"phone_home\",\n    \"phone_inspect\",\n    \"phone_click\",\n    \"phone_inspect\",\n    \"phone_fixture_action\"\n  ],\n  \"cleanupFaults\": [],\n  \"measurements\": {\n    \"managedStartupMs\": 1467.1237,\n    \"directStartupMs\": 1137.7282000000123,\n    \"directTenStateMs\": 83.33109999999579,\n    \"managedTenStateMs\": 27.900900000007823,\n    \"finalBackendSessionCount\": 0\n  },\n  \"usage\": {\n    \"input\": 33620,\n    \"output\": 601,\n    \"cacheRead\": 19555,\n    \"cacheWrite\": 0\n  },\n  \"retryEvents\": 0,\n  \"eventCount\": 504\n}\n",
+        "stderr": ""
+      }
+    }
+  ]
+}

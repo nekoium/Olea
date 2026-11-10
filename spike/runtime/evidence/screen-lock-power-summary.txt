@@ -1,0 +1,4 @@
+7:  mWakefulness=Dozing
+45:  mHoldingWakeLockSuspendBlocker=false
+46:  mHoldingDisplaySuspendBlocker=true
+177:Display Power: com.android.server.power.PowerManagerService$1@97e4919

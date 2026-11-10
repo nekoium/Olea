@@ -1,0 +1,9 @@
+{
+  "status": 400,
+  "id": "direct-test",
+  "ok": false,
+  "error": {
+    "code": "ACCESSIBILITY_REVOKED",
+    "message": "Native operation rejected"
+  }
+}

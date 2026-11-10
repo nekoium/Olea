@@ -51,7 +51,7 @@ class RuntimeService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
             "enable" -> enabled = true
-            "stop" -> { enabled = false; stopBackend() }
+            "stop" -> { enabled = false; PhoneApis.stop(); stopBackend() }
             "backend" -> startBackend()
         }
         // Process death requires explicit restart; uncertain phone actions are never replayed.
@@ -83,12 +83,12 @@ class RuntimeService : Service() {
     private fun capabilities() = JSONObject().put("phoneEnabled", enabled)
         .put("accessibility", PhoneAccessibility.active != null).put("targetSdk", applicationInfo.targetSdkVersion)
         .put("backendRunning", backend?.isAlive == true)
-        .put("operations", JSONArray(listOf("capabilities", "accessibility_tree", "accessibility_click", "global_action", "swipe", "open_url", "fixture_action", "stop")))
+        .put("operations", JSONArray(listOf("capabilities", "accessibility_tree", "accessibility_click", "global_action", "swipe", "open_url", "fixture_action", "location", "files_write_read", "notifications", "capture_request", "capture_result", "folder_request", "fixture_notify", "stop")))
 
     private fun phone(request: JSONObject): JSONObject {
         val operation = request.getString("operation")
         if (operation == "capabilities") return capabilities()
-        if (operation == "stop") { enabled = false; stopBackend(); return JSONObject().put("stopped", true) }
+        if (operation == "stop") { enabled = false; PhoneApis.stop(); stopBackend(); return JSONObject().put("stopped", true) }
         check(enabled) { "PHONE_STOPPED" }
         val args = request.optJSONObject("args") ?: JSONObject()
         fun accessibility() = PhoneAccessibility.active ?: error("ACCESSIBILITY_REVOKED")
@@ -106,6 +106,18 @@ class RuntimeService : Service() {
                 val uri = Uri.parse(args.getString("url"))
                 check(uri.scheme in listOf("http", "https") && !uri.host.isNullOrBlank()) { "INVALID_URL" }
                 startActivity(Intent(Intent.ACTION_VIEW, uri).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                JSONObject().put("dispatched", true)
+            }
+            "location" -> PhoneApis.location(this)
+            "files_write_read" -> PhoneApis.file(this, args.getString("value"))
+            "notifications" -> { check(FixtureNotifications.connected) { "NOTIFICATION_ACCESS_REVOKED" }; synchronized(FixtureNotifications.received) { JSONObject().put("notifications", JSONArray(FixtureNotifications.received.toList())) } }
+            "capture_request", "folder_request" -> {
+                startActivity(Intent(this, MainActivity::class.java).putExtra(if (operation == "capture_request") "capture" else "folder", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                JSONObject().put("consentRequested", true)
+            }
+            "capture_result" -> PhoneApis.capture ?: error("CAPTURE_NOT_READY")
+            "fixture_notify" -> {
+                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName("dev.olea.fixture", "dev.olea.fixture.FixtureActivity")).putExtra("postNotification", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 JSONObject().put("dispatched", true)
             }
             "fixture_action" -> {
@@ -183,5 +195,5 @@ class RuntimeService : Service() {
         try { it.getOutputStream().apply { write("HTTP/1.1 $status Result\r\nContent-Type: application/json\r\nContent-Length: ${bytes.size}\r\nConnection: close\r\n\r\n".toByteArray()); write(bytes); flush() } } catch (_: Exception) {}
     }
 
-    override fun onDestroy() { enabled = false; server?.close(); stopBackend(); super.onDestroy() }
+    override fun onDestroy() { enabled = false; PhoneApis.stop(); server?.close(); stopBackend(); super.onDestroy() }
 }

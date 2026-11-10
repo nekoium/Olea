@@ -1,0 +1,103 @@
+{
+  "scope": "linux-runtime",
+  "platform": "linux",
+  "arch": "x64",
+  "node": "v24.20.0",
+  "piVersion": "1.0.0",
+  "runnerSha256": "a5d05b61b605649460a116aa8ad35002b483ce06156504c6cbd20d1851e4f7ca",
+  "backendSha256": "f248c0aa913445493e2030f76b2d34637ce8149e197486995fba9886c59fcd7b",
+  "cases": [
+    {
+      "name": "stock_startup_and_persistent_rpc",
+      "status": "pass",
+      "durationMs": 1414,
+      "pid": 15496,
+      "startupMs": 1409
+    },
+    {
+      "name": "model_unix_dependency_child_and_file",
+      "status": "fail",
+      "reason": "independent_file_missing",
+      "durationMs": 2531
+    },
+    {
+      "name": "restart_resume_without_replaying_actions",
+      "status": "pass",
+      "durationMs": 1884,
+      "persistedTranscriptVerified": true,
+      "uncertainActionsReplayed": false
+    },
+    {
+      "name": "two_persistent_sessions",
+      "status": "fail",
+      "reason": "independent_file_missing",
+      "durationMs": 16919
+    },
+    {
+      "name": "cancel_shell_and_descendant_cleanup",
+      "status": "pass",
+      "durationMs": 614,
+      "descendantPid": 15702,
+      "independentProcAssertion": true
+    },
+    {
+      "name": "backend_shutdown_descendant_cleanup",
+      "status": "pass",
+      "durationMs": 1842,
+      "descendantPid": 15707,
+      "independentProcAssertion": true,
+      "explicitResume": true,
+      "uncertainActionsReplayed": false,
+      "cleanupEvidence": {
+        "before": {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 15706,
+          "processGroup": 15706,
+          "sessionId": 15706,
+          "startTime": "1363054"
+        },
+        "immediateAfter": {
+          "status": "absent"
+        },
+        "observation": {
+          "exited": true,
+          "observations": [
+            {
+              "status": "absent"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "model_combined_unix_phone_tools",
+      "status": "untested",
+      "reason": "native_bridge_execution_not_requested"
+    },
+    {
+      "name": "direct_pi_same_state_workload_comparison",
+      "status": "pass",
+      "durationMs": 1773,
+      "workload": "ten_get_state_commands",
+      "limitation": "not_model_latency_or_android_total_memory"
+    }
+  ],
+  "phoneCalls": [],
+  "cleanupFaults": [],
+  "measurements": {
+    "managedStartupMs": 1408.698,
+    "directStartupMs": 1139.9085999999988,
+    "directTenStateMs": 97.83429999999862,
+    "managedTenStateMs": 22.74460000000181,
+    "finalBackendSessionCount": 0
+  },
+  "usage": {
+    "input": 3114,
+    "output": 104,
+    "cacheRead": 0,
+    "cacheWrite": 0
+  },
+  "retryEvents": 0,
+  "eventCount": 164
+}

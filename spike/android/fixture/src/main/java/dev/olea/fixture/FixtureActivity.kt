@@ -18,11 +18,16 @@ class FixtureActivity : Activity() {
             } catch (error: Exception) { "${error.javaClass.simpleName}: ${error.message}" }
             File(filesDir, "execution-result.txt").writeText("uid=${android.os.Process.myUid()} target=${applicationInfo.targetSdkVersion}\n$result")
         }
+        if (intent.getBooleanExtra("postNotification", false)) {
+            val manager = getSystemService(android.app.NotificationManager::class.java)
+            manager.createNotificationChannel(android.app.NotificationChannel("fixture", "Harmless test fixture", android.app.NotificationManager.IMPORTANCE_LOW))
+            manager.notify(42, android.app.Notification.Builder(this, "fixture").setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle("Olea Fixture").setContentText("OLEA_NOTIFICATION_FIXTURE").build())
+        }
         val value = intent.getStringExtra("value")
         if (intent.action == "dev.olea.fixture.SET_VALUE" && value != null && value.length <= 256) {
             File(filesDir, "oracle-value.txt").writeText(value)
         }
         File(filesDir, "observed-launches.txt").appendText("${System.currentTimeMillis()} action=${intent.action}\n")
-        setContentView(TextView(this).apply { text = "Olea harmless fixture\n${if (value == null) "Opened from launcher" else "Fixture value received"}"; textSize = 24f })
+        setContentView(TextView(this).apply { setBackgroundColor(android.graphics.Color.rgb(23, 75, 108)); setTextColor(android.graphics.Color.WHITE); text = "Olea harmless fixture\n${if (value == null) "Opened from launcher" else "Fixture value received"}"; textSize = 24f })
     }
 }

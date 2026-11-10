@@ -1,0 +1,82 @@
+{
+  "scope": "existing-transcript-metadata-only",
+  "modelRequests": 0,
+  "records": [
+    {
+      "sessionFile": "/opt/olea/.setup/pi-matrix/sessions/run_9513388794/2026-11-10T15-49-51-401Z_01a1c626-c2a8-7644-9c52-d4268a000bbf.jsonl",
+      "assistantMessages": 10,
+      "toolCalls": 9,
+      "stops": [
+        "error",
+        "toolUse",
+        "stop",
+        "toolUse",
+        "toolUse",
+        "toolUse",
+        "toolUse",
+        "toolUse",
+        "toolUse",
+        "stop"
+      ],
+      "errors": [
+        "Request timed out.: Connect Timeout Error (attempted addresses: 23.145.232.167:443, timeout: 10000ms) (UND_ERR_CONNECT_TIMEOUT)"
+      ]
+    },
+    {
+      "sessionFile": "/opt/olea/.setup/pi-matrix/sessions/run_9513388794_two/2026-11-10T15-50-05-309Z_01a1c626-f8fc-7234-8464-7d91d06bb6ba.jsonl",
+      "assistantMessages": 1,
+      "toolCalls": 0,
+      "stops": [
+        "error"
+      ],
+      "errors": [
+        "Connection error.: Client network socket disconnected before secure TLS connection was established (ECONNRESET)"
+      ]
+    },
+    {
+      "sessionFile": "/opt/olea/.setup/pi-matrix/sessions/run_d51c5b5702/2026-11-10T15-38-18-589Z_01a1c61c-305c-7725-b6a1-c6d4cbe40935.jsonl",
+      "assistantMessages": 4,
+      "toolCalls": 2,
+      "stops": [
+        "toolUse",
+        "stop",
+        "toolUse",
+        "stop"
+      ],
+      "errors": []
+    },
+    {
+      "sessionFile": "/opt/olea/.setup/pi-matrix/sessions/run_d51c5b5702_two/2026-11-10T15-38-43-284Z_01a1c61c-90d3-71ad-95de-24002f105e96.jsonl",
+      "assistantMessages": 2,
+      "toolCalls": 1,
+      "stops": [
+        "toolUse",
+        "stop"
+      ],
+      "errors": []
+    },
+    {
+      "sessionFile": "/opt/olea/.setup/pi-matrix/sessions/run_e624142ee1/2026-11-10T15-47-31-051Z_01a1c624-9e6a-722a-99cc-f44959b65c3c.jsonl",
+      "assistantMessages": 2,
+      "toolCalls": 0,
+      "stops": [
+        "error",
+        "error"
+      ],
+      "errors": [
+        "Connection error.",
+        "Request timed out."
+      ]
+    },
+    {
+      "sessionFile": "/opt/olea/.setup/pi-matrix/sessions/run_e624142ee1_two/2026-11-10T15-47-36-750Z_01a1c624-b4ae-7629-8233-fca9e28b6fff.jsonl",
+      "assistantMessages": 2,
+      "toolCalls": 1,
+      "stops": [
+        "toolUse",
+        "stop"
+      ],
+      "errors": []
+    }
+  ]
+}

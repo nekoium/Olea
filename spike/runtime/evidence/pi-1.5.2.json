@@ -1,0 +1,113 @@
+{
+  "scope": "linux-runtime",
+  "platform": "linux",
+  "arch": "x64",
+  "node": "v24.20.0",
+  "piVersion": "1.5.2",
+  "runnerSha256": "a5d05b61b605649460a116aa8ad35002b483ce06156504c6cbd20d1851e4f7ca",
+  "backendSha256": "f248c0aa913445493e2030f76b2d34637ce8149e197486995fba9886c59fcd7b",
+  "cases": [
+    {
+      "name": "stock_startup_and_persistent_rpc",
+      "status": "pass",
+      "durationMs": 1472,
+      "pid": 16544,
+      "startupMs": 1467
+    },
+    {
+      "name": "model_unix_dependency_child_and_file",
+      "status": "fail",
+      "reason": "independent_file_missing",
+      "durationMs": 10662
+    },
+    {
+      "name": "restart_resume_without_replaying_actions",
+      "status": "pass",
+      "durationMs": 1889,
+      "persistedTranscriptVerified": true,
+      "uncertainActionsReplayed": false
+    },
+    {
+      "name": "two_persistent_sessions",
+      "status": "fail",
+      "reason": "independent_file_missing",
+      "durationMs": 15988
+    },
+    {
+      "name": "cancel_shell_and_descendant_cleanup",
+      "status": "pass",
+      "durationMs": 617,
+      "descendantPid": 16805,
+      "independentProcAssertion": true
+    },
+    {
+      "name": "backend_shutdown_descendant_cleanup",
+      "status": "pass",
+      "durationMs": 1903,
+      "descendantPid": 16813,
+      "independentProcAssertion": true,
+      "explicitResume": true,
+      "uncertainActionsReplayed": false,
+      "cleanupEvidence": {
+        "before": {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 16812,
+          "processGroup": 16812,
+          "sessionId": 16812,
+          "startTime": "1377812"
+        },
+        "immediateAfter": {
+          "status": "absent"
+        },
+        "observation": {
+          "exited": true,
+          "observations": [
+            {
+              "status": "absent"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "model_combined_unix_phone_tools",
+      "status": "awaiting-independent-oracle",
+      "durationMs": 54571,
+      "unixValueFile": "phone-value-97dda6e0-4dd4-47dc-adc2-21971af35a9b.txt",
+      "toolDiscoveryAndInvocationVerified": true,
+      "reason": "runtime_owner_must_compare_fixture_private_oracle_and_foreground_click_evidence"
+    },
+    {
+      "name": "direct_pi_same_state_workload_comparison",
+      "status": "pass",
+      "durationMs": 1763,
+      "workload": "ten_get_state_commands",
+      "limitation": "not_model_latency_or_android_total_memory"
+    }
+  ],
+  "phoneCalls": [
+    "phone_capabilities",
+    "phone_home",
+    "phone_inspect",
+    "phone_click",
+    "phone_inspect",
+    "phone_fixture_action"
+  ],
+  "cleanupFaults": [],
+  "measurements": {
+    "managedStartupMs": 1467.1237,
+    "directStartupMs": 1137.7282000000123,
+    "directTenStateMs": 83.33109999999579,
+    "managedTenStateMs": 27.900900000007823,
+    "finalBackendSessionCount": 0
+  },
+  "usage": {
+    "input": 33620,
+    "output": 601,
+    "cacheRead": 19555,
+    "cacheWrite": 0
+  },
+  "retryEvents": 0,
+  "eventCount": 504
+}

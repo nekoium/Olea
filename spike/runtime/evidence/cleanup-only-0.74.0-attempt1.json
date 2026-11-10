@@ -1,0 +1,226 @@
+{
+  "scope": "linux-runtime-cleanup-only",
+  "node": "v24.20.0",
+  "piVersion": "0.74.0",
+  "modelRequests": 0,
+  "status": "fail",
+  "faults": [],
+  "processEvidence": {
+    "backendPid": 14811,
+    "piPid": 14888,
+    "childPid": 14922,
+    "childBefore": {
+      "status": "observed",
+      "state": "S",
+      "parentPid": 14921,
+      "processGroup": 14921,
+      "sessionId": 14921,
+      "startTime": "1355338"
+    },
+    "piBefore": {
+      "status": "observed",
+      "state": "S",
+      "parentPid": 14811,
+      "processGroup": 14888,
+      "sessionId": 14888,
+      "startTime": "1354991"
+    },
+    "piTaskChildren": [],
+    "parentBefore": {
+      "status": "observed",
+      "state": "S",
+      "parentPid": 14888,
+      "processGroup": 14921,
+      "sessionId": 14921,
+      "startTime": "1355335"
+    },
+    "parentTaskChildren": [],
+    "immediateAfter": {
+      "status": "observed",
+      "state": "S",
+      "parentPid": 14921,
+      "processGroup": 14921,
+      "sessionId": 14921,
+      "startTime": "1355338"
+    },
+    "exitObservation": {
+      "exited": false,
+      "reason": "descendant_still_running",
+      "observations": [
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        },
+        {
+          "status": "observed",
+          "state": "S",
+          "parentPid": 14921,
+          "processGroup": 14921,
+          "sessionId": 14921,
+          "startTime": "1355338"
+        }
+      ]
+    }
+  },
+  "actualPackageVersion": "0.74.0",
+  "entrySha256": "e959f463b06ddd15ed882783ac02f39ecaeef950ef967da86380f39dda6595fa",
+  "stopMs": 507,
+  "emergencyCleanupRequested": true,
+  "finalSessionCount": 0
+}
