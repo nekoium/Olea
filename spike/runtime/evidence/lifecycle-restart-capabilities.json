@@ -1,0 +1,21 @@
+{
+  "status": 200,
+  "id": "direct-test",
+  "ok": true,
+  "result": {
+    "phoneEnabled": false,
+    "accessibility": false,
+    "targetSdk": 28,
+    "backendRunning": false,
+    "operations": [
+      "capabilities",
+      "accessibility_tree",
+      "accessibility_click",
+      "global_action",
+      "swipe",
+      "open_url",
+      "fixture_action",
+      "stop"
+    ]
+  }
+}

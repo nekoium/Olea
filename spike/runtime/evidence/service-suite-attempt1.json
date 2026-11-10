@@ -1,0 +1,29 @@
+{
+  "started": "2026-11-10T15:34:51.780Z",
+  "pid": 9846,
+  "ppid": 9845,
+  "stages": [
+    {
+      "name": "prerequisites",
+      "durationMs": 10769,
+      "code": 0,
+      "timedOut": false,
+      "bytes": 621
+    },
+    {
+      "name": "stock-agents",
+      "durationMs": 179229,
+      "code": 0,
+      "timedOut": false,
+      "bytes": 340
+    },
+    {
+      "name": "pi-matrix",
+      "durationMs": 403315,
+      "code": 1,
+      "timedOut": false,
+      "bytes": 3776
+    }
+  ],
+  "finished": "2026-11-10T15:41:45.883Z"
+}

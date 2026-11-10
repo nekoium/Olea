@@ -1,0 +1,2 @@
+uid=10217 target=36
+IOException: Cannot run program "/data/user/0/dev.olea.fixture/files/proot": error=13, Permission denied

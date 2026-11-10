@@ -1,0 +1,402 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-10T15:42:03.119Z",
+  "scope": "linux-process-tree-only",
+  "node": "v24.20.0",
+  "roots": [
+    9846,
+    9838,
+    9925
+  ],
+  "hz": 100,
+  "pageBytes": 4096,
+  "notes": [
+    "RSS sum double-counts shared pages; PSS unavailable remains null.",
+    "Android host memory must be measured independently with dumpsys meminfo.",
+    "PRoot /proc visibility and inaccessible processes can make this incomplete.",
+    "First sample has no CPU delta; CPU percent is per one logical core.",
+    "Do not infer cold-start or streaming latency from this collector."
+  ],
+  "samples": [
+    {
+      "at": "2026-11-10T15:41:52.525Z",
+      "monotonicMs": 490.7392,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1304576,
+          "cpuPercentOneCore": null
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": null
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35041280
+    },
+    {
+      "at": "2026-11-10T15:41:53.701Z",
+      "monotonicMs": 1670.5925,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1305600,
+          "cpuPercentOneCore": 0
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": 0
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35042304
+    },
+    {
+      "at": "2026-11-10T15:41:54.910Z",
+      "monotonicMs": 2881.8574,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1305600,
+          "cpuPercentOneCore": 0
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": 0
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35042304
+    },
+    {
+      "at": "2026-11-10T15:41:56.074Z",
+      "monotonicMs": 4043.9731,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1305600,
+          "cpuPercentOneCore": 0
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": 0
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35042304
+    },
+    {
+      "at": "2026-11-10T15:41:57.259Z",
+      "monotonicMs": 5230.7103,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1305600,
+          "cpuPercentOneCore": 0
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": 0
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35042304
+    },
+    {
+      "at": "2026-11-10T15:41:58.493Z",
+      "monotonicMs": 6465.1538,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1305600,
+          "cpuPercentOneCore": 0
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": 0
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35042304
+    },
+    {
+      "at": "2026-11-10T15:41:59.583Z",
+      "monotonicMs": 7556.2997,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1305600,
+          "cpuPercentOneCore": 0
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": 0
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35042304
+    },
+    {
+      "at": "2026-11-10T15:42:00.769Z",
+      "monotonicMs": 8740.4394,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1305600,
+          "cpuPercentOneCore": 0
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": 0
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35042304
+    },
+    {
+      "at": "2026-11-10T15:42:01.904Z",
+      "monotonicMs": 9876.9577,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1305600,
+          "cpuPercentOneCore": 0
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": 0
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35042304
+    },
+    {
+      "at": "2026-11-10T15:42:03.117Z",
+      "monotonicMs": 11087.3617,
+      "missingRoots": [
+        9846,
+        9925
+      ],
+      "processes": [
+        {
+          "pid": 9838,
+          "name": "proot",
+          "state": "S",
+          "ppid": 9751,
+          "userTicks": 546,
+          "systemTicks": 6897,
+          "startTicks": "1284830",
+          "rssPages": 935,
+          "rssBytes": 3829760,
+          "pssBytes": 1305600,
+          "cpuPercentOneCore": 0
+        },
+        {
+          "pid": 9845,
+          "name": "MainThread",
+          "state": "S",
+          "ppid": 9838,
+          "userTicks": 1,
+          "systemTicks": 4,
+          "startTicks": "1284831",
+          "rssPages": 13152,
+          "rssBytes": 53870592,
+          "pssBytes": 33736704,
+          "cpuPercentOneCore": 0
+        }
+      ],
+      "totalRssBytes": 57700352,
+      "totalPssBytes": 35042304
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+547 http fetch GET 200 https://registry.npmjs.org/@esbuild/android-x64/-/android-x64-0.28.2.tgz 19040ms (cache miss)
+548 http fetch GET 200 https://registry.npmjs.org/@esbuild/aix-ppc64/-/aix-ppc64-0.28.2.tgz 19339ms (cache miss)
+549 http fetch GET 200 https://registry.npmjs.org/undici/-/undici-8.10.2.tgz 19415ms (cache miss)
+550 http fetch GET 200 https://registry.npmjs.org/@esbuild/linux-ppc64/-/linux-ppc64-0.28.2.tgz 19641ms (cache miss)
+551 http fetch GET 200 https://registry.npmjs.org/@aws-sdk/token-providers/-/token-providers-3.1116.0.tgz 20495ms (cache miss)
+552 http fetch GET 200 https://registry.npmjs.org/@aws-sdk/nested-clients/-/nested-clients-3.997.44.tgz 20596ms (cache miss)
+553 http fetch GET 200 https://registry.npmjs.org/typebox/-/typebox-1.3.27.tgz 21574ms (cache miss)
+554 http fetch GET 200 https://registry.npmjs.org/@smithy/core/-/core-3.33.3.tgz 21680ms (cache miss)
+555 http fetch GET 200 https://registry.npmjs.org/@esbuild/android-arm/-/android-arm-0.28.2.tgz 22080ms (cache miss)
+556 http fetch GET 200 https://registry.npmjs.org/@aws-sdk/core/-/core-3.977.9.tgz 22271ms (cache miss)
+557 http fetch GET 200 https://registry.npmjs.org/@anthropic-ai/sdk/-/sdk-0.124.0.tgz 27866ms (cache miss)
+558 http fetch GET https://registry.npmjs.org/@aws-sdk/credential-provider-web-identity/-/credential-provider-web-identity-3.972.76.tgz attempt 1 failed with ECONNRESET
+559 http fetch GET 200 https://registry.npmjs.org/openai/-/openai-7.19.0.tgz 35959ms (cache miss)
+560 http fetch GET https://registry.npmjs.org/@aws-sdk/credential-provider-ini/-/credential-provider-ini-3.973.15.tgz attempt 1 failed with ECONNRESET
+561 http fetch GET 200 https://registry.npmjs.org/@esbuild/openbsd-x64/-/openbsd-x64-0.28.2.tgz 54842ms (cache miss)
+562 verbose type system
+563 verbose stack FetchError: request to https://registry.npmjs.org/@aws-sdk/credential-provider-web-identity/-/credential-provider-web-identity-3.972.76.tgz failed, reason: socket hang up
+563 verbose stack     at ClientRequest.<anonymous> (/opt/node/lib/node_modules/npm/node_modules/minipass-fetch/lib/index.js:130:14)
+563 verbose stack     at ClientRequest.emit (node:events:514:28)
+563 verbose stack     at emitErrorEvent (node:_http_client:114:11)
+563 verbose stack     at TLSSocket.socketOnEnd (node:_http_client:790:5)
+563 verbose stack     at TLSSocket.emit (node:events:526:24)
+563 verbose stack     at endReadableNT (node:internal/streams/readable:1757:12)
+563 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+564 error code ECONNRESET
+565 error errno ECONNRESET
+566 error network request to https://registry.npmjs.org/@aws-sdk/credential-provider-web-identity/-/credential-provider-web-identity-3.972.76.tgz failed, reason: socket hang up
+567 error network This is a problem related to network connectivity.
+567 error network In most cases you are behind a proxy or have bad network settings.
+567 error network
+567 error network If you are behind a proxy, please make sure that the 'proxy' config is set properly.  See: 'npm help config'
+568 silly unfinished npm timer reify 1794325148306
+569 silly unfinished npm timer reify:unpack 1794325171592
+570 silly unfinished npm timer reifyNode:node_modules/@earendil-works/pi-coding-agent/node_modules/@aws-sdk/credential-provider-web-identity 1794325171594
+571 silly unfinished npm timer reifyNode:node_modules/@earendil-works/pi-coding-agent/node_modules/@aws-sdk/credential-provider-ini 1794325171594
+572 verbose cwd /opt/olea
+573 verbose os Linux 6.6.66-android15-8-gd0c43a640eab-ab13812146
+574 verbose node v24.20.0
+575 verbose npm  v11.19.0
+576 verbose exit 1
+577 verbose code 1
+578 error A complete log of this run can be found in: /root/.npm/_logs/2026-11-10T15_39_05_986Z-debug-0.log
+790 silly tarball no local data for @earendil-works/pi-agent-core@https://registry.npmjs.org/@earendil-works/pi-agent-core/-/pi-agent-core-1.5.2.tgz. Extracting by manifest.
+791 http fetch GET 200 https://registry.npmjs.org/@earendil-works/pi-telemetry/-/pi-telemetry-1.5.2.tgz 567ms (cache miss)
+792 http fetch GET 200 https://registry.npmjs.org/lovely-mermaid/-/lovely-mermaid-0.3.3.tgz 963ms (cache miss)
+793 http fetch GET 200 https://registry.npmjs.org/@earendil-works/pi-agent-core/-/pi-agent-core-1.5.2.tgz 1468ms (cache miss)
+794 http fetch GET 200 https://registry.npmjs.org/marked-cjk-friendly/-/marked-cjk-friendly-0.1.2.tgz 1499ms (cache miss)
+795 http fetch GET 200 https://registry.npmjs.org/minimatch/-/minimatch-11.0.3.tgz 1898ms (cache miss)
+796 http fetch GET 200 https://registry.npmjs.org/@earendil-works/pi-mcp/-/pi-mcp-1.5.2.tgz 2188ms (cache miss)
+797 http fetch GET 200 https://registry.npmjs.org/@isaacs/nonrecursive-glob-match/-/nonrecursive-glob-match-1.1.0.tgz 2867ms (cache miss)
+798 http fetch GET 200 https://registry.npmjs.org/undici/-/undici-8.12.3.tgz 2949ms (cache miss)
+799 http fetch GET 200 https://registry.npmjs.org/@earendil-works/pi-ai/-/pi-ai-1.5.2.tgz 6335ms (cache miss)
+800 http fetch GET 200 https://registry.npmjs.org/@earendil-works/pi-coding-agent/-/pi-coding-agent-1.5.2.tgz 10110ms (cache miss)
+801 http fetch GET 200 https://registry.npmjs.org/@anthropic-ai/sdk/-/sdk-0.129.0.tgz 10444ms (cache miss)
+802 http fetch GET https://registry.npmjs.org/@earendil-works/pi-codemode/-/pi-codemode-1.5.2.tgz attempt 1 failed with ECONNRESET
+803 http fetch GET https://registry.npmjs.org/@earendil-works/pi-schema/-/pi-schema-1.5.2.tgz attempt 1 failed with ECONNRESET
+804 http fetch GET https://registry.npmjs.org/@earendil-works/pi-tui/-/pi-tui-1.5.2.tgz attempt 1 failed with ECONNRESET
+805 verbose type system
+806 verbose stack FetchError: request to https://registry.npmjs.org/@earendil-works/pi-schema/-/pi-schema-1.5.2.tgz failed, reason: Client network socket disconnected before secure TLS connection was established
+806 verbose stack     at ClientRequest.<anonymous> (/opt/node/lib/node_modules/npm/node_modules/minipass-fetch/lib/index.js:130:14)
+806 verbose stack     at ClientRequest.emit (node:events:514:28)
+806 verbose stack     at emitErrorEvent (node:_http_client:114:11)
+806 verbose stack     at _destroy (node:_http_client:1167:9)
+806 verbose stack     at onSocketNT (node:_http_client:1188:5)
+806 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:91:21)
+807 error code ECONNRESET
+808 error errno ECONNRESET
+809 error network request to https://registry.npmjs.org/@earendil-works/pi-schema/-/pi-schema-1.5.2.tgz failed, reason: Client network socket disconnected before secure TLS connection was established
+810 error network This is a problem related to network connectivity.
+810 error network In most cases you are behind a proxy or have bad network settings.
+810 error network
+810 error network If you are behind a proxy, please make sure that the 'proxy' config is set properly.  See: 'npm help config'
+811 silly unfinished npm timer reify 1794325236656
+812 silly unfinished npm timer reify:unpack 1794325281786
+813 silly unfinished npm timer reifyNode:node_modules/@earendil-works/pi-schema 1794325281786
+814 silly unfinished npm timer reifyNode:node_modules/@earendil-works/pi-codemode 1794325281786
+815 silly unfinished npm timer reifyNode:node_modules/@earendil-works/pi-tui 1794325281786
+816 verbose cwd /opt/olea
+817 verbose os Linux 6.6.66-android15-8-gd0c43a640eab-ab13812146
+818 verbose node v24.20.0
+819 verbose npm  v11.19.0
+820 verbose exit 1
+821 verbose code 1
+822 error A complete log of this run can be found in: /root/.npm/_logs/2026-11-10T15_40_34_810Z-debug-0.log
