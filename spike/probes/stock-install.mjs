@@ -9,7 +9,7 @@ import { run } from '../tests/runner/process.mjs';
 const root = resolve(process.argv[2] ?? '.setup/stock-agent-probe');
 await mkdir(root, { recursive: true });
 const cases = [];
-const env = { ...process.env, CODEX_HOME: resolve(root, 'codex-home'), CLAUDE_CONFIG_DIR: resolve(root, 'claude-home'), CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1' };
+const env = { ...process.env, npm_config_cache: resolve(root, 'npm-cache'), CODEX_HOME: resolve(root, 'codex-home'), CLAUDE_CONFIG_DIR: resolve(root, 'claude-home'), CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1' };
 // Do not inherit provider credentials into unrelated agent probes.
 for (const name of Object.keys(env)) if (/API_KEY|AUTH_TOKEN|ACCESS_TOKEN/.test(name)) delete env[name];
 const npm = process.platform === 'win32' ? 'cmd.exe' : 'npm';

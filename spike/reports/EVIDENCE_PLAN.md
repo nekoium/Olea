@@ -1,0 +1,47 @@
+# Disposable evidence plan
+
+This is original MIT test infrastructure for the authorized feasibility spike. The acceptance baseline is `FEASIBILITY_BRIEF.md`, `TECH_STACK.md`, and `PHONE_USE_TESTS.md`. The expected mission is an Android-hosted Ubuntu/PRoot runtime supervised by Kotlin, one shared Node backend, persistent stock Pi RPC, independently verified Unix/phone work and ordinary upgrades. Installation or host-only startup does not establish that mission.
+
+## Contracts and commands
+
+Evidence worker owns `spike/probes`, `spike/reports`, and `spike/tests/runner`. Runtime owner alone mutates the emulator. Backend owner supplies protocol/model/workspace evidence. Preserve original checkpoint `dc4809f`.
+
+- Host inspection: `node spike/probes/host-agents.mjs .setup/evidence/host`. Captures executable version/help and public registry metadata; it makes no authenticated model request.
+- Inside the provisioned Ubuntu/PRoot: `node spike/probes/stock-install.mjs .setup/stock-agent-probe`. Installs exact stock Codex 0.167.0, Claude Code 2.1.322 and Claude Agent SDK 0.3.322 into task directories, verifies version/help and SDK `query` export. Each install has a 180-second process deadline, no npm retries and a 20-second fetch deadline. Output retention is 64 KiB per install. Version/help have 30-second deadlines. Results checkpoint after each command. SDK import and app-server help are entry-point checks; usable authenticated turns remain separate cases. Use the same Node 24.20.0/base as Pi. Credentials are not read and API-key/token environment variables are removed from these unrelated subprocesses.
+- Resource sampling, inside Linux: `node spike/probes/resources.mjs BACKEND_PID,PROOT_PID,PI_PID 10 .setup/evidence/idle.json`. Use actual task-owned PIDs only. Root overlap is deduplicated. Collects numeric PID/PPID, start ticks, RSS, available PSS and CPU deltas, plus descendants observed before orphaning. It does not read process command lines, credentials or environment. Ten samples take about nine seconds; maximum sixty samples. Missing/inaccessible processes and PSS are reported rather than replaced by zero. RSS sums double-count shared pages. PSS requires readable `smaps_rollup`. PRoot `/proc` visibility must be assessed before asserting completeness.
+- Independent Android host observer, runtime owner only: `adb -s emulator-5554 shell dumpsys meminfo APP_PACKAGE`. Retain total PSS and native/Dalvik breakdown with units. Repeat before/after same workload; do not add host PSS to a process-tree total that already includes the same process. ADB is an observer/provisioner, never the agent phone-action path.
+- Matrix/report: `node spike/tests/runner/report.mjs .setup/evidence/assessment.json spike/reports`. Missing assessments remain untested. The catalog supplies whole-brief cases; every case includes expected outcome, scope, prerequisites and observations. Pass assessments require a concrete independent assertion and evidence references. No host pass can satisfy an Android case.
+
+## Measurement protocol for runtime owner
+
+Record API/ABI, target/compile SDK, Ubuntu checksum, PRoot hash, Node version/hash, Pi exact release, backend commit, emulator allocation and workload hash alongside each measurement. Fixed Pi targets: 0.74.0, 1.0.0, 1.5.2. Version selection is an experiment, not a production pinning decision.
+
+| Case | Procedure and independent assertion |
+| --- | --- |
+| Cold startup | Stop only task-owned runtime; record monotonic timestamps at host launch, backend ready, RPC ready and first rendered token. Report each interval separately. CLI `--help` wall time is not cold integrated startup. |
+| Idle CPU/memory | Sample settled idle host, PRoot, backend and agent for at least ten seconds. Report per-process and total PSS where readable, RSS separately, CPU percent per one core and sample count. |
+| Streaming | Same bounded prompt/workspace/provider/model; capture request send, first protocol event, first text delta, final event and maximum inter-delta gap. Model/network latency is separate from backend overhead. Record usage/cost if upstream supplies it; unknown cost stays unknown. |
+| One/two sessions | Same workload with one then two active persistent Pi processes under the same shared backend. Record memory/CPU, queue behavior and observed isolation. No assertion of concurrency from two stored transcripts. |
+| Direct/managed | Same Pi version, extensions, provider, prompt and fixed environment. Compare direct stock RPC to backend-managed RPC; record workload/version hashes, intervals and extra backend memory. No second full architecture. |
+| Output bounds | Run deterministic oversized child output; independently observe retained bytes, overflow status, process termination and bounded backend queue. Truncating a report alone does not establish backend bounds. |
+| Cleanup | Start task child/grandchild with a PID marker. Cancel session and independently inspect known PIDs/start ticks, then stop backend and inspect again. Parent exit or RPC acknowledgement alone is insufficient. |
+| Constrained | Runtime owner records baseline four cores/4 GB, then a bounded agreed lower allocation; rerun core Unix/RPC/phone/cleanup cases. Record actual allocation, pressure/OOM and latency. Restore only authorized configuration and record it. No wipe. |
+| App switching | Launch target through permission bridge, switch to harmless fixture, continue Unix work. Independently verify process continuity and saved workspace, not merely reopened activity. |
+| Screen lock | Record lock state and task identity before/after; observe progress/events and permission errors. Explain live process versus restored saved state. |
+| Child failure | Terminate only recorded disposable agent child; backend must detect failure and keep independent sessions usable. Record exact signal/exit and error event. |
+| Whole-app death | Create saved checkpoint and unique uncertain-action marker, terminate only disposable host, reopen and verify workspace/transcript. Never replay an uncertain phone action. State recovery is separate from process survival. |
+| Update preservation | Create sentinel file/package/session in disposable environment; ordinary agent upgrade/runtime update preserves expected checksums/state. Do not delete user data to simulate freshness. |
+
+## Independent phone assertions
+
+Direct bridge behavior precedes model-driven behavior. Alpha must inspect launcher Accessibility nodes, click target entry, and independently establish that the click foregrounded the target. An intent-only launch fails alpha. Store actual tool-call events plus fixture assertions; a model claim is insufficient. Host ADB can observe foreground state, but cannot substitute for the native phone bridge action.
+
+All seven discussed categories remain in the matrix: Accessibility, intents/app links, structured Android APIs, files/media, notification access from a separate fixture, screen capture after explicit consent, and documented cooperating-app integration. Exact fixtures remain proposed. Missing permission or unavailable provider is an explicit blocked/fail observation, not a successful category test. Keep oracle values in runner-private state outside registered tools and shared agent workspace. Verify denial, revocation and stop separately.
+
+## Evidence handling and interpretation
+
+Record successful and failed attempts, exact command exit/signal/timeout, redacted bounded stderr, public source URLs, license declarations, lockfile integrity and downloaded artifact SHA-256. Registry integrity is publisher metadata until independently checked against downloaded bytes. Distinguish registry metadata, host installation, Android installation, startup, usable integration, and authenticated workflow. One failure does not stop independent cases. A prerequisite failure blocks dependent cases; unrelated unexecuted cases remain untested.
+
+Original tooling is MIT. Codex declares Apache-2.0; Claude packages declare `SEE LICENSE IN README.md` and require upstream terms review. PRoot GPL and Ubuntu package-specific/GPL/LGPL obligations remain separate from original code. Research snapshots are not incorporated into tooling. No publish/distribution action is authorized. Physical Android14/ABI, thermals and battery remain blocked until a device is connected; emulator x86_64 cannot prove ARM64.
+
+Final report must state expected versus actual mission, honest partial completion, recommendation (`accept`, `revise`, `reject`, or `insufficient-evidence`), every matrix case, exact versions/provenance, measured costs, retries/workarounds, update compatibility, blockers and next decision. The HTML embeds all report content with no network assets or scripts.
