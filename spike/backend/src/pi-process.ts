@@ -93,16 +93,30 @@ export class PiProcess extends EventEmitter {
     // Pi shell tools create separate process groups. Capture those descendants
     // before shutdown can reparent them, then clean them even if Pi is wedged.
     const descendants: number[] = [];
+    const identities = new Map<number, string>();
+    const identity = async (pid: number) => {
+      const stat = await readFile(`/proc/${pid}/stat`, 'utf8');
+      return stat.slice(stat.lastIndexOf(')') + 2).split(' ')[19];
+    };
+    let rootIdentity: string | undefined;
     if (process.platform === 'linux' && this.child.pid) {
+      try { rootIdentity = await identity(this.child.pid); }
+      catch { if (this.child.exitCode === null && this.child.signalCode === null) this.emit('fault', 'cleanup_identity_unverifiable'); }
       const discover = async (pid: number) => {
         if (descendants.length >= 256) { this.emit('fault', 'descendant_limit'); return; }
         try {
           const children = (await readFile(`/proc/${pid}/task/${pid}/children`, 'utf8')).trim().split(/\s+/).filter(Boolean).map(Number);
           for (const child of children) {
             if (descendants.length >= 256) { this.emit('fault', 'descendant_limit'); break; }
-            if (!descendants.includes(child)) { descendants.push(child); await discover(child); }
+            if (!descendants.includes(child)) {
+              try { identities.set(child, await identity(child)); }
+              catch (error: any) { if (error.code !== 'ENOENT' && error.code !== 'ESRCH') this.emit('fault', 'cleanup_identity_unverifiable'); continue; }
+              descendants.push(child); await discover(child);
+            }
           }
-        } catch { /* Process may have exited during the snapshot. */ }
+        } catch (error: any) {
+          if (error.code !== 'ENOENT' && error.code !== 'ESRCH') this.emit('fault', 'cleanup_tree_unverifiable');
+        }
       };
       await discover(this.child.pid);
     }
@@ -110,19 +124,27 @@ export class PiProcess extends EventEmitter {
     this.failPending('pi_stopped');
     this.child.stdin.end();
     // Kill the whole Unix process group even if the parent already exited.
-    const kill = (signal: NodeJS.Signals) => {
+    const kill = async (signal: NodeJS.Signals) => {
       try {
         if (process.platform !== 'win32' && this.child.pid) {
           for (const pid of [...descendants].reverse()) {
+            if (process.platform === 'linux') {
+              try { if (await identity(pid) !== identities.get(pid)) { this.emit('fault', 'descendant_identity_changed'); continue; } }
+              catch (error: any) { if (error.code !== 'ENOENT' && error.code !== 'ESRCH') this.emit('fault', 'cleanup_identity_unverifiable'); continue; }
+            }
             try { process.kill(-pid, signal); } catch { try { process.kill(pid, signal); } catch {} }
+          }
+          if (process.platform === 'linux') {
+            try { if (!rootIdentity || await identity(this.child.pid) !== rootIdentity) return; }
+            catch { return; }
           }
           process.kill(-this.child.pid, signal);
         } else this.child.kill(signal);
       } catch (error: any) { if (error.code !== 'ESRCH') this.emit('fault', 'process_group_cleanup_failed'); }
     };
     await new Promise(resolve => setTimeout(resolve, 200));
-    kill('SIGTERM');
+    await kill('SIGTERM');
     await new Promise(resolve => setTimeout(resolve, 300));
-    kill('SIGKILL');
+    await kill('SIGKILL');
   }
 }

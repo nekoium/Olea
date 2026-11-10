@@ -19,9 +19,10 @@ const report = { scope: process.platform === 'linux' ? 'linux-runtime' : 'host-o
   piVersion: process.env.OLEA_PI_VERSION ?? 'unrecorded',
   runnerSha256: createHash('sha256').update(await readFile(import.meta.filename)).digest('hex'),
   backendSha256: createHash('sha256').update(await readFile(resolve(import.meta.dirname, '../../backend/dist/backend.js'))).digest('hex'),
-  cases: [], phoneCalls: [], measurements: {}, usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }, retryEvents: 0, eventCount: 0 };
+  cases: [], phoneCalls: [], cleanupFaults: [], measurements: {}, usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }, retryEvents: 0, eventCount: 0 };
 const events = new Map();
 const backend = new Backend({ entry, workspace, stateDir }, event => {
+  if (event.type === 'fault') report.cleanupFaults.push({ session: event.session, code: event.code });
   if (event.type === 'event') {
     report.eventCount++;
     if (/retry/i.test(event.record.type)) report.retryEvents++;
@@ -170,6 +171,7 @@ try {
       assert(pid > 1);
       await backend.stop(mainSession);
       await work;
+      assert.equal(report.cleanupFaults.some(fault => /descendant_limit|identity|cleanup_failed|unverifiable/.test(fault.code)), false);
       let alive = false;
       try { const status = await readFile(`/proc/${pid}/stat`, 'utf8'); alive = !/\) Z /.test(status); } catch {}
       if (alive) { try { process.kill(pid, 'SIGKILL'); } catch {} }
