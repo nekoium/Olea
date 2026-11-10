@@ -4,6 +4,8 @@ Disposable MIT integration source; runtime components retain their upstream lice
 
 Latest actual continuation, reproduction commands, fresh-repeat/update/resource/lifecycle results: [CHECKPOINT_AFTER_REPEAT.md](CHECKPOINT_AFTER_REPEAT.md). Final graceful stop/current state and explicit **lease relinquishment**: [lease-closeout.json](evidence/lease-closeout.json). Earlier snapshot paragraphs below retain their stated observation times.
 
+A later explicitly selected stock full-access policy passed deterministic inside/sibling Unix commands with no model/phone calls: [FULL_ACCESS_PREFLIGHT.md](FULL_ACCESS_PREFLIGHT.md). It uses danger-full-access/approval-never and provides no agent filesystem isolation; historical restricted-route failures remain valid.
+
 ## Measured result
 
 On Olea_API_36, Android16/API36 x86_64, target36/min26/compile36 `dev.olea.m2.runtime` executes unmodified Termux PRoot5.1.107.102 from PackageManager's read-only nativeLibraryDir. Its stock packaged loader executes writable Ubuntu24.04.3 shell, upstream Node24.20.0 and nested children in the **actual Kotlin service domain**, `u:r:untrusted_app`, real UID10216. Development run-as is provisioning/observation only.

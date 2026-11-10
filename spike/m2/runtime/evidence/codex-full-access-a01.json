@@ -1,0 +1,35 @@
+{
+  "accessMode": "full-access",
+  "stockSandbox": "danger-full-access",
+  "approvalPolicy": "never",
+  "filesystemIsolation": false,
+  "noModelRequests": true,
+  "noPhoneActions": true,
+  "directory": "/opt/olea/.setup/codex-full-access/attempt-xDsQjf",
+  "platform": "linux",
+  "results": {
+    "inside": {
+      "exitCode": 0,
+      "stdout": "OK",
+      "stderr": "",
+      "independentExact": true
+    },
+    "outside": {
+      "exitCode": 0,
+      "stdout": "OK",
+      "stderr": "",
+      "independentExact": true
+    }
+  },
+  "initialized": {
+    "userAgent": "olea_spike/0.167.0 (Ubuntu 24.4.0; x86_64) unknown (olea_spike; 0.0.0)",
+    "codexHome": "/opt/olea/.setup/codex-full-access/attempt-xDsQjf/home",
+    "platformFamily": "unix",
+    "platformOs": "linux"
+  },
+  "status": "pass",
+  "stop": {
+    "rootExited": true,
+    "descendantsVerified": false
+  }
+}
