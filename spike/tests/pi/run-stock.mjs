@@ -8,6 +8,7 @@ import { Backend } from '../../backend/dist/backend.js';
 import { PiProcess } from '../../backend/dist/pi-process.js';
 
 const entry = process.env.OLEA_PI_ENTRY;
+if (!process.env.OLEA_PROVIDER_CONFIG) throw new Error('OLEA_PROVIDER_CONFIG_required');
 if (!entry) throw new Error('OLEA_PI_ENTRY_required');
 const workspace = resolve(process.env.OLEA_WORKSPACE ?? '.setup/pi-workspace');
 const stateDir = resolve(process.env.OLEA_STATE_DIR ?? '.setup/pi-state');

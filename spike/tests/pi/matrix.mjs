@@ -1,15 +1,33 @@
 // SPDX-License-Identifier: MIT
 // Sequential ordinary npm installs into ONE prefix on ONE fixed Linux base.
 import { spawn } from 'node:child_process';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, readdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
+import { release } from 'node:os';
 
 const root = resolve(import.meta.dirname, '../../..');
+if (!process.env.OLEA_PROVIDER_CONFIG) throw new Error('OLEA_PROVIDER_CONFIG_required');
 const outputDir = resolve(process.env.OLEA_MATRIX_DIR ?? join(root, '.setup', 'pi-matrix'));
 await mkdir(outputDir, { recursive: true, mode: 0o700 });
 const prefix = join(outputDir, 'stock');
-const report = { platform: process.platform, arch: process.arch, node: process.version,
+const sentinel = randomUUID();
+const workspace = join(outputDir, 'workspace');
+await mkdir(workspace, { recursive: true });
+await writeFile(join(workspace, 'upgrade-preservation.txt'), sentinel);
+let transcriptSnapshot = [];
+async function transcripts(directory) {
+  const files = [];
+  try {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const path = join(directory, entry.name);
+      if (entry.isDirectory()) files.push(...await transcripts(path));
+      else if (entry.name.endsWith('.jsonl')) files.push({ path, sha256: createHash('sha256').update(await readFile(path)).digest('hex') });
+    }
+  } catch (error) { if (error.code !== 'ENOENT') throw error; }
+  return files;
+}
+const report = { platform: process.platform, arch: process.arch, node: process.version, kernelRelease: release(),
   scope: process.platform === 'linux' ? 'linux-runtime' : 'host-only',
   policy: 'stock npm package; normal install scripts; fixed Node/base; same prefix for ordinary upgrades',
   installs: [], runs: [] };
@@ -34,7 +52,14 @@ for (const version of ['0.74.0', '1.0.0', '1.5.2']) {
   const installArgs = ['install', '--prefix', prefix, '--no-audit', '--no-fund', '--fetch-retries=0', '--fetch-timeout=45000', `@earendil-works/pi-coding-agent@${version}`];
   const started = performance.now();
   const install = await run(npmCommand, npmEntry ? [npmEntry, ...installArgs] : installArgs, process.env, 240_000);
-  report.installs.push({ version, ...install, durationMs: Math.round(performance.now() - started) });
+  let preserved = (await readFile(join(workspace, 'upgrade-preservation.txt'), 'utf8')) === sentinel;
+  for (const previous of transcriptSnapshot) {
+    try { preserved &&= createHash('sha256').update(await readFile(previous.path)).digest('hex') === previous.sha256; }
+    catch { preserved = false; }
+  }
+  report.installs.push({ version, command: [npmCommand, ...(npmEntry ? [npmEntry] : []), ...installArgs], ...install,
+    preservation: { status: preserved ? 'pass' : 'fail', workspaceSentinel: true, priorTranscriptFiles: transcriptSnapshot.length },
+    durationMs: Math.round(performance.now() - started) });
   console.log(JSON.stringify({ phase: 'install', version, ...install }));
   if (install.status !== 'pass') { report.runs.push({ version, status: 'blocked', reason: 'install_failed' }); continue; }
   const packageDir = join(prefix, 'node_modules', '@earendil-works', 'pi-coding-agent');
@@ -47,6 +72,7 @@ for (const version of ['0.74.0', '1.0.0', '1.5.2']) {
     // Phone acceptance once on baseline. Earlier versions still register phone tools.
     OLEA_RUN_PHONE: version === '1.5.2' ? process.env.OLEA_RUN_PHONE ?? '0' : '0',
   }, 600_000);
+  transcriptSnapshot = await transcripts(join(outputDir, 'sessions'));
   report.runs.push({ version, actualPackageVersion: packageJson.version, engines: packageJson.engines,
     license: packageJson.license, cliRelativePath: bin, reportPath, ...result });
   console.log(JSON.stringify({ phase: 'run', version, ...result }));

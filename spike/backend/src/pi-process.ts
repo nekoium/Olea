@@ -31,6 +31,7 @@ export class PiProcess extends EventEmitter {
   readonly child: ChildProcessWithoutNullStreams;
   private pending = new Map<string, { resolve: (value: RecordData) => void; reject: (e: Error) => void; timer: NodeJS.Timeout }>();
   private closing = false;
+  private stopping?: Promise<void>;
   stderrBytes = 0;
   readonly startedAt = performance.now();
 
@@ -82,7 +83,11 @@ export class PiProcess extends EventEmitter {
     });
   }
 
-  async stop() {
+  stop(): Promise<void> {
+    return this.stopping ??= this.stopInner();
+  }
+
+  private async stopInner() {
     if (this.closing) return;
     // Pi shell tools create separate process groups. Capture those descendants
     // before shutdown can reparent them, then clean them even if Pi is wedged.
