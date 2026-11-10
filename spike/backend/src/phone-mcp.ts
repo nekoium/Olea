@@ -35,6 +35,8 @@ export async function callPhone(name: string, args: RecordData, configPath: stri
   } catch { return { content: [{ type: 'text', text: 'native_bridge_failed_or_denied_delivery_unknown_no_replay' }], isError: true }; }
 }
 function main() {
+  // Fail closed if stock MCP environment selection ever forwards provider authority.
+  if (process.env.OLEA_CODEX_PROVIDER_KEY || process.env.OLEA_PROVIDER_CONFIG) { process.exitCode = 2; return; }
   let active = 0;
   function output(record: RecordData) {
     const text = JSON.stringify(record) + '\n';

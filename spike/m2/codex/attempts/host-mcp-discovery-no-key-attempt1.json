@@ -1,0 +1,50 @@
+{
+  "noModelRequests": true,
+  "noAndroidActions": true,
+  "events": [
+    "olea/process",
+    "remoteControl/status/changed",
+    "thread/started",
+    "mcpServer/startupStatus/updated",
+    "mcpServer/startupStatus/updated"
+  ],
+  "directory": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-mcp\\attempt-cQbxIf",
+  "start": {
+    "agent": "codex",
+    "pid": 10564,
+    "initialized": {
+      "userAgent": "olea_spike/0.167.0 (Windows 10.0.26300; x86_64) unknown (olea_spike; 0.0.0)",
+      "codexHome": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-mcp\\attempt-cQbxIf\\state\\codex\\discovery\\home",
+      "platformFamily": "windows",
+      "platformOs": "windows"
+    },
+    "threadId": "01a1c673-45dc-7021-be02-81e321067f11",
+    "cwd": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-mcp\\attempt-cQbxIf\\workspace",
+    "home": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-mcp\\attempt-cQbxIf\\state\\codex\\discovery\\home",
+    "startupMs": 388.0989
+  },
+  "servers": [
+    {
+      "name": "olea_phone",
+      "runtimeStatus": "connected",
+      "toolsError": null,
+      "toolNames": [
+        "phone_swipe",
+        "phone_click",
+        "phone_capabilities",
+        "phone_inspect",
+        "phone_fixture_action",
+        "phone_home"
+      ],
+      "serverInfo": {
+        "name": "olea-phone",
+        "title": null,
+        "version": "0.0.0",
+        "description": null,
+        "icons": null,
+        "websiteUrl": null
+      }
+    }
+  ],
+  "status": "pass"
+}

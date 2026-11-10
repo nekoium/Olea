@@ -1,0 +1,50 @@
+{
+  "noModelRequests": true,
+  "noAndroidActions": true,
+  "events": [
+    "olea/process",
+    "remoteControl/status/changed",
+    "thread/started",
+    "mcpServer/startupStatus/updated",
+    "mcpServer/startupStatus/updated"
+  ],
+  "directory": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-mcp\\attempt-Hdbuog",
+  "start": {
+    "agent": "codex",
+    "pid": 31856,
+    "initialized": {
+      "userAgent": "olea_spike/0.167.0 (Windows 10.0.26300; x86_64) unknown (olea_spike; 0.0.0)",
+      "codexHome": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-mcp\\attempt-Hdbuog\\state\\codex\\discovery\\home",
+      "platformFamily": "windows",
+      "platformOs": "windows"
+    },
+    "threadId": "01a1c671-3e8d-7002-b12e-4f6fbefe020f",
+    "cwd": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-mcp\\attempt-Hdbuog\\workspace",
+    "home": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-mcp\\attempt-Hdbuog\\state\\codex\\discovery\\home",
+    "startupMs": 405.529
+  },
+  "servers": [
+    {
+      "name": "olea_phone",
+      "runtimeStatus": "connected",
+      "toolsError": null,
+      "toolNames": [
+        "phone_fixture_action",
+        "phone_swipe",
+        "phone_capabilities",
+        "phone_inspect",
+        "phone_home",
+        "phone_click"
+      ],
+      "serverInfo": {
+        "name": "olea-phone",
+        "title": null,
+        "version": "0.0.0",
+        "description": null,
+        "icons": null,
+        "websiteUrl": null
+      }
+    }
+  ],
+  "status": "pass"
+}

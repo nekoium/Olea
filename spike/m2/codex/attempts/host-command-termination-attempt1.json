@@ -1,0 +1,36 @@
+{
+  "directory": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-lifecycle\\attempt-YdI2D6",
+  "noModelRequests": true,
+  "noPhoneActions": true,
+  "platform": "win32",
+  "events": [
+    "olea/process",
+    "remoteControl/status/changed"
+  ],
+  "limits": [
+    "command/exec termination is distinct from model turn/interrupt",
+    "Windows lacks start-time identity proof",
+    "No guarantee for after-snapshot forks/reparented children"
+  ],
+  "initialized": {
+    "userAgent": "olea_spike/0.167.0 (Windows 10.0.26300; x86_64) unknown (olea_spike; 0.0.0)",
+    "codexHome": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-lifecycle\\attempt-YdI2D6\\home",
+    "platformFamily": "windows",
+    "platformOs": "windows"
+  },
+  "pids": {
+    "root": 36204,
+    "child": 43980
+  },
+  "before": {},
+  "rpcError": {
+    "code": -32600,
+    "message": "command/exec/write, command/exec/terminate, and command/exec/resize are not supported for windows sandbox processes"
+  },
+  "status": "blocked",
+  "error": "codex_rpc_error_-32600",
+  "stop": {
+    "rootExited": true,
+    "descendantsVerified": false
+  }
+}

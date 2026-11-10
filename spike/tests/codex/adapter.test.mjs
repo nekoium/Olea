@@ -89,6 +89,14 @@ test('unknown server request is rejected without action', async t => {
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.ok(f.events.some(event => event.record?.method === 'fixture/unknownRejected' && event.record.params.code === -32601));
 });
+test('inherited output pipes have bounded draining without false descendant-exit proof', async t => {
+  const f = await fixture(t);
+  await f.backend.codexCommand('one', { method: 'turn/start', params: { text: 'pipe-holder' } });
+  const started = performance.now();
+  const result = await f.backend.stop('one');
+  assert.ok(performance.now() - started < 1500);
+  assert.equal(result.descendantsVerified, false);
+});
 test('provider config bounds retries and scrubs shell secret inheritance', () => {
   const config = codexConfig('gpt-6.1-terra');
   assert.match(config, /env_key = "OLEA_CODEX_PROVIDER_KEY"/);

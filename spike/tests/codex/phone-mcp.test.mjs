@@ -2,9 +2,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
+import { spawnSync } from 'node:child_process';
 import { mkdir, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { callPhone, phoneTools } from '../../backend/dist/phone-mcp.js';
+test('MCP helper refuses unexpected provider authority without printing its value', () => {
+  const result = spawnSync(process.execPath, [resolve('spike/backend/dist/phone-mcp.js'), 'unused'], { env: { OLEA_CODEX_PROVIDER_KEY: 'fixture-only-never-real' }, encoding: 'utf8', timeout: 3000, input: '' });
+  assert.equal(result.status, 2);
+  assert.equal(result.stdout, ''); assert.equal(result.stderr, '');
+});
 test('narrow MCP phone mapping authenticates and preserves native denial without replay', async t => {
   await mkdir('.setup/codex-tests', { recursive: true });
   const directory = await mkdtemp(resolve('.setup/codex-tests/mcp-'));

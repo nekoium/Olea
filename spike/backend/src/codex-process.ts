@@ -98,6 +98,9 @@ export class CodexProcess extends EventEmitter {
       } else if (!this.rootExited) { try { this.child.kill(signal); } catch {} }
       await new Promise(resolve => setTimeout(resolve, 250));
     }
+    // Descendants can inherit pipes after root exit. Bound draining without claiming tree exit.
+    this.child.stdin.destroy(); this.child.stdout.destroy(); this.child.stderr.destroy();
+    this.child.unref();
     return { rootExited: this.rootExited, descendantsVerified: false };
   }
 }

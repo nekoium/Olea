@@ -12,7 +12,7 @@ export function codexConfig(model: string, bridge?: string) {
   const windows = process.platform === 'win32' ? '[windows]\nsandbox = "unelevated"\n' : '';
   if (!bridge) return text + windows;
   const helper = fileURLToPath(new URL('./phone-mcp.js', import.meta.url));
-  return text + windows + `[mcp_servers.olea_phone]\ncommand = ${JSON.stringify(process.execPath)}\nargs = [${JSON.stringify(helper)}, ${JSON.stringify(bridge)}]\nstartup_timeout_sec = 10\ntool_timeout_sec = 10\n`;
+  return text + windows + `[mcp_servers.olea_phone]\ncommand = ${JSON.stringify(process.execPath)}\nargs = [${JSON.stringify(helper)}, ${JSON.stringify(bridge)}]\nenv = { OLEA_CODEX_PROVIDER_KEY = "" }\nenv_vars = []\nstartup_timeout_sec = 10\ntool_timeout_sec = 10\n`;
 }
 export class CodexSession {
   readonly process: CodexProcess;
@@ -80,7 +80,7 @@ export class CodexSession {
   async command(method: string, params: RecordData = {}) {
     if (method === 'turn/interrupt') return this.interrupt();
     if (method === 'thread/read') return this.process.request(method, { threadId: this.threadId, includeTurns: true });
-    if (method === 'mcpServerStatus/list') return this.process.request(method, {});
+    if (method === 'mcpServerStatus/list') return this.process.request(method, { threadId: this.threadId });
     if (method !== 'turn/start') throw new Error('codex_unsupported_command');
     if (this.inFlight) throw new Error('codex_turn_active');
     if (typeof params.text !== 'string' || params.text.length > 32000) throw new Error('codex_invalid_input');
