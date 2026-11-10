@@ -1539,9 +1539,124 @@
     "context": "android-app",
     "mode": "direct",
     "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "actual": "Actual native-owned one Node runner uses shared backend package and persistent Pi adapter; Codex-capable deployed module hash recorded. Full Android operation of both agent adapters through the shared integration is still pending.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-backend-shared",
+        "caseId": "backend.shared",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "untested",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Actual native-owned one Node runner uses shared backend package and persistent Pi adapter; Codex-capable deployed module hash recorded. Full Android operation of both agent adapters through the shared integration is still pending.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-backend-shared"
   },
   {
     "id": "pi.install",
@@ -1552,10 +1667,97 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Stock Pi1.5.2 ordinary upstream npm install added123packages; native install+hash/version phase96176ms, exit0/version1.5.2. Entry/manifest/lock hashes retained; no private agent patch.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-install",
+        "caseId": "pi.install",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:25:51.682Z",
+        "endedAt": "2026-11-10T17:27:27.858Z",
+        "summary": "Stock Pi1.5.2 ordinary upstream npm install added123packages; native install+hash/version phase96176ms, exit0/version1.5.2. Entry/manifest/lock hashes retained; no private agent patch.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-install-a01.json",
+            "sha256": "0d2174f6f0445b623f42d1267f6db266b19a6a9289b0bc6a1cc1a73533c7e8af"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-install-a01-native.json",
+            "sha256": "faba75ee16849cbdb75c4ecc3d74bc14dcedbc3e3c76f5323305ac6b83f22e60"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Ordinary npm emitted allowScripts warnings for google/genai and protobufjs; no inference that every optional install script ran.",
+          "Phase duration includes version/hash collection, not isolated npm timing.",
+          "Package MIT does not clear every dependency distribution obligation."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-install"
   },
   {
     "id": "pi.initialize",
@@ -1566,10 +1768,131 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Persistent stock Pi RPC started with actual PID10173/start240981/realUID10216 under native host9619->PRoot10148->shared backend runner10158; structured state/checkpoint commands completed.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-initialize",
+        "caseId": "pi.initialize",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Persistent stock Pi RPC started with actual PID10173/start240981/realUID10216 under native host9619->PRoot10148->shared backend runner10158; structured state/checkpoint commands completed.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-initialize"
   },
   {
     "id": "pi.turn",
@@ -1580,10 +1903,144 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "One authorized preferred-model Pi workflow reached terminal idle, independent Unix outcomes and explicit saved-session continuation. Raw combined status awaits oracle; separate native proof now retained.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-turn",
+        "caseId": "pi.turn",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "One authorized preferred-model Pi workflow reached terminal idle, independent Unix outcomes and explicit saved-session continuation. Raw combined status awaits oracle; separate native proof now retained.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "allocationId": "m2-android-pi-01",
+          "model": "gpt-6.1-terra",
+          "topLevelPrompts": 1,
+          "toolRounds": 9,
+          "observedUsage": {
+            "input": 16268,
+            "output": 676,
+            "cacheRead": 7998,
+            "cacheWrite": 0
+          },
+          "observedHttpRequests": null,
+          "automaticRetries": false,
+          "remoteBilling": "unknown",
+          "strictTokenCap": "not established; reactive round/deadline cancellation cannot strictly cap remote bill"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-turn"
   },
   {
     "id": "pi.stream",
@@ -1594,10 +2051,131 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Actual679events, first event31ms, first text42820ms, maximum inter-event gap5800ms, turn44504ms;9tool rounds and8tool invocations. Timing is this single combined workflow.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-stream",
+        "caseId": "pi.stream",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Actual679events, first event31ms, first text42820ms, maximum inter-event gap5800ms, turn44504ms;9tool rounds and8tool invocations. Timing is this single combined workflow.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-stream"
   },
   {
     "id": "pi.file",
@@ -1608,10 +2186,131 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Exact randomized JSON independently verified; workspace artifact SHA256818bd11e73c0f524c2e2fd77525e6bbe2874838eec4f0c0b128f701194d77c34.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-file",
+        "caseId": "pi.file",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Exact randomized JSON independently verified; workspace artifact SHA256818bd11e73c0f524c2e2fd77525e6bbe2874838eec4f0c0b128f701194d77c34.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-file"
   },
   {
     "id": "pi.shell",
@@ -1622,10 +2321,131 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Actual bash start/end with successful hashed result, independently verified randomized workspace artifact and Pi-rooted descendant activity during first bash interval. No descendant executable semantics inferred.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-shell",
+        "caseId": "pi.shell",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Actual bash start/end with successful hashed result, independently verified randomized workspace artifact and Pi-rooted descendant activity during first bash interval. No descendant executable semantics inferred.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-shell"
   },
   {
     "id": "pi.dependency",
@@ -1636,10 +2456,131 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Requested ordinary upstream is-number@7.0.0 install/use; fresh independent require accepts randomized numeric input and rejects olea. Available dependency behavior independently proved; command arguments/results retained as hashes only.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-dependency",
+        "caseId": "pi.dependency",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Requested ordinary upstream is-number@7.0.0 install/use; fresh independent require accepts randomized numeric input and rejects olea. Available dependency behavior independently proved; command arguments/results retained as hashes only.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-dependency"
   },
   {
     "id": "pi.child",
@@ -1651,9 +2592,124 @@
     "context": "android-app",
     "mode": "model",
     "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "actual": "Fresh independent runner child behavior passes; independent Pi-rooted observer has47snapshots/maxdepth4during first bash, but executable/command semantic identity not proved. Required model-child causality remains incomplete.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-child",
+        "caseId": "pi.child",
+        "context": "android-app",
+        "mode": "model",
+        "status": "untested",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Fresh independent runner child behavior passes; independent Pi-rooted observer has47snapshots/maxdepth4during first bash, but executable/command semantic identity not proved. Required model-child causality remains incomplete.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-child"
   },
   {
     "id": "pi.nested-child",
@@ -1665,9 +2721,124 @@
     "context": "android-app",
     "mode": "model",
     "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "actual": "Fresh independent runner nested-child behavior passes; independent Pi-rooted observer has47snapshots/maxdepth4during first bash, but executable/command semantic identity not proved. Required model-child causality remains incomplete.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-nested-child",
+        "caseId": "pi.nested-child",
+        "context": "android-app",
+        "mode": "model",
+        "status": "untested",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Fresh independent runner nested-child behavior passes; independent Pi-rooted observer has47snapshots/maxdepth4during first bash, but executable/command semantic identity not proved. Required model-child causality remains incomplete.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-nested-child"
   },
   {
     "id": "pi.resume",
@@ -1678,10 +2849,131 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Explicit stop/restart resumed saved session marker via stock get_messages, without another model prompt or phone replay. Original Pi PID independently absent after completion.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-pi-resume",
+        "caseId": "pi.resume",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Explicit stop/restart resumed saved session marker via stock get_messages, without another model prompt or phone replay. Original Pi PID independently absent after completion.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-pi-resume"
   },
   {
     "id": "pi.cancel",
@@ -3290,10 +4582,87 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Direct native Accessibility launcher click followed by independently observed target foreground; no intervening intent launch.",
+    "attempts": [
+      {
+        "context": "android-app",
+        "mode": "direct",
+        "startedAt": "2026-11-10T17:27:21.980Z",
+        "endedAt": "2026-11-10T17:27:25.005Z",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-a01.json",
+            "sha256": "98709f004aa8fe18534123d80869388419f7ae9c543cd06ae205a2f734256334"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/direct-a01.mjs",
+            "sha256": "09d805ced6482bfbd62b437b781b7969330418d1dfeb88e200b271996728d3d2"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-before-identity.txt",
+            "sha256": "c7bfe5a7ddc4fd527e2a1e001b5d833ce39fcdd66f2dfefb2afa7134b29cada7"
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "limits": [
+          "Direct bridge checks are separate from model selection.",
+          "ADB observes/provisions only; phone effects use native bridge."
+        ],
+        "attemptId": "direct-a01-alpha",
+        "caseId": "phone.direct.accessibility-launch",
+        "status": "pass",
+        "summary": "Direct native Accessibility launcher click followed by independently observed target foreground; no intervening intent launch.",
+        "assertions": [
+          {
+            "name": "click_foreground_causality",
+            "independent": true,
+            "passed": true
+          }
+        ]
+      },
+      {
+        "context": "android-app",
+        "mode": "direct",
+        "startedAt": "2026-11-10T17:37:31.396Z",
+        "endedAt": "2026-11-10T17:37:34.627Z",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-a02.json",
+            "sha256": "535d9db2bc125cdd354adb5ee2cfefbd9707b81cdcf00fdd6d659ff173a69577"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/direct-a02.mjs",
+            "sha256": "1d2de0137f74638ab0029426c06448a6cebdb169283ad05d908f160f86df5388"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-before-identity.txt",
+            "sha256": "c7bfe5a7ddc4fd527e2a1e001b5d833ce39fcdd66f2dfefb2afa7134b29cada7"
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "limits": [
+          "Direct bridge checks are separate from model selection.",
+          "ADB observes/provisions only; phone effects use native bridge."
+        ],
+        "attemptId": "direct-a02-alpha",
+        "caseId": "phone.direct.accessibility-launch",
+        "status": "pass",
+        "summary": "Direct native Accessibility launcher click followed by independently observed target foreground; no intervening intent launch.",
+        "assertions": [
+          {
+            "name": "click_foreground_causality",
+            "independent": true,
+            "passed": true
+          }
+        ]
+      }
+    ],
+    "actualAttemptId": "direct-a02-alpha"
   },
   {
     "id": "phone.pi.accessibility-launch",
@@ -3304,10 +4673,131 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Native launcher ACTION_CLICK1794332485068 preceded independently observed fixture foreground1794332485832 and later fixture interface action; no intervening launch intent.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-phone-pi-accessibility-launch",
+        "caseId": "phone.pi.accessibility-launch",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Native launcher ACTION_CLICK1794332485068 preceded independently observed fixture foreground1794332485832 and later fixture interface action; no intervening launch intent.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-phone-pi-accessibility-launch"
   },
   {
     "id": "phone.codex.accessibility-launch",
@@ -3536,10 +5026,49 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Direct cooperating fixture action accepted; separate UID private oracle independently equals newly generated value.",
+    "attempts": [
+      {
+        "context": "android-app",
+        "mode": "direct",
+        "startedAt": "2026-11-10T17:37:31.396Z",
+        "endedAt": "2026-11-10T17:37:34.627Z",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-a02.json",
+            "sha256": "535d9db2bc125cdd354adb5ee2cfefbd9707b81cdcf00fdd6d659ff173a69577"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/direct-a02.mjs",
+            "sha256": "1d2de0137f74638ab0029426c06448a6cebdb169283ad05d908f160f86df5388"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-before-identity.txt",
+            "sha256": "c7bfe5a7ddc4fd527e2a1e001b5d833ce39fcdd66f2dfefb2afa7134b29cada7"
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "limits": [
+          "Direct bridge checks are separate from model selection.",
+          "ADB observes/provisions only; phone effects use native bridge."
+        ],
+        "attemptId": "direct-a02-app-integration",
+        "caseId": "phone.direct.app-integration",
+        "status": "pass",
+        "summary": "Direct cooperating fixture action accepted; separate UID private oracle independently equals newly generated value.",
+        "assertions": [
+          {
+            "name": "fixture_interface_private_equality",
+            "independent": true,
+            "passed": true
+          }
+        ]
+      }
+    ],
+    "actualAttemptId": "direct-a02-app-integration"
   },
   {
     "id": "phone.pi.app-integration",
@@ -3550,10 +5079,131 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Model selected cooperating-app tool; separate-UID private fixture value independently equals Unix-generated random value.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-phone-pi-app-integration",
+        "caseId": "phone.pi.app-integration",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Model selected cooperating-app tool; separate-UID private fixture value independently equals Unix-generated random value.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-phone-pi-app-integration"
   },
   {
     "id": "phone.codex.app-integration",
@@ -3575,10 +5225,205 @@
     "prerequisites": [],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Real host UID10216 cannot read fixture UID10217 private oracle; seven narrow tools expose no oracle reader, fixture UI hides value and private oracle remains outside Unix binds.",
+    "attempts": [
+      {
+        "context": "android-app",
+        "mode": "direct",
+        "startedAt": "2026-11-10T17:27:21.980Z",
+        "endedAt": "2026-11-10T17:27:25.005Z",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-a01.json",
+            "sha256": "98709f004aa8fe18534123d80869388419f7ae9c543cd06ae205a2f734256334"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/direct-a01.mjs",
+            "sha256": "09d805ced6482bfbd62b437b781b7969330418d1dfeb88e200b271996728d3d2"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-before-identity.txt",
+            "sha256": "c7bfe5a7ddc4fd527e2a1e001b5d833ce39fcdd66f2dfefb2afa7134b29cada7"
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "limits": [
+          "Direct bridge checks are separate from model selection.",
+          "ADB observes/provisions only; phone effects use native bridge."
+        ],
+        "attemptId": "direct-a01-oracle",
+        "caseId": "phone.oracle",
+        "status": "fail",
+        "summary": "Original private-oracle denial assertion failed because exec-out did not propagate remote program exit. Retained observer defect, not proof host could read private oracle.",
+        "assertions": [],
+        "failureClass": "independent_assertion",
+        "retryOf": null
+      },
+      {
+        "context": "android-app",
+        "mode": "direct",
+        "startedAt": "2026-11-10T17:37:31.396Z",
+        "endedAt": "2026-11-10T17:37:34.627Z",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-a02.json",
+            "sha256": "535d9db2bc125cdd354adb5ee2cfefbd9707b81cdcf00fdd6d659ff173a69577"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/direct-a02.mjs",
+            "sha256": "1d2de0137f74638ab0029426c06448a6cebdb169283ad05d908f160f86df5388"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-before-identity.txt",
+            "sha256": "c7bfe5a7ddc4fd527e2a1e001b5d833ce39fcdd66f2dfefb2afa7134b29cada7"
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "limits": [
+          "Direct bridge checks are separate from model selection.",
+          "ADB observes/provisions only; phone effects use native bridge."
+        ],
+        "attemptId": "direct-a02-oracle",
+        "caseId": "phone.oracle",
+        "status": "pass",
+        "summary": "Shell-exit-aware observation establishes host permission denial, separate UIDs and exact private fixture equality.",
+        "assertions": [
+          {
+            "name": "separate_uid_oracle_denied_and_equal",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "failureClass": "none",
+        "retryOf": "direct-a01-oracle"
+      },
+      {
+        "attemptId": "pi-combined-a01-phone-oracle",
+        "caseId": "phone.oracle",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Real host UID10216 cannot read fixture UID10217 private oracle; seven narrow tools expose no oracle reader, fixture UI hides value and private oracle remains outside Unix binds.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-phone-oracle"
   },
   {
     "id": "phone.pi.combined",
@@ -3589,10 +5434,131 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Independent randomized Unix file/dependency outcomes and strict separate-UID causal launcher/fixture equality establish this combined model workflow.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-phone-pi-combined",
+        "caseId": "phone.pi.combined",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Independent randomized Unix file/dependency outcomes and strict separate-UID causal launcher/fixture equality establish this combined model workflow.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-phone-pi-combined"
   },
   {
     "id": "phone.codex.combined",
@@ -3617,9 +5583,92 @@
     "context": "android-app",
     "mode": "direct",
     "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "actual": "Direct missing-token request rejected401; retain auth rejection as context only. Android permission denial/revocation/stop behavior has not been established by this check.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-phone-permission-denied",
+        "caseId": "phone.permission-denied",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "untested",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Direct missing-token request rejected401; retain auth rejection as context only. Android permission denial/revocation/stop behavior has not been established by this check.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-a01.json",
+            "sha256": "98709f004aa8fe18534123d80869388419f7ae9c543cd06ae205a2f734256334"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/direct-a02.json",
+            "sha256": "535d9db2bc125cdd354adb5ee2cfefbd9707b81cdcf00fdd6d659ff173a69577"
+          }
+        ],
+        "assertions": [],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-phone-permission-denied"
   },
   {
     "id": "phone.revocation",
@@ -4114,10 +6163,131 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Single measured Pi model workflow first event31ms; startup/HTTP latency not inferred.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-cost-first-event",
+        "caseId": "cost.first-event",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Single measured Pi model workflow first event31ms; startup/HTTP latency not inferred.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-cost-first-event"
   },
   {
     "id": "cost.first-text",
@@ -4127,10 +6297,131 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Single measured Pi model workflow first assistant text42820ms after prompt; prior tool activity observed.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-cost-first-text",
+        "caseId": "cost.first-text",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Single measured Pi model workflow first assistant text42820ms after prompt; prior tool activity observed.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-cost-first-text"
   },
   {
     "id": "cost.stream-stalls",
@@ -4140,10 +6431,131 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Single measured Pi model workflow maximum inter-event gap5800ms, no retained provider errors; no general network reliability claim.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-cost-stream-stalls",
+        "caseId": "cost.stream-stalls",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "Single measured Pi model workflow maximum inter-event gap5800ms, no retained provider errors; no general network reliability claim.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_independent_assertion_and_source",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-cost-stream-stalls"
   },
   {
     "id": "cost.one-session",
@@ -4397,9 +6809,124 @@
     "context": "android-app",
     "mode": "direct",
     "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "actual": "After graceful completed workflow, original Pi identity absent and independent app-UID snapshot lists host9619 only. This is not active-work cancellation, all possible descendants, whole-service death, or permanent cleanup proof.",
+    "attempts": [
+      {
+        "attemptId": "pi-combined-a01-cost-cleanup",
+        "caseId": "cost.cleanup",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "untested",
+        "startedAt": "2026-11-10T17:40:53.859Z",
+        "endedAt": "2026-11-10T17:41:44.467Z",
+        "summary": "After graceful completed workflow, original Pi identity absent and independent app-UID snapshot lists host9619 only. This is not active-work cancellation, all possible descendants, whole-service death, or permanent cleanup proof.",
+        "artifacts": [
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.json",
+            "sha256": "4ca86e2b111d7c268bd857ad9c445f2db134f115596fa16b12cf6af6400e7e8c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native.json",
+            "sha256": "bde74f38fd4a38c35ea2d8334c3e516b1c4698958e8178606386ad90d65b112f"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-native-oracle.json",
+            "sha256": "d002c3f6369db42ed7739751755409c768b360e8f3387c0a37dee0e3f42334e0"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01-foreground.jsonl",
+            "sha256": "11ac8e7ab71890f200e22aa9ea0d27095c24c807d500502f2667d1f04042fb9c"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-combined-a01.process-observer.json",
+            "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/deployed-payload-hashes.txt",
+            "sha256": "535cfe5d4ab789d8c2aafbe9c9cae8a92260d102bcec592716855df0bd008e39"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-live-processes.txt",
+            "sha256": "9dacf81fb9ebec6ee810cdd35183fd0653c49cc4c9775a10df22e23a1fb8cf24"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/evidence/pi-a01-after-processes.txt",
+            "sha256": "0bacc00e607db3d24214a344222719d476b04cb542d0b59088dd3812ed6d1442"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/assert-pi-phone.mjs",
+            "sha256": "d1b2574d771377d760b4944d506151a7c1236a0d880acd15a6602c6bb2458169"
+          },
+          {
+            "path": "git:e89ea03:spike/m2/runtime/pi-combined-a01.sh",
+            "sha256": "3662470cd220e04a4668bb2aa557573bd48d702147e3b9e80875a7b243cb299b"
+          }
+        ],
+        "assertions": [],
+        "execution": {
+          "package": "dev.olea.m2.runtime",
+          "targetSdk": 36,
+          "androidApi": 36,
+          "realUid": 10216,
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "hostPid": 9619,
+          "piBefore": {
+            "status": "observed",
+            "pid": 10173,
+            "state": "S",
+            "ppid": 10158,
+            "startTime": "240981",
+            "cpuTicks": 147,
+            "rssPages": 37296,
+            "realUid": 10216,
+            "rssKiB": 149184
+          },
+          "piAfter": {
+            "status": "absent",
+            "pid": 10173
+          },
+          "modelChildObservation": {
+            "firstBashStartMs": 1794332465770,
+            "firstBashEndMs": 1794332473704,
+            "snapshotsInInterval": 47,
+            "maxDescendantDepthRootZero": 4,
+            "root": {
+              "status": "observed",
+              "pid": 10173,
+              "state": "R",
+              "ppid": 10158,
+              "startTime": "240981",
+              "cpuTicks": 147,
+              "rssPages": 37328,
+              "realUid": 10216,
+              "rssKiB": 149312
+            },
+            "semantics": "Numeric ancestry/timing only; no independent executable/command semantics. Later fresh runner children excluded by Pi root ancestry and timing."
+          },
+          "phoneOracleHash": "96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6"
+        },
+        "provider": {
+          "accountingReference": "pi-combined-a01-pi-turn"
+        },
+        "provenance": {
+          "sourceCommit": "e89ea03",
+          "piVersion": "1.5.2",
+          "piLicense": "MIT",
+          "piEntrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+          "deployedRunnerSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+          "deployedBackendSha256": "0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec",
+          "byteDomains": "Deployed file hashes and Git source-object hashes are distinct explicit byte domains."
+        },
+        "limits": [
+          "Actual Android service domain, not development run-as.",
+          "One model workflow; no reliability/ARM64/physical-phone inference.",
+          "Pi child/nested child semantics not independently proved; fresh runner children demonstrate behavior only.",
+          "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
+          "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
+        ]
+      }
+    ],
+    "actualAttemptId": "pi-combined-a01-cost-cleanup"
   },
   {
     "id": "cost.constrained-core",
