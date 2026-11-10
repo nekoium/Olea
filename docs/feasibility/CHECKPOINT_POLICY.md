@@ -21,6 +21,8 @@ The base must support different stock-agent installations and ordinary upstream 
 
 ## Lean validation
 
+The user also requires overall token efficiency and reusable agent knowledge. Aim for manager contexts below 300k tokens; size checkpoints early, while still reaching the current checkpoint before handoff. Save recurring commands, diagnosed failures and successful recovery recipes in [AGENT_OPERATING_NOTES.md](AGENT_OPERATING_NOTES.md), existing guides or small task tools. Use computer control only when a necessary action has no supported cheaper interface. Avoid repeated source searches, transcript dumps, trial flags, unchanged test suites and per-receipt reporting.
+
 - Use the smallest tests that resolve the acceptance question. Group compatible assertions into a bounded workflow; retain independent oracles.
 - Reuse established deterministic/core and source-validation evidence. Do not rerun a whole suite after documentation, manifest or unchanged source checkpoints.
 - Add or rerun focused tests only for changed behavior, observed failures, uncertain integration or a required acceptance gap. Do not expand helper frameworks or acceptance counts to create apparent progress.
