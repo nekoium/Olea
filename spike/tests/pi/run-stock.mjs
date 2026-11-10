@@ -6,6 +6,7 @@ import { resolve, join } from 'node:path';
 import { randomUUID, createHash } from 'node:crypto';
 import { Backend } from '../../backend/dist/backend.js';
 import { PiProcess } from '../../backend/dist/pi-process.js';
+import { readProcess, waitForProcessExit } from './process-observer.mjs';
 
 const entry = process.env.OLEA_PI_ENTRY;
 if (!process.env.OLEA_PROVIDER_CONFIG) throw new Error('OLEA_PROVIDER_CONFIG_required');
@@ -39,7 +40,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function caseRun(name, run) {
   const start = performance.now();
   try { const detail = await run(); report.cases.push({ name, status: 'pass', durationMs: Math.round(performance.now() - start), ...detail }); }
-  catch (error) { report.cases.push({ name, status: 'fail', reason: error?.code === 'ENOENT' ? 'independent_file_missing' : /^[a-z_]+$/.test(error?.message ?? '') ? error.message : 'assertion_or_runtime_failure', durationMs: Math.round(performance.now() - start) }); }
+  catch (error) { report.cases.push({ name, status: 'fail', reason: error?.code === 'ENOENT' ? 'independent_file_missing' : /^[a-z_]+$/.test(error?.message ?? '') ? error.message : 'assertion_or_runtime_failure', durationMs: Math.round(performance.now() - start), ...(error.cleanupEvidence ? { cleanupEvidence: error.cleanupEvidence } : {}) }); }
 }
 async function prompt(session, message, timeout = 120_000) {
   events.set(session, []);
@@ -169,16 +170,26 @@ try {
         await sleep(100);
       }
       assert(pid > 1);
+      const before = await readProcess(pid);
+      if (before.status !== 'observed') throw new Error('shutdown_child_identity_unverifiable');
       await backend.stop(mainSession);
       await work;
       assert.equal(report.cleanupFaults.some(fault => /descendant_limit|identity|cleanup_failed|unverifiable/.test(fault.code)), false);
-      let alive = false;
-      try { const status = await readFile(`/proc/${pid}/stat`, 'utf8'); alive = !/\) Z /.test(status); } catch {}
-      if (alive) { try { process.kill(pid, 'SIGKILL'); } catch {} }
+      const immediateAfter = await readProcess(pid);
+      const observation = await waitForProcessExit(pid, before.startTime, 2000);
+      if (!observation.exited) {
+        const latest = await readProcess(pid);
+        if (latest.status === 'observed' && latest.startTime === before.startTime) { try { process.kill(pid, 'SIGKILL'); } catch {} }
+      }
       await backend.start(mainSession, true);
       await rm(pidPath, { force: true });
-      assert.equal(alive, false);
-      return { descendantPid: pid, independentProcAssertion: true, explicitResume: true, uncertainActionsReplayed: false };
+      if (!observation.exited) {
+        const error = new Error(observation.reason);
+        error.cleanupEvidence = { descendantPid: pid, before, immediateAfter, observation };
+        throw error;
+      }
+      return { descendantPid: pid, independentProcAssertion: true, explicitResume: true, uncertainActionsReplayed: false,
+        cleanupEvidence: { before, immediateAfter, observation } };
     }); else report.cases.push({ name: 'backend_shutdown_descendant_cleanup', status: 'untested', reason: 'linux_proc_required' });
 
     if (process.env.OLEA_RUN_PHONE === '1') await caseRun('model_combined_unix_phone_tools', async () => {
