@@ -154,7 +154,16 @@ class RuntimeService : Service() {
                 first[0] == "GET" && first[1] in listOf("/health", "/capabilities") -> capabilities()
                 first[0] == "POST" && first[1] == "/phone" -> {
                     val request = JSONObject(body.toString(Charsets.UTF_8)); id = request.opt("id") ?: JSONObject.NULL
-                    onMain { phone(request) }
+                    onMain {
+                        val operation = request.getString("operation")
+                        val before = PhoneAccessibility.active?.rootInActiveWindow?.packageName?.toString()
+                        val result = phone(request)
+                        val audit = JSONObject().put("atMs", System.currentTimeMillis()).put("operation", operation)
+                            .put("beforePackage", before).put("afterPackage", PhoneAccessibility.active?.rootInActiveWindow?.packageName?.toString())
+                        if (operation in listOf("click", "accessibility_click")) audit.put("nodeId", request.optJSONObject("args")?.optString("nodeId")).put("action", "ACTION_CLICK")
+                        File(filesDir, "phone-audit.jsonl").appendText(audit.toString() + "\n")
+                        result
+                    }
                 }
                 first[0] == "POST" && first[1] == "/backend" -> {
                     check(backend?.isAlive == true) { "BACKEND_NOT_RUNNING" }
