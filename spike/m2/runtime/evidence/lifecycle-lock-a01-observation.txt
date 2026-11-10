@@ -1,0 +1,7 @@
+Tue Nov 10 18:14:12 UTC 2026
+  mWakefulness=Dozing
+10216  9619   489 dev.olea.m2.runtime
+10216 15203  9619 libproot.so
+10216 15212 15203 env
+Tue Nov 10 18:14:55 UTC 2026
+  mWakefulness=Asleep
