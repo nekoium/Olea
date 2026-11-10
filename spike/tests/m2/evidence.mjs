@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { spawnSync } from 'node:child_process';
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 export function catalog() {
   const rows = [];
@@ -66,33 +67,47 @@ export function assess(receipts) {
   }
   return rows;
 }
+export function readGitArtifact(spec) {
+  const match = /^git:([a-f0-9]{7,40}):([a-zA-Z0-9_./-]+)$/.exec(spec);
+  if (!match || match[2].split('/').includes('..') || match[2].startsWith('/')) throw Error('invalid_git_artifact');
+  const result = spawnSync('git', ['show', `${match[1]}:${match[2]}`], { timeout: 30000, maxBuffer: 1048576, env: { PATH: process.env.PATH, SystemRoot: process.env.SystemRoot } });
+  if (result.status !== 0) throw Error('git_artifact_unavailable');
+  return result.stdout;
+}
 export async function verifyArtifacts(receipts, root) {
   const base = resolve(root);
   for (const r of receipts) for (const artifact of r.artifacts) {
+    if (artifact.path.startsWith('git:')) {
+      if (sha256(readGitArtifact(artifact.path)) !== artifact.sha256) throw Error('artifact_hash_mismatch');
+      continue;
+    }
     const path = resolve(base, artifact.path);
     if (!path.startsWith(base + '/') && !path.startsWith(base + '\\')) throw Error('artifact_outside_root');
     if (sha256(await readFile(path)) !== artifact.sha256) throw Error('artifact_hash_mismatch');
   }
 }
 const esc = s => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
-export function render(receipts) {
+export function render(receipts, phase = 'interim') {
+  if (!['interim', 'final'].includes(phase)) throw Error('invalid_report_phase');
   const rows = assess(receipts);
   const counts = Object.fromEntries(['pass', 'fail', 'blocked', 'untested'].map(s => [s, rows.filter(r => r.status === s).length]));
   const recommendation = counts.fail ? 'revise' : counts.blocked || counts.untested ? 'insufficient-evidence' : 'accept bounded milestone';
-  const heading = `# Olea M2 expected versus retained actual\n\n${JSON.stringify(counts)}\n\nRecommendation: ${recommendation}. No automatic production acceptance.\n\nHost/run-as/target28 receipts never establish modern Android app-domain or model outcomes. Historical M1 evidence stays unchanged. Tooling tests are not workflow passes. Missing physical access remains untested unless a retained blocked receipt establishes it.\n`;
-  const md = heading + rows.map(r => `\n## ${r.id}: ${r.status}\nExpected: ${r.expected}\n\nActual: ${r.actual}\n\nContext: ${r.context}; mode: ${r.mode}; prerequisites: ${r.prerequisites.join(', ') || 'none'}.\n\nAttempts: ${r.attempts.map(a => `${a.attemptId} (${a.context}/${a.mode ?? 'direct'} ${a.status}): ${a.summary}; artifacts ${a.artifacts.map(x => `${x.path} SHA256 ${x.sha256}`).join(', ')}; metadata ${JSON.stringify({ failureClass: a.failureClass, retryOf: a.retryOf, fallbackOf: a.fallbackOf, provider: a.provider, execution: a.execution, provenance: a.provenance, limits: a.limits, commandsActuallyRun: a.commandsActuallyRun, sourceOnlyCommands: a.sourceOnlyCommands, currentState: a.currentState })}`).join('; ') || 'none'}.\n`).join('');
+  const heading = `# Olea M2 ${phase} expected versus retained actual\n\n${phase === 'interim' ? 'Interim evidence snapshot; runtime/worker outcomes remain pending.\n\n' : ''}${JSON.stringify(counts)}\n\nRecommendation: ${recommendation}. No automatic production acceptance.\n\nHost/run-as/target28 receipts never establish modern Android app-domain or model outcomes. Historical M1 evidence stays unchanged. Tooling tests are not workflow passes. Missing physical access remains untested unless a retained blocked receipt establishes it.\n`;
+  const host = rows.flatMap(r => r.attempts.filter(a => a.context === 'host').map(a => `${a.attemptId}: ${a.caseId} ${a.status}; ${a.summary}`));
+  const contextual = host.length ? `\n## Retained host context\n\nThese attempts are outside Android acceptance counts.\n\n${host.join('\n\n')}\n` : '';
+  const md = heading + contextual + rows.map(r => `\n## ${r.id}: ${r.status}\nExpected: ${r.expected}\n\nActual: ${r.actual}\n\nContext: ${r.context}; mode: ${r.mode}; prerequisites: ${r.prerequisites.join(', ') || 'none'}.\n\nAttempts: ${r.attempts.map(a => `${a.attemptId} (${a.context}/${a.mode ?? 'direct'} ${a.status}): ${a.summary}; artifacts ${a.artifacts.map(x => `${x.path} SHA256 ${x.sha256}`).join(', ')}; metadata ${JSON.stringify({ failureClass: a.failureClass, retryOf: a.retryOf, fallbackOf: a.fallbackOf, provider: a.provider, execution: a.execution, provenance: a.provenance, limits: a.limits, commandsActuallyRun: a.commandsActuallyRun, sourceOnlyCommands: a.sourceOnlyCommands, currentState: a.currentState })}`).join('; ') || 'none'}.\n`).join('');
   return { rows, counts, md, html: `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Olea M2 evidence</title><style>body{max-width:90ch;margin:2rem auto;padding:1rem;font:16px/1.5 system-ui}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style><body><pre>${esc(md)}</pre></body></html>` };
 }
-export async function report(input, output, root) {
+export async function report(input, output, root, phase = 'interim') {
   const receipts = JSON.parse(await readFile(input, 'utf8'));
   await verifyArtifacts(receipts, root);
-  const result = render(receipts);
+  const result = render(receipts, phase);
   await mkdir(output, { recursive: true });
   await writeFile(resolve(output, 'matrix.json'), JSON.stringify(result.rows, null, 2) + '\n');
   await writeFile(resolve(output, 'M2_REPORT.md'), result.md);
   await writeFile(resolve(output, 'M2_REPORT.html'), result.html);
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  if (process.argv.length !== 5) throw Error('usage: evidence.mjs receipts.json output-directory repository-root');
+  if (![5, 6].includes(process.argv.length)) throw Error('usage: evidence.mjs receipts.json output-directory repository-root [interim|final]');
   await report(...process.argv.slice(2));
 }

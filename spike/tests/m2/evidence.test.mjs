@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
-import { catalog, validateReceipt, assess, render, sha256, verifyArtifacts } from './evidence.mjs';
+import { catalog, validateReceipt, assess, render, sha256, verifyArtifacts, readGitArtifact } from './evidence.mjs';
 import { challenge, unixPrompt, assertUnix, assertPhone, assertPreserved, parseStat, observeProcess, exited } from './assertions.mjs';
 import { descendantChains, observeTree } from './observe-tree.mjs';
 import { bounded, runPiSingle, classifyProviderError } from './pi-single.mjs';
@@ -38,6 +38,19 @@ test('passes require independent positive assertions and hashed retained artifac
 });
 test('secret-like fields and invalid identity/time/hash rejected', () => {
   for (const extra of [{ apiKey: 'redacted' }, { attemptId: '../x' }, { endedAt: 'bad' }, { startedAt: '2027-01-01' }, { artifacts: [{ path: 'x', sha256: 'no' }] }]) assert.throws(() => validateReceipt(receipt(extra)));
+});
+test('Git evidence references pin exact retained bytes without merging or path traversal', async () => {
+  const path = 'git:d17b79f:spike/tests/m2/pi-single.mjs';
+  const bytes = readGitArtifact(path);
+  await verifyArtifacts([receipt({ artifacts: [{ path, sha256: sha256(bytes) }] })], '.');
+  assert.throws(() => readGitArtifact('git:d17b79f:../private'), /invalid_git_artifact/);
+  assert.throws(() => readGitArtifact('git:main:spike/file'), /invalid_git_artifact/);
+  await assert.rejects(verifyArtifacts([receipt({ artifacts: [{ path, sha256: 'a'.repeat(64) }] })], '.'), /artifact_hash_mismatch/);
+});
+test('renderer explicitly distinguishes interim from final snapshots', () => {
+  assert(render([]).md.includes('interim expected'));
+  assert(render([], 'final').md.includes('final expected'));
+  assert.throws(() => render([], 'unknown'), /invalid_report_phase/);
 });
 test('offline renderer escapes injected HTML and includes untouched cases', () => {
   const result = render([receipt({ summary: '<script src="https://invalid">x</script>' })]);

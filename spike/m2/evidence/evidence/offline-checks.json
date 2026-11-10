@@ -1,7 +1,7 @@
 {
   "scope": "host-only offline tooling checks; no Android/stock-agent/provider mission evidence",
-  "startedAt": "2026-11-10T17:04:34.989Z",
-  "endedAt": "2026-11-10T17:04:37.819Z",
+  "startedAt": "2026-11-10T17:09:22.791Z",
+  "endedAt": "2026-11-10T17:09:25.736Z",
   "platform": "win32",
   "arch": "x64",
   "node": "v24.20.0",
@@ -11,29 +11,29 @@
   ],
   "results": {
     "ownTooling": {
-      "pid": 42344,
+      "pid": 43436,
       "code": 0,
       "signal": null,
       "reason": "completed",
-      "durationMs": 1386.7504,
-      "firstOutputMs": 273.16630000000004,
-      "observedBytes": 1999,
+      "durationMs": 1532.9262,
+      "firstOutputMs": 461.50769999999994,
+      "observedBytes": 2179,
       "retainedBytes": 0,
-      "boundedOutputSha256": "f236ea595749b35aed3a37cba5701682151a50c65e9f5fd2887fff84cd4e931c",
+      "boundedOutputSha256": "bc71c63d120776a1d2243a554c323eab8202beab922f5ad8c1ea8f6901682955",
       "outputTruncated": false,
       "ownedRootExitObserved": true,
       "descendantsExitVerified": false
     },
     "existingCompiledBackendMocks": {
-      "pid": 45972,
+      "pid": 22116,
       "code": 0,
       "signal": null,
       "reason": "completed",
-      "durationMs": 1424.8359,
-      "firstOutputMs": 169.3518999999999,
-      "observedBytes": 416,
+      "durationMs": 1395.9152000000001,
+      "firstOutputMs": 145.74350000000004,
+      "observedBytes": 415,
       "retainedBytes": 0,
-      "boundedOutputSha256": "ca2cda07a2a7eeee92c5ec54605899ef7ba823588c002e630620684b16145fdc",
+      "boundedOutputSha256": "bd87b9d3f0d029ce8d8d7e9827487c8d025133dad6bf1581de0e9e60fac21cd9",
       "outputTruncated": false,
       "ownedRootExitObserved": true,
       "descendantsExitVerified": false
@@ -47,6 +47,12 @@
       "origin": "Original Olea implementation; no Orca source copied."
     },
     {
+      "path": "spike/tests/m2/assess-codex-host.mjs",
+      "sha256": "72674f5ec1f01a4276351b9cd40121f9695073f601bf6fe3adc66ad50c1aacf4",
+      "license": "MIT",
+      "origin": "Original Olea implementation; no Orca source copied."
+    },
+    {
       "path": "spike/tests/m2/backend-contract.test.mjs",
       "sha256": "f8865688d58900a8f919e4998c6f14686b9b056e549b80a73fc71633c978adb1",
       "license": "MIT",
@@ -54,13 +60,13 @@
     },
     {
       "path": "spike/tests/m2/evidence.mjs",
-      "sha256": "bd6c49d05b0f2919d8cfd58ebf02b438d2c8807b631e16b6ab91eaaafabfbb56",
+      "sha256": "c500ed5db60b51aeb10d026660d06bdcbe27f98dba2ae620491b2ce772a232ae",
       "license": "MIT",
       "origin": "Original Olea implementation; no Orca source copied."
     },
     {
       "path": "spike/tests/m2/evidence.test.mjs",
-      "sha256": "40ff2af0e3b9ed06a28cc0d21295db0bd5c3ffe594f78bbdd30ef4351de48408",
+      "sha256": "cd54059bd21395bdd5f0ca53b63927d023111c1a535ca7e960c3813ef014700a",
       "license": "MIT",
       "origin": "Original Olea implementation; no Orca source copied."
     },
