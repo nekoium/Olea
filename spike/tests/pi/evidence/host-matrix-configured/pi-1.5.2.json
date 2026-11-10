@@ -1,0 +1,76 @@
+{
+  "scope": "host-only",
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v24.20.0",
+  "piVersion": "1.5.2",
+  "cases": [
+    {
+      "name": "stock_startup_and_persistent_rpc",
+      "status": "pass",
+      "durationMs": 861,
+      "pid": 46680,
+      "startupMs": 859
+    },
+    {
+      "name": "model_unix_dependency_child_and_file",
+      "status": "pass",
+      "durationMs": 14558,
+      "independentDependencyAssertion": true,
+      "independentChildAssertion": true,
+      "independentFileAssertion": true
+    },
+    {
+      "name": "restart_resume_without_replaying_actions",
+      "status": "pass",
+      "durationMs": 1265,
+      "persistedTranscriptVerified": true,
+      "uncertainActionsReplayed": false
+    },
+    {
+      "name": "two_persistent_sessions",
+      "status": "pass",
+      "durationMs": 8764,
+      "secondStartupMs": 749,
+      "independentFileAssertion": true
+    },
+    {
+      "name": "cancel_shell_and_descendant_cleanup",
+      "status": "untested",
+      "reason": "linux_proc_required"
+    },
+    {
+      "name": "model_combined_unix_phone_tools",
+      "status": "untested",
+      "reason": "native_bridge_execution_not_requested"
+    },
+    {
+      "name": "direct_pi_same_state_workload_comparison",
+      "status": "pass",
+      "durationMs": 1276,
+      "workload": "ten_get_state_commands",
+      "limitation": "not_model_latency_or_android_total_memory"
+    }
+  ],
+  "phoneCalls": [],
+  "measurements": {
+    "managedStartupMs": 858.9588,
+    "twoSessionMemory": {
+      "status": "untested",
+      "reason": "linux_proc_required"
+    },
+    "directStartupMs": 738.1232999999993,
+    "directTenStateMs": 1.680000000000291,
+    "managedTenStateMs": 13.591999999996915,
+    "finalBackendSessionCount": 0
+  },
+  "usage": {
+    "input": 30583,
+    "output": 392,
+    "cacheRead": 8709,
+    "cacheWrite": 0
+  },
+  "retryEvents": 0,
+  "eventCount": 447,
+  "evidenceNote": "Configured host-only run completed; runner was being hardened during run, so use latest runner for preservation/concurrent-active assertions; these results establish two persistent processes, not two simultaneous model requests."
+}

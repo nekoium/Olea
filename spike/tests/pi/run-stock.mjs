@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile, access, rm } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
-import { randomUUID } from 'node:crypto';
+import { randomUUID, createHash } from 'node:crypto';
 import { Backend } from '../../backend/dist/backend.js';
 import { PiProcess } from '../../backend/dist/pi-process.js';
 
@@ -16,7 +16,10 @@ await mkdir(workspace, { recursive: true });
 await mkdir(stateDir, { recursive: true, mode: 0o700 });
 const report = { scope: process.platform === 'linux' ? 'linux-runtime' : 'host-only',
   platform: process.platform, arch: process.arch, node: process.version,
-  piVersion: process.env.OLEA_PI_VERSION ?? 'unrecorded', cases: [], phoneCalls: [], measurements: {}, usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }, retryEvents: 0, eventCount: 0 };
+  piVersion: process.env.OLEA_PI_VERSION ?? 'unrecorded',
+  runnerSha256: createHash('sha256').update(await readFile(import.meta.filename)).digest('hex'),
+  backendSha256: createHash('sha256').update(await readFile(resolve(import.meta.dirname, '../../backend/dist/backend.js'))).digest('hex'),
+  cases: [], phoneCalls: [], measurements: {}, usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }, retryEvents: 0, eventCount: 0 };
 const events = new Map();
 const backend = new Backend({ entry, workspace, stateDir }, event => {
   if (event.type === 'event') {
@@ -106,10 +109,34 @@ try {
     await caseRun('two_persistent_sessions', async () => {
       const start = await backend.start(secondSession);
       assert.equal(backend.status().length, 2);
-      await prompt(secondSession, `Use a shell tool to run a Node child process that writes the exact text OLEA_TWO_OK to ${fileTwo}. Do the work, then reply briefly.`);
+      const parallelFile = 'parallel-' + randomUUID() + '.txt';
+      await Promise.all([
+        prompt(secondSession, `Use a shell tool to run a Node child process that writes the exact text OLEA_TWO_OK to ${fileTwo}. Do the work, then reply briefly.`),
+        prompt(mainSession, `Use a shell tool to write the exact text OLEA_PARALLEL_OK to ${parallelFile} in this workspace. Finish briefly.`),
+      ]);
       assert.equal(await readFile(join(workspace, fileTwo), 'utf8'), 'OLEA_TWO_OK');
+      assert.equal(await readFile(join(workspace, parallelFile), 'utf8'), 'OLEA_PARALLEL_OK');
       report.measurements.twoSessionMemory = await sampleMemory();
-      return { secondStartupMs: Math.round(start.startupMs), independentFileAssertion: true };
+      if (process.platform === 'linux') {
+        const cpu = process.cpuUsage();
+        const wall = performance.now();
+        const before = new Map();
+        for (const session of backend.status()) {
+          try { before.set(session.pid, await readFile(`/proc/${session.pid}/stat`, 'utf8')); } catch {}
+        }
+        await sleep(1000);
+        const after = [];
+        for (const [pid, stat] of before) {
+          try {
+            const latest = await readFile(`/proc/${pid}/stat`, 'utf8');
+            const ticks = value => { const fields = value.slice(value.lastIndexOf(')') + 2).split(' '); return Number(fields[11]) + Number(fields[12]); };
+            after.push({ pid, idleCpuTicks: ticks(latest) - ticks(stat) });
+          } catch { after.push({ pid, status: 'unavailable' }); }
+        }
+        report.measurements.idle = { wallMs: performance.now() - wall, backendCpuMicros: process.cpuUsage(cpu), piCpuTicks: after,
+          limitation: 'ticks are raw kernel accounting; no assumed CLK_TCK conversion' };
+      }
+      return { secondStartupMs: Math.round(start.startupMs), independentFileAssertion: true, concurrentPrompts: 2 };
     });
     if (process.platform === 'linux') await caseRun('cancel_shell_and_descendant_cleanup', async () => {
       const pidPath = join(workspace, 'cancel-' + randomUUID() + '.pid');
