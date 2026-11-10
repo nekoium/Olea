@@ -20,6 +20,20 @@ export function descendants(records, roots) {
   }
   return records.filter(record => selected.has(record.pid));
 }
+export async function readProcesses(listedPids, explicitPids, readStat) {
+  const all = [], unlistedObservedPids = [], inaccessibleExplicitPids = [];
+  const listed = new Set(listedPids.map(String));
+  const explicit = new Set(explicitPids);
+  for (const pid of new Set([...listed, ...explicitPids.map(String)])) {
+    try {
+      all.push(parseStat(await readStat(pid)));
+      if (!listed.has(pid)) unlistedObservedPids.push(Number(pid));
+    } catch (error) {
+      if (explicit.has(Number(pid))) inaccessibleExplicitPids.push({ pid: Number(pid), reason: error.code ?? 'invalid_stat' });
+    }
+  }
+  return { all, unlistedObservedPids, inaccessibleExplicitPids };
+}
 async function main() {
   if (process.platform !== 'linux') throw new Error('Run inside Linux/PRoot; Windows results are not Android measurements.');
   const roots = (process.argv[2] ?? '').split(',').map(Number);
@@ -34,10 +48,9 @@ async function main() {
   const initialRoots = new Map();
   const knownProcesses = new Map();
   for (let index = 0; index < count; index++) {
-    const all = [];
-    for (const pid of (await readdir('/proc')).filter(name => /^\d+$/.test(name))) {
-      try { all.push(parseStat(await readFile(`/proc/${pid}/stat`, 'utf8'))); } catch { /* process exited or inaccessible */ }
-    }
+    const listedPids = (await readdir('/proc')).filter(name => /^\d+$/.test(name));
+    const explicitPids = [...roots, ...knownProcesses.keys()];
+    const { all, unlistedObservedPids, inaccessibleExplicitPids } = await readProcesses(listedPids, explicitPids, pid => readFile(`/proc/${pid}/stat`, 'utf8'));
     if (index === 0) for (const pid of roots) initialRoots.set(pid, all.find(record => record.pid === pid)?.startTicks);
     const liveRoots = roots.filter(pid => initialRoots.get(pid) !== undefined && all.some(record => record.pid === pid && record.startTicks === initialRoots.get(pid)));
     const survivingKnown = all.filter(record => knownProcesses.get(record.pid) === record.startTicks).map(record => record.pid);
@@ -55,12 +68,12 @@ async function main() {
       const before = previous?.processes.find(item => item.pid === record.pid && item.startTicks === record.startTicks);
       record.cpuPercentOneCore = before ? ((record.userTicks + record.systemTicks - before.userTicks - before.systemTicks) / hz) / ((timestamp - previous.monotonicMs) / 1000) * 100 : null;
     }
-    samples.push({ at: new Date().toISOString(), monotonicMs: timestamp, missingRoots: roots.filter(pid => !liveRoots.includes(pid)), processes,
+    samples.push({ at: new Date().toISOString(), monotonicMs: timestamp, missingRoots: roots.filter(pid => !liveRoots.includes(pid)), unlistedObservedPids, inaccessibleExplicitPids, processEnumerationMayBeIncomplete: unlistedObservedPids.length > 0, processes,
       totalRssBytes: processes.reduce((sum, item) => sum + item.rssBytes, 0), totalPssBytes: processes.length && processes.every(item => item.pssBytes !== null) ? processes.reduce((sum, item) => sum + item.pssBytes, 0) : null });
     if (index < count - 1) await delay(1000);
   }
   await mkdir(resolve(destination, '..'), { recursive: true });
-  await writeFile(destination, JSON.stringify({ schemaVersion: 1, generatedAt: new Date().toISOString(), scope: 'linux-process-tree-only', node: process.version, roots, hz, pageBytes, notes: ['RSS sum double-counts shared pages; PSS unavailable remains null.', 'Android host memory must be measured independently with dumpsys meminfo.', 'PRoot /proc visibility and inaccessible processes can make this incomplete.', 'First sample has no CPU delta; CPU percent is per one logical core.', 'Do not infer cold-start or streaming latency from this collector.'], samples }, null, 2) + '\n');
+  await writeFile(destination, JSON.stringify({ schemaVersion: 1, generatedAt: new Date().toISOString(), scope: 'linux-process-tree-only', node: process.version, roots, hz, pageBytes, notes: ['RSS sum double-counts shared pages; PSS unavailable remains null.', 'Android host memory must be measured independently with dumpsys meminfo.', 'PRoot /proc visibility and inaccessible processes can make this incomplete; missing roots mean unobserved, not proven dead.', 'Explicit roots/previously observed PIDs are read directly even if omitted from directory enumeration; hidden new descendants may still be missed.', 'First sample has no CPU delta; CPU percent is per one logical core.', 'Do not infer cold-start or streaming latency from this collector.'], samples }, null, 2) + '\n');
   console.log(destination);
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();

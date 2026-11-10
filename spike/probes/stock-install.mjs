@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { run } from '../tests/runner/process.mjs';
+import { stockLauncher } from './stock-launcher.mjs';
 
 const root = resolve(process.argv[2] ?? '.setup/stock-agent-probe');
 await mkdir(root, { recursive: true });
@@ -12,6 +13,7 @@ const cases = [];
 const env = { ...process.env, npm_config_cache: resolve(root, 'npm-cache'), CODEX_HOME: resolve(root, 'codex-home'), CLAUDE_CONFIG_DIR: resolve(root, 'claude-home'), CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1' };
 // Do not inherit provider credentials into unrelated agent probes.
 for (const name of Object.keys(env)) if (/API_KEY|AUTH_TOKEN|ACCESS_TOKEN/.test(name)) delete env[name];
+await Promise.all([mkdir(env.CODEX_HOME, { recursive: true }), mkdir(env.CLAUDE_CONFIG_DIR, { recursive: true })]);
 const npm = process.platform === 'win32' ? 'cmd.exe' : 'npm';
 const npmPrefix = process.platform === 'win32' ? ['/d', '/s', '/c', 'npm'] : [];
 async function check(id, command, args, options = {}) {
@@ -25,9 +27,9 @@ async function check(id, command, args, options = {}) {
 async function save() {
   await writeFile(resolve(root, 'results.json'), JSON.stringify({ schemaVersion: 1, generatedAt: new Date().toISOString(), scope: process.platform === 'linux' ? 'linux-runtime-see-owner-manifest' : 'host-only', environment: { node: process.version, platform: process.platform, arch: process.arch }, cases }, null, 2) + '\n');
 }
-for (const [agent, pkg, version, bin] of [
-  ['codex', '@openai/codex', '0.167.0', 'bin/codex.js'],
-  ['claude', '@anthropic-ai/claude-code', '2.1.322', 'cli.js'],
+for (const [agent, pkg, version] of [
+  ['codex', '@openai/codex', '0.167.0'],
+  ['claude', '@anthropic-ai/claude-code', '2.1.322'],
 ]) {
   const directory = resolve(root, agent);
   await mkdir(directory, { recursive: true });
@@ -37,10 +39,18 @@ for (const [agent, pkg, version, bin] of [
     cases.push({ id: `${agent}.startup`, status: 'blocked', reason: 'Stock package installation failed; inspect separate install evidence.' });
     continue;
   }
-  const entry = resolve(directory, 'node_modules', pkg, bin);
-  await check(`${agent}.version`, process.execPath, [entry, '--version'], { timeoutMs: 30000 });
-  await check(`${agent}.help`, process.execPath, [entry, '--help'], { timeoutMs: 30000, maxBytes: 65536 });
-  if (agent === 'codex') await check('codex.app-server.help', process.execPath, [entry, 'app-server', '--help'], { timeoutMs: 30000 });
+  const packageRoot = resolve(directory, 'node_modules', pkg);
+  const manifest = JSON.parse(await readFile(resolve(packageRoot, 'package.json'), 'utf8'));
+  let launcher;
+  try { launcher = stockLauncher(packageRoot, manifest, agent); }
+  catch {
+    cases.push({ id: `${agent}.startup`, status: 'fail', reason: 'missing_or_invalid_upstream_declared_bin' });
+    continue;
+  }
+  const { bin, command, prefix } = launcher;
+  await check(`${agent}.version`, command, [...prefix, '--version'], { timeoutMs: 30000 });
+  await check(`${agent}.help`, command, [...prefix, '--help'], { timeoutMs: 30000, maxBytes: 65536 });
+  if (agent === 'codex') await check('codex.app-server.help', command, [...prefix, 'app-server', '--help'], { timeoutMs: 30000 });
   for (const file of ['package-lock.json', `node_modules/${pkg}/package.json`, `node_modules/${pkg}/${bin}`]) {
     try {
       const bytes = await readFile(resolve(directory, file));
@@ -59,6 +69,7 @@ if (sdk.exitCode === 0 && !sdk.timedOut && !sdk.overflow) {
   const entry = await realpath(resolve(sdkDir, 'node_modules/@anthropic-ai/claude-agent-sdk', exportPath));
   await check('claude-sdk.query-interface', process.execPath, ['--input-type=module', '-e', `const sdk=await import(${JSON.stringify(pathToFileURL(entry).href)});if(typeof sdk.query!=='function')process.exit(1);console.log('query function exported; no authenticated request made')`]);
 }
-for (const agent of ['codex', 'claude']) cases.push({ id: `${agent}.authenticated-workflow`, status: 'blocked', reason: 'No agent-specific authentication/subscription supplied; Pi custom provider does not authenticate this agent.' });
+cases.push({ id: 'codex.authenticated-workflow', status: 'untested', reason: 'Supported custom env-key Responses provider route exists; no authenticated request in installation/startup probe.' });
+cases.push({ id: 'claude.authenticated-workflow', status: 'blocked', reason: 'No Claude-specific authentication/subscription supplied; OpenAI-compatible provider credentials are separate.' });
 await save();
 console.log(`Evidence: ${root}/results.json`);

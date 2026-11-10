@@ -3,8 +3,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { run, redact } from './process.mjs';
 import { buildMatrix, render } from './report.mjs';
+import { stockLauncher } from '../../probes/stock-launcher.mjs';
+import { resolve } from 'node:path';
 import { summarizeSse } from '../../probes/responses-provider.mjs';
-import { parseStat, descendants } from '../../probes/resources.mjs';
+import { parseStat, descendants, readProcesses } from '../../probes/resources.mjs';
 
 test('redacts token material while preserving documented flags', () => {
   assert.equal(redact('--ask-for-approval disk-full-access Bearer token'), '--ask-for-approval disk-full-access Bearer token');
@@ -62,6 +64,13 @@ test('report refuses fake pass, host scope and unpassed prerequisites', () => {
   assert.throws(() => buildMatrix({ assessments: [{ id: 'runtime.baseline', status: 'pass', scope: 'host-only', evidence: ['fixture'], independentAssertion: 'fixture' }] }), /Scope mismatch/);
   assert.throws(() => buildMatrix({ assessments: [{ id: 'runtime.node', status: 'pass', scope: 'android-emulator', evidence: ['fixture'], independentAssertion: 'fixture' }] }), /prerequisites/);
 });
+test('failed prerequisites block only dependent unexecuted cases', () => {
+  const cases = buildMatrix({ assessments: [{ id: 'runtime.packaging', scope: 'android-emulator', status: 'fail', observations: ['fixture failure'] }] });
+  assert.equal(cases.find(item => item.id === 'runtime.shell').status, 'blocked');
+  assert.equal(cases.find(item => item.id === 'runtime.node').status, 'blocked');
+  assert.equal(cases.find(item => item.id === 'runtime.provenance').status, 'untested');
+  assert.equal(cases.find(item => item.id === 'runtime.modern-target').status, 'untested');
+});
 test('whole brief includes every phone category and physical blockers', () => {
   const cases = buildMatrix();
   assert.equal(cases.filter(item => item.id.startsWith('phone.direct.')).length, 7);
@@ -76,6 +85,27 @@ test('offline HTML escapes evidence and has no remote asset dependencies', () =>
   assert.ok(!html.includes('<script>'));
   assert.ok(!/<(?:script|link|img)[^>]*(?:src|href)=/.test(html));
   assert.equal(matrix.judgment, 'insufficient-evidence');
+});
+test('report embeds runnable commands and preserves failed attempt before corrected pass', () => {
+  const { html, md, matrix } = render({ reproduction: ['node spike/tests/runner/report.mjs'], assessments: [
+    { id: 'runtime.baseline', scope: 'android-emulator', status: 'fail', observations: ['first diagnostic failed'] },
+    { id: 'runtime.baseline', scope: 'android-emulator', status: 'pass', observations: ['corrected fixture passed'], independentAssertion: 'observer checked fixture', evidence: ['fixture.json'] },
+  ] });
+  assert.ok(html.includes('node spike/tests/runner/report.mjs'));
+  assert.ok(md.includes('Attempt 1: fail'));
+  assert.ok(html.includes('first diagnostic failed'));
+  assert.equal(matrix.cases.find(item => item.id === 'runtime.baseline').attempts.length, 2);
+});
+test('stock launcher honors native declared bin instead of assuming a JavaScript entry', () => {
+  const root = resolve('.setup/fixture-package');
+  const native = stockLauncher(root, { bin: { claude: 'bin/claude.exe' } }, 'claude');
+  assert.equal(native.command, resolve(root, 'bin/claude.exe'));
+  assert.deepEqual(native.prefix, []);
+  const js = stockLauncher(root, { bin: { codex: 'bin/codex.js' } }, 'codex');
+  assert.equal(js.command, process.execPath);
+  assert.deepEqual(js.prefix, [resolve(root, 'bin/codex.js')]);
+  assert.throws(() => stockLauncher(root, { bin: '../escape.js' }, 'fixture'), /invalid/);
+  assert.throws(() => stockLauncher(root, {}, 'fixture'), /invalid/);
 });
 test('SSE parser handles split CRLF and stops at bounded terminal without retaining payloads', async () => {
   const terminal = { type: 'response.completed', response: { output: [{ type: 'function_call', name: 'echo_test', arguments: JSON.stringify({ value: 'olea-responses-probe' }) }], usage: { input_tokens: 3, output_tokens: 4 } } };
@@ -98,6 +128,17 @@ test('SSE parser reports malformed events and independent output cap', async () 
   assert.equal(result.malformedEvents, 1);
   assert.equal(result.reason, 'event_limit');
   assert.equal(result.completed, false);
+});
+test('resource collection checks known PIDs omitted from listing and reports denial', async () => {
+  const fields = Array(22).fill('0');
+  fields[0] = 'S'; fields[1] = '1'; fields[19] = '400';
+  const { all, unlistedObservedPids, inaccessibleExplicitPids } = await readProcesses([], [42, 43], async pid => {
+    if (pid === '43') throw Object.assign(new Error(), { code: 'EACCES' });
+    return `${pid} (node) ${fields.join(' ')}`;
+  });
+  assert.deepEqual(all.map(record => record.pid), [42]);
+  assert.deepEqual(unlistedObservedPids, [42]);
+  assert.deepEqual(inaccessibleExplicitPids, [{ pid: 43, reason: 'EACCES' }]);
 });
 test('proc stat names can contain spaces/parentheses; descendants deduplicate roots', () => {
   const fields = Array(22).fill('0');

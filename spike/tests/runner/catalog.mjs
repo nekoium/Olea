@@ -8,7 +8,7 @@ export function catalog() {
   for (const [id, expected] of [
     ['baseline', 'Observe API36 x86_64 emulator, acceleration and current core/RAM allocation without destructive reset.'],
     ['packaging', 'Execute packaged native runtime under recorded target SDK and explain restrictions/workarounds.'],
-    ['provenance', 'Record exact versions, hashes, sources and licenses for runtime and agent artifacts.'],
+    ['provenance', 'Record exact versions, hashes, sources and licenses for runtime bootstrap artifacts.'],
     ['shell', 'Run real Unix shell work and independently verify expected files/exit codes.'],
     ['node', 'Execute unmodified supported upstream Linux Node; record exact version and ABI.'],
     ['git', 'Create task repository, commit and independently verify Git object/file outcome.'],
@@ -19,6 +19,9 @@ export function catalog() {
     const prerequisites = { baseline: [], packaging: ['runtime.baseline'], provenance: [], shell: ['runtime.packaging'], node: ['runtime.shell'], git: ['runtime.shell'], 'dns-tls': ['runtime.shell'], dependency: ['runtime.node', 'runtime.dns-tls'], children: ['runtime.node'] };
     add(`runtime.${id}`, expected, prerequisites[id], id === 'provenance' ? 'artifacts' : 'android-emulator');
   }
+  add('runtime.modern-target', 'Experimental modern-target probe: same provisioned writable PRoot runs from target36 Activity app domain without development run-as; failure applies to this strategy, not all modern packaging.', ['runtime.baseline']);
+  add('agents.provenance', 'Record exact tested agent versions, artifact hashes, source provenance and license/terms; registry metadata alone is insufficient for downloaded-byte verification.', [], 'artifacts');
+  add('backend.supervision', 'Kotlin owns PRoot and stock Node shared backend under app UID; independently verify process parentage and native JSONL request/response.', ['runtime.packaging', 'runtime.node']);
   for (const version of ['0.74.0', '1.0.0', '1.5.2']) {
     const base = `pi.${version}`;
     add(`${base}.install`, `Install stock Pi ${version} through supported upstream channel on fixed Node/base; no private patch.`, ['runtime.node', 'runtime.dns-tls']);
@@ -48,13 +51,13 @@ export function catalog() {
     add(`phone.agent.${category}`, `Stock Pi discovers supplied tool and chooses it: ${expected}`, [`phone.direct.${category}`, 'pi.1.5.2.rpc', 'provider.compatibility']);
   }
   add('phone.discovery', 'Pi receives actual registered descriptions and enumerates phone tools; captured events establish exposure.', ['pi.1.5.2.rpc']);
-  add('phone.combined', 'Model performs one combined Unix/phone workflow; independent assertions establish both outcomes.', ['phone.agent.accessibility-launch', 'pi.1.5.2.unix-shell']);
+  add('phone.combined', 'Model performs one combined Unix/phone workflow; independent assertions establish both outcomes.', ['phone.agent.accessibility-launch', 'runtime.shell']);
   for (const name of ['permission-denied', 'revocation', 'stop']) add(`phone.${name}`, `Verify native permission-controlled bridge rejects/halts ${name} case without unauthorized action.`, ['runtime.packaging']);
   add('phone.hidden-oracle', 'Expected fixture state remains outside agent tool visibility and agent workspace; runner assertions are independent.');
   for (const agent of ['codex', 'claude']) {
     for (const name of ['install', 'startup', 'integration', 'authenticated-workflow']) add(`${agent}.${name}`, `Stock ${agent} ${name} on Android Linux; supported interface, no private port.`, name === 'install' ? ['runtime.node', 'runtime.dns-tls'] : [`${agent}.install`]);
   }
-  for (const name of ['setup-time', 'install-size', 'cold-start', 'idle-cpu', 'streaming', 'one-session', 'two-sessions', 'direct-vs-managed', 'output-bounds', 'cleanup', 'constrained']) add(`cost.${name}`, `Measure ${name} with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.`, ['runtime.packaging', 'pi.1.5.2.rpc']);
+  for (const name of ['setup-time', 'install-size', 'cold-start', 'idle-cpu', 'streaming', 'one-session', 'two-sessions', 'direct-vs-managed', 'output-bounds', 'cleanup', 'constrained']) add(`cost.${name}`, `Measure ${name} with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.`, ['runtime.packaging', 'backend.supervision']);
   for (const name of ['app-switch', 'screen-lock', 'child-failure', 'app-death', 'reboot', 'update-preservation']) add(`lifecycle.${name}`, `Exercise ${name}; independently distinguish live execution, saved transcript/workspace and restored process; never repeat uncertain phone action.`, ['runtime.packaging']);
   for (const name of ['abi', 'unix', 'phone', 'thermals-battery']) {
     add(`physical.${name}`, `Verify ${name} on connected physical Android14 phone after recording ABI; emulator evidence is insufficient.`, [], 'physical-phone');

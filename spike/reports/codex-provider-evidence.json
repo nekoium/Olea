@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "scope": "host-only",
+  "stockCodexVersion": "0.163.0",
+  "node": "24.20.0",
+  "documentedRoute": {
+    "source": "https://raw.githubusercontent.com/openai/codex/rust-v0.163.0/codex-rs/core/config.schema.json",
+    "sha256": "e9dd16b9d1710e57b020e42da4af6d6606e8f44cb028a2e94196dee3890d9170",
+    "fields": ["model_provider", "model_providers.<id>.base_url", "model_providers.<id>.env_key", "model_providers.<id>.requires_openai_auth=false", "model_providers.<id>.wire_api=responses"],
+    "wireApiEnum": ["responses"],
+    "interpretation": "Custom provider env-key authentication is supported; ChatGPT subscription is not inherently required. Existing Chat Completions compatibility does not establish Responses compatibility."
+  },
+  "responsesAttempts": [
+    { "model": "gpt-6.1-terra", "status": "blocked", "reason": "response_limit", "durationMs": 4735, "retentionCapBytes": 65536 },
+    { "model": "gpt-6.1-sol", "status": "blocked", "reason": "response_limit", "durationMs": 3558, "retentionCapBytes": 65536 },
+    { "model": "gpt-6.1-terra", "status": "blocked", "reason": "response_limit", "durationMs": 4633, "httpStatus": 200, "contentType": "text/event-stream", "retentionCapBytes": 65536, "purpose": "One focused content-type diagnostic; no valid completed Responses event established." }
+  ],
+  "realStockAttempt": {
+    "model": "gpt-6.1-terra",
+    "status": "unclassified",
+    "outerToolTimeoutSeconds": 55,
+    "requestedChildDeadlineSeconds": 45,
+    "command": "codex exec --ephemeral --skip-git-repo-check --ignore-rules --sandbox read-only --json -C <task-workspace> -",
+    "prompt": "Bounded compatibility echo OLEA_CODEX_OK; no tools, agents, file reads or commands.",
+    "configuration": "Isolated CODEX_HOME; env_key references protected child environment; requires_openai_auth=false; wire_api=responses; HTTP/stream retries0; stream idle timeout15000ms; websocket false; web search disabled; multi_agent false; shell excludes key variable.",
+    "observed": "Outer tool timed out before results.json existed. No final event, raw diagnostic or authenticated completion was captured. This does not establish provider rejection or Codex incompatibility.",
+    "cleanupObservation": "Subsequent read-only process metadata filter found zero Node task-script matches and zero codex.exe commandlines referencing the exact task workspace. No unrelated sessions were terminated. Detached-daemon cleanup remains unverified without original PID/starttime evidence."
+  },
+  "toolingCorrection": {
+    "commit": "144b694",
+    "processRunner": "Deadline/output-overflow tree-kill attempt now has2s hard pipe-closure settlement; pipeClosureTimeout means unverified cleanup, never pass.",
+    "sseParser": "Incremental event parser retains only safe event types/counts, completion/tool assertion and token usage;64KiB per event,256KiB total,45s request deadline. This revised parser was unit-tested but not rerun against provider.",
+    "tests": { "pass": 13, "fail": 0 },
+    "modelCallsAfterOriginalStockAttempt": 0
+  },
+  "conclusion": "Supported Codex custom-provider route confirmed. Authenticated stock workflow remains incomplete/unclassified on host and untested on Android; do not retain permanent missing-subscription blocker. Claude credentials remain separate."
+}

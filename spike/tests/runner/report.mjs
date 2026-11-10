@@ -13,11 +13,25 @@ export function buildMatrix(assessment = {}) {
     if (!statuses.includes(entry.status)) throw new Error(`Invalid status for ${entry.id}`);
     if (entry.scope !== item.scope) throw new Error(`Scope mismatch for ${entry.id}`);
     if (entry.status === 'pass' && (!entry.independentAssertion?.trim() || !entry.evidence?.length)) throw new Error(`Pass needs independent assertion and evidence: ${entry.id}`);
+    if (entry.evidence !== undefined && (!Array.isArray(entry.evidence) || entry.evidence.some(source => typeof source !== 'string' || !source.trim()))) throw new Error(`Invalid evidence references for ${entry.id}`);
+    if (entry.observations !== undefined && (!Array.isArray(entry.observations) || entry.observations.some(value => typeof value !== 'string'))) throw new Error(`Invalid observations for ${entry.id}`);
     item.attempts.push({ ...entry });
     item.status = entry.status;
     item.observations = entry.observations ?? [];
     item.evidence = entry.evidence ?? [];
     item.independentAssertion = entry.independentAssertion;
+  }
+  for (let changed = true; changed;) {
+    changed = false;
+    for (const item of cases) {
+      if (item.status !== 'untested') continue;
+      const blocked = item.prerequisites.filter(id => ['fail', 'blocked'].includes(indexed.get(id)?.status));
+      if (blocked.length) {
+        item.status = 'blocked';
+        item.observations.push(`Not executed because prerequisite failed/blocked: ${blocked.join(', ')}.`);
+        changed = true;
+      }
+    }
   }
   for (const item of cases) {
     if (item.status === 'pass') {
@@ -45,7 +59,7 @@ export function render(assessment = {}) {
   ];
   const groups = [ ['Exact versions and provenance', data.versions], ['Measured costs', data.measuredCosts],
     ['Failures, retries and workarounds', data.failures], ['Upstream update compatibility', data.compatibility],
-    ['Blockers and limits', data.blockers], ['Evidence sources', data.evidenceSources], ['Workspace tooling', data.tooling] ];
+    ['Blockers and limits', data.blockers], ['Runnable artifacts and commands', data.reproduction], ['Evidence sources', data.evidenceSources], ['Workspace tooling', data.tooling] ];
   let md = `# ${data.title}\n\nGenerated ${matrix.generatedAt}. Statuses describe assessed evidence, not promises.\n\n`;
   let body = `<h1>${escapeHtml(data.title)}</h1><p>Generated ${escapeHtml(matrix.generatedAt)}. Statuses describe assessed evidence, not promises.</p>`;
   for (const [heading, content] of paragraphs) {
