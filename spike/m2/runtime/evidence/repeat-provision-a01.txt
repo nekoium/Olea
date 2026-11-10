@@ -1,0 +1,7 @@
+.setup/downloads/ubuntu-base.tar.gz: OK
+.setup/downloads/node.tar.xz: OK
+spike/m2/runtime/claim-rootfs.sh: 1 file pushed, 0 skipped. 1.2 MB/s (258 bytes in 0.000s)
+.setup/downloads/ubuntu-base.tar.gz: 1 file pushed, 0 skipped. 96.1 MB/s (29983772 bytes in 0.298s)
+.setup/downloads/node.tar.gz: 1 file pushed, 0 skipped. 85.8 MB/s (58404700 bytes in 0.649s)
+spike/m2/runtime/linux.sh: 1 file pushed, 0 skipped. 3.9 MB/s (860 bytes in 0.000s)
+Fresh M2 staging complete; no runtime pass is implied.

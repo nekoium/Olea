@@ -1,0 +1,82 @@
+{
+  "noModelRequests": true,
+  "noPhoneActions": true,
+  "diagnosticOnly": true,
+  "platform": "linux",
+  "pid": 12869,
+  "guestEffectiveUid": 0,
+  "sourcePolicy": "stock0.167.0 fixed canonical /tmp/codex-daemon-geteuid",
+  "status": "observed",
+  "canonicalTmp": "/tmp",
+  "expectedSocketDirectory": "/tmp/codex-daemon-0",
+  "tmpDevice": "254:55",
+  "tmpInode": "567120",
+  "fdLink": "/tmp",
+  "fdinfo": [
+    "flags:\t02100000",
+    "mnt_id:\t11029",
+    "ino:\t567120"
+  ],
+  "mountId": "11029",
+  "mountCount": 24,
+  "descriptorMount": null,
+  "pathContainingMounts": [
+    {
+      "id": "11012",
+      "parent": "10869",
+      "device": "254:55",
+      "root": "/",
+      "destination": "/",
+      "filesystem": "ext4"
+    },
+    {
+      "id": "11010",
+      "parent": "10869",
+      "device": "0:30",
+      "root": "/",
+      "destination": "/tmp",
+      "filesystem": "tmpfs"
+    }
+  ],
+  "deviceMounts": [
+    {
+      "id": "11012",
+      "parent": "10869",
+      "device": "254:55",
+      "root": "/",
+      "destination": "/",
+      "filesystem": "ext4"
+    }
+  ],
+  "observations": {
+    "descriptorMountFound": false,
+    "descriptorDeviceMatches": null,
+    "descriptorDestinationContainsCanonicalTmp": null
+  },
+  "processStatus": [
+    "Uid:\t10216\t10216\t10216\t10216",
+    "NoNewPrivs:\t1",
+    "Seccomp:\t2",
+    "Seccomp_filters:\t2"
+  ],
+  "bwrapSha256": "77360cb751ccedc5971391444ac86a8a33c15b04d6b4a6fe45f5d25496e62c4c",
+  "bwrap": {
+    "args": [
+      "--unshare-user",
+      "--unshare-pid",
+      "--ro-bind",
+      "/",
+      "/",
+      "--proc",
+      "/proc",
+      "--dev",
+      "/dev",
+      "--",
+      "/bin/true"
+    ],
+    "status": 1,
+    "signal": null,
+    "stdout": "",
+    "stderr": "bwrap: Can't read /proc/sys/kernel/overflowuid: Permission denied\n"
+  }
+}
