@@ -4,19 +4,48 @@ import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { PiProcess, type RecordData } from './pi-process.js';
+import { CodexSession } from './codex-session.js';
 
 export class Backend {
   private sessions = new Map<string, PiProcess>();
+  private codexSessions = new Map<string, CodexSession>();
   private starting = new Set<string>();
   private closed = false;
   private extension = fileURLToPath(new URL('../extensions/phone.ts', import.meta.url));
-  constructor(private options: { entry: string; workspace: string; stateDir: string; env?: NodeJS.ProcessEnv }, private event: (record: RecordData) => void) {}
+  constructor(private options: { entry: string; workspace: string; stateDir: string; env?: NodeJS.ProcessEnv; codexEntry?: string; codexProviderPath?: string; codexModel?: string; bridgePath?: string }, private event: (record: RecordData) => void) {}
+
+  async startCodex(session: string, resume = false) {
+    if (typeof session !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(session)) throw new Error('invalid_session');
+    if (this.closed) throw new Error('backend_closed');
+    if (this.sessions.has(session) || this.codexSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
+    if (this.sessions.size + this.codexSessions.size + this.starting.size >= 2) throw new Error('session_limit');
+    if (!this.options.codexEntry) throw new Error('codex_not_configured');
+    this.starting.add(session);
+    let instance: CodexSession | undefined;
+    try {
+      const result = await CodexSession.start({ directory: resolve(this.options.stateDir, 'codex', session), workspace: this.options.workspace, entry: this.options.codexEntry, resume, providerPath: this.options.codexProviderPath, model: this.options.codexModel, bridgePath: this.options.bridgePath }, record => this.event({ ...record, session }));
+      instance = result.instance;
+      if (this.closed) { await instance.stop(); throw new Error('backend_closed'); }
+      this.codexSessions.set(session, instance);
+      return result.data;
+    } finally { this.starting.delete(session); }
+  }
+  async codexCommand(session: string, command: RecordData) {
+    const instance = this.codexSessions.get(session);
+    if (!instance) throw new Error('session_not_running');
+    return instance.command(command.method, command.params);
+  }
+  codexApproval(session: string, id: string | number, decision: string) {
+    const instance = this.codexSessions.get(session);
+    if (!instance) throw new Error('session_not_running');
+    instance.approve(id, decision);
+  }
 
   async start(session: string, resume = false) {
     if (typeof session !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(session)) throw new Error('invalid_session');
     if (this.closed) throw new Error('backend_closed');
-    if (this.sessions.has(session) || this.starting.has(session)) throw new Error('already_running');
-    if (this.sessions.size + this.starting.size >= 2) throw new Error('session_limit');
+    if (this.sessions.has(session) || this.codexSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
+    if (this.sessions.size + this.codexSessions.size + this.starting.size >= 2) throw new Error('session_limit');
     this.starting.add(session);
     try {
     const directory = resolve(this.options.stateDir, session);
@@ -67,11 +96,13 @@ export class Backend {
   }
 
   async stop(session: string) {
+    const codex = this.codexSessions.get(session);
+    if (codex) { const result = await codex.stop(); this.codexSessions.delete(session); return result; }
     const pi = this.sessions.get(session);
     if (!pi) return;
     await pi.stop();
     this.sessions.delete(session);
   }
-  status() { return [...this.sessions].map(([session, pi]) => ({ session, pid: pi.child.pid, stderrBytes: pi.stderrBytes })); }
-  async close() { this.closed = true; await Promise.all([...this.sessions.keys()].map(session => this.stop(session))); }
+  status() { return [...[...this.sessions].map(([session, pi]) => ({ session, agent: 'pi', pid: pi.child.pid, stderrBytes: pi.stderrBytes })), ...[...this.codexSessions].map(([session, codex]) => ({ session, agent: 'codex', pid: codex.process.child.pid, threadId: codex.threadId, stderrBytes: codex.process.stderrBytes }))]; }
+  async close() { this.closed = true; await Promise.all([...this.sessions.keys(), ...this.codexSessions.keys()].map(session => this.stop(session))); }
 }

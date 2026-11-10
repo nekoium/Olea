@@ -22,6 +22,8 @@ function output(record: RecordData) {
 const backend = new Backend({
   entry: process.env.OLEA_PI_ENTRY ?? '', workspace: resolve(process.env.OLEA_WORKSPACE ?? process.cwd()),
   stateDir: resolve(process.env.OLEA_STATE_DIR ?? '.setup/olea-state'),
+  codexEntry: process.env.OLEA_CODEX_ENTRY, codexProviderPath: process.env.OLEA_PROVIDER_CONFIG,
+  codexModel: process.env.OLEA_CODEX_MODEL, bridgePath: process.env.OLEA_BRIDGE_CONFIG,
 }, output);
 async function shutdown(code = 0) {
   if (shuttingDown) return;
@@ -36,6 +38,9 @@ async function handle(record: RecordData) {
     if (typeof id !== 'string' || id.length > 128) throw new Error('invalid_id');
     let data;
     if (type === 'start') data = await backend.start(session, record.resume === true);
+    else if (type === 'codex_start') data = await backend.startCodex(session, record.resume === true);
+    else if (type === 'codex_command') data = await backend.codexCommand(session, record.command);
+    else if (type === 'codex_approval') data = backend.codexApproval(session, record.requestId, record.decision);
     else if (type === 'stop') data = await backend.stop(session);
     else if (type === 'status') data = backend.status();
     else if (type === 'command') data = await backend.command(session, record.command);
