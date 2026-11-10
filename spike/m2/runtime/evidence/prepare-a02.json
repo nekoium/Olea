@@ -1,0 +1,12 @@
+{
+  "attemptId": "prepare-a02",
+  "status": "incomplete",
+  "installedApkSha256": "eacb1fdb77d0509bbc632d10ab3cb4c673b589e67d7c1abb5ef59b3d6b2ed539",
+  "sourceCommit": "12482c3",
+  "observed": "Native 240-second phase reached while dpkg CA configuration was active; uncaught stream InterruptedIOException at2026-11-10T17:16:12.716Z killed hostPID4134, followed by foreground Activity restartPID5945",
+  "nativeTerminalReceipt": "absent; do not infer a clean timeout result",
+  "remaining": "Git executable exists; CA bundle absent; dpkg interrupted state requires bounded dpkg --configure -a recovery, not fresh reinstall",
+  "processObservationAfterCrash": "At17:17:31Z UID10216 ps list contained host5945 only; no listed old apt/PRoot/dpkg descendants, not a permanent cleanup guarantee",
+  "evidence": "prepare-a02-native-crash.txt",
+  "providerRequests": 0
+}
