@@ -62,7 +62,8 @@ export function render(assessment = {}) {
   md += '## Whole-brief case matrix\n\n| Case | Scope | Status | Expected | Actual / independent evidence |\n| --- | --- | --- | --- | --- |\n';
   body += '<section><h2>Whole-brief case matrix</h2><div class="scroll"><table><thead><tr><th>Case</th><th>Scope</th><th>Status</th><th>Expected</th><th>Actual / independent evidence</th></tr></thead><tbody>';
   for (const item of cases) {
-    const actual = [...item.observations, item.independentAssertion, ...item.evidence.map(source => `Evidence: ${source}`)].filter(Boolean).join(' ');
+    const history = item.attempts.length > 1 ? item.attempts.map((attempt, index) => `Attempt ${index + 1}: ${attempt.status}; ${(attempt.observations ?? []).join(' ')}`).join(' ') : '';
+    const actual = [...item.observations, item.independentAssertion, history, ...item.evidence.map(source => `Evidence: ${source}`)].filter(Boolean).join(' ');
     md += `| ${[item.id, item.scope, item.status, item.expected, actual || 'No assessed execution evidence.'].map(markdown).join(' | ')} |\n`;
     body += `<tr><th scope="row">${escapeHtml(item.id)}</th><td>${escapeHtml(item.scope)}</td><td class="${item.status}">${item.status}</td><td>${escapeHtml(item.expected)}</td><td>${escapeHtml(actual || 'No assessed execution evidence.')}</td></tr>`;
   }

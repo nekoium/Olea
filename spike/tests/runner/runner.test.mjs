@@ -30,6 +30,19 @@ test('output overflow terminates producer and caps retained bytes', async () => 
   assert.equal(result.overflow, true);
   assert.equal(Buffer.byteLength(result.stdout + result.stderr), 1024);
 });
+test('deadline cleans a task-owned descendant tree', async () => {
+  const script = 'const {spawn}=require("node:child_process");const child=spawn(process.execPath,["-e","setInterval(()=>{},1000)"],{stdio:"ignore"});console.log(child.pid);setInterval(()=>{},1000)';
+  const result = await run(process.execPath, ['-e', script], { timeoutMs: 700 });
+  const descendant = Number(result.stdout.trim());
+  assert.ok(Number.isInteger(descendant) && descendant > 1);
+  assert.equal(result.timedOut, true);
+  let gone = false;
+  for (let attempt = 0; attempt < 10; attempt++) {
+    try { process.kill(descendant, 0); } catch (error) { if (error.code === 'ESRCH') { gone = true; break; } throw error; }
+    await new Promise(resolve => setTimeout(resolve, 50));
+  }
+  assert.ok(gone, 'owned descendant must exit after parent deadline');
+});
 test('report refuses fake pass, host scope and unpassed prerequisites', () => {
   assert.throws(() => buildMatrix({ assessments: [{ id: 'runtime.baseline', status: 'pass', scope: 'android-emulator' }] }), /independent assertion/);
   assert.throws(() => buildMatrix({ assessments: [{ id: 'runtime.baseline', status: 'pass', scope: 'host-only', evidence: ['fixture'], independentAssertion: 'fixture' }] }), /Scope mismatch/);

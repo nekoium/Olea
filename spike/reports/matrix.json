@@ -1,0 +1,1099 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-10T15:25:36.777Z",
+  "title": "Olea feasibility experiment — interim evidence",
+  "expectedMission": "Kotlin Android host supervises minimal Ubuntu Base/PRoot, one shared stock Node backend and persistent unmodified Pi RPC subprocesses. Required evidence includes real Unix/dependency/child work, three Pi releases, ordinary upgrade, permission-controlled Accessibility launcher click and all phone categories, independently asserted model workflows, lifecycle recovery and measured total resource cost.",
+  "actualMission": "Disposable Kotlin/runtime and shared-backend source exists in peer worktrees; this report is an interim snapshot pending Android integration. Verified bootstrap artifacts and host-only agent/backend results establish preparation and interface feasibility on Windows, not the intended on-phone mission. Android Unix execution, phone actions, lifecycle and resource measurements have not been assessed in this snapshot.",
+  "judgment": "insufficient-evidence",
+  "rationale": "No complete Android-hosted Unix plus phone workflow or ordinary Android upstream upgrade has been independently established in the evidence supplied so far. Host successes and downloaded artifacts cannot substitute for these outcomes.",
+  "versions": [
+    "Host: Windows x64, Node24.20.0, npm11.19.0. Existing Codex CLI0.163.0 and Claude Code2.1.292 startup/help pass; stock Pi1.5.2 backend host evidence comes from peer commit62397d0.",
+    "Fixed Android targets, not Android passes: Pi0.74.0,1.0.0,1.5.2 on official Linux Node24.20.0 x64 and Ubuntu Base24.04.3 amd64. Codex probe0.167.0, Claude Code2.1.322, Claude Agent SDK0.3.322.",
+    "Native worker bootstrap manifest: API36 Android16 x86_64 Olea_API_36, four cores/4096MiB and WHPX10.0.26300. compileSdk36, targetSdk28, minSdk26. Target28 is an experimental executable workaround with unvalidated modern-target upgrade path, not production approval.",
+    "Native toolchain manifest: JDK25.0.4+-16339643-b508.27, Gradle9.1.0, AGP9.0.0, builtin Kotlin2.2.10, Build Tools36.0.0; NDK absent. APK build initially blocked by dependency TLS handshakes; later integration still pending at this snapshot.",
+    "Ubuntu Base24.04.3 amd64: https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz SHA2566bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9, verified by native worker against official HTTPS SHA256SUMS. Mixed package licenses; retain /usr/share/doc/*/copyright and applicable source obligations.",
+    "Node24.20.0 Linux x64: https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz SHA2562f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2, verified by native worker against official HTTPS SHASUMS256.txt. MIT plus bundled dependency notices.",
+    "Termux PRoot5.1.107.102 x86_64: https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb SHA2562497064226c15971be8131c7facead94a06c225347796326a383c832dca57758. GPL-2.0 source/notices obligations; source https://github.com/termux/proot and Termux recipe https://github.com/termux/termux-packages/tree/master/packages/proot.",
+    "libtalloc2.5.0 x86_64 SHA256b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530, LGPL-3.0-or-later; libandroid-shmem0.7 x86_64 SHA256ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797, BSD-3-Clause. Native worker verified against HTTPS Termux Packages.gz; no independent GPG signature verification.",
+    "Gradle9.1.0 archive SHA256a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806; native worker verified official archive checksum. Apache-2.0 build tool.",
+    "Public npm metadata only: Codex0.167.0 Apache-2.0 registry SHA1e230b145472b6910b361e86a9c0a2e2f3d392ace; Claude Code2.1.322 registry SHA1ddcbcd5148fa1027548ecf555419c5bd39f2906f; SDK0.3.322 registry SHA17cacd5fcb26329b880f08713f04cdb797bb5c629. Claude declares SEE LICENSE IN README.md; full upstream terms inspection remains incomplete. Metadata hashes do not establish downloaded-byte verification.",
+    "Original Olea probe/backend/native source uses MIT. This does not relicense PRoot, Linux packages, Claude distributions, or reference research snapshots. No redistribution/publishing occurred."
+  ],
+  "measuredCosts": [
+    "Host-only Codex0.163.0 app-server isolated stdio initialize:2458ms command wall time, exit0, matching successful reply id1; no model request or authenticated tool action. Existing CLI help timings are warm command timings, not integrated cold-start measurements.",
+    "Backend peer host-only Pi1.5.2/Node24.20.0 stock persistent RPC startup941ms; model Unix/dependency/child/file workflow20459ms with independent is-number7.0.0 rerun, fresh child stdout42 and exact generated JSON; restart/resume1335ms using saved marker via stock get_messages, no phone action replay.",
+    "Backend peer host-only second persistent session startup781ms and second-session case13594ms with independent exact file assertion. Two persistent host sessions do not establish Android concurrency or isolation under resource pressure.",
+    "Backend peer host-only fixed ten-state workload: direct stock RPC startup777.7502ms; direct ten state requests1.1151ms, managed15.5629ms. Managed time includes resume-checkpoint file I/O. This is not a model/network latency or Android memory benchmark.",
+    "Backend peer provider API probe: OpenAI-compatible completions, gpt-6.1-terra, HTTP200, independently checked forced function call,8362ms,53 prompt/22 completion tokens, one attempt. Fallback gpt-6.1-sol untested; monetary cost unmeasured. Initial full agent-workflow usage was not captured.",
+    "Android host/PRoot/backend/agent RSS/PSS and total cost, idle CPU, cold integrated startup, streaming first-token/gaps, constrained allocation, installation size/time, battery and thermals remain unmeasured. Collector commands are in EVIDENCE_PLAN.md; null/unknown must not become zero."
+  ],
+  "failures": [
+    "Host fresh Codex0.167.0 npm install attempt1: exit1 after28148ms, ECONNRESET fetching registry tarball before TLS connection. Registry metadata requests succeeded independently.",
+    "Host focused Codex retry: npm retries0, fetch timeout15000ms, task-local cache, process deadline45000ms; timedOut=true, exit1, elapsed45376ms and empty stdout/stderr. No further host install retries. Initial overall60s tool deadline interrupted remaining Claude/SDK phases, so those are untested.",
+    "Official documentation fetches encountered cross-origin redirects refused by same-origin policy, then direct GitHub/code.claude.com fetch failures. Local installed Codex README and public CLI help expose npm install, app-server stdio and Claude stream-json entry points. Source retrieval failure does not establish runtime incompatibility.",
+    "Native worker bootstrap: Termux Packages.xz returned404 on primary and USTC; Packages.gz succeeded with hash metadata. Windows schannel CRYPT_E_REVOCATION_OFFLINE was worked around with --ssl-revoke-best-effort while retaining TLS chain validation. Official Node proxy TLS failed; direct bounded retry downloaded and verified official bytes.",
+    "Native worker first Gradle build failed after61s resolving gradle-settings-api9.0.0 and bundletool1.18.3 from dl.google.com: Remote host terminated handshake. Bounded retry with two workers was attempted; this snapshot does not assert successful APK or runtime execution."
+  ],
+  "compatibility": [
+    "Stock interface evidence exists on host: Codex0.163.0 structured app-server initialization; Claude2.1.292 public CLI help documents stream-json; Pi1.5.2 persistent RPC and saved transcript resume run through backend. These do not validate Android kernel/sandbox/native dependency requirements.",
+    "Earlier Pi0.74.0 and1.0.0, same-base three-version comparison, ordinary upstream upgrade to1.5.2 and update preservation remain unassessed in this snapshot. No release-specific shim or private patch is an accepted substitute.",
+    "Claude Agent SDK query import and native stock Codex/Claude startup on Android require actual runtime evidence. Installation/startup/help, supported interface availability and authenticated tool workflows are separate assertions."
+  ],
+  "blockers": [
+    "Android integration pending; no assessed on-phone Unix/phone case in this interim report.",
+    "Agent-specific Codex/Claude authentication/subscription not supplied for this experiment. Authorized Pi custom provider credentials do not authenticate these agents.",
+    "Physical Android14 phone not connected and ABI unestablished; ARM64, device-specific lifecycle, battery and thermals blocked.",
+    "Ordinary user permission/consent paths, Accessibility launcher click, direct category fixtures, agent discovery/use, revocation and stop require independent native observations. Development ADB provisioning is not normal-use evidence.",
+    "Hidden fixture oracle must remain outside agent workspace/tools; conversations and model claims alone are insufficient. Uncertain phone actions must not replay after lifecycle death.",
+    "Host/provider/network failure is distinct from Android runtime failure. Unexecuted cases remain untested; pending prerequisites do not establish a runtime defect."
+  ],
+  "nextDecision": "Continue bounded Android integration and independently verify Unix plus Accessibility launcher-click outcomes before judging the selected stack. Measure total process cost and ordinary upgrades, inspect stock Codex/Claude runtime blockers and obtain a connected physical phone before ARM64 claims. Keep production architecture and UX acceptance open.",
+  "evidenceSources": [
+    "spike/reports/host-probes.json: sanitized machine-readable host startup/interface/registry/failure summary; raw bounded diagnostics remain ignored under evidence worker .setup.",
+    "Peer runtime spike/runtime/artifact-manifest.json at feasibility-android: exact source URLs, verified archive SHA256, licenses and checksum limitations; read directly by evidence worker. Runtime source checkpoint aaff7b2 and probe integration e9de6ea are source artifacts, not execution results.",
+    "Peer backend spike/tests/pi/host-evidence.json at feasibility-backend: sourceCommit62397d0, host-only provider and independently asserted Unix/session timings; read directly by evidence worker."
+  ],
+  "tooling": [
+    "Evidence commits a177237 (bounded stock probes),80e02c3 (catalog/renderer/collector). Run node --test spike/tests/runner/runner.test.mjs; initial nine tests passed. Tooling tests do not establish mission outcomes.",
+    "Rim spawn tag evidence-probes created n0003f169acde48b. rim punch failed: no Rim root exists for the current project context; continuing local Git without destructive repair. Native worker independently reported same punch friction after candidate n7d034ff9325a635.",
+    "Orca direct dispatch messages delivered; manager reported Run coordinator_handle null despite run-use. Session988b2131-f214-4ccb-8b83-4559d54201ca identity recorded; parentage not independently verified from that null projection."
+  ],
+  "counts": {
+    "pass": 0,
+    "fail": 0,
+    "blocked": 6,
+    "untested": 75
+  },
+  "cases": [
+    {
+      "id": "runtime.baseline",
+      "expected": "Observe API36 x86_64 emulator, acceleration and current core/RAM allocation without destructive reset.",
+      "scope": "android-emulator",
+      "prerequisites": [],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "runtime.packaging",
+      "expected": "Execute packaged native runtime under recorded target SDK and explain restrictions/workarounds.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.baseline"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "runtime.provenance",
+      "expected": "Record exact versions, hashes, sources and licenses for runtime and agent artifacts.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.baseline"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "runtime.shell",
+      "expected": "Run real Unix shell work and independently verify expected files/exit codes.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.baseline"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "runtime.node",
+      "expected": "Execute unmodified supported upstream Linux Node; record exact version and ABI.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.baseline"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "runtime.git",
+      "expected": "Create task repository, commit and independently verify Git object/file outcome.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.baseline"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "runtime.dns-tls",
+      "expected": "Resolve and verify TLS to required upstream/provider endpoints; separate outages.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.baseline"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "runtime.dependency",
+      "expected": "Install and use a representative dependency through ordinary package manager.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.baseline"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "runtime.children",
+      "expected": "Run child and descendant processes; verify exit and independently observe cleanup.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.baseline"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.0.74.0.install",
+      "expected": "Install stock Pi 0.74.0 through supported upstream channel on fixed Node/base; no private patch.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.node",
+        "runtime.dns-tls"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.0.74.0.rpc",
+      "expected": "Exchange documented structured RPC replies/events with persistent stock subprocess. Release 0.74.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.0.74.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.0.74.0.unix-files",
+      "expected": "Model uses file tools; runner independently verifies generated content. Release 0.74.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.0.74.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.0.74.0.unix-shell",
+      "expected": "Model runs real shell work; runner independently verifies outcome. Release 0.74.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.0.74.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.0.74.0.dependency",
+      "expected": "Model installs/uses representative dependency; independent execution confirms result. Release 0.74.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.0.74.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.0.74.0.children",
+      "expected": "Model starts child work; independent process/file evidence confirms result. Release 0.74.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.0.74.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.0.74.0.resume",
+      "expected": "Stop/restart saved session and verify resumed context and workspace independently. Release 0.74.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.0.74.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.0.74.0.cancel",
+      "expected": "Cancel active work; verify protocol terminal state and no surviving descendants. Release 0.74.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.0.74.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.0.0.install",
+      "expected": "Install stock Pi 1.0.0 through supported upstream channel on fixed Node/base; no private patch.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.node",
+        "runtime.dns-tls"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.0.0.rpc",
+      "expected": "Exchange documented structured RPC replies/events with persistent stock subprocess. Release 1.0.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.0.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.0.0.unix-files",
+      "expected": "Model uses file tools; runner independently verifies generated content. Release 1.0.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.0.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.0.0.unix-shell",
+      "expected": "Model runs real shell work; runner independently verifies outcome. Release 1.0.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.0.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.0.0.dependency",
+      "expected": "Model installs/uses representative dependency; independent execution confirms result. Release 1.0.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.0.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.0.0.children",
+      "expected": "Model starts child work; independent process/file evidence confirms result. Release 1.0.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.0.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.0.0.resume",
+      "expected": "Stop/restart saved session and verify resumed context and workspace independently. Release 1.0.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.0.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.0.0.cancel",
+      "expected": "Cancel active work; verify protocol terminal state and no surviving descendants. Release 1.0.0.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.0.0.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.5.2.install",
+      "expected": "Install stock Pi 1.5.2 through supported upstream channel on fixed Node/base; no private patch.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.node",
+        "runtime.dns-tls"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.5.2.rpc",
+      "expected": "Exchange documented structured RPC replies/events with persistent stock subprocess. Release 1.5.2.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.5.2.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.5.2.unix-files",
+      "expected": "Model uses file tools; runner independently verifies generated content. Release 1.5.2.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.5.2.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.5.2.unix-shell",
+      "expected": "Model runs real shell work; runner independently verifies outcome. Release 1.5.2.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.5.2.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.5.2.dependency",
+      "expected": "Model installs/uses representative dependency; independent execution confirms result. Release 1.5.2.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.5.2.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.5.2.children",
+      "expected": "Model starts child work; independent process/file evidence confirms result. Release 1.5.2.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.5.2.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.5.2.resume",
+      "expected": "Stop/restart saved session and verify resumed context and workspace independently. Release 1.5.2.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.5.2.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.1.5.2.cancel",
+      "expected": "Cancel active work; verify protocol terminal state and no surviving descendants. Release 1.5.2.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.5.2.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "pi.upgrade",
+      "expected": "Use ordinary upstream upgrade from earlier release to 1.5.2 on same base; verify stock files, sessions and tools.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.0.74.0.install",
+        "pi.1.5.2.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "provider.compatibility",
+      "expected": "Verify authorized provider API format using protected local configuration, bounded test requests and redacted evidence.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.dns-tls"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.direct.accessibility-launch",
+      "expected": "Click target launcher entry through Accessibility and independently verify target foreground; intent alone fails.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.agent.accessibility-launch",
+      "expected": "Stock Pi discovers supplied tool and chooses it: Click target launcher entry through Accessibility and independently verify target foreground; intent alone fails.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "phone.direct.accessibility-launch",
+        "pi.1.5.2.rpc",
+        "provider.compatibility"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.direct.intent-url",
+      "expected": "Open supplied HTTPS URL and independently verify browser reached destination; dispatch alone fails.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.agent.intent-url",
+      "expected": "Stock Pi discovers supplied tool and chooses it: Open supplied HTTPS URL and independently verify browser reached destination; dispatch alone fails.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "phone.direct.intent-url",
+        "pi.1.5.2.rpc",
+        "provider.compatibility"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.direct.structured-api",
+      "expected": "Read valid permission-controlled Android API fixture result with independent assertion.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.agent.structured-api",
+      "expected": "Stock Pi discovers supplied tool and chooses it: Read valid permission-controlled Android API fixture result with independent assertion.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "phone.direct.structured-api",
+        "pi.1.5.2.rpc",
+        "provider.compatibility"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.direct.files-media",
+      "expected": "Create/read exact content through user-granted Android folder access.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.agent.files-media",
+      "expected": "Stock Pi discovers supplied tool and chooses it: Create/read exact content through user-granted Android folder access.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "phone.direct.files-media",
+        "pi.1.5.2.rpc",
+        "provider.compatibility"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.direct.notification",
+      "expected": "Read independently posted notification from separate fixture app via listener.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.agent.notification",
+      "expected": "Stock Pi discovers supplied tool and chooses it: Read independently posted notification from separate fixture app via listener.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "phone.direct.notification",
+        "pi.1.5.2.rpc",
+        "provider.compatibility"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.direct.capture",
+      "expected": "Capture harmless fixture after MediaProjection consent and independently verify image.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.agent.capture",
+      "expected": "Stock Pi discovers supplied tool and chooses it: Capture harmless fixture after MediaProjection consent and independently verify image.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "phone.direct.capture",
+        "pi.1.5.2.rpc",
+        "provider.compatibility"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.direct.app-integration",
+      "expected": "Invoke documented exported fixture interface and independently verify fixture state.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.agent.app-integration",
+      "expected": "Stock Pi discovers supplied tool and chooses it: Invoke documented exported fixture interface and independently verify fixture state.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "phone.direct.app-integration",
+        "pi.1.5.2.rpc",
+        "provider.compatibility"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.discovery",
+      "expected": "Pi receives actual registered descriptions and enumerates phone tools; captured events establish exposure.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.combined",
+      "expected": "Model performs one combined Unix/phone workflow; independent assertions establish both outcomes.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "phone.agent.accessibility-launch",
+        "pi.1.5.2.unix-shell"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.permission-denied",
+      "expected": "Verify native permission-controlled bridge rejects/halts permission-denied case without unauthorized action.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.revocation",
+      "expected": "Verify native permission-controlled bridge rejects/halts revocation case without unauthorized action.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.stop",
+      "expected": "Verify native permission-controlled bridge rejects/halts stop case without unauthorized action.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "phone.hidden-oracle",
+      "expected": "Expected fixture state remains outside agent tool visibility and agent workspace; runner assertions are independent.",
+      "scope": "android-emulator",
+      "prerequisites": [],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "codex.install",
+      "expected": "Stock codex install on Android Linux; supported interface, no private port.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.node",
+        "runtime.dns-tls"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "codex.startup",
+      "expected": "Stock codex startup on Android Linux; supported interface, no private port.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "codex.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "codex.integration",
+      "expected": "Stock codex integration on Android Linux; supported interface, no private port.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "codex.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "codex.authenticated-workflow",
+      "expected": "Stock codex authenticated-workflow on Android Linux; supported interface, no private port.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "codex.install"
+      ],
+      "status": "blocked",
+      "observations": [
+        "No Codex-specific authentication/subscription supplied. Startup/initialize without a model does not satisfy this case."
+      ],
+      "evidence": [
+        "spike/reports/host-probes.json"
+      ],
+      "attempts": [
+        {
+          "id": "codex.authenticated-workflow",
+          "scope": "android-emulator",
+          "status": "blocked",
+          "observations": [
+            "No Codex-specific authentication/subscription supplied. Startup/initialize without a model does not satisfy this case."
+          ],
+          "evidence": [
+            "spike/reports/host-probes.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "claude.install",
+      "expected": "Stock claude install on Android Linux; supported interface, no private port.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.node",
+        "runtime.dns-tls"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "claude.startup",
+      "expected": "Stock claude startup on Android Linux; supported interface, no private port.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "claude.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "claude.integration",
+      "expected": "Stock claude integration on Android Linux; supported interface, no private port.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "claude.install"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "claude.authenticated-workflow",
+      "expected": "Stock claude authenticated-workflow on Android Linux; supported interface, no private port.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "claude.install"
+      ],
+      "status": "blocked",
+      "observations": [
+        "No Claude-specific authentication/subscription supplied. Pi provider compatibility cannot authenticate Claude."
+      ],
+      "evidence": [
+        "spike/reports/host-probes.json"
+      ],
+      "attempts": [
+        {
+          "id": "claude.authenticated-workflow",
+          "scope": "android-emulator",
+          "status": "blocked",
+          "observations": [
+            "No Claude-specific authentication/subscription supplied. Pi provider compatibility cannot authenticate Claude."
+          ],
+          "evidence": [
+            "spike/reports/host-probes.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cost.cold-start",
+      "expected": "Measure cold-start with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging",
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "cost.idle-cpu",
+      "expected": "Measure idle-cpu with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging",
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "cost.streaming",
+      "expected": "Measure streaming with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging",
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "cost.one-session",
+      "expected": "Measure one-session with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging",
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "cost.two-sessions",
+      "expected": "Measure two-sessions with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging",
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "cost.direct-vs-managed",
+      "expected": "Measure direct-vs-managed with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging",
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "cost.output-bounds",
+      "expected": "Measure output-bounds with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging",
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "cost.cleanup",
+      "expected": "Measure cleanup with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging",
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "cost.constrained",
+      "expected": "Measure constrained with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging",
+        "pi.1.5.2.rpc"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "lifecycle.app-switch",
+      "expected": "Exercise app-switch; independently distinguish live execution, saved transcript/workspace and restored process; never repeat uncertain phone action.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "lifecycle.screen-lock",
+      "expected": "Exercise screen-lock; independently distinguish live execution, saved transcript/workspace and restored process; never repeat uncertain phone action.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "lifecycle.child-failure",
+      "expected": "Exercise child-failure; independently distinguish live execution, saved transcript/workspace and restored process; never repeat uncertain phone action.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "lifecycle.app-death",
+      "expected": "Exercise app-death; independently distinguish live execution, saved transcript/workspace and restored process; never repeat uncertain phone action.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "lifecycle.update-preservation",
+      "expected": "Exercise update-preservation; independently distinguish live execution, saved transcript/workspace and restored process; never repeat uncertain phone action.",
+      "scope": "android-emulator",
+      "prerequisites": [
+        "runtime.packaging"
+      ],
+      "status": "untested",
+      "observations": [],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "physical.abi",
+      "expected": "Verify abi on connected physical Android14 phone after recording ABI; emulator evidence is insufficient.",
+      "scope": "physical-phone",
+      "prerequisites": [],
+      "status": "blocked",
+      "observations": [
+        "Physical Android14 phone not connected and ABI not established in this run."
+      ],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "physical.unix",
+      "expected": "Verify unix on connected physical Android14 phone after recording ABI; emulator evidence is insufficient.",
+      "scope": "physical-phone",
+      "prerequisites": [],
+      "status": "blocked",
+      "observations": [
+        "Physical Android14 phone not connected and ABI not established in this run."
+      ],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "physical.phone",
+      "expected": "Verify phone on connected physical Android14 phone after recording ABI; emulator evidence is insufficient.",
+      "scope": "physical-phone",
+      "prerequisites": [],
+      "status": "blocked",
+      "observations": [
+        "Physical Android14 phone not connected and ABI not established in this run."
+      ],
+      "evidence": [],
+      "attempts": []
+    },
+    {
+      "id": "physical.thermals-battery",
+      "expected": "Verify thermals-battery on connected physical Android14 phone after recording ABI; emulator evidence is insufficient.",
+      "scope": "physical-phone",
+      "prerequisites": [],
+      "status": "blocked",
+      "observations": [
+        "Physical Android14 phone not connected and ABI not established in this run."
+      ],
+      "evidence": [],
+      "attempts": []
+    }
+  ]
+}
