@@ -1,6 +1,8 @@
 # Current manager's interim checkpoint
 
-Status: **in progress; not reached**. Manager `pi_1d9a3114_30c1_4a4f_b8a6_22cd565c2373` and Run `run_aa0011145bf9` retain ownership. No successor manager was launched, no worker was retired and no emulator lease transfer occurred. The user explicitly corrected premature handoff preparation: reach the current checkpoint first.
+Status: **reopened for an explicit stock full-access Codex experiment; full backend goal remains open**. The restricted-mode checkpoint was saved at `ed8f68c` and `bc974f5`: verified staged fresh runtime, narrow Pi update preservation and a credible restricted Codex blocker. The user then asked whether Olea should learn from Orca's full-access agent execution. Stock full-access is now under investigation as a separate supported configuration, not a silent fallback or private agent patch. The earlier restricted-route failures remain valid; they do not establish that stock full-access execution is impossible.
+
+No successor was launched. This manager/team retain ownership. Runtime worker saved graceful stop/lease release `7653ba3`, then explicitly reacquired the same sole lease at `10f96ea` under a new assignment, with execution held pending the concrete full-access contract. Kotlin phone permissions/stop remain authoritative; absence of agent filesystem isolation and same-UID configuration access must be explicit.
 
 ## Final proof goal
 
