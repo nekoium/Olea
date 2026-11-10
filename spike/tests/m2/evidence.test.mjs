@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MIT
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdir, mkdtemp, writeFile, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, writeFile, rm, readFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { catalog, validateReceipt, assess, render, sha256, verifyArtifacts, readGitArtifact } from './evidence.mjs';
 import { challenge, unixPrompt, assertUnix, assertPhone, assertPreserved, parseStat, observeProcess, exited } from './assertions.mjs';
 import { descendantChains, observeTree } from './observe-tree.mjs';
@@ -87,6 +88,13 @@ test('multiple producers preserve immutable check bytes and all earlier assessme
   await verifyArtifacts(all, root);
   await assert.rejects(appendReceipts(path, [{ ...a, summary: 'altered measured facts' }], root), /attempt_id_fact_conflict/);
   await verifyArtifacts(await readReceipts(path), root);
+}));
+test('Windows autocrlf checkout export preserves byte-hashed evidence exactly', () => temporary(async root => {
+  const path = 'spike/m2/evidence/evidence/attempts/sha256-54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936.json';
+  const prefix = root.replaceAll('\\', '/') + '/';
+  const exported = spawnSync('git', ['-c', 'core.autocrlf=true', 'checkout-index', `--prefix=${prefix}`, '--', path], { encoding: 'utf8', timeout: 10000 });
+  assert.equal(exported.status, 0, 'checkout_export_failed');
+  assert.equal(sha256(await readFile(join(root, path))), '54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936');
 }));
 test('legacy stale check references pin exact old Git bytes without changing measured hashes', async () => {
   const path = 'spike/m2/evidence/evidence/offline-checks.json';
