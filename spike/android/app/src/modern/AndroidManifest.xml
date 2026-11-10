@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <application android:label="Olea M2 Runtime" tools:replace="android:label">
+        <service android:name="dev.olea.spike.RuntimeService" android:foregroundServiceType="specialUse">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="Bounded local Unix runtime feasibility experiment" />
+        </service>
+    </application>
+</manifest>

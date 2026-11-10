@@ -1,0 +1,6 @@
+.setup/downloads/ubuntu-base.tar.gz: OK
+.setup/downloads/node.tar.xz: OK
+.setup/downloads/ubuntu-base.tar.gz: 1 file pushed, 0 skipped. 34.2 MB/s (29983772 bytes in 0.836s)
+.setup/downloads/node.tar.gz: 1 file pushed, 0 skipped. 51.8 MB/s (58404700 bytes in 1.076s)
+spike/m2/runtime/linux.sh: 1 file pushed, 0 skipped. 1.8 MB/s (820 bytes in 0.000s)
+Fresh M2 staging complete; no runtime pass is implied.

@@ -1,0 +1,10 @@
+
+
+ProcessId       : 34980
+ParentProcessId : 42700
+ExecutablePath  : C:\Users\Aria\AppData\Local\Android\Sdk\emulator\qemu\windows-x86_64\qemu-system-x86_64.exe
+CommandLine     : C:\Users\Aria\AppData\Local\Android\Sdk\emulator\qemu\windows-x86_64\qemu-system-x86_64.exe -avd 
+                  Olea_API_36 -no-snapshot -gpu swiftshader -no-audio
+
+
+

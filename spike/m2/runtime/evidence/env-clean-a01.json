@@ -1,0 +1,19 @@
+{
+  "attempt": "env-clean-a01",
+  "startedAtMs": 1794330684277,
+  "package": "dev.olea.m2.runtime",
+  "hostPid": 4134,
+  "hostRealUid": 10216,
+  "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+  "hostStat": "4134 (olea.m2.runtime) R 489 489 0 0 -1 4194624 12856 4117 4 2 110 291 112 306 10 -10 22 0 55772 16552534016 39853 18446744073709551615 104822510714880 104822510719280 140726445114400 0 0 0 4612 1 1073775864 0 0 0 17 2 0 0 0 0 0 104822510747648 104822510747672 104823184080896 140726445120447 140726445120546 140726445120546 140726445125598 0",
+  "targetSdk": 36,
+  "androidApi": 36,
+  "abis": "x86_64,arm64-v8a",
+  "nativeLibraryDir": "\/data\/app\/~~GJpYVZ8As-9DMKF1R06Fog==\/dev.olea.m2.runtime-V-IiA2mj6BOzWB_FC1uxgw==\/lib\/x86_64",
+  "childPid": null,
+  "timedOut": false,
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "WARNING: linker: Warning: failed to find generated linker configuration from \"\/linkerconfig\/ld.config.txt\"\nCANNOT LINK EXECUTABLE \"\/system\/bin\/env\": library \"\/data\/app\/~~GJpYVZ8As-9DMKF1R06Fog==\/dev.olea.m2.runtime-V-IiA2mj6BOzWB_FC1uxgw==\/lib\/x86_64\/libtalloc.so\" not found: needed by main executable\n",
+  "endedAtMs": 1794330684388
+}

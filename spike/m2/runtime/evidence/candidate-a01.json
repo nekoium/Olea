@@ -1,0 +1,19 @@
+{
+  "attempt": "candidate-a01",
+  "startedAtMs": 1794330481864,
+  "package": "dev.olea.m2.runtime",
+  "hostPid": 3870,
+  "hostRealUid": 10216,
+  "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+  "hostStat": "3870 (olea.m2.runtime) R 489 489 0 0 -1 4194624 9074 0 2 0 36 95 0 0 10 -10 19 0 43658 16942460928 36775 18446744073709551615 104822510714880 104822510719280 140726445114400 0 0 0 4612 1 1073775864 0 0 0 17 1 0 0 0 0 0 104822510747648 104822510747672 104823184080896 140726445120447 140726445120546 140726445120546 140726445125598 0",
+  "targetSdk": 36,
+  "androidApi": 36,
+  "abis": "x86_64,arm64-v8a",
+  "nativeLibraryDir": "\/data\/app\/~~Qqj9agsblxZfD-QmLXso0Q==\/dev.olea.m2.runtime-Cm5PJ1LoCf-w6N0sLDDVRg==\/lib\/x86_64",
+  "childPid": null,
+  "timedOut": false,
+  "exitCode": 0,
+  "stdout": "NATIVE_IDENTITY SHELL_PID=3891\n3891 (sh) S 3870 489 0 0 -1 4194304 448 489 0 0 0 1 0 0 20 0 1 0 43788 11014393856 838 18446744073709551615 95963036008448 95963036257728 140735470734992 0 0 0 0 1 1208083710 1 0 0 17 2 0 0 0 0 0 95963036286976 95963036287640 95963194175488 140735470738195 140735470738269 140735470738269 140735470743529 0\nuid=10216(u0_a216) gid=10216(u0_a216) groups=10216(u0_a216),3003(inet),9997(everybody),20216(u0_a216_cache),50216(all_a216) context=u:r:untrusted_app:s0:c216,c256,c512,c768\nu:r:untrusted_app:s0:c216,c256,c512,c768\u0000\nPACKAGED_FILES\ntotal 356\n-rwxr-xr-x 1 system system u:object_r:apk_data_file:s0   14368 1981-01-01 01:01 libandroid-shmem.so\n-rwxr-xr-x 1 system system u:object_r:apk_data_file:s0   18368 2026-11-11 01:07 libloader.so\n-rwxr-xr-x 1 system system u:object_r:apk_data_file:s0    6036 1981-01-01 01:01 libloader32.so\n-rwxr-xr-x 1 system system u:object_r:apk_data_file:s0  277144 1981-01-01 01:01 libproot.so\n-rwxr-xr-x 1 system system u:object_r:apk_data_file:s0   32536 1981-01-01 01:01 libtalloc.so\n\nPACKAGED_PROOT_VERSION\n _____ _____              ___\n|  __ \\  __ \\_____  _____|   |_\n|   __\/     \/  _  \\\/  _  \\    _|\n|__|  |__|__\\_____\/\\_____\/\\____| 5.1.107.102\n\nbuilt-in accelerators: process_vm = yes, seccomp_filter = yes\n\nVisit https:\/\/github.com\/termux\/proot\/issues for help, bug reports, etc...\nCopyright (C) 2015 STMicroelectronics, licensed under GPL v2 or later.\nPROOT_VERSION_EXIT=0\n\nPACKAGED_PROOT_ANDROID_SHELL\nANDROID_SHELL_OK\nuid=10216(u0_a216) gid=10216(u0_a216) groups=10216(u0_a216),3003(inet),9997(everybody),20216(u0_a216_cache),50216(all_a216) context=u:r:untrusted_app:s0:c216,c256,c512,c768\nu:r:untrusted_app:s0:c216,c256,c512,c768\u0000ANDROID_SHELL_EXIT=0\n\nWRITABLE_GUEST_SHELL\nGUEST_SHELL_EXIT=127\n\nWRITABLE_STOCK_NODE\nNODE_EXIT=127\n",
+  "stderr": "\/system\/bin\/sh: \/data\/user\/0\/dev.olea.m2.runtime\/files\/linux.sh: No such file or directory\n\/system\/bin\/sh: \/data\/user\/0\/dev.olea.m2.runtime\/files\/linux.sh: No such file or directory\n",
+  "endedAtMs": 1794330483059
+}

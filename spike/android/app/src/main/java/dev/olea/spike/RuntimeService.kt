@@ -38,13 +38,13 @@ class RuntimeService : Service() {
         val tokenFile = File(filesDir, "bridge-token")
         token = if (tokenFile.exists()) tokenFile.readText().trim() else ByteArray(32).also { SecureRandom().nextBytes(it) }.joinToString("") { "%02x".format(it) }.also { tokenFile.writeText(it) }
         tokenFile.setReadable(false, false); tokenFile.setReadable(true, true)
-        File(filesDir, "bridge-config.json").writeText(JSONObject().put("url", "http://127.0.0.1:8766").put("token", token).toString())
+        File(filesDir, "bridge-config.json").writeText(JSONObject().put("url", "http://127.0.0.1:${BuildConfig.BRIDGE_PORT}").put("token", token).toString())
         getSystemService(NotificationManager::class.java).createNotificationChannel(NotificationChannel("runtime", "Feasibility runtime", NotificationManager.IMPORTANCE_LOW))
         val stop = PendingIntent.getService(this, 1, Intent(this, RuntimeService::class.java).setAction("stop"), PendingIntent.FLAG_IMMUTABLE)
         startForeground(1, Notification.Builder(this, "runtime").setContentTitle("Olea feasibility bridge")
             .setContentText("Phone actions disabled until enabled in host").setSmallIcon(android.R.drawable.ic_media_play)
             .addAction(Notification.Action.Builder(null, "STOP", stop).build()).build())
-        server = ServerSocket(8766, 8, InetAddress.getByName("127.0.0.1"))
+        server = ServerSocket(BuildConfig.BRIDGE_PORT, 8, InetAddress.getByName("127.0.0.1"))
         Thread({ while (server?.isClosed == false) { try { server?.accept()?.let { handle(it) } } catch (_: Exception) {} } }, "native-bridge").start()
     }
 
@@ -52,6 +52,7 @@ class RuntimeService : Service() {
         when (intent?.action) {
             "enable" -> enabled = true
             "stop" -> { enabled = false; PhoneApis.stop(); stopBackend() }
+            "probe" -> if (BuildConfig.FLAVOR == "modern") RuntimeProbe.run(this, intent.getStringExtra("attempt") ?: "invalid")
             "backend" -> startBackend()
         }
         // Process death requires explicit restart; uncertain phone actions are never replayed.
@@ -64,6 +65,8 @@ class RuntimeService : Service() {
         if (!script.exists()) return
         backend = ProcessBuilder("/system/bin/sh", script.absolutePath).directory(filesDir).apply {
             environment()["OLEA_BRIDGE_CONFIG"] = File(filesDir, "bridge-config.json").absolutePath
+            environment()["OLEA_NATIVE_DIR"] = applicationInfo.nativeLibraryDir
+            environment()["OLEA_APP_BASE"] = filesDir.absolutePath
             environment()["OLEA_BRIDGE_TOKEN_FILE"] = File(filesDir, "bridge-token").absolutePath
         }.start()
         val current = backend ?: return
@@ -117,12 +120,12 @@ class RuntimeService : Service() {
             }
             "capture_result" -> PhoneApis.capture ?: error("CAPTURE_NOT_READY")
             "fixture_notify" -> {
-                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName("dev.olea.fixture", "dev.olea.fixture.FixtureActivity")).putExtra("postNotification", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName(BuildConfig.FIXTURE_PACKAGE, "dev.olea.fixture.FixtureActivity")).putExtra("postNotification", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 JSONObject().put("dispatched", true)
             }
             "fixture_action" -> {
                 val value = args.getString("value"); check(value.length <= 256) { "VALUE_TOO_LONG" }
-                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName("dev.olea.fixture", "dev.olea.fixture.FixtureActivity")).putExtra("value", value).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName(BuildConfig.FIXTURE_PACKAGE, "dev.olea.fixture.FixtureActivity")).putExtra("value", value).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 JSONObject().put("dispatched", true)
             }
             else -> error("UNKNOWN_OPERATION")
