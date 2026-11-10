@@ -1,0 +1,142 @@
+# Olea: product
+
+Status: evolving product scope and decision record, not an approved implementation design. The core purpose is agreed; the full intended functionality is still being discussed.
+
+## Document responsibilities
+
+PRODUCT.md describes the full intended Olea product, including agreed boundaries and clearly marked future direction. ROADMAP.md assigns capabilities to interim releases and milestones. PROGRESS.md records what exists, evidence, and unresolved discussion. Intended capabilities are not claims of implemented behavior.
+
+Keep these documents current as discussion proceeds. Record decisions as agreed, distinguish recommendations from decisions, and retain unresolved questions explicitly. Record only decision reasons explicitly mentioned in this chat. Do not infer missing reasons or reconstruct reasons for decisions from earlier chats; those are outside this session's scope. Preserve inherited decisions without adding rationales. Record assumptions or revisit conditions only when discussed, and distinguish proposed conditions from agreed ones. Reason for this recording policy: technology changes, so decisions need their actual justifications available for later review.
+
+Olea is an Android app for using locally running agents without assembling a terminal environment, dependencies, and a GUI by hand. Its first concrete user is a Pi user who wants the complete experience on a phone.
+
+## Purpose
+
+Combine freedom of agent choice with a low-friction, all-in-one experience. The agent process runs on the phone; model requests may still go to an external provider. Independent execution means no desktop or server must remain online.
+
+## Agreed boundaries
+
+- Target stock or near-stock Android. Android 16 / API 36 is the initial emulator baseline; the available Android 14 phone is a later compatibility target. Neither establishes the product's minimum Android version.
+- Require no root and avoid repeated debugging or pairing during normal use.
+- Sideloading is acceptable. Google Play is not an initial requirement.
+- Target local Pi, Codex, and Claude Code support for the November 15, 2026 version 1.0.0 release. Pi remains the original motivating workflow. Validate all three integrations early rather than assuming compatibility.
+- Provide shared workspace files and tools, with agent-driven package installation where supported.
+- Provide phone-use capabilities through explicit Android permissions.
+- Desktop interfaces and multi-agent task orchestration are outside the initial scope.
+- Future integration may let another product connect to agents hosted on the phone. Orca compatibility is exploratory, not a commitment.
+
+## Conversation-first experience
+
+Agreed direction:
+
+- Conversations are the primary experience; workspaces coexist with them rather than competing as an alternative product model.
+- Use parallel Conversations and Workspaces destinations. Selecting a workspace switches to Conversations filtered to that workspace. Reason stated by the user: candidate A makes the current location clear at all times, while the hierarchical candidate B could make users get lost.
+- By default, reopening Olea resumes the last active session. A setting lets the user choose a fresh chat instead. Reason: the existing-chat design suits continuation, while the fresh-chat design suits starting a new task; users should choose their preferred entry behavior.
+- Workspace metadata, including files, must not occupy persistent space above messages or push conversation content down by default. Users can inspect details and files on demand. Reason: the conversation is the primary working surface and metadata should not displace it.
+- Each session uses one agent. To use another agent, start a new session. User's stated reason: starting a new session already serves that need, as in Orca; changing agents within a session is unnecessary. Cross-agent switching and handoff are not requirements.
+- Use Orca as a reference when designing session interactions, including user choices across different sessions. This is design guidance, not a requirement for Orca protocol compatibility. Inspect the relevant behavior before describing or adopting it; do not infer undocumented Orca behavior.
+- Show visual candidates for interface decisions in subsequent discussion, rather than relying on verbal descriptions alone.
+
+Still open:
+
+- Whether Conversations also offers an all-workspace view. This appeared in the selected navigation mockup but has not been explicitly discussed as a requirement.
+- Workspace defaults and creation behavior, agent selection behavior, and the full set of conversation and phone-use functions.
+- New-conversation setup placement: [study 05](.superpowers/brainstorm/9291-1794303031/content/new-conversation-setup-05.html) compares A, workspace and agent controls beside the first message, with B, a setup sheet before composing. Assistant recommendation: A, because it lets users begin writing immediately while keeping both choices available. Neither is approved. Both use sample selections; default agent and workspace policies remain open.
+
+## Phone-use scenario and approaches
+
+The first concrete phone-use test scenario is opening the user's browser to a supplied link. The user selected this to exercise phone use. It is not yet a complete definition of 1.0 phone-use scope.
+
+Approaches under discussion, not selected implementations:
+
+- Android intents and app links can request supported actions such as opening a URL, sharing text, or opening an app's supported destination. Browser opening should first be evaluated through an `ACTION_VIEW` web intent; user defaults or a chooser may determine the browser. Dispatching the intent does not establish that the page loaded.
+- Android APIs and permission-controlled content providers can expose structured capabilities, such as selected files, media, contacts, or calendars, subject to each API's permissions and restrictions.
+- Accessibility can inspect exposed UI nodes, activate actions, enter text, perform gestures, and invoke supported system navigation. Coverage depends on the app and Android restrictions.
+- Screen capture plus visual interpretation can supplement inaccessible UI. MediaProjection normally requires explicit system consent; secure content can be excluded. Capture alone does not grant input control.
+- Cooperating apps can expose explicit integration interfaces. Access depends on the interface they provide, not merely on Olea having broad permissions.
+
+The user clarified that the capability ceiling is permissions and special access a user can normally grant to an app on their own stock Android phone, not privileged system access. Accessibility and screen capture require their own enablement or consent; they are not a single blanket permission.
+
+Stock Android has no ordinary-app permission granting unrestricted phone access. Other apps' private data, silent permission grants, unrestricted shell privileges, and reliable control of every app remain outside what ordinary permissions establish. Device-owner provisioning and debugging-based privilege bridges are distinct deployment approaches, not capabilities implied by normal permission grants, and are not selected for Olea.
+
+These are API-level possibilities, not local validation results or a commitment to implement every capability.
+
+## Phone-use validation scope
+
+The test list, agreed priorities and reasons, proposed fixtures, and results now live in [PHONE_USE_TESTS.md](PHONE_USE_TESTS.md). Alpha prioritizes opening an app through an Accessibility click; full validation covers every discussed capability category. Individual full-test fixtures remain proposals.
+
+## Visual decision references
+
+Keep relative links to the visual studies beside the decisions they illustrate. Candidate letters are local to each study. These HTML files are discussion artifacts, not product implementation; superseded alternatives remain useful references for understanding the choice.
+
+| Study | Status and relevance |
+| --- | --- |
+| [Initial conversation/workspace layouts](.superpowers/brainstorm/9291-1794303031/content/conversation-layouts.html) | B was the closest initial fit; the later workspace-navigation study refines it. |
+| [Launch behavior](.superpowers/brainstorm/9291-1794303031/content/launch-behavior.html) | B for existing chats and C for fresh chats; resume the last active session by default, with a fresh-chat setting. |
+| [Workspace navigation](.superpowers/brainstorm/9291-1794303031/content/workspace-navigation.html) | A selected: parallel destinations, workspace selection switches to filtered Conversations. User's reason: clearer location; B risks disorientation. |
+| [Agent ownership](.superpowers/brainstorm/9291-1794303031/content/agent-ownership.html) | Resolved: one agent per session; start a new session for another agent. User's reason: a new session already serves the need. B was an unnecessary assistant proposal and is rejected. |
+| [New-conversation setup](.superpowers/brainstorm/9291-1794303031/content/new-conversation-setup-05.html) | Open: A places workspace and agent choices beside the draft; B asks in a setup sheet first. Assistant recommends A to allow immediate writing. Defaults are illustrative, not agreed. |
+
+## Future reusable foundation: Olearia
+
+The working name is Olearia.
+
+Olearia has two responsibilities:
+
+1. Prepare and maintain the local execution environment, shared workspace, tools, and process lifecycle.
+2. Expose phone inspection and control through a permission-controlled Android bridge.
+
+Build Olea first. Extract Olearia after Olea 1.0.0. No separate reason for this sequence was explicitly given; do not supply an inferred rationale.
+
+Olea's intended capabilities include onboarding, chat, sessions, approvals, interruption, and environment management. Their detailed behavior is still being designed. Agent integrations translate each agent's session protocol into the interface's needs. MCP may expose phone tools; it is not assumed to replace the agent session protocol.
+
+An installed Android app is required for permissions and Accessibility services. The reusable foundation can be code modules within that app. A separately distributed Olearia manager app is a possible later delivery form, not an initial requirement. One repository and one APK are the initial proposal.
+
+## Runtime approaches
+
+| Approach | Benefit | Cost or uncertainty |
+| --- | --- | --- |
+| Native Android runtimes and tools | Avoid PRoot translation overhead; use Android-compatible binaries. | Linux vendor binaries and native dependencies may require ports or patches. |
+| Minimal Linux userland through PRoot | Broader compatibility with standard Linux packages and agent distributions. | Syscall translation overhead, unsupported kernel features, Android execution and lifecycle constraints. |
+| Tightly bundled Pi runtime | Small, controlled initial feature set. | General package installation and additional agents may require substantial runtime changes. |
+
+A minimal Linux userland through PRoot is the working runtime direction. Ubuntu Base and Debian remain candidates; the distribution and packaging strategy are not selected. DSH Go demonstrates that this approach works in multiple scenarios, not that Olea's three agents or their update paths are already validated. PRoot is not hardware emulation or Docker security isolation. It shares Android's kernel and runs under the app's permissions.
+
+Maintenance constraint: after one-time environment setup, users must be able to install and update supported agents through their ordinary upstream-supported channels without recurring Olea-maintained agent ports, patches, or matching Olea releases. A Termux-like Android-native Unix environment is excluded as the primary agent runtime under this constraint. This does not exclude Android-native app and phone-bridge components or the reuse of suitable bootstrap tools.
+
+Runtime decision rationale: ordinary upstream agent updates must remain usable without continuous Olea-specific porting work. PRoot offers a conventional Linux userland and DSH Go supplies precedent. The assistant proposed revisiting this choice if tests show that core agent workflows or ordinary updates require recurring patches, or if another approach meets the same maintenance constraint with better evidence. These revisit conditions have not been separately agreed. This is not proof of universal Linux compatibility.
+
+Runtime feasibility remains an evidence requirement. Initial interface and phone-use boundaries are established enough to begin technical discussion; detailed UI/UX design continues in a separate normal session in the same workspace. Agent version pinning or recovery policies have not been agreed and are not current scope decisions.
+
+## Technical feasibility candidate
+
+The user accepted recording the candidate test stack and prioritizing technical feasibility before further production experience design. [TECH_STACK.md](TECH_STACK.md) records Kotlin Android hosting, a minimal Ubuntu/PRoot environment, stock Pi RPC, supported extension-based phone tools, and the automated evidence proposal. This selects a candidate for testing, not a validated production architecture. A persistent Node integration backend and the production UI toolkit remain open. Maintain the Android runtime rather than private agent ports; normal upstream agent installation and updates are the central constraint.
+
+## Limits we must establish
+
+- Which executable packaging and target SDK strategy works on Android 14 and has an acceptable upgrade path?
+- Can Pi and its required dependencies run reliably on x86_64 Android and ARM64 hardware?
+- Which Codex and Claude Code requirements could block future support, particularly sandboxing, authentication, and native binaries?
+- What survives app switching, screen lock, process death, and reboot? Permission persistence and process persistence are different properties.
+- How do runtime updates preserve user files, installed packages, and credentials?
+- What is the measured installation size, setup time, and execution overhead?
+- What authentication and capability boundaries protect phone tools and workspace access?
+
+Shared files do not imply shared conversations, terminal state, or live environment-variable changes. Accessibility cannot promise complete visibility into every app or guaranteed background operation.
+
+## Research basis
+
+- [DSH Go runtime build](https://github.com/ccch1mneyyy/dsh-go/blob/main/runtime/build-runtime.sh): packages Ubuntu Base, Node, Python, and PRoot.
+- [DSH Go architecture](https://github.com/ccch1mneyyy/dsh-go/blob/main/docs/architecture.md): describes its local environment and deliberate API 28 target.
+- [Android executable restrictions](https://developer.android.com/about/versions/10/behavior-changes-10#execute-permission): explains execution restrictions for writable app directories.
+- [PRoot-Distro](https://github.com/termux/proot-distro): explains the compatibility mechanism and limitations.
+- [Pi RPC](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/rpc.md): candidate interface for the first agent integration.
+- [Claude Code setup](https://code.claude.com/docs/en/setup): documents native distributions; Node alone is not sufficient evidence of compatibility.
+- [HAPI](https://github.com/tiann/hapi) and [Happy](https://github.com/slopus/happy): adjacent products with mobile access to agents.
+- [Mobilerun](https://github.com/droidrun/droidrun): adjacent phone-control framework.
+
+These findings come from documentation and source inspection, not local runtime tests. The original chat's claims about native-only DSH Go execution, Docker-like isolation, and guaranteed background survival were not reliable. The landscape review was not exhaustive.
+
+## Documentation outcome
+
+Evolve this product document as the purpose, scope, and feasibility findings are reviewed together. The agreed schedule is recorded in ROADMAP.md: November 9–10 design and evidence, November 11–13 implementation, November 14–15 validation and hardening, and a November 15 version 1.0.0 release. Alpha releases may be published along the way. Tech stack and architecture discussion will continue in a separate session; this working record does not settle the runtime, UI toolkit, or final architecture.

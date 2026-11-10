@@ -1,0 +1,10 @@
+.setup/
+.superpowers/**/state/
+.superpowers/brainstorm/.last-*
+.rim/
+.env
+.env.*
+!.env.example
+*.local
+*.log
+local.properties
