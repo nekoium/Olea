@@ -1,0 +1,82 @@
+{
+  "status": "pass",
+  "allocationId": "m2-android-codex-unix-01",
+  "topLevelPrompts": 1,
+  "model": "gpt-6.1-terra",
+  "scope": "android-app-domain",
+  "accessMode": "full-access",
+  "filesystemIsolation": false,
+  "approvalPolicy": "never",
+  "hostPid": 9619,
+  "hostRealUid": 10216,
+  "hostStartTicks": "150689",
+  "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+  "threadId": "01a1c6c7-4363-7b50-812f-5ab661da9101",
+  "turnId": "01a1c6c7-46e8-7461-8af9-aaec1351d918",
+  "terminal": "completed",
+  "streamedAgentMessageDeltas": 160,
+  "observedCommandExecutions": 3,
+  "observedFileChangeItems": 1,
+  "actualToolExitCodes": [
+    0,
+    0,
+    0
+  ],
+  "allRunnerIndependentAssertions": true,
+  "hostExactToolReadbackMatch": true,
+  "canonicalResume": {
+    "sameThread": true,
+    "sameHome": true,
+    "sameWorkspace": true,
+    "sameAccessMode": true
+  },
+  "artifactHashes": [
+    {
+      "path": "/opt/olea/evidence/attempt-1794336308686-9d540469/workspace/result.json",
+      "bytes": 114,
+      "sha256": "7419a06189dc0553e4d3a4f0ae17df2a5cf510cc1b1ca5879d02bffb1c58baad"
+    },
+    {
+      "path": "/opt/olea/evidence/attempt-1794336308686-9d540469/workspace/child-check.cjs",
+      "bytes": 306,
+      "sha256": "92f356f15b25b2b09b70ad50a26ab0d406f676d296975c476b73d75ad86be477"
+    },
+    {
+      "path": "/opt/olea/evidence/attempt-1794336308686-9d540469/workspace/package-lock.json",
+      "bytes": 510,
+      "sha256": "a64cb9be4e7947ad8a468924cb946e3aac9687ec50be6cc0fb2dcf6a816e7a34"
+    },
+    {
+      "path": "/opt/olea/evidence/attempt-1794336308686-9d540469/workspace/node_modules/is-number/package.json",
+      "bytes": 1599,
+      "sha256": "51c133f4e41df982aef69027249ff9d7262645029f437d079adc7c83328fb620"
+    }
+  ],
+  "lastCumulativeUsage": {
+    "totalTokens": 95512,
+    "inputTokens": 94688,
+    "cachedInputTokens": 71400,
+    "cacheWriteInputTokens": 0,
+    "outputTokens": 824,
+    "reasoningOutputTokens": 0
+  },
+  "usageAggregation": "Last cumulative total only; repeated tokenUsage snapshots are not summed",
+  "reconnectErrorNotifications": 2,
+  "configuredRequestRetries": 0,
+  "configuredStreamRetries": 0,
+  "automaticRunnerReplay": false,
+  "actualHttpRequests": null,
+  "remoteBilling": "unknown",
+  "elapsedMs": 82094.5744,
+  "phoneEnabledAfter": false,
+  "noObservedMcpToolCalls": true,
+  "limits": [
+    "Two stock reconnect notifications occurred despite configured request/stream retries0; HTTP/protocol request counts are unavailable, so zero internal transport reconnect attempts is not claimed",
+    "Usage has7 notifications including duplicate final total; six changing cumulative totals are observed, not an exact HTTP count",
+    "Stock completed command receipts plus fresh independent dependency/child execution establish real behavior; named model child process identity/exit not separately sampled",
+    "Numeric adapter UID0 is PRoot emulation; native service realUID10216/domain separately establishes Android authority",
+    "Post-case listed hosts/fixture only does not establish generic descendant cleanup guarantee",
+    "Full access provides no same-UID filesystem/credential isolation; secretAbsent is child environment absence only",
+    "No phone action, approval exercise, cancel experiment or agent update in this case"
+  ]
+}

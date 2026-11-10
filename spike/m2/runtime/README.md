@@ -6,6 +6,8 @@ Latest actual continuation, reproduction commands, fresh-repeat/update/resource/
 
 A later explicitly selected stock full-access policy passed deterministic inside/sibling Unix commands with no model/phone calls: [FULL_ACCESS_PREFLIGHT.md](FULL_ACCESS_PREFLIGHT.md). It uses danger-full-access/approval-never and provides no agent filesystem isolation; historical restricted-route failures remain valid.
 
+The subsequently activated single stock Codex provider-backed Unix attempt and canonical resume also passed: [CODEX_FULL_ACCESS_UNIX.md](CODEX_FULL_ACCESS_UNIX.md). It consumed one prompt, bringing manager-reported global usage to4/8, and preserved two reconnect notifications plus unknown HTTP/billing counts.
+
 ## Measured result
 
 On Olea_API_36, Android16/API36 x86_64, target36/min26/compile36 `dev.olea.m2.runtime` executes unmodified Termux PRoot5.1.107.102 from PackageManager's read-only nativeLibraryDir. Its stock packaged loader executes writable Ubuntu24.04.3 shell, upstream Node24.20.0 and nested children in the **actual Kotlin service domain**, `u:r:untrusted_app`, real UID10216. Development run-as is provisioning/observation only.

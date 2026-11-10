@@ -1,0 +1,5 @@
+affe7157547d1d46bc5480feb3b28fffd07fbe02e8b04c2879049abe87bdbb11 *spike/m2/runtime/codex-full-access-unix-a01.sh
+a03f60f9fbd0ea394f17827a20eca5d3a5a559dc4f713d06e4e726eb5d8fff07 *spike/m2/runtime/assess-codex-unix-a01.mjs
+5daef5cd51194c57b2d3c359acc20b0f22eb7954a6589b8df2127cccc0d9f06c *spike/m2/runtime/evidence/codex-full-access-unix-a01.json
+71bacc38f14e0fd815af05e5bb373655b66160586f434209fa78f2b3cd54e200 *spike/m2/runtime/evidence/codex-full-access-unix-a01-native.json
+4f10e41584edf29dcd5acfa2956a39a9b978eec837ec5e59009a4bc0aaf7d94d *spike/m2/runtime/evidence/codex-full-access-unix-a01-independent.json

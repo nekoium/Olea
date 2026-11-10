@@ -1,0 +1,8 @@
+7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32 *.setup/integration/spike/tests/codex/run-stock.mjs
+d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c *.setup/integration/spike/backend/dist/backend.js
+9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90 *.setup/integration/spike/backend/dist/codex-session.js
+307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef *.setup/integration/spike/backend/dist/codex-process.js
+34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6 *.setup/integration/spike/backend/dist/phone-mcp.js
+aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108 *.setup/integration/spike/backend/dist/pi-process.js
+70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd *.setup/integration/spike/backend/dist/process-tree.js
+dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887 *.setup/runtime-a07.apk
