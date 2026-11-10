@@ -1,7 +1,7 @@
 {
   "track": "stock-codex-app-server",
-  "status": "runtime-sandbox-blocked-independent-update-and-fresh-work-continues",
-  "observedAt": "2026-11-10T18:07:03Z",
+  "status": "full-access-unix-phone-resume-pass-generic-cleanup-fail",
+  "observedAt": "2026-11-10T19:06:45Z",
   "parentage": {
     "run": "run_aa0011145bf9",
     "manager": "pi_1d9a3114_30c1_4a4f_b8a6_22cd565c2373",
@@ -19,7 +19,9 @@
     "2c70656570803f077cf9053813229aba49c42e39",
     "3b6691524f7304c71db95eedfa26ee34614c4275",
     "84d767d9a2bd578c533836ce10af5526a57b9373",
-    "7e99adac337f345c4eb24bf1cf30435975096dd7"
+    "7e99adac337f345c4eb24bf1cf30435975096dd7",
+    "fc04ee1cb9792c495b98770a9c722612f0855da3",
+    "665f9e45c3da4398eec504f13f26073013be80ba"
   ],
   "stock": {
     "package": "@openai/codex",
@@ -46,6 +48,13 @@
     "minimumDistinctInferenceUsageResults": 4,
     "actualHttpRequests": null,
     "remoteBilling": null,
+    "managerReportedGlobalConsumption": "5/8 including two host Codex prompts, one native Pi and two native Codex prompts",
+    "nativeCodexAllocationsConsumedBySoleRuntimeOwner": ["m2-android-codex-unix-01", "m2-android-codex-phone-01"],
+    "nativeLatestCumulativeUsage": [
+      {"case": "unix", "input": 94688, "output": 824, "cachedInput": 71400, "total": 95512},
+      {"case": "phone", "input": 152758, "output": 482, "cachedInput": 127403, "total": 153240}
+    ],
+    "nativeTransportLimit": "Two Unix reconnect notifications despite configured retries0; no explicit replay/fallback, internal reconnect/HTTP count unknown",
     "latestCumulativeTokensByAttempt": [
       {"attempt": "attempt-1794329763090-49b37d75", "input": 43411, "output": 184, "cachedInput": 23846, "total": 43595},
       {"attempt": "attempt-1794330423552-23240d45", "input": 43992, "output": 125, "cachedInput": 33620, "total": 44117}
@@ -57,7 +66,8 @@
   "validation": {
     "build": "npm run build --prefix spike/backend",
     "tests": "node --test spike/tests/codex/*.test.mjs spike/tests/pi/*.test.mjs",
-    "lastPassedTests": 24,
+    "lastPassedFullSuiteTests": 25,
+    "subsequentFocusedPolicyTestsPassed": 3,
     "testScope": "host-only fake protocol, synthetic MCP bridge and Pi regression",
     "coverage": ["pre-initialize process identity", "thread/turn correlation", "canonical resume and mismatch rejection", "approval pending/rejection/no duplicate callback", "cancel", "pre-ack tool counts", "foreign thread/late turn isolation", "malformed and oversize frames", "unknown server requests", "delivery unknown/no replay", "exact-instance root exit/restart", "bounded inherited-pipe drain", "MCP provider-authority rejection", "native denial/no replay"]
   },
@@ -80,8 +90,12 @@
     {"id": "android.stock-linux-sandbox", "status": "blocked", "evidence": "git:7b154a8904101f10984c1fa053b7a73ebea58411:spike/m2/runtime/evidence/codex-sandbox-a01.json", "actual": "Both inside/outside command/exec exit1 cannot establish app-server socket mount isolation; inside artifact absent and outsideDenialConfirmed false"},
     {"id": "android.socket-mount-identity", "status": "fail", "evidence": "LINUX_SANDBOX_ASSESSMENT.md", "actual": "Own /tmp descriptor mount11029 missing from24-entry mountinfo; descriptor device254:55 conflicts with view /tmp device0:30; stock guard rejects missing mount ID"},
     {"id": "android.stock-bwrap-startup", "status": "blocked", "evidence": "LINUX_SANDBOX_ASSESSMENT.md", "actual": "Stock bundled bwrap exit1 cannot read /proc/sys/kernel/overflowuid Permission denied before argument parsing; namespace creation untested, no numeric errno emitted"},
-    {"id": "android.model-unix-dependency-child", "status": "blocked", "actual": "Actual stock sandbox prerequisite failed; conditional native model prompt unconsumed"},
-    {"id": "android.model-phone-causal-click-oracle", "status": "blocked", "actual": "Actual stock sandbox prerequisite failed; MCP discovery alone cannot pass native phone effects or hidden-oracle assertions"},
+    {"id": "android.restricted-model-unix-phone", "status": "blocked", "actual": "Historical workspace-write route remains blocked by stock sandbox prerequisites; no restricted model prompt was submitted"},
+    {"id": "android.full-access-model-unix-dependency-child", "status": "pass", "evidence": "git:5323fcb:spike/m2/runtime/CODEX_FULL_ACCESS_UNIX.md", "actual": "Explicit supported danger-full-access/never under target36 service completed stream, three real commands exit0, ordinary npm, exact file, child42 and shell provider-variable absence; six runner assertions plus independent artifact/tool result match pass; filesystemIsolation false"},
+    {"id": "android.full-access-model-phone-causal-click-oracle", "status": "pass", "evidence": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md", "actual": "Six actual MCP calls plus one Unix command; strict native ACTION_CLICK before foreground before fixture intent; generated Unix value matches inaccessible separateUID oracle; same canonical thread/home/workspace/full-access resume pass"},
+    {"id": "android.full-access-native-stop", "status": "pass", "evidence": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-stop.json", "actual": "Native STOP rejects inspection and fixture action with PHONE_STOPPED; independent oracle hashes and foreground unchanged; not permission revocation or rollback"},
+    {"id": "android.full-access-generic-cleanup", "status": "fail", "evidence": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json", "actual": "Model/resume succeeded but native wrapper timed out210s, rootExitObserved false, descendantExitVerified false, reparented Git/remote remained traced by PRoot; exact spawning function and inherited-pipe cause unproved"},
+    {"id": "android.exact-targeted-cleanup", "status": "pass", "evidence": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md", "actual": "Owner freshly checked UID/starttime and sent SIGTERM only to exact remote16516/start702081, no SIGKILL; all three historical PRoot/Git identities independently absent after5s; does not pass generic cleanup or authorize stale PID replay"},
     {"id": "android.ordinary-codex-update", "status": "untested", "actual": "Finite same-prefix earlier-to-current stock update/resume/hash contract prepared; not executed here"},
     {"id": "physical.android14-abi", "status": "blocked", "actual": "Physical phone ABI not available to this worker; no physical compatibility inference"}
   ],
@@ -91,12 +105,13 @@
     "Sandbox attempts1/2 rejected unsupported Windows outputBytesCap; original receipts preserved",
     "Sandbox attempt3 expected denial threw before assertions and was originally blocked; original retained plus separate independent assessment",
     "No-key MCP discovery first produced pass receipt but inherited pipes caused outer40s timeout; bounded draining repaired and regression passed",
-    "Model primary approval denial and second PowerShell shell-launch failure retained, no provider retry/fallback"
+    "Model primary approval denial and second PowerShell shell-launch failure retained, no provider retry/fallback",
+    "Native full-access phone model/oracle passed but generic native wrapper timed out210s with reparented Git tracees; separately authorized exact UID/starttime SIGTERM settled identities without broad kills or SIGKILL"
   ],
   "currentState": {
     "ownedHostExperimentProcesses": "Latest exact-worktree Win32_Process command-line filter found zero node.exe/codex.exe experiments; root exit is not general descendant proof",
     "androidDevice": "Worker performed no Android actions; runtime owner receipts show actual target36 service real UID10216 on API36 x86_64",
-    "phoneStopPermissions": "Not queried or mutated by this worker; consult sole runtime owner current-state receipt",
+    "phoneStopPermissions": "Owner final snapshot at19:06:45Z: phoneEnabled false, backendRunning false, Accessibility true; host9619, fixture9732, repeat host12459 remain; prior PRoot/Git identities absent. This worker made no Android actions.",
     "physicalPhone": "Not queried; historical disconnected/ABI unknown remains a prerequisite",
     "credentials": "Original authorized source untouched; never printed or put in prompts/argv/tracked artifacts",
     "workspace": "Isolated child kept open; .setup task artifacts retained, no destructive cleanup",
@@ -106,12 +121,14 @@
     "Authenticated completed host turn is not Unix/tool success or Android success",
     "MCP discovery is not phone effects or permission verification",
     "Same-UID PRoot and mode600 config are not filesystem isolation from agent shell",
-    "Real provider-key absence in shell was not proved because model shell never started; synthetic native preflight check prepared",
+    "Native model child reported provider variable absent and deterministic preflight synthetic check passed; neither proves same-UID credential-file isolation",
     "Windows stop lacks process start-time/descendant proof; Linux snapshots miss later forks and already-reparented children",
     "No strict token/tool pre-execution cap or known remote bill",
     "Early host invocation did not capture complete per-file integration source hashes at dispatch; chronological Git checkpoints retained, later runner adds sourceSha256",
-    "Actual Android install/startup/MCP passed; model workflows blocked by independent stock mount identity and mandatory protected proc-read prerequisites",
-    "Ordinary Codex update and fresh-repeat checkpoint remain owned by active runtime worker; not inferred from install or resume"
+    "Explicit full access has no Codex filesystem sandbox or agent approval gate; native permission/stop authority remains separate",
+    "Restricted route blockers remain valid; full-access viability does not resolve them",
+    "Generic reparented descendant cleanup failed even though separate exact authorized cleanup settled known identities",
+    "Ordinary Codex update, actual model cancellation, full phone categories, constrained lifecycle and physical ABI/thermals remain untested or blocked"
   ],
-  "next": "No credible supported unprivileged fix established for tested0.167 route; keep conditional model prompt unspent and wait for independent update/fresh-repeat evidence"
+  "next": "Manager checkpoint assessment and saved final state; no further code/research/provider/probes requested, keep session/worktree and evidence open"
 }
