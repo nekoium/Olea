@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { catalog, validateReceipt, assess, render, sha256, verifyArtifacts } from './evidence.mjs';
-import { challenge, assertUnix, assertPhone, assertPreserved, parseStat, observeProcess, exited } from './assertions.mjs';
+import { challenge, unixPrompt, assertUnix, assertPhone, assertPreserved, parseStat, observeProcess, exited } from './assertions.mjs';
+import { descendantChains, observeTree } from './observe-tree.mjs';
 import { bounded, runPiSingle, classifyProviderError } from './pi-single.mjs';
 import { supervise, sampleResources } from './supervise.mjs';
 function receipt(extra = {}) {
@@ -108,6 +109,23 @@ test('supervisor bounds timeout, frame flood, aggregate output and secret enviro
 test('resource sampler records incomplete roots instead of zero-cost full total', () => temporary(async dir => {
   const r = await sampleResources([20], dir);
   assert.equal(r.completeRequestedSet, false); assert.equal(r.processes[0].status, 'absent');
+}));
+test('model prompt requests actual 1500ms child timers for observable nested arithmetic', () => {
+  const c = challenge(); const prompt = unixPrompt(c);
+  assert(prompt.includes('1500 ms')); assert(prompt.includes(`${c.a}+${c.b}`));
+  assert(prompt.includes('nested child itself emit exact sum'));
+});
+test('observer ancestry excludes sibling runner children and rejects PID reuse/UID mismatch/caps', () => {
+  const root = { status: 'observed', pid: 20, ppid: 10, realUid: 10001, startTime: '1' };
+  const snapshot = [root, { ...root, pid: 21, ppid: 20, startTime: '2' }, { ...root, pid: 22, ppid: 21, startTime: '3' }, { ...root, pid: 30, ppid: 10, startTime: '4' }, { ...root, pid: 31, ppid: 30, startTime: '5' }, { ...root, pid: 40, ppid: 20, realUid: 10002 }];
+  assert.deepEqual(descendantChains(root, snapshot).records.map(x => x.pid), [20, 21, 22]);
+  assert.equal(descendantChains(root, snapshot, 1).reason, 'descendant_limit');
+  assert.equal(descendantChains({ ...root, startTime: 'old' }, snapshot).reason, 'root_identity_changed');
+});
+test('observer stops with explicit unverifiable root and bounded duration', () => temporary(async dir => {
+  const observation = await observeTree(20, { proc: dir, durationMs: 50, intervalMs: 50 });
+  assert.equal(observation.status, 'unverifiable');
+  assert.equal(observation.reason, 'root_not_observed');
 }));
 test('provider diagnostics classify only fixed safe codes and never return raw message', () => {
   for (const m of ['ECONNRESET secret', 'Connection error', 'Request timed out', 'UND_ERR_CONNECT_TIMEOUT']) assert.equal(classifyProviderError(m), 'provider_transport');
