@@ -41,6 +41,7 @@ export class PiProcess extends EventEmitter {
       cwd: options.cwd, env: options.env ?? process.env,
       stdio: ['pipe', 'pipe', 'pipe'], detached: process.platform !== 'win32', windowsHide: true,
     });
+    this.child.stdin.on('error', () => { this.failPending('pi_write_failed'); this.emit('fault', 'pi_write_failed'); });
     const lines = new JsonLines(record => {
       if (record.type === 'response' && this.pending.has(record.id)) {
         const pending = this.pending.get(record.id)!;

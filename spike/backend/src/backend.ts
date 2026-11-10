@@ -2,6 +2,7 @@
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { randomUUID } from 'node:crypto';
 import { PiProcess, type RecordData } from './pi-process.js';
 
 export class Backend {
@@ -47,8 +48,9 @@ export class Backend {
 
   private async saveState(directory: string, state: RecordData) {
     if (!state?.sessionFile) return;
-    await writeFile(join(directory, 'resume.json.tmp'), JSON.stringify({ sessionFile: state.sessionFile }), { mode: 0o600 });
-    await rename(join(directory, 'resume.json.tmp'), join(directory, 'resume.json'));
+    const temporary = join(directory, `resume-${randomUUID()}.tmp`);
+    await writeFile(temporary, JSON.stringify({ sessionFile: state.sessionFile }), { mode: 0o600 });
+    await rename(temporary, join(directory, 'resume.json'));
   }
 
   async command(session: string, command: RecordData) {

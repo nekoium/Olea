@@ -44,6 +44,10 @@ async function prompt(session, message, timeout = 120_000) {
   const deadline = Date.now() + timeout;
   while (Date.now() < deadline) {
     const records = (events.get(session) ?? []).slice(before);
+    if (records.filter(record => record.type === 'turn_start').length > 12) {
+      await backend.command(session, { type: 'abort' });
+      throw new Error('model_turn_limit');
+    }
     if (records.some(record => record.type === 'agent_end' || record.type === 'agent_settled')) {
       const state = await backend.command(session, { type: 'get_state' });
       if (!state.data.isStreaming && !state.data.isCompacting) return records;
