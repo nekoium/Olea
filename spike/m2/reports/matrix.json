@@ -4859,7 +4859,7 @@
     "context": "android-app",
     "mode": "model",
     "status": "pass",
-    "actual": "Explicitly selected stock full-access real Responses turn completed with3commandExecution exit0, fileChange and independent exact randomized artifact/dependency checks; no phone operation.",
+    "actual": "One preferred-model full-access streamed turn completed, sixMCP items and oneUnix command; native effects independently verified despite later native wrapper cleanup failure.",
     "attempts": [
       {
         "attemptId": "codex-host-primary-1794329763090-codex-turn",
@@ -5283,9 +5283,119 @@
           "No phone effect or approval/rejection exercise; full access is explicitly selected, not a silent fallback.",
           "No independent named model-child executable/exit sampling; fresh runner child behavior alone is not causality."
         ]
+      },
+      {
+        "attemptId": "codex-full-access-phone-a01-model-turn",
+        "caseId": "codex.turn",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T18:57:41.467Z",
+        "endedAt": "2026-11-10T18:58:46.146Z",
+        "summary": "One preferred-model full-access streamed turn completed, sixMCP items and oneUnix command; native effects independently verified despite later native wrapper cleanup failure.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01.json",
+            "sha256": "a0f3736b1355b2b2fd4b07bbfe059c5d891828b30f136d63c77c74ecdcf74117"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native-oracle.json",
+            "sha256": "00caab8889e9a95f95a8763a0d7e09c346e2765ccc7df1b715202d19de49f951"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json",
+            "sha256": "2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-foreground.jsonl",
+            "sha256": "b41e6e315273badea31d03f86913aa5e845d768d38adf45caf302544c385eac6"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-source-hashes.txt",
+            "sha256": "2477a9eadc05bd48dba9a5721001a2265c76a1886fe201856c4db4fd3fb4fbf4"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/assess-codex-phone-a01.mjs",
+            "sha256": "cd223050362590712c700e7dc45527a634c647a171596f898987bf39a84ffbb0"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md",
+            "sha256": "143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "allocationId": "m2-android-codex-phone-01",
+          "model": "gpt-6.1-terra",
+          "topLevelPrompts": 1,
+          "actualHttpRequests": null,
+          "latestCumulativeUsage": {
+            "totalTokens": 153240,
+            "inputTokens": 152758,
+            "cachedInputTokens": 127403,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 482,
+            "reasoningOutputTokens": 0
+          },
+          "usageAggregation": "Final cumulative only; duplicate notifications not summed",
+          "configuredRequestRetries": 0,
+          "configuredStreamRetries": 0,
+          "providerErrorNotifications": [],
+          "automaticRunnerReplay": false,
+          "strictTokenCap": "not established",
+          "remoteBilling": "unknown"
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ]
       }
     ],
-    "actualAttemptId": "codex-full-access-unix-a01-codex-turn"
+    "actualAttemptId": "codex-full-access-phone-a01-model-turn"
   },
   {
     "id": "codex.stream",
@@ -5297,7 +5407,7 @@
     "context": "android-app",
     "mode": "model",
     "status": "pass",
-    "actual": "160actual agentMessage deltas, matching acknowledged/completed turn; runner82094.5744ms. First event43.3675ms is adapter event, not first model text. Two stock reconnect notifications retained despite configured retries0.",
+    "actual": "Matching acknowledged/completed turn,115streamed text deltas,64679.9341ms runner; first adapter event86.2721ms is not first text latency.",
     "attempts": [
       {
         "attemptId": "codex-host-primary-1794329763090-codex-stream",
@@ -5670,9 +5780,101 @@
           "No phone effect or approval/rejection exercise; full access is explicitly selected, not a silent fallback.",
           "No independent named model-child executable/exit sampling; fresh runner child behavior alone is not causality."
         ]
+      },
+      {
+        "attemptId": "codex-full-access-phone-a01-stream",
+        "caseId": "codex.stream",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T18:57:41.467Z",
+        "endedAt": "2026-11-10T18:58:46.146Z",
+        "summary": "Matching acknowledged/completed turn,115streamed text deltas,64679.9341ms runner; first adapter event86.2721ms is not first text latency.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01.json",
+            "sha256": "a0f3736b1355b2b2fd4b07bbfe059c5d891828b30f136d63c77c74ecdcf74117"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native-oracle.json",
+            "sha256": "00caab8889e9a95f95a8763a0d7e09c346e2765ccc7df1b715202d19de49f951"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json",
+            "sha256": "2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-foreground.jsonl",
+            "sha256": "b41e6e315273badea31d03f86913aa5e845d768d38adf45caf302544c385eac6"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-source-hashes.txt",
+            "sha256": "2477a9eadc05bd48dba9a5721001a2265c76a1886fe201856c4db4fd3fb4fbf4"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/assess-codex-phone-a01.mjs",
+            "sha256": "cd223050362590712c700e7dc45527a634c647a171596f898987bf39a84ffbb0"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md",
+            "sha256": "143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "accountingReference": "codex-full-access-phone-a01-model-turn"
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ]
       }
     ],
-    "actualAttemptId": "codex-full-access-unix-a01-codex-stream"
+    "actualAttemptId": "codex-full-access-phone-a01-stream"
   },
   {
     "id": "codex.file",
@@ -7575,7 +7777,7 @@
     "context": "android-app",
     "mode": "model",
     "status": "pass",
-    "actual": "Explicit process restart resumed exact proved threadId/home/workspace/accessMode, no second prompt; initial startup2197.4606ms and resume1977.6451ms.",
+    "actual": "Explicit restart retained same proved thread/home/workspace/full-access mode;2096.1293ms resume, no extra prompt.",
     "attempts": [
       {
         "attemptId": "codex-host-primary-1794329763090-codex-resume",
@@ -7948,9 +8150,101 @@
           "No phone effect or approval/rejection exercise; full access is explicitly selected, not a silent fallback.",
           "No independent named model-child executable/exit sampling; fresh runner child behavior alone is not causality."
         ]
+      },
+      {
+        "attemptId": "codex-full-access-phone-a01-resume",
+        "caseId": "codex.resume",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T18:57:41.467Z",
+        "endedAt": "2026-11-10T18:58:46.146Z",
+        "summary": "Explicit restart retained same proved thread/home/workspace/full-access mode;2096.1293ms resume, no extra prompt.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01.json",
+            "sha256": "a0f3736b1355b2b2fd4b07bbfe059c5d891828b30f136d63c77c74ecdcf74117"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native-oracle.json",
+            "sha256": "00caab8889e9a95f95a8763a0d7e09c346e2765ccc7df1b715202d19de49f951"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json",
+            "sha256": "2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-foreground.jsonl",
+            "sha256": "b41e6e315273badea31d03f86913aa5e845d768d38adf45caf302544c385eac6"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-source-hashes.txt",
+            "sha256": "2477a9eadc05bd48dba9a5721001a2265c76a1886fe201856c4db4fd3fb4fbf4"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/assess-codex-phone-a01.mjs",
+            "sha256": "cd223050362590712c700e7dc45527a634c647a171596f898987bf39a84ffbb0"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md",
+            "sha256": "143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "accountingReference": "codex-full-access-phone-a01-model-turn"
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ]
       }
     ],
-    "actualAttemptId": "codex-full-access-unix-a01-codex-resume"
+    "actualAttemptId": "codex-full-access-phone-a01-resume"
   },
   {
     "id": "codex.cancel",
@@ -9242,7 +9536,7 @@
     "context": "android-app",
     "mode": "direct",
     "status": "pass",
-    "actual": "Direct native Accessibility launcher click followed by independently observed target foreground; no intervening intent launch.",
+    "actual": "Fresh direct native launcher click independently reached fixture before model prompt.",
     "attempts": [
       {
         "context": "android-app",
@@ -9319,9 +9613,81 @@
             "passed": true
           }
         ]
+      },
+      {
+        "attemptId": "codex-phone-direct-a01-alpha",
+        "caseId": "phone.direct.accessibility-launch",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T18:56:46.998Z",
+        "endedAt": "2026-11-10T18:56:50.021Z",
+        "summary": "Fresh direct native launcher click independently reached fixture before model prompt.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-direct-a01.json",
+            "sha256": "84f8a015a871c7368e2abb87742965088f9f5d6921b22963589f96f76757df97"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/codex-phone-direct-a01.mjs",
+            "sha256": "f112a43974e10b34c63d778c58b0017eca0b4c262510a2406e35e7c4713b778a"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ]
       }
     ],
-    "actualAttemptId": "direct-a02-alpha"
+    "actualAttemptId": "codex-phone-direct-a01-alpha"
   },
   {
     "id": "phone.pi.accessibility-launch",
@@ -9467,10 +9833,103 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Actual native launcher ACTION_CLICK1794337099290 preceded independent target foreground1794337100177 BEFORE fixture intent1794337115104; strict independent oracle assertion passes.",
+    "attempts": [
+      {
+        "attemptId": "codex-full-access-phone-a01-alpha",
+        "caseId": "phone.codex.accessibility-launch",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T18:57:41.467Z",
+        "endedAt": "2026-11-10T18:58:46.146Z",
+        "summary": "Actual native launcher ACTION_CLICK1794337099290 preceded independent target foreground1794337100177 BEFORE fixture intent1794337115104; strict independent oracle assertion passes.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01.json",
+            "sha256": "a0f3736b1355b2b2fd4b07bbfe059c5d891828b30f136d63c77c74ecdcf74117"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native-oracle.json",
+            "sha256": "00caab8889e9a95f95a8763a0d7e09c346e2765ccc7df1b715202d19de49f951"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json",
+            "sha256": "2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-foreground.jsonl",
+            "sha256": "b41e6e315273badea31d03f86913aa5e845d768d38adf45caf302544c385eac6"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-source-hashes.txt",
+            "sha256": "2477a9eadc05bd48dba9a5721001a2265c76a1886fe201856c4db4fd3fb4fbf4"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/assess-codex-phone-a01.mjs",
+            "sha256": "cd223050362590712c700e7dc45527a634c647a171596f898987bf39a84ffbb0"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md",
+            "sha256": "143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "accountingReference": "codex-full-access-phone-a01-model-turn"
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ]
+      }
+    ],
+    "actualAttemptId": "codex-full-access-phone-a01-alpha"
   },
   {
     "id": "phone.direct.intent-url",
@@ -9686,7 +10145,7 @@
     "context": "android-app",
     "mode": "direct",
     "status": "pass",
-    "actual": "Direct cooperating fixture action accepted; separate UID private oracle independently equals newly generated value.",
+    "actual": "Fresh direct cooperating fixture/private-oracle equality and positive hostUID denial passed before model prompt.",
     "attempts": [
       {
         "context": "android-app",
@@ -9725,9 +10184,81 @@
             "passed": true
           }
         ]
+      },
+      {
+        "attemptId": "codex-phone-direct-a01-integration",
+        "caseId": "phone.direct.app-integration",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T18:56:46.998Z",
+        "endedAt": "2026-11-10T18:56:50.021Z",
+        "summary": "Fresh direct cooperating fixture/private-oracle equality and positive hostUID denial passed before model prompt.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-direct-a01.json",
+            "sha256": "84f8a015a871c7368e2abb87742965088f9f5d6921b22963589f96f76757df97"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/codex-phone-direct-a01.mjs",
+            "sha256": "f112a43974e10b34c63d778c58b0017eca0b4c262510a2406e35e7c4713b778a"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ]
       }
     ],
-    "actualAttemptId": "direct-a02-app-integration"
+    "actualAttemptId": "codex-phone-direct-a01-integration"
   },
   {
     "id": "phone.pi.app-integration",
@@ -9873,10 +10404,103 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Actual MCP-selected fixture action writes Unix-generated random value; separateUID private oracle exact equality and positive host read denial.",
+    "attempts": [
+      {
+        "attemptId": "codex-full-access-phone-a01-integration",
+        "caseId": "phone.codex.app-integration",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T18:57:41.467Z",
+        "endedAt": "2026-11-10T18:58:46.146Z",
+        "summary": "Actual MCP-selected fixture action writes Unix-generated random value; separateUID private oracle exact equality and positive host read denial.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01.json",
+            "sha256": "a0f3736b1355b2b2fd4b07bbfe059c5d891828b30f136d63c77c74ecdcf74117"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native-oracle.json",
+            "sha256": "00caab8889e9a95f95a8763a0d7e09c346e2765ccc7df1b715202d19de49f951"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json",
+            "sha256": "2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-foreground.jsonl",
+            "sha256": "b41e6e315273badea31d03f86913aa5e845d768d38adf45caf302544c385eac6"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-source-hashes.txt",
+            "sha256": "2477a9eadc05bd48dba9a5721001a2265c76a1886fe201856c4db4fd3fb4fbf4"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/assess-codex-phone-a01.mjs",
+            "sha256": "cd223050362590712c700e7dc45527a634c647a171596f898987bf39a84ffbb0"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md",
+            "sha256": "143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "accountingReference": "codex-full-access-phone-a01-model-turn"
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ]
+      }
+    ],
+    "actualAttemptId": "codex-full-access-phone-a01-integration"
   },
   {
     "id": "phone.oracle",
@@ -9885,7 +10509,7 @@
     "context": "android-app",
     "mode": "direct",
     "status": "pass",
-    "actual": "Real host UID10216 cannot read fixture UID10217 private oracle; seven narrow tools expose no oracle reader, fixture UI hides value and private oracle remains outside Unix binds.",
+    "actual": "HostUID10216 read denied for fixtureUID10217 private oracle; Unix value equality/hash retained; manual deployed6tool/hiddenUI contract audit excludes oracle reader.",
     "attempts": [
       {
         "context": "android-app",
@@ -10080,9 +10704,101 @@
           "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
           "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
         ]
+      },
+      {
+        "attemptId": "codex-full-access-phone-a01-oracle",
+        "caseId": "phone.oracle",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T18:57:41.467Z",
+        "endedAt": "2026-11-10T18:58:46.146Z",
+        "summary": "HostUID10216 read denied for fixtureUID10217 private oracle; Unix value equality/hash retained; manual deployed6tool/hiddenUI contract audit excludes oracle reader.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01.json",
+            "sha256": "a0f3736b1355b2b2fd4b07bbfe059c5d891828b30f136d63c77c74ecdcf74117"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native-oracle.json",
+            "sha256": "00caab8889e9a95f95a8763a0d7e09c346e2765ccc7df1b715202d19de49f951"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json",
+            "sha256": "2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-foreground.jsonl",
+            "sha256": "b41e6e315273badea31d03f86913aa5e845d768d38adf45caf302544c385eac6"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-source-hashes.txt",
+            "sha256": "2477a9eadc05bd48dba9a5721001a2265c76a1886fe201856c4db4fd3fb4fbf4"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/assess-codex-phone-a01.mjs",
+            "sha256": "cd223050362590712c700e7dc45527a634c647a171596f898987bf39a84ffbb0"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md",
+            "sha256": "143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "accountingReference": "codex-full-access-phone-a01-model-turn"
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ]
       }
     ],
-    "actualAttemptId": "pi-combined-a01-phone-oracle"
+    "actualAttemptId": "codex-full-access-phone-a01-oracle"
   },
   {
     "id": "phone.pi.combined",
@@ -10228,10 +10944,103 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "One actual Unix crypto value command plus MCP causal launcher/fixture workflow independently matched separateUID private oracle; no Android shell effect substitution.",
+    "attempts": [
+      {
+        "attemptId": "codex-full-access-phone-a01-combined",
+        "caseId": "phone.codex.combined",
+        "context": "android-app",
+        "mode": "model",
+        "status": "pass",
+        "startedAt": "2026-11-10T18:57:41.467Z",
+        "endedAt": "2026-11-10T18:58:46.146Z",
+        "summary": "One actual Unix crypto value command plus MCP causal launcher/fixture workflow independently matched separateUID private oracle; no Android shell effect substitution.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01.json",
+            "sha256": "a0f3736b1355b2b2fd4b07bbfe059c5d891828b30f136d63c77c74ecdcf74117"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native-oracle.json",
+            "sha256": "00caab8889e9a95f95a8763a0d7e09c346e2765ccc7df1b715202d19de49f951"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json",
+            "sha256": "2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-foreground.jsonl",
+            "sha256": "b41e6e315273badea31d03f86913aa5e845d768d38adf45caf302544c385eac6"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-source-hashes.txt",
+            "sha256": "2477a9eadc05bd48dba9a5721001a2265c76a1886fe201856c4db4fd3fb4fbf4"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/assess-codex-phone-a01.mjs",
+            "sha256": "cd223050362590712c700e7dc45527a634c647a171596f898987bf39a84ffbb0"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md",
+            "sha256": "143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "accountingReference": "codex-full-access-phone-a01-model-turn"
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ]
+      }
+    ],
+    "actualAttemptId": "codex-full-access-phone-a01-combined"
   },
   {
     "id": "phone.permission-denied",
@@ -10350,10 +11159,96 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Native STOP200; subsequent inspection AND fixture action rejectedPHONE_STOPPED; independent oracle hash/foreground unchanged, phoneEnabled/backendRunning false. Not Accessibility revocation or rollback.",
+    "attempts": [
+      {
+        "attemptId": "codex-phone-a01-native-stop-assessed",
+        "caseId": "phone.stop",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-10T19:03:58.834Z",
+        "endedAt": "2026-11-10T19:03:58.834Z",
+        "summary": "Native STOP200; subsequent inspection AND fixture action rejectedPHONE_STOPPED; independent oracle hash/foreground unchanged, phoneEnabled/backendRunning false. Not Accessibility revocation or rollback.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-stop.json",
+            "sha256": "5b5e87889f0eea4b23a63037e45a2e15c159246380acfa97e2ab16518ec22f6e"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/stop-after-codex-phone-a01.mjs",
+            "sha256": "a41d5eb4b10aa21ccbdadcb418954709abbc6e065bdf08eaa2bb37f8c56f2133"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "retained_native_and_independent_outcome",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ],
+        "currentState": {
+          "phoneEnabled": false,
+          "backendRunning": false,
+          "accessibility": true,
+          "stopNoEffect": {
+            "oracleHashBefore": "f5fd70b0c4978751e9061cc5e21ebd46ad957f5ff7ca39d9acd68b269457a97c",
+            "oracleHashAfter": "f5fd70b0c4978751e9061cc5e21ebd46ad957f5ff7ca39d9acd68b269457a97c",
+            "oracleUnchanged": true,
+            "foregroundBefore": "topResumedActivity=ActivityRecord{37392680 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t18}",
+            "foregroundAfter": "topResumedActivity=ActivityRecord{37392680 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t18}",
+            "foregroundUnchanged": true
+          }
+        }
+      }
+    ],
+    "actualAttemptId": "codex-phone-a01-native-stop-assessed"
   },
   {
     "id": "phone.cancel",
@@ -10853,8 +11748,8 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "pass",
-    "actual": "5s native timeout caught with same host6197 surviving; rootExitObserved true. Root-only signaling and separate fixture observation do not establish general descendant cleanup.",
+    "status": "fail",
+    "actual": "Actual native210s timeout did not establish root exit; interrupted drain faults and surviving exact tracedGit/PRoot identities remain a failed supervision result, not masked by model success.",
     "attempts": [
       {
         "attemptId": "runtime-harness-a01-timeout",
@@ -10916,9 +11811,102 @@
           "Raw drain InterruptedIOException recorded but caught; original old-APK crash remains separate.",
           "No model/provider calls; no generic descendant exit claim."
         ]
+      },
+      {
+        "attemptId": "codex-phone-a01-original-timeout",
+        "caseId": "native.timeout",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "fail",
+        "startedAt": "2026-11-10T18:57:40.494Z",
+        "endedAt": "2026-11-10T19:01:10.532Z",
+        "summary": "Actual native210s timeout did not establish root exit; interrupted drain faults and surviving exact tracedGit/PRoot identities remain a failed supervision result, not masked by model success.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json",
+            "sha256": "2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-cleanup-identities.txt",
+            "sha256": "7c783d091ab8f5dd65036d20851e5e1aabf84eb8138ca16fb2da99e9872dffce"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-owned-cleanup.txt",
+            "sha256": "bb568a23b01cb9e3046239769e78f7f12ea59bf8c4f9393014d29e1b34efb3e5"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-after-targeted-cleanup.txt",
+            "sha256": "8e6c054c198e1827fb657562e84fd25571cbfc9ae435cf5f16112c2c57591432"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-after-cleanup-capabilities.json",
+            "sha256": "0befd7a7fca82a01d6a4cbbef0f7112cbfe37bc009c47789f21fab027c63e59d"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md",
+            "sha256": "143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f"
+          }
+        ],
+        "assertions": [],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ],
+        "failureClass": "runtime",
+        "currentState": {
+          "observedAt": "2026-11-10T19:06:45Z",
+          "repair": "Fresh UID10216/start702081 check thenSIGTERM onlygitremote16516; git16514 vanished duringcheck/unsignaled,PRoot16364alreadyabsent; all3 absent after3s+independent5sfinalsnapshot.",
+          "identityLimits": "HistoricalPIDconstants must never be replayed; not generic descendant cleanup.",
+          "hosts": "Primary9619/fixture9732/repeat12459 listedonly atrepairfinalsnapshot",
+          "phoneEnabled": false,
+          "backendRunning": false,
+          "accessibility": true,
+          "lease": "Currentruntimeowner retains until explicit savedrelease; no transfer."
+        }
       }
     ],
-    "actualAttemptId": "runtime-harness-a01-timeout"
+    "actualAttemptId": "codex-phone-a01-original-timeout"
   },
   {
     "id": "native.inherited-pipes",
@@ -11927,8 +12915,8 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "After graceful completed workflow, original Pi identity absent and independent app-UID snapshot lists host9619 only. This is not active-work cancellation, all possible descendants, whole-service death, or permanent cleanup proof.",
+    "status": "fail",
+    "actual": "Native wrapper timed out210s after successful model turn; rootExitObserved=false, reparentedGit16514/16516 remained traced byPRoot16364. Later exactidentitySIGTERMrepair does not pass genericcleanup.",
     "attempts": [
       {
         "attemptId": "pi-combined-a01-cost-cleanup",
@@ -12043,9 +13031,102 @@
           "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
           "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
         ]
+      },
+      {
+        "attemptId": "codex-phone-a01-original-cleanup",
+        "caseId": "cost.cleanup",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "fail",
+        "startedAt": "2026-11-10T18:57:40.494Z",
+        "endedAt": "2026-11-10T19:01:10.532Z",
+        "summary": "Native wrapper timed out210s after successful model turn; rootExitObserved=false, reparentedGit16514/16516 remained traced byPRoot16364. Later exactidentitySIGTERMrepair does not pass genericcleanup.",
+        "artifacts": [
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-full-access-phone-a01-native.json",
+            "sha256": "2fda4bd710f11810e0b26388525c19ea2b5ddbd348e2e3825a0d29b568b0ce68"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-cleanup-identities.txt",
+            "sha256": "7c783d091ab8f5dd65036d20851e5e1aabf84eb8138ca16fb2da99e9872dffce"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-owned-cleanup.txt",
+            "sha256": "bb568a23b01cb9e3046239769e78f7f12ea59bf8c4f9393014d29e1b34efb3e5"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-after-targeted-cleanup.txt",
+            "sha256": "8e6c054c198e1827fb657562e84fd25571cbfc9ae435cf5f16112c2c57591432"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/evidence/codex-phone-a01-after-cleanup-capabilities.json",
+            "sha256": "0befd7a7fca82a01d6a4cbbef0f7112cbfe37bc009c47789f21fab027c63e59d"
+          },
+          {
+            "path": "git:f976dc2:spike/m2/runtime/CODEX_FULL_ACCESS_PHONE.md",
+            "sha256": "143feacf7ce7e75924871f758db7f25f4b30be031e450f64dca0fe00a1dde39f"
+          }
+        ],
+        "assertions": [],
+        "execution": {
+          "accessMode": "full-access",
+          "stockSandbox": "danger-full-access",
+          "approvalPolicy": "never",
+          "filesystemIsolation": false,
+          "targetSdk": 36,
+          "androidApi": 36,
+          "hostUid": 10216,
+          "fixtureUid": 10217,
+          "hostPid": 9619,
+          "hostStartTicks": "150689",
+          "domain": "u:r:untrusted_app:s0:c216,c256,c512,c768",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "turnId": "01a1c6d2-c3a1-7992-9e57-5be352cca41c",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "home": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home",
+          "nativeSupervision": {
+            "timedOut": true,
+            "exitCode": null,
+            "rootExitObserved": false,
+            "descendantExitVerified": false,
+            "classification": "cleanup-failed-or-unverified-after-successful-model-turn"
+          }
+        },
+        "provider": {
+          "topLevelPrompts": 0
+        },
+        "provenance": {
+          "sourceCommit": "f976dc2",
+          "sourceSha256": {
+            "/opt/olea/spike/tests/codex/run-stock.mjs": "7d39700d7a2a51f323a295f23498bdf9991b4e60cf74782d5dcfbedd6aebef32",
+            "/opt/olea/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+            "/opt/olea/spike/backend/dist/codex-process.js": "307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef",
+            "/opt/olea/spike/backend/dist/codex-session.js": "9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90",
+            "/opt/olea/spike/backend/dist/phone-mcp.js": "34a0253e2ee20d9c398796d5c4dbd128d282661dc3958cc6c824a153bdf6fdb6",
+            "/opt/olea/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+            "/opt/olea/spike/backend/dist/process-tree.js": "70b158acd40554bc23b16ee6f65214c0a08efae8fb61c7189ae688d80c6f9dfd"
+          }
+        },
+        "limits": [
+          "Model effects/turn/resume pass separately from original native210s timeout/root/descendant cleanup failure.",
+          "Explicit full access has no agent filesystem/credential isolation or approval gate; Kotlin native current permission/stop authority remains.",
+          "Generic MCP item receipt omits per-call names; correlated exact native audit records operation names. Oracle-tool exclusion is manual exact-source/contract audit.",
+          "No ordinary Codex update, broad lifecycle/physical or all-category phone proof."
+        ],
+        "failureClass": "runtime",
+        "currentState": {
+          "observedAt": "2026-11-10T19:06:45Z",
+          "repair": "Fresh UID10216/start702081 check thenSIGTERM onlygitremote16516; git16514 vanished duringcheck/unsignaled,PRoot16364alreadyabsent; all3 absent after3s+independent5sfinalsnapshot.",
+          "identityLimits": "HistoricalPIDconstants must never be replayed; not generic descendant cleanup.",
+          "hosts": "Primary9619/fixture9732/repeat12459 listedonly atrepairfinalsnapshot",
+          "phoneEnabled": false,
+          "backendRunning": false,
+          "accessibility": true,
+          "lease": "Currentruntimeowner retains until explicit savedrelease; no transfer."
+        }
       }
     ],
-    "actualAttemptId": "pi-combined-a01-cost-cleanup"
+    "actualAttemptId": "codex-phone-a01-original-cleanup"
   },
   {
     "id": "cost.constrained-core",
