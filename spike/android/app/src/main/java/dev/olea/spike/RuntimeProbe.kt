@@ -30,23 +30,32 @@ object RuntimeProbe {
                 }.start()
                 // Android's public java.lang.Process API does not expose a child PID.
                 report.put("childPid", JSONObject.NULL)
-                val output = StringBuilder()
-                val errors = StringBuilder()
-                fun drain(source: java.io.InputStream, target: StringBuilder) = Thread {
-                    source.bufferedReader().use { reader ->
-                        val buffer = CharArray(4096)
-                        while (true) { val count = reader.read(buffer); if (count < 0) break
-                            synchronized(target) { if (target.length < 524288) target.append(buffer, 0, minOf(count, 524288 - target.length)) }
+                val output = java.io.ByteArrayOutputStream()
+                val errors = java.io.ByteArrayOutputStream()
+                val totals = LongArray(2)
+                fun drain(source: java.io.InputStream, target: java.io.ByteArrayOutputStream, index: Int) = Thread {
+                    source.use { input ->
+                        val buffer = ByteArray(4096)
+                        while (true) { val count = input.read(buffer); if (count < 0) break
+                            totals[index] += count
+                            synchronized(target) { if (target.size() < 65536) target.write(buffer, 0, minOf(count, 65536 - target.size())) }
                         }
                     }
                 }.apply { start() }
-                val stdout = drain(child.inputStream, output)
-                val stderr = drain(child.errorStream, errors)
+                val stdout = drain(child.inputStream, output, 0)
+                val stderr = drain(child.errorStream, errors, 1)
                 val exited = child.waitFor(240, TimeUnit.SECONDS)
                 if (!exited) child.destroyForcibly()
                 stdout.join(2000); stderr.join(2000)
                 report.put("timedOut", !exited).put("exitCode", if (exited) child.exitValue() else JSONObject.NULL)
-                    .put("stdout", output.toString()).put("stderr", errors.toString())
+                    .put("stdout", synchronized(output) { output.toString("UTF-8") })
+                    .put("stderr", synchronized(errors) { errors.toString("UTF-8") })
+                    .put("stdoutObservedBytes", totals[0]).put("stderrObservedBytes", totals[1])
+                    .put("stdoutRetainedBytes", output.size()).put("stderrRetainedBytes", errors.size())
+                    .put("outputTruncated", totals[0] > output.size() || totals[1] > errors.size())
+                    .put("drainersStillAlive", stdout.isAlive || stderr.isAlive)
+                    .put("descendantExitVerified", false)
+                    .put("timeoutCleanupLimit", "Root shell termination only; independent descendant identity checks required")
             } catch (error: Exception) { report.put("error", error.toString().take(1024)) }
             report.put("endedAtMs", System.currentTimeMillis())
             File(service.filesDir, "m2/$attempt.json").writeText(report.toString(2))
