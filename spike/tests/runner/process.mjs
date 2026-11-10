@@ -14,21 +14,33 @@ export function run(command, args = [], { timeoutMs = 15000, maxBytes = 32768, c
     const started = performance.now();
     let stdout = '', stderr = '', bytes = 0, timedOut = false, overflow = false, spawnError;
     const child = spawn(command, args, { cwd, env, windowsHide: true, detached: process.platform !== 'win32', stdio: ['pipe', 'pipe', 'pipe'] });
-    let finished = false;
+    let finished = false, settlementTimer, pipeClosureTimeout = false, treeKillExitCode = null;
     const kill = () => {
+      if (finished) return;
       if (process.platform === 'win32') {
         const killer = spawn('taskkill.exe', ['/pid', String(child.pid), '/t', '/f'], { windowsHide: true, stdio: 'ignore' });
         killer.on('error', () => child.kill());
+        killer.on('close', code => { treeKillExitCode = code; if (code !== 0) child.kill(); });
+        killer.unref();
       } else {
         try { process.kill(-child.pid, 'SIGKILL'); } catch { child.kill('SIGKILL'); }
       }
+      if (!settlementTimer) settlementTimer = setTimeout(() => {
+        pipeClosureTimeout = true;
+        child.stdout.destroy();
+        child.stderr.destroy();
+        child.stdin.destroy();
+        child.unref();
+        finish(child.exitCode, child.signalCode);
+      }, 2000);
     };
     const timer = setTimeout(() => { timedOut = true; kill(); }, timeoutMs);
     const finish = (code, signal) => {
       if (finished) return;
       finished = true;
       clearTimeout(timer);
-      resolve({ command, args, exitCode: code, signal, timedOut, overflow, spawnError,
+      clearTimeout(settlementTimer);
+      resolve({ command, args, exitCode: code, signal, timedOut, overflow, spawnError, pipeClosureTimeout, treeKillExitCode,
         elapsedMs: Math.round(performance.now() - started), stdout: redact(stdout), stderr: redact(stderr) });
     };
     for (const [name, stream] of [['stdout', child.stdout], ['stderr', child.stderr]]) {

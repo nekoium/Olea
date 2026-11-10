@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { run, redact } from './process.mjs';
 import { buildMatrix, render } from './report.mjs';
+import { summarizeSse } from '../../probes/responses-provider.mjs';
 import { parseStat, descendants } from '../../probes/resources.mjs';
 
 test('redacts token material while preserving documented flags', () => {
@@ -43,6 +44,19 @@ test('deadline cleans a task-owned descendant tree', async () => {
   }
   assert.ok(gone, 'owned descendant must exit after parent deadline');
 });
+test('deadline settles inherited pipes without claiming detached cleanup', async () => {
+  const script = 'const {spawn}=require("node:child_process");const child=spawn(process.execPath,["-e","setInterval(()=>{},1000)"],{detached:true,stdio:["ignore",process.stdout,process.stderr]});console.log(child.pid);child.unref()';
+  const result = await run(process.execPath, ['-e', script], { timeoutMs: 700 });
+  const descendant = Number(result.stdout.trim());
+  assert.ok(Number.isInteger(descendant) && descendant > 1);
+  try {
+    assert.equal(result.timedOut, true);
+    assert.equal(result.pipeClosureTimeout, true);
+    assert.ok(result.elapsedMs < 5000);
+  } finally {
+    try { process.kill(descendant, 'SIGKILL'); } catch (error) { if (error.code !== 'ESRCH') throw error; }
+  }
+});
 test('report refuses fake pass, host scope and unpassed prerequisites', () => {
   assert.throws(() => buildMatrix({ assessments: [{ id: 'runtime.baseline', status: 'pass', scope: 'android-emulator' }] }), /independent assertion/);
   assert.throws(() => buildMatrix({ assessments: [{ id: 'runtime.baseline', status: 'pass', scope: 'host-only', evidence: ['fixture'], independentAssertion: 'fixture' }] }), /Scope mismatch/);
@@ -62,6 +76,28 @@ test('offline HTML escapes evidence and has no remote asset dependencies', () =>
   assert.ok(!html.includes('<script>'));
   assert.ok(!/<(?:script|link|img)[^>]*(?:src|href)=/.test(html));
   assert.equal(matrix.judgment, 'insufficient-evidence');
+});
+test('SSE parser handles split CRLF and stops at bounded terminal without retaining payloads', async () => {
+  const terminal = { type: 'response.completed', response: { output: [{ type: 'function_call', name: 'echo_test', arguments: JSON.stringify({ value: 'olea-responses-probe' }) }], usage: { input_tokens: 3, output_tokens: 4 } } };
+  const text = 'data: ' + JSON.stringify({ type: 'response.created' }) + '\r\n\r\ndata: ' + JSON.stringify(terminal) + '\r\n\r\n';
+  const bytes = new TextEncoder().encode(text);
+  const pieces = [bytes.slice(0, 12), bytes.slice(12, 48), bytes.slice(48)];
+  let cancelled = false;
+  const result = await summarizeSse({ read: async () => pieces.length ? { done: false, value: pieces.shift() } : { done: true }, cancel: async () => { cancelled = true; } });
+  assert.equal(result.completed, true);
+  assert.equal(result.toolCallVerified, true);
+  assert.equal(result.eventCount, 2);
+  assert.deepEqual(result.usage, { inputTokens: 3, outputTokens: 4 });
+  assert.equal(cancelled, true);
+  assert.ok(!JSON.stringify(result).includes('arguments'));
+});
+test('SSE parser reports malformed events and independent output cap', async () => {
+  const bytes = new TextEncoder().encode('data: not-json\n\ndata: ' + 'x'.repeat(100));
+  let calls = 0;
+  const result = await summarizeSse({ read: async () => calls++ ? { done: true } : { done: false, value: bytes }, cancel: async () => {} }, { maxTotalBytes: 1000, maxEventBytes: 32 });
+  assert.equal(result.malformedEvents, 1);
+  assert.equal(result.reason, 'event_limit');
+  assert.equal(result.completed, false);
 });
 test('proc stat names can contain spaces/parentheses; descendants deduplicate roots', () => {
   const fields = Array(22).fill('0');

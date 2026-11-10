@@ -15,7 +15,10 @@ export function catalog() {
     ['dns-tls', 'Resolve and verify TLS to required upstream/provider endpoints; separate outages.'],
     ['dependency', 'Install and use a representative dependency through ordinary package manager.'],
     ['children', 'Run child and descendant processes; verify exit and independently observe cleanup.'],
-  ]) add(`runtime.${id}`, expected, id === 'baseline' ? [] : ['runtime.baseline']);
+  ]) {
+    const prerequisites = { baseline: [], packaging: ['runtime.baseline'], provenance: [], shell: ['runtime.packaging'], node: ['runtime.shell'], git: ['runtime.shell'], 'dns-tls': ['runtime.shell'], dependency: ['runtime.node', 'runtime.dns-tls'], children: ['runtime.node'] };
+    add(`runtime.${id}`, expected, prerequisites[id], id === 'provenance' ? 'artifacts' : 'android-emulator');
+  }
   for (const version of ['0.74.0', '1.0.0', '1.5.2']) {
     const base = `pi.${version}`;
     add(`${base}.install`, `Install stock Pi ${version} through supported upstream channel on fixed Node/base; no private patch.`, ['runtime.node', 'runtime.dns-tls']);
@@ -51,8 +54,8 @@ export function catalog() {
   for (const agent of ['codex', 'claude']) {
     for (const name of ['install', 'startup', 'integration', 'authenticated-workflow']) add(`${agent}.${name}`, `Stock ${agent} ${name} on Android Linux; supported interface, no private port.`, name === 'install' ? ['runtime.node', 'runtime.dns-tls'] : [`${agent}.install`]);
   }
-  for (const name of ['cold-start', 'idle-cpu', 'streaming', 'one-session', 'two-sessions', 'direct-vs-managed', 'output-bounds', 'cleanup', 'constrained']) add(`cost.${name}`, `Measure ${name} with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.`, ['runtime.packaging', 'pi.1.5.2.rpc']);
-  for (const name of ['app-switch', 'screen-lock', 'child-failure', 'app-death', 'update-preservation']) add(`lifecycle.${name}`, `Exercise ${name}; independently distinguish live execution, saved transcript/workspace and restored process; never repeat uncertain phone action.`, ['runtime.packaging']);
+  for (const name of ['setup-time', 'install-size', 'cold-start', 'idle-cpu', 'streaming', 'one-session', 'two-sessions', 'direct-vs-managed', 'output-bounds', 'cleanup', 'constrained']) add(`cost.${name}`, `Measure ${name} with fixed workload, scope, units, versions and allocation; include Kotlin/PRoot/backend/agents and total cost.`, ['runtime.packaging', 'pi.1.5.2.rpc']);
+  for (const name of ['app-switch', 'screen-lock', 'child-failure', 'app-death', 'reboot', 'update-preservation']) add(`lifecycle.${name}`, `Exercise ${name}; independently distinguish live execution, saved transcript/workspace and restored process; never repeat uncertain phone action.`, ['runtime.packaging']);
   for (const name of ['abi', 'unix', 'phone', 'thermals-battery']) {
     add(`physical.${name}`, `Verify ${name} on connected physical Android14 phone after recording ABI; emulator evidence is insufficient.`, [], 'physical-phone');
     cases.at(-1).status = 'blocked';
