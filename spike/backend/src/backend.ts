@@ -65,9 +65,9 @@ export class Backend {
     const pi = new PiProcess({ entry: this.options.entry, cwd: this.options.workspace, args, env: this.options.env });
     this.starting.delete(session);
     this.sessions.set(session, pi);
-    pi.on('record', record => this.event({ type: 'event', session, record }));
-    pi.on('fault', code => this.event({ type: 'fault', session, code }));
-    pi.on('exit', detail => { if (this.sessions.get(session) === pi) this.sessions.delete(session); this.event({ type: 'exit', session, ...detail }); void pi.stop(); });
+    pi.on('record', record => this.event({ type: 'event', agent: 'pi', session, record }));
+    pi.on('fault', code => this.event({ type: 'fault', agent: 'pi', session, code }));
+    pi.on('exit', detail => { if (this.sessions.get(session) === pi) this.sessions.delete(session); this.event({ type: 'exit', agent: 'pi', session, ...detail }); void pi.stop(); });
     try {
       const state = await pi.request({ type: 'get_state' }, 60_000);
       await pi.request({ type: 'set_auto_retry', enabled: false });

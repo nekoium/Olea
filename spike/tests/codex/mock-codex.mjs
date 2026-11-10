@@ -26,9 +26,10 @@ readline.createInterface({ input: process.stdin }).on('line', line => {
       for (let i = 0; i < 13; i++) send({ method: 'item/started', params: { threadId: 'foreign-thread', turnId: 'foreign-turn', item: { type: 'commandExecution' } } });
     }
     active = 'turn-' + id;
+    if (text === 'preack') for (let i = 0; i < 13; i++) send({ method: 'item/started', params: { threadId: params.threadId, turnId: active, item: { type: 'commandExecution' } } });
     send({ id, result: { turn: { id: active, status: 'inProgress' } } });
     if (text === 'approval') return send({ id: 'approval', method: 'item/commandExecution/requestApproval', params: { threadId: params.threadId, turnId: active, command: 'harmless fixture' } });
     if (text === 'unknown') return send({ id: 'unknown', method: 'future/request', params: {} });
-    if (!['wait', 'foreign'].includes(text)) send({ method: 'turn/completed', params: { threadId: params.threadId, turn: { id: active, status: 'completed' } } });
+    if (!['wait', 'foreign', 'preack'].includes(text)) send({ method: 'turn/completed', params: { threadId: params.threadId, turn: { id: active, status: 'completed' } } });
   }
 });

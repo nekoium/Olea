@@ -76,6 +76,13 @@ test('late unrelated completion and foreign tool events never clear active turn'
   assert.equal(f.events.some(event => event.code === 'codex_tool_round_limit'), false);
   await f.backend.codexCommand('one', { method: 'turn/interrupt' });
 });
+test('tool notifications before acknowledgement reconcile by turn ID and trigger limit', async t => {
+  const f = await fixture(t);
+  const turn = await f.backend.codexCommand('one', { method: 'turn/start', params: { text: 'preack' } });
+  await new Promise(resolve => setTimeout(resolve, 30));
+  assert.ok(f.events.some(event => event.code === 'codex_tool_round_limit'));
+  assert.ok(f.events.some(event => event.record?.params?.turn?.id === turn.turn.id && event.record.params.turn.status === 'interrupted'));
+});
 test('unknown server request is rejected without action', async t => {
   const f = await fixture(t);
   await f.backend.codexCommand('one', { method: 'turn/start', params: { text: 'unknown' } });

@@ -80,7 +80,7 @@ export class CodexProcess extends EventEmitter {
     if (this.failed) return;
     this.failed = true;
     for (const value of this.pending.values()) { clearTimeout(value.timer); value.reject(new Error(code)); }
-    this.pending.clear(); this.approvals.clear(); this.emit('fault', code);
+    this.pending.clear(); this.approvals.clear(); if (code !== 'codex_stopped') this.emit('fault', code);
   }
   stop() { return this.stopping ??= this.stopInner(); }
   private async stopInner() {
@@ -91,7 +91,7 @@ export class CodexProcess extends EventEmitter {
         try { const root = await processIdentity(this.child.pid); if (root.uid === await procIO.owner('self')) owned = [root]; } catch {}
       }
     }
-    this.fail('codex_delivery_unknown'); this.child.stdin.end();
+    this.fail(this.pending.size ? 'codex_delivery_unknown' : 'codex_stopped'); this.child.stdin.end();
     for (const signal of ['SIGTERM', 'SIGKILL'] as const) {
       if (process.platform === 'linux') {
         for (const identity of [...owned].reverse()) { try { await signalOwnedProcess(identity, signal); } catch { this.emit('fault', 'cleanup_signal_unverifiable'); } }

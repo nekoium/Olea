@@ -19,7 +19,7 @@ export class CodexSession {
   threadId?: string;
   private turnId?: string;
   private timer?: NodeJS.Timeout;
-  private toolRounds = 0;
+  private toolCounts = new Map<string, number>();
   private inFlight = false;
   private completed = new Set<string>();
   private constructor(private directory: string, private cwd: string, private home: string, options: { command: string; args?: string[]; env: NodeJS.ProcessEnv }, private event: (record: RecordData) => void) {
@@ -30,8 +30,11 @@ export class CodexSession {
         if (this.completed.size > 32) this.completed.delete(this.completed.values().next().value!);
         if (this.turnId === record.params.turn.id) { clearTimeout(this.timer); this.inFlight = false; this.turnId = undefined; }
       }
-      if (record.method === 'item/started' && record.params?.threadId === this.threadId && record.params?.turnId === this.turnId && ['commandExecution', 'mcpToolCall'].includes(record.params?.item?.type)) {
-        if (++this.toolRounds > 12) { void this.interrupt().catch(() => {}); this.event({ type: 'fault', agent: 'codex', code: 'codex_tool_round_limit' }); }
+      if (record.method === 'item/started' && this.inFlight && record.params?.threadId === this.threadId && typeof record.params?.turnId === 'string' && ['commandExecution', 'mcpToolCall'].includes(record.params?.item?.type)) {
+        const id = record.params.turnId;
+        if (!this.toolCounts.has(id) && this.toolCounts.size >= 32) { void this.stop(); return; }
+        const count = (this.toolCounts.get(id) ?? 0) + 1; this.toolCounts.set(id, count);
+        if (id === this.turnId && count > 12) this.enforceToolLimit();
       }
       this.event({ type: 'event', agent: 'codex', record });
     });
@@ -81,17 +84,24 @@ export class CodexSession {
     if (method !== 'turn/start') throw new Error('codex_unsupported_command');
     if (this.inFlight) throw new Error('codex_turn_active');
     if (typeof params.text !== 'string' || params.text.length > 32000) throw new Error('codex_invalid_input');
-    this.inFlight = true; this.toolRounds = 0;
+    this.inFlight = true; this.toolCounts.clear();
     // A timed-out turn stays uncertain; caller must explicitly reconcile, never replay.
     this.timer = setTimeout(() => { void this.interrupt().catch(() => {}); this.event({ type: 'fault', agent: 'codex', code: 'codex_turn_deadline_delivery_unknown' }); }, 120_000);
     try {
       const result = await this.process.request(method, { threadId: this.threadId, input: [{ type: 'text', text: params.text, text_elements: [] }] });
       const turnId = result.turn?.id;
       if (typeof turnId !== 'string') throw new Error('codex_invalid_turn');
-      if (!this.completed.has(turnId)) this.turnId = turnId;
+      if (!this.completed.has(turnId)) {
+        this.turnId = turnId;
+        if ((this.toolCounts.get(turnId) ?? 0) > 12) this.enforceToolLimit();
+      }
       else { clearTimeout(this.timer); this.inFlight = false; }
       return result;
     } catch (error) { void this.interrupt().catch(() => {}); throw error; }
+  }
+  private enforceToolLimit() {
+    void this.interrupt().catch(() => {});
+    this.event({ type: 'fault', agent: 'codex', code: 'codex_tool_round_limit' });
   }
   private interrupt() {
     if (!this.turnId) return Promise.reject(new Error('codex_turn_delivery_unknown'));
