@@ -1,0 +1,428 @@
+{
+  "status": 200,
+  "id": "direct-test",
+  "ok": true,
+  "result": {
+    "package": "com.android.chrome",
+    "nodes": [
+      {
+        "nodeId": "1216aa12:0",
+        "clickable": false,
+        "className": "android.widget.FrameLayout",
+        "bounds": [
+          0,
+          0,
+          1080,
+          2400
+        ],
+        "depth": 0
+      },
+      {
+        "nodeId": "1216aa12:1",
+        "clickable": false,
+        "className": "android.widget.FrameLayout",
+        "bounds": [
+          0,
+          118,
+          1080,
+          2337
+        ],
+        "depth": 1
+      },
+      {
+        "nodeId": "1216aa12:2",
+        "text": "www.google.com",
+        "clickable": false,
+        "className": "android.webkit.WebView",
+        "bounds": [
+          0,
+          320,
+          1082,
+          2340
+        ],
+        "depth": 2
+      },
+      {
+        "nodeId": "1216aa12:3",
+        "text": "",
+        "viewId": "content",
+        "clickable": false,
+        "className": "android.view.View",
+        "bounds": [
+          0,
+          535,
+          1082,
+          1396
+        ],
+        "depth": 3
+      },
+      {
+        "nodeId": "1216aa12:4",
+        "text": "",
+        "viewId": "main-frame-error",
+        "clickable": false,
+        "className": "android.view.View",
+        "bounds": [
+          0,
+          535,
+          1082,
+          1396
+        ],
+        "depth": 4
+      },
+      {
+        "nodeId": "1216aa12:5",
+        "text": "",
+        "viewId": "main-content",
+        "clickable": false,
+        "className": "android.view.View",
+        "bounds": [
+          63,
+          535,
+          1021,
+          1396
+        ],
+        "depth": 5
+      },
+      {
+        "nodeId": "1216aa12:6",
+        "text": "",
+        "clickable": false,
+        "className": "android.widget.Image",
+        "bounds": [
+          63,
+          535,
+          252,
+          726
+        ],
+        "depth": 6
+      },
+      {
+        "nodeId": "1216aa12:7",
+        "text": "",
+        "viewId": "main-message",
+        "clickable": false,
+        "className": "android.view.View",
+        "bounds": [
+          63,
+          866,
+          1021,
+          1291
+        ],
+        "depth": 6
+      },
+      {
+        "nodeId": "1216aa12:8",
+        "text": "This site can’t be reached",
+        "clickable": false,
+        "className": "android.widget.TextView",
+        "bounds": [
+          63,
+          866,
+          1021,
+          942
+        ],
+        "depth": 7
+      },
+      {
+        "nodeId": "1216aa12:9",
+        "text": "www.google.com",
+        "clickable": false,
+        "className": "android.view.View",
+        "bounds": [
+          63,
+          989,
+          354,
+          1036
+        ],
+        "depth": 7
+      },
+      {
+        "nodeId": "1216aa12:10",
+        "text": " unexpectedly closed the connection.",
+        "clickable": false,
+        "className": "android.widget.TextView",
+        "bounds": [
+          351,
+          989,
+          968,
+          1036
+        ],
+        "depth": 7
+      },
+      {
+        "nodeId": "1216aa12:11",
+        "text": "",
+        "viewId": "suggestions-list",
+        "clickable": false,
+        "className": "android.view.View",
+        "bounds": [
+          63,
+          1062,
+          1021,
+          1188
+        ],
+        "depth": 7
+      },
+      {
+        "nodeId": "1216aa12:12",
+        "text": "Try:",
+        "clickable": false,
+        "className": "android.widget.TextView",
+        "bounds": [
+          63,
+          1062,
+          1021,
+          1125
+        ],
+        "depth": 8
+      },
+      {
+        "nodeId": "1216aa12:13",
+        "text": "",
+        "clickable": false,
+        "className": "android.widget.ListView",
+        "bounds": [
+          63,
+          1123,
+          1021,
+          1188
+        ],
+        "depth": 8
+      },
+      {
+        "nodeId": "1216aa12:14",
+        "text": "Checking the connection",
+        "clickable": false,
+        "className": "android.view.View",
+        "bounds": [
+          63,
+          1123,
+          1021,
+          1188
+        ],
+        "depth": 9
+      },
+      {
+        "nodeId": "1216aa12:15",
+        "text": "ERR_CONNECTION_CLOSED",
+        "clickable": false,
+        "className": "android.widget.TextView",
+        "bounds": [
+          63,
+          1225,
+          1021,
+          1291
+        ],
+        "depth": 7
+      },
+      {
+        "nodeId": "1216aa12:16",
+        "text": "",
+        "viewId": "buttons",
+        "clickable": false,
+        "className": "android.view.View",
+        "bounds": [
+          0,
+          1979,
+          1082,
+          2340
+        ],
+        "depth": 5
+      },
+      {
+        "nodeId": "1216aa12:17",
+        "text": "",
+        "viewId": "control-buttons",
+        "clickable": false,
+        "className": "android.view.View",
+        "bounds": [
+          63,
+          1979,
+          1021,
+          2139
+        ],
+        "depth": 6
+      },
+      {
+        "nodeId": "1216aa12:18",
+        "text": "Reload",
+        "viewId": "reload-button",
+        "clickable": true,
+        "className": "android.widget.Button",
+        "bounds": [
+          63,
+          1994,
+          1021,
+          2123
+        ],
+        "depth": 7
+      },
+      {
+        "nodeId": "1216aa12:19",
+        "text": "Details",
+        "viewId": "details-button",
+        "clickable": true,
+        "className": "android.widget.Button",
+        "bounds": [
+          63,
+          2152,
+          1021,
+          2283
+        ],
+        "depth": 6
+      },
+      {
+        "nodeId": "1216aa12:20",
+        "text": "No internet connection",
+        "viewId": "com.android.chrome:id/status_text",
+        "clickable": false,
+        "className": "android.widget.TextView",
+        "bounds": [
+          346,
+          118,
+          734,
+          173
+        ],
+        "depth": 1
+      },
+      {
+        "nodeId": "1216aa12:21",
+        "viewId": "com.android.chrome:id/toolbar",
+        "clickable": false,
+        "className": "android.widget.FrameLayout",
+        "bounds": [
+          0,
+          173,
+          1080,
+          320
+        ],
+        "depth": 1
+      },
+      {
+        "nodeId": "1216aa12:22",
+        "description": "Open the home page",
+        "viewId": "com.android.chrome:id/home_button",
+        "clickable": true,
+        "className": "android.widget.ImageButton",
+        "bounds": [
+          0,
+          173,
+          126,
+          320
+        ],
+        "depth": 2
+      },
+      {
+        "nodeId": "1216aa12:23",
+        "viewId": "com.android.chrome:id/location_bar",
+        "clickable": false,
+        "className": "android.widget.FrameLayout",
+        "bounds": [
+          126,
+          173,
+          691,
+          320
+        ],
+        "depth": 2
+      },
+      {
+        "nodeId": "1216aa12:24",
+        "viewId": "com.android.chrome:id/location_bar_status",
+        "clickable": true,
+        "className": "android.widget.LinearLayout",
+        "bounds": [
+          126,
+          173,
+          210,
+          320
+        ],
+        "depth": 3
+      },
+      {
+        "nodeId": "1216aa12:25",
+        "description": "Your connection to this site is not secure",
+        "viewId": "com.android.chrome:id/location_bar_status_icon",
+        "clickable": false,
+        "className": "android.widget.ImageView",
+        "bounds": [
+          136,
+          215,
+          199,
+          278
+        ],
+        "depth": 4
+      },
+      {
+        "nodeId": "1216aa12:26",
+        "text": "google.com/?olea=20261110",
+        "viewId": "com.android.chrome:id/url_bar",
+        "clickable": true,
+        "className": "android.widget.EditText",
+        "bounds": [
+          210,
+          181,
+          670,
+          312
+        ],
+        "depth": 3
+      },
+      {
+        "nodeId": "1216aa12:27",
+        "viewId": "com.android.chrome:id/toolbar_buttons",
+        "clickable": false,
+        "className": "android.widget.LinearLayout",
+        "bounds": [
+          691,
+          173,
+          1080,
+          320
+        ],
+        "depth": 2
+      },
+      {
+        "nodeId": "1216aa12:28",
+        "description": "New tab",
+        "viewId": "com.android.chrome:id/optional_toolbar_button",
+        "clickable": true,
+        "className": "android.widget.ImageButton",
+        "bounds": [
+          691,
+          173,
+          828,
+          320
+        ],
+        "depth": 3
+      },
+      {
+        "nodeId": "1216aa12:29",
+        "description": "See 2 tabs",
+        "viewId": "com.android.chrome:id/tab_switcher_button",
+        "clickable": true,
+        "className": "android.widget.ImageButton",
+        "bounds": [
+          828,
+          173,
+          954,
+          320
+        ],
+        "depth": 3
+      },
+      {
+        "nodeId": "1216aa12:30",
+        "description": "Customize and control Google Chrome",
+        "viewId": "com.android.chrome:id/menu_button",
+        "clickable": true,
+        "className": "android.widget.ImageButton",
+        "bounds": [
+          954,
+          173,
+          1080,
+          320
+        ],
+        "depth": 3
+      }
+    ],
+    "truncated": false
+  }
+}

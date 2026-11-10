@@ -1,0 +1,16 @@
+{
+  "status": "pass-with-limits",
+  "scope": "Deterministic Android service/shared stock Pi1.5.2 core only; zero model requests; not full model matrix",
+  "requestedFlags": "-avd Olea_API_36 -memory 2048 -cores 2 -no-snapshot-load -no-snapshot-save",
+  "actualAllocation": {"cores": 2, "emulatorRamMiB": 2560, "memTotalKiB": 2532300, "cpuPresent": "0-1", "reason": "Emulator automatically increased requested2048MB to2560MB"},
+  "avdConfigSha256BeforeAndAfter": "d52586b2631349deb331f981b2e49d57ce5440e9fe94429a1772935edd7ce502",
+  "cases": [
+    {"name": "service_linux_shell_node_children_dns_tls_npm_uid", "status": "pass", "evidence": "constrained-prerequisites.json", "note": "Actual fresh constrained process5178; Git repeated object read passes but reused commit command reported nothing-to-commit, so no fresh constrained commit assertion"},
+    {"name": "stock_rpc", "status": "pass", "evidence": "constrained-rpc-events.json", "note": "Shared backend start then get_state successful with messageCount0, no model call"},
+    {"name": "shutdown_descendant_cleanup", "status": "pass", "evidence": "cleanup-constrained-1.5.2.json", "note": "Verified stable Pi1.5.2, numeric owned process snapshot, independent child absent, stop565ms"},
+    {"name": "native_bridge_accessibility_home_inspection", "status": "pass", "evidence": "constrained-launcher.json", "note": "HOME and tree return actual nexus launcher"},
+    {"name": "whole_model_matrix", "status": "untested", "reason": "No additional model calls authorized/needed for deterministic constrained core"}
+  ],
+  "attempts": ["Constrained startup actually used previously provisioned start-verify.sh rather than intended start-constrained.sh; cleanup pass report written to prior filename; copied to distinct constrained artifact only after verifying reboot PIDs and actual snapshot", "Prerequisites explicitly executed afterward via existing shared stock Pi bash RPC; original pre-reboot report was stale and not counted", "Native stop HTTP response closed during backend termination in this phase; emu kill explicitly performed after deterministic work settled, no uncertain phone action replay"],
+  "restoration": "Emulator restarted with explicit-memory4096-cores4; final restoration properties recorded separately"
+}

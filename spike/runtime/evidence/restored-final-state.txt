@@ -1,0 +1,6 @@
+1
+MemTotal:        4013812 kB
+MemFree:          702256 kB
+MemAvailable:    2261112 kB
+0-3
+u0_a216       1799   485 dev.olea.spike

@@ -1,0 +1,74 @@
+{
+  "scope": "linux-runtime-cleanup-only",
+  "node": "v24.20.0",
+  "piVersion": "1.5.2",
+  "modelRequests": 0,
+  "status": "pass",
+  "faults": [],
+  "processEvidence": {
+    "backendPid": 3588,
+    "piPid": 3602,
+    "childPid": 3657,
+    "childBefore": {
+      "status": "observed",
+      "state": "S",
+      "parentPid": 3656,
+      "processGroup": 3656,
+      "sessionId": 3656,
+      "startTime": "5795"
+    },
+    "piBefore": {
+      "status": "observed",
+      "state": "S",
+      "parentPid": 3588,
+      "processGroup": 3602,
+      "sessionId": 3602,
+      "startTime": "5637"
+    },
+    "piTaskChildren": [],
+    "parentBefore": {
+      "status": "observed",
+      "state": "S",
+      "parentPid": 3602,
+      "processGroup": 3656,
+      "sessionId": 3656,
+      "startTime": "5789"
+    },
+    "parentTaskChildren": [],
+    "ownedNumericStatSnapshot": [
+      {
+        "pid": 3602,
+        "parent": 3588,
+        "start": "5637",
+        "uid": 0
+      },
+      {
+        "pid": 3656,
+        "parent": 3602,
+        "start": "5789",
+        "uid": 0
+      },
+      {
+        "pid": 3657,
+        "parent": 3656,
+        "start": "5795",
+        "uid": 0
+      }
+    ],
+    "immediateAfter": {
+      "status": "absent"
+    },
+    "exitObservation": {
+      "exited": true,
+      "observations": [
+        {
+          "status": "absent"
+        }
+      ]
+    }
+  },
+  "actualPackageVersion": "1.5.2",
+  "entrySha256": "e79626f2dd6f94aa45d30f3fa63cd84319a6eefcd150b353cfaf274366926774",
+  "stopMs": 565,
+  "finalSessionCount": 0
+}

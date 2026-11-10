@@ -1,6 +1,7 @@
 // Original source MIT. Runs in Linux under the Kotlin-owned process tree.
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
 import { lookup } from 'node:dns/promises';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 const report = { scope: 'android-service-supervised-linux', pid: process.pid, ppid: process.ppid, node: process.version, arch: process.arch, cases: [] };
@@ -15,7 +16,12 @@ function run(executable, args) {
 await mkdir('/workspace/prerequisites', { recursive: true });
 await check('shell', () => ({ result: run('/bin/sh', ['-c', 'test "$(printf olea)" = olea; uname -m']) }));
 await check('node_and_child_process', () => ({ result: run(process.execPath, ['-e', "const a=require('assert');const c=require('child_process').spawnSync(process.execPath,['-e','console.log(6*7)'],{encoding:'utf8'});a.equal(c.status,0);a.equal(c.stdout.trim(),'42');console.log('CHILD_OK')"]) }));
-await check('git', () => ({ version: run('git', ['--version']), result: run('/bin/sh', ['-c', 'cd /workspace/prerequisites; git init -q; git config user.name Olea; git config user.email olea@example.invalid; printf hello > test.txt; git add test.txt; git commit -qm fixture; git show HEAD:test.txt']) }));
+await check('git', () => {
+  const directory = `/workspace/prerequisites/git-${randomUUID()}`;
+  const result = run('/bin/sh', ['-ec', `mkdir '${directory}'; cd '${directory}'; git init -q; git config user.name Olea; git config user.email olea@example.invalid; printf hello > test.txt; git add test.txt; git commit -qm fixture; git show HEAD:test.txt`]);
+  assert.equal(result, 'hello');
+  return { version: run('git', ['--version']), result };
+});
 await check('dns', async () => ({ address: (await Promise.race([lookup('registry.npmjs.org'), new Promise((_, reject) => setTimeout(() => reject(Object.assign(Error(), { code: 'DNS_TIMEOUT' })), 10000))])).address }));
 await check('tls', async () => { const response = await fetch('https://registry.npmjs.org/is-number/7.0.0', { signal: AbortSignal.timeout(20000) }); assert.equal(response.status, 200); assert.equal((await response.json()).version, '7.0.0'); return { certificateValidation: 'default-enabled' }; });
 await check('dependency_install', async () => {

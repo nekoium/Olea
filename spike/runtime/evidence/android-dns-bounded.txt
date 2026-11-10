@@ -1,0 +1,6 @@
+PING registry.npmjs.org (104.16.9.34) 56(84) bytes of data.
+64 bytes from 104.16.9.34: icmp_seq=1 ttl=255 time=286 ms
+
+--- registry.npmjs.org ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 286.792/286.792/286.792/0.000 ms
