@@ -21,6 +21,10 @@ for (const required of ['request_max_retries = 0', 'stream_max_retries = 0', 'st
 const safe = text => String(text).split(config.apiKey).join('[REDACTED]').slice(0, 2048);
 const marker = randomBytes(16).toString('hex');
 const report = { attempt, observedAt: new Date().toISOString(), scope: process.env.OLEA_EXECUTION_SCOPE ?? 'host-only', platform: process.platform, node: process.version, model: modelArg, topLevelPrompts: 0, maxToolRounds: 12, maxTurnMs: 120000, streamIdleMs: 45000, requestRetries: 0, streamRetries: 0, httpRequests: null, httpRequestsLimit: 'stock protocol does not expose HTTP count; no automatic retry configured', remoteBilling: 'unknown', strictTokenCap: 'unsupported in inspected turn/start schema', events: {}, items: {}, processes: [], approvals: [], toolReceipts: [], errors: [], usage: [], assertions: {}, outcomes: {} };
+for (const path of [new URL(import.meta.url), ...['backend.js', 'codex-process.js', 'codex-session.js', 'phone-mcp.js', 'pi-process.js', 'process-tree.js'].map(name => new URL(`../../backend/dist/${name}`, import.meta.url))]) {
+  report.sourceSha256 ??= {};
+  report.sourceSha256[path.pathname] = createHash('sha256').update(await readFile(path)).digest('hex');
+}
 let terminalResolve, terminalReject;
 let terminal = new Promise((resolve, reject) => { terminalResolve = resolve; terminalReject = reject; });
 // Install rejection handler before an early protocol fault can occur.

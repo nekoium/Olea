@@ -29,8 +29,10 @@ try {
   if (!report.pids?.root || !report.pids?.child) throw new Error('tool_pid_file_missing');
   report.before = {};
   if (process.platform === 'linux') for (const [name, pid] of Object.entries(report.pids)) report.before[name] = await processIdentity(pid);
+  const terminateAt = performance.now();
   report.terminate = await child.request('command/exec/terminate', { processId: 'olea-bounded-command' }, 5000);
   try { report.commandResult = await work; } catch (error) { report.commandError = error.message; }
+  report.commandSettledAfterTerminateMs = performance.now() - terminateAt;
   const start = performance.now(); report.absent = {};
   for (let i = 0; i < 40; i++) {
     for (const [name, pid] of Object.entries(report.pids)) {
@@ -45,6 +47,6 @@ try {
     await new Promise(resolve => setTimeout(resolve, 50));
   }
   report.observationMs = performance.now() - start;
-  report.status = Object.values(report.absent).every(Boolean) ? 'pass' : 'fail';
+  report.status = Object.values(report.absent).every(Boolean) && report.commandSettledAfterTerminateMs < 3000 ? 'pass' : 'fail';
 } catch (error) { report.status = 'blocked'; report.error = error.message; }
 finally { report.stop = await child.stop(); if (work) await work.catch(() => {}); await writeFile(output, JSON.stringify(report, null, 2)); console.log(JSON.stringify({ output, status: report.status, error: report.error })); }
