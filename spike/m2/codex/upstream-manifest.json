@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-11-10T16:55:37.096Z",
+  "observedAt": "2026-11-10T16:58:17.603Z",
   "version": "0.167.0",
   "package": "@openai/codex",
   "declaredBin": "bin/codex.js",
@@ -52,8 +52,9 @@
       "sha256": "3186d52ec2804e071cd1b6ec6a48330489fd98d3b31cc60d949963d367b118ec"
     },
     {
-      "path": ".setup/codex-stock/node_modules/@openai/codex-win32-x64/vendor/x86_64-pc-windows-msvc/codex/codex.exe",
-      "status": "missing"
+      "path": ".setup/codex-stock/node_modules/@openai/codex-win32-x64/vendor/x86_64-pc-windows-msvc/bin/codex.exe",
+      "bytes": 369062704,
+      "sha256": "edfdd48f8b458af0906e507b4cb05217b326c3d6e515e9f024e05e3b8d650f70"
     },
     {
       "path": ".setup/codex-upstream/schema/codex_app_server_protocol.schemas.json",

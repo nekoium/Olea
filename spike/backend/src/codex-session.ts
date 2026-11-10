@@ -9,9 +9,10 @@ import type { RecordData } from './pi-process.js';
 export function codexConfig(model: string, bridge?: string) {
   if (!['gpt-6.1-terra', 'gpt-6.1-sol'].includes(model)) throw new Error('codex_invalid_model');
   const text = `model = ${JSON.stringify(model)}\nmodel_provider = "olea"\napproval_policy = "on-request"\nsandbox_mode = "workspace-write"\n[model_providers.olea]\nname = "Olea authorized Responses"\nbase_url = "https://api.chiyi.cc/v1"\nenv_key = "OLEA_CODEX_PROVIDER_KEY"\nwire_api = "responses"\nrequires_openai_auth = false\nrequest_max_retries = 0\nstream_max_retries = 0\nstream_idle_timeout_ms = 45000\n[shell_environment_policy]\ninherit = "core"\nexclude = ["OLEA_*", "*API_KEY*", "*TOKEN*", "*SECRET*"]\n[sandbox_workspace_write]\nnetwork_access = true\n`;
-  if (!bridge) return text;
+  const windows = process.platform === 'win32' ? '[windows]\nsandbox = "unelevated"\n' : '';
+  if (!bridge) return text + windows;
   const helper = fileURLToPath(new URL('./phone-mcp.js', import.meta.url));
-  return text + `[mcp_servers.olea_phone]\ncommand = ${JSON.stringify(process.execPath)}\nargs = [${JSON.stringify(helper)}, ${JSON.stringify(bridge)}]\nstartup_timeout_sec = 10\ntool_timeout_sec = 10\n`;
+  return text + windows + `[mcp_servers.olea_phone]\ncommand = ${JSON.stringify(process.execPath)}\nargs = [${JSON.stringify(helper)}, ${JSON.stringify(bridge)}]\nstartup_timeout_sec = 10\ntool_timeout_sec = 10\n`;
 }
 export class CodexSession {
   readonly process: CodexProcess;
@@ -27,9 +28,9 @@ export class CodexSession {
       if (record.method === 'turn/completed' && record.params?.threadId === this.threadId) {
         this.completed.add(record.params.turn.id);
         if (this.completed.size > 32) this.completed.delete(this.completed.values().next().value!);
-        if (!this.turnId || this.turnId === record.params.turn.id) { clearTimeout(this.timer); this.inFlight = false; this.turnId = undefined; }
+        if (this.turnId === record.params.turn.id) { clearTimeout(this.timer); this.inFlight = false; this.turnId = undefined; }
       }
-      if (record.method === 'item/started' && ['commandExecution', 'mcpToolCall'].includes(record.params?.item?.type)) {
+      if (record.method === 'item/started' && record.params?.threadId === this.threadId && record.params?.turnId === this.turnId && ['commandExecution', 'mcpToolCall'].includes(record.params?.item?.type)) {
         if (++this.toolRounds > 12) { void this.interrupt().catch(() => {}); this.event({ type: 'fault', agent: 'codex', code: 'codex_tool_round_limit' }); }
       }
       this.event({ type: 'event', agent: 'codex', record });
@@ -88,6 +89,7 @@ export class CodexSession {
       const turnId = result.turn?.id;
       if (typeof turnId !== 'string') throw new Error('codex_invalid_turn');
       if (!this.completed.has(turnId)) this.turnId = turnId;
+      else { clearTimeout(this.timer); this.inFlight = false; }
       return result;
     } catch (error) { void this.interrupt().catch(() => {}); throw error; }
   }

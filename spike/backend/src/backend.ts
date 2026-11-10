@@ -26,7 +26,10 @@ export class Backend {
       const result = await CodexSession.start({ directory: resolve(this.options.stateDir, 'codex', session), workspace: this.options.workspace, entry: this.options.codexEntry, resume, providerPath: this.options.codexProviderPath, model: this.options.codexModel, bridgePath: this.options.bridgePath }, record => this.event({ ...record, session }));
       instance = result.instance;
       if (this.closed) { await instance.stop(); throw new Error('backend_closed'); }
-      this.codexSessions.set(session, instance);
+      if (instance.process.child.exitCode !== null || instance.process.child.signalCode !== null) throw new Error('codex_exited_during_start');
+      const owned = instance;
+      owned.process.on('exit', () => { if (this.codexSessions.get(session) === owned) this.codexSessions.delete(session); void owned.stop(); });
+      this.codexSessions.set(session, owned);
       return result.data;
     } finally { this.starting.delete(session); }
   }

@@ -7,7 +7,7 @@ const files = [
   '.setup/codex-upstream/app-server.md', '.setup/codex-stock/package-lock.json',
   '.setup/codex-stock/node_modules/@openai/codex/package.json', '.setup/codex-stock/node_modules/@openai/codex/bin/codex.js',
   '.setup/codex-stock/node_modules/@openai/codex-win32-x64/package.json',
-  '.setup/codex-stock/node_modules/@openai/codex-win32-x64/vendor/x86_64-pc-windows-msvc/codex/codex.exe',
+  '.setup/codex-stock/node_modules/@openai/codex-win32-x64/vendor/x86_64-pc-windows-msvc/bin/codex.exe',
   '.setup/codex-upstream/schema/codex_app_server_protocol.schemas.json',
   '.setup/codex-upstream/schema/codex_app_server_protocol.v2.schemas.json',
   'spike/m2/codex/upstream/LICENSE.codex',

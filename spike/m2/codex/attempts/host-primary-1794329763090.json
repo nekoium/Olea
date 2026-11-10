@@ -1,0 +1,174 @@
+{
+  "attempt": "attempt-1794329763090-49b37d75",
+  "observedAt": "2026-11-10T16:56:03.091Z",
+  "scope": "host-only",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "model": "gpt-6.1-terra",
+  "topLevelPrompts": 1,
+  "maxToolRounds": 12,
+  "maxTurnMs": 120000,
+  "streamIdleMs": 45000,
+  "requestRetries": 0,
+  "streamRetries": 0,
+  "httpRequests": null,
+  "httpRequestsLimit": "stock protocol does not expose HTTP count; no automatic retry configured",
+  "remoteBilling": "unknown",
+  "strictTokenCap": "unsupported in inspected turn/start schema",
+  "events": {
+    "olea/process": 2,
+    "remoteControl/status/changed": 2,
+    "thread/started": 1,
+    "thread/status/changed": 5,
+    "turn/started": 1,
+    "item/started": 4,
+    "item/completed": 4,
+    "item/agentMessage/delta": 56,
+    "item/commandExecution/requestApproval": 1,
+    "serverRequest/resolved": 1,
+    "thread/tokenUsage/updated": 3,
+    "account/rateLimits/updated": 2,
+    "turn/completed": 1,
+    "deprecationNotice": 1,
+    "thread/goal/cleared": 1
+  },
+  "items": {
+    "userMessage": 1,
+    "agentMessage": 2,
+    "commandExecution": 1
+  },
+  "approvals": [
+    {
+      "method": "item/commandExecution/requestApproval",
+      "decision": "decline"
+    }
+  ],
+  "errors": [
+    "ENOENT",
+    "codex_delivery_unknown",
+    "codex_delivery_unknown"
+  ],
+  "usage": [
+    {
+      "total": {
+        "totalTokens": 21758,
+        "inputTokens": 21608,
+        "cachedInputTokens": 4224,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 150,
+        "reasoningOutputTokens": 0
+      },
+      "last": {
+        "totalTokens": 21758,
+        "inputTokens": 21608,
+        "cachedInputTokens": 4224,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 150,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 475000
+    },
+    {
+      "total": {
+        "totalTokens": 43595,
+        "inputTokens": 43411,
+        "cachedInputTokens": 23846,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 184,
+        "reasoningOutputTokens": 0
+      },
+      "last": {
+        "totalTokens": 21837,
+        "inputTokens": 21803,
+        "cachedInputTokens": 19622,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 34,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 475000
+    },
+    {
+      "total": {
+        "totalTokens": 43595,
+        "inputTokens": 43411,
+        "cachedInputTokens": 23846,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 184,
+        "reasoningOutputTokens": 0
+      },
+      "last": {
+        "totalTokens": 21837,
+        "inputTokens": 21803,
+        "cachedInputTokens": 19622,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 34,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 475000
+    }
+  ],
+  "assertions": {},
+  "outcomes": {
+    "initializedThread": "pass",
+    "completedTurn": "pass",
+    "unixWorkflow": "fail",
+    "resume": "pass"
+  },
+  "start": {
+    "agent": "codex",
+    "pid": 46004,
+    "initialized": {
+      "userAgent": "olea_spike/0.167.0 (Windows 10.0.26300; x86_64) unknown (olea_spike; 0.0.0)",
+      "codexHome": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\attempt-1794329763090-49b37d75\\state\\codex\\case\\home",
+      "platformFamily": "windows",
+      "platformOs": "windows"
+    },
+    "threadId": "01a1c663-5e3b-7b11-84ff-87131e300b56",
+    "cwd": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\attempt-1794329763090-49b37d75\\workspace",
+    "home": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\attempt-1794329763090-49b37d75\\state\\codex\\case\\home",
+    "startupMs": 433.26320000000004
+  },
+  "providerConfigSha256": "4426d3209f180d4009c5073755dc29f151a7832c8d7eebb1633df59685d163fd",
+  "ack": {
+    "turn": {
+      "id": "01a1c663-5ed0-75c0-b56b-381cc6a39e66",
+      "rootTurnId": "01a1c663-5ed0-75c0-b56b-381cc6a39e66",
+      "items": [],
+      "itemsView": "notLoaded",
+      "status": "inProgress",
+      "error": null,
+      "startedAt": null,
+      "completedAt": null,
+      "durationMs": null
+    }
+  },
+  "turn": {
+    "id": "01a1c663-5ed0-75c0-b56b-381cc6a39e66",
+    "status": "completed",
+    "error": ""
+  },
+  "firstEventMs": 13.056199999999997,
+  "resume": {
+    "agent": "codex",
+    "pid": 34888,
+    "initialized": {
+      "userAgent": "olea_spike/0.167.0 (Windows 10.0.26300; x86_64) unknown (olea_spike; 0.0.0)",
+      "codexHome": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\attempt-1794329763090-49b37d75\\state\\codex\\case\\home",
+      "platformFamily": "windows",
+      "platformOs": "windows"
+    },
+    "threadId": "01a1c663-5e3b-7b11-84ff-87131e300b56",
+    "cwd": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\attempt-1794329763090-49b37d75\\workspace",
+    "home": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\attempt-1794329763090-49b37d75\\state\\codex\\case\\home",
+    "startupMs": 287.17159999999967
+  },
+  "elapsedMs": 12271.4767,
+  "workspace": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\attempt-1794329763090-49b37d75\\workspace",
+  "limits": [
+    "Authenticated host execution is not Android compatibility",
+    "Same-UID shell is not secret-file isolation",
+    "Windows root stop does not prove descendant exit",
+    "Acknowledgement does not prove tool effects or rollback",
+    "Provider HTTP count and remote billing unknown"
+  ]
+}

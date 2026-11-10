@@ -1,0 +1,24 @@
+{
+  "attempt": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-sandbox-preflight\\attempt-dq7l3M",
+  "platform": "win32",
+  "noModelRequests": true,
+  "requestedSandbox": "unelevated",
+  "events": [
+    "olea/process",
+    "remoteControl/status/changed"
+  ],
+  "results": {},
+  "initialized": {
+    "userAgent": "olea_spike/0.167.0 (Windows 10.0.26300; x86_64) unknown (olea_spike; 0.0.0)",
+    "codexHome": "C:\\Users\\Aria\\orca\\workspaces\\Olea\\m2-stock-codex\\.setup\\codex-sandbox-preflight\\attempt-dq7l3M\\home",
+    "platformFamily": "windows",
+    "platformOs": "windows"
+  },
+  "status": "blocked",
+  "error": "codex_rpc_error_-32600",
+  "stop": {
+    "rootExited": true,
+    "descendantsVerified": false
+  },
+  "sandboxLog": "[2026-11-11 01:00:59.247 codex.exe] MXC availability: true\n[2026-11-11 01:00:59.249 codex.exe] Windows sandbox selection: unelevated\n"
+}

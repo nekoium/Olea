@@ -61,6 +61,27 @@ test('no acknowledgement is delivery unknown, never automatic replay', async t =
   t.after(() => child.stop()); await child.initialize();
   await assert.rejects(child.request('turn/start', { input: [{ text: 'noack' }] }, 25), /delivery_unknown/);
 });
+test('observed root exit removes exact session and allows same ID restart', async t => {
+  const f = await fixture(t);
+  await assert.rejects(f.backend.codexCommand('one', { method: 'turn/start', params: { text: 'exit' } }), /codex_/);
+  await new Promise(resolve => setTimeout(resolve, 30));
+  assert.equal(f.backend.status().length, 0);
+  assert.equal((await f.backend.startCodex('one', true)).threadId, f.start.threadId);
+});
+test('late unrelated completion and foreign tool events never clear active turn', async t => {
+  const f = await fixture(t);
+  await f.backend.codexCommand('one', { method: 'turn/start', params: { text: 'foreign' } });
+  await new Promise(resolve => setTimeout(resolve, 30));
+  await assert.rejects(f.backend.codexCommand('one', { method: 'turn/start', params: { text: 'complete' } }), /turn_active/);
+  assert.equal(f.events.some(event => event.code === 'codex_tool_round_limit'), false);
+  await f.backend.codexCommand('one', { method: 'turn/interrupt' });
+});
+test('unknown server request is rejected without action', async t => {
+  const f = await fixture(t);
+  await f.backend.codexCommand('one', { method: 'turn/start', params: { text: 'unknown' } });
+  await new Promise(resolve => setTimeout(resolve, 30));
+  assert.ok(f.events.some(event => event.record?.method === 'fixture/unknownRejected' && event.record.params.code === -32601));
+});
 test('provider config bounds retries and scrubs shell secret inheritance', () => {
   const config = codexConfig('gpt-6.1-terra');
   assert.match(config, /env_key = "OLEA_CODEX_PROVIDER_KEY"/);

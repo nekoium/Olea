@@ -5,6 +5,7 @@ const send = value => process.stdout.write(JSON.stringify(value) + '\n');
 readline.createInterface({ input: process.stdin }).on('line', line => {
   const record = JSON.parse(line), { id, method, params } = record;
   if (!method) {
+    if (id === 'unknown') send({ method: 'fixture/unknownRejected', params: record.error });
     if (id === 'approval') { send({ method: 'fixture/approvalDecision', params: record.result }); send({ method: 'turn/completed', params: { threadId: 'thread-proved', turn: { id: active, status: record.result.decision === 'accept' ? 'completed' : 'interrupted' } } }); }
     return;
   }
@@ -20,10 +21,14 @@ readline.createInterface({ input: process.stdin }).on('line', line => {
     if (text === 'oversize') return process.stdout.write('x'.repeat(262145) + '\n');
     if (text === 'exit') return process.exit(4);
     if (text === 'noack') return;
+    if (text === 'foreign') {
+      send({ method: 'turn/completed', params: { threadId: params.threadId, turn: { id: 'old-turn', status: 'completed' } } });
+      for (let i = 0; i < 13; i++) send({ method: 'item/started', params: { threadId: 'foreign-thread', turnId: 'foreign-turn', item: { type: 'commandExecution' } } });
+    }
     active = 'turn-' + id;
     send({ id, result: { turn: { id: active, status: 'inProgress' } } });
     if (text === 'approval') return send({ id: 'approval', method: 'item/commandExecution/requestApproval', params: { threadId: params.threadId, turnId: active, command: 'harmless fixture' } });
     if (text === 'unknown') return send({ id: 'unknown', method: 'future/request', params: {} });
-    if (text !== 'wait') send({ method: 'turn/completed', params: { threadId: params.threadId, turn: { id: active, status: 'completed' } } });
+    if (!['wait', 'foreign'].includes(text)) send({ method: 'turn/completed', params: { threadId: params.threadId, turn: { id: active, status: 'completed' } } });
   }
 });

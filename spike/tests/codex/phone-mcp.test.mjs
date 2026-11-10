@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: MIT
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { createServer } from 'node:http';
+import { mkdir, mkdtemp, writeFile, rm } from 'node:fs/promises';
+import { resolve, join } from 'node:path';
+import { callPhone, phoneTools } from '../../backend/dist/phone-mcp.js';
+test('narrow MCP phone mapping authenticates and preserves native denial without replay', async t => {
+  await mkdir('.setup/codex-tests', { recursive: true });
+  const directory = await mkdtemp(resolve('.setup/codex-tests/mcp-'));
+  let count = 0;
+  const server = createServer((request, response) => {
+    assert.equal(request.headers.authorization, 'Bearer fixture-only-token');
+    let body = ''; request.on('data', chunk => body += chunk);
+    request.on('end', () => {
+      const record = JSON.parse(body); assert.equal(record.operation, 'global_action'); assert.deepEqual(record.args, { action: 'home' });
+      count++; response.writeHead(403, { 'content-type': 'application/json' }); response.end(JSON.stringify({ ok: false, error: { code: 'PHONE_STOPPED' } }));
+    });
+  });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  t.after(async () => { await new Promise(resolve => server.close(resolve)); await rm(directory, { force: true, recursive: true }); });
+  const configPath = join(directory, 'bridge.json');
+  await writeFile(configPath, JSON.stringify({ url: `http://127.0.0.1:${server.address().port}`, token: 'fixture-only-token' }));
+  assert.equal((await callPhone('phone_home', {}, configPath)).isError, true);
+  assert.equal(count, 1);
+  await assert.rejects(callPhone('phone_shell', {}, configPath), /invalid_tool/);
+  await assert.rejects(callPhone('phone_click', { nodeId: 'valid', command: 'bad' }, configPath), /invalid_arguments/);
+  assert.equal(count, 1);
+  assert.ok(phoneTools.every(tool => !/oracle|shell|adb/.test(tool.name)));
+});
