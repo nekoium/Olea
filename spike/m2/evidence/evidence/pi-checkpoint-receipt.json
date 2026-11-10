@@ -26,23 +26,23 @@
   },
   "artifacts": [
     {
-      "path": "spike/m2/evidence/evidence/pi-checkpoint-assessment.json",
+      "path": "git:f365261:spike/m2/evidence/evidence/pi-checkpoint-assessment.json",
       "sha256": "ef716a19cff176832dcd55a42b2b4731ecba3bec0f5f4e6cafe0b6252f2b0fee"
     },
     {
-      "path": "spike/m2/reports/M2_REPORT.md",
+      "path": "git:f365261:spike/m2/reports/M2_REPORT.md",
       "sha256": "a0503f09de727494b163b6d8b7845a397e5afb26fb0bb119ba759dc43cae248d"
     },
     {
-      "path": "spike/m2/reports/M2_REPORT.html",
+      "path": "git:f365261:spike/m2/reports/M2_REPORT.html",
       "sha256": "56bfad9a9ea32bcd77c9e41eaa52dac7133bf45358925f26154870611ace2eab"
     },
     {
-      "path": "spike/m2/reports/matrix.json",
+      "path": "git:f365261:spike/m2/reports/matrix.json",
       "sha256": "a640c97b5ee36a7357b6de8529aba39e655288f519eb5bebcb81fa4619abe63f"
     },
     {
-      "path": "spike/m2/reports/PI_CHECKPOINT.md",
+      "path": "git:f365261:spike/m2/reports/PI_CHECKPOINT.md",
       "sha256": "4232cdb212b7928b84d8f9dceffd219b197e6fa4cb564d69f6d1e6b2d5044ffa"
     }
   ],
