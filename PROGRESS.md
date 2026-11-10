@@ -2,7 +2,7 @@
 
 ## Checkpoint policy and current proof goal
 
-The user clarified the final feasibility goal: a viable backend base that actually works on Android, supports different stock-agent installations and the PHONE_USE_TESTS.md set, and avoids maintaining a private port of each agent. Maintain the Android runtime and original integrations; preserve ordinary upstream updates. Keep tests lean and token-efficient. [Checkpoint policy](docs/feasibility/CHECKPOINT_POLICY.md) requires saving progress before a goal/vital-decision report or fresh manager/team handoff, then safely retiring old sessions after verified transfer without deleting worktrees or valuable data.
+The user clarified the final feasibility goal: a viable backend base that actually works on Android, supports different stock-agent installations and the PHONE_USE_TESTS.md set, and avoids maintaining a private port of each agent. Maintain the Android runtime and original integrations; preserve ordinary upstream updates. Keep tests lean and token-efficient. [Checkpoint policy](docs/feasibility/CHECKPOINT_POLICY.md) requires saving progress before a goal/vital-decision report or fresh manager/team handoff, then safely retiring old sessions after verified transfer without deleting worktrees or valuable data. The user further requires reaching the current manager's interim checkpoint before handoff, then setting an explicit bounded checkpoint for the successor if the final goal remains. [Current checkpoint](docs/feasibility/M2_CURRENT_CHECKPOINT.md) is **not reached**; this manager/team retain ownership and the runtime worker retains its sole lease. No successor launch or team cleanup occurred; premature handoff preparation was canceled.
 
 ## M2 started — fresh autonomous manager and workers
 
