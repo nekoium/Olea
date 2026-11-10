@@ -1,0 +1,154 @@
+{
+  "receiptType": "Final evidence assignment receipt FOR REVISED BOUNDED CHECKPOINT; full backend/product goal remains incomplete",
+  "outcome": "succeeded for assigned checkpoint evidence work",
+  "taskId": "task_7b818dcb76f7",
+  "dispatchId": "ctx_4a3a6240027c",
+  "runId": "run_aa0011145bf9",
+  "sessionId": "9c05a62d-0bee-4e57-8cf0-9458a2938b92",
+  "managerSession": "pi_1d9a3114_30c1_4a4f_b8a6_22cd565c2373",
+  "workspace": "C:/Users/Aria/orca/workspaces/Olea/m2-repro-evidence",
+  "sourceParent": "C:/Users/Aria/Projects/Development/Olea",
+  "sourceStart": "1775d536fb8650f7335729af90530733984614ea",
+  "lastAssessmentCommitBeforeCloseout": "fadd07d8b00a121eb1360ee430dcce64948664d7",
+  "runtimeCloseoutCommit": "fcb4d02cee3781b184f57d4e5d0ffa8631dd39d8",
+  "matrix": {
+    "cases": 112,
+    "counts": {
+      "pass": 46,
+      "fail": 2,
+      "blocked": 9,
+      "untested": 55
+    },
+    "retainedAttempts": 133,
+    "allAttemptArtifacts": "Exact verification passed; no normalization or outcome substitution"
+  },
+  "artifacts": [
+    {
+      "path": "spike/m2/reports/CHECKPOINT_REPORT.md",
+      "sha256": "ee7ef65ccb0ebd05623e48abbda466278488e7b5d6dd5668a23d3e2869013e6d"
+    },
+    {
+      "path": "spike/m2/reports/CHECKPOINT_REPORT.html",
+      "sha256": "b42f224edd1d1866010646d05d9784944d59a2a054769c764df27dc5c030af91"
+    },
+    {
+      "path": "spike/m2/reports/M2_REPORT.md",
+      "sha256": "cfb2e5de8f2641af93b648f2efbd6fb82d2c40bb761a9724ff6feb0c34016778"
+    },
+    {
+      "path": "spike/m2/reports/M2_REPORT.html",
+      "sha256": "b2bbc124d26f8258cb7112738d76f81488e2fefd5eb46e0bf262044acf174c29"
+    },
+    {
+      "path": "spike/m2/reports/matrix.json",
+      "sha256": "4897595ea9a269bf2adaa0996923e0321d272ce7dcabc36649b38f4ec4104fba"
+    },
+    {
+      "path": "spike/m2/evidence/evidence/receipts.json",
+      "sha256": "1755a4611eb7a90cf0c9daf93d26a296eb73ff43043603103dfffe4d958a51d4"
+    },
+    {
+      "path": "spike/m2/evidence/evidence/codex-phone-final-assessment.json",
+      "sha256": "5e3d8968d0a3df7096ad8f75384f0fa2ab3deabc7e69f362ceff270c9bbb5a16"
+    },
+    {
+      "path": "git:fcb4d02:spike/m2/runtime/FINAL_CHECKPOINT_RECEIPT.json",
+      "sha256": "96b7b1bc624d455fc8dcc9d97b360246c9cbf2843d62063d6c31b07fe2d19ffa"
+    },
+    {
+      "path": "git:fcb4d02:spike/m2/runtime/evidence/final-closeout-device-state.txt",
+      "sha256": "3fdb5b85cc77bae0feece00a6ed81366a868d9d971f064df711cb5791ba429d2"
+    },
+    {
+      "path": "git:fcb4d02:spike/m2/runtime/evidence/final-closeout-capabilities.json",
+      "sha256": "b06574e75b708576fdb428e24fa550f07b83966795de00f42927b08645061e25"
+    },
+    {
+      "path": "git:fcb4d02:spike/m2/runtime/evidence/final-closeout-primary-state.txt",
+      "sha256": "01c12cc1dad2298839cc286a6bf55e83a340958be7217fe4c8836f1a3f7371df"
+    },
+    {
+      "path": "git:fcb4d02:spike/m2/runtime/evidence/final-closeout-repeat-state.txt",
+      "sha256": "ba2c4a24310d51c1d5065ed070e424b51b9e3a7389fb3a572c6111a20a8f302c"
+    },
+    {
+      "path": "git:fcb4d02:spike/m2/runtime/evidence/final-closeout-artifact-hashes.txt",
+      "sha256": "263a4b40119963b2114bd955f78e65bb98fc0a510bb4a12fe30c91a7db895aa4"
+    },
+    {
+      "path": "git:fcb4d02:spike/m2/runtime/evidence/final-closeout-session-artifact-hashes.txt",
+      "sha256": "01b62ea6b61c051ab01f5d7603a30b9bcb712ef5ce2a44018b427842bb9b3951"
+    }
+  ],
+  "validation": {
+    "finalChecksOnly": [
+      "Exact artifact/Git byte verification for133attempt receipts and closeout references",
+      "Strict assertPhone against retained Codex native proof during batch assessment",
+      "Report export SHA256 inventory"
+    ],
+    "unchangedSuitesRerun": false,
+    "providerRequestsByEvidenceWorker": 0,
+    "androidOperationsByEvidenceWorker": 0
+  },
+  "measured": {
+    "pass": [
+      "Target36 actual service Unix core",
+      "Isolated fresh repeat with explicit verified public CA archive prerequisite",
+      "Stock Pi and explicitly unisolated stock Codex real Unix/causal phone workflows and canonical resume",
+      "Native stop rejects inspection and action with no independent oracle/foreground change",
+      "Narrow adjacent Pi update preserves11hashes/session/dependency/protectedcredential600",
+      "Exact identity-checked SIGTERM recovery settled retained Git/PRoot identities"
+    ],
+    "fail": [
+      "Original Codex phone native210s timeout/rootExitObservedfalse",
+      "Generic descendant cleanup remains failed; later targeted recovery does not repair supervision"
+    ],
+    "blocked": [
+      "Historical restricted Codex sandbox route",
+      "Missing original M1 current state recheck",
+      "Absent physical device/ABI"
+    ],
+    "untested": "Remaining full phone categories/permissions, cancel/approval variants, broader lifecycle/runtime/Codex updates, constrained/fullcost and named model-child semantics retained in matrix"
+  },
+  "firstFailuresAndRetries": "Original boot, provisioning/tar/dpkg/native crash, mirror hash/install/Git, direct observer, host Unix and later native supervision failures remain immutable. Report byte-domain/append defects were fixed with focused tests earlier; no final model retry/replay.",
+  "provider": {
+    "knownTopLevelConsumed": 5,
+    "totalBudget": 8,
+    "remainingUnallocated": 3,
+    "hostCodex": 2,
+    "androidPi": 1,
+    "androidCodexUnix": 1,
+    "androidCodexPhone": 1,
+    "explicitFallbacksOrRunnerReplays": 0,
+    "internalStockReconnects": "Two notifications in CodexUnix despite configuredretry0; exact internal requests unknown",
+    "httpRequests": null,
+    "remoteBilling": "unknown",
+    "strictTokenCap": "not established"
+  },
+  "currentState": {
+    "observedAtUtc": "2026-11-10T19:12:05Z",
+    "source": "Pinned final runtime closeout, not fresh device probe by evidence worker",
+    "device": "Olea_API_36/emulator-5554 booted Android16API36x86_64 Awake CPUs0-3 MemTotal4013812KiB",
+    "hosts": "Primary9619UID10216/start150689; repeat12459UID10218/start348349; fixture9732UID10217 listed only",
+    "oldFailedIdentities": "16364/16514/16516 absent at final observation; no permanent universal absence guarantee",
+    "phoneEnabled": false,
+    "backendRunning": false,
+    "accessibility": true,
+    "credentialsModes": "provider/bridge config/token600 retained",
+    "data": "Both rootfs/workspaces/transcripts/APKs/caches/fixtures preserved; no deletion",
+    "inflightExperiments": [],
+    "developmentForward": "tcp8768 retained",
+    "mutationLease": "Explicitly RELINQUISHED by sole runtime owner, successor null; no transfer claimed",
+    "session": "Evidence session/worktree kept open pending manager-verified successor cleanup"
+  },
+  "limits": [
+    "Full-access danger-full-access/approvalnever is explicit; no agent filesystem or sameUID credential-file isolation.",
+    "Android normal permission onboarding/revocation not established by stop flag.",
+    "Repaired identity-specific cleanup is not generic process supervision pass.",
+    "Staged CA input limits network-only fresh reproducibility.",
+    "Both adjacent Pi release launcher hashes identical; no broad payload/version compatibility claim."
+  ],
+  "nextBoundedCheckpoint": "Remaining phone category direct prerequisites and grouped model tasks, native permission/stop/revocation checks plus focused reparented Git/PRoot supervision repair and finite interruption/restart preservation; preserve all wider gaps.",
+  "priorRimExperience": "Earlier initial spawn timed out20s and status/punch found no current root; no destructive repair. Local Git preserved checkpoints.",
+  "proposedProgress": "Modern target36 base runs stock Pi and stock Codex Unix and causal native-phone workflows; Codex uses explicit no-agent-isolation full access. Fresh repeat with verified stagedCA and narrow Pi update preserve state, but original native cleanup timeout remains failed and full phone/lifecycle/update validation remains incomplete. Current checkpoint saved/revise, lease relinquished at19:12:05Z, next bounded work targets phone coverage and supervision."
+}
