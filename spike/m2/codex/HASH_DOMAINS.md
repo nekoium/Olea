@@ -1,0 +1,7 @@
+# Artifact hash byte domains
+
+The original `artifact-hashes.json` at commit `ab2d6d471ef6e7bd3fbe063b314b7285df4c837d` hashed this worker's local source bytes. Manager verification established that 32 entries match LF Git blobs but differ from the manager's CRLF checkout; five match both. That is an observed checkout line-ending difference, not evidence of corruption. The historical manifest remains preserved in that commit.
+
+The current producer hashes exact immutable Git object bytes at its recorded `sourceRevision`. Every entry identifies `git:<commit>:<path>` and `byteDomain: git-object-blob`. Reproduce an entry by hashing the raw stdout bytes of `git show <commit>:<path>`. The producer reads the committed tree, so commit source changes before regenerating the manifest. It does not normalize or hash the current checkout.
+
+These source hashes do not establish deployed payload byte identity. Record exact raw hashes after payload construction and again on the actual Android/Linux runtime. Keep package downloads, native executables, archives and runtime evidence in their recorded raw byte domain; do not normalize native evidence to obtain a match. `upstream-manifest.json` retains its original exact downloaded/installed/generated-byte observations and is not reinterpreted as a normalized source inventory. Future `run-stock.mjs` sourceSha256 fields hash the exact invoked runner and compiled backend files on that runtime.
