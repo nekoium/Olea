@@ -1,0 +1,1 @@
+d52586b2631349deb331f981b2e49d57ce5440e9fe94429a1772935edd7ce502 */c/Users/Aria/.android/avd/Olea_API_36.avd/config.ini

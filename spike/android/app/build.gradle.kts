@@ -15,10 +15,12 @@ android {
         create("baseline") { dimension = "runtime"; buildConfigField("int", "BRIDGE_PORT", "8766"); buildConfigField("String", "FIXTURE_PACKAGE", "\"dev.olea.fixture\"") }
         create("modern") {
             dimension = "runtime"
-            applicationId = "dev.olea.m2.runtime"
+            applicationId = providers.gradleProperty("m2Package").orElse("dev.olea.m2.runtime").get()
             targetSdk = 36
             versionName = "0.2-m2-modern"
-            buildConfigField("int", "BRIDGE_PORT", "8768")
+            val bridgePort = providers.gradleProperty("m2BridgePort").orElse("8768").get().toInt()
+            require(bridgePort in 1024..65535)
+            buildConfigField("int", "BRIDGE_PORT", bridgePort.toString())
             buildConfigField("String", "FIXTURE_PACKAGE", "\"dev.olea.m2.fixture\"")
         }
     }

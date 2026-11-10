@@ -4,8 +4,10 @@ set -euo pipefail
 export MSYS_NO_PATHCONV=1
 : "${OLEA_ADB:=C:/Users/Aria/AppData/Local/Android/Sdk/platform-tools/adb.exe}"
 : "${OLEA_SERIAL:=emulator-5554}"
+: "${OLEA_PACKAGE:=dev.olea.m2.runtime}"
+[[ $OLEA_PACKAGE =~ ^dev\.olea\.m2\.[a-z0-9.]+$ ]]
 adb() { "$OLEA_ADB" -s "$OLEA_SERIAL" "$@"; }
-run() { adb shell run-as dev.olea.m2.runtime sh -c "'$*'"; }
+run() { adb shell run-as "$OLEA_PACKAGE" sh -c "'$*'"; }
 printf '%s  %s\n' 6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9 .setup/downloads/ubuntu-base.tar.gz | sha256sum -c -
 printf '%s  %s\n' 2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2 .setup/downloads/node.tar.xz | sha256sum -c -
 adb push spike/m2/runtime/claim-rootfs.sh /data/local/tmp/olea-m2-claim-rootfs.sh

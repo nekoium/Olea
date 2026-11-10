@@ -1,0 +1,83 @@
+600
+600
+600
+9619 (olea.m2.runtime) S 489 489 0 0 -1 4194624 16252 508005 5 202 113 531 1828 11972 10 -10 22 0 150689 16529690624 41245 18446744073709551615 104822510714880 104822510719280 140726445114400 0 0 0 4612 1 1073775864 0 0 0 17 0 0 0 0 0 0 104822510747648 104822510747672 104823184080896 140726445120447 140726445120546 140726445120546 140726445125598 0
+Name:	olea.m2.runtime
+Umask:	0077
+State:	S (sleeping)
+Tgid:	9619
+Ngid:	0
+Pid:	9619
+PPid:	489
+TracerPid:	0
+Uid:	10216	10216	10216	10216
+Gid:	10216	10216	10216	10216
+FDSize:	256
+Groups:	3003 9997 20216 50216 
+Kthread:	0
+VmPeak:	18207096 kB
+VmSize:	16142276 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	  165708 kB
+VmRSS:	  164980 kB
+RssAnon:	   67592 kB
+RssFile:	   83180 kB
+RssShmem:	   14208 kB
+VmData:	 2840024 kB
+VmStk:	    8192 kB
+VmExe:	       8 kB
+VmLib:	  156668 kB
+VmPTE:	    1148 kB
+VmSwap:	       0 kB
+CoreDumping:	0
+THP_enabled:	1
+untag_mask:	0xffffffffffffffff
+Threads:	22
+SigQ:	0/15657
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000080001204
+SigIgn:	0000000000000001
+SigCgt:	0000006e400084f8
+CapInh:	0000000000000000
+CapPrm:	0000000000000000
+CapEff:	0000000000000000
+CapBnd:	0000000000000000
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	2
+Seccomp_filters:	1
+Speculation_Store_Bypass:	vulnerable
+SpeculationIndirectBranch:	always enabled
+Cpus_allowed:	f
+Cpus_allowed_list:	0-3
+Mems_allowed:	1
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	665
+nonvoluntary_ctxt_switches:	561
+02000000-7ffd6dd5b000 ---p 00000000 00:00 0                              [rollup]
+Rss:              165740 kB
+Pss:               37105 kB
+Pss_Dirty:         32973 kB
+Pss_Anon:          26076 kB
+Pss_File:           4131 kB
+Pss_Shmem:          6897 kB
+Shared_Clean:      83448 kB
+Shared_Dirty:      56664 kB
+Private_Clean:        36 kB
+Private_Dirty:     25592 kB
+Referenced:       100580 kB
+Anonymous:         67760 kB
+KSM:                   0 kB
+LazyFree:              0 kB
+AnonHugePages:         0 kB
+ShmemPmdMapped:        0 kB
+FilePmdMapped:         0 kB
+Shared_Hugetlb:        0 kB
+Private_Hugetlb:       0 kB
+Swap:                  0 kB
+SwapPss:               0 kB
+Locked:                0 kB
+7cce96385a026ec8914d87a4d0d4c0f8d6104441e127b7acbc2129d10ef5eac3  files/rootfs/opt/olea/state/pi-a01/m2_8865356727f591733b3ad698173276cb/resume.json
+55e16e1ea8e5101391178b7a18b036e734be9caa1508cfe6f1c9f87c452e4b19  files/rootfs/opt/olea/state/pi-a01/m2_8865356727f591733b3ad698173276cb/2026-11-10T17-40-54-607Z_01a1c68c-6ece-7232-840a-21315443a774.jsonl

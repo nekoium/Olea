@@ -1,0 +1,51 @@
+{
+  "noModelRequests": true,
+  "noAndroidActions": true,
+  "events": [
+    "olea/process",
+    "configWarning",
+    "remoteControl/status/changed",
+    "thread/started",
+    "mcpServer/startupStatus/updated",
+    "mcpServer/startupStatus/updated"
+  ],
+  "directory": "/opt/olea/.setup/codex-mcp/attempt-ZTu8D9",
+  "start": {
+    "agent": "codex",
+    "pid": 12219,
+    "initialized": {
+      "userAgent": "olea_spike/0.167.0 (Ubuntu 24.4.0; x86_64) unknown (olea_spike; 0.0.0)",
+      "codexHome": "/opt/olea/.setup/codex-mcp/attempt-ZTu8D9/state/codex/discovery/home",
+      "platformFamily": "unix",
+      "platformOs": "linux"
+    },
+    "threadId": "01a1c697-9e26-76f1-9438-d8507663152f",
+    "cwd": "/opt/olea/.setup/codex-mcp/attempt-ZTu8D9/workspace",
+    "home": "/opt/olea/.setup/codex-mcp/attempt-ZTu8D9/state/codex/discovery/home",
+    "startupMs": 2888.7115000000003
+  },
+  "servers": [
+    {
+      "name": "olea_phone",
+      "runtimeStatus": "connected",
+      "toolsError": null,
+      "toolNames": [
+        "phone_swipe",
+        "phone_fixture_action",
+        "phone_home",
+        "phone_capabilities",
+        "phone_click",
+        "phone_inspect"
+      ],
+      "serverInfo": {
+        "name": "olea-phone",
+        "title": null,
+        "version": "0.0.0",
+        "description": null,
+        "icons": null,
+        "websiteUrl": null
+      }
+    }
+  ],
+  "status": "pass"
+}
