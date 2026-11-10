@@ -5,7 +5,7 @@ import { mkdir, mkdtemp, rm, readFile, writeFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { Backend } from '../../backend/dist/backend.js';
 import { CodexProcess } from '../../backend/dist/codex-process.js';
-import { codexConfig } from '../../backend/dist/codex-session.js';
+import { codexConfig, codexPolicy } from '../../backend/dist/codex-session.js';
 
 const root = resolve('.setup/codex-tests');
 await mkdir(root, { recursive: true });
@@ -96,6 +96,13 @@ test('inherited output pipes have bounded draining without false descendant-exit
   const result = await f.backend.stop('one');
   assert.ok(performance.now() - started < 1500);
   assert.equal(result.descendantsVerified, false);
+});
+test('full access is explicit stock policy and invalid mode fails closed', () => {
+  assert.deepEqual(codexPolicy(), { sandbox: 'workspace-write', approvalPolicy: 'on-request' });
+  assert.deepEqual(codexPolicy('full-access'), { sandbox: 'danger-full-access', approvalPolicy: 'never' });
+  assert.throws(() => codexPolicy('unknown'), /invalid_access_mode/);
+  assert.match(codexConfig('gpt-6.1-terra', undefined, 'full-access'), /sandbox_mode = "danger-full-access"/);
+  assert.match(codexConfig('gpt-6.1-terra', undefined, 'full-access'), /approval_policy = "never"/);
 });
 test('provider config bounds retries and scrubs shell secret inheritance', () => {
   const config = codexConfig('gpt-6.1-terra');

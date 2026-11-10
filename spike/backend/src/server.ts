@@ -23,7 +23,7 @@ const backend = new Backend({
   entry: process.env.OLEA_PI_ENTRY ?? '', workspace: resolve(process.env.OLEA_WORKSPACE ?? process.cwd()),
   stateDir: resolve(process.env.OLEA_STATE_DIR ?? '.setup/olea-state'),
   codexEntry: process.env.OLEA_CODEX_ENTRY, codexProviderPath: process.env.OLEA_PROVIDER_CONFIG,
-  codexModel: process.env.OLEA_CODEX_MODEL, bridgePath: process.env.OLEA_BRIDGE_CONFIG,
+  codexModel: process.env.OLEA_CODEX_MODEL, codexAccessMode: process.env.OLEA_CODEX_ACCESS_MODE as 'workspace-write' | 'full-access' | undefined, bridgePath: process.env.OLEA_BRIDGE_CONFIG,
 }, output);
 async function shutdown(code = 0) {
   if (shuttingDown) return;

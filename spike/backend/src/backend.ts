@@ -4,7 +4,7 @@ import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { PiProcess, type RecordData } from './pi-process.js';
-import { CodexSession } from './codex-session.js';
+import { CodexSession, type CodexAccessMode } from './codex-session.js';
 
 export class Backend {
   private sessions = new Map<string, PiProcess>();
@@ -12,7 +12,7 @@ export class Backend {
   private starting = new Set<string>();
   private closed = false;
   private extension = fileURLToPath(new URL('../extensions/phone.ts', import.meta.url));
-  constructor(private options: { entry: string; workspace: string; stateDir: string; env?: NodeJS.ProcessEnv; codexEntry?: string; codexProviderPath?: string; codexModel?: string; bridgePath?: string }, private event: (record: RecordData) => void) {}
+  constructor(private options: { entry: string; workspace: string; stateDir: string; env?: NodeJS.ProcessEnv; codexEntry?: string; codexProviderPath?: string; codexModel?: string; codexAccessMode?: CodexAccessMode; bridgePath?: string }, private event: (record: RecordData) => void) {}
 
   async startCodex(session: string, resume = false) {
     if (typeof session !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(session)) throw new Error('invalid_session');
@@ -23,7 +23,7 @@ export class Backend {
     this.starting.add(session);
     let instance: CodexSession | undefined;
     try {
-      const result = await CodexSession.start({ directory: resolve(this.options.stateDir, 'codex', session), workspace: this.options.workspace, entry: this.options.codexEntry, resume, providerPath: this.options.codexProviderPath, model: this.options.codexModel, bridgePath: this.options.bridgePath }, record => this.event({ ...record, session }));
+      const result = await CodexSession.start({ directory: resolve(this.options.stateDir, 'codex', session), workspace: this.options.workspace, entry: this.options.codexEntry, resume, providerPath: this.options.codexProviderPath, model: this.options.codexModel, accessMode: this.options.codexAccessMode, bridgePath: this.options.bridgePath }, record => this.event({ ...record, session }));
       instance = result.instance;
       if (this.closed) { await instance.stop(); throw new Error('backend_closed'); }
       if (instance.process.child.exitCode !== null || instance.process.child.signalCode !== null) throw new Error('codex_exited_during_start');

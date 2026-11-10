@@ -6,9 +6,15 @@ import { randomUUID } from 'node:crypto';
 import { CodexProcess } from './codex-process.js';
 import type { RecordData } from './pi-process.js';
 
-export function codexConfig(model: string, bridge?: string) {
+export type CodexAccessMode = 'workspace-write' | 'full-access';
+export function codexPolicy(accessMode: CodexAccessMode = 'workspace-write') {
+  if (!['workspace-write', 'full-access'].includes(accessMode)) throw new Error('codex_invalid_access_mode');
+  return accessMode === 'full-access' ? { sandbox: 'danger-full-access', approvalPolicy: 'never' } : { sandbox: 'workspace-write', approvalPolicy: 'on-request' };
+}
+export function codexConfig(model: string, bridge?: string, accessMode: CodexAccessMode = 'workspace-write') {
+  const policy = codexPolicy(accessMode);
   if (!['gpt-6.1-terra', 'gpt-6.1-sol'].includes(model)) throw new Error('codex_invalid_model');
-  const text = `model = ${JSON.stringify(model)}\nmodel_provider = "olea"\napproval_policy = "on-request"\nsandbox_mode = "workspace-write"\n[model_providers.olea]\nname = "Olea authorized Responses"\nbase_url = "https://api.chiyi.cc/v1"\nenv_key = "OLEA_CODEX_PROVIDER_KEY"\nwire_api = "responses"\nrequires_openai_auth = false\nrequest_max_retries = 0\nstream_max_retries = 0\nstream_idle_timeout_ms = 45000\n[shell_environment_policy]\ninherit = "core"\nexclude = ["OLEA_*", "*API_KEY*", "*TOKEN*", "*SECRET*"]\n[sandbox_workspace_write]\nnetwork_access = true\n`;
+  const text = `model = ${JSON.stringify(model)}\nmodel_provider = "olea"\napproval_policy = ${JSON.stringify(policy.approvalPolicy)}\nsandbox_mode = ${JSON.stringify(policy.sandbox)}\n[model_providers.olea]\nname = "Olea authorized Responses"\nbase_url = "https://api.chiyi.cc/v1"\nenv_key = "OLEA_CODEX_PROVIDER_KEY"\nwire_api = "responses"\nrequires_openai_auth = false\nrequest_max_retries = 0\nstream_max_retries = 0\nstream_idle_timeout_ms = 45000\n[shell_environment_policy]\ninherit = "core"\nexclude = ["OLEA_*", "*API_KEY*", "*TOKEN*", "*SECRET*"]\n[sandbox_workspace_write]\nnetwork_access = true\n`;
   const windows = process.platform === 'win32' ? '[windows]\nsandbox = "unelevated"\n' : '';
   if (!bridge) return text + windows;
   const helper = fileURLToPath(new URL('./phone-mcp.js', import.meta.url));
@@ -41,7 +47,7 @@ export class CodexSession {
     this.process.on('fault', code => { clearTimeout(this.timer); this.event({ type: 'fault', agent: 'codex', code }); });
     this.process.on('exit', detail => { clearTimeout(this.timer); this.event({ type: 'exit', agent: 'codex', ...detail }); });
   }
-  static async start(options: { directory: string; workspace: string; entry: string; resume: boolean; providerPath?: string; model?: string; bridgePath?: string }, event: (record: RecordData) => void) {
+  static async start(options: { directory: string; workspace: string; entry: string; resume: boolean; providerPath?: string; model?: string; bridgePath?: string; accessMode?: CodexAccessMode }, event: (record: RecordData) => void) {
     await mkdir(options.directory, { recursive: true, mode: 0o700 });
     const directory = await realpath(options.directory), cwd = await realpath(options.workspace);
     await mkdir(join(directory, 'home'), { recursive: true, mode: 0o700 });
@@ -55,16 +61,16 @@ export class CodexSession {
       if (config.baseUrl !== 'https://api.chiyi.cc/v1' || typeof config.apiKey !== 'string' || !config.apiKey) throw new Error('invalid_provider_config');
       env.OLEA_CODEX_PROVIDER_KEY = config.apiKey;
     }
-    await writeFile(join(home, 'config.toml'), codexConfig(options.model ?? 'gpt-6.1-terra', options.bridgePath), { mode: 0o600 });
+    await writeFile(join(home, 'config.toml'), codexConfig(options.model ?? 'gpt-6.1-terra', options.bridgePath, options.accessMode), { mode: 0o600 });
     const isJs = /\.[cm]?js$/.test(options.entry);
     const instance = new CodexSession(directory, cwd, home, { command: isJs ? process.execPath : options.entry, args: isJs ? [options.entry] : [], env }, event);
     try {
       const initialized = await instance.process.initialize();
-      const params: RecordData = { cwd, approvalPolicy: 'on-request', sandbox: 'workspace-write', model: options.model ?? 'gpt-6.1-terra', modelProvider: 'olea' };
+      const params: RecordData = { cwd, ...codexPolicy(options.accessMode), model: options.model ?? 'gpt-6.1-terra', modelProvider: 'olea' };
       let expected: string | undefined;
       if (options.resume) {
         const saved = JSON.parse(await readFile(join(directory, 'thread.json'), 'utf8'));
-        if (saved.cwd !== cwd || saved.home !== home || typeof saved.threadId !== 'string') throw new Error('codex_resume_identity_mismatch');
+        if (saved.cwd !== cwd || saved.home !== home || (saved.accessMode ?? 'workspace-write') !== (options.accessMode ?? 'workspace-write') || typeof saved.threadId !== 'string') throw new Error('codex_resume_identity_mismatch');
         expected = saved.threadId; params.threadId = expected;
       }
       const reply = await instance.process.request(options.resume ? 'thread/resume' : 'thread/start', params);
@@ -72,9 +78,9 @@ export class CodexSession {
       if (typeof id !== 'string' || !id || (expected && id !== expected)) throw new Error('codex_thread_identity_mismatch');
       instance.threadId = id;
       const temporary = join(directory, `thread-${randomUUID()}.tmp`);
-      await writeFile(temporary, JSON.stringify({ threadId: id, cwd, home }), { mode: 0o600 });
+      await writeFile(temporary, JSON.stringify({ threadId: id, cwd, home, accessMode: options.accessMode ?? 'workspace-write' }), { mode: 0o600 });
       await rename(temporary, join(directory, 'thread.json'));
-      return { instance, data: { agent: 'codex', pid: instance.process.child.pid, initialized, threadId: id, cwd, home, startupMs: performance.now() - instance.process.startedAt } };
+      return { instance, data: { agent: 'codex', accessMode: options.accessMode ?? 'workspace-write', filesystemIsolation: options.accessMode !== 'full-access', pid: instance.process.child.pid, initialized, threadId: id, cwd, home, startupMs: performance.now() - instance.process.startedAt } };
     } catch (error) { await instance.stop(); throw error; }
   }
   async command(method: string, params: RecordData = {}) {
