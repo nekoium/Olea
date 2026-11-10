@@ -5,10 +5,14 @@ import { resolve, join, dirname } from 'node:path';
 import { randomBytes, createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { Backend } from '../../backend/dist/backend.js';
-import { codexConfig } from '../../backend/dist/codex-session.js';
+import { codexConfig, codexPolicy } from '../../backend/dist/codex-session.js';
 
-const [configArg, outputArg, entryArg, modelArg = 'gpt-6.1-terra', mode = 'unix'] = process.argv.slice(2);
-if (!configArg || !outputArg || !entryArg || !['unix', 'phone', 'controlled'].includes(mode)) throw new Error('usage: run-stock.mjs providerPath outputPath codexEntry [model] [unix|phone]');
+const [configArg, outputArg, entryArg, modelArg = 'gpt-6.1-terra', mode = 'unix', accessModeArg = process.env.OLEA_CODEX_ACCESS_MODE ?? 'workspace-write'] = process.argv.slice(2);
+const policy = codexPolicy(accessModeArg); // Validate explicit operator choice before reading credentials.
+const accessInstruction = accessModeArg === 'full-access'
+  ? 'The operator explicitly selected stock danger-full-access with approvalPolicy never. No Codex filesystem isolation is provided. Keep this selected policy unchanged, stay within the assigned task paths, and do not inspect private files or credentials.'
+  : 'Keep workspace-write sandbox and on-request approvals enabled. Stop if sandbox fails or approval is denied; never request expanded access.';
+if (!configArg || !outputArg || !entryArg || !['unix', 'phone', 'controlled'].includes(mode)) throw new Error('usage: run-stock.mjs providerPath outputPath codexEntry [model] [unix|phone|controlled] [workspace-write|full-access]');
 const output = resolve(outputArg), base = resolve(output, '..');
 await mkdir(base, { recursive: true });
 const attempt = `attempt-${Date.now()}-${randomBytes(4).toString('hex')}`;
@@ -16,11 +20,11 @@ const directory = join(base, attempt), workspace = join(directory, 'workspace');
 await mkdir(workspace, { recursive: true });
 const config = JSON.parse(await readFile(configArg, 'utf8'));
 if (config.baseUrl !== 'https://api.chiyi.cc/v1' || typeof config.apiKey !== 'string' || !config.apiKey) throw new Error('invalid_provider_config');
-const settings = codexConfig(modelArg);
+const settings = codexConfig(modelArg, process.env.OLEA_BRIDGE_CONFIG, accessModeArg);
 for (const required of ['request_max_retries = 0', 'stream_max_retries = 0', 'stream_idle_timeout_ms = 45000', 'inherit = "core"', 'env_key = "OLEA_CODEX_PROVIDER_KEY"', 'wire_api = "responses"']) if (!settings.includes(required)) throw new Error('unsafe_preflight');
 const safe = text => String(text).split(config.apiKey).join('[REDACTED]').slice(0, 2048);
 const marker = randomBytes(16).toString('hex');
-const report = { attempt, observedAt: new Date().toISOString(), scope: process.env.OLEA_EXECUTION_SCOPE ?? 'host-only', platform: process.platform, node: process.version, model: modelArg, topLevelPrompts: 0, maxToolRounds: 12, maxTurnMs: 120000, streamIdleMs: 45000, requestRetries: 0, streamRetries: 0, httpRequests: null, httpRequestsLimit: 'stock protocol does not expose HTTP count; no automatic retry configured', remoteBilling: 'unknown', strictTokenCap: 'unsupported in inspected turn/start schema', events: {}, items: {}, processes: [], approvals: [], toolReceipts: [], errors: [], usage: [], assertions: {}, outcomes: {} };
+const report = { attempt, observedAt: new Date().toISOString(), scope: process.env.OLEA_EXECUTION_SCOPE ?? 'host-only', platform: process.platform, node: process.version, model: modelArg, accessMode: accessModeArg, stockSandbox: policy.sandbox, approvalPolicy: policy.approvalPolicy, filesystemIsolation: accessModeArg !== 'full-access', topLevelPrompts: 0, maxToolRounds: 12, maxTurnMs: 120000, streamIdleMs: 45000, requestRetries: 0, streamRetries: 0, httpRequests: null, httpRequestsLimit: 'stock protocol does not expose HTTP count; no automatic retry configured', remoteBilling: 'unknown', strictTokenCap: 'unsupported in inspected turn/start schema', events: {}, items: {}, processes: [], approvals: [], toolReceipts: [], errors: [], usage: [], assertions: {}, outcomes: {} };
 for (const path of [new URL(import.meta.url), ...['backend.js', 'codex-process.js', 'codex-session.js', 'phone-mcp.js', 'pi-process.js', 'process-tree.js'].map(name => new URL(`../../backend/dist/${name}`, import.meta.url))]) {
   report.sourceSha256 ??= {};
   report.sourceSha256[path.pathname] = createHash('sha256').update(await readFile(path)).digest('hex');
@@ -31,7 +35,7 @@ let terminal = new Promise((resolve, reject) => { terminalResolve = resolve; ter
 terminal.catch(() => {});
 let backend;
 let startingAt = performance.now(), firstEvent;
-backend = new Backend({ entry: '', workspace, stateDir: join(directory, 'state'), codexEntry: resolve(entryArg), codexProviderPath: resolve(configArg), codexModel: modelArg, bridgePath: process.env.OLEA_BRIDGE_CONFIG }, event => {
+backend = new Backend({ entry: '', workspace, stateDir: join(directory, 'state'), codexEntry: resolve(entryArg), codexProviderPath: resolve(configArg), codexModel: modelArg, codexAccessMode: accessModeArg, bridgePath: process.env.OLEA_BRIDGE_CONFIG }, event => {
   const record = event.record;
   if (record?.method) {
     firstEvent ??= performance.now() - startingAt;
@@ -60,10 +64,10 @@ try {
   report.start = await backend.startCodex('case');
   report.outcomes.initializedThread = 'pass';
   const preflightRead = await readFile(join(report.start.home, 'config.toml'), 'utf8');
-  if (preflightRead !== settings && mode === 'unix') throw new Error('preflight_config_mismatch');
+  if (preflightRead !== settings || report.start.accessMode !== accessModeArg) throw new Error('preflight_config_mismatch');
   report.providerConfigSha256 = createHash('sha256').update(preflightRead).digest('hex');
-  let prompt = `In this workspace perform one bounded real Unix/dependency/child workflow. Use bash (Git Bash on Windows if necessary), Node and ordinary npm. Install is-number@7.0.0 with npm retries=0 and timeout=20000; do not retry failures. Create result.json containing marker "${marker}", dependency boolean from actually requiring is-number and checking 42 accepted plus "olea" rejected, child string from actually spawning Node printing 42, and secretAbsent boolean verifying OLEA_CODEX_PROVIDER_KEY is absent from the child shell environment. Do not print any environment values or inspect config/home/private files. Save an executable child-check.cjs which spawns process.execPath with ["-e","process.stdout.write('42')"] and prints its stdout; run it. Stop if sandbox fails or approval is denied; never disable sandbox or request expanded access. Use at most 10 tool calls and finish with a brief factual result.`;
-  if (mode === 'phone') prompt = `Use registered olea_phone MCP tools to read capabilities, HOME, inspect launcher (default swipe then inspect if needed), and click Olea Fixture launcher entry through Accessibility; never launch by intent. Then generate a fresh random 32 lowercase hex value with Unix Node, save combined-value.txt, and send that same value using phone_fixture_action. Never read oracle data. No retries of uncertain phone effects; at most 12 tools. Keep sandbox and approvals enabled.`;
+  let prompt = `In this workspace perform one bounded real Unix/dependency/child workflow. Use bash (Git Bash on Windows if necessary), Node and ordinary npm. Install is-number@7.0.0 with npm retries=0 and timeout=20000; do not retry failures. Create result.json containing marker "${marker}", dependency boolean from actually requiring is-number and checking 42 accepted plus "olea" rejected, child string from actually spawning Node printing 42, and secretAbsent boolean verifying OLEA_CODEX_PROVIDER_KEY is absent from the child shell environment. Do not print any environment values or inspect config/home/private files. Save an executable child-check.cjs which spawns process.execPath with ["-e","process.stdout.write('42')"] and prints its stdout; run it. ${accessInstruction} Use at most 10 tool calls and finish with a brief factual result.`;
+  if (mode === 'phone') prompt = `Use registered olea_phone MCP tools to read capabilities, HOME, inspect launcher (default swipe then inspect if needed), and click Olea Fixture launcher entry through Accessibility; never launch by intent. Then generate a fresh random 32 lowercase hex value with Unix Node, save combined-value.txt, and send that same value using phone_fixture_action. Never read oracle data. No retries of uncertain phone effects; at most 12 tools. ${accessInstruction}`;
   if (mode === 'controlled') {
     const npmCli = process.env.OLEA_NPM_CLI ?? (process.platform === 'win32' ? join(dirname(process.execPath), 'node_modules/npm/bin/npm-cli.js') : resolve(dirname(process.execPath), '../lib/node_modules/npm/bin/npm-cli.js'));
     await writeFile(join(workspace, 'npmrc'), '');
@@ -71,7 +75,7 @@ try {
     await writeFile(join(workspace, 'task.cjs'), script);
     if (spawnSync(process.execPath, ['--check', join(workspace, 'task.cjs')], { timeout: 5000, stdio: 'ignore', env: {} }).status !== 0) throw new Error('invalid_controlled_task_script');
     report.taskSha256 = createHash('sha256').update(script).digest('hex');
-    prompt = 'Run exactly one shell command in this workspace: node task.cjs . The preselected deterministic task script installs is-number@7.0.0 with zero npm retries, checks actual dependency behavior, spawns a harmless Node child, verifies the provider key variable was not inherited, and writes result.json. Use the normal enabled sandbox. Do not inspect/change the script, request expanded permissions, disable sandbox, or repeat the action after any uncertain error. If command fails or approval is rejected, stop and report that factual result. No other tools are needed.';
+    prompt = 'Run exactly one shell command in this workspace: node task.cjs . The preselected deterministic task script installs is-number@7.0.0 with zero npm retries, checks actual dependency behavior, spawns a harmless Node child, verifies the provider key variable was not inherited, and writes result.json. ' + accessInstruction + ' Do not inspect/change the script or repeat the action after any uncertain error. If command fails or approval is rejected, stop and report that factual result. No other tools are needed.';
   }
   report.topLevelPrompts = 1;
   const timeout = setTimeout(() => terminalReject(new Error('runner_turn_deadline_delivery_unknown')), 123000);
@@ -94,7 +98,7 @@ try {
     } catch (error) { report.outcomes.unixWorkflow = 'fail'; report.errors.push(safe(error.code ?? error.message)); }
   } else report.outcomes.phoneWorkflow = 'awaiting-independent-native-oracle';
   await backend.stop('case');
-  try { report.resume = await backend.startCodex('case', true); report.outcomes.resume = report.resume.threadId === report.start.threadId && report.resume.home === report.start.home && report.resume.cwd === report.start.cwd ? 'pass' : 'fail'; }
+  try { report.resume = await backend.startCodex('case', true); report.outcomes.resume = report.resume.threadId === report.start.threadId && report.resume.home === report.start.home && report.resume.cwd === report.start.cwd && report.resume.accessMode === accessModeArg ? 'pass' : 'fail'; }
   catch (error) { report.outcomes.resume = 'fail'; report.errors.push(safe(error.message)); }
 } catch (error) {
   report.outcomes.experiment = 'fail'; report.errors.push(safe(error.message));
@@ -102,7 +106,7 @@ try {
   await backend.close();
   report.elapsedMs = performance.now() - startingAt;
   report.workspace = await realpath(workspace);
-  report.limits = ['Tool limit triggers interrupt after observing excess events; stock exposes no strict pre-execution tool-round cap', 'Authenticated host execution is not Android compatibility', 'Same-UID shell is not secret-file isolation', 'Windows root stop does not prove descendant exit', 'Acknowledgement does not prove tool effects or rollback', 'Provider HTTP count and remote billing unknown'];
+  report.limits = ['Tool limit triggers interrupt after observing excess events; stock exposes no strict pre-execution tool-round cap', 'Authenticated host execution is not Android compatibility', 'Same-UID shell is not secret-file isolation', ...(accessModeArg === 'full-access' ? ['Explicit full access provides no Codex filesystem isolation or agent approval gate; Android app UID and native permission/stop checks remain'] : []), 'Windows root stop does not prove descendant exit', 'Acknowledgement does not prove tool effects or rollback', 'Provider HTTP count and remote billing unknown'];
   await writeFile(output, JSON.stringify(report, null, 2));
   console.log(JSON.stringify({ output, attempt, topLevelPrompts: report.topLevelPrompts, outcomes: report.outcomes }));
 }

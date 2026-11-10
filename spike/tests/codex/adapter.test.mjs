@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { mkdir, mkdtemp, rm, readFile, writeFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { Backend } from '../../backend/dist/backend.js';
@@ -96,6 +97,12 @@ test('inherited output pipes have bounded draining without false descendant-exit
   const result = await f.backend.stop('one');
   assert.ok(performance.now() - started < 1500);
   assert.equal(result.descendantsVerified, false);
+});
+test('runner rejects invalid explicit access mode before credentials or model dispatch', () => {
+  const result = spawnSync(process.execPath, ['spike/tests/codex/run-stock.mjs', 'no-provider-file', 'unused', 'unused', 'gpt-6.1-terra', 'unix', 'invalid-mode'], { encoding: 'utf8', timeout: 3000 });
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /codex_invalid_access_mode/);
+  assert.doesNotMatch(result.stderr, /ENOENT/);
 });
 test('full access is explicit stock policy and invalid mode fails closed', () => {
   assert.deepEqual(codexPolicy(), { sandbox: 'workspace-write', approvalPolicy: 'on-request' });

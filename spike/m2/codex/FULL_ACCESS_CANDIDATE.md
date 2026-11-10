@@ -20,4 +20,12 @@ The final positional argument is mandatory and exact. It starts stock app-server
 
 **Trust boundary:** full access grants ordinary Unix tools the Android app UID's effective filesystem/process authority and omits Codex sandbox/approval checks. It does not grant root or additional Android permissions. Same-UID agent shell can reach private app files, session homes and potentially bridge configuration or other same-UID processes; placing credentials outside workspace and scrubbing child environment is not a filesystem security boundary. Kotlin must still check current Android permission, enabled/stop state and allowed operation on every phone request, including requests made outside MCP; full access must never weaken those native checks. A separate-UID private fixture remains necessary for an inaccessible oracle. Do not claim isolation between same-UID agents or credentials. Accepting this supported policy requires an explicit product/runtime policy choice by the manager/user; historical isolated-sandbox failures remain valid and unchanged.
 
+After the manager explicitly authorizes a model turn for this selected route, the runner accepts final positional `full-access` or `OLEA_CODEX_ACCESS_MODE=full-access`. Example preparation only (not executed here):
+
+```sh
+node /opt/olea/spike/tests/codex/run-stock.mjs /run/olea-provider.json /opt/olea/evidence/codex-unix-full-access-a01.json /opt/agents/codex/node_modules/@openai/codex/bin/codex.js gpt-6.1-terra unix full-access
+```
+
+Runner config comparison includes the actual bridge configuration and explicit access mode for every case. Prompts identify the operator-selected full-access policy without claiming restricted isolation or requesting its disablement. Reports retain mode, sandbox enum, approval enum, filesystemIsolation=false, exact config/source hashes and same-UID credential limits; resume must retain access mode. Unix independent assertions remain unchanged. This command is not additional model authorization.
+
 The conditional native model allocation remains unspent until the manager explicitly selects this route after deterministic results. No additional host provider budget exists. No Rim commands were used.
