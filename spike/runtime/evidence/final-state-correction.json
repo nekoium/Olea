@@ -1,0 +1,21 @@
+{
+  "reviewedAtUtc": "2026-11-10T16:09:20Z",
+  "mode": "One bounded read-only exact PID4357 review; no emulator mutation, process termination, environment read or credential output",
+  "originalEvidence": "final-cleanup-state.txt remains unchanged: u0_a216 PID4357 PPID485 NAMEzygote64",
+  "actualObservation": {
+    "pid": 4357,
+    "parentPid": 485,
+    "procStatName": "dev.olea.spike",
+    "procStatusName": "dev.olea.spike",
+    "procState": "S (sleeping)",
+    "procUid": [10216, 10216, 10216, 10216],
+    "procStartTimeTicks": "17539",
+    "cmdline": "dev.olea.spike",
+    "androidPs": "u0_a216       4357   485 dev.olea.spike"
+  },
+  "conclusion": "PID4357 is currently a sleeping Android Olea host process with zygote parent485; it is not the emulator process or a separate zygote running under the app UID. The original zygote64 label alone did not establish its final identity; the cause/timing of that earlier label transition is not proven.",
+  "correction": "The broad final no-app-UID-process claim is withdrawn. A residual/restarted host exists at review time; no PRoot/Node/Pi processes appear in this review's app-UID-filtered ps output. Phone-enabled/stop and native service state were not re-queried, so current disabled-phone status is not asserted.",
+  "preservedEarlierEvidence": "lifecycle-after-death-processes.txt earlier empty app-UID snapshot and lifecycle-restart-capabilities.json earlier disabled-phone/backend-stopped snapshot are separate observations, not proof of current host absence or permanent termination.",
+  "rawSanitizedEvidence": "final-pid4357-review.txt",
+  "remainingLimits": "No cause inferred for host restart/residual process; no natural-background survival or permanent cleanup guarantee; no further Android actions performed."
+}
