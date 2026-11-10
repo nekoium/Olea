@@ -1,7 +1,7 @@
 {
   "track": "stock-codex-app-server",
-  "status": "host-complete-awaiting-runtime-owner",
-  "observedAt": "2026-11-10T17:21:00Z",
+  "status": "runtime-sandbox-blocked-independent-update-and-fresh-work-continues",
+  "observedAt": "2026-11-10T18:07:03Z",
   "parentage": {
     "run": "run_aa0011145bf9",
     "manager": "pi_1d9a3114_30c1_4a4f_b8a6_22cd565c2373",
@@ -75,10 +75,13 @@
     {"id": "host.stock-mcp-discovery-no-key", "status": "pass", "evidence": "attempts/host-mcp-discovery-guarded.json", "actual": "Real stock MCP connection listed six narrow phone tools with no provider credential and no phone operation"},
     {"id": "host.stock-command-termination", "status": "blocked", "evidence": "attempts/host-command-termination-attempt1.json", "actual": "Stock Windows sandbox RPC -32600 explicitly does not support command/exec terminate/write/resize; Linux behavior remains separate"},
     {"id": "host.real-model-cancellation", "status": "untested", "actual": "Fake-protocol interrupt passes; no actual model cancellation prompt allocated"},
-    {"id": "android.actual-app-domain-codex", "status": "untested", "actual": "Awaiting sole runtime owner; no Android probe by this worker"},
-    {"id": "android.stock-linux-sandbox", "status": "untested", "actual": "Bounded source payload delivered to runtime owner; host Windows results cannot establish it"},
-    {"id": "android.model-unix-dependency-child", "status": "untested", "actual": "Requires actual stock sandbox and separately allocated manager prompt"},
-    {"id": "android.model-phone-causal-click-oracle", "status": "untested", "actual": "MCP bridge payload prepared; requires native direct-first permissions plus causal Accessibility and separate-UID oracle assertions"},
+    {"id": "android.actual-app-domain-codex", "status": "pass", "evidence": "git:7b154a8904101f10984c1fa053b7a73ebea58411:spike/m2/runtime/evidence/codex-install-a01-native.json", "actual": "Target36 actual Kotlin service real UID10216 stock Linux0.167.0 install/startup pass; native binary SHAcdcb45aaa01d0f14e298985e09465aebccd47f64ecd298aea44814af7b62bbda; not a model/tool workflow pass"},
+    {"id": "android.stock-mcp-discovery", "status": "pass", "evidence": "git:7b154a8904101f10984c1fa053b7a73ebea58411:spike/m2/runtime/evidence/codex-mcp-a01.json", "actual": "Actual service stock thread/start plus MCP registration lists six narrow tools; no model or phone effects"},
+    {"id": "android.stock-linux-sandbox", "status": "blocked", "evidence": "git:7b154a8904101f10984c1fa053b7a73ebea58411:spike/m2/runtime/evidence/codex-sandbox-a01.json", "actual": "Both inside/outside command/exec exit1 cannot establish app-server socket mount isolation; inside artifact absent and outsideDenialConfirmed false"},
+    {"id": "android.socket-mount-identity", "status": "fail", "evidence": "LINUX_SANDBOX_ASSESSMENT.md", "actual": "Own /tmp descriptor mount11029 missing from24-entry mountinfo; descriptor device254:55 conflicts with view /tmp device0:30; stock guard rejects missing mount ID"},
+    {"id": "android.stock-bwrap-startup", "status": "blocked", "evidence": "LINUX_SANDBOX_ASSESSMENT.md", "actual": "Stock bundled bwrap exit1 cannot read /proc/sys/kernel/overflowuid Permission denied before argument parsing; namespace creation untested, no numeric errno emitted"},
+    {"id": "android.model-unix-dependency-child", "status": "blocked", "actual": "Actual stock sandbox prerequisite failed; conditional native model prompt unconsumed"},
+    {"id": "android.model-phone-causal-click-oracle", "status": "blocked", "actual": "Actual stock sandbox prerequisite failed; MCP discovery alone cannot pass native phone effects or hidden-oracle assertions"},
     {"id": "android.ordinary-codex-update", "status": "untested", "actual": "Finite same-prefix earlier-to-current stock update/resume/hash contract prepared; not executed here"},
     {"id": "physical.android14-abi", "status": "blocked", "actual": "Physical phone ABI not available to this worker; no physical compatibility inference"}
   ],
@@ -92,8 +95,8 @@
   ],
   "currentState": {
     "ownedHostExperimentProcesses": "Latest exact-worktree Win32_Process command-line filter found zero node.exe/codex.exe experiments; root exit is not general descendant proof",
-    "androidDevice": "Not queried by this worker; sole runtime owner is authoritative",
-    "phoneStopPermissions": "Not queried or mutated by this worker",
+    "androidDevice": "Worker performed no Android actions; runtime owner receipts show actual target36 service real UID10216 on API36 x86_64",
+    "phoneStopPermissions": "Not queried or mutated by this worker; consult sole runtime owner current-state receipt",
     "physicalPhone": "Not queried; historical disconnected/ABI unknown remains a prerequisite",
     "credentials": "Original authorized source untouched; never printed or put in prompts/argv/tracked artifacts",
     "workspace": "Isolated child kept open; .setup task artifacts retained, no destructive cleanup",
@@ -107,7 +110,8 @@
     "Windows stop lacks process start-time/descendant proof; Linux snapshots miss later forks and already-reparented children",
     "No strict token/tool pre-execution cap or known remote bill",
     "Early host invocation did not capture complete per-file integration source hashes at dispatch; chronological Git checkpoints retained, later runner adds sourceSha256",
-    "No ordinary Codex update or real Android model outcome yet"
+    "Actual Android install/startup/MCP passed; model workflows blocked by independent stock mount identity and mandatory protected proc-read prerequisites",
+    "Ordinary Codex update and fresh-repeat checkpoint remain owned by active runtime worker; not inferred from install or resume"
   ],
-  "next": "Wait for actual service-domain stock Linux sandbox/MCP results from sole runtime owner; keep manager and isolated session open"
+  "next": "No credible supported unprivileged fix established for tested0.167 route; keep conditional model prompt unspent and wait for independent update/fresh-repeat evidence"
 }
