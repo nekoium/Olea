@@ -1,5 +1,13 @@
 # Progress
 
+## M2 started — fresh autonomous manager and workers
+
+- New manager `pi_1d9a3114_30c1_4a4f_b8a6_22cd565c2373` owns the authorized next milestone in the same Olea root checkout. Clean starting head `1775d53` includes prior milestone and closeout; no remote, duplicate repository or publication was introduced.
+- New Run `run_aa0011145bf9` has three new kept-open Pi child worktrees: `m2-modern-runtime`, `m2-stock-codex`, and `m2-repro-evidence`. Worktree lineage independently matches this exact root/repository. Full `dispatch-show` records independently identify the new manager as creator session, fresh assignee sessions and new Run for all three. Legacy `coordinator_handle` and projection `parent` remain null; this association is verified without claiming the Run projection repaired. Details, ownership and budgets: [M2 coordination](docs/feasibility/M2_COORDINATION.md).
+- Workers initially prepared read-only, then received explicit activation after creator-session checks. Modern-runtime worker now holds the sole emulator mutation lease and must recheck actual state before boot/provisioning. Other tracks prepare shared-backend Codex integration and independent repro/assertion/report tooling without device mutation. Existing baseline and historical evidence remain preserved; new experiment evidence belongs under `spike/m2/`.
+- Initial tranche is eight provider-backed test prompts total, including retries/fallbacks; two allocated to host Codex work and six reserved. Runtime/evidence have no prompt allocation yet. Initial runtime worker-agent turn hit a provider connection error and was resumed once in the same assignment; no duplicate launch. No new runtime/provider workflow result is claimed by team launch.
+- Manager Rim candidate `nf6bf529a79c1206` (`m2-manager-start`) spawned successfully. After Git checkpoint `46d76c4`, punch again refused “no Rim root exists for the current project context.” No destructive repair; local Git preserves coordination state.
+
 ## Next bounded milestone authorized — fresh manager and Pi team
 
 - Saved first-milestone integrated evidence at `fccb24e9f1c9d1a20948caee045d1b1bc5fa89d8` (local tag `feasibility-m1`), with tested code `c3e10d1` and read-only audit `ea22090`. Historical verdict remains **revise**, 52 pass / 6 fail / 6 blocked / 23 untested; prior reports are unchanged.
