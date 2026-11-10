@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile, readdir, rm } from 'node:fs/promises';
 import { join, resolve, dirname } from 'node:path';
 import { randomUUID, createHash } from 'node:crypto';
 import { Backend } from '../../backend/dist/backend.js';
+import { snapshotOwnedTree } from '../../backend/dist/process-tree.js';
 import { readProcess, waitForProcessExit } from './process-observer.mjs';
 
 if (process.platform !== 'linux') throw new Error('linux_proc_required');
@@ -57,7 +58,8 @@ try {
   if (before.status !== 'observed') throw new Error('child_identity_unverifiable');
   report.processEvidence = { backendPid: process.pid, piPid: started.pid, childPid: pid, childBefore: before,
     piBefore: await readProcess(started.pid), piTaskChildren: await taskChildren(started.pid),
-    parentBefore: await readProcess(before.parentPid), parentTaskChildren: await taskChildren(before.parentPid) };
+    parentBefore: await readProcess(before.parentPid), parentTaskChildren: await taskChildren(before.parentPid),
+    ownedNumericStatSnapshot: await snapshotOwnedTree(started.pid) };
   const began = performance.now();
   await backend.stop(session);
   await work;

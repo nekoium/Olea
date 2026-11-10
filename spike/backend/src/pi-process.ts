@@ -3,7 +3,7 @@ import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import { EventEmitter } from 'node:events';
 import { StringDecoder } from 'node:string_decoder';
 import { randomUUID } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
+import { processIdentity, procIO, signalOwnedProcess, snapshotOwnedTree, type ProcessIdentity } from './process-tree.js';
 
 export type RecordData = Record<string, any>;
 export const MAX_RECORD_BYTES = 256 * 1024;
@@ -90,57 +90,34 @@ export class PiProcess extends EventEmitter {
 
   private async stopInner() {
     if (this.closing) return;
-    // Pi shell tools create separate process groups. Capture those descendants
-    // before shutdown can reparent them, then clean them even if Pi is wedged.
-    const descendants: number[] = [];
-    const identities = new Map<number, string>();
-    const identity = async (pid: number) => {
-      const stat = await readFile(`/proc/${pid}/stat`, 'utf8');
-      return stat.slice(stat.lastIndexOf(')') + 2).split(' ')[19];
-    };
-    let rootIdentity: string | undefined;
-    if (process.platform === 'linux' && this.child.pid) {
-      try { rootIdentity = await identity(this.child.pid); }
-      catch { if (this.child.exitCode === null && this.child.signalCode === null) this.emit('fault', 'cleanup_identity_unverifiable'); }
-      const discover = async (pid: number) => {
-        if (descendants.length >= 256) { this.emit('fault', 'descendant_limit'); return; }
-        try {
-          const children = (await readFile(`/proc/${pid}/task/${pid}/children`, 'utf8')).trim().split(/\s+/).filter(Boolean).map(Number);
-          for (const child of children) {
-            if (descendants.length >= 256) { this.emit('fault', 'descendant_limit'); break; }
-            if (!descendants.includes(child)) {
-              try { identities.set(child, await identity(child)); }
-              catch (error: any) { if (error.code !== 'ENOENT' && error.code !== 'ESRCH') this.emit('fault', 'cleanup_identity_unverifiable'); continue; }
-              descendants.push(child); await discover(child);
-            }
-          }
-        } catch (error: any) {
-          if (error.code !== 'ENOENT' && error.code !== 'ESRCH') this.emit('fault', 'cleanup_tree_unverifiable');
-        }
-      };
-      await discover(this.child.pid);
-    }
     this.closing = true;
+    let owned: ProcessIdentity[] = [];
+    if (process.platform === 'linux' && this.child.pid) {
+      try { owned = await snapshotOwnedTree(this.child.pid); }
+      catch (error: any) {
+        this.emit('fault', /^[a-z_]+$/.test(error.message ?? '') ? error.message : 'cleanup_tree_unverifiable');
+        // A failed complete snapshot cannot establish descendant cleanup. Still
+        // stop the directly owned Pi if its UID and identity remain observable.
+        try {
+          const root = await processIdentity(this.child.pid);
+          if (root.uid === await procIO.owner('self')) owned = [root];
+        } catch {}
+      }
+    }
     this.failPending('pi_stopped');
     this.child.stdin.end();
-    // Kill the whole Unix process group even if the parent already exited.
     const kill = async (signal: NodeJS.Signals) => {
-      try {
-        if (process.platform !== 'win32' && this.child.pid) {
-          for (const pid of [...descendants].reverse()) {
-            if (process.platform === 'linux') {
-              try { if (await identity(pid) !== identities.get(pid)) { this.emit('fault', 'descendant_identity_changed'); continue; } }
-              catch (error: any) { if (error.code !== 'ENOENT' && error.code !== 'ESRCH') this.emit('fault', 'cleanup_identity_unverifiable'); continue; }
-            }
-            try { process.kill(-pid, signal); } catch { try { process.kill(pid, signal); } catch {} }
-          }
-          if (process.platform === 'linux') {
-            try { if (!rootIdentity || await identity(this.child.pid) !== rootIdentity) return; }
-            catch { return; }
-          }
-          process.kill(-this.child.pid, signal);
-        } else this.child.kill(signal);
-      } catch (error: any) { if (error.code !== 'ESRCH') this.emit('fault', 'process_group_cleanup_failed'); }
+      if (process.platform === 'linux') {
+        for (const identity of [...owned].reverse()) {
+          try { await signalOwnedProcess(identity, signal); }
+          catch { this.emit('fault', 'cleanup_signal_unverifiable'); }
+        }
+      } else {
+        try {
+          if (process.platform !== 'win32' && this.child.pid) process.kill(-this.child.pid, signal);
+          else this.child.kill(signal);
+        } catch (error: any) { if (error.code !== 'ESRCH') this.emit('fault', 'process_group_cleanup_failed'); }
+      }
     };
     await new Promise(resolve => setTimeout(resolve, 200));
     await kill('SIGTERM');
