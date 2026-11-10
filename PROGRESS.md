@@ -1,5 +1,12 @@
 # Progress
 
+## Next bounded milestone authorized — fresh manager and Pi team
+
+- Saved first-milestone integrated evidence at `fccb24e9f1c9d1a20948caee045d1b1bc5fa89d8` (local tag `feasibility-m1`), with tested code `c3e10d1` and read-only audit `ea22090`. Historical verdict remains **revise**, 52 pass / 6 fail / 6 blocked / 23 untested; prior reports are unchanged.
+- Root closeout `d9457ebbb0a52975238416f705088ae99410b82b` records 2026-11-10 16:35:21 UTC: no ADB device or emulator process, emulator already off, unchanged APK/AVD hashes, no kill/wipe/deletion/configuration changes. Archives, caches, rootfs/history and protected configuration remain. Persisted phone/service/permission state was not re-queried; earlier residual sleeping host PID 4357 and earlier force-stop snapshots remain distinct. Old runtime owner relinquished the emulator mutation lease; a new sole owner must acquire it before changes.
+- The user now authorized autonomous bounded modern-target runtime packaging and reproducible fresh install/update/recovery, stock Pi regression, and real stock Codex CLI app-server workflows using the same authorized custom endpoint/key. Prior HTTP 200 SSE capture caps and host timeout do not establish Codex incompatibility or permanent missing-auth blockage. Preserve one shared TS/Node backend, Kotlin permission authority, ordinary upstream updates and existing product boundaries; no production UX, private agent ports, root or publishing.
+- [Next milestone handoff](docs/feasibility/NEXT_MILESTONE_HANDOFF.md) defines acceptance, budgets, reference provenance/license limits, independent evidence, retained absolute artifact/cache paths and orchestration recovery rules. The closing manager will launch a fresh normal Pi manager in the same Olea root project; that manager creates a new manager-bound Run and new kept-open Pi child workers in exact repo `d55c3648-a5ff-4d7b-96d8-e80071701415`, verifying both worktree and supervisory parentage. Old sessions/worktrees become evidence-only after closeout. This documentation task did not launch workers or perform source, model or emulator work.
+
 ## Disposable feasibility experiment — 2026-11-10
 
 This section records the authorized experiment and supersedes earlier “not built/not tested” statements for this spike only. Historical discussion records below remain unchanged. Product agreements and production UX decisions are unchanged.
