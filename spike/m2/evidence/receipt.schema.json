@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:olea:m2:attempt:1",
+  "title": "Olea M2 sanitized acceptance attempt",
+  "description": "Original MIT. Artifact bytes and producer assertions must be independently reviewed; schema validity is not workflow success.",
+  "type": "object",
+  "required": ["attemptId", "caseId", "context", "mode", "status", "startedAt", "endedAt", "summary", "artifacts", "assertions"],
+  "properties": {
+    "attemptId": {"type": "string", "pattern": "^[a-zA-Z0-9._-]+$"},
+    "caseId": {"type": "string", "description": "Must match immutable expected catalog ID."},
+    "context": {"enum": ["android-app", "android-runas", "target28-comparison", "host", "artifacts", "physical-phone"]},
+    "mode": {"enum": ["direct", "model"]},
+    "status": {"enum": ["pass", "fail", "blocked", "untested"]},
+    "startedAt": {"type": "string", "format": "date-time"},
+    "endedAt": {"type": "string", "format": "date-time"},
+    "summary": {"type": "string", "description": "Manually sanitized result. Never raw stdout/provider/headers/config."},
+    "failureClass": {"enum": ["provider_transport", "provider_rate_limit", "provider_auth", "provider_limit", "protocol", "runtime", "permission", "network_install", "independent_assertion", "prerequisite", "unclassified", "none"]},
+    "prerequisites": {"type": "array", "items": {"type": "string"}},
+    "retryOf": {"type": ["string", "null"]},
+    "fallbackOf": {"type": ["string", "null"]},
+    "artifacts": {"type": "array", "items": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false}},
+    "assertions": {"type": "array", "items": {"type": "object", "required": ["name", "independent", "passed"], "properties": {"name": {"type": "string"}, "independent": {"type": "boolean"}, "passed": {"type": "boolean"}}, "additionalProperties": false}},
+    "execution": {"type": "object", "description": "Retain domain Activity/service/run-as, real Android UID, compile/min/target SDK, Android/API/ABI, actual allocation, boot identity, PID/start ticks/UID, bridge state, rootfs/package/artifact identities. Never process environment or credential-bearing cmdline."},
+    "provider": {"type": "object", "description": "allocationId, model, topLevelPrompts, observed HTTP/model/tool rounds separately, observed usage and unknown billing; no secrets or raw request/response."},
+    "provenance": {"type": "object", "description": "Source URL, exact version/commit, SHA256, license/notice paths, original MIT versus third-party obligations; no unsupported signature/license clearance claim."},
+    "limits": {"type": "array", "items": {"type": "string"}},
+    "commandsActuallyRun": {"type": "array", "items": {"type": "string"}},
+    "sourceOnlyCommands": {"type": "array", "items": {"type": "string"}},
+    "currentState": {"type": "object", "description": "Exact observed process/device/bridge/phone state, observation timestamp and unknown persisted-state boundaries."}
+  },
+  "additionalProperties": false,
+  "allOf": [{"if": {"properties": {"status": {"const": "pass"}}}, "then": {"properties": {"artifacts": {"minItems": 1}, "assertions": {"minItems": 1, "items": {"properties": {"independent": {"const": true}, "passed": {"const": true}}}}}}}]
+}

@@ -5,10 +5,10 @@ import { mkdir, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { catalog, validateReceipt, assess, render, sha256, verifyArtifacts } from './evidence.mjs';
 import { challenge, assertUnix, assertPhone, assertPreserved, parseStat, observeProcess, exited } from './assertions.mjs';
-import { bounded, runPiSingle } from './pi-single.mjs';
+import { bounded, runPiSingle, classifyProviderError } from './pi-single.mjs';
 import { supervise, sampleResources } from './supervise.mjs';
 function receipt(extra = {}) {
-  return { attemptId: 'unit-synthetic-1', caseId: 'runtime.modern', context: 'android-app', status: 'pass', startedAt: '2026-11-10T00:00:00Z', endedAt: '2026-11-10T00:00:01Z', summary: 'synthetic unit fixture, not execution', artifacts: [{ path: 'x', sha256: 'a'.repeat(64) }], assertions: [{ independent: true, passed: true }], ...extra };
+  return { attemptId: 'unit-synthetic-1', caseId: 'runtime.modern', context: 'android-app', mode: 'direct', status: 'pass', startedAt: '2026-11-10T00:00:00Z', endedAt: '2026-11-10T00:00:01Z', summary: 'synthetic unit fixture, not execution', artifacts: [{ path: 'x', sha256: 'a'.repeat(64) }], assertions: [{ name: 'unit', independent: true, passed: true }], ...extra };
 }
 test('complete fixed catalog preserves categories and critical modern/update boundaries', () => {
   const c = catalog();
@@ -33,7 +33,7 @@ test('first failures and retries retained without duplicate attempts', () => {
   assert.throws(() => assess([receipt(), receipt()]), /duplicate_attempt/);
 });
 test('passes require independent positive assertions and hashed retained artifact', () => {
-  for (const extra of [{ artifacts: [] }, { assertions: [] }, { assertions: [{ independent: false, passed: true }] }, { assertions: [{ independent: true, passed: false }] }]) assert.throws(() => validateReceipt(receipt(extra)), /pass_requires/);
+  for (const extra of [{ artifacts: [] }, { assertions: [] }, { assertions: [{ name: 'unit', independent: false, passed: true }] }, { assertions: [{ name: 'unit', independent: true, passed: false }] }]) assert.throws(() => validateReceipt(receipt(extra)), /pass_requires/);
 });
 test('secret-like fields and invalid identity/time/hash rejected', () => {
   for (const extra of [{ apiKey: 'redacted' }, { attemptId: '../x' }, { endedAt: 'bad' }, { startedAt: '2027-01-01' }, { artifacts: [{ path: 'x', sha256: 'no' }] }]) assert.throws(() => validateReceipt(receipt(extra)));
@@ -109,6 +109,12 @@ test('resource sampler records incomplete roots instead of zero-cost full total'
   const r = await sampleResources([20], dir);
   assert.equal(r.completeRequestedSet, false); assert.equal(r.processes[0].status, 'absent');
 }));
+test('provider diagnostics classify only fixed safe codes and never return raw message', () => {
+  for (const m of ['ECONNRESET secret', 'Connection error', 'Request timed out', 'UND_ERR_CONNECT_TIMEOUT']) assert.equal(classifyProviderError(m), 'provider_transport');
+  assert.equal(classifyProviderError('401 key=private'), 'provider_auth');
+  assert.equal(classifyProviderError('429'), 'provider_rate_limit');
+  assert.equal(classifyProviderError('private arbitrary response'), 'unclassified_provider_error');
+});
 test('finite timeout fires and no allocation prevents Pi backend/provider startup', async () => {
   await assert.rejects(bounded(new Promise(() => {}), 10, 'test_deadline'), /test_deadline/);
   await assert.rejects(runPiSingle({ allocatedPrompts: 0 }), /explicit_single_prompt/);

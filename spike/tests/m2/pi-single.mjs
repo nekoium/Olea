@@ -9,6 +9,14 @@ export function bounded(promise, ms, code) {
   let timer;
   return Promise.race([promise, new Promise((_, reject) => { timer = setTimeout(() => reject(Error(code)), ms); })]).finally(() => clearTimeout(timer));
 }
+export function classifyProviderError(message) {
+  if (typeof message !== 'string') return null;
+  if (/ECONNRESET|UND_ERR_CONNECT_TIMEOUT|connection error|request timed out|ETIMEDOUT|fetch failed/i.test(message)) return 'provider_transport';
+  if (/rate.?limit|\b429\b/i.test(message)) return 'provider_rate_limit';
+  if (/unauthorized|authentication|\b401\b|\b403\b/i.test(message)) return 'provider_auth';
+  if (/context.?length|token.?limit/i.test(message)) return 'provider_limit';
+  return 'unclassified_provider_error';
+}
 export async function runPiSingle(options) {
   if (options.allocatedPrompts !== 1 || !options.allocationId || !/^[\w.-]+$/.test(options.attemptId)) throw Error('explicit_single_prompt_allocation_required');
   if (!['unix', 'combined'].includes(options.kind)) throw Error('invalid_case_kind');
@@ -25,17 +33,33 @@ export async function runPiSingle(options) {
   const summary = { attemptId: options.attemptId, context: options.context, kind: options.kind, startedAt: new Date().toISOString(), status: 'fail', allocationId: options.allocationId,
     provider: { topLevelPrompts: 0, toolRounds: 0, observedUsage: {}, httpRequests: null, remoteBilling: 'unknown', strictTokenCap: 'unsupported/not established', automaticRetries: false },
     limits: { initMs: 30000, turnMs: 120000, idleMs: 45000, frameBytes: 262144, retainedDiagnosticBytes: 1048576, eventCount: 4096, maxToolRounds: 12 },
-    tools: [], faults: [], assertions: [], events: 0, noAutomaticReplay: true, sourceSha256: sha256(await readFile(import.meta.filename)) };
-  let ended = false, fault, lastEvent = Date.now(), turnStart, streamTimer;
+    tools: [], toolEvidence: [], providerFailures: [], faults: [], assertions: [], events: 0, timings: { firstEventMs: null, firstTextMs: null, maxEventGapMs: null }, modelChildExecution: 'not_independently_proved_by_fresh_runner_rerun', noAutomaticReplay: true, sourceSha256: sha256(await readFile(import.meta.filename)) };
+  let ended = false, fault, lastEvent = Date.now(), turnStart, turnFinished = false, streamTimer;
   const backend = new Backend({ entry: resolve(options.entry), workspace: resolve(options.workspace), stateDir: resolve(options.stateDir), env }, event => {
-    if (event.type === 'fault') { summary.faults.push('backend_fault'); fault = 'backend_fault'; }
+    if (event.type === 'fault') { if (summary.faults.length < 32) summary.faults.push('backend_fault'); fault = 'backend_fault'; }
     if (event.type !== 'event') return;
-    lastEvent = Date.now();
+    const now = Date.now();
+    if (turnStart && !turnFinished) {
+      summary.timings.firstEventMs ??= now - turnStart;
+      summary.timings.maxEventGapMs = Math.max(summary.timings.maxEventGapMs ?? 0, now - lastEvent);
+    }
+    lastEvent = now;
     if (++summary.events > 4096) { fault = 'event_limit'; return; }
     const r = event.record;
+    if (turnStart && !turnFinished && r.type === 'message_update' && ['text_delta', 'text_start'].includes(r.assistantMessageEvent?.type)) summary.timings.firstTextMs ??= now - turnStart;
+    if (r.type === 'message_end' && (r.message?.errorMessage || r.message?.stopReason === 'error')) {
+      const classification = classifyProviderError(r.message?.errorMessage ?? 'unknown');
+      if (summary.providerFailures.length < 32) summary.providerFailures.push({ classification, stopReason: r.message?.stopReason === 'error' ? 'error' : 'other', atMs: turnStart ? now - turnStart : null });
+    }
     // Reactive cancellation cannot strictly cap remote in-flight requests or billing.
     if (r.type === 'turn_start' && ++summary.provider.toolRounds >= 12) fault = 'model_round_limit';
     if (r.type === 'tool_execution_start' && typeof r.toolName === 'string' && summary.tools.length < 128) summary.tools.push(r.toolName.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 80));
+    if (['tool_execution_start', 'tool_execution_end'].includes(r.type) && summary.toolEvidence.length < 256) {
+      const value = r.type === 'tool_execution_start' ? r.args : r.result;
+      const encoded = JSON.stringify(value ?? null);
+      summary.toolEvidence.push({ type: r.type, tool: typeof r.toolName === 'string' ? r.toolName.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 80) : null,
+        contentSha256: sha256(encoded), contentBytes: Buffer.byteLength(encoded), isError: r.isError === true });
+    }
     if (r.type === 'message_end') for (const [k, v] of Object.entries(r.message?.usage ?? {})) if (['input', 'output', 'cacheRead', 'cacheWrite'].includes(k) && Number.isFinite(v)) summary.provider.observedUsage[k] = (summary.provider.observedUsage[k] ?? 0) + v;
     if (r.type === 'agent_end' || r.type === 'agent_settled') ended = true;
   });
@@ -61,8 +85,13 @@ export async function runPiSingle(options) {
       await new Promise(r => setTimeout(r, 50));
     }
     if (fault) throw Error(fault);
+    turnFinished = true;
+    summary.turnWallMs = Date.now() - turnStart;
     clearInterval(streamTimer);
-    summary.assertions = await assertUnix(options.workspace, c);
+    try { summary.assertions = await assertUnix(options.workspace, c); }
+    catch (error) { summary.independentOutcome = error.code === 'ENOENT' ? 'independent_file_or_dependency_missing' : 'independent_unix_assertion_failed'; throw Error(summary.independentOutcome); }
+    if (!summary.tools.some(tool => ['bash', 'write', 'edit'].includes(tool))) throw Error('model_tool_execution_not_observed');
+    if (options.kind === 'combined') for (const tool of ['phone_capabilities', 'phone_home', 'phone_inspect', 'phone_click', 'phone_fixture_action']) if (!summary.tools.includes(tool)) throw Error('required_phone_tool_not_observed');
     summary.status = options.kind === 'combined' ? 'awaiting-independent-phone-oracle' : 'pass';
     summary.phoneValueFile = options.kind === 'combined' ? `phone-${c.nonce}.txt` : null;
     summary.workspaceArtifact = c.file;
@@ -82,7 +111,8 @@ export async function runPiSingle(options) {
     try { await bounded(backend.close(), 10000, 'close_deadline'); } catch { summary.cleanupUnverifiable = true; }
     if (summary.processBefore?.pid) summary.processAfter = await observeProcess(summary.processBefore.pid);
     summary.endedAt = new Date().toISOString();
-    summary.turnWallMs = turnStart ? Date.now() - turnStart : null;
+    summary.turnWallMs ??= turnStart ? Date.now() - turnStart : null;
+    summary.diagnosticLimit = 'Only bounded metadata/hashes retained; no raw tool/provider text. Fresh independent runner child proves behavior, not model process causation.';
     await writeFile(options.output, JSON.stringify(summary, null, 2) + '\n', { mode: 0o600 });
   }
   return summary;

@@ -35,11 +35,14 @@ export function catalog() {
 const contexts = ['android-app', 'android-runas', 'target28-comparison', 'host', 'artifacts', 'physical-phone'];
 export function validateReceipt(r) {
   if (!r || typeof r !== 'object' || !/^[a-zA-Z0-9._-]+$/.test(r.attemptId ?? '') || !catalog().some(c => c.id === r.caseId)) throw Error('invalid_attempt');
-  if (!['pass', 'fail', 'blocked', 'untested'].includes(r.status) || !contexts.includes(r.context)) throw Error('invalid_status_context');
+  if (!['pass', 'fail', 'blocked', 'untested'].includes(r.status) || !contexts.includes(r.context) || !['direct', 'model'].includes(r.mode)) throw Error('invalid_status_context');
+  const allowed = ['attemptId', 'caseId', 'context', 'mode', 'status', 'startedAt', 'endedAt', 'summary', 'failureClass', 'prerequisites', 'retryOf', 'fallbackOf', 'artifacts', 'assertions', 'execution', 'provider', 'provenance', 'limits', 'commandsActuallyRun', 'sourceOnlyCommands', 'currentState'];
+  if (Object.keys(r).some(k => !allowed.includes(k))) throw Error('unexpected_receipt_field');
   for (const key of ['startedAt', 'endedAt']) if (!Number.isFinite(Date.parse(r[key]))) throw Error('invalid_timestamp');
   if (Date.parse(r.endedAt) < Date.parse(r.startedAt)) throw Error('invalid_time_order');
   if (!Array.isArray(r.artifacts) || !Array.isArray(r.assertions) || typeof r.summary !== 'string') throw Error('invalid_evidence');
   for (const a of r.artifacts) if (typeof a.path !== 'string' || !/^[a-f0-9]{64}$/.test(a.sha256)) throw Error('invalid_artifact');
+  if (r.assertions.some(a => typeof a.name !== 'string' || typeof a.independent !== 'boolean' || typeof a.passed !== 'boolean')) throw Error('invalid_assertion');
   if (r.status === 'pass' && (!r.artifacts.length || !r.assertions.length || r.assertions.some(a => a.independent !== true || a.passed !== true))) throw Error('pass_requires_independent_evidence');
   if (/apiKey|authorization|bearer |sk-[A-Za-z0-9]{10}/i.test(JSON.stringify(r))) throw Error('potential_secret');
   return r;
