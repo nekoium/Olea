@@ -1,0 +1,38 @@
+{
+  "observedAtUtc": "2026-11-10T16:35:21Z",
+  "scope": "Bounded milestone cleanup only; no experiments, models, boot, emulator configuration change, wipe or process kill",
+  "commands": [
+    {"command": "adb.exe devices -l", "result": "List of devices attached; no device entries"},
+    {"command": "adb.exe -s emulator-5554 shell <date/boot/cpu/memory/owned process observation>", "result": "device emulator-5554 not found; Android observation not executed"},
+    {"command": "PowerShell Get-Process -Name emulator,qemu-system-x86_64 -ErrorAction SilentlyContinue; select Id,ProcessName only", "result": "NO_EMULATOR_PROCESS"},
+    {"command": "sha256sum prepared AVD config.ini and both existing APKs", "result": "Hashes below; unchanged from recorded milestone"},
+    {"command": "ls -lh exact verified archives/transformed archives and project-local scratch inventory", "result": "Required artifacts present; ambiguous scratch retained rather than deleted"}
+  ],
+  "finalState": {
+    "adbDevices": [],
+    "hostEmulatorProcesses": [],
+    "emulator": "Already stopped at inspection; not started or changed by this cleanup",
+    "liveOwnedAndroidRuntime": "No live prepared emulator process observed, so no currently executing Olea bridge/backend/fixture can be addressed in that emulator",
+    "stopActions": "No bridge stop or package force-stop issued because intended device is absent; no broad kills or substitute device selected",
+    "persistedAndroidPhonePermissionAndAppState": "Not re-queried; no assertion that persisted stop/enable flags or special-access grants were reset",
+    "historicalResidualHost": "Prior PID4357 sleeping host observation remains in final-state-correction.json; it is not rewritten as a successful app-level stop",
+    "avdConfiguration": "Recorded baseline4cores/4GiB unchanged; offline config hash verified, current live allocation not applicable",
+    "emulatorMutationLease": "Relinquished by this worker at closeout; next manager must explicitly acquire before new device mutation"
+  },
+  "hashes": {
+    "avdConfigSha256": "d52586b2631349deb331f981b2e49d57ce5440e9fe94429a1772935edd7ce502",
+    "hostApkSha256": "35c53046d77e35269561338a30e52c6098e01056d541c2744988b406c498f033",
+    "fixtureApkSha256": "96d3ed95b3bcd39784f6907461e125339fcda174755c6641c99a7f2d36a8e743"
+  },
+  "deletedPaths": [],
+  "retainedArtifacts": {
+    "apks": ["spike/android/app/build/outputs/apk/debug/app-debug.apk", "spike/android/fixture/build/outputs/apk/debug/fixture-debug.apk"],
+    "verifiedArchives": [".setup/gradle-proxy.zip", ".setup/ubuntu-base.tar.gz", ".setup/node.tar.xz", ".setup/proot.deb", ".setup/libtalloc.deb", ".setup/libandroid-shmem.deb"],
+    "transformedArchives": [".setup/node.tar.gz", ".setup/proot-data.tar.gz", ".setup/libtalloc-data.tar.gz", ".setup/shmem-data.tar.gz"],
+    "reproducibilityScratch": [".setup/payload.tar.gz", ".setup/followup-payload.tar.gz", ".setup/verify-payload.tar.gz", ".setup/debs/", ".setup/gradle-9.1.0/", ".setup/gradle-home/", ".setup/native-proot/", ".setup/backend-tests/", ".setup/Packages", ".setup/Packages-ustc", ".setup/Packages.gz", ".setup/avd-config-before.ini"],
+    "logsAndEvidence": "All raw failure logs, bounded observations, research and tracked sanitized evidence retained; scratch payload archives retained to preserve exact historical deployed snapshots",
+    "androidData": "Offline rootfs, workspaces, package state, session history and protected credentials/config left untouched; no disk image modification",
+    "sessionsAndWorktrees": "Existing sessions/worktrees and Rim state preserved; no purge/prune/global or home cleanup"
+  },
+  "limits": "No app-level stop verification possible with absent device; do not equate an already stopped emulator with verified reset of persisted Android permissions or application state. No task-local deletion was justified strongly enough to outweigh reproducibility preservation."
+}
