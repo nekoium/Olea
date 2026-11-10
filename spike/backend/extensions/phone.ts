@@ -21,6 +21,11 @@ export default function (pi: any) {
     { name: 'phone_inspect', operation: 'accessibility_tree', description: 'Inspect bounded accessible Android UI nodes and foreground package. Use nodeId for clicks; inspect again after screen changes.', properties: {} },
     { name: 'phone_click', operation: 'accessibility_click', description: 'Click a node from phone_inspect using Android Accessibility. Open target apps by clicking launcher entries; do not substitute an intent.', properties: { nodeId: { type: 'string', maxLength: 256 } }, required: ['nodeId'] },
     { name: 'phone_home', operation: 'global_action', description: 'Use Android Accessibility HOME to show the launcher before inspecting and clicking an app entry.', properties: {}, fixed: { action: 'home' } },
+    { name: 'phone_swipe', operation: 'swipe', description: 'Swipe using Android Accessibility. Use empty arguments for the native default swipe up to open the launcher app drawer when the target entry is not visible. Inspect again after swiping, then click the launcher entry. Optional coordinates are screen pixels; Android checks current screen bounds.', properties: {
+      x: { type: 'integer', minimum: 0, maximum: 16383 },
+      startY: { type: 'integer', minimum: 0, maximum: 16383 },
+      endY: { type: 'integer', minimum: 0, maximum: 16383 },
+    } },
     { name: 'phone_open_url', operation: 'open_url', description: 'Request Android VIEW for an HTTPS URL. Dispatch does not prove page arrival and does not satisfy Accessibility launcher-click acceptance.', properties: { url: { type: 'string', maxLength: 2048, pattern: '^https://' } }, required: ['url'] },
     { name: 'phone_fixture_action', operation: 'fixture_action', description: 'Send a generated value to the cooperating test app through its documented interface. Does not open an app through Accessibility. Cannot read verification state.', properties: { value: { type: 'string', maxLength: 128 } }, required: ['value'] },
   ];

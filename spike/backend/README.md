@@ -40,9 +40,9 @@ Native contract, coordinated with Android owner:
 
 - Authenticated loopback `POST /phone`, JSON `{id,operation,args}`.
 - Response `{id,ok:true,result}` or `{id,ok:false,error:{code,message}}`; `id` is additive.
-- Operations `capabilities`, `accessibility_tree`, `accessibility_click` (`nodeId`), `global_action` (`action:home`), `open_url` (`url`), `fixture_action` (`value`).
+- Operations `capabilities`, `accessibility_tree`, `accessibility_click` (`nodeId`), `global_action` (`action:home`), `swipe` (optional integer `x`, `startY`, `endY`), `open_url` (`url`), `fixture_action` (`value`). Empty swipe arguments use Android's default swipe up; explicit coordinates are limited to 0–16383 pixels by the tool schema and current screen bounds by Kotlin.
 - Kotlin checks permissions and stop on every request. No oracle operation exists.
-- The supported Pi extension registers six visible phone tools with descriptions. Launcher click must use Accessibility; `open_url` and `fixture_action` do not satisfy that assertion.
+- The supported Pi extension registers seven visible phone tools with descriptions. Use `phone_swipe` to reveal the app drawer when the launcher entry is absent, then inspect and click. Launcher click must use Accessibility; `open_url` and `fixture_action` do not satisfy that assertion.
 
 Real stock runner and ordinary update matrix:
 

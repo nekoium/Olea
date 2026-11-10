@@ -71,10 +71,21 @@ test('host-only: supported extension registers phone tools, authenticates calls 
     process.env.OLEA_BRIDGE_CONFIG = config;
     const tools = [];
     phoneExtension({ registerTool: tool => tools.push(tool), registerProvider: () => {} });
-    assert.equal(tools.length, 6);
+    assert.equal(tools.length, 7);
     assert.equal(tools.some(tool => /oracle/i.test(tool.name)), false);
     await tools.find(tool => tool.name === 'phone_click').execute('test-1', { nodeId: 'launcher:1' });
     assert.deepEqual(calls[0], { id: 'test-1', operation: 'accessibility_click', args: { nodeId: 'launcher:1' } });
+    const swipe = tools.find(tool => tool.name === 'phone_swipe');
+    assert.deepEqual(swipe.parameters.required, []);
+    for (const parameter of Object.values(swipe.parameters.properties)) {
+      assert.equal(parameter.type, 'integer');
+      assert.equal(parameter.minimum, 0);
+      assert.equal(parameter.maximum, 16383);
+    }
+    await swipe.execute('swipe-default', {});
+    assert.deepEqual(calls[1], { id: 'swipe-default', operation: 'swipe', args: {} });
+    await swipe.execute('swipe-explicit', { x: 300, startY: 800, endY: 200 });
+    assert.deepEqual(calls[2], { id: 'swipe-explicit', operation: 'swipe', args: { x: 300, startY: 800, endY: 200 } });
     denied = true;
     await assert.rejects(tools[0].execute('test-2', {}), /bridge_denied:permission_revoked/);
   } finally {
