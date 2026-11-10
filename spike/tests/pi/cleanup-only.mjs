@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 // Deterministic stock-RPC shutdown reproduction: no prompt or model request.
 import { mkdir, readFile, writeFile, readdir, rm } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
-import { randomUUID } from 'node:crypto';
+import { join, resolve, dirname } from 'node:path';
+import { randomUUID, createHash } from 'node:crypto';
 import { Backend } from '../../backend/dist/backend.js';
 import { readProcess, waitForProcessExit } from './process-observer.mjs';
 
@@ -25,12 +25,26 @@ async function taskChildren(pid) {
   for (const task of tasks) {
     try {
       const children = (await readFile(`/proc/${pid}/task/${task}/children`, 'utf8')).trim();
-      result.push({ task: Number(task), children: children ? children.split(/\s+/).map(Number).slice(0, 256) : [] });
+      const childPids = children ? children.split(/\s+/).map(Number) : [];
+      if (childPids.length > 256) throw new Error('child_observation_limit');
+      result.push({ task: Number(task), children: childPids });
     } catch (error) { if (error.code !== 'ENOENT') throw new Error('task_observation_unverifiable'); }
   }
   return result;
 }
 try {
+  let packageDirectory = dirname(resolve(process.env.OLEA_PI_ENTRY));
+  for (let level = 0; level < 6; level++) {
+    try {
+      const metadata = JSON.parse(await readFile(join(packageDirectory, 'package.json'), 'utf8'));
+      if (metadata.name === '@earendil-works/pi-coding-agent') { report.actualPackageVersion = metadata.version; break; }
+    } catch {}
+    packageDirectory = dirname(packageDirectory);
+  }
+  if (!report.actualPackageVersion) throw new Error('stock_package_version_unverifiable');
+  if (process.env.OLEA_PI_VERSION && report.actualPackageVersion !== process.env.OLEA_PI_VERSION) throw new Error('installed_pi_version_mismatch');
+  const entryHash = createHash('sha256').update(await readFile(process.env.OLEA_PI_ENTRY)).digest('hex');
+  report.entrySha256 = entryHash;
   const started = await backend.start(session);
   const work = backend.command(session, { type: 'bash', command: `sleep 120 & child=$!; printf '%s' "$child" > '${pidPath.replaceAll("'", "'\\''")}'; wait` }).catch(() => undefined);
   let pid;
@@ -51,6 +65,7 @@ try {
   report.processEvidence.immediateAfter = await readProcess(pid);
   const observation = await waitForProcessExit(pid, before.startTime, 2000);
   report.processEvidence.exitObservation = observation;
+  if (createHash('sha256').update(await readFile(process.env.OLEA_PI_ENTRY)).digest('hex') !== entryHash) throw new Error('stock_entry_changed_during_probe');
   report.status = observation.exited && !report.faults.length ? 'pass' : 'fail';
   if (!observation.exited) {
     // Only clean the captured process identity, never a reused PID.
