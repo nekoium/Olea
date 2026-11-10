@@ -8,7 +8,7 @@ This roadmap records interim release scope, milestones, and the agreed schedule.
 
 Current technical discussion prioritizes validating the foundation before further production UX implementation. Use [TECH_STACK.md](TECH_STACK.md) as the candidate stack, without treating it as a validated architecture. First establish stock Pi Unix work and ordinary updates, direct Android bridge behavior, agent-driven phone use, and a combined workflow. Probe Codex and Claude compatibility early. Keep the baseline Linux environment fixed across Pi versions and report independent outcomes, retries, workarounds and blockers. Existing phone-use acceptance in PHONE_USE_TESTS.md remains authoritative.
 
-The Node integration backend and production UI framework remain open. No runtime or agent result follows from emulator readiness alone.
+One shared TypeScript/Node integration backend supervised by Kotlin is now the selected feasibility direction. Measure its resource overhead, bounded buffering, active-session cost and cleanup on Android. The production UI framework remains open. The proposed separate build-and-test assignment is in [FEASIBILITY_BRIEF.md](FEASIBILITY_BRIEF.md); session launch awaits the user's scope review. No runtime or agent result follows from emulator readiness alone.
 
 ## Release scope
 

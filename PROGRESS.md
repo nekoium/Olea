@@ -1,5 +1,13 @@
 # Progress
 
+## Managed backend direction and test-session preparation
+
+- Selected one shared TypeScript/Node integration backend supervised by a Kotlin Android host for feasibility testing. Persistent Pi subprocesses communicate through RPC; saved conversations need not keep agents alive. Production UI, idle shutdown and concurrency policy remain undecided.
+- Added resource measurements to the evidence scope: per-process/total memory, startup, idle CPU, streaming, concurrency, bounds and cleanup, with constrained emulator testing and later physical-device validation.
+- Original Olea code is intended to use MIT; third-party dependencies and research snapshots retain their licenses. Dependency provenance and distribution obligations remain separate from the project's license.
+- Prepared FEASIBILITY_BRIEF.md covering Unix compatibility and ordinary updates, direct and agent-driven phone tests, independent verification, future-agent probes, credentials, automation limits, lifecycle and performance.
+- The user requested scope review before opening another session. No build-and-test session has been launched. No test code, dependencies, credential files or device changes were created in this documentation turn.
+
 ## Technical discussion — candidate stack recorded
 
 - Recorded the accepted feasibility candidate and unresolved backend boundary in TECH_STACK.md. Kotlin is recommended for Android hosting; minimal Ubuntu/PRoot is the first runtime candidate. Production architecture and UI toolkit remain unvalidated.

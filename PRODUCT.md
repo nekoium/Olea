@@ -110,7 +110,7 @@ Runtime feasibility remains an evidence requirement. Initial interface and phone
 
 ## Technical feasibility candidate
 
-The user accepted recording the candidate test stack and prioritizing technical feasibility before further production experience design. [TECH_STACK.md](TECH_STACK.md) records Kotlin Android hosting, a minimal Ubuntu/PRoot environment, stock Pi RPC, supported extension-based phone tools, and the automated evidence proposal. This selects a candidate for testing, not a validated production architecture. A persistent Node integration backend and the production UI toolkit remain open. Maintain the Android runtime rather than private agent ports; normal upstream agent installation and updates are the central constraint.
+The user accepted recording the candidate test stack and prioritizing technical feasibility before further production experience design. [TECH_STACK.md](TECH_STACK.md) records Kotlin Android hosting, a minimal Ubuntu/PRoot environment, stock Pi RPC, supported extension-based phone tools, and the automated evidence proposal. This selects a candidate for testing, not a validated production architecture. A persistent shared TypeScript/Node integration backend is the selected feasibility direction; Kotlin owns Android platform services and supervises it. The production UI toolkit remains open. Original Olea code is intended to use MIT; third-party components retain their own licenses. Maintain the Android runtime rather than private agent ports; normal upstream agent installation and updates are the central constraint. [FEASIBILITY_BRIEF.md](FEASIBILITY_BRIEF.md) describes the proposed separate build-and-test assignment; the user will review the scope before a session is launched.
 
 ## Limits we must establish
 
