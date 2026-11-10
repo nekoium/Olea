@@ -42,9 +42,15 @@ codex-host-primary-1794329763090-codex-thread-identity: codex.thread-identity pa
 
 offline-tooling-output-frame-01: cost.output-frame pass; Host tooling tests for output-frame completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.
 
+offline-tooling-54fb8411c6814b8d-output-frame: cost.output-frame pass; Host tooling tests for output-frame completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.
+
 offline-tooling-output-queue-01: cost.output-queue pass; Host tooling tests for output-queue completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.
 
+offline-tooling-54fb8411c6814b8d-output-queue: cost.output-queue pass; Host tooling tests for output-queue completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.
+
 offline-tooling-timeout-01: cost.timeout pass; Host tooling tests for timeout completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.
+
+offline-tooling-54fb8411c6814b8d-timeout: cost.timeout pass; Host tooling tests for timeout completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.
 
 ## provenance: untested
 Expected: Pin source URLs, licenses, notices, versions and actual payload SHA256.
@@ -917,7 +923,7 @@ Actual: No retained matching execution receipt.
 
 Context: android-app; mode: direct; prerequisites: backend.shared.
 
-Attempts: offline-tooling-output-frame-01 (host/direct pass): Host tooling tests for output-frame completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.; artifacts spike/m2/evidence/evidence/offline-checks.json SHA256 cd503f63d82c1b786786f522706875c5cbc11190d3572e7eb8482df5ef049a52; metadata {"limits":["No provider, stock agent or Android execution.","Supervisor tests do not establish Android backend backpressure/cleanup."]}.
+Attempts: offline-tooling-output-frame-01 (host/direct pass): Host tooling tests for output-frame completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.; artifacts git:444f9a1:spike/m2/evidence/evidence/offline-checks.json SHA256 cd503f63d82c1b786786f522706875c5cbc11190d3572e7eb8482df5ef049a52; metadata {"limits":["No provider, stock agent or Android execution.","Supervisor tests do not establish Android backend backpressure/cleanup."]}; offline-tooling-54fb8411c6814b8d-output-frame (host/direct pass): Host tooling tests for output-frame completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.; artifacts spike/m2/evidence/evidence/attempts/sha256-54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936.json SHA256 54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936; metadata {"limits":["No provider, stock agent or Android execution.","Supervisor tests do not establish Android backend backpressure/cleanup."]}.
 
 ## cost.output-queue: untested
 Expected: Measure output-queue with actual identities/allocation/units and incomplete accounting limits.
@@ -926,7 +932,7 @@ Actual: No retained matching execution receipt.
 
 Context: android-app; mode: direct; prerequisites: backend.shared.
 
-Attempts: offline-tooling-output-queue-01 (host/direct pass): Host tooling tests for output-queue completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.; artifacts spike/m2/evidence/evidence/offline-checks.json SHA256 cd503f63d82c1b786786f522706875c5cbc11190d3572e7eb8482df5ef049a52; metadata {"limits":["No provider, stock agent or Android execution.","Supervisor tests do not establish Android backend backpressure/cleanup."]}.
+Attempts: offline-tooling-output-queue-01 (host/direct pass): Host tooling tests for output-queue completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.; artifacts git:444f9a1:spike/m2/evidence/evidence/offline-checks.json SHA256 cd503f63d82c1b786786f522706875c5cbc11190d3572e7eb8482df5ef049a52; metadata {"limits":["No provider, stock agent or Android execution.","Supervisor tests do not establish Android backend backpressure/cleanup."]}; offline-tooling-54fb8411c6814b8d-output-queue (host/direct pass): Host tooling tests for output-queue completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.; artifacts spike/m2/evidence/evidence/attempts/sha256-54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936.json SHA256 54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936; metadata {"limits":["No provider, stock agent or Android execution.","Supervisor tests do not establish Android backend backpressure/cleanup."]}.
 
 ## cost.timeout: untested
 Expected: Measure timeout with actual identities/allocation/units and incomplete accounting limits.
@@ -935,7 +941,7 @@ Actual: No retained matching execution receipt.
 
 Context: android-app; mode: direct; prerequisites: backend.shared.
 
-Attempts: offline-tooling-timeout-01 (host/direct pass): Host tooling tests for timeout completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.; artifacts spike/m2/evidence/evidence/offline-checks.json SHA256 cd503f63d82c1b786786f522706875c5cbc11190d3572e7eb8482df5ef049a52; metadata {"limits":["No provider, stock agent or Android execution.","Supervisor tests do not establish Android backend backpressure/cleanup."]}.
+Attempts: offline-tooling-timeout-01 (host/direct pass): Host tooling tests for timeout completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.; artifacts git:444f9a1:spike/m2/evidence/evidence/offline-checks.json SHA256 cd503f63d82c1b786786f522706875c5cbc11190d3572e7eb8482df5ef049a52; metadata {"limits":["No provider, stock agent or Android execution.","Supervisor tests do not establish Android backend backpressure/cleanup."]}; offline-tooling-54fb8411c6814b8d-timeout (host/direct pass): Host tooling tests for timeout completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.; artifacts spike/m2/evidence/evidence/attempts/sha256-54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936.json SHA256 54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936; metadata {"limits":["No provider, stock agent or Android execution.","Supervisor tests do not establish Android backend backpressure/cleanup."]}.
 
 ## cost.cleanup: untested
 Expected: Measure cleanup with actual identities/allocation/units and incomplete accounting limits.

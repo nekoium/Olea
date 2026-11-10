@@ -10,7 +10,7 @@
     "summary": "Host tooling tests for output-frame completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
     "artifacts": [
       {
-        "path": "spike/m2/evidence/evidence/offline-checks.json",
+        "path": "git:444f9a1:spike/m2/evidence/evidence/offline-checks.json",
         "sha256": "cd503f63d82c1b786786f522706875c5cbc11190d3572e7eb8482df5ef049a52"
       }
     ],
@@ -37,7 +37,7 @@
     "summary": "Host tooling tests for output-queue completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
     "artifacts": [
       {
-        "path": "spike/m2/evidence/evidence/offline-checks.json",
+        "path": "git:444f9a1:spike/m2/evidence/evidence/offline-checks.json",
         "sha256": "cd503f63d82c1b786786f522706875c5cbc11190d3572e7eb8482df5ef049a52"
       }
     ],
@@ -64,7 +64,7 @@
     "summary": "Host tooling tests for timeout completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
     "artifacts": [
       {
-        "path": "spike/m2/evidence/evidence/offline-checks.json",
+        "path": "git:444f9a1:spike/m2/evidence/evidence/offline-checks.json",
         "sha256": "cd503f63d82c1b786786f522706875c5cbc11190d3572e7eb8482df5ef049a52"
       }
     ],
@@ -883,6 +883,87 @@
       "No-model command/exec preflight is not an authenticated model sandbox workflow.",
       "Outside denial is expected evidence, not provider failure.",
       "Independent inside-file equality and outside-file absence were not reached in original preflight3 runner."
+    ]
+  },
+  {
+    "attemptId": "offline-tooling-54fb8411c6814b8d-output-frame",
+    "caseId": "cost.output-frame",
+    "context": "host",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:24:31.392Z",
+    "endedAt": "2026-11-10T17:24:33.520Z",
+    "summary": "Host tooling tests for output-frame completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
+    "artifacts": [
+      {
+        "path": "spike/m2/evidence/evidence/attempts/sha256-54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936.json",
+        "sha256": "54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "host_tooling_suite_exit_zero",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "limits": [
+      "No provider, stock agent or Android execution.",
+      "Supervisor tests do not establish Android backend backpressure/cleanup."
+    ]
+  },
+  {
+    "attemptId": "offline-tooling-54fb8411c6814b8d-output-queue",
+    "caseId": "cost.output-queue",
+    "context": "host",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:24:31.392Z",
+    "endedAt": "2026-11-10T17:24:33.520Z",
+    "summary": "Host tooling tests for output-queue completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
+    "artifacts": [
+      {
+        "path": "spike/m2/evidence/evidence/attempts/sha256-54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936.json",
+        "sha256": "54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "host_tooling_suite_exit_zero",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "limits": [
+      "No provider, stock agent or Android execution.",
+      "Supervisor tests do not establish Android backend backpressure/cleanup."
+    ]
+  },
+  {
+    "attemptId": "offline-tooling-54fb8411c6814b8d-timeout",
+    "caseId": "cost.timeout",
+    "context": "host",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-10T17:24:31.392Z",
+    "endedAt": "2026-11-10T17:24:33.520Z",
+    "summary": "Host tooling tests for timeout completed with exit 0; mock/supervisor checks only. Android backend/runtime acceptance remains untested.",
+    "artifacts": [
+      {
+        "path": "spike/m2/evidence/evidence/attempts/sha256-54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936.json",
+        "sha256": "54fb8411c6814b8d67fa7d64cc075433e433de3cb371e4cfbf51171bcfae8936"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "host_tooling_suite_exit_zero",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "limits": [
+      "No provider, stock agent or Android execution.",
+      "Supervisor tests do not establish Android backend backpressure/cleanup."
     ]
   }
 ]

@@ -6,6 +6,7 @@ import { resolve, join } from 'node:path';
 import { catalog, validateReceipt, assess, render, sha256, verifyArtifacts, readGitArtifact } from './evidence.mjs';
 import { challenge, unixPrompt, assertUnix, assertPhone, assertPreserved, parseStat, observeProcess, exited } from './assertions.mjs';
 import { descendantChains, observeTree } from './observe-tree.mjs';
+import { immutableArtifact, appendReceipts, readReceipts, pinLegacyOffline } from './receipt-store.mjs';
 import { bounded, runPiSingle, classifyProviderError } from './pi-single.mjs';
 import { supervise, sampleResources } from './supervise.mjs';
 function receipt(extra = {}) {
@@ -70,6 +71,31 @@ test('artifact verification refuses missing/tampered/outside paths', () => tempo
   await assert.rejects(verifyArtifacts([receipt()], dir), /artifact_hash_mismatch/);
   await assert.rejects(verifyArtifacts([receipt({ artifacts: [{ path: '../x', sha256: 'a'.repeat(64) }] })], dir), /artifact_outside_root/);
 }));
+test('multiple producers preserve immutable check bytes and all earlier assessment receipts', () => temporary(async root => {
+  const path = join(root, 'receipts.json');
+  const first = await immutableArtifact(root, 'checks', 'first measured run');
+  const a = receipt({ attemptId: 'producer-one', artifacts: [first] });
+  await appendReceipts(path, [a], root);
+  const second = await immutableArtifact(root, 'checks', 'second measured run');
+  const b = receipt({ attemptId: 'producer-two', artifacts: [second] });
+  await appendReceipts(path, [b], root);
+  const assessment = receipt({ attemptId: 'assessor', status: 'blocked', artifacts: [first] });
+  await appendReceipts(path, [assessment], root);
+  await appendReceipts(path, [b], root);
+  const all = await readReceipts(path);
+  assert.equal(all.length, 3); assert.notEqual(first.path, second.path);
+  await verifyArtifacts(all, root);
+  await assert.rejects(appendReceipts(path, [{ ...a, summary: 'altered measured facts' }], root), /attempt_id_fact_conflict/);
+  await verifyArtifacts(await readReceipts(path), root);
+}));
+test('legacy stale check references pin exact old Git bytes without changing measured hashes', async () => {
+  const path = 'spike/m2/evidence/evidence/offline-checks.json';
+  const hash = sha256(readGitArtifact(`git:444f9a1:${path}`));
+  const [fixed] = pinLegacyOffline([receipt({ artifacts: [{ path, sha256: hash }] })]);
+  assert.equal(fixed.artifacts[0].sha256, hash);
+  assert.equal(fixed.artifacts[0].path, `git:444f9a1:${path}`);
+  await verifyArtifacts([fixed], '.');
+});
 test('randomized independent Unix checks run nested child and dependency, reject forged result', () => temporary(async dir => {
   const c = challenge(); assert.notEqual(c.nonce, challenge().nonce);
   await mkdir(join(dir, 'node_modules/is-number'), { recursive: true });

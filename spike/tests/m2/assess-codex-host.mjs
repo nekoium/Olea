@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: MIT
 // Manual assessment rules for retained stock Codex HOST receipts, never Android credit.
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { readGitArtifact, sha256, report } from './evidence.mjs';
+import { readReceipts, appendReceipts } from './receipt-store.mjs';
 export async function assessCodexHost(commit = '5c9c93b') {
   if (!/^[a-f0-9]{7,40}$/.test(commit)) throw Error('invalid_source_commit');
   const base = 'spike/m2/codex/';
@@ -47,11 +48,13 @@ export async function assessCodexHost(commit = '5c9c93b') {
   }
   const destination = resolve('spike/m2/evidence/evidence');
   await mkdir(destination, { recursive: true });
-  await writeFile(resolve(destination, 'codex-host-assessment.json'), JSON.stringify(receipts, null, 2) + '\n');
-  const offline = JSON.parse(await readFile(resolve(destination, 'receipts.json'), 'utf8')).filter(r => r.context === 'host' && r.attemptId.startsWith('offline-'));
-  const all = [...offline, ...receipts];
-  await writeFile(resolve(destination, 'receipts.json'), JSON.stringify(all, null, 2) + '\n');
-  await report(resolve(destination, 'receipts.json'), resolve('spike/m2/reports'), resolve('.'), 'interim');
+  const receiptPath = resolve(destination, 'receipts.json');
+  const existing = await readReceipts(receiptPath);
+  // Reassessing immutable source must retain the original assessment facts/timestamps.
+  const stable = receipts.map(r => existing.find(old => old.attemptId === r.attemptId) ?? r);
+  await appendReceipts(receiptPath, stable, resolve('.'));
+  await writeFile(resolve(destination, 'codex-host-assessment.json'), JSON.stringify(stable, null, 2) + '\n');
+  await report(receiptPath, resolve('spike/m2/reports'), resolve('.'), 'interim');
   return { count: receipts.length, sourceCommit: commit, providerTopLevelPromptsAssessed: 1, androidAcceptancePromoted: 0 };
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) console.log(JSON.stringify(await assessCodexHost(process.argv[2])));
