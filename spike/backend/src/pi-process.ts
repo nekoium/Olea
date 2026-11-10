@@ -99,6 +99,7 @@ export class PiProcess extends EventEmitter {
         try {
           const children = (await readFile(`/proc/${pid}/task/${pid}/children`, 'utf8')).trim().split(/\s+/).filter(Boolean).map(Number);
           for (const child of children) {
+            if (descendants.length >= 256) { this.emit('fault', 'descendant_limit'); break; }
             if (!descendants.includes(child)) { descendants.push(child); await discover(child); }
           }
         } catch { /* Process may have exited during the snapshot. */ }

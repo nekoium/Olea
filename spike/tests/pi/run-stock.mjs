@@ -158,6 +158,27 @@ try {
       return { descendantPid: pid, independentProcAssertion: true };
     }); else report.cases.push({ name: 'cancel_shell_and_descendant_cleanup', status: 'untested', reason: 'linux_proc_required' });
 
+    if (process.platform === 'linux') await caseRun('backend_shutdown_descendant_cleanup', async () => {
+      const pidPath = join(workspace, 'shutdown-' + randomUUID() + '.pid');
+      const command = `sleep 120 & child=$!; printf '%s' "$child" > '${pidPath.replaceAll("'", "'\\''")}'; wait`;
+      const work = backend.command(mainSession, { type: 'bash', command }).catch(() => undefined);
+      let pid;
+      for (let attempt = 0; attempt < 50; attempt++) {
+        try { pid = Number(await readFile(pidPath, 'utf8')); if (pid > 1) break; } catch {}
+        await sleep(100);
+      }
+      assert(pid > 1);
+      await backend.stop(mainSession);
+      await work;
+      let alive = false;
+      try { const status = await readFile(`/proc/${pid}/stat`, 'utf8'); alive = !/\) Z /.test(status); } catch {}
+      if (alive) { try { process.kill(pid, 'SIGKILL'); } catch {} }
+      await backend.start(mainSession, true);
+      await rm(pidPath, { force: true });
+      assert.equal(alive, false);
+      return { descendantPid: pid, independentProcAssertion: true, explicitResume: true, uncertainActionsReplayed: false };
+    }); else report.cases.push({ name: 'backend_shutdown_descendant_cleanup', status: 'untested', reason: 'linux_proc_required' });
+
     if (process.env.OLEA_RUN_PHONE === '1') await caseRun('model_combined_unix_phone_tools', async () => {
       const phoneFile = 'phone-value-' + randomUUID() + '.txt';
       const target = process.env.OLEA_PHONE_TARGET_LABEL ?? 'Olea Fixture';
