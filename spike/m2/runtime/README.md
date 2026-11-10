@@ -2,6 +2,8 @@
 
 Disposable MIT integration source; runtime components retain their upstream licenses. This checkpoint proves a useful modern-target path, not the complete milestone or production acceptance.
 
+**Final settled state and lease relinquishment:** [FINAL_CHECKPOINT_RECEIPT.json](FINAL_CHECKPOINT_RECEIPT.json), observed2026-11-10T19:12:05Z. Primary phone actions disabled/backend stopped, Accessibility enabled, screen awake, only listed hosts/fixture and no experiment in flight; generic cleanup root cause remains unrepaired. Budget5/8 consumed/3 unallocated. Both rootfs, APKs, sessions and verified caches remain intact. This final receipt supersedes earlier current-state/lease snapshots below.
+
 Latest actual continuation, reproduction commands, fresh-repeat/update/resource/lifecycle results: [CHECKPOINT_AFTER_REPEAT.md](CHECKPOINT_AFTER_REPEAT.md). Final graceful stop/current state and explicit **lease relinquishment**: [lease-closeout.json](evidence/lease-closeout.json). Earlier snapshot paragraphs below retain their stated observation times.
 
 A later explicitly selected stock full-access policy passed deterministic inside/sibling Unix commands with no model/phone calls: [FULL_ACCESS_PREFLIGHT.md](FULL_ACCESS_PREFLIGHT.md). It uses danger-full-access/approval-never and provides no agent filesystem isolation; historical restricted-route failures remain valid.

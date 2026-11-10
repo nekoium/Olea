@@ -1,0 +1,5 @@
+dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887 *.setup/runtime-a07.apk
+0d250d3edd73614cafa24187b46364a3660e17c835777f42842dcee987ed15d7 *.setup/repeat-a01.apk
+5db196cb82ae65278c8106fcff2a11c7d9ea4eeae0b485729daf4cf0fb05c43a *spike/android/fixture/build/outputs/apk/modern/debug/fixture-modern-debug.apk
+f9fbacd417b515450b831032cc39d18059e9874e67525679a43c16071dabf9a0 *.setup/downloads/ca-certificates_20260816ubuntu0.24.04.2_all.deb
+d52586b2631349deb331f981b2e49d57ce5440e9fe94429a1772935edd7ce502 */c/Users/Aria/.android/avd/Olea_API_36.avd/config.ini

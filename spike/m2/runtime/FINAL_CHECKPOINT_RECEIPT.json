@@ -1,0 +1,64 @@
+{
+  "receiptType": "final settled checkpoint and explicit lease relinquishment",
+  "observedAtUtc": "2026-11-10T19:12:05Z",
+  "taskId": "task_a893a17cc5a3",
+  "dispatchId": "ctx_484f2f539adb",
+  "runId": "run_aa0011145bf9",
+  "managerSession": "pi_1d9a3114_30c1_4a4f_b8a6_22cd565c2373",
+  "workerSession": "ad49162f-2db0-4879-a32c-86461b7a9675",
+  "workspace": "C:/Users/Aria/orca/workspaces/Olea/m2-modern-runtime",
+  "repoId": "d55c3648-a5ff-4d7b-96d8-e80071701415",
+  "checkpointHeadBeforeFinalReceipt": "f976dc25cfbee30e410e37a71a5d782df408fcf1",
+  "majorCommits": ["12482c3", "328dd71", "e3c2148", "efb28b4", "7b154a8", "af2b957", "f92616e", "8c04154", "726d255", "133df98", "5323fcb", "f976dc2"],
+  "outcome": {
+    "boundedCheckpoint": "Resolved with measured stock Pi and stock Codex Unix/phone operation in explicit full access; full product/backend goal remains incomplete",
+    "pass": ["Actual target36 Kotlin service-domain packaged stock PRoot/Ubuntu/Node and six Unix core assertions", "Fresh isolated repeat with explicit verified public CA cache input and retained first failures", "Pi combined native causal oracle and canonical resume", "Ordinary adjacent Pi update with workspace/transcript/session/credential preservation", "Stock Codex deterministic full-access commands, one real Unix prompt/independent assertions/canonical resume", "One real Codex MCP/Unix causal phone oracle/canonical resume", "Native stop and rejected inspection/action with independently unchanged oracle/foreground", "Exact authorized targeted cleanup after original failure"],
+    "retainedFailure": "Codex phone case native210s wrapper timedOut=true/exitCode=null/rootExitObserved=false; reparented Git tracees kept PRoot alive after successful model/runner terminal; generic cleanup root cause is not repaired",
+    "cleanupRepair": "Fresh sameUID/starttime check then SIGTERM only PID16516/start702081; Git16514/start702078 and PRoot16364/start701643 exited without additional signals, independently absent after5s and at this final snapshot; original failure is unchanged",
+    "restrictedRoute": "Historical workspace-write socket mount identity/bwrap overflowuid restrictions remain valid; explicit danger-full-access/approval-never is a separate user-selected policy, no agent filesystem or sameUID credential isolation",
+    "remaining": ["Generic native/service descendant cleanup repair and safe automatic recovery", "Remaining PHONE_USE categories/model reliability, broad permission revocation/lifecycle/reboot/constrained/physical tests", "Ordinary Codex update and broader runtime/Ubuntu refresh preservation", "Codex approval/rejection/cancel acceptance distinct from explicit never policy", "Network-only fresh provisioning without staged verified CA archive", "Full active workload peak/battery/thermals and physical ABI"]
+  },
+  "currentState": {
+    "device": "emulator-5554 / Olea_API_36 / Android16/API36/x86_64",
+    "bootCompleted": true,
+    "screen": "Awake, as left by the prior phone case; this closeout did not wake, lock or change it",
+    "cpuOnline": "0-3",
+    "memTotalKiB": 4013812,
+    "primary": {"package": "dev.olea.m2.runtime", "realUid": 10216, "hostPid": 9619, "ppid": 489, "startTicks": "150689", "state": "S", "phoneEnabled": false, "backendServerRunning": false, "accessibility": true, "rootfs": "/data/user/0/dev.olea.m2.runtime/files/rootfs", "bridgePort": 8768},
+    "fixture": {"package": "dev.olea.m2.fixture", "realUid": 10217, "pid": 9732, "ppid": 489},
+    "repeat": {"package": "dev.olea.m2.repeat", "realUid": 10218, "hostPid": 12459, "ppid": 489, "startTicks": "348349", "rootfs": "/data/user/0/dev.olea.m2.repeat/files/rootfs", "bridgePort": 8769},
+    "ownedChildSnapshot": "UID-filtered inventory lists hosts/fixture only, no listed PRoot/Node/Pi/Codex/Git; exact prior failed cleanup PID paths16364/16514/16516 absent; no permanent/universal cleanup promise",
+    "permissions": "Primary native phone stop flag remains false; Accessibility special access remains enabled; no permission revocation repeated",
+    "protectedFileModes": {"providerConfig": "600", "bridgeToken": "600", "bridgeConfig": "600"},
+    "inflightExperiments": [],
+    "developmentInfrastructure": "Emulator remains running; native listeners and development tcp8768 forward retained; no shutdown/config change/force-stop in final closeout",
+    "physicalDevice": "Absent/ABI unknown"
+  },
+  "retainedArtifacts": {
+    "primaryApk": {"path": ".setup/runtime-a07.apk", "sha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887"},
+    "repeatApk": {"path": ".setup/repeat-a01.apk", "sha256": "0d250d3edd73614cafa24187b46364a3660e17c835777f42842dcee987ed15d7"},
+    "fixtureApk": {"path": "spike/android/fixture/build/outputs/apk/modern/debug/fixture-modern-debug.apk", "sha256": "5db196cb82ae65278c8106fcff2a11c7d9ea4eeae0b485729daf4cf0fb05c43a"},
+    "requiredPublicCaArchive": {"path": ".setup/downloads/ca-certificates_20260816ubuntu0.24.04.2_all.deb", "sha256": "f9fbacd417b515450b831032cc39d18059e9874e67525679a43c16071dabf9a0", "bytes": 140064},
+    "publicPayloads": [".setup/public-payload-11106c8.tar.gz", ".setup/public-full-access-fc04ee1.tar.gz"],
+    "dataAndSourceHashFiles": ["evidence/final-closeout-artifact-hashes.txt", "evidence/final-closeout-primary-state.txt", "evidence/final-closeout-repeat-state.txt", "evidence/final-closeout-session-artifact-hashes.txt", "evidence/final-closeout-source-receipt-hashes.sha256"],
+    "credentialPolicy": "Only authorized root .setup/android-test-provider.local.json source and protected primary app-private config retained; no raw key/config/header in evidence, payload, Git or messages",
+    "preserved": "Both rootfs, all agent/workspace/session state, fixture oracle, APKs, verified caches, prior failures, task logs, worktrees and sessions",
+    "deletedPaths": []
+  },
+  "budget": {
+    "globalConsumed": "5/8 top-level prompts",
+    "unallocatedRemaining": 3,
+    "workerConsumed": {"PiPrimary": 1, "CodexUnixPrimary": 1, "CodexPhonePrimary": 1},
+    "lastPhoneUsage": {"inputTokens": 152758, "outputTokens": 482, "cachedInputTokens": 127403, "totalTokens": 153240},
+    "explicitRetriesOrFallbacksOrReplays": 0,
+    "httpCountsAndBilling": "Unknown; prior Codex Unix stock reconnect notifications preserved despite retries configured0"
+  },
+  "lease": {
+    "state": "RELINQUISHED at this saved settled boundary",
+    "formerSoleOwner": "ad49162f-2db0-4879-a32c-86461b7a9675",
+    "successorOwner": null,
+    "restriction": "No further Android mutation by this worker without an explicit new lease; manager verifies successor session/team binding and prompt delivery before assigning one owner"
+  },
+  "session": "Kept open; do not close this session or worktree before manager verifies successor launch; no data cleanup implied",
+  "closeoutActions": "Read-only capability, identity, data/artifact/mode snapshots and local documentation/Git save only; no new test, model call, phone effect or signal"
+}
