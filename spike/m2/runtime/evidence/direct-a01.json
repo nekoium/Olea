@@ -1,0 +1,337 @@
+{
+  "attempt": "direct-a01",
+  "startedAtMs": 1794331641980,
+  "cases": [
+    {
+      "name": "missing-auth-rejected",
+      "status": "pass",
+      "detail": {
+        "status": 401
+      }
+    },
+    {
+      "name": "causal-launcher-click",
+      "status": "pass",
+      "detail": {
+        "before": {
+          "atMs": 1794331642922,
+          "detail": "      topResumedActivity=ActivityRecord{89564721 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t2}\r"
+        },
+        "nodeId": "525691f2:12",
+        "clickAtMs": 1794331642994,
+        "clicked": {
+          "clicked": true,
+          "action": "ACTION_CLICK"
+        },
+        "foreground": {
+          "atMs": 1794331643915,
+          "detail": "    topResumedActivity=ActivityRecord{195681297 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t18}\r"
+        },
+        "interveningLaunchIntentCount": 0
+      }
+    },
+    {
+      "name": "separate-uid-private-oracle",
+      "status": "fail",
+      "error": "existing separate-UID private oracle must deny host read"
+    }
+  ],
+  "operations": [
+    {
+      "atMs": 1794331642154,
+      "operation": "global_action",
+      "result": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794331642099",
+          "ok": true,
+          "result": {
+            "performed": "home"
+          }
+        }
+      }
+    },
+    {
+      "atMs": 1794331642922,
+      "operation": "accessibility_tree",
+      "result": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794331642850",
+          "ok": true,
+          "result": {
+            "package": "com.google.android.apps.nexuslauncher",
+            "nodes": [
+              {
+                "nodeId": "525691f2:0",
+                "clickable": false,
+                "className": "android.widget.FrameLayout",
+                "bounds": [
+                  0,
+                  0,
+                  1080,
+                  2400
+                ],
+                "depth": 0
+              },
+              {
+                "nodeId": "525691f2:1",
+                "viewId": "com.google.android.apps.nexuslauncher:id/workspace",
+                "clickable": false,
+                "className": "android.widget.ScrollView",
+                "bounds": [
+                  0,
+                  0,
+                  1080,
+                  2400
+                ],
+                "depth": 1
+              },
+              {
+                "nodeId": "525691f2:2",
+                "description": "At a glance",
+                "viewId": "com.google.android.apps.nexuslauncher:id/smartspace_card_pager",
+                "clickable": false,
+                "className": "androidx.viewpager.widget.ViewPager",
+                "bounds": [
+                  67,
+                  150,
+                  1013,
+                  423
+                ],
+                "depth": 2
+              },
+              {
+                "nodeId": "525691f2:3",
+                "viewId": "com.google.android.apps.nexuslauncher:id/base_template_card_with_date",
+                "clickable": true,
+                "className": "android.view.ViewGroup",
+                "bounds": [
+                  67,
+                  150,
+                  1013,
+                  423
+                ],
+                "depth": 3
+              },
+              {
+                "nodeId": "525691f2:4",
+                "text": "Wed, Nov 11",
+                "description": "Wed, Nov 11",
+                "viewId": "com.google.android.apps.nexuslauncher:id/date",
+                "clickable": true,
+                "className": "android.widget.TextView",
+                "bounds": [
+                  83,
+                  256,
+                  377,
+                  318
+                ],
+                "depth": 4
+              },
+              {
+                "nodeId": "525691f2:5",
+                "text": "Gmail",
+                "description": "Gmail",
+                "clickable": true,
+                "className": "android.widget.TextView",
+                "bounds": [
+                  314,
+                  1417,
+                  519,
+                  1692
+                ],
+                "depth": 2
+              },
+              {
+                "nodeId": "525691f2:6",
+                "text": "Photos",
+                "description": "Photos",
+                "clickable": true,
+                "className": "android.widget.TextView",
+                "bounds": [
+                  561,
+                  1417,
+                  766,
+                  1692
+                ],
+                "depth": 2
+              },
+              {
+                "nodeId": "525691f2:7",
+                "text": "YouTube",
+                "description": "YouTube",
+                "clickable": true,
+                "className": "android.widget.TextView",
+                "bounds": [
+                  808,
+                  1417,
+                  1013,
+                  1692
+                ],
+                "depth": 2
+              },
+              {
+                "nodeId": "525691f2:8",
+                "description": "Home",
+                "viewId": "com.google.android.apps.nexuslauncher:id/accessibility_action_view",
+                "clickable": false,
+                "className": "android.view.View",
+                "bounds": [
+                  0,
+                  118,
+                  1080,
+                  2337
+                ],
+                "depth": 1
+              },
+              {
+                "nodeId": "525691f2:9",
+                "text": "Phone",
+                "description": "Phone",
+                "clickable": true,
+                "className": "android.widget.TextView",
+                "bounds": [
+                  83,
+                  1873,
+                  256,
+                  2068
+                ],
+                "depth": 1
+              },
+              {
+                "nodeId": "525691f2:10",
+                "text": "Messages",
+                "description": "Messages",
+                "clickable": true,
+                "className": "android.widget.TextView",
+                "bounds": [
+                  330,
+                  1873,
+                  503,
+                  2068
+                ],
+                "depth": 1
+              },
+              {
+                "nodeId": "525691f2:11",
+                "text": "Chrome",
+                "description": "Chrome",
+                "clickable": true,
+                "className": "android.widget.TextView",
+                "bounds": [
+                  577,
+                  1873,
+                  750,
+                  2068
+                ],
+                "depth": 1
+              },
+              {
+                "nodeId": "525691f2:12",
+                "text": "Olea Fixture",
+                "description": "Predicted app: Olea Fixture",
+                "clickable": true,
+                "className": "android.widget.TextView",
+                "bounds": [
+                  824,
+                  1873,
+                  997,
+                  2068
+                ],
+                "depth": 1
+              },
+              {
+                "nodeId": "525691f2:13",
+                "description": "Google search",
+                "viewId": "com.google.android.apps.nexuslauncher:id/search_container_hotseat",
+                "clickable": true,
+                "className": "android.widget.FrameLayout",
+                "bounds": [
+                  90,
+                  2125,
+                  990,
+                  2290
+                ],
+                "depth": 1
+              },
+              {
+                "nodeId": "525691f2:14",
+                "description": "Google app",
+                "viewId": "com.google.android.apps.nexuslauncher:id/g_icon",
+                "clickable": true,
+                "className": "android.widget.ImageView",
+                "bounds": [
+                  101,
+                  2144,
+                  227,
+                  2270
+                ],
+                "depth": 2
+              },
+              {
+                "nodeId": "525691f2:15",
+                "description": "Voice search",
+                "viewId": "com.google.android.apps.nexuslauncher:id/mic_icon",
+                "clickable": true,
+                "className": "android.widget.ImageView",
+                "bounds": [
+                  727,
+                  2125,
+                  853,
+                  2290
+                ],
+                "depth": 2
+              },
+              {
+                "nodeId": "525691f2:16",
+                "description": "Google Lens",
+                "viewId": "com.google.android.apps.nexuslauncher:id/lens_icon",
+                "clickable": true,
+                "className": "android.widget.ImageButton",
+                "bounds": [
+                  853,
+                  2125,
+                  979,
+                  2290
+                ],
+                "depth": 2
+              }
+            ],
+            "truncated": false
+          }
+        }
+      }
+    },
+    {
+      "atMs": 1794331643209,
+      "operation": "accessibility_click",
+      "result": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794331643054",
+          "ok": true,
+          "result": {
+            "clicked": true,
+            "action": "ACTION_CLICK"
+          }
+        }
+      }
+    },
+    {
+      "atMs": 1794331644346,
+      "operation": "fixture_action",
+      "result": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794331644106",
+          "ok": true,
+          "result": {
+            "dispatched": true
+          }
+        }
+      }
+    }
+  ],
+  "endedAtMs": 1794331645005
+}

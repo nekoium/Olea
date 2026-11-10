@@ -1,0 +1,3 @@
+package:dev.olea.m2.fixture uid:10217
+package:dev.olea.m2.runtime uid:10216
+    topResumedActivity=ActivityRecord{253523093 u0 dev.olea.m2.runtime/dev.olea.spike.MainActivity t17}

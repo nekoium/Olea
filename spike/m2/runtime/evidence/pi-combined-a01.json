@@ -1,0 +1,233 @@
+{
+  "attemptId": "pi-combined-a01",
+  "context": "android-app",
+  "kind": "combined",
+  "startedAt": "2026-11-10T17:40:53.859Z",
+  "status": "awaiting-independent-phone-oracle",
+  "allocationId": "m2-android-pi-01",
+  "provider": {
+    "topLevelPrompts": 1,
+    "toolRounds": 9,
+    "observedUsage": {
+      "input": 16268,
+      "output": 676,
+      "cacheRead": 7998,
+      "cacheWrite": 0
+    },
+    "httpRequests": null,
+    "remoteBilling": "unknown",
+    "strictTokenCap": "unsupported/not established",
+    "automaticRetries": false
+  },
+  "limits": {
+    "initMs": 30000,
+    "turnMs": 120000,
+    "idleMs": 45000,
+    "frameBytes": 262144,
+    "retainedDiagnosticBytes": 1048576,
+    "eventCount": 4096,
+    "maxToolRounds": 12
+  },
+  "tools": [
+    "bash",
+    "phone_capabilities",
+    "phone_home",
+    "phone_inspect",
+    "phone_click",
+    "phone_inspect",
+    "bash",
+    "phone_fixture_action"
+  ],
+  "toolEvidence": [
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794332465770,
+      "tool": "bash",
+      "contentSha256": "f05f8602edbd948ace005ed9a334ed0f79f11158b28130a70931695352475faf",
+      "contentBytes": 1142,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794332473704,
+      "tool": "bash",
+      "contentSha256": "65d48d29ee997453f6368938d642b2cb18561d1a7814364fd55e9422f76e910e",
+      "contentBytes": 247,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794332476363,
+      "tool": "phone_capabilities",
+      "contentSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentBytes": 2,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794332476411,
+      "tool": "phone_capabilities",
+      "contentSha256": "5b56e38b9e47cfe1253a1fcf7869230f9362259320f3b6973ffcd48836d7adbc",
+      "contentBytes": 419,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794332478941,
+      "tool": "phone_home",
+      "contentSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentBytes": 2,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794332478997,
+      "tool": "phone_home",
+      "contentSha256": "1456ef0b7a4a673324702a2693a39b2f3d7022dfa313418c4d31a2763beda701",
+      "contentBytes": 76,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794332481403,
+      "tool": "phone_inspect",
+      "contentSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentBytes": 2,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794332481487,
+      "tool": "phone_inspect",
+      "contentSha256": "c18262dba5e1020b53c5189d4332fc11a7a75bb427590b6b902dff06a66405c5",
+      "contentBytes": 3643,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794332484998,
+      "tool": "phone_click",
+      "contentSha256": "b643b3b897f644db7176cd199d99b9a8406ca631b6a874351e7026b72b09fbb6",
+      "contentBytes": 24,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794332485177,
+      "tool": "phone_click",
+      "contentSha256": "d90d86b88b27e8952dfb397b34faade4d4a57af7ae5074ec3db88eda8497f2a4",
+      "contentBytes": 98,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794332488256,
+      "tool": "phone_inspect",
+      "contentSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentBytes": 2,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794332488305,
+      "tool": "phone_inspect",
+      "contentSha256": "43a3ee0d9667080253f84a004963a4a1c586729cad6a67068ac8b9a941b8449a",
+      "contentBytes": 442,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794332492417,
+      "tool": "bash",
+      "contentSha256": "0ef5f71165773c85cffb65296e6fbada8cb3b2e8683f29adca7b05b852b48d3b",
+      "contentBytes": 244,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794332492625,
+      "tool": "bash",
+      "contentSha256": "933051c9044c9efa7b40b3d2f39b5febbb4c056d8c1002d6639b89daef0dfd5e",
+      "contentBytes": 219,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794332496287,
+      "tool": "phone_fixture_action",
+      "contentSha256": "bc7c39aad15beb336b658dc0a665f49aa966d2293fef418fb56703fa4337f72a",
+      "contentBytes": 44,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794332496355,
+      "tool": "phone_fixture_action",
+      "contentSha256": "a72e549264949d91cbdd0276fd9fd5efde458f6a1e9f09d9974f0b5c64935167",
+      "contentBytes": 73,
+      "isError": false
+    }
+  ],
+  "providerFailures": [],
+  "faults": [],
+  "assertions": [
+    {
+      "name": "file",
+      "independent": true,
+      "passed": true
+    },
+    {
+      "name": "dependency",
+      "independent": true,
+      "passed": true
+    },
+    {
+      "name": "child",
+      "independent": true,
+      "passed": true
+    },
+    {
+      "name": "nested-child",
+      "independent": true,
+      "passed": true
+    }
+  ],
+  "events": 679,
+  "timings": {
+    "firstEventMs": 31,
+    "firstTextMs": 42820,
+    "maxEventGapMs": 5800
+  },
+  "modelChildExecution": "not_independently_proved_by_fresh_runner_rerun",
+  "noAutomaticReplay": true,
+  "sourceSha256": "e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4",
+  "processBefore": {
+    "status": "observed",
+    "pid": 10173,
+    "state": "S",
+    "ppid": 10158,
+    "startTime": "240981",
+    "cpuTicks": 147,
+    "rssPages": 37296,
+    "realUid": 10216,
+    "rssKiB": 149184
+  },
+  "turnWallMs": 44504,
+  "modelChildObserver": {
+    "status": "observed",
+    "path": "/opt/olea/evidence/pi-combined-a01.json.process-observer.json",
+    "sha256": "e55c0b8382c7239f5cdeb8a6063fdd542561e0dd0a54b3b0ffc41cf0b8b97812",
+    "interval": "100ms requested; actual timestamps retained",
+    "causality": "Owner must correlate Pi-rooted ancestry with tool interval; missing samples leave child causality untested."
+  },
+  "phoneValueFile": "phone-8865356727f591733b3ad698173276cb.txt",
+  "workspaceArtifact": "m2-2eb2d81ee35db0e81453d84d.json",
+  "workspaceArtifactSha256": "818bd11e73c0f524c2e2fd77525e6bbe2874838eec4f0c0b128f701194d77c34",
+  "resumeMarkerPresent": true,
+  "processAfter": {
+    "status": "absent",
+    "pid": 10173
+  },
+  "endedAt": "2026-11-10T17:41:44.467Z",
+  "diagnosticLimit": "Only bounded metadata/hashes retained; no raw tool/provider text. Fresh independent runner child proves behavior, not model process causation."
+}
