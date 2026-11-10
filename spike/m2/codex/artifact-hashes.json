@@ -1,190 +1,273 @@
 {
-  "generatedAt": "2026-11-10T17:22:45.595Z",
-  "scope": "Codex track retained artifacts and shared backend source snapshot; excludes this manifest to avoid circular hash",
+  "generatedAt": "2026-11-10T17:24:46.724Z",
+  "scope": "Committed Git object bytes at sourceRevision; excludes this manifest to avoid circular hash. Checkout line endings and deployed runtime bytes require separate exact-byte hashes.",
+  "sourceRevision": "2669d5bc382fea827acab4f6af26703664d4c46d",
+  "byteDomain": "git-object-blob",
   "credentialAudit": "exact authorized secret absent from every retained artifact",
   "artifacts": [
     {
       "path": "spike/backend/src/backend.ts",
-      "bytes": 7156,
-      "sha256": "06395d25a379e8413d33bcd07fdc586bb677786b5511e28dfeb4aab32a9a7835"
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/backend/src/backend.ts",
+      "byteDomain": "git-object-blob",
+      "bytes": 7045,
+      "sha256": "8d7d80519b84f6174a4727c762f4b5614473be385aafa68953620eb99cd7e6fd"
     },
     {
       "path": "spike/backend/src/codex-process.ts",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/backend/src/codex-process.ts",
+      "byteDomain": "git-object-blob",
       "bytes": 6567,
       "sha256": "c9295be030452be1559a27f01ca8e3a90b0712fdeb7fbbec1fcd822fcea6e3c4"
     },
     {
       "path": "spike/backend/src/codex-session.ts",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/backend/src/codex-session.ts",
+      "byteDomain": "git-object-blob",
       "bytes": 8407,
       "sha256": "82925085a0cbc9573f8fd29c3063e44bcaf90e9cb70fecd8e8f4a8df1aa82259"
     },
     {
       "path": "spike/backend/src/phone-mcp.ts",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/backend/src/phone-mcp.ts",
+      "byteDomain": "git-object-blob",
       "bytes": 5369,
       "sha256": "fce1600e03864e3fe962881a406f647f085aaaf72c246384a0d752f7888fb6a0"
     },
     {
       "path": "spike/backend/src/pi-process.ts",
-      "bytes": 6056,
-      "sha256": "8ccdf8bbc7b991afb791e4412848e81fd8d9ac8d585aa32f059728f1ac5df58f"
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/backend/src/pi-process.ts",
+      "byteDomain": "git-object-blob",
+      "bytes": 5929,
+      "sha256": "d3c90ab57d76feed33577d8bf3f724082d29d14b67cabac14a59ed6d69568195"
     },
     {
       "path": "spike/backend/src/process-tree.ts",
-      "bytes": 3805,
-      "sha256": "7f0e992990f6906e5d00aa97c71e509798550ceccdc8dafcf0b8db7dcc270935"
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/backend/src/process-tree.ts",
+      "byteDomain": "git-object-blob",
+      "bytes": 3735,
+      "sha256": "51ccda55781da2faa9da568fcfe165b51f113d169a2af1280ed6fd353b64f339"
     },
     {
       "path": "spike/backend/src/server.ts",
-      "bytes": 3268,
-      "sha256": "18777ad42286feb1bfdd6b1907385ef595b59ad268857a60ea9194c6a9aa65fd"
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/backend/src/server.ts",
+      "byteDomain": "git-object-blob",
+      "bytes": 3208,
+      "sha256": "3047ed2cea61d8ba79eab468bf79d19ac996ed740eaecbbc85de737574230dfb"
+    },
+    {
+      "path": "spike/m2/codex/HASH_DOMAINS.md",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/HASH_DOMAINS.md",
+      "byteDomain": "git-object-blob",
+      "bytes": 1443,
+      "sha256": "d8ee56de003216c7926a72e08e4912f3463b56d7b058777a8cc10928fdc1ef90"
     },
     {
       "path": "spike/m2/codex/INTERIM.md",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/INTERIM.md",
+      "byteDomain": "git-object-blob",
       "bytes": 3874,
       "sha256": "6643baddac1f13f5f67c533fd6856fac191670d856afa86ed920d8219fa5022c"
     },
     {
       "path": "spike/m2/codex/RECEIPT.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/RECEIPT.json",
+      "byteDomain": "git-object-blob",
       "bytes": 9870,
       "sha256": "edc7d86b5ab8f360968cc9b8819b4e8fa0a9c58d676dce888dbc7a7572e95ffd"
     },
     {
       "path": "spike/m2/codex/RUNTIME_CONTRACT.md",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/RUNTIME_CONTRACT.md",
+      "byteDomain": "git-object-blob",
       "bytes": 10405,
       "sha256": "2e585c6e34fd54d5c125c6ccdad6dac2e8cc2ccdfa895dc42484365486392e75"
     },
     {
       "path": "spike/m2/codex/attempts/host-command-termination-attempt1.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-command-termination-attempt1.json",
+      "byteDomain": "git-object-blob",
       "bytes": 1150,
       "sha256": "f2e2060ecfe8239727c9e16633e27423c86198db8940f172f1c89005ac7aa527"
     },
     {
       "path": "spike/m2/codex/attempts/host-controlled-1794330423552.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-controlled-1794330423552.json",
+      "byteDomain": "git-object-blob",
       "bytes": 6318,
       "sha256": "5bcd598e8d63662da65afbcfe262ae7000e285cfbd3f8e3022e1ef0fc154d544"
     },
     {
       "path": "spike/m2/codex/attempts/host-mcp-discovery-guarded.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-mcp-discovery-guarded.json",
+      "byteDomain": "git-object-blob",
       "bytes": 1594,
       "sha256": "9b1e98d9019ba6449c7d692f4180fa73e4e74e83359a327d48f26bcb743df5a6"
     },
     {
       "path": "spike/m2/codex/attempts/host-mcp-discovery-initial.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-mcp-discovery-initial.json",
+      "byteDomain": "git-object-blob",
       "bytes": 1583,
       "sha256": "6186b84783dbe0dc584bb3e2d4a5a8693f90231b2abd3cb691c80b142e244a5f"
     },
     {
       "path": "spike/m2/codex/attempts/host-mcp-discovery-no-key-attempt1.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-mcp-discovery-no-key-attempt1.json",
+      "byteDomain": "git-object-blob",
       "bytes": 1584,
       "sha256": "46a6c48dddd1aba5a4bf21801013cd8ae33fabf35b4eb931ee243114b77adb49"
     },
     {
       "path": "spike/m2/codex/attempts/host-mcp-discovery-no-key-attempt2.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-mcp-discovery-no-key-attempt2.json",
+      "byteDomain": "git-object-blob",
       "bytes": 1583,
       "sha256": "c390132c535c695d1610d2a03e05dbbd7121fa4515c3403680346fc807dc5cfb"
     },
     {
       "path": "spike/m2/codex/attempts/host-primary-1794329763090-diagnostics.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-primary-1794329763090-diagnostics.json",
+      "byteDomain": "git-object-blob",
       "bytes": 2924,
       "sha256": "01fee514cbe039a16c3108d4268db3fe92a4ad3cb0d07056a81ffe357fa19db9"
     },
     {
       "path": "spike/m2/codex/attempts/host-primary-1794329763090-thread.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-primary-1794329763090-thread.json",
+      "byteDomain": "git-object-blob",
       "bytes": 492,
       "sha256": "cacc9398b15e728fd2a55824453349df2374a39f534119d9e91751aae2d2de3f"
     },
     {
       "path": "spike/m2/codex/attempts/host-primary-1794329763090.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-primary-1794329763090.json",
+      "byteDomain": "git-object-blob",
       "bytes": 5482,
       "sha256": "335f71deb4ee71ca0f2217c527d1dc74face73d145b2d329f3b039cc9b6dc72e"
     },
     {
       "path": "spike/m2/codex/attempts/host-sandbox-attempt1.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-sandbox-attempt1.json",
+      "byteDomain": "git-object-blob",
       "bytes": 901,
       "sha256": "e6059cdda281d178bc62dac11978d9a7e082a90fc6fea2202fd2848e8b312952"
     },
     {
       "path": "spike/m2/codex/attempts/host-sandbox-attempt2.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-sandbox-attempt2.json",
+      "byteDomain": "git-object-blob",
       "bytes": 1019,
       "sha256": "9470b52c31ca967df279aeda4dd25efc2f38fb516bf23fe90c1f20d19bab1c8d"
     },
     {
       "path": "spike/m2/codex/attempts/host-sandbox-attempt3-assessment.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-sandbox-attempt3-assessment.json",
+      "byteDomain": "git-object-blob",
       "bytes": 836,
       "sha256": "3539491191030a8a49d4dff4cd9420b7b4c8efbb048171eba24595bf246116e8"
     },
     {
       "path": "spike/m2/codex/attempts/host-sandbox-attempt3.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-sandbox-attempt3.json",
+      "byteDomain": "git-object-blob",
       "bytes": 3276,
       "sha256": "ba704a312ef9fff19ef03b70dcee69b351feaecfc47aa4b28aff6221e0008d14"
     },
     {
       "path": "spike/m2/codex/attempts/host-sandbox-attempt4.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/attempts/host-sandbox-attempt4.json",
+      "byteDomain": "git-object-blob",
       "bytes": 3385,
       "sha256": "4f4f7deb704db380ccc25bab648d1626cf98dafb7b1808c40d37059ed21fc30c"
     },
     {
       "path": "spike/m2/codex/upstream-manifest.json",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/upstream-manifest.json",
+      "byteDomain": "git-object-blob",
       "bytes": 3012,
       "sha256": "bb0707463c3624a3015c345c882602601e18a5d4b9631c1da7a82ed3c9806b24"
     },
     {
       "path": "spike/m2/codex/upstream/LICENSE.codex",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/m2/codex/upstream/LICENSE.codex",
+      "byteDomain": "git-object-blob",
       "bytes": 10926,
       "sha256": "d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc"
     },
     {
       "path": "spike/tests/codex/adapter.test.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/adapter.test.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 6698,
       "sha256": "b9cc87c4e2450e7e91499e4815031e0a56ce84ee8f95915e7226803bf7885138"
     },
     {
       "path": "spike/tests/codex/hash-owned.mjs",
-      "bytes": 1665,
-      "sha256": "6fe3477688e4a63cc7ad56545da071787206fdadd0eed718f9c2ec3beec27dbc"
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/hash-owned.mjs",
+      "byteDomain": "git-object-blob",
+      "bytes": 1738,
+      "sha256": "d7fd08fc380bac3b350155d74f27d6e755e84efaf621d655137c98e850f12402"
     },
     {
       "path": "spike/tests/codex/hash-upstream.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/hash-upstream.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 2375,
       "sha256": "0bade3247db6d68294b977c6c0bc5834cf92c11451910a7082f1414c17ad3ce2"
     },
     {
       "path": "spike/tests/codex/inspect-thread.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/inspect-thread.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 1355,
       "sha256": "77332fd6117ccdaca0bf69e56707025021cfb21732008df37715a44f03011b73"
     },
     {
       "path": "spike/tests/codex/lifecycle-preflight.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/lifecycle-preflight.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 4380,
       "sha256": "808ab73a28db92514d56e0c8b39743487e06f54ef19233d5e8eb0dbb8e946e7f"
     },
     {
       "path": "spike/tests/codex/mcp-discovery.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/mcp-discovery.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 1905,
       "sha256": "8ff4ac84006af0e4de37e0bbaa8462fc6770159bb05e620c1c398b4ffeddb2a6"
     },
     {
       "path": "spike/tests/codex/mock-codex.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/mock-codex.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 3004,
       "sha256": "803a20b3082e3a1acbd13b24c0cefbdc7f2e7679b82c73e789e36463dbc00d3f"
     },
     {
       "path": "spike/tests/codex/phone-mcp.test.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/phone-mcp.test.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 2379,
       "sha256": "56f5da7093b222c5298f2b1f4771cac18d8de5b3dea6d39b3e18fc2620b141cd"
     },
     {
       "path": "spike/tests/codex/run-stock.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/run-stock.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 13084,
       "sha256": "e94d55c124099ebc61753c4f68edc071fbd010f71712bfc164c88ed2fa6f18f1"
     },
     {
       "path": "spike/tests/codex/sandbox-preflight.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/sandbox-preflight.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 4051,
       "sha256": "165fae450902f64650c6f625da09ea4374f2e3cc24399dba5c315ccc6276b308"
     },
     {
       "path": "spike/tests/codex/sanitize-own-attempt.mjs",
+      "source": "git:2669d5bc382fea827acab4f6af26703664d4c46d:spike/tests/codex/sanitize-own-attempt.mjs",
+      "byteDomain": "git-object-blob",
       "bytes": 1473,
       "sha256": "aaa063a37b04c85078996fb395b400856ea17a52de0e9749fffa174d55f73b34"
     }
