@@ -35,6 +35,19 @@ class PhoneAccessibility : AccessibilityService() {
         return JSONObject().put("package", root.packageName).put("nodes", result).put("truncated", result.length() >= 300)
     }
 
+    fun swipe(args: JSONObject): JSONObject {
+        val width = resources.displayMetrics.widthPixels
+        val height = resources.displayMetrics.heightPixels
+        val x = args.optInt("x", width / 2)
+        val startY = args.optInt("startY", height * 4 / 5)
+        val endY = args.optInt("endY", height / 4)
+        check(x in 0 until width && startY in 0 until height && endY in 0 until height) { "INVALID_GESTURE" }
+        val path = android.graphics.Path().apply { moveTo(x.toFloat(), startY.toFloat()); lineTo(x.toFloat(), endY.toFloat()) }
+        val gesture = android.accessibilityservice.GestureDescription.Builder().addStroke(android.accessibilityservice.GestureDescription.StrokeDescription(path, 0, 350)).build()
+        check(dispatchGesture(gesture, null, null)) { "GESTURE_REJECTED" }
+        return JSONObject().put("dispatched", true)
+    }
+
     fun click(id: String): JSONObject {
         var node = nodes.remove(id) ?: error("STALE_NODE")
         if (!node.refresh()) error("STALE_NODE")

@@ -32,6 +32,9 @@ class RuntimeService : Service() {
 
     override fun onCreate() {
         super.onCreate()
+        val provisionedEnable = File(filesDir, "enable-phone-once")
+        enabled = provisionedEnable.exists()
+        provisionedEnable.delete()
         val tokenFile = File(filesDir, "bridge-token")
         token = if (tokenFile.exists()) tokenFile.readText().trim() else ByteArray(32).also { SecureRandom().nextBytes(it) }.joinToString("") { "%02x".format(it) }.also { tokenFile.writeText(it) }
         tokenFile.setReadable(false, false); tokenFile.setReadable(true, true)
@@ -80,7 +83,7 @@ class RuntimeService : Service() {
     private fun capabilities() = JSONObject().put("phoneEnabled", enabled)
         .put("accessibility", PhoneAccessibility.active != null).put("targetSdk", applicationInfo.targetSdkVersion)
         .put("backendRunning", backend?.isAlive == true)
-        .put("operations", JSONArray(listOf("capabilities", "accessibility_tree", "accessibility_click", "global_action", "open_url", "fixture_action", "stop")))
+        .put("operations", JSONArray(listOf("capabilities", "accessibility_tree", "accessibility_click", "global_action", "swipe", "open_url", "fixture_action", "stop")))
 
     private fun phone(request: JSONObject): JSONObject {
         val operation = request.getString("operation")
@@ -91,6 +94,7 @@ class RuntimeService : Service() {
         fun accessibility() = PhoneAccessibility.active ?: error("ACCESSIBILITY_REVOKED")
         return when (operation) {
             "inspect", "accessibility_tree" -> accessibility().inspect()
+            "swipe" -> accessibility().swipe(args)
             "click", "accessibility_click" -> accessibility().click(args.getString("nodeId"))
             "home", "global_action" -> {
                 val action = if (operation == "home") "home" else args.getString("action")
@@ -106,7 +110,7 @@ class RuntimeService : Service() {
             }
             "fixture_action" -> {
                 val value = args.getString("value"); check(value.length <= 256) { "VALUE_TOO_LONG" }
-                startActivity(Intent(this, FixtureActivity::class.java).putExtra("value", value).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName("dev.olea.fixture", "dev.olea.fixture.FixtureActivity")).putExtra("value", value).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 JSONObject().put("dispatched", true)
             }
             else -> error("UNKNOWN_OPERATION")
