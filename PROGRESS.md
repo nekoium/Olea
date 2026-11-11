@@ -1,6 +1,10 @@
 # Progress
 
-## M4 deterministic maintenance checkpoint — active
+## M4 deterministic maintenance checkpoint — measured boundary saved
+
+Final independent assessment `6749a45`, integrated as root `b2a4108`, completes the declared bounded deterministic assessment with mixed results. [Final report](spike/m4/reports/FINAL_DETERMINISTIC_INDEPENDENT.md): ordinary copied-prefix Codex0.167.0→0.167.1/direct no-model compatibility pass; original canonical preservation FAIL due the retained599-byte settings append through copied absolute SQLite history reference; repaired same-host backend-only disable/tracked cleanup/explicit disabled restart/no-replay pass within finite observation limits. Original failure evidence remains. Final08:15:42.838Z runtime receipt has phone/backend/Accessibilityfalse, projectionnull, no operation in flight, runtime15565/fixture7596 only reviewed appUID processes. Sole runtime lease was retained at that receipt; explicit release for fresh-manager transfer has been requested and must be separately saved. M4 used0of9 refreshed prompts. Full original phone/model/backend acceptance remains open.
+
+## M4 deterministic maintenance checkpoint — launch history
 
 New manager `pi_bf06630f_e4e8_4fb8_94dc_203ef5153198` owns Run `run_dd39824405ae` with two fresh kept-open Pi children. Both exact root parentage and full dispatch creator/assignee/Run are independently verified in [M4 coordination](docs/feasibility/M4_COORDINATION.md). Following the explicit M3 release, only new runtime session `9e78162f-c4b8-4db0-987c-12277b05c76d` holds the mutation lease. The predecessor confirmed exact old runtime/evidence session release with all worktrees, artifacts and data preserved.
 
