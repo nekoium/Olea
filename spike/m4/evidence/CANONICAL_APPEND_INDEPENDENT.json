@@ -1,0 +1,152 @@
+{
+  "sourceCommit": "5575d5e",
+  "artifacts": [
+    {
+      "path": "git:5575d5e:spike/m4/runtime/diagnose-canonical.mjs",
+      "sha256": "cb99d3b5e9bef7948fbf6c00530b2ae025a95eb88a5842487f2baf9ebad83b50"
+    },
+    {
+      "path": "git:5575d5e:spike/m4/runtime/evidence/canonical-change-a01.json",
+      "sha256": "8260d934d07953409d4aa0f045e96089a77077a63d2889671063aaee64ec3383"
+    },
+    {
+      "path": "git:5575d5e:spike/m4/runtime/evidence/canonical-change-diagnosis-a01.json",
+      "sha256": "55b12cf591246bf7b91b60fec3fed150cd64b46e940697f7b726753ea04db3db"
+    },
+    {
+      "path": "git:5575d5e:spike/m4/runtime/evidence/copied-unchanged-rollout.jsonl",
+      "sha256": "345b0884b097ec53e8fad3431de2b5f47d59b32a5212557227777869e4d7d284"
+    },
+    {
+      "path": "git:5575d5e:spike/m4/runtime/evidence/original-changed-rollout.jsonl",
+      "sha256": "0a5b101f13c8974a79ac1a6308243d75b539da57c738d19f62e696b43463b4f0"
+    },
+    {
+      "path": "git:5575d5e:spike/m4/runtime/preserve-changed-canonical.mjs",
+      "sha256": "2d8cf66d169d3b85c359cbe74b4bcf8f001ddd800ce65e460b0bb1b64117fbd7"
+    }
+  ],
+  "verifiedNewGitArtifactReferences": 6,
+  "transcripts": [
+    {
+      "name": "original-changed",
+      "bytes": 143981,
+      "sha256": "0a5b101f13c8974a79ac1a6308243d75b539da57c738d19f62e696b43463b4f0",
+      "records": 62
+    },
+    {
+      "name": "copied-unchanged",
+      "bytes": 143382,
+      "sha256": "345b0884b097ec53e8fad3431de2b5f47d59b32a5212557227777869e4d7d284",
+      "records": 61
+    }
+  ],
+  "originalPrefixExactlyUnchanged": true,
+  "appendedBytes": 599,
+  "appendedRecord": {
+    "timestamp": "2026-11-11T08:00:16.196Z",
+    "type": "event_msg",
+    "payloadType": "thread_settings_applied",
+    "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+    "cwd": "/workspace/m4-update-a01/workspace"
+  },
+  "databases": [
+    {
+      "name": "original-changed",
+      "sourceSnapshots": [
+        {
+          "suffix": "",
+          "bytes": 4096,
+          "sha256": "4eeb710c739848e62f0d53d04057e17375b4af741c9b441f2a546f6ed860c79f",
+          "source": "C:/Users/Aria/orca/workspaces/Olea/m4-codex-update-recovery/.setup/canonical-diagnosis/original-changed-state_5.sqlite"
+        },
+        {
+          "suffix": "-wal",
+          "bytes": 3316632,
+          "sha256": "755317829d71e02273ce1eb134f068a3514459033bd2af1f77069e75c688b4be",
+          "source": "C:/Users/Aria/orca/workspaces/Olea/m4-codex-update-recovery/.setup/canonical-diagnosis/original-changed-state_5.sqlite-wal"
+        },
+        {
+          "suffix": "-shm",
+          "bytes": 32768,
+          "sha256": "f5737dc15289671b121fd8b4c191705f7e6c8d707067ca0a0426aadbcc2145ec",
+          "source": "C:/Users/Aria/orca/workspaces/Olea/m4-codex-update-recovery/.setup/canonical-diagnosis/original-changed-state_5.sqlite-shm"
+        }
+      ],
+      "thread": {
+        "id": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+        "rollout_path": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+        "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+        "cli_version": "0.167.0",
+        "updated_at": 1794337122
+      },
+      "independentReadOnlyQueryMatched": true,
+      "sourceSnapshotsUnchanged": true
+    },
+    {
+      "name": "copied-unchanged",
+      "sourceSnapshots": [
+        {
+          "suffix": "",
+          "bytes": 4096,
+          "sha256": "4eeb710c739848e62f0d53d04057e17375b4af741c9b441f2a546f6ed860c79f",
+          "source": "C:/Users/Aria/orca/workspaces/Olea/m4-codex-update-recovery/.setup/canonical-diagnosis/copied-unchanged-state_5.sqlite"
+        },
+        {
+          "suffix": "-wal",
+          "bytes": 3378432,
+          "sha256": "697dc80601cbab1e06cf957255af53a74cffd5b2e5337187c4e7e667517680b7",
+          "source": "C:/Users/Aria/orca/workspaces/Olea/m4-codex-update-recovery/.setup/canonical-diagnosis/copied-unchanged-state_5.sqlite-wal"
+        },
+        {
+          "suffix": "-shm",
+          "bytes": 32768,
+          "sha256": "72b9d28f133bb43aa5bfa666c64f30f20ba7a56b57911c34ae5a989348717989",
+          "source": "C:/Users/Aria/orca/workspaces/Olea/m4-codex-update-recovery/.setup/canonical-diagnosis/copied-unchanged-state_5.sqlite-shm"
+        }
+      ],
+      "thread": {
+        "id": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+        "rollout_path": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+        "cwd": "/workspace/m4-update-a01/workspace",
+        "cli_version": "0.167.0",
+        "updated_at": 1794384016
+      },
+      "independentReadOnlyQueryMatched": true,
+      "sourceSnapshotsUnchanged": true
+    }
+  ],
+  "credentialChecks": [
+    {
+      "name": "original-changed",
+      "knownProviderValuePresent": false,
+      "suspiciousCredentialPatternMatches": 0,
+      "runtimeSourceExactProviderAndBridgeScan": "preserve-changed-canonical.mjs asserts absence before write; bridge token not independently available offline"
+    },
+    {
+      "name": "copied-unchanged",
+      "knownProviderValuePresent": false,
+      "suspiciousCredentialPatternMatches": 0,
+      "runtimeSourceExactProviderAndBridgeScan": "preserve-changed-canonical.mjs asserts absence before write; bridge token not independently available offline"
+    }
+  ],
+  "diagnosis": "Retained copied index points at original rollout; append content and timing strongly corroborate copied-home resume caused original-path settings append; no syscall trace or pre-resume DB snapshot retained",
+  "canonicalPreservation": "FAIL retained; original prefix intact and one settings event appended",
+  "limits": [
+    "No independent original historical bytes beyond recorded old SHA256 and matching retained copy",
+    "SQLite source snapshots copied sequentially; no atomic live snapshot or pre-resume index export is claimed",
+    "Read-only attribution covers local exported DB/WAL snapshots only, not Android live DB",
+    "No new evidence here remeasures six other canonical files, old binary or protected modes",
+    "Independent exact credential scan covers current authorized provider values; runtime source checked actual bridge token before export, no offline independent bridge-token comparison"
+  ],
+  "budget": {
+    "m4Authorized": 9,
+    "m4Consumed": 0,
+    "m4Allocated": 0,
+    "m4Unallocated": 9,
+    "historicalConsumed": 9
+  },
+  "deviceActions": 0,
+  "modelRequests": 0,
+  "leaseRelease": "None in this batch; runtime final repaired measurement remains pending"
+}
