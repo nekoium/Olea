@@ -1,0 +1,142 @@
+{
+  "at": "2026-11-11T05:29:11.039Z",
+  "allocationId": "m3-pi-location-notification-01",
+  "globalConsumedBefore": 6,
+  "topLevelSubmitted": 1,
+  "globalConsumedAfter": 7,
+  "unallocated": 1,
+  "allocated": 0,
+  "explicitRetries": 0,
+  "fallbacks": 0,
+  "replays": 0,
+  "stockPi": "1.5.2",
+  "model": "gpt-6.1-terra",
+  "phoneCalls": 4,
+  "toolRounds": 5,
+  "usage": {
+    "input": 4007,
+    "output": 226,
+    "cacheRead": 0,
+    "cacheWrite": 0
+  },
+  "httpRequestCount": null,
+  "billing": "unknown",
+  "modelTurnMs": 20402,
+  "nativeMs": 41098,
+  "canonicalResume": {
+    "sameSessionId": true,
+    "sameSessionFile": true,
+    "sessionId": "01a1c911-9387-7648-8c38-98636dedc317",
+    "sessionFile": "/workspace/m3-pi-location-notification-01-state/m2_fb7b491a8a0366656bc01064e0de9bdd/2026-11-11T05-25-34-729Z_01a1c911-9387-7648-8c38-98636dedc317.jsonl"
+  },
+  "nativeCleanupVerified": true,
+  "nativeCleanupFaults": [],
+  "independentIdentitiesAbsent": 5,
+  "outcomes": {
+    "location": "pass; last-known qualified",
+    "notification": "fail; model read empty list, no fresh fixture launch/post",
+    "canonicalResume": "pass without additional prompt",
+    "preservation": "seven historical hashes equal",
+    "safeStop": "phone/backend disabled",
+    "url": "not attempted",
+    "files": "not attempted",
+    "capture": "not attempted"
+  },
+  "diagnosis": "Native notify dispatch and model invocation observed, but same preexisting fixture Activity foregrounded without observed-launch append or notification update; fixture source handles intent only in onCreate, not onNewIntent; exact framework callback not instrumented",
+  "source": [
+    {
+      "path": "spike/backend/extensions/phone.ts",
+      "sha256": "eefeddae51b226f8b166c7153eb7542fa836c46b3c608f7096e0d61f34baeb23",
+      "domain": "raw deployed/compiled/tested working-tree bytes"
+    },
+    {
+      "path": "spike/tests/m2/pi-single.mjs",
+      "sha256": "681467c3b5c1a918c8b653516ea4a22459142e2b0a302ea5313c23bf60742caf",
+      "domain": "raw deployed/compiled/tested working-tree bytes"
+    },
+    {
+      "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+      "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+      "domain": "raw deployed/compiled/tested working-tree bytes"
+    },
+    {
+      "path": "spike/m3/runtime/pi-location-notification-options.json",
+      "sha256": "21eab2b2d2c1f128d23eb56487631809eb135651818e2eccaac147ef9b14dec0",
+      "domain": "raw deployed/compiled/tested working-tree bytes"
+    },
+    {
+      "path": "spike/m3/runtime/pi-location-notification-a01.sh",
+      "sha256": "97abba1cc0e9e535fd85e5a3186ed7def94e4ab61157608d712fb72b6b9f30f1",
+      "domain": "raw deployed/compiled/tested working-tree bytes"
+    },
+    {
+      "path": "spike/m3/runtime/pi-extension-policy.test.mjs",
+      "sha256": "205cf729ae2e977ddf2c70f474ab1d22fe8e495c81e77869cd120edef3de28fd",
+      "domain": "raw deployed/compiled/tested working-tree bytes"
+    }
+  ],
+  "deployedFinal": [
+    {
+      "path": "spike/backend/extensions/phone.ts",
+      "actual": "eefeddae51b226f8b166c7153eb7542fa836c46b3c608f7096e0d61f34baeb23"
+    },
+    {
+      "path": "spike/tests/m2/pi-single.mjs",
+      "actual": "681467c3b5c1a918c8b653516ea4a22459142e2b0a302ea5313c23bf60742caf"
+    },
+    {
+      "path": "spike/tests/m2/assertions.mjs",
+      "actual": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186"
+    },
+    {
+      "path": "spike/tests/m2/evidence.mjs",
+      "actual": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009"
+    },
+    {
+      "path": "spike/tests/m2/observe-tree.mjs",
+      "actual": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7"
+    },
+    {
+      "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+      "actual": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919"
+    },
+    {
+      "path": "spike/m3/runtime/pi-registration-a01.mjs",
+      "actual": "f5f2f83c07329c8b241dd03301789b39bb5365d11ab4e5cf5c685e2ef13c82c9"
+    },
+    {
+      "path": "spike/m3/runtime/pi-location-notification-options.json",
+      "actual": "21eab2b2d2c1f128d23eb56487631809eb135651818e2eccaac147ef9b14dec0"
+    },
+    {
+      "path": "spike/backend/dist/backend.js",
+      "actual": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c"
+    },
+    {
+      "path": "spike/backend/dist/pi-process.js",
+      "actual": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108"
+    },
+    {
+      "path": "spike/backend/dist/process-tree.js",
+      "actual": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+    },
+    {
+      "path": "spike/backend/dist/phone-mcp.js",
+      "actual": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5"
+    },
+    {
+      "path": "spike/backend/dist/codex-process.js",
+      "actual": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff"
+    },
+    {
+      "path": "spike/backend/dist/codex-session.js",
+      "actual": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58"
+    },
+    {
+      "path": "spike/backend/dist/server.js",
+      "actual": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca"
+    }
+  ],
+  "publicPayloadSha256": "6df554fe4108187caeb5a8aab5b5088546093fe0544230486d53ea255a6cf8a9",
+  "runnerByteQualification": "Original payload/first preflight runner was supplemented before claim by pi-runner-result-preflight-a01.json; final deployed runner matches model.sourceSha256"
+}

@@ -38,6 +38,10 @@ export async function runPiSingle(options) {
   const env = Object.fromEntries(['PATH', 'HOME', 'TMPDIR', 'TEMP', 'SystemRoot', 'LD_LIBRARY_PATH', 'PROOT_LOADER', 'PROOT_LOADER_32'].filter(k => process.env[k]).map(k => [k, process.env[k]]));
   Object.assign(env, { OLEA_PROVIDER_CONFIG: resolve(options.providerConfig), OLEA_MODEL: options.model ?? 'gpt-6.1-terra' });
   if (options.bridgeConfig) env.OLEA_BRIDGE_CONFIG = resolve(options.bridgeConfig);
+  if (options.kind === 'phone-categories') Object.assign(env, {
+    OLEA_PHONE_CALL_LIMIT: '5', OLEA_PHONE_TOOL_ALLOWLIST: 'phone_capabilities,phone_location,phone_fixture_notify,phone_notifications',
+    OLEA_PHONE_READINESS: resolve(options.stateDir, 'phone-readiness.json'),
+  });
   const summary = { attemptId: options.attemptId, context: options.context, kind: options.kind, startedAt: new Date().toISOString(), status: 'fail', allocationId: options.allocationId,
     directReceipt: options.kind === 'phone-categories' ? options.directReceipt : undefined,
     provider: { topLevelPrompts: 0, toolRounds: 0, observedUsage: {}, httpRequests: null, remoteBilling: 'unknown', strictTokenCap: 'unsupported/not established', automaticRetries: false },
@@ -69,11 +73,22 @@ export async function runPiSingle(options) {
       summary.toolEvidence.push({ type: r.type, atMs: now, tool: typeof r.toolName === 'string' ? r.toolName.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 80) : null,
         contentSha256: sha256(encoded), contentBytes: Buffer.byteLength(encoded), isError: r.isError === true });
     }
+    if (options.kind === 'phone-categories' && r.type === 'tool_execution_end' && typeof r.toolName === 'string' && groupedPhoneTools(options.categories).includes(r.toolName)) {
+      const text = JSON.stringify(r.result ?? null);
+      summary.phoneResults ??= [];
+      if (Buffer.byteLength(text) <= 4096 && summary.phoneResults.length < 5) summary.phoneResults.push({ tool: r.toolName, result: r.result, isError: r.isError === true, atMs: now });
+      else fault = 'phone_result_limit';
+    }
     if (r.type === 'message_end') for (const [k, v] of Object.entries(r.message?.usage ?? {})) if (['input', 'output', 'cacheRead', 'cacheWrite'].includes(k) && Number.isFinite(v)) summary.provider.observedUsage[k] = (summary.provider.observedUsage[k] ?? 0) + v;
     if (r.type === 'agent_end' || r.type === 'agent_settled') ended = true;
   });
   try {
     const start = await bounded(backend.start(session), 30000, 'init_deadline');
+    if (options.kind === 'phone-categories') {
+      summary.registration = JSON.parse(await readFile(env.OLEA_PHONE_READINESS, 'utf8'));
+      const expected = groupedPhoneTools(options.categories);
+      if (summary.registration.active.length !== expected.length || expected.some(name => !summary.registration.active.includes(name))) throw Error('phone_registration_prerequisite_failed');
+    }
     summary.processBefore = await observeProcess(start.pid);
     if (process.platform === 'linux') observerPromise = observeTree(start.pid, { durationMs: 120000, intervalMs: 100, shouldStop: () => turnFinished }).catch(() => ({ status: 'unverifiable', reason: 'observer_failed', samples: [] }));
     else summary.modelChildObserver = { status: 'untested', reason: 'linux_proc_required' };
@@ -122,7 +137,9 @@ export async function runPiSingle(options) {
     }
     await bounded(backend.command(session, { type: 'get_state' }), 30000, 'state_deadline');
     await bounded(backend.stop(session), 10000, 'stop_deadline');
-    await bounded(backend.start(session, true), 30000, 'resume_deadline');
+    const resumed = await bounded(backend.start(session, true), 30000, 'resume_deadline');
+    summary.canonicalResume = { sameSessionId: resumed.state.sessionId === start.state.sessionId, sameSessionFile: resumed.state.sessionFile === start.state.sessionFile, sessionId: resumed.state.sessionId, sessionFile: resumed.state.sessionFile };
+    if (!summary.canonicalResume.sameSessionId || !summary.canonicalResume.sameSessionFile) throw Error('canonical_resume_mismatch');
     const history = await bounded(backend.command(session, { type: 'get_messages' }), 30000, 'history_deadline');
     summary.resumeMarkerPresent = JSON.stringify(history.data).includes(c.nonce);
     if (!summary.resumeMarkerPresent) throw Error('resume_marker_missing');

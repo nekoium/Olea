@@ -1,0 +1,223 @@
+{
+  "attemptId": "m3-pi-location-notification-01",
+  "context": "android-app",
+  "kind": "phone-categories",
+  "startedAt": "2026-11-11T05:25:26.998Z",
+  "status": "awaiting-independent-phone-categories",
+  "allocationId": "m3-pi-location-notification-01",
+  "directReceipt": "M3 direct last-known coordinate and separate notification/revocation receipts; fresh pi-category-preflight-a01.json and pi-registration-a01.json",
+  "provider": {
+    "topLevelPrompts": 1,
+    "toolRounds": 5,
+    "observedUsage": {
+      "input": 4007,
+      "output": 226,
+      "cacheRead": 0,
+      "cacheWrite": 0
+    },
+    "httpRequests": null,
+    "remoteBilling": "unknown",
+    "strictTokenCap": "unsupported/not established",
+    "automaticRetries": false
+  },
+  "limits": {
+    "initMs": 30000,
+    "turnMs": 120000,
+    "idleMs": 45000,
+    "frameBytes": 262144,
+    "retainedDiagnosticBytes": 1048576,
+    "eventCount": 4096,
+    "maxToolRounds": 12
+  },
+  "tools": [
+    "phone_capabilities",
+    "phone_location",
+    "phone_fixture_notify",
+    "phone_notifications"
+  ],
+  "toolEvidence": [
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794374740137,
+      "tool": "phone_capabilities",
+      "contentSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentBytes": 2,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794374740204,
+      "tool": "phone_capabilities",
+      "contentSha256": "05ceef0cf0a201bc438da494969e24ab6b1bdd471a1af521066b9fe8c21bb6ab",
+      "contentBytes": 470,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794374743857,
+      "tool": "phone_location",
+      "contentSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentBytes": 2,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794374743915,
+      "tool": "phone_location",
+      "contentSha256": "621f2acaa5b8d4835ca428151e3e04f3fc3949b748cfdd5f03120a164aebf109",
+      "contentBytes": 185,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794374748356,
+      "tool": "phone_fixture_notify",
+      "contentSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentBytes": 2,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794374748426,
+      "tool": "phone_fixture_notify",
+      "contentSha256": "a72e549264949d91cbdd0276fd9fd5efde458f6a1e9f09d9974f0b5c64935167",
+      "contentBytes": 73,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_start",
+      "atMs": 1794374751082,
+      "tool": "phone_notifications",
+      "contentSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contentBytes": 2,
+      "isError": false
+    },
+    {
+      "type": "tool_execution_end",
+      "atMs": 1794374751133,
+      "tool": "phone_notifications",
+      "contentSha256": "a77bcde72c9ca4845cf04fc5465d5751777d1279f594189fb56ea1e26460e25c",
+      "contentBytes": 74,
+      "isError": false
+    }
+  ],
+  "providerFailures": [],
+  "faults": [],
+  "assertions": [],
+  "events": 167,
+  "timings": {
+    "firstEventMs": 20,
+    "firstTextMs": 18525,
+    "maxEventGapMs": 4384
+  },
+  "modelChildExecution": "not_independently_proved_by_fresh_runner_rerun",
+  "noAutomaticReplay": true,
+  "sourceSha256": "681467c3b5c1a918c8b653516ea4a22459142e2b0a302ea5313c23bf60742caf",
+  "registration": {
+    "reason": "startup",
+    "registeredPhoneTools": [
+      "phone_capabilities",
+      "phone_location",
+      "phone_notifications",
+      "phone_fixture_notify"
+    ],
+    "active": [
+      "phone_capabilities",
+      "phone_location",
+      "phone_notifications",
+      "phone_fixture_notify"
+    ],
+    "maxNativeCalls": 5
+  },
+  "processBefore": {
+    "status": "observed",
+    "pid": 7159,
+    "state": "S",
+    "ppid": 7147,
+    "startTime": "559243",
+    "cpuTicks": 343,
+    "rssPages": 35356,
+    "realUid": 10216,
+    "rssKiB": 141424
+  },
+  "phoneResults": [
+    {
+      "tool": "phone_capabilities",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"phoneEnabled\":true,\"accessibility\":false,\"targetSdk\":36,\"backendRunning\":false,\"backendStopping\":false,\"backendCleanup\":null,\"operations\":[\"capabilities\",\"accessibility_tree\",\"accessibility_click\",\"global_action\",\"swipe\",\"open_url\",\"fixture_action\",\"location\",\"files_write_read\",\"notifications\",\"capture_request\",\"capture_result\",\"folder_request\",\"fixture_notify\",\"stop\"]}"
+          }
+        ],
+        "details": {}
+      },
+      "isError": false,
+      "atMs": 1794374740204
+    },
+    {
+      "tool": "phone_location",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"latitude\":24.9876,\"longitude\":121.54319833333334,\"provider\":\"gps\",\"accuracy\":5,\"timeMs\":1794374637363,\"ageMs\":106543}"
+          }
+        ],
+        "details": {}
+      },
+      "isError": false,
+      "atMs": 1794374743915
+    },
+    {
+      "tool": "phone_fixture_notify",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"dispatched\":true}"
+          }
+        ],
+        "details": {}
+      },
+      "isError": false,
+      "atMs": 1794374748426
+    },
+    {
+      "tool": "phone_notifications",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"notifications\":[]}"
+          }
+        ],
+        "details": {}
+      },
+      "isError": false,
+      "atMs": 1794374751133
+    }
+  ],
+  "turnWallMs": 20402,
+  "modelChildObserver": {
+    "status": "observed",
+    "path": "/workspace/m3-pi-location-notification-01.json.process-observer.json",
+    "sha256": "b6aa088935158aa67e6aa43d6bf794c7f9394f5d26cab1a614d597d9545b53b4",
+    "interval": "100ms requested; actual timestamps retained",
+    "causality": "Owner must correlate Pi-rooted ancestry with tool interval; missing samples leave child causality untested."
+  },
+  "phoneValueFile": null,
+  "canonicalResume": {
+    "sameSessionId": true,
+    "sameSessionFile": true,
+    "sessionId": "01a1c911-9387-7648-8c38-98636dedc317",
+    "sessionFile": "/workspace/m3-pi-location-notification-01-state/m2_fb7b491a8a0366656bc01064e0de9bdd/2026-11-11T05-25-34-729Z_01a1c911-9387-7648-8c38-98636dedc317.jsonl"
+  },
+  "resumeMarkerPresent": true,
+  "processAfter": {
+    "status": "absent",
+    "pid": 7159
+  },
+  "endedAt": "2026-11-11T05:26:06.033Z",
+  "diagnosticLimit": "Only bounded metadata/hashes retained; no raw tool/provider text. Fresh independent runner child proves behavior, not model process causation."
+}

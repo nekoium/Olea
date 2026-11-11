@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 // Supported Pi extension API only; plain JSON Schema avoids a schema-builder dependency.
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { phoneTools } from '../dist/phone-mcp.js';
 
 export default function (pi: any) {
@@ -17,6 +17,10 @@ export default function (pi: any) {
     });
   }
 
+  const limit = process.env.OLEA_PHONE_CALL_LIMIT;
+  const allowlist = process.env.OLEA_PHONE_TOOL_ALLOWLIST;
+  if ((limit || allowlist) && (limit !== '5' || allowlist !== 'phone_capabilities,phone_location,phone_fixture_notify,phone_notifications')) throw new Error('invalid_phone_policy');
+  let nativeCalls = 0;
   const tools = [
     { name: 'phone_capabilities', operation: 'capabilities', description: 'Read current Android phone permissions, accessibility and stop state.', properties: {} },
     { name: 'phone_inspect', operation: 'accessibility_tree', description: 'Inspect bounded accessible Android UI nodes and foreground package. Use nodeId for clicks; inspect again after screen changes.', properties: {} },
@@ -31,10 +35,13 @@ export default function (pi: any) {
     { name: 'phone_fixture_action', operation: 'fixture_action', description: 'Send a generated value to the cooperating test app through its documented interface. Does not open an app through Accessibility. Cannot read verification state.', properties: { value: { type: 'string', maxLength: 128 } }, required: ['value'] },
     ...phoneTools.filter(tool => !['phone_capabilities', 'phone_inspect', 'phone_click', 'phone_home', 'phone_swipe', 'phone_open_url', 'phone_fixture_action'].includes(tool.name)),
   ];
-  for (const tool of tools) pi.registerTool({
+  const selected = allowlist ? tools.filter(tool => allowlist.split(',').includes(tool.name)) : tools;
+  for (const tool of selected) pi.registerTool({
     name: tool.name, label: tool.name, description: tool.description,
     parameters: { type: 'object', properties: tool.properties, required: tool.required ?? [], additionalProperties: false },
     async execute(_id: string, args: Record<string, unknown>, signal?: AbortSignal) {
+      if (limit && nativeCalls >= Number(limit)) throw new Error('phone_policy_denied_no_native_delivery');
+      nativeCalls++;
       const configured = process.env.OLEA_BRIDGE_CONFIG;
       const bridge = configured ? JSON.parse(readFileSync(configured, 'utf8')) : {
         url: process.env.OLEA_BRIDGE_URL,
@@ -69,5 +76,13 @@ export default function (pi: any) {
         throw new Error('bridge_request_failed');
       }
     },
+  });
+  if (allowlist) pi.on('session_start', (event: any) => {
+    const names = selected.map(tool => tool.name);
+    pi.setActiveTools(names);
+    const registered = pi.getAllTools().map((tool: any) => tool.name);
+    const active = pi.getActiveTools();
+    if (names.some(name => !registered.includes(name)) || active.length !== names.length || names.some(name => !active.includes(name))) throw new Error('phone_tool_registration_failed');
+    if (process.env.OLEA_PHONE_READINESS) writeFileSync(process.env.OLEA_PHONE_READINESS, JSON.stringify({ reason: event.reason, registeredPhoneTools: registered.filter((name: string) => name.startsWith('phone_')), active, maxNativeCalls: 5 }) + '\n', { mode: 0o600 });
   });
 }

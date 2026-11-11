@@ -1,0 +1,60 @@
+{
+  "attempt": "pi-registration-a01",
+  "modelRequests": 0,
+  "phoneActions": 0,
+  "providerConfig": "Synthetic noncredential registration-only fixture, not authorized real provider source",
+  "events": [],
+  "start": {
+    "pid": 6933,
+    "startupMs": 9099.0206,
+    "state": {
+      "model": {
+        "id": "gpt-6.1-terra",
+        "name": "gpt-6.1-terra",
+        "reasoning": false,
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 128000,
+        "maxTokens": 4096,
+        "api": "openai-completions",
+        "provider": "olea-test",
+        "baseUrl": "https://api.chiyi.cc/v1"
+      },
+      "thinkingLevel": "off",
+      "isStreaming": false,
+      "isCompacting": false,
+      "steeringMode": "one-at-a-time",
+      "followUpMode": "one-at-a-time",
+      "sessionFile": "/workspace/m3-pi-registration-a01/state/registration/2026-11-11T05-23-14-570Z_01a1c90f-7009-7250-a964-a103acb5bbcb.jsonl",
+      "sessionId": "01a1c90f-7009-7250-a964-a103acb5bbcb",
+      "autoCompactionEnabled": true,
+      "messageCount": 0,
+      "pendingMessageCount": 0
+    }
+  },
+  "readiness": {
+    "reason": "startup",
+    "registeredPhoneTools": [
+      "phone_capabilities",
+      "phone_location",
+      "phone_notifications",
+      "phone_fixture_notify"
+    ],
+    "active": [
+      "phone_capabilities",
+      "phone_location",
+      "phone_notifications",
+      "phone_fixture_notify"
+    ],
+    "maxNativeCalls": 5
+  },
+  "version": "1.5.2",
+  "status": "pass"
+}

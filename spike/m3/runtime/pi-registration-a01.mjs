@@ -1,0 +1,10 @@
+// SPDX-License-Identifier: MIT
+// Stock Pi registration readiness with a synthetic noncredential provider and no prompt.
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {Backend} from '../../backend/dist/backend.js';
+const root='/workspace/m3-pi-registration-a01';await mkdir(root);await mkdir(root+'/workspace');
+const synthetic=root+'/synthetic-provider.json';await writeFile(synthetic,JSON.stringify({baseUrl:'https://api.chiyi.cc/v1',apiKey:'synthetic-noncredential-not-authorized-for-inference'}),{mode:0o600});
+const env={PATH:process.env.PATH,HOME:process.env.HOME,OLEA_PROVIDER_CONFIG:synthetic,OLEA_MODEL:'gpt-6.1-terra',OLEA_BRIDGE_CONFIG:'/run/olea-bridge.json',OLEA_PHONE_CALL_LIMIT:'5',OLEA_PHONE_TOOL_ALLOWLIST:'phone_capabilities,phone_location,phone_fixture_notify,phone_notifications',OLEA_PHONE_READINESS:root+'/readiness.json'};
+const report={attempt:'pi-registration-a01',modelRequests:0,phoneActions:0,providerConfig:'Synthetic noncredential registration-only fixture, not authorized real provider source',events:[]};
+const backend=new Backend({entry:'/opt/agents/pi/node_modules/@earendil-works/pi-coding-agent/dist/cli.js',workspace:root+'/workspace',stateDir:root+'/state',env},event=>{if(event.type==='fault')report.events.push({type:'fault',code:event.code});});
+try{report.start=await backend.start('registration');report.readiness=JSON.parse(await readFile(root+'/readiness.json','utf8'));const expected=['phone_capabilities','phone_location','phone_fixture_notify','phone_notifications'];if(report.readiness.active.length!==4||expected.some(n=>!report.readiness.active.includes(n)))throw Error('selected_registration_failed');report.version=JSON.parse(await readFile('/opt/agents/pi/node_modules/@earendil-works/pi-coding-agent/package.json','utf8')).version;report.status='pass';}catch(e){report.status='fail';report.error=e.message;}finally{await backend.close();await writeFile(root+'/report.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,error:report.error,readiness:report.readiness}));}

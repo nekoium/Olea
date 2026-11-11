@@ -1,0 +1,2478 @@
+{
+  "startedAt": "2026-11-11T05:25:36.498Z",
+  "root": {
+    "status": "observed",
+    "pid": 7159,
+    "state": "t",
+    "ppid": 7147,
+    "startTime": "559243",
+    "cpuTicks": 345,
+    "rssPages": 35356,
+    "realUid": 10216,
+    "rssKiB": 141424
+  },
+  "samples": [
+    {
+      "atMs": 1794374736557,
+      "elapsedMs": 59,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "t",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 347,
+          "rssPages": 35548,
+          "realUid": 10216,
+          "rssKiB": 141936
+        }
+      ]
+    },
+    {
+      "atMs": 1794374736708,
+      "elapsedMs": 210,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "t",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 350,
+          "rssPages": 35708,
+          "realUid": 10216,
+          "rssKiB": 142832
+        }
+      ]
+    },
+    {
+      "atMs": 1794374736866,
+      "elapsedMs": 368,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "R",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 354,
+          "rssPages": 35932,
+          "realUid": 10216,
+          "rssKiB": 143600
+        }
+      ]
+    },
+    {
+      "atMs": 1794374737018,
+      "elapsedMs": 520,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "R",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 358,
+          "rssPages": 36092,
+          "realUid": 10216,
+          "rssKiB": 144368
+        }
+      ]
+    },
+    {
+      "atMs": 1794374737184,
+      "elapsedMs": 686,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "D",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 361,
+          "rssPages": 36252,
+          "realUid": 10216,
+          "rssKiB": 145008
+        }
+      ]
+    },
+    {
+      "atMs": 1794374737342,
+      "elapsedMs": 844,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "R",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 366,
+          "rssPages": 36412,
+          "realUid": 10216,
+          "rssKiB": 145648
+        }
+      ]
+    },
+    {
+      "atMs": 1794374737523,
+      "elapsedMs": 1025,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "t",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 370,
+          "rssPages": 36604,
+          "realUid": 10216,
+          "rssKiB": 146416
+        }
+      ]
+    },
+    {
+      "atMs": 1794374737679,
+      "elapsedMs": 1181,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "R",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 374,
+          "rssPages": 36892,
+          "realUid": 10216,
+          "rssKiB": 147440
+        }
+      ]
+    },
+    {
+      "atMs": 1794374737824,
+      "elapsedMs": 1326,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "R",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 383,
+          "rssPages": 38140,
+          "realUid": 10216,
+          "rssKiB": 151920
+        }
+      ]
+    },
+    {
+      "atMs": 1794374737964,
+      "elapsedMs": 1466,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 384,
+          "rssPages": 38202,
+          "realUid": 10216,
+          "rssKiB": 152808
+        }
+      ]
+    },
+    {
+      "atMs": 1794374738110,
+      "elapsedMs": 1612,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "t",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 384,
+          "rssPages": 38202,
+          "realUid": 10216,
+          "rssKiB": 152808
+        }
+      ]
+    },
+    {
+      "atMs": 1794374738249,
+      "elapsedMs": 1751,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 385,
+          "rssPages": 38234,
+          "realUid": 10216,
+          "rssKiB": 152936
+        }
+      ]
+    },
+    {
+      "atMs": 1794374738385,
+      "elapsedMs": 1887,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374738531,
+      "elapsedMs": 2033,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374738656,
+      "elapsedMs": 2158,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374738783,
+      "elapsedMs": 2285,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374738918,
+      "elapsedMs": 2420,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374739038,
+      "elapsedMs": 2540,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374739180,
+      "elapsedMs": 2682,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374739306,
+      "elapsedMs": 2808,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374739431,
+      "elapsedMs": 2933,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374739573,
+      "elapsedMs": 3075,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374739713,
+      "elapsedMs": 3215,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374739856,
+      "elapsedMs": 3358,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374739990,
+      "elapsedMs": 3492,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 387,
+          "rssPages": 38746,
+          "realUid": 10216,
+          "rssKiB": 154984
+        }
+      ]
+    },
+    {
+      "atMs": 1794374740152,
+      "elapsedMs": 3654,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "R",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 399,
+          "rssPages": 41751,
+          "realUid": 10216,
+          "rssKiB": 166876
+        }
+      ]
+    },
+    {
+      "atMs": 1794374740298,
+      "elapsedMs": 3800,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 403,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374740453,
+      "elapsedMs": 3955,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 403,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374740606,
+      "elapsedMs": 4108,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374740757,
+      "elapsedMs": 4259,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374740904,
+      "elapsedMs": 4406,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374741065,
+      "elapsedMs": 4567,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374741210,
+      "elapsedMs": 4712,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374741362,
+      "elapsedMs": 4864,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374741503,
+      "elapsedMs": 5005,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374741648,
+      "elapsedMs": 5150,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374741803,
+      "elapsedMs": 5305,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374741964,
+      "elapsedMs": 5466,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374742121,
+      "elapsedMs": 5623,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374742278,
+      "elapsedMs": 5780,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374742416,
+      "elapsedMs": 5918,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374742562,
+      "elapsedMs": 6064,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374742716,
+      "elapsedMs": 6218,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374742870,
+      "elapsedMs": 6372,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 404,
+          "rssPages": 41943,
+          "realUid": 10216,
+          "rssKiB": 167772
+        }
+      ]
+    },
+    {
+      "atMs": 1794374743018,
+      "elapsedMs": 6520,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 418,
+          "rssPages": 32427,
+          "realUid": 10216,
+          "rssKiB": 129708
+        }
+      ]
+    },
+    {
+      "atMs": 1794374743179,
+      "elapsedMs": 6681,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 418,
+          "rssPages": 32427,
+          "realUid": 10216,
+          "rssKiB": 129708
+        }
+      ]
+    },
+    {
+      "atMs": 1794374743320,
+      "elapsedMs": 6822,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 418,
+          "rssPages": 32427,
+          "realUid": 10216,
+          "rssKiB": 129708
+        }
+      ]
+    },
+    {
+      "atMs": 1794374743484,
+      "elapsedMs": 6986,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 418,
+          "rssPages": 32427,
+          "realUid": 10216,
+          "rssKiB": 129708
+        }
+      ]
+    },
+    {
+      "atMs": 1794374743633,
+      "elapsedMs": 7135,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 418,
+          "rssPages": 32427,
+          "realUid": 10216,
+          "rssKiB": 129708
+        }
+      ]
+    },
+    {
+      "atMs": 1794374743772,
+      "elapsedMs": 7274,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 418,
+          "rssPages": 32427,
+          "realUid": 10216,
+          "rssKiB": 129708
+        }
+      ]
+    },
+    {
+      "atMs": 1794374743931,
+      "elapsedMs": 7433,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "R",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 421,
+          "rssPages": 32427,
+          "realUid": 10216,
+          "rssKiB": 129708
+        }
+      ]
+    },
+    {
+      "atMs": 1794374744101,
+      "elapsedMs": 7603,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32459,
+          "realUid": 10216,
+          "rssKiB": 129836
+        }
+      ]
+    },
+    {
+      "atMs": 1794374744249,
+      "elapsedMs": 7751,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374744391,
+      "elapsedMs": 7893,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374744541,
+      "elapsedMs": 8043,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374744684,
+      "elapsedMs": 8186,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374744838,
+      "elapsedMs": 8340,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374744985,
+      "elapsedMs": 8487,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374745147,
+      "elapsedMs": 8649,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374745292,
+      "elapsedMs": 8794,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374745436,
+      "elapsedMs": 8938,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374745568,
+      "elapsedMs": 9070,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374745714,
+      "elapsedMs": 9216,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374745880,
+      "elapsedMs": 9382,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 422,
+          "rssPages": 32523,
+          "realUid": 10216,
+          "rssKiB": 130092
+        }
+      ]
+    },
+    {
+      "atMs": 1794374746021,
+      "elapsedMs": 9524,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374746168,
+      "elapsedMs": 9670,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374746314,
+      "elapsedMs": 9816,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374746462,
+      "elapsedMs": 9964,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374746625,
+      "elapsedMs": 10127,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374746769,
+      "elapsedMs": 10271,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374746922,
+      "elapsedMs": 10424,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374747070,
+      "elapsedMs": 10572,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374747221,
+      "elapsedMs": 10723,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374747374,
+      "elapsedMs": 10876,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 423,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374747527,
+      "elapsedMs": 11029,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 424,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374747679,
+      "elapsedMs": 11181,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 424,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374747823,
+      "elapsedMs": 11325,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 424,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374747970,
+      "elapsedMs": 11472,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 424,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374748121,
+      "elapsedMs": 11623,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 424,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374748259,
+      "elapsedMs": 11761,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 424,
+          "rssPages": 32555,
+          "realUid": 10216,
+          "rssKiB": 130220
+        }
+      ]
+    },
+    {
+      "atMs": 1794374748402,
+      "elapsedMs": 11904,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 425,
+          "rssPages": 32683,
+          "realUid": 10216,
+          "rssKiB": 130732
+        }
+      ]
+    },
+    {
+      "atMs": 1794374748851,
+      "elapsedMs": 12353,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374749085,
+      "elapsedMs": 12587,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374749227,
+      "elapsedMs": 12729,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374749386,
+      "elapsedMs": 12888,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374749534,
+      "elapsedMs": 13036,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374749674,
+      "elapsedMs": 13176,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374749819,
+      "elapsedMs": 13321,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374749960,
+      "elapsedMs": 13462,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374750115,
+      "elapsedMs": 13617,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374750276,
+      "elapsedMs": 13778,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374750419,
+      "elapsedMs": 13921,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374750562,
+      "elapsedMs": 14064,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374750703,
+      "elapsedMs": 14205,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374750843,
+      "elapsedMs": 14345,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374750998,
+      "elapsedMs": 14500,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 428,
+          "rssPages": 32811,
+          "realUid": 10216,
+          "rssKiB": 131244
+        }
+      ]
+    },
+    {
+      "atMs": 1794374751169,
+      "elapsedMs": 14671,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 433,
+          "rssPages": 33099,
+          "realUid": 10216,
+          "rssKiB": 132396
+        }
+      ]
+    },
+    {
+      "atMs": 1794374751308,
+      "elapsedMs": 14810,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 433,
+          "rssPages": 33099,
+          "realUid": 10216,
+          "rssKiB": 132396
+        }
+      ]
+    },
+    {
+      "atMs": 1794374751460,
+      "elapsedMs": 14962,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 434,
+          "rssPages": 33099,
+          "realUid": 10216,
+          "rssKiB": 132396
+        }
+      ]
+    },
+    {
+      "atMs": 1794374751620,
+      "elapsedMs": 15122,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 434,
+          "rssPages": 33099,
+          "realUid": 10216,
+          "rssKiB": 132396
+        }
+      ]
+    },
+    {
+      "atMs": 1794374751776,
+      "elapsedMs": 15278,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374751928,
+      "elapsedMs": 15430,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374752074,
+      "elapsedMs": 15576,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374752225,
+      "elapsedMs": 15727,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374752382,
+      "elapsedMs": 15884,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374752520,
+      "elapsedMs": 16022,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374752660,
+      "elapsedMs": 16162,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374752820,
+      "elapsedMs": 16322,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374752956,
+      "elapsedMs": 16458,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374753070,
+      "elapsedMs": 16572,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374753185,
+      "elapsedMs": 16687,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374753333,
+      "elapsedMs": 16835,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374753462,
+      "elapsedMs": 16964,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374753593,
+      "elapsedMs": 17095,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374753735,
+      "elapsedMs": 17237,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374753873,
+      "elapsedMs": 17375,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374754011,
+      "elapsedMs": 17513,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374754180,
+      "elapsedMs": 17682,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374754346,
+      "elapsedMs": 17848,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374754499,
+      "elapsedMs": 18001,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374754644,
+      "elapsedMs": 18146,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374754782,
+      "elapsedMs": 18285,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374754931,
+      "elapsedMs": 18433,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 444,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374755090,
+      "elapsedMs": 18592,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 445,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374755237,
+      "elapsedMs": 18739,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 445,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374755407,
+      "elapsedMs": 18909,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 445,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374755546,
+      "elapsedMs": 19048,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 446,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374755685,
+      "elapsedMs": 19187,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 446,
+          "rssPages": 32731,
+          "realUid": 10216,
+          "rssKiB": 130924
+        }
+      ]
+    },
+    {
+      "atMs": 1794374755828,
+      "elapsedMs": 19330,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 447,
+          "rssPages": 32763,
+          "realUid": 10216,
+          "rssKiB": 131052
+        }
+      ]
+    },
+    {
+      "atMs": 1794374755957,
+      "elapsedMs": 19459,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 447,
+          "rssPages": 32827,
+          "realUid": 10216,
+          "rssKiB": 131308
+        }
+      ]
+    },
+    {
+      "atMs": 1794374756105,
+      "elapsedMs": 19607,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 447,
+          "rssPages": 32859,
+          "realUid": 10216,
+          "rssKiB": 131436
+        }
+      ]
+    },
+    {
+      "atMs": 1794374756241,
+      "elapsedMs": 19743,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 448,
+          "rssPages": 32891,
+          "realUid": 10216,
+          "rssKiB": 131564
+        }
+      ]
+    },
+    {
+      "atMs": 1794374756385,
+      "elapsedMs": 19887,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 448,
+          "rssPages": 32923,
+          "realUid": 10216,
+          "rssKiB": 131692
+        }
+      ]
+    },
+    {
+      "atMs": 1794374756520,
+      "elapsedMs": 20022,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 448,
+          "rssPages": 32923,
+          "realUid": 10216,
+          "rssKiB": 131692
+        }
+      ]
+    },
+    {
+      "atMs": 1794374756676,
+      "elapsedMs": 20178,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 450,
+          "rssPages": 32923,
+          "realUid": 10216,
+          "rssKiB": 131692
+        }
+      ]
+    },
+    {
+      "atMs": 1794374756812,
+      "elapsedMs": 20314,
+      "status": "observed",
+      "records": [
+        {
+          "status": "observed",
+          "pid": 7159,
+          "state": "S",
+          "ppid": 7147,
+          "startTime": "559243",
+          "cpuTicks": 450,
+          "rssPages": 32923,
+          "realUid": 10216,
+          "rssKiB": 131692
+        }
+      ]
+    }
+  ],
+  "limits": {
+    "durationMs": 120000,
+    "intervalMs": 100,
+    "maxEntries": 4096,
+    "maxRecords": 4096,
+    "retainedBytes": 1048576
+  },
+  "status": "observed",
+  "limitations": [
+    "Finite numeric /proc snapshots may miss short processes, after-snapshot forks and already-reparented children.",
+    "PPID/startticks/real UID establish observed ancestry, not tool command semantic content.",
+    "No signals, cmdline, environ or oracle reads. Sampling itself has overhead."
+  ],
+  "endedAt": "2026-11-11T05:25:56.917Z"
+}
