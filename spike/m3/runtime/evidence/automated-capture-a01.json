@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-11T06:51:53.628Z",
+  "route": "Actual visible SystemUI Share one app -> Next -> Olea Fixture selected by authorized agent UI traversal; no silent projection grant",
+  "metadata": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794379913448",
+      "ok": true,
+      "result": {
+        "width": 1080,
+        "height": 2400,
+        "bytes": 35519,
+        "sha256": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b",
+        "samplePixel": -15250580
+      }
+    }
+  },
+  "independentSha256": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b",
+  "pngWidth": 1080,
+  "pngHeight": 2400,
+  "bytes": 35519,
+  "deviceStat": "1794379896\r\n",
+  "projectionState": "MEDIA PROJECTION MANAGER (dumpsys media_projection)\r\nMedia Projection: \r\nnull\r\n"
+}

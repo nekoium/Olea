@@ -1,0 +1,174 @@
+{
+  "attempt": "automated-direct-batch-a01",
+  "at": "2026-11-11T06:57:32.222Z",
+  "modelRequests": 0,
+  "consentRoute": "Agent-operated actual visible Android user-grantable picker/MediaProjection UI under task_213dbea8a9c4; development input and measurement only, not silent consent grants",
+  "cases": [
+    {
+      "name": "actual-selected-SAF-folder-and-independent-bytes",
+      "status": "pass",
+      "detail": {
+        "documentUri": "content://com.android.externalstorage.documents/tree/primary%3ADocuments%2FOleaM3/document/primary%3ADocuments%2FOleaM3%2Folea-fixture-1794379838267.txt",
+        "storagePath": "/sdcard/Documents/OleaM3/olea-fixture-1794379838267.txt",
+        "bytes": 44,
+        "sha256": "caf8b0f93cd6973bd08ef2752e16adc5dd39e1fef6b5e27273a17709d5ced7b8",
+        "systemPrompt": "auto-saf-a05-ui.xml",
+        "confirmed": "auto-saf-allow-actions.json"
+      }
+    },
+    {
+      "name": "explicit-system-consent-fresh-harmless-capture",
+      "status": "pass",
+      "detail": {
+        "width": 1080,
+        "height": 2400,
+        "bytes": 35519,
+        "sha256": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b",
+        "consentMode": "Share one app; selected Olea Fixture",
+        "visualInspection": {
+          "method": "Assistant independently opened exact saved PNG with read image tool",
+          "expectedText": [
+            "Olea harmless fixture",
+            "Opened from launcher"
+          ],
+          "observed": true,
+          "background": "Expected uniform blue fixture background, matching source RGB23/75/108"
+        },
+        "projectionAlreadyStopped": true
+      }
+    },
+    {
+      "name": "signed-out-browser-telemetry-declined",
+      "status": "pass",
+      "detail": {
+        "signedOut": true,
+        "telemetrySwitch": false,
+        "optionalNotifications": "No thanks",
+        "accountAttachment": false,
+        "syncEnabled": false,
+        "terms": "Routine Chrome first-run Terms of Service continuation, no additional mandatory account/privacy decision presented"
+      }
+    },
+    {
+      "name": "HTTPS-intended-destination-displayed",
+      "status": "pass",
+      "detail": {
+        "suppliedUrl": "https://example.org/?olea=m3-auto-url-a02",
+        "uiOracle": "auto-chrome-a11-ui.xml",
+        "foreground": "com.android.chrome",
+        "expectedContent": "Example Domain documentation text",
+        "networkQualification": "Chrome/Android still labels network No internet connection/partial connectivity, but intended secure URL and real document content are displayed; no general network-health claim"
+      }
+    }
+  ],
+  "originalAttempts": {
+    "folderBridgeRequest": "Returned consentRequested while existing host stayed foreground; actual native button traversed picker",
+    "captureBridgeRequest": "Returned consentRequested while existing host stayed foreground; actual native button traversed SystemUI",
+    "firstUrl": "m3-auto-url-a01 dispatch while fixture foreground did not foreground Chrome; retained auto-chrome-a01/a02 snapshots",
+    "secondUrl": "m3-auto-url-a02 dispatch after explicit development host foreground opened Chrome setup, then same requested destination eventually displayed",
+    "uiTransition": "auto-chrome-a08 UIAutomator returned null root during transition; next read-only snapshot observed optional notification prompt; no signed-out choice repeated"
+  },
+  "phoneAudit": "{\"atMs\":1794331505774,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794331552901,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794331564216,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794331574281,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794331641584,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794331642352,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\r\n{\"atMs\":1794331642592,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"525691f2:12\",\"action\":\"ACTION_CLICK\"}\r\n{\"atMs\":1794331643744,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794332106802,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794332250967,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794332252006,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\r\n{\"atMs\":1794332252376,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"eeacb70b:12\",\"action\":\"ACTION_CLICK\"}\r\n{\"atMs\":1794332253328,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794332476404,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794332478982,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794332481479,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\r\n{\"atMs\":1794332485068,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"cb3c97e5:12\",\"action\":\"ACTION_CLICK\"}\r\n{\"atMs\":1794332488298,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794332496342,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794333313113,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794334551176,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794334993167,\"operation\":\"stop\"}\r\n{\"atMs\":1794334993388,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794335848220,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794335917216,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794336259443,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794336463672,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794336897770,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794336946649,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794337006574,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794337007323,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\r\n{\"atMs\":1794337007518,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"506f54f6:12\",\"action\":\"ACTION_CLICK\"}\r\n{\"atMs\":1794337008621,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794337075174,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794337082528,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794337088311,\"operation\":\"swipe\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\r\n{\"atMs\":1794337094331,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\r\n{\"atMs\":1794337099290,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"42b17ae7:18\",\"action\":\"ACTION_CLICK\"}\r\n{\"atMs\":1794337115104,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794337438377,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794337438849,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794337482697,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794337606031,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794337925678,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794362926165,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794363732220,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794363732757,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794363734459,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794363735457,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794363735587,\"operation\":\"fixture_notify\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794363736446,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794363736770,\"operation\":\"open_url\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\r\n{\"atMs\":1794364103432,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794364106220,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794364132250,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794364296280,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794364528954,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794364541304,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794364579249,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794364579394,\"operation\":\"accessibility_click\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\",\"nodeId\":\"e4a3dc59:4\",\"action\":\"ACTION_CLICK\"}\r\n{\"atMs\":1794364594870,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794364764549,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794369859049,\"operation\":\"location\"}\r\n{\"atMs\":1794369862852,\"operation\":\"stop\"}\r\n{\"atMs\":1794372981815,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794372982042,\"operation\":\"accessibility_click\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\",\"nodeId\":\"ee78b23c:4\",\"action\":\"ACTION_CLICK\"}\r\n{\"atMs\":1794373187391,\"operation\":\"stop\"}\r\n{\"atMs\":1794373562676,\"operation\":\"location\"}\r\n{\"atMs\":1794373562917,\"operation\":\"notifications\"}\r\n{\"atMs\":1794373649948,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794373654085,\"operation\":\"location\"}\r\n{\"atMs\":1794373658277,\"operation\":\"fixture_notify\"}\r\n{\"atMs\":1794373662576,\"operation\":\"notifications\"}\r\n{\"atMs\":1794373752994,\"operation\":\"stop\"}\r\n{\"atMs\":1794374132079,\"operation\":\"notifications\"}\r\n{\"atMs\":1794374134830,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\r\n{\"atMs\":1794374136353,\"operation\":\"stop\"}\r\n{\"atMs\":1794374633129,\"operation\":\"location\"}\r\n{\"atMs\":1794374633442,\"operation\":\"notifications\"}\r\n{\"atMs\":1794374740198,\"operation\":\"capabilities\"}\r\n{\"atMs\":1794374743907,\"operation\":\"location\"}\r\n{\"atMs\":1794374748416,\"operation\":\"fixture_notify\"}\r\n{\"atMs\":1794374751125,\"operation\":\"notifications\"}\r\n{\"atMs\":1794374870626,\"operation\":\"stop\"}\r\n{\"atMs\":1794375225681,\"operation\":\"notifications\"}\r\n{\"atMs\":1794375226285,\"operation\":\"fixture_notify\"}\r\n{\"atMs\":1794375227726,\"operation\":\"stop\"}\r\n{\"atMs\":1794375309495,\"operation\":\"notifications\"}\r\n{\"atMs\":1794375310115,\"operation\":\"stop\"}\r\n{\"atMs\":1794375335716,\"operation\":\"notifications\"}\r\n{\"atMs\":1794375336214,\"operation\":\"fixture_notify\"}\r\n{\"atMs\":1794375337422,\"operation\":\"stop\"}\r\n{\"atMs\":1794375472060,\"operation\":\"notifications\"}\r\n{\"atMs\":1794375472588,\"operation\":\"fixture_notify\"}\r\n{\"atMs\":1794375473941,\"operation\":\"notifications\"}\r\n{\"atMs\":1794375474121,\"operation\":\"fixture_notify\"}\r\n{\"atMs\":1794375475448,\"operation\":\"notifications\"}\r\n{\"atMs\":1794375475735,\"operation\":\"stop\"}\r\n{\"atMs\":1794379772256,\"operation\":\"folder_request\"}\r\n{\"atMs\":1794379838650,\"operation\":\"files_write_read\"}\r\n{\"atMs\":1794379848668,\"operation\":\"capture_request\"}\r\n{\"atMs\":1794379898251,\"operation\":\"capture_result\"}\r\n{\"atMs\":1794379912827,\"operation\":\"capture_result\"}\r\n{\"atMs\":1794379933494,\"operation\":\"open_url\"}\r\n{\"atMs\":1794379964249,\"operation\":\"open_url\"}\r\n",
+  "stop": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794380252292",
+      "ok": true,
+      "result": {
+        "stopped": true
+      }
+    }
+  },
+  "finalCapabilities": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": null,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "finalProjection": "MEDIA PROJECTION MANAGER (dumpsys media_projection)\r\nMedia Projection: \r\nnull\r\n",
+  "finalUriGrants": "  * UID 10216 holds:\r\n    UriPermission{62f14cc content://com.android.externalstorage.documents/tree/primary%3ADocuments%2FOleaM3 [user 0] [prefix]}\r",
+  "finalAccessibility": "null\r\n0\r\n",
+  "finalNotificationListeners": "com.google.android.as/com.google.android.apps.miphone.aiai.common.notification.service.AiAiNotificationListenerService:dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications:com.google.android.apps.nexuslauncher/com.android.launcher3.notification.NotificationListener\r\n",
+  "finalUidInventory": [
+    "10217  7596   485 dev.olea.m2.fixture\r",
+    "10216  7996   485 dev.olea.m2.runtime\r"
+  ],
+  "protectedModes": "600 files/rootfs/run/olea-provider.json\r\n600 files/bridge-token\r\n600 files/bridge-config.json\r\n",
+  "historicalPreservation": [
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/config.toml",
+      "expected": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "actual": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/.tmp/plugins/plugins/plugin-eval/fixtures/observed-usage/responses.jsonl",
+      "expected": "dcd1fda00084818e63c598eee7f7ac03ea82820a7b443a985b6035fa98eeae4b",
+      "actual": "dcd1fda00084818e63c598eee7f7ac03ea82820a7b443a985b6035fa98eeae4b",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-45-10-01a1c6c7-4363-7b50-812f-5ab661da9101.jsonl",
+      "expected": "658ae111b3c8eab4673f3ec9c804d65844188a4eb89e4ca7ea9551572c8c8619",
+      "actual": "658ae111b3c8eab4673f3ec9c804d65844188a4eb89e4ca7ea9551572c8c8619",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace/combined-value.txt",
+      "expected": "b37255587c561c067ca65f93b51f971093af448b655d0aeb66a9af1684f51f8a",
+      "actual": "b37255587c561c067ca65f93b51f971093af448b655d0aeb66a9af1684f51f8a",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/config.toml",
+      "expected": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "actual": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+      "expected": "345b0884b097ec53e8fad3431de2b5f47d59b32a5212557227777869e4d7d284",
+      "actual": "345b0884b097ec53e8fad3431de2b5f47d59b32a5212557227777869e4d7d284",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/workspace/sentinel",
+      "expected": "d098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2",
+      "actual": "d098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2",
+      "equal": true
+    }
+  ],
+  "budget": {
+    "consumed": 7,
+    "unallocated": 1,
+    "allocated": 0
+  },
+  "noDisruptiveRestartAfterFolderSelection": true,
+  "status": "pass"
+}

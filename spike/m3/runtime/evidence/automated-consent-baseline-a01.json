@@ -1,0 +1,44 @@
+{
+  "attempt": "automated-consent-baseline-a01",
+  "at": "2026-11-11T06:48:49.471Z",
+  "modelRequests": 0,
+  "observations": {
+    "foreground": "    topResumedActivity=ActivityRecord{117965953 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t60}\r\n",
+    "accessibility": "null\r\n",
+    "uriGrants": "",
+    "capture": "CAPTURE_ABSENT\r\n",
+    "processes": "10217  7596   485 dev.olea.m2.fixture\r\n10216  7996   485 dev.olea.m2.runtime\r\n"
+  },
+  "capabilities": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": null,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  }
+}

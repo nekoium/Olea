@@ -1,0 +1,12 @@
+{
+  "attempt": "automated-consent-request-observations-a01",
+  "modelRequests": 0,
+  "route": "Observed native bridge requests followed by distinct authorized conservative development UI alternatives; no provider replay",
+  "requests": [
+    {"operation": "folder_request", "id": "m2-1794379772799", "httpStatus": 200, "result": {"consentRequested": true}, "observed": "auto-saf-a01-ui.xml remained native host; actual CHOOSE TEST FOLDER button opened picker"},
+    {"operation": "capture_request", "id": "m2-1794379849286", "httpStatus": 200, "result": {"consentRequested": true}, "observed": "auto-capture-a01-ui.xml remained native host; actual CAPTURE TEST SCREEN button opened SystemUI consent"},
+    {"operation": "open_url", "id": "m2-1794379934110", "url": "https://example.org/?olea=m3-auto-url-a01", "httpStatus": 200, "result": {"dispatched": true}, "observed": "auto-chrome-a01/a02-ui.xml remained fixture foreground"},
+    {"operation": "open_url", "id": "m2-1794379964640", "url": "https://example.org/?olea=m3-auto-url-a02", "httpStatus": 200, "result": {"dispatched": true}, "observed": "After explicit native-host foreground, Chrome first-run then actual destination auto-chrome-a11-ui.xml"}
+  ],
+  "provenance": "Native request IDs/results preserved from executed tool replies and corresponding append-only native audit; UI oracles are separately captured exact XML files"
+}
