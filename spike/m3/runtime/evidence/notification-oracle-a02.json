@@ -1,0 +1,27 @@
+{
+  "attempt": "notification-oracle-a02",
+  "at": "2026-11-11T05:09:50.760Z",
+  "prior": "categories-independent-a01.json",
+  "reason": "Default dumpsys notification redacts extras text; retain original failed observer assertion and collect same fixture record with --noredact",
+  "modelRequests": 0,
+  "nativePhoneOperations": 0,
+  "notificationPosts": 0,
+  "independentFixtureRecord": "    NotificationRecord(0x050e18bf: pkg=dev.olea.m2.fixture user=UserHandle{0} id=42 tag=null importance=2 key=0|dev.olea.m2.fixture|42|null|10217: Notification(channel=fixture shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=0 color=0x00000000 vis=PRIVATE))\r\n      uid=10217 userId=0\r\n      opPkg=dev.olea.m2.fixture\r\n      icon=Icon(typ=RESOURCE pkg=dev.olea.m2.fixture id=0x0108009b)\r\n      flags=0\r\n      originalFlags=0\r\n      pri=0\r\n      key=0|dev.olea.m2.fixture|42|null|10217\r\n      seen=false\r\n      groupKey=0|dev.olea.m2.fixture|42|null|10217\r\n      notification=\r\n            fullscreenIntent=null\r\n            contentIntent=null\r\n            deleteIntent=null\r\n            number=0\r\n            groupAlertBehavior=0\r\n            when=1794373658857/1794373658857\r\n            tickerText=null\r\n            vis=0\r\n            contentView=null\r\n            bigContentView=null\r\n            headsUpContentView=null\r\n            color=0x00000000\r\n            timeout=PT72H\r\n            extras={\r\n                android.title=String (Olea Fixture)\r\n                android.reduced.images=Boolean (true)\r\n                android.text=String (OLEA_NOTIFICATION_FIXTURE)\r\n                android.appInfo=ApplicationInfo (ApplicationInfo{544eb8c dev.olea.m2.fixture})\r\n                android.showWhen=Boolean (true)\r\n            }\r\n      publicNotification=\r\n            None\r\n      stats=SingleNotificationStats{posttimeElapsedMs=4524470, posttimeToFirstClickMs=-1, posttimeToDismissMs=-1, airtimeCount=0, airtimeMs=0, currentAirtimeStartElapsedMs=-1, airtimeExpandedMs=0, posttimeToFirstVisibleExpansionMs=-1, currentAirtimeExpandedStartElapsedMs=-1, requestedImportance=3, naturalImportance=2, isNoisy=true}\r\n      mContactAffinity=0.0\r\n      mRecentlyIntrusive=false\r\n      mPackagePriority=0\r\n      mPackageVisibility=-1000\r\n      mSystemImportance=UNSPECIFIED\r\n      mAsstImportance=UNSPECIFIED\r\n      mImportance=LOW\r\n      mImportanceExplanation=app\r\n      mProposedImportance=UNSPECIFIED\r\n      mIsAppImportanceLocked=false\r\n      mSensitiveContent=false\r\n      mCanceledAfterLifetimeExtension=false\r\n      mIntercept=false\r\n      mHidden==false\r\n      mGlobalSortKey=crtcl=0x0002:intrsv=2:grnk=0x0000:gsmry=1:nsk:rnk=0x0000\r\n      mRankingTimeMs=1794373658863\r\n      mCreationTimeMs=1794373658863\r\n      mVisibleSinceMs=0\r\n      mUpdateTimeMs=1794373658863\r\n      mInterruptionTimeMs=1794373659075\r\n      mSuppressedVisualEffects= 0\r\n      mSound= content://settings/system/notification_sound\r\n      mVibration= null\r\n      mAttributes= AudioAttributes: usage=USAGE_NOTIFICATION content=CONTENT_TYPE_SONIFICATION flags=0x800 tags= bundle=null\r\n      mLight= null\r\n      mShowBadge=true\r\n      mColorized=false\r\n      mAllowBubble=false\r\n      isBubble=false\r\n      mIsInterruptive=true\r\n      effectiveNotificationChannel=NotificationChannel{mId='fixture', mName=Harmless test fixture, mDescription=, mImportance=2, mBypassDnd=false, mLockscreenVisibility=-1000, mSound=content://settings/system/notification_sound, mLights=false, mLightColor=0, mVibrationPattern=null, mVibrationEffect=null, mUserLockedFields=0, mUserVisibleTaskShown=false, mVibrationEnabled=false, mShowBadge=true, mDeleted=false, mDeletedTimeMs=-1, mGroup='null', mAudioAttributes=AudioAttributes: usage=USAGE_NOTIFICATION content=CONTENT_TYPE_SONIFICATION flags=0x800 tags= bundle=null, mBlockableSystem=false, mAllowBubbles=-1, mImportanceLockedDefaultApp=false, mOriginalImp=2, mParent=null, mConversationId=null, mDemoted=false, mImportantConvo=false, mLastNotificationUpdateTimeMs=0}\r\n      mAdjustments=[]\r\n      shortcut=null found valid? false\r\n      mUserVisOverride=-1000\r\n      hasSummarization=false\r",
+  "launchDelta": [
+    "1794373658883 action=dev.olea.fixture.SET_VALUE"
+  ],
+  "modelNotification": [
+    {
+      "package": "dev.olea.m2.fixture",
+      "id": 42,
+      "text": "OLEA_NOTIFICATION_FIXTURE"
+    }
+  ],
+  "causalOrdering": {
+    "nativeNotifyAt": 1794373658277,
+    "separateFixtureAt": 1794373658883,
+    "nativeReadAt": 1794373662576
+  },
+  "status": "pass",
+  "scope": "Same new causal separate-UID post observed from empty listener baseline, fixture-launch append, exact model tool result and independent notification-manager package/UID/id/text; actual post repeated0times"
+}

@@ -1,0 +1,557 @@
+{
+  "attempt": "categories-independent-a01",
+  "observedAt": "2026-11-11T05:09:11.750Z",
+  "modelRequests": 0,
+  "cases": [
+    {
+      "name": "actual-model-four-scoped-phone-calls",
+      "status": "pass",
+      "detail": {
+        "toolNames": [
+          "phone_capabilities",
+          "phone_location",
+          "phone_fixture_notify",
+          "phone_notifications"
+        ],
+        "nativeOperationCount": 4,
+        "scope": "Hard scoped MCP4tool allowlist/5native-delivery cap; this turn used4",
+        "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+        "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986"
+      }
+    },
+    {
+      "name": "structured-last-known-location-independent-coordinates",
+      "status": "pass",
+      "detail": {
+        "modelLocation": {
+          "latitude": 24.9876,
+          "longitude": 121.54319833333334,
+          "provider": "gps",
+          "accuracy": 5,
+          "timeMs": 1794373566507,
+          "ageMs": 87578
+        },
+        "independentCoordinates": {
+          "latitude": 24.9876,
+          "longitude": 121.5432
+        },
+        "freshness": "Last-known only; reported age retained, no current/fresh-under5s claim",
+        "permissionRoute": "Retained explicitly development-granted fine location; actual revocation denial passed separately"
+      }
+    },
+    {
+      "name": "separate-notification-new-causal-post-and-listener",
+      "status": "fail",
+      "error": "The expression evaluated to a falsy value:\n\n  assert(report.separateNotificationRecord.includes('OLEA_NOTIFICATION_FIXTURE'))\n"
+    },
+    {
+      "name": "canonical-resume-no-additional-prompt",
+      "status": "pass",
+      "detail": {
+        "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+        "home": "/workspace/attempt-1794373632717-a17023f4/state/codex/case/home",
+        "workspace": "/workspace/attempt-1794373632717-a17023f4/workspace",
+        "accessMode": "full-access",
+        "topLevelPrompts": 1
+      }
+    },
+    {
+      "name": "native-tracked-cleanup-and-independent-absence",
+      "status": "pass",
+      "detail": {
+        "count": 34,
+        "allAbsent": true,
+        "nativeElapsedMs": 40866,
+        "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+      }
+    },
+    {
+      "name": "safe-native-stop-no-further-delivery",
+      "status": "pass",
+      "detail": {
+        "privateOracleUnchanged": true,
+        "inspectionDenied": "PHONE_STOPPED"
+      }
+    }
+  ],
+  "allocationId": "m3-codex-location-notification-01",
+  "auditAfter": "{\"atMs\":1794331505774,\"operation\":\"capabilities\"}\n{\"atMs\":1794331552901,\"operation\":\"capabilities\"}\n{\"atMs\":1794331564216,\"operation\":\"capabilities\"}\n{\"atMs\":1794331574281,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794331641584,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794331642352,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794331642592,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"525691f2:12\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794331643744,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332106802,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332250967,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332252006,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794332252376,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"eeacb70b:12\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794332253328,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332476404,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794332478982,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794332481479,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794332485068,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"cb3c97e5:12\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794332488298,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332496342,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794333313113,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794334551176,\"operation\":\"capabilities\"}\n{\"atMs\":1794334993167,\"operation\":\"stop\"}\n{\"atMs\":1794334993388,\"operation\":\"capabilities\"}\n{\"atMs\":1794335848220,\"operation\":\"capabilities\"}\n{\"atMs\":1794335917216,\"operation\":\"capabilities\"}\n{\"atMs\":1794336259443,\"operation\":\"capabilities\"}\n{\"atMs\":1794336463672,\"operation\":\"capabilities\"}\n{\"atMs\":1794336897770,\"operation\":\"capabilities\"}\n{\"atMs\":1794336946649,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794337006574,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794337007323,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794337007518,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"506f54f6:12\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794337008621,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337075174,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794337082528,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794337088311,\"operation\":\"swipe\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794337094331,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794337099290,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"42b17ae7:18\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794337115104,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337438377,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337438849,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337482697,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337606031,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337925678,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794362926165,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794363732220,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363732757,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363734459,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363735457,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363735587,\"operation\":\"fixture_notify\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363736446,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794363736770,\"operation\":\"open_url\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794364103432,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364106220,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364132250,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364296280,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364528954,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364541304,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364579249,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364579394,\"operation\":\"accessibility_click\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\",\"nodeId\":\"e4a3dc59:4\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794364594870,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364764549,\"operation\":\"capabilities\"}\n{\"atMs\":1794369859049,\"operation\":\"location\"}\n{\"atMs\":1794369862852,\"operation\":\"stop\"}\n{\"atMs\":1794372981815,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794372982042,\"operation\":\"accessibility_click\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\",\"nodeId\":\"ee78b23c:4\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794373187391,\"operation\":\"stop\"}\n{\"atMs\":1794373562676,\"operation\":\"location\"}\n{\"atMs\":1794373562917,\"operation\":\"notifications\"}\n{\"atMs\":1794373649948,\"operation\":\"capabilities\"}\n{\"atMs\":1794373654085,\"operation\":\"location\"}\n{\"atMs\":1794373658277,\"operation\":\"fixture_notify\"}\n{\"atMs\":1794373662576,\"operation\":\"notifications\"}\n",
+  "nativeOperations": [
+    {
+      "atMs": 1794373649948,
+      "operation": "capabilities"
+    },
+    {
+      "atMs": 1794373654085,
+      "operation": "location"
+    },
+    {
+      "atMs": 1794373658277,
+      "operation": "fixture_notify"
+    },
+    {
+      "atMs": 1794373662576,
+      "operation": "notifications"
+    }
+  ],
+  "fixtureLaunchAfter": "1794331642943 action=android.intent.action.MAIN\n1794331643809 action=dev.olea.fixture.SET_VALUE\n1794332253351 action=dev.olea.fixture.SET_VALUE\n1794332496365 action=dev.olea.fixture.SET_VALUE\n1794337008642 action=dev.olea.fixture.SET_VALUE\n1794337115124 action=dev.olea.fixture.SET_VALUE\n1794363735707 action=dev.olea.fixture.SET_VALUE\n1794373658883 action=dev.olea.fixture.SET_VALUE\n",
+  "separateNotificationRecord": "    NotificationRecord(0x050e18bf: pkg=dev.olea.m2.fixture user=UserHandle{0} id=42 tag=null importance=2 key=0|dev.olea.m2.fixture|42|null|10217: Notification(channel=fixture shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=0 color=0x00000000 vis=PRIVATE))\r\n      uid=10217 userId=0\r\n      opPkg=dev.olea.m2.fixture\r\n      icon=Icon(typ=RESOURCE pkg=dev.olea.m2.fixture id=0x0108009b)\r\n      flags=0\r\n      originalFlags=0\r\n      pri=0\r\n      key=0|dev.olea.m2.fixture|42|null|10217\r\n      seen=false\r\n      groupKey=0|dev.olea.m2.fixture|42|null|10217\r\n      notification=\r\n            fullscreenIntent=null\r\n            contentIntent=null\r\n            deleteIntent=null\r\n            number=0\r\n            groupAlertBehavior=0\r\n            when=1794373658857/1794373658857\r\n            tickerText=null\r\n            vis=0\r\n            contentView=null\r\n            bigContentView=null\r\n            headsUpContentView=null\r\n            color=0x00000000\r\n            timeout=PT72H\r\n            extras={\r\n                android.title=String [length=12]\r\n                android.reduced.images=Boolean (true)\r\n                android.text=String [length=25]\r\n                android.appInfo=ApplicationInfo (ApplicationInfo{544eb8c dev.olea.m2.fixture})\r\n                android.showWhen=Boolean (true)\r\n            }\r\n      publicNotification=\r\n            None\r\n      stats=SingleNotificationStats{posttimeElapsedMs=4524470, posttimeToFirstClickMs=-1, posttimeToDismissMs=-1, airtimeCount=0, airtimeMs=0, currentAirtimeStartElapsedMs=-1, airtimeExpandedMs=0, posttimeToFirstVisibleExpansionMs=-1, currentAirtimeExpandedStartElapsedMs=-1, requestedImportance=3, naturalImportance=2, isNoisy=true}\r\n      mContactAffinity=0.0\r\n      mRecentlyIntrusive=false\r\n      mPackagePriority=0\r\n      mPackageVisibility=-1000\r\n      mSystemImportance=UNSPECIFIED\r\n      mAsstImportance=UNSPECIFIED\r\n      mImportance=LOW\r\n      mImportanceExplanation=app\r\n      mProposedImportance=UNSPECIFIED\r\n      mIsAppImportanceLocked=false\r\n      mSensitiveContent=false\r\n      mCanceledAfterLifetimeExtension=false\r\n      mIntercept=false\r\n      mHidden==false\r\n      mGlobalSortKey=crtcl=0x0002:intrsv=2:grnk=0x0000:gsmry=1:nsk:rnk=0x0000\r\n      mRankingTimeMs=1794373658863\r\n      mCreationTimeMs=1794373658863\r\n      mVisibleSinceMs=0\r\n      mUpdateTimeMs=1794373658863\r\n      mInterruptionTimeMs=1794373659075\r\n      mSuppressedVisualEffects= 0\r\n      mSound= content://settings/system/notification_sound\r\n      mVibration= null\r\n      mAttributes= AudioAttributes: usage=USAGE_NOTIFICATION content=CONTENT_TYPE_SONIFICATION flags=0x800 tags= bundle=null\r\n      mLight= null\r\n      mShowBadge=true\r\n      mColorized=false\r\n      mAllowBubble=false\r\n      isBubble=false\r\n      mIsInterruptive=true\r\n      effectiveNotificationChannel=NotificationChannel{mId='fixture', mName=Harmless test fixture, mDescription=, mImportance=2, mBypassDnd=false, mLockscreenVisibility=-1000, mSound=content://settings/system/notification_sound, mLights=false, mLightColor=0, mVibrationPattern=null, mVibrationEffect=null, mUserLockedFields=0, mUserVisibleTaskShown=false, mVibrationEnabled=false, mShowBadge=true, mDeleted=false, mDeletedTimeMs=-1, mGroup='null', mAudioAttributes=AudioAttributes: usage=USAGE_NOTIFICATION content=CONTENT_TYPE_SONIFICATION flags=0x800 tags= bundle=null, mBlockableSystem=false, mAllowBubbles=-1, mImportanceLockedDefaultApp=false, mOriginalImp=2, mParent=null, mConversationId=null, mDemoted=false, mImportantConvo=false, mLastNotificationUpdateTimeMs=0}\r\n      mAdjustments=[]\r\n      shortcut=null found valid? false\r\n      mUserVisOverride=-1000\r\n      hasSummarization=false\r",
+  "independentLocation": "      last location=Location[gps 24.987600,121.543198 hAcc=5.0 et=+1h15m23s774ms alt=0.0 vAcc=0.5 mslAlt=-19.455992643680442 mslAltAcc=0.5682429 vel=0.0 sAcc=0.5 bear=0.0 bAcc=30.0 {Bundle[{satellites=0, maxCn0=0, meanCn0=0}]}]\r\n      last location=Location[gps 24.987600,121.543198 hAcc=5.0 et=+1h15m23s774ms alt=0.0 vAcc=0.5 mslAlt=-19.455992643680442 mslAltAcc=0.5682429 vel=0.0 sAcc=0.5 bear=0.0 bAcc=30.0 {Bundle[{satellites=0, maxCn0=0, meanCn0=0}]}]\r",
+  "identities": [
+    {
+      "identity": {
+        "pid": 6011,
+        "parent": 5925,
+        "group": 485,
+        "tracer": 0,
+        "start": 449739,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6015,
+        "parent": 6011,
+        "group": 485,
+        "tracer": 0,
+        "start": 449745,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6023,
+        "parent": 6011,
+        "group": 485,
+        "tracer": 6011,
+        "start": 449769,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6034,
+        "parent": 6023,
+        "group": 6034,
+        "tracer": 6011,
+        "start": 449819,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6070,
+        "parent": 6034,
+        "group": 6034,
+        "tracer": 6011,
+        "start": 449955,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6072,
+        "parent": 6070,
+        "group": 6034,
+        "tracer": 6011,
+        "start": 449961,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6073,
+        "parent": 6072,
+        "group": 6034,
+        "tracer": 6011,
+        "start": 449966,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6074,
+        "parent": 6034,
+        "group": 6074,
+        "tracer": 6011,
+        "start": 449973,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6078,
+        "parent": 6074,
+        "group": 6074,
+        "tracer": 6011,
+        "start": 449983,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6084,
+        "parent": 6074,
+        "group": 6074,
+        "tracer": 6011,
+        "start": 449993,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6086,
+        "parent": 6084,
+        "group": 6074,
+        "tracer": 6011,
+        "start": 449994,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6087,
+        "parent": 6084,
+        "group": 6074,
+        "tracer": 6011,
+        "start": 449994,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6088,
+        "parent": 6084,
+        "group": 6074,
+        "tracer": 6011,
+        "start": 449994,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6094,
+        "parent": 6074,
+        "group": 6074,
+        "tracer": 6011,
+        "start": 450008,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6095,
+        "parent": 6094,
+        "group": 6074,
+        "tracer": 0,
+        "start": 450008,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6096,
+        "parent": 6094,
+        "group": 6074,
+        "tracer": 6011,
+        "start": 450008,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6097,
+        "parent": 6094,
+        "group": 6074,
+        "tracer": 6011,
+        "start": 450008,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6103,
+        "parent": 6034,
+        "group": 6103,
+        "tracer": 6011,
+        "start": 450034,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6110,
+        "parent": 6034,
+        "group": 6110,
+        "tracer": 6011,
+        "start": 450064,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6122,
+        "parent": 6034,
+        "group": 6122,
+        "tracer": 6011,
+        "start": 450736,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6185,
+        "parent": 6023,
+        "group": 6185,
+        "tracer": 6011,
+        "start": 453423,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6220,
+        "parent": 6185,
+        "group": 6185,
+        "tracer": 6011,
+        "start": 453484,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6222,
+        "parent": 6185,
+        "group": 6185,
+        "tracer": 6011,
+        "start": 453487,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6223,
+        "parent": 6222,
+        "group": 6185,
+        "tracer": 6011,
+        "start": 453493,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6224,
+        "parent": 6223,
+        "group": 6185,
+        "tracer": 6011,
+        "start": 453498,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6226,
+        "parent": 6185,
+        "group": 6226,
+        "tracer": 6011,
+        "start": 453523,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6234,
+        "parent": 6226,
+        "group": 6226,
+        "tracer": 6011,
+        "start": 453540,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6236,
+        "parent": 6234,
+        "group": 6226,
+        "tracer": 6011,
+        "start": 453540,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6237,
+        "parent": 6234,
+        "group": 6226,
+        "tracer": 6011,
+        "start": 453541,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6238,
+        "parent": 6234,
+        "group": 6226,
+        "tracer": 6011,
+        "start": 453542,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6242,
+        "parent": 6226,
+        "group": 6226,
+        "tracer": 6011,
+        "start": 453552,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6244,
+        "parent": 6242,
+        "group": 6226,
+        "tracer": 6011,
+        "start": 453553,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6245,
+        "parent": 6242,
+        "group": 6226,
+        "tracer": 6011,
+        "start": 453553,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 6252,
+        "parent": 6185,
+        "group": 6252,
+        "tracer": 6011,
+        "start": 453600,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    }
+  ],
+  "stop": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794373753632",
+      "ok": true,
+      "result": {
+        "stopped": true
+      }
+    }
+  },
+  "stoppedInspection": {
+    "status": 400,
+    "body": {
+      "id": "m2-1794373753734",
+      "ok": false,
+      "error": {
+        "code": "PHONE_STOPPED",
+        "message": "Native operation rejected"
+      }
+    }
+  },
+  "privateOracleUnchanged": true,
+  "capabilities": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": null,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "permissions": "        android.permission.ACCESS_FINE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r\n        android.permission.ACCESS_COARSE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r",
+  "accessibility": "null\r\n",
+  "notificationListener": "com.google.android.as/com.google.android.apps.miphone.aiai.common.notification.service.AiAiNotificationListenerService:dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications:com.google.android.apps.nexuslauncher/com.android.launcher3.notification.NotificationListener\r\n",
+  "protectedModes": "600 files/rootfs/run/olea-provider.json\r\n600 files/bridge-token\r\n600 files/bridge-config.json\r\n",
+  "uidInventory": [
+    "10216  5925   485 dev.olea.m2.runtime\r",
+    "10217  6139   485 dev.olea.m2.fixture\r"
+  ],
+  "status": "fail",
+  "budget": {
+    "globalConsumed": 6,
+    "unallocated": 2,
+    "workerAllocated": 0,
+    "explicitRetriesFallbackReplays": 0,
+    "observedModelPhoneCalls": 4,
+    "lastCumulativeUsage": {
+      "totalTokens": 68646,
+      "inputTokens": 68372,
+      "cachedInputTokens": 46930,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 274,
+      "reasoningOutputTokens": 24
+    },
+    "httpRequests": null,
+    "billing": "unknown"
+  },
+  "qualification": "Prior discovery ESRCH/unverified cleanup receipt remains unchanged; independent20absence did not rewrite it. This new model native run has its own no-fault tracked cleanup result."
+}

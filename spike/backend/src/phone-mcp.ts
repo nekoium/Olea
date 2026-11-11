@@ -50,6 +50,11 @@ function main() {
   // Fail closed if stock MCP environment selection ever forwards provider authority.
   if (process.env.OLEA_CODEX_PROVIDER_KEY || process.env.OLEA_PROVIDER_CONFIG) { process.exitCode = 2; return; }
   let active = 0;
+  let calls = 0;
+  const limit = process.env.OLEA_PHONE_CALL_LIMIT;
+  const allowlist = process.env.OLEA_PHONE_TOOL_ALLOWLIST;
+  if ((limit || allowlist) && (limit !== '5' || allowlist !== 'phone_capabilities,phone_location,phone_fixture_notify,phone_notifications')) { process.exitCode = 2; return; }
+  const permitted = allowlist ? phoneTools.filter(tool => allowlist.split(',').includes(tool.name)) : phoneTools;
   function output(record: RecordData) {
     const text = JSON.stringify(record) + '\n';
     if (process.stdout.writableLength + Buffer.byteLength(text) > MAX_QUEUED_BYTES) { process.exitCode = 2; process.stdin.destroy(); return; }
@@ -60,8 +65,11 @@ function main() {
     const reply = (result: unknown) => output({ jsonrpc: '2.0', id: record.id, result });
     if (record.method === 'initialize') return reply({ protocolVersion: '2024-11-05', capabilities: { tools: {} }, serverInfo: { name: 'olea-phone', version: '0.0.0' } });
     if (record.method === 'ping') return reply({});
-    if (record.method === 'tools/list') return reply({ tools: phoneTools.map(tool => ({ name: tool.name, description: tool.description, inputSchema: { type: 'object', properties: tool.properties, required: tool.required, additionalProperties: false } })) });
+    if (record.method === 'tools/list') return reply({ tools: permitted.map(tool => ({ name: tool.name, description: tool.description, inputSchema: { type: 'object', properties: tool.properties, required: tool.required, additionalProperties: false } })) });
     if (record.method === 'tools/call' && active < 1) {
+      if (!permitted.some(tool => tool.name === record.params?.name) || (limit && calls >= Number(limit)))
+        return reply({ content: [{ type: 'text', text: 'phone_policy_denied_no_native_delivery' }], isError: true });
+      calls++;
       active++;
       try { return reply(await callPhone(record.params?.name, record.params?.arguments ?? {}, process.argv[2])); }
       catch { return reply({ content: [{ type: 'text', text: 'invalid_phone_tool_request' }], isError: true }); }

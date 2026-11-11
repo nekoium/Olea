@@ -6,7 +6,7 @@ import { randomBytes, createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { Backend } from '../../backend/dist/backend.js';
 import { codexConfig, codexPolicy } from '../../backend/dist/codex-session.js';
-import { groupedPhonePrompt } from '../../m3/runtime/grouped-phone-prompt.mjs';
+import { groupedPhonePrompt, groupedPhoneTools } from '../../m3/runtime/grouped-phone-prompt.mjs';
 
 const [configArg, outputArg, entryArg, modelArg = 'gpt-6.1-terra', mode = 'unix', accessModeArg = process.env.OLEA_CODEX_ACCESS_MODE ?? 'workspace-write', categoryOptionsArg] = process.argv.slice(2);
 const policy = codexPolicy(accessModeArg); // Validate explicit operator choice before reading credentials.
@@ -55,7 +55,7 @@ backend = new Backend({ entry: '', workspace, stateDir: join(directory, 'state')
     if (record.method === 'error' && report.errors.length < 16) report.errors.push(safe(record.params?.error?.message ?? record.params?.message ?? 'upstream_error'));
     if (record.method === 'item/completed' && ['commandExecution', 'mcpToolCall'].includes(record.params?.item?.type) && report.toolReceipts.length < 32) {
       const item = record.params.item;
-      const receipt = { type: item.type, id: item.id, server: item.server, tool: item.tool, status: item.status, exitCode: item.exitCode, command: safe(item.command ?? ''), output: safe(item.aggregatedOutput ?? ''), error: safe(item.error ?? '') };
+      const receipt = { type: item.type, id: item.id, server: item.server, tool: item.tool, status: item.status, exitCode: item.exitCode, command: safe(item.command ?? ''), output: safe(item.type === 'mcpToolCall' ? JSON.stringify(item.result ?? null) : item.aggregatedOutput ?? ''), error: safe(item.error ?? '') };
       report.toolReceipts.push({ ...receipt, sha256: createHash('sha256').update(JSON.stringify(receipt)).digest('hex') });
     }
     if (record.id !== undefined && /requestApproval$/.test(record.method)) {
@@ -86,6 +86,14 @@ try {
     if (spawnSync(process.execPath, ['--check', join(workspace, 'task.cjs')], { timeout: 5000, stdio: 'ignore', env: {} }).status !== 0) throw new Error('invalid_controlled_task_script');
     report.taskSha256 = createHash('sha256').update(script).digest('hex');
     prompt = 'Run exactly one shell command in this workspace: node task.cjs . The preselected deterministic task script installs is-number@7.0.0 with zero npm retries, checks actual dependency behavior, spawns a harmless Node child, verifies the provider key variable was not inherited, and writes result.json. ' + accessInstruction + ' Do not inspect/change the script or repeat the action after any uncertain error. If command fails or approval is rejected, stop and report that factual result. No other tools are needed.';
+  }
+  if (mode === 'phone-categories') {
+    report.registration = await backend.codexCommand('case', { method: 'mcpServerStatus/list' });
+    const server = report.registration.data?.find(server => server.name === 'olea_phone');
+    const names = Object.keys(server?.tools ?? {});
+    const required = groupedPhoneTools(categoryPrerequisites.categories);
+    if (server?.toolsError || names.length !== required.length || required.some(name => !names.includes(name))) throw Error('category_registration_prerequisite_failed');
+    report.registration = { toolNames: names, toolsError: server.toolsError ?? null };
   }
   report.topLevelPrompts = 1;
   const timeout = setTimeout(() => terminalReject(new Error('runner_turn_deadline_delivery_unknown')), 123000);

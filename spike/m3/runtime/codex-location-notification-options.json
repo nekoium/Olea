@@ -1,0 +1,6 @@
+{
+  "allocatedPrompts": 1,
+  "allocationId": "m3-codex-location-notification-01",
+  "directReceipt": "spike/m3/runtime/evidence/location-a02-delayed-observation.json;spike/m3/runtime/evidence/direct-categories-a01.json;spike/m3/runtime/evidence/location-revocation-a01.json;spike/m3/runtime/evidence/mcp-fourteen-a01.json",
+  "categories": ["structured-api", "notification"]
+}

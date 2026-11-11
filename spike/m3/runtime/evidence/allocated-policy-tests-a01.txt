@@ -1,0 +1,11 @@
+✔ MCP helper refuses unexpected provider authority without printing its value (54.1044ms)
+✔ allocated MCP subset blocks extra tools and sixth native delivery (146.6649ms)
+✔ narrow MCP phone mapping authenticates and preserves native denial without replay (22.7588ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 333.2937

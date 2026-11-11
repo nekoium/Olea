@@ -1,0 +1,14 @@
+// SPDX-License-Identifier: MIT
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {device} from '../../m2/runtime/bridge.mjs';
+const model=JSON.parse(readFileSync('spike/m3/runtime/evidence/codex-location-notification-a01.json','utf8'));
+const native=JSON.parse(readFileSync('spike/m3/runtime/evidence/codex-location-notification-a01-native.json','utf8'));
+const independent=JSON.parse(readFileSync('spike/m3/runtime/evidence/categories-independent-a01.json','utf8'));
+const notification=JSON.parse(readFileSync('spike/m3/runtime/evidence/notification-oracle-a02.json','utf8'));
+const report={at:new Date().toISOString(),allocationId:'m3-codex-location-notification-01',globalConsumedBefore:5,allocated:1,claimed:true,topLevelSubmitted:1,completed:true,globalConsumedAfter:6,unallocatedRemaining:2,allocatedRemaining:0,explicitRetries:0,fallbacks:0,replays:0,model:'gpt-6.1-terra',stockCodex:'0.167.0',phoneCalls:model.toolReceipts.length,turnId:model.turn.id,threadId:model.start.threadId,canonicalResume:model.outcomes.resume,lastCumulativeUsage:model.usage.at(-1).total,usageSnapshotsNotSummed:true,httpRequestCount:null,billing:'unknown',runnerMs:model.elapsedMs,nativeMs:native.endedAtMs-native.startedAtMs,nativeTimedOut:native.timedOut,nativeCleanupVerified:native.finalOwnershipCleanup.trackedExitVerified,independentOwnedAbsent:independent.identities.length,outcomes:{structuredLastKnown:'pass',separateNotification:notification.status,originalRedactedObserver:'failed; retained categories-independent-a01.json',unredactedReadOnlyCorrection:'notification-oracle-a02.json',url:'not attempted',files:'not attempted',capture:'not attempted'},priorDiscoveryUnverifiedESRCH:'Retained mcp-fourteen-a01-native.json unchanged; no retroactive pass',claimReceipt:'categories-allocation-claim-a01.json originally records submissionAttempted=false at pre-submission claim time; this settlement records subsequent actual submission'};
+const sessionPath=model.start.home.replace(/^\//,'files/rootfs/')+'/thread.json';
+report.newCanonicalSessionArtifacts=device(['shell',`run-as dev.olea.m2.runtime sh -c 'find files/rootfs/workspace/${model.attempt}/state -name thread.json -o -name "*.jsonl"'`]);
+const paths=['spike/backend/src/codex-session.ts','spike/backend/src/phone-mcp.ts','spike/tests/codex/run-stock.mjs','spike/tests/codex/phone-mcp.test.mjs','spike/m3/runtime/grouped-phone-prompt.mjs','spike/m3/runtime/codex-location-notification-a01.sh'];
+report.source=paths.map(path=>({path,sha256:createHash('sha256').update(readFileSync(path)).digest('hex'),domain:'raw working-tree compiled/deployed/tested bytes'}));
+writeFileSync('spike/m3/runtime/evidence/categories-ledger-settlement-a01.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log({consumed:report.globalConsumedAfter,unallocated:report.unallocatedRemaining,usage:report.lastCumulativeUsage,nativeCleanup:report.nativeCleanupVerified});

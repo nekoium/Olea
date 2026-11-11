@@ -1,0 +1,346 @@
+{
+  "mode": "phone-categories",
+  "categoryPrerequisites": {
+    "allocationId": "m3-codex-location-notification-01",
+    "directReceipt": "spike/m3/runtime/evidence/location-a02-delayed-observation.json;spike/m3/runtime/evidence/direct-categories-a01.json;spike/m3/runtime/evidence/location-revocation-a01.json;spike/m3/runtime/evidence/mcp-fourteen-a01.json",
+    "categories": [
+      "structured-api",
+      "notification"
+    ]
+  },
+  "attempt": "attempt-1794373632717-a17023f4",
+  "observedAt": "2026-11-11T05:07:12.723Z",
+  "scope": "android-app-domain",
+  "platform": "linux",
+  "node": "v24.20.0",
+  "model": "gpt-6.1-terra",
+  "accessMode": "full-access",
+  "stockSandbox": "danger-full-access",
+  "approvalPolicy": "never",
+  "filesystemIsolation": false,
+  "topLevelPrompts": 1,
+  "maxToolRounds": 12,
+  "maxTurnMs": 120000,
+  "streamIdleMs": 45000,
+  "requestRetries": 0,
+  "streamRetries": 0,
+  "httpRequests": null,
+  "httpRequestsLimit": "stock protocol does not expose HTTP count; no automatic retry configured",
+  "remoteBilling": "unknown",
+  "strictTokenCap": "unsupported in inspected turn/start schema",
+  "events": {
+    "olea/process": 2,
+    "remoteControl/status/changed": 2,
+    "thread/started": 1,
+    "mcpServer/startupStatus/updated": 4,
+    "thread/status/changed": 3,
+    "turn/started": 1,
+    "item/started": 8,
+    "item/completed": 8,
+    "item/agentMessage/delta": 99,
+    "thread/tokenUsage/updated": 7,
+    "account/rateLimits/updated": 6,
+    "turn/completed": 1,
+    "deprecationNotice": 1,
+    "thread/goal/cleared": 1
+  },
+  "items": {
+    "userMessage": 1,
+    "agentMessage": 2,
+    "mcpToolCall": 4,
+    "reasoning": 1
+  },
+  "processes": [
+    {
+      "pid": 6034,
+      "identity": {
+        "pid": 6034,
+        "parent": 6023,
+        "group": 6034,
+        "start": "449819",
+        "uid": 0
+      }
+    },
+    {
+      "pid": 6185,
+      "identity": {
+        "pid": 6185,
+        "parent": 6023,
+        "group": 6185,
+        "start": "453423",
+        "uid": 0
+      }
+    }
+  ],
+  "approvals": [],
+  "toolReceipts": [
+    {
+      "type": "mcpToolCall",
+      "id": "exec-6693587f-9fee-42bb-8274-4b80c2517314",
+      "server": "olea_phone",
+      "tool": "phone_capabilities",
+      "status": "completed",
+      "command": "",
+      "output": "{\"content\":[{\"type\":\"text\",\"text\":\"{\\\"phoneEnabled\\\":true,\\\"accessibility\\\":false,\\\"targetSdk\\\":36,\\\"backendRunning\\\":false,\\\"backendStopping\\\":false,\\\"backendCleanup\\\":null,\\\"operations\\\":[\\\"capabilities\\\",\\\"accessibility_tree\\\",\\\"accessibility_click\\\",\\\"global_action\\\",\\\"swipe\\\",\\\"open_url\\\",\\\"fixture_action\\\",\\\"location\\\",\\\"files_write_read\\\",\\\"notifications\\\",\\\"capture_request\\\",\\\"capture_result\\\",\\\"folder_request\\\",\\\"fixture_notify\\\",\\\"stop\\\"]}\"}],\"structuredContent\":null,\"_meta\":null}",
+      "error": "",
+      "sha256": "6a92661c2dd9e9d66425a4d11ebace5b3b70a0de0011cf1b6130b115f948b524"
+    },
+    {
+      "type": "mcpToolCall",
+      "id": "exec-b6003e5d-f96b-46b7-bdd9-0de66cebdca0",
+      "server": "olea_phone",
+      "tool": "phone_location",
+      "status": "completed",
+      "command": "",
+      "output": "{\"content\":[{\"type\":\"text\",\"text\":\"{\\\"latitude\\\":24.9876,\\\"longitude\\\":121.54319833333334,\\\"provider\\\":\\\"gps\\\",\\\"accuracy\\\":5,\\\"timeMs\\\":1794373566507,\\\"ageMs\\\":87578}\"}],\"structuredContent\":null,\"_meta\":null}",
+      "error": "",
+      "sha256": "f797d6df6ecf2b68d5699a50237a807c21841268d1fd0f8b5ad15248bbfea66f"
+    },
+    {
+      "type": "mcpToolCall",
+      "id": "exec-e429842e-84d3-470a-84d0-ca7911e51b4d",
+      "server": "olea_phone",
+      "tool": "phone_fixture_notify",
+      "status": "completed",
+      "command": "",
+      "output": "{\"content\":[{\"type\":\"text\",\"text\":\"{\\\"dispatched\\\":true}\"}],\"structuredContent\":null,\"_meta\":null}",
+      "error": "",
+      "sha256": "42f8cf53832e96bbfa2a3d9057bedd7473d49b9de4d1872a1d18eea871951c74"
+    },
+    {
+      "type": "mcpToolCall",
+      "id": "exec-fb0e7e64-27d1-499a-932e-b3a3a9f8aa14",
+      "server": "olea_phone",
+      "tool": "phone_notifications",
+      "status": "completed",
+      "command": "",
+      "output": "{\"content\":[{\"type\":\"text\",\"text\":\"{\\\"notifications\\\":[{\\\"package\\\":\\\"dev.olea.m2.fixture\\\",\\\"id\\\":42,\\\"text\\\":\\\"OLEA_NOTIFICATION_FIXTURE\\\"}]}\"}],\"structuredContent\":null,\"_meta\":null}",
+      "error": "",
+      "sha256": "30f373ab6f867d519ca3313379f0cee6eb228dae7a03f36069fc21f6b85f1450"
+    }
+  ],
+  "errors": [],
+  "usage": [
+    {
+      "total": {
+        "totalTokens": 10960,
+        "inputTokens": 10890,
+        "cachedInputTokens": 0,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 70,
+        "reasoningOutputTokens": 0
+      },
+      "last": {
+        "totalTokens": 10960,
+        "inputTokens": 10890,
+        "cachedInputTokens": 0,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 70,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 475000
+    },
+    {
+      "total": {
+        "totalTokens": 22239,
+        "inputTokens": 22144,
+        "cachedInputTokens": 4864,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 95,
+        "reasoningOutputTokens": 0
+      },
+      "last": {
+        "totalTokens": 11279,
+        "inputTokens": 11254,
+        "cachedInputTokens": 4864,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 25,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 475000
+    },
+    {
+      "total": {
+        "totalTokens": 33689,
+        "inputTokens": 33544,
+        "cachedInputTokens": 15238,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 145,
+        "reasoningOutputTokens": 24
+      },
+      "last": {
+        "totalTokens": 11450,
+        "inputTokens": 11400,
+        "cachedInputTokens": 10374,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 50,
+        "reasoningOutputTokens": 24
+      },
+      "modelContextWindow": 475000
+    },
+    {
+      "total": {
+        "totalTokens": 45245,
+        "inputTokens": 45075,
+        "cachedInputTokens": 25731,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 170,
+        "reasoningOutputTokens": 24
+      },
+      "last": {
+        "totalTokens": 11556,
+        "inputTokens": 11531,
+        "cachedInputTokens": 10493,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 25,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 475000
+    },
+    {
+      "total": {
+        "totalTokens": 56871,
+        "inputTokens": 56677,
+        "cachedInputTokens": 36288,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 194,
+        "reasoningOutputTokens": 24
+      },
+      "last": {
+        "totalTokens": 11626,
+        "inputTokens": 11602,
+        "cachedInputTokens": 10557,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 24,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 475000
+    },
+    {
+      "total": {
+        "totalTokens": 68646,
+        "inputTokens": 68372,
+        "cachedInputTokens": 46930,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 274,
+        "reasoningOutputTokens": 24
+      },
+      "last": {
+        "totalTokens": 11775,
+        "inputTokens": 11695,
+        "cachedInputTokens": 10642,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 80,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 475000
+    },
+    {
+      "total": {
+        "totalTokens": 68646,
+        "inputTokens": 68372,
+        "cachedInputTokens": 46930,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 274,
+        "reasoningOutputTokens": 24
+      },
+      "last": {
+        "totalTokens": 11775,
+        "inputTokens": 11695,
+        "cachedInputTokens": 10642,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 80,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 475000
+    }
+  ],
+  "assertions": {},
+  "outcomes": {
+    "initializedThread": "pass",
+    "completedTurn": "pass",
+    "phoneWorkflow": "awaiting-independent-native-oracle",
+    "resume": "pass"
+  },
+  "sourceSha256": {
+    "/opt/olea-m3-categories-a01/spike/tests/codex/run-stock.mjs": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+    "/opt/olea-m3-categories-a01/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+    "/opt/olea-m3-categories-a01/spike/backend/dist/codex-process.js": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+    "/opt/olea-m3-categories-a01/spike/backend/dist/codex-session.js": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+    "/opt/olea-m3-categories-a01/spike/backend/dist/phone-mcp.js": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+    "/opt/olea-m3-categories-a01/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+    "/opt/olea-m3-categories-a01/spike/backend/dist/process-tree.js": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+  },
+  "start": {
+    "agent": "codex",
+    "accessMode": "full-access",
+    "filesystemIsolation": false,
+    "pid": 6034,
+    "initialized": {
+      "userAgent": "olea_spike/0.167.0 (Ubuntu 24.4.0; x86_64) unknown (olea_spike; 0.0.0)",
+      "codexHome": "/workspace/attempt-1794373632717-a17023f4/state/codex/case/home",
+      "platformFamily": "unix",
+      "platformOs": "linux"
+    },
+    "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+    "cwd": "/workspace/attempt-1794373632717-a17023f4/workspace",
+    "home": "/workspace/attempt-1794373632717-a17023f4/state/codex/case/home",
+    "startupMs": 2401.0825
+  },
+  "providerConfigSha256": "07666356bd8010af0d245f8bc8828fdd1a9952d386949a15b71225e2e4b8e0ad",
+  "registration": {
+    "toolNames": [
+      "phone_capabilities",
+      "phone_notifications",
+      "phone_fixture_notify",
+      "phone_location"
+    ],
+    "toolsError": null
+  },
+  "ack": {
+    "turn": {
+      "id": "01a1c900-cd9f-7963-a971-f1a44fa32986",
+      "rootTurnId": "01a1c900-cd9f-7963-a971-f1a44fa32986",
+      "items": [],
+      "itemsView": "notLoaded",
+      "status": "inProgress",
+      "error": null,
+      "startedAt": null,
+      "completedAt": null,
+      "durationMs": null
+    }
+  },
+  "turn": {
+    "id": "01a1c900-cd9f-7963-a971-f1a44fa32986",
+    "status": "completed",
+    "error": ""
+  },
+  "firstEventMs": 61.21070000000003,
+  "resume": {
+    "agent": "codex",
+    "accessMode": "full-access",
+    "filesystemIsolation": false,
+    "pid": 6185,
+    "initialized": {
+      "userAgent": "olea_spike/0.167.0 (Ubuntu 24.4.0; x86_64) unknown (olea_spike; 0.0.0)",
+      "codexHome": "/workspace/attempt-1794373632717-a17023f4/state/codex/case/home",
+      "platformFamily": "unix",
+      "platformOs": "linux"
+    },
+    "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+    "cwd": "/workspace/attempt-1794373632717-a17023f4/workspace",
+    "home": "/workspace/attempt-1794373632717-a17023f4/state/codex/case/home",
+    "startupMs": 2085.515299999999
+  },
+  "elapsedMs": 38787.636699999995,
+  "workspace": "/workspace/attempt-1794373632717-a17023f4/workspace",
+  "limits": [
+    "Tool limit triggers interrupt after observing excess events; stock exposes no strict pre-execution tool-round cap",
+    "Authenticated host execution is not Android compatibility",
+    "Same-UID shell is not secret-file isolation",
+    "Explicit full access provides no Codex filesystem isolation or agent approval gate; Android app UID and native permission/stop checks remain",
+    "Windows root stop does not prove descendant exit",
+    "Acknowledgement does not prove tool effects or rollback",
+    "Provider HTTP count and remote billing unknown"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "at": "2026-11-11T05:10:44.326Z",
+  "allocationId": "m3-codex-location-notification-01",
+  "globalConsumedBefore": 5,
+  "allocated": 1,
+  "claimed": true,
+  "topLevelSubmitted": 1,
+  "completed": true,
+  "globalConsumedAfter": 6,
+  "unallocatedRemaining": 2,
+  "allocatedRemaining": 0,
+  "explicitRetries": 0,
+  "fallbacks": 0,
+  "replays": 0,
+  "model": "gpt-6.1-terra",
+  "stockCodex": "0.167.0",
+  "phoneCalls": 4,
+  "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986",
+  "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+  "canonicalResume": "pass",
+  "lastCumulativeUsage": {
+    "totalTokens": 68646,
+    "inputTokens": 68372,
+    "cachedInputTokens": 46930,
+    "cacheWriteInputTokens": 0,
+    "outputTokens": 274,
+    "reasoningOutputTokens": 24
+  },
+  "usageSnapshotsNotSummed": true,
+  "httpRequestCount": null,
+  "billing": "unknown",
+  "runnerMs": 38787.636699999995,
+  "nativeMs": 40866,
+  "nativeTimedOut": false,
+  "nativeCleanupVerified": true,
+  "independentOwnedAbsent": 34,
+  "outcomes": {
+    "structuredLastKnown": "pass",
+    "separateNotification": "pass",
+    "originalRedactedObserver": "failed; retained categories-independent-a01.json",
+    "unredactedReadOnlyCorrection": "notification-oracle-a02.json",
+    "url": "not attempted",
+    "files": "not attempted",
+    "capture": "not attempted"
+  },
+  "priorDiscoveryUnverifiedESRCH": "Retained mcp-fourteen-a01-native.json unchanged; no retroactive pass",
+  "claimReceipt": "categories-allocation-claim-a01.json originally records submissionAttempted=false at pre-submission claim time; this settlement records subsequent actual submission",
+  "newCanonicalSessionArtifacts": "files/rootfs/workspace/attempt-1794373632717-a17023f4/state/codex/case/home/sessions/2026/11/11/rollout-2026-11-11T05-07-14-01a1c900-c8ef-76e0-a2b3-258d748a325f.jsonl\r\nfiles/rootfs/workspace/attempt-1794373632717-a17023f4/state/codex/case/thread.json\r\n",
+  "source": [
+    {
+      "path": "spike/backend/src/codex-session.ts",
+      "sha256": "9076480ad5bcd0ad386c8678b0a972959bd9cf36f0c36556c5d6b9428c087d1e",
+      "domain": "raw working-tree compiled/deployed/tested bytes"
+    },
+    {
+      "path": "spike/backend/src/phone-mcp.ts",
+      "sha256": "49c4c5440cc1df97f2e7f30bd4026704f84679a9bae03d4bea05b264824f5f8f",
+      "domain": "raw working-tree compiled/deployed/tested bytes"
+    },
+    {
+      "path": "spike/tests/codex/run-stock.mjs",
+      "sha256": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+      "domain": "raw working-tree compiled/deployed/tested bytes"
+    },
+    {
+      "path": "spike/tests/codex/phone-mcp.test.mjs",
+      "sha256": "fe3c0dcdeaae07c9135667e91c47df0575c113f9f4f08dd8fe9a51b1775ba8c5",
+      "domain": "raw working-tree compiled/deployed/tested bytes"
+    },
+    {
+      "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+      "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+      "domain": "raw working-tree compiled/deployed/tested bytes"
+    },
+    {
+      "path": "spike/m3/runtime/codex-location-notification-a01.sh",
+      "sha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+      "domain": "raw working-tree compiled/deployed/tested bytes"
+    }
+  ]
+}

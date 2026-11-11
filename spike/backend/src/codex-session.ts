@@ -18,7 +18,11 @@ export function codexConfig(model: string, bridge?: string, accessMode: CodexAcc
   const windows = process.platform === 'win32' ? '[windows]\nsandbox = "unelevated"\n' : '';
   if (!bridge) return text + windows;
   const helper = fileURLToPath(new URL('./phone-mcp.js', import.meta.url));
-  return text + windows + `[mcp_servers.olea_phone]\ncommand = ${JSON.stringify(process.execPath)}\nargs = [${JSON.stringify(helper)}, ${JSON.stringify(bridge)}]\nenv = { OLEA_CODEX_PROVIDER_KEY = "" }\nenv_vars = []\nstartup_timeout_sec = 10\ntool_timeout_sec = 10\n`;
+  const limit = process.env.OLEA_PHONE_CALL_LIMIT;
+  const allowlist = process.env.OLEA_PHONE_TOOL_ALLOWLIST;
+  if ((limit || allowlist) && (limit !== '5' || allowlist !== 'phone_capabilities,phone_location,phone_fixture_notify,phone_notifications')) throw new Error('invalid_phone_policy');
+  const phoneEnv = limit ? ', OLEA_PHONE_CALL_LIMIT = "5", OLEA_PHONE_TOOL_ALLOWLIST = "phone_capabilities,phone_location,phone_fixture_notify,phone_notifications"' : '';
+  return text + windows + `[mcp_servers.olea_phone]\ncommand = ${JSON.stringify(process.execPath)}\nargs = [${JSON.stringify(helper)}, ${JSON.stringify(bridge)}]\nenv = { OLEA_CODEX_PROVIDER_KEY = ""${phoneEnv} }\nenv_vars = []\nstartup_timeout_sec = 10\ntool_timeout_sec = 10\n`;
 }
 export class CodexSession {
   readonly process: CodexProcess;
