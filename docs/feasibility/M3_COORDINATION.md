@@ -43,6 +43,10 @@ User clarified that execution must be automated wherever possible and human inpu
 
 Stop for material account/privacy/data-loss/scope choices or unsupported controls after finite alternatives, not routine test-fixture confirmation. Collect direct HTTPS destination, selected-file byte equality and independently inspected fresh capture before disruptive restarts. Seven prompts are consumed and the final prompt remains unallocated until deterministic results support its scope. The manager checkpoint stays active across these batches; earlier user-only setup descriptions are historical and superseded by this authorization.
 
+## Final model allocation
+
+After deterministic readiness `1ad2f1d` (root `d37fe38`), allocation `m3-pi-final-seven-01` authorizes exactly one final primary-terra stock Pi prompt under `ctx_075e0803ad32` / `task_300be48de965`. Seven prompts are consumed, one allocated, none unallocated; actual submission consumes the eighth. No retries, fallbacks, uncertain-request replays or extra spend. Scope is exactly seven native calls in the rehearsed order: capabilities, capture request/result, selected-file write/read, fixture notification post/read and supplied HTTPS URL. Actual SystemUI consent is automated through the authorized harmless one-app route with request-ID-matched finite stable-image readiness; independent image inspection does not imply model image input. Existing turn/idle/round/output bounds and per-helper seven-delivery cap remain explicit. Same runtime session retains sole lease. Independent prerequisite assessment proceeds under `ctx_a81b8c31bcec`; final outcome and exact state require separate assessment before the manager checkpoint can be declared reached.
+
 ## Current bounded checkpoint
 
 Resolve remaining PHONE_USE_TESTS categories using existing fixtures/oracles: intended URL destination, structured location/API, selected files/media, separate notification and explicit-consent capture. Preserve direct versus model-selected distinctions and development grants versus normal consent. Existing Pi/Codex causal Accessibility/cooperating-app proofs remain reusable.
