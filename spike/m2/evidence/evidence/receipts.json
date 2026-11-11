@@ -15210,5 +15210,1029 @@
       "nativeTrackedExitVerified": false,
       "independentAbsentIdentities": 20
     }
+  },
+  {
+    "attemptId": "m3-categories-turn",
+    "caseId": "codex.turn",
+    "context": "android-app",
+    "mode": "model",
+    "status": "pass",
+    "startedAt": "2026-11-11T05:07:12.723Z",
+    "endedAt": "2026-11-11T05:12:37.778Z",
+    "summary": "One actual primary-terra streamed stock Codex turn completed with exactly4named MCP calls and zero commandExecution; native audit independently matches. One allocation consumed, no explicit retry/fallback/replay.",
+    "artifacts": [
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01.json",
+        "sha256": "e7a38c9e463beed8682b38f10d876df3da8fd5ca4fe51dcd2878d626fb650213"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01-native.json",
+        "sha256": "1fc3fc9cf7077420e5773ddc523b380b837ac41e45d74868abb21e04231351db"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-preflight-a01.json",
+        "sha256": "d47ec705135ad8b897a58538e355c6979c98d5c206ead49cadfd204b40af98d2"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-independent-a01.json",
+        "sha256": "31781776c5ca22e657897eb88a332732b7fafc4ab23cd8f72a5032333757b9d0"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/notification-oracle-a02.json",
+        "sha256": "4748b97a5db9db9777f3d28000805d7ad991ca3a82a56495a6904ff821a0d77e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-ledger-settlement-a01.json",
+        "sha256": "16777319813cc68e002e8757f702ca836acbadb004de7e2aa3f4916d5d91c030"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-allocation-claim-a01.json",
+        "sha256": "d4e2326b804919e6e161a7e188eeadaf8604b39a2a74d0db5c8720862c684c5e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-deployed-final-a01.json",
+        "sha256": "2cdbc521025cd22d692519d868df7632bf1b38ad4406938ad0e4aa7968719fb7"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_model_native_independent_outcome",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "allocationId": "m3-codex-location-notification-01",
+      "model": "gpt-6.1-terra",
+      "topLevelPrompts": 1,
+      "lastCumulativeUsage": {
+        "totalTokens": 68646,
+        "inputTokens": 68372,
+        "cachedInputTokens": 46930,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 274,
+        "reasoningOutputTokens": 24
+      },
+      "httpRequestCount": null,
+      "billing": "unknown",
+      "retries": 0,
+      "replays": 0
+    },
+    "execution": {
+      "accessMode": "full-access",
+      "filesystemIsolation": false,
+      "approvalPolicy": "never",
+      "targetSdk": 36,
+      "hostRealUid": 10216,
+      "fixtureRealUid": 10217,
+      "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+      "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986"
+    },
+    "provenance": {
+      "sourceCommit": "d176722",
+      "sourceDomains": [
+        {
+          "path": "spike/backend/src/codex-session.ts",
+          "sha256": "9076480ad5bcd0ad386c8678b0a972959bd9cf36f0c36556c5d6b9428c087d1e",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28a73448ff52f3aca5ed310d58f5fb5a2c52f759434a5ad5c016b961b991ea3d",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/backend/src/phone-mcp.ts",
+          "sha256": "49c4c5440cc1df97f2e7f30bd4026704f84679a9bae03d4bea05b264824f5f8f",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "36db33c32e565ec59bd6c0a5384e568b185920579c61356c90903ef244255617",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/run-stock.mjs",
+          "sha256": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "13263ca1302ce2fd0cd5a3b095485f62119a7b8a297389f820a7bff905508031",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/phone-mcp.test.mjs",
+          "sha256": "fe3c0dcdeaae07c9135667e91c47df0575c113f9f4f08dd8fe9a51b1775ba8c5",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "0a609fe1491feb08e261ac69d0d11971095764acadb7dda98859d46f766fdd08",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "relation": "identical"
+        },
+        {
+          "path": "spike/m3/runtime/codex-location-notification-a01.sh",
+          "sha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "relation": "identical"
+        }
+      ],
+      "deployedSourceHashes": {
+        "/opt/olea-m3-categories-a01/spike/tests/codex/run-stock.mjs": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-process.js": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-session.js": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/phone-mcp.js": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/process-tree.js": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+      }
+    },
+    "limits": [
+      "Last-known location age87578ms; no freshness/normal-user-grant claim.",
+      "Prior discovery ESRCH/unverified cleanup retained; new no-fault run is separate.",
+      "Five-delivery cap is per MCP helper instance, not a persistent allocation-wide security bound.",
+      "No stock-agent patch; full access has no same-UID filesystem credential isolation."
+    ]
+  },
+  {
+    "attemptId": "m3-categories-notification-observer-failed",
+    "caseId": "phone.codex.notification",
+    "context": "android-app",
+    "mode": "model",
+    "status": "fail",
+    "startedAt": "2026-11-11T05:07:12.723Z",
+    "endedAt": "2026-11-11T05:12:37.778Z",
+    "summary": "First independent default dumpsys notification text assertion failed because output redacted extras; retained unchanged. No model/tool replay; later read-only --noredact correction assesses same causal post.",
+    "artifacts": [
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01.json",
+        "sha256": "e7a38c9e463beed8682b38f10d876df3da8fd5ca4fe51dcd2878d626fb650213"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01-native.json",
+        "sha256": "1fc3fc9cf7077420e5773ddc523b380b837ac41e45d74868abb21e04231351db"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-preflight-a01.json",
+        "sha256": "d47ec705135ad8b897a58538e355c6979c98d5c206ead49cadfd204b40af98d2"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-independent-a01.json",
+        "sha256": "31781776c5ca22e657897eb88a332732b7fafc4ab23cd8f72a5032333757b9d0"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/notification-oracle-a02.json",
+        "sha256": "4748b97a5db9db9777f3d28000805d7ad991ca3a82a56495a6904ff821a0d77e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-ledger-settlement-a01.json",
+        "sha256": "16777319813cc68e002e8757f702ca836acbadb004de7e2aa3f4916d5d91c030"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-allocation-claim-a01.json",
+        "sha256": "d4e2326b804919e6e161a7e188eeadaf8604b39a2a74d0db5c8720862c684c5e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-deployed-final-a01.json",
+        "sha256": "2cdbc521025cd22d692519d868df7632bf1b38ad4406938ad0e4aa7968719fb7"
+      }
+    ],
+    "assertions": [],
+    "provider": {
+      "accountingReference": "m3-categories-turn"
+    },
+    "execution": {
+      "accessMode": "full-access",
+      "filesystemIsolation": false,
+      "approvalPolicy": "never",
+      "targetSdk": 36,
+      "hostRealUid": 10216,
+      "fixtureRealUid": 10217,
+      "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+      "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986"
+    },
+    "provenance": {
+      "sourceCommit": "d176722",
+      "sourceDomains": [
+        {
+          "path": "spike/backend/src/codex-session.ts",
+          "sha256": "9076480ad5bcd0ad386c8678b0a972959bd9cf36f0c36556c5d6b9428c087d1e",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28a73448ff52f3aca5ed310d58f5fb5a2c52f759434a5ad5c016b961b991ea3d",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/backend/src/phone-mcp.ts",
+          "sha256": "49c4c5440cc1df97f2e7f30bd4026704f84679a9bae03d4bea05b264824f5f8f",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "36db33c32e565ec59bd6c0a5384e568b185920579c61356c90903ef244255617",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/run-stock.mjs",
+          "sha256": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "13263ca1302ce2fd0cd5a3b095485f62119a7b8a297389f820a7bff905508031",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/phone-mcp.test.mjs",
+          "sha256": "fe3c0dcdeaae07c9135667e91c47df0575c113f9f4f08dd8fe9a51b1775ba8c5",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "0a609fe1491feb08e261ac69d0d11971095764acadb7dda98859d46f766fdd08",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "relation": "identical"
+        },
+        {
+          "path": "spike/m3/runtime/codex-location-notification-a01.sh",
+          "sha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "relation": "identical"
+        }
+      ],
+      "deployedSourceHashes": {
+        "/opt/olea-m3-categories-a01/spike/tests/codex/run-stock.mjs": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-process.js": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-session.js": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/phone-mcp.js": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/process-tree.js": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+      }
+    },
+    "limits": [
+      "Last-known location age87578ms; no freshness/normal-user-grant claim.",
+      "Prior discovery ESRCH/unverified cleanup retained; new no-fault run is separate.",
+      "Five-delivery cap is per MCP helper instance, not a persistent allocation-wide security bound.",
+      "No stock-agent patch; full access has no same-UID filesystem credential isolation."
+    ]
+  },
+  {
+    "attemptId": "m3-categories-location",
+    "caseId": "phone.codex.structured-api",
+    "context": "android-app",
+    "mode": "model",
+    "status": "pass",
+    "startedAt": "2026-11-11T05:07:12.723Z",
+    "endedAt": "2026-11-11T05:12:37.778Z",
+    "summary": "Model-selected phone_location returned exact independently matched GPS coordinates24.9876/121.54319833333334 accuracy5 and age87578ms. Valid last-known only, not fresh/current-under5s; grants development-provisioned.",
+    "artifacts": [
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01.json",
+        "sha256": "e7a38c9e463beed8682b38f10d876df3da8fd5ca4fe51dcd2878d626fb650213"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01-native.json",
+        "sha256": "1fc3fc9cf7077420e5773ddc523b380b837ac41e45d74868abb21e04231351db"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-preflight-a01.json",
+        "sha256": "d47ec705135ad8b897a58538e355c6979c98d5c206ead49cadfd204b40af98d2"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-independent-a01.json",
+        "sha256": "31781776c5ca22e657897eb88a332732b7fafc4ab23cd8f72a5032333757b9d0"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/notification-oracle-a02.json",
+        "sha256": "4748b97a5db9db9777f3d28000805d7ad991ca3a82a56495a6904ff821a0d77e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-ledger-settlement-a01.json",
+        "sha256": "16777319813cc68e002e8757f702ca836acbadb004de7e2aa3f4916d5d91c030"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-allocation-claim-a01.json",
+        "sha256": "d4e2326b804919e6e161a7e188eeadaf8604b39a2a74d0db5c8720862c684c5e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-deployed-final-a01.json",
+        "sha256": "2cdbc521025cd22d692519d868df7632bf1b38ad4406938ad0e4aa7968719fb7"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_model_native_independent_outcome",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "accountingReference": "m3-categories-turn"
+    },
+    "execution": {
+      "accessMode": "full-access",
+      "filesystemIsolation": false,
+      "approvalPolicy": "never",
+      "targetSdk": 36,
+      "hostRealUid": 10216,
+      "fixtureRealUid": 10217,
+      "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+      "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986"
+    },
+    "provenance": {
+      "sourceCommit": "d176722",
+      "sourceDomains": [
+        {
+          "path": "spike/backend/src/codex-session.ts",
+          "sha256": "9076480ad5bcd0ad386c8678b0a972959bd9cf36f0c36556c5d6b9428c087d1e",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28a73448ff52f3aca5ed310d58f5fb5a2c52f759434a5ad5c016b961b991ea3d",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/backend/src/phone-mcp.ts",
+          "sha256": "49c4c5440cc1df97f2e7f30bd4026704f84679a9bae03d4bea05b264824f5f8f",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "36db33c32e565ec59bd6c0a5384e568b185920579c61356c90903ef244255617",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/run-stock.mjs",
+          "sha256": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "13263ca1302ce2fd0cd5a3b095485f62119a7b8a297389f820a7bff905508031",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/phone-mcp.test.mjs",
+          "sha256": "fe3c0dcdeaae07c9135667e91c47df0575c113f9f4f08dd8fe9a51b1775ba8c5",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "0a609fe1491feb08e261ac69d0d11971095764acadb7dda98859d46f766fdd08",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "relation": "identical"
+        },
+        {
+          "path": "spike/m3/runtime/codex-location-notification-a01.sh",
+          "sha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "relation": "identical"
+        }
+      ],
+      "deployedSourceHashes": {
+        "/opt/olea-m3-categories-a01/spike/tests/codex/run-stock.mjs": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-process.js": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-session.js": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/phone-mcp.js": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/process-tree.js": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+      }
+    },
+    "limits": [
+      "Last-known location age87578ms; no freshness/normal-user-grant claim.",
+      "Prior discovery ESRCH/unverified cleanup retained; new no-fault run is separate.",
+      "Five-delivery cap is per MCP helper instance, not a persistent allocation-wide security bound.",
+      "No stock-agent patch; full access has no same-UID filesystem credential isolation."
+    ]
+  },
+  {
+    "attemptId": "m3-categories-notification",
+    "caseId": "phone.codex.notification",
+    "context": "android-app",
+    "mode": "model",
+    "status": "pass",
+    "startedAt": "2026-11-11T05:07:12.723Z",
+    "endedAt": "2026-11-11T05:12:37.778Z",
+    "summary": "Model-selected notify/read changed empty listener into exact modern fixtureUID10217/id42/text; one separate fixture event between dispatch/read plus independent --noredact record proves new post without repeated effects.",
+    "artifacts": [
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01.json",
+        "sha256": "e7a38c9e463beed8682b38f10d876df3da8fd5ca4fe51dcd2878d626fb650213"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01-native.json",
+        "sha256": "1fc3fc9cf7077420e5773ddc523b380b837ac41e45d74868abb21e04231351db"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-preflight-a01.json",
+        "sha256": "d47ec705135ad8b897a58538e355c6979c98d5c206ead49cadfd204b40af98d2"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-independent-a01.json",
+        "sha256": "31781776c5ca22e657897eb88a332732b7fafc4ab23cd8f72a5032333757b9d0"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/notification-oracle-a02.json",
+        "sha256": "4748b97a5db9db9777f3d28000805d7ad991ca3a82a56495a6904ff821a0d77e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-ledger-settlement-a01.json",
+        "sha256": "16777319813cc68e002e8757f702ca836acbadb004de7e2aa3f4916d5d91c030"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-allocation-claim-a01.json",
+        "sha256": "d4e2326b804919e6e161a7e188eeadaf8604b39a2a74d0db5c8720862c684c5e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-deployed-final-a01.json",
+        "sha256": "2cdbc521025cd22d692519d868df7632bf1b38ad4406938ad0e4aa7968719fb7"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_model_native_independent_outcome",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "accountingReference": "m3-categories-turn"
+    },
+    "execution": {
+      "accessMode": "full-access",
+      "filesystemIsolation": false,
+      "approvalPolicy": "never",
+      "targetSdk": 36,
+      "hostRealUid": 10216,
+      "fixtureRealUid": 10217,
+      "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+      "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986"
+    },
+    "provenance": {
+      "sourceCommit": "d176722",
+      "sourceDomains": [
+        {
+          "path": "spike/backend/src/codex-session.ts",
+          "sha256": "9076480ad5bcd0ad386c8678b0a972959bd9cf36f0c36556c5d6b9428c087d1e",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28a73448ff52f3aca5ed310d58f5fb5a2c52f759434a5ad5c016b961b991ea3d",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/backend/src/phone-mcp.ts",
+          "sha256": "49c4c5440cc1df97f2e7f30bd4026704f84679a9bae03d4bea05b264824f5f8f",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "36db33c32e565ec59bd6c0a5384e568b185920579c61356c90903ef244255617",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/run-stock.mjs",
+          "sha256": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "13263ca1302ce2fd0cd5a3b095485f62119a7b8a297389f820a7bff905508031",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/phone-mcp.test.mjs",
+          "sha256": "fe3c0dcdeaae07c9135667e91c47df0575c113f9f4f08dd8fe9a51b1775ba8c5",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "0a609fe1491feb08e261ac69d0d11971095764acadb7dda98859d46f766fdd08",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "relation": "identical"
+        },
+        {
+          "path": "spike/m3/runtime/codex-location-notification-a01.sh",
+          "sha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "relation": "identical"
+        }
+      ],
+      "deployedSourceHashes": {
+        "/opt/olea-m3-categories-a01/spike/tests/codex/run-stock.mjs": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-process.js": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-session.js": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/phone-mcp.js": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/process-tree.js": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+      }
+    },
+    "limits": [
+      "Last-known location age87578ms; no freshness/normal-user-grant claim.",
+      "Prior discovery ESRCH/unverified cleanup retained; new no-fault run is separate.",
+      "Five-delivery cap is per MCP helper instance, not a persistent allocation-wide security bound.",
+      "No stock-agent patch; full access has no same-UID filesystem credential isolation."
+    ]
+  },
+  {
+    "attemptId": "m3-categories-resume",
+    "caseId": "codex.resume",
+    "context": "android-app",
+    "mode": "model",
+    "status": "pass",
+    "startedAt": "2026-11-11T05:07:12.723Z",
+    "endedAt": "2026-11-11T05:12:37.778Z",
+    "summary": "Explicit stock restart/resume retained exact proved thread/home/workspace/full-access mode; no additional prompt. Startup2401ms/resume2086ms. New transcript/thread hashes retained after resume, not full before/after transcript immutability.",
+    "artifacts": [
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01.json",
+        "sha256": "e7a38c9e463beed8682b38f10d876df3da8fd5ca4fe51dcd2878d626fb650213"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01-native.json",
+        "sha256": "1fc3fc9cf7077420e5773ddc523b380b837ac41e45d74868abb21e04231351db"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-preflight-a01.json",
+        "sha256": "d47ec705135ad8b897a58538e355c6979c98d5c206ead49cadfd204b40af98d2"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-independent-a01.json",
+        "sha256": "31781776c5ca22e657897eb88a332732b7fafc4ab23cd8f72a5032333757b9d0"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/notification-oracle-a02.json",
+        "sha256": "4748b97a5db9db9777f3d28000805d7ad991ca3a82a56495a6904ff821a0d77e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-ledger-settlement-a01.json",
+        "sha256": "16777319813cc68e002e8757f702ca836acbadb004de7e2aa3f4916d5d91c030"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-allocation-claim-a01.json",
+        "sha256": "d4e2326b804919e6e161a7e188eeadaf8604b39a2a74d0db5c8720862c684c5e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-deployed-final-a01.json",
+        "sha256": "2cdbc521025cd22d692519d868df7632bf1b38ad4406938ad0e4aa7968719fb7"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-session-preservation-a01.json",
+        "sha256": "e1b3a85a77e13471148c99f4a39faa7a394a6f543630f4934df9fabceb4d0b32"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_model_native_independent_outcome",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "accountingReference": "m3-categories-turn"
+    },
+    "execution": {
+      "accessMode": "full-access",
+      "filesystemIsolation": false,
+      "approvalPolicy": "never",
+      "targetSdk": 36,
+      "hostRealUid": 10216,
+      "fixtureRealUid": 10217,
+      "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+      "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986"
+    },
+    "provenance": {
+      "sourceCommit": "d176722",
+      "sourceDomains": [
+        {
+          "path": "spike/backend/src/codex-session.ts",
+          "sha256": "9076480ad5bcd0ad386c8678b0a972959bd9cf36f0c36556c5d6b9428c087d1e",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28a73448ff52f3aca5ed310d58f5fb5a2c52f759434a5ad5c016b961b991ea3d",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/backend/src/phone-mcp.ts",
+          "sha256": "49c4c5440cc1df97f2e7f30bd4026704f84679a9bae03d4bea05b264824f5f8f",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "36db33c32e565ec59bd6c0a5384e568b185920579c61356c90903ef244255617",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/run-stock.mjs",
+          "sha256": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "13263ca1302ce2fd0cd5a3b095485f62119a7b8a297389f820a7bff905508031",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/phone-mcp.test.mjs",
+          "sha256": "fe3c0dcdeaae07c9135667e91c47df0575c113f9f4f08dd8fe9a51b1775ba8c5",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "0a609fe1491feb08e261ac69d0d11971095764acadb7dda98859d46f766fdd08",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "relation": "identical"
+        },
+        {
+          "path": "spike/m3/runtime/codex-location-notification-a01.sh",
+          "sha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "relation": "identical"
+        }
+      ],
+      "deployedSourceHashes": {
+        "/opt/olea-m3-categories-a01/spike/tests/codex/run-stock.mjs": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-process.js": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-session.js": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/phone-mcp.js": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/process-tree.js": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+      }
+    },
+    "limits": [
+      "Last-known location age87578ms; no freshness/normal-user-grant claim.",
+      "Prior discovery ESRCH/unverified cleanup retained; new no-fault run is separate.",
+      "Five-delivery cap is per MCP helper instance, not a persistent allocation-wide security bound.",
+      "No stock-agent patch; full access has no same-UID filesystem credential isolation."
+    ]
+  },
+  {
+    "attemptId": "m3-categories-cleanup",
+    "caseId": "cost.cleanup",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T05:07:12.723Z",
+    "endedAt": "2026-11-11T05:12:37.778Z",
+    "summary": "This model run native wrapper settled40866ms without timeout/fault, root and all34tracked UID/start identities independently absent. Finite snapshot scope only; prior discovery ESRCH failure qualification unchanged.",
+    "artifacts": [
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01.json",
+        "sha256": "e7a38c9e463beed8682b38f10d876df3da8fd5ca4fe51dcd2878d626fb650213"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01-native.json",
+        "sha256": "1fc3fc9cf7077420e5773ddc523b380b837ac41e45d74868abb21e04231351db"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-preflight-a01.json",
+        "sha256": "d47ec705135ad8b897a58538e355c6979c98d5c206ead49cadfd204b40af98d2"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-independent-a01.json",
+        "sha256": "31781776c5ca22e657897eb88a332732b7fafc4ab23cd8f72a5032333757b9d0"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/notification-oracle-a02.json",
+        "sha256": "4748b97a5db9db9777f3d28000805d7ad991ca3a82a56495a6904ff821a0d77e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-ledger-settlement-a01.json",
+        "sha256": "16777319813cc68e002e8757f702ca836acbadb004de7e2aa3f4916d5d91c030"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-allocation-claim-a01.json",
+        "sha256": "d4e2326b804919e6e161a7e188eeadaf8604b39a2a74d0db5c8720862c684c5e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-deployed-final-a01.json",
+        "sha256": "2cdbc521025cd22d692519d868df7632bf1b38ad4406938ad0e4aa7968719fb7"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_model_native_independent_outcome",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "accountingReference": "m3-categories-turn"
+    },
+    "execution": {
+      "accessMode": "full-access",
+      "filesystemIsolation": false,
+      "approvalPolicy": "never",
+      "targetSdk": 36,
+      "hostRealUid": 10216,
+      "fixtureRealUid": 10217,
+      "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+      "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986"
+    },
+    "provenance": {
+      "sourceCommit": "d176722",
+      "sourceDomains": [
+        {
+          "path": "spike/backend/src/codex-session.ts",
+          "sha256": "9076480ad5bcd0ad386c8678b0a972959bd9cf36f0c36556c5d6b9428c087d1e",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28a73448ff52f3aca5ed310d58f5fb5a2c52f759434a5ad5c016b961b991ea3d",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/backend/src/phone-mcp.ts",
+          "sha256": "49c4c5440cc1df97f2e7f30bd4026704f84679a9bae03d4bea05b264824f5f8f",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "36db33c32e565ec59bd6c0a5384e568b185920579c61356c90903ef244255617",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/run-stock.mjs",
+          "sha256": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "13263ca1302ce2fd0cd5a3b095485f62119a7b8a297389f820a7bff905508031",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/phone-mcp.test.mjs",
+          "sha256": "fe3c0dcdeaae07c9135667e91c47df0575c113f9f4f08dd8fe9a51b1775ba8c5",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "0a609fe1491feb08e261ac69d0d11971095764acadb7dda98859d46f766fdd08",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "relation": "identical"
+        },
+        {
+          "path": "spike/m3/runtime/codex-location-notification-a01.sh",
+          "sha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "relation": "identical"
+        }
+      ],
+      "deployedSourceHashes": {
+        "/opt/olea-m3-categories-a01/spike/tests/codex/run-stock.mjs": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-process.js": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-session.js": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/phone-mcp.js": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/process-tree.js": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+      }
+    },
+    "limits": [
+      "Last-known location age87578ms; no freshness/normal-user-grant claim.",
+      "Prior discovery ESRCH/unverified cleanup retained; new no-fault run is separate.",
+      "Five-delivery cap is per MCP helper instance, not a persistent allocation-wide security bound.",
+      "No stock-agent patch; full access has no same-UID filesystem credential isolation."
+    ]
+  },
+  {
+    "attemptId": "m3-categories-stop",
+    "caseId": "phone.stop",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T05:07:12.723Z",
+    "endedAt": "2026-11-11T05:12:37.778Z",
+    "summary": "Native STOP then denied notification read PHONE_STOPPED; separate private fixture oracle unchanged, phone/backend/Accessibility false. No revocation/rollback inference.",
+    "artifacts": [
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01.json",
+        "sha256": "e7a38c9e463beed8682b38f10d876df3da8fd5ca4fe51dcd2878d626fb650213"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01-native.json",
+        "sha256": "1fc3fc9cf7077420e5773ddc523b380b837ac41e45d74868abb21e04231351db"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-preflight-a01.json",
+        "sha256": "d47ec705135ad8b897a58538e355c6979c98d5c206ead49cadfd204b40af98d2"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-independent-a01.json",
+        "sha256": "31781776c5ca22e657897eb88a332732b7fafc4ab23cd8f72a5032333757b9d0"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/notification-oracle-a02.json",
+        "sha256": "4748b97a5db9db9777f3d28000805d7ad991ca3a82a56495a6904ff821a0d77e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-ledger-settlement-a01.json",
+        "sha256": "16777319813cc68e002e8757f702ca836acbadb004de7e2aa3f4916d5d91c030"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-allocation-claim-a01.json",
+        "sha256": "d4e2326b804919e6e161a7e188eeadaf8604b39a2a74d0db5c8720862c684c5e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-deployed-final-a01.json",
+        "sha256": "2cdbc521025cd22d692519d868df7632bf1b38ad4406938ad0e4aa7968719fb7"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_model_native_independent_outcome",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "accountingReference": "m3-categories-turn"
+    },
+    "execution": {
+      "accessMode": "full-access",
+      "filesystemIsolation": false,
+      "approvalPolicy": "never",
+      "targetSdk": 36,
+      "hostRealUid": 10216,
+      "fixtureRealUid": 10217,
+      "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+      "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986"
+    },
+    "provenance": {
+      "sourceCommit": "d176722",
+      "sourceDomains": [
+        {
+          "path": "spike/backend/src/codex-session.ts",
+          "sha256": "9076480ad5bcd0ad386c8678b0a972959bd9cf36f0c36556c5d6b9428c087d1e",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28a73448ff52f3aca5ed310d58f5fb5a2c52f759434a5ad5c016b961b991ea3d",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/backend/src/phone-mcp.ts",
+          "sha256": "49c4c5440cc1df97f2e7f30bd4026704f84679a9bae03d4bea05b264824f5f8f",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "36db33c32e565ec59bd6c0a5384e568b185920579c61356c90903ef244255617",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/run-stock.mjs",
+          "sha256": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "13263ca1302ce2fd0cd5a3b095485f62119a7b8a297389f820a7bff905508031",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/phone-mcp.test.mjs",
+          "sha256": "fe3c0dcdeaae07c9135667e91c47df0575c113f9f4f08dd8fe9a51b1775ba8c5",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "0a609fe1491feb08e261ac69d0d11971095764acadb7dda98859d46f766fdd08",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "relation": "identical"
+        },
+        {
+          "path": "spike/m3/runtime/codex-location-notification-a01.sh",
+          "sha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "relation": "identical"
+        }
+      ],
+      "deployedSourceHashes": {
+        "/opt/olea-m3-categories-a01/spike/tests/codex/run-stock.mjs": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-process.js": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-session.js": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/phone-mcp.js": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/process-tree.js": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+      }
+    },
+    "limits": [
+      "Last-known location age87578ms; no freshness/normal-user-grant claim.",
+      "Prior discovery ESRCH/unverified cleanup retained; new no-fault run is separate.",
+      "Five-delivery cap is per MCP helper instance, not a persistent allocation-wide security bound.",
+      "No stock-agent patch; full access has no same-UID filesystem credential isolation."
+    ]
+  },
+  {
+    "attemptId": "m3-categories-hashes",
+    "caseId": "preserve.recovery-hashes",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T05:07:12.723Z",
+    "endedAt": "2026-11-11T05:12:37.778Z",
+    "summary": "Seven prior canonical historical hashes identical after model turn/resume; corrected read-only hash diagnostic retained after shell-escaping failure. New canonical session artifacts hashed after resume only.",
+    "artifacts": [
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01.json",
+        "sha256": "e7a38c9e463beed8682b38f10d876df3da8fd5ca4fe51dcd2878d626fb650213"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/codex-location-notification-a01-native.json",
+        "sha256": "1fc3fc9cf7077420e5773ddc523b380b837ac41e45d74868abb21e04231351db"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-preflight-a01.json",
+        "sha256": "d47ec705135ad8b897a58538e355c6979c98d5c206ead49cadfd204b40af98d2"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-independent-a01.json",
+        "sha256": "31781776c5ca22e657897eb88a332732b7fafc4ab23cd8f72a5032333757b9d0"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/notification-oracle-a02.json",
+        "sha256": "4748b97a5db9db9777f3d28000805d7ad991ca3a82a56495a6904ff821a0d77e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-ledger-settlement-a01.json",
+        "sha256": "16777319813cc68e002e8757f702ca836acbadb004de7e2aa3f4916d5d91c030"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-allocation-claim-a01.json",
+        "sha256": "d4e2326b804919e6e161a7e188eeadaf8604b39a2a74d0db5c8720862c684c5e"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-deployed-final-a01.json",
+        "sha256": "2cdbc521025cd22d692519d868df7632bf1b38ad4406938ad0e4aa7968719fb7"
+      },
+      {
+        "path": "git:d176722:spike/m3/runtime/evidence/categories-session-preservation-a01.json",
+        "sha256": "e1b3a85a77e13471148c99f4a39faa7a394a6f543630f4934df9fabceb4d0b32"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_model_native_independent_outcome",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "accountingReference": "m3-categories-turn"
+    },
+    "execution": {
+      "accessMode": "full-access",
+      "filesystemIsolation": false,
+      "approvalPolicy": "never",
+      "targetSdk": 36,
+      "hostRealUid": 10216,
+      "fixtureRealUid": 10217,
+      "threadId": "01a1c900-c8ef-76e0-a2b3-258d748a325f",
+      "turnId": "01a1c900-cd9f-7963-a971-f1a44fa32986"
+    },
+    "provenance": {
+      "sourceCommit": "d176722",
+      "sourceDomains": [
+        {
+          "path": "spike/backend/src/codex-session.ts",
+          "sha256": "9076480ad5bcd0ad386c8678b0a972959bd9cf36f0c36556c5d6b9428c087d1e",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28a73448ff52f3aca5ed310d58f5fb5a2c52f759434a5ad5c016b961b991ea3d",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/backend/src/phone-mcp.ts",
+          "sha256": "49c4c5440cc1df97f2e7f30bd4026704f84679a9bae03d4bea05b264824f5f8f",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "36db33c32e565ec59bd6c0a5384e568b185920579c61356c90903ef244255617",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/run-stock.mjs",
+          "sha256": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "13263ca1302ce2fd0cd5a3b095485f62119a7b8a297389f820a7bff905508031",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/tests/codex/phone-mcp.test.mjs",
+          "sha256": "fe3c0dcdeaae07c9135667e91c47df0575c113f9f4f08dd8fe9a51b1775ba8c5",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "0a609fe1491feb08e261ac69d0d11971095764acadb7dda98859d46f766fdd08",
+          "relation": "compiled/deployed raw CRLF vs Git LF"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "sha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "b5742a993a0656ee4508a95640829096bae80f56de218b3df995007b8a7a2919",
+          "relation": "identical"
+        },
+        {
+          "path": "spike/m3/runtime/codex-location-notification-a01.sh",
+          "sha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "domain": "raw working-tree compiled/deployed/tested bytes",
+          "gitBlobSha256": "28e639e1347bd5790d907afd0a91d28b0d49876bf7b2bb5d9893cf735193587b",
+          "relation": "identical"
+        }
+      ],
+      "deployedSourceHashes": {
+        "/opt/olea-m3-categories-a01/spike/tests/codex/run-stock.mjs": "e63768b04c64635270ffdc1e9aa0a5da78ca43a3de011ad1d58e515132136859",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/backend.js": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-process.js": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/codex-session.js": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/phone-mcp.js": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/pi-process.js": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+        "/opt/olea-m3-categories-a01/spike/backend/dist/process-tree.js": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+      }
+    },
+    "limits": [
+      "Last-known location age87578ms; no freshness/normal-user-grant claim.",
+      "Prior discovery ESRCH/unverified cleanup retained; new no-fault run is separate.",
+      "Five-delivery cap is per MCP helper instance, not a persistent allocation-wide security bound.",
+      "No stock-agent patch; full access has no same-UID filesystem credential isolation."
+    ]
   }
 ]
