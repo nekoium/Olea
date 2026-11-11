@@ -21,6 +21,14 @@ After lineage verification manager assigned exclusive emulator mutation lease to
 
 Global prompt ledger remains 5/8 consumed, 3 unallocated. New workers have zero model prompt allocation. Deterministic prerequisites and grouped acceptance precede any explicit allocation. No automatic replay or extra spend. Only authorized secret source is absolute root `.setup/android-test-provider.local.json`, never displayed or included in argv/prompts/tracked logs/messages.
 
+## Communication and continuation
+
+Use bounded worker assignments with explicit completion conditions. A completed preparation or execution batch sends `worker_done`; its session remains open for the next assignment. Do not leave a dispatch open merely to wait for user consent or an unavailable evidence batch. Settling an assignment does not complete the manager checkpoint or transfer the emulator lease.
+
+Manager sends one follow-up assignment to the same retained session when the prerequisite arrives. Messages carry a decision, concrete blocker, ownership transfer or immutable result batch with commit, attempt paths and limits. Do not request acknowledgments, send baseline-only reminders, echo routine receipts to the user or repeatedly wake an unchanged blocked assignment. The manager presents a genuine user blocker once and resumes dependent work when the user supplies completion status. Continue independent work while any remains; do not invent work to keep a session visibly active.
+
+Current execution boundary: runtime preparation is saved through worker `97781dc` (root `6d54e8e`), final Android batch through worker `9c9554c` (root `2d5d9c0`), independent assessment root `6a85df1`. The runtime session retains its sole lease with no experiment in flight. Browser first-run choice, selected-folder grant and explicit capture consent remain required user inputs; after those, collect their volatile evidence before disruptive installation or recovery checks. Three model prompts remain unallocated. New user instruction or readiness starts the next bounded assignment; idle escalation alone does not.
+
 ## Current bounded checkpoint
 
 Resolve remaining PHONE_USE_TESTS categories using existing fixtures/oracles: intended URL destination, structured location/API, selected files/media, separate notification and explicit-consent capture. Preserve direct versus model-selected distinctions and development grants versus normal consent. Existing Pi/Codex causal Accessibility/cooperating-app proofs remain reusable.
