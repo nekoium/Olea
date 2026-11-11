@@ -18371,5 +18371,916 @@
       "Historical failures and reused-host request bug remain retained.",
       "Network partial-connectivity label retained; no general network-health claim."
     ]
+  },
+  {
+    "attemptId": "m3-final-seven-prereq-capture-race",
+    "caseId": "phone.direct.capture",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "fail",
+    "startedAt": "2026-11-11T07:13:06.859Z",
+    "endedAt": "2026-11-11T07:21:53.373Z",
+    "summary": "First direct rehearsal stopped after3calls when observer saved PNG hash disagreed with native capture_result during unsettled write; immutable first race retained. No model prompt.",
+    "artifacts": [
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-direct-a01.json",
+        "sha256": "186cfa850d8adf4dbbaf9f83ca1b45dd21aa2f766ba4723ce89aa447cdf9e659"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-capture-read-race-a01.json",
+        "sha256": "20a32c037343251a2b4b58492db1ec48d902507d669a1657c6eaf226d5907aa1"
+      }
+    ],
+    "assertions": [],
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "provenance": {
+      "sourceCommit": "1ad2f1d",
+      "installedArtifacts": [
+        {
+          "path": ".setup/runtime-host-request-a01.apk",
+          "sha256": "4e3cfbd24c79644946e5a774431aa7fb9455d916e35b48b27a7a7876160d17ff"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+          "sha256": "db4494e8b388204b104abb4149a4c8632b65d0796203a71928ef3c30bd6954f4"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+          "sha256": "85174d6b63d62d3a9355842f4677418550a8ee245c5f5cf91f65f4ad82296830"
+        }
+      ],
+      "deployed": [
+        {
+          "path": "spike/backend/extensions/phone.ts",
+          "expected": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19",
+          "actual": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19"
+        },
+        {
+          "path": "spike/tests/m2/pi-single.mjs",
+          "expected": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+          "actual": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90"
+        },
+        {
+          "path": "spike/tests/m2/assertions.mjs",
+          "expected": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186",
+          "actual": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186"
+        },
+        {
+          "path": "spike/tests/m2/evidence.mjs",
+          "expected": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009",
+          "actual": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009"
+        },
+        {
+          "path": "spike/tests/m2/observe-tree.mjs",
+          "expected": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7",
+          "actual": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "expected": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9",
+          "actual": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9"
+        },
+        {
+          "path": "spike/m3/runtime/final-seven-registration-a01.mjs",
+          "expected": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8",
+          "actual": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8"
+        },
+        {
+          "path": "spike/backend/dist/backend.js",
+          "expected": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+          "actual": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c"
+        },
+        {
+          "path": "spike/backend/dist/pi-process.js",
+          "expected": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+          "actual": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108"
+        },
+        {
+          "path": "spike/backend/dist/process-tree.js",
+          "expected": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c",
+          "actual": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+        },
+        {
+          "path": "spike/backend/dist/phone-mcp.js",
+          "expected": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+          "actual": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5"
+        },
+        {
+          "path": "spike/backend/dist/codex-process.js",
+          "expected": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+          "actual": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff"
+        },
+        {
+          "path": "spike/backend/dist/codex-session.js",
+          "expected": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+          "actual": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58"
+        },
+        {
+          "path": "spike/backend/dist/server.js",
+          "expected": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca",
+          "actual": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca"
+        }
+      ]
+    },
+    "limits": [
+      "Prerequisites/direct only, final model result pending.",
+      "Observer markers are public integration synchronization, not model image input or security isolation.",
+      "Earlier PNG race/anchor failures remain unchanged."
+    ]
+  },
+  {
+    "attemptId": "m3-final-seven-prereq-anchor-observer-failed",
+    "caseId": "phone.direct.capture",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "fail",
+    "startedAt": "2026-11-11T07:13:06.859Z",
+    "endedAt": "2026-11-11T07:21:53.373Z",
+    "summary": "Second direct rehearsal executed all7effects but final observer incorrectly selected latest prior capture as folder anchor; original failed conclusion retained. Read-only correction evaluates actual latest folder event with no repeated effects.",
+    "artifacts": [
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-direct-a02.json",
+        "sha256": "44a97eab83cf68e92230f9c4e0267b8936d50168505feda92034577fe6091ad5"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-readonly-correction-a01.json",
+        "sha256": "579f566b037c2dad58ea9d3dbfed5322db6b717497d6ff43a844a31114701372"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-precondition-state-a01.json",
+        "sha256": "65620e84864592839be6e83bb4397c286d74c314f62203764e08cdfaef989955"
+      }
+    ],
+    "assertions": [],
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "provenance": {
+      "sourceCommit": "1ad2f1d",
+      "installedArtifacts": [
+        {
+          "path": ".setup/runtime-host-request-a01.apk",
+          "sha256": "4e3cfbd24c79644946e5a774431aa7fb9455d916e35b48b27a7a7876160d17ff"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+          "sha256": "db4494e8b388204b104abb4149a4c8632b65d0796203a71928ef3c30bd6954f4"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+          "sha256": "85174d6b63d62d3a9355842f4677418550a8ee245c5f5cf91f65f4ad82296830"
+        }
+      ],
+      "deployed": [
+        {
+          "path": "spike/backend/extensions/phone.ts",
+          "expected": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19",
+          "actual": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19"
+        },
+        {
+          "path": "spike/tests/m2/pi-single.mjs",
+          "expected": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+          "actual": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90"
+        },
+        {
+          "path": "spike/tests/m2/assertions.mjs",
+          "expected": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186",
+          "actual": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186"
+        },
+        {
+          "path": "spike/tests/m2/evidence.mjs",
+          "expected": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009",
+          "actual": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009"
+        },
+        {
+          "path": "spike/tests/m2/observe-tree.mjs",
+          "expected": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7",
+          "actual": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "expected": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9",
+          "actual": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9"
+        },
+        {
+          "path": "spike/m3/runtime/final-seven-registration-a01.mjs",
+          "expected": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8",
+          "actual": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8"
+        },
+        {
+          "path": "spike/backend/dist/backend.js",
+          "expected": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+          "actual": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c"
+        },
+        {
+          "path": "spike/backend/dist/pi-process.js",
+          "expected": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+          "actual": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108"
+        },
+        {
+          "path": "spike/backend/dist/process-tree.js",
+          "expected": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c",
+          "actual": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+        },
+        {
+          "path": "spike/backend/dist/phone-mcp.js",
+          "expected": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+          "actual": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5"
+        },
+        {
+          "path": "spike/backend/dist/codex-process.js",
+          "expected": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+          "actual": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff"
+        },
+        {
+          "path": "spike/backend/dist/codex-session.js",
+          "expected": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+          "actual": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58"
+        },
+        {
+          "path": "spike/backend/dist/server.js",
+          "expected": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca",
+          "actual": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca"
+        }
+      ]
+    },
+    "limits": [
+      "Prerequisites/direct only, final model result pending.",
+      "Observer markers are public integration synchronization, not model image input or security isolation.",
+      "Earlier PNG race/anchor failures remain unchanged."
+    ]
+  },
+  {
+    "attemptId": "m3-final-seven-prereq-capture-request-reuse",
+    "caseId": "phone.direct.capture",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T07:13:06.859Z",
+    "endedAt": "2026-11-11T07:21:53.373Z",
+    "summary": "Actual native folder_request and capture_request each handled once by onNewIntent on same hosttask70/instance106243562; real picker/SystemUI consent followed. Fresh stable completePNG equals native hash; independent worker viewed exact harmless fixture text/blue pixels. Read-only audit correction proves one new capture event.",
+    "artifacts": [
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-direct-a02.json",
+        "sha256": "44a97eab83cf68e92230f9c4e0267b8936d50168505feda92034577fe6091ad5"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-readonly-correction-a01.json",
+        "sha256": "579f566b037c2dad58ea9d3dbfed5322db6b717497d6ff43a844a31114701372"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-precondition-state-a01.json",
+        "sha256": "65620e84864592839be6e83bb4397c286d74c314f62203764e08cdfaef989955"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-direct-a02-capture.png",
+        "sha256": "2e78828d76994a77771f67f9e82001c95fc3f277349b5616af3cb9f9d3d21427"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-direct-a02-capture.json",
+        "sha256": "017104276b958a6696dd48ce003ce0d3413f2c728d73716580e0346bcde193ca"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/complete-capture-consent.mjs",
+        "sha256": "bc2346fc46f99d9d94017114a68302b13b38ea744ae15f355b197b6cedfa5674"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/watch-final-capture.mjs",
+        "sha256": "9d516e21d54bda177af1acc2e5aed1905a9cd3835d52a8e6031f4f56dc1b8173"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_direct_native_oracle_or_stock_registration",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "provenance": {
+      "sourceCommit": "1ad2f1d",
+      "installedArtifacts": [
+        {
+          "path": ".setup/runtime-host-request-a01.apk",
+          "sha256": "4e3cfbd24c79644946e5a774431aa7fb9455d916e35b48b27a7a7876160d17ff"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+          "sha256": "db4494e8b388204b104abb4149a4c8632b65d0796203a71928ef3c30bd6954f4"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+          "sha256": "85174d6b63d62d3a9355842f4677418550a8ee245c5f5cf91f65f4ad82296830"
+        }
+      ],
+      "deployed": [
+        {
+          "path": "spike/backend/extensions/phone.ts",
+          "expected": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19",
+          "actual": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19"
+        },
+        {
+          "path": "spike/tests/m2/pi-single.mjs",
+          "expected": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+          "actual": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90"
+        },
+        {
+          "path": "spike/tests/m2/assertions.mjs",
+          "expected": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186",
+          "actual": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186"
+        },
+        {
+          "path": "spike/tests/m2/evidence.mjs",
+          "expected": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009",
+          "actual": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009"
+        },
+        {
+          "path": "spike/tests/m2/observe-tree.mjs",
+          "expected": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7",
+          "actual": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "expected": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9",
+          "actual": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9"
+        },
+        {
+          "path": "spike/m3/runtime/final-seven-registration-a01.mjs",
+          "expected": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8",
+          "actual": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8"
+        },
+        {
+          "path": "spike/backend/dist/backend.js",
+          "expected": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+          "actual": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c"
+        },
+        {
+          "path": "spike/backend/dist/pi-process.js",
+          "expected": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+          "actual": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108"
+        },
+        {
+          "path": "spike/backend/dist/process-tree.js",
+          "expected": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c",
+          "actual": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+        },
+        {
+          "path": "spike/backend/dist/phone-mcp.js",
+          "expected": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+          "actual": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5"
+        },
+        {
+          "path": "spike/backend/dist/codex-process.js",
+          "expected": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+          "actual": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff"
+        },
+        {
+          "path": "spike/backend/dist/codex-session.js",
+          "expected": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+          "actual": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58"
+        },
+        {
+          "path": "spike/backend/dist/server.js",
+          "expected": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca",
+          "actual": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca"
+        }
+      ]
+    },
+    "limits": [
+      "Prerequisites/direct only, final model result pending.",
+      "Observer markers are public integration synchronization, not model image input or security isolation.",
+      "Earlier PNG race/anchor failures remain unchanged."
+    ]
+  },
+  {
+    "attemptId": "m3-final-seven-prereq-files",
+    "caseId": "phone.direct.files-media",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T07:13:06.859Z",
+    "endedAt": "2026-11-11T07:21:53.373Z",
+    "summary": "Seven-call rehearsal fresh selected-folder value exactly matches independent storage/SHA256 under Documents/OleaM3 after actual reselected SAF consent; no destructive restart since reselection.",
+    "artifacts": [
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-direct-a02.json",
+        "sha256": "44a97eab83cf68e92230f9c4e0267b8936d50168505feda92034577fe6091ad5"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-readonly-correction-a01.json",
+        "sha256": "579f566b037c2dad58ea9d3dbfed5322db6b717497d6ff43a844a31114701372"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-precondition-state-a01.json",
+        "sha256": "65620e84864592839be6e83bb4397c286d74c314f62203764e08cdfaef989955"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_direct_native_oracle_or_stock_registration",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "provenance": {
+      "sourceCommit": "1ad2f1d",
+      "installedArtifacts": [
+        {
+          "path": ".setup/runtime-host-request-a01.apk",
+          "sha256": "4e3cfbd24c79644946e5a774431aa7fb9455d916e35b48b27a7a7876160d17ff"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+          "sha256": "db4494e8b388204b104abb4149a4c8632b65d0796203a71928ef3c30bd6954f4"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+          "sha256": "85174d6b63d62d3a9355842f4677418550a8ee245c5f5cf91f65f4ad82296830"
+        }
+      ],
+      "deployed": [
+        {
+          "path": "spike/backend/extensions/phone.ts",
+          "expected": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19",
+          "actual": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19"
+        },
+        {
+          "path": "spike/tests/m2/pi-single.mjs",
+          "expected": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+          "actual": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90"
+        },
+        {
+          "path": "spike/tests/m2/assertions.mjs",
+          "expected": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186",
+          "actual": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186"
+        },
+        {
+          "path": "spike/tests/m2/evidence.mjs",
+          "expected": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009",
+          "actual": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009"
+        },
+        {
+          "path": "spike/tests/m2/observe-tree.mjs",
+          "expected": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7",
+          "actual": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "expected": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9",
+          "actual": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9"
+        },
+        {
+          "path": "spike/m3/runtime/final-seven-registration-a01.mjs",
+          "expected": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8",
+          "actual": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8"
+        },
+        {
+          "path": "spike/backend/dist/backend.js",
+          "expected": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+          "actual": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c"
+        },
+        {
+          "path": "spike/backend/dist/pi-process.js",
+          "expected": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+          "actual": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108"
+        },
+        {
+          "path": "spike/backend/dist/process-tree.js",
+          "expected": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c",
+          "actual": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+        },
+        {
+          "path": "spike/backend/dist/phone-mcp.js",
+          "expected": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+          "actual": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5"
+        },
+        {
+          "path": "spike/backend/dist/codex-process.js",
+          "expected": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+          "actual": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff"
+        },
+        {
+          "path": "spike/backend/dist/codex-session.js",
+          "expected": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+          "actual": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58"
+        },
+        {
+          "path": "spike/backend/dist/server.js",
+          "expected": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca",
+          "actual": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca"
+        }
+      ]
+    },
+    "limits": [
+      "Prerequisites/direct only, final model result pending.",
+      "Observer markers are public integration synchronization, not model image input or security isolation.",
+      "Earlier PNG race/anchor failures remain unchanged."
+    ]
+  },
+  {
+    "attemptId": "m3-final-seven-prereq-notification",
+    "caseId": "phone.direct.notification",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T07:13:06.859Z",
+    "endedAt": "2026-11-11T07:21:53.373Z",
+    "summary": "Exact seven-call rehearsal empty listener becomes one expected separateUIDfixture notification with one new handler event; direct repaired fixture proof only, historical failed Pi model read unchanged.",
+    "artifacts": [
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-direct-a02.json",
+        "sha256": "44a97eab83cf68e92230f9c4e0267b8936d50168505feda92034577fe6091ad5"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-readonly-correction-a01.json",
+        "sha256": "579f566b037c2dad58ea9d3dbfed5322db6b717497d6ff43a844a31114701372"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-precondition-state-a01.json",
+        "sha256": "65620e84864592839be6e83bb4397c286d74c314f62203764e08cdfaef989955"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_direct_native_oracle_or_stock_registration",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "provenance": {
+      "sourceCommit": "1ad2f1d",
+      "installedArtifacts": [
+        {
+          "path": ".setup/runtime-host-request-a01.apk",
+          "sha256": "4e3cfbd24c79644946e5a774431aa7fb9455d916e35b48b27a7a7876160d17ff"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+          "sha256": "db4494e8b388204b104abb4149a4c8632b65d0796203a71928ef3c30bd6954f4"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+          "sha256": "85174d6b63d62d3a9355842f4677418550a8ee245c5f5cf91f65f4ad82296830"
+        }
+      ],
+      "deployed": [
+        {
+          "path": "spike/backend/extensions/phone.ts",
+          "expected": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19",
+          "actual": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19"
+        },
+        {
+          "path": "spike/tests/m2/pi-single.mjs",
+          "expected": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+          "actual": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90"
+        },
+        {
+          "path": "spike/tests/m2/assertions.mjs",
+          "expected": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186",
+          "actual": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186"
+        },
+        {
+          "path": "spike/tests/m2/evidence.mjs",
+          "expected": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009",
+          "actual": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009"
+        },
+        {
+          "path": "spike/tests/m2/observe-tree.mjs",
+          "expected": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7",
+          "actual": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "expected": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9",
+          "actual": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9"
+        },
+        {
+          "path": "spike/m3/runtime/final-seven-registration-a01.mjs",
+          "expected": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8",
+          "actual": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8"
+        },
+        {
+          "path": "spike/backend/dist/backend.js",
+          "expected": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+          "actual": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c"
+        },
+        {
+          "path": "spike/backend/dist/pi-process.js",
+          "expected": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+          "actual": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108"
+        },
+        {
+          "path": "spike/backend/dist/process-tree.js",
+          "expected": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c",
+          "actual": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+        },
+        {
+          "path": "spike/backend/dist/phone-mcp.js",
+          "expected": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+          "actual": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5"
+        },
+        {
+          "path": "spike/backend/dist/codex-process.js",
+          "expected": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+          "actual": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff"
+        },
+        {
+          "path": "spike/backend/dist/codex-session.js",
+          "expected": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+          "actual": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58"
+        },
+        {
+          "path": "spike/backend/dist/server.js",
+          "expected": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca",
+          "actual": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca"
+        }
+      ]
+    },
+    "limits": [
+      "Prerequisites/direct only, final model result pending.",
+      "Observer markers are public integration synchronization, not model image input or security isolation.",
+      "Earlier PNG race/anchor failures remain unchanged."
+    ]
+  },
+  {
+    "attemptId": "m3-final-seven-prereq-url",
+    "caseId": "phone.direct.intent-url",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T07:13:06.859Z",
+    "endedAt": "2026-11-11T07:21:53.373Z",
+    "summary": "Exact seven-call order ends at supplied secure Example Domain URL after fixture capture/notification without foreground-host rescue. Development Accessibility enabled for this measured launch condition then restored.",
+    "artifacts": [
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-direct-a02.json",
+        "sha256": "44a97eab83cf68e92230f9c4e0267b8936d50168505feda92034577fe6091ad5"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-readonly-correction-a01.json",
+        "sha256": "579f566b037c2dad58ea9d3dbfed5322db6b717497d6ff43a844a31114701372"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-precondition-state-a01.json",
+        "sha256": "65620e84864592839be6e83bb4397c286d74c314f62203764e08cdfaef989955"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-direct-a02-url-0-ui.xml",
+        "sha256": "19a97b87b506a5eca5eea0084dc493ede0771f9fc328f867ac495e25fe75d265"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_direct_native_oracle_or_stock_registration",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "provenance": {
+      "sourceCommit": "1ad2f1d",
+      "installedArtifacts": [
+        {
+          "path": ".setup/runtime-host-request-a01.apk",
+          "sha256": "4e3cfbd24c79644946e5a774431aa7fb9455d916e35b48b27a7a7876160d17ff"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+          "sha256": "db4494e8b388204b104abb4149a4c8632b65d0796203a71928ef3c30bd6954f4"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+          "sha256": "85174d6b63d62d3a9355842f4677418550a8ee245c5f5cf91f65f4ad82296830"
+        }
+      ],
+      "deployed": [
+        {
+          "path": "spike/backend/extensions/phone.ts",
+          "expected": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19",
+          "actual": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19"
+        },
+        {
+          "path": "spike/tests/m2/pi-single.mjs",
+          "expected": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+          "actual": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90"
+        },
+        {
+          "path": "spike/tests/m2/assertions.mjs",
+          "expected": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186",
+          "actual": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186"
+        },
+        {
+          "path": "spike/tests/m2/evidence.mjs",
+          "expected": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009",
+          "actual": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009"
+        },
+        {
+          "path": "spike/tests/m2/observe-tree.mjs",
+          "expected": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7",
+          "actual": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "expected": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9",
+          "actual": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9"
+        },
+        {
+          "path": "spike/m3/runtime/final-seven-registration-a01.mjs",
+          "expected": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8",
+          "actual": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8"
+        },
+        {
+          "path": "spike/backend/dist/backend.js",
+          "expected": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+          "actual": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c"
+        },
+        {
+          "path": "spike/backend/dist/pi-process.js",
+          "expected": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+          "actual": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108"
+        },
+        {
+          "path": "spike/backend/dist/process-tree.js",
+          "expected": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c",
+          "actual": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+        },
+        {
+          "path": "spike/backend/dist/phone-mcp.js",
+          "expected": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+          "actual": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5"
+        },
+        {
+          "path": "spike/backend/dist/codex-process.js",
+          "expected": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+          "actual": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff"
+        },
+        {
+          "path": "spike/backend/dist/codex-session.js",
+          "expected": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+          "actual": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58"
+        },
+        {
+          "path": "spike/backend/dist/server.js",
+          "expected": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca",
+          "actual": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca"
+        }
+      ]
+    },
+    "limits": [
+      "Prerequisites/direct only, final model result pending.",
+      "Observer markers are public integration synchronization, not model image input or security isolation.",
+      "Earlier PNG race/anchor failures remain unchanged."
+    ]
+  },
+  {
+    "attemptId": "m3-final-seven-prereq-registration-cleanup",
+    "caseId": "cost.cleanup",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T07:13:06.859Z",
+    "endedAt": "2026-11-11T07:21:53.373Z",
+    "summary": "Actual synthetic-provider stockPi1point5point2 no-model registration exposes exactly7selected/active tools/max7calls with0phonecalls; native root/fourtrackedidentities independently absent, nofault. Six affected policy/prompt tests retained, not rerun.",
+    "artifacts": [
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-registration-a01.json",
+        "sha256": "5304e9ac7bc0b3ab64439fd23dfdd835683773b7bc8b52b5744be3067816ddad"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-registration-a01-native.json",
+        "sha256": "8fe0f51926d3f3b8fd8d99930c33c29589781f25c3591af419ea0c919e617a6b"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-precondition-state-a01.json",
+        "sha256": "65620e84864592839be6e83bb4397c286d74c314f62203764e08cdfaef989955"
+      },
+      {
+        "path": "git:1ad2f1d:spike/m3/runtime/evidence/final-seven-policy-tests-a01.txt",
+        "sha256": "0c00bc3fe74329efdf584b495b3c1aa66fcfae7a4a5229b977d407263092e50e"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "immutable_direct_native_oracle_or_stock_registration",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "provenance": {
+      "sourceCommit": "1ad2f1d",
+      "installedArtifacts": [
+        {
+          "path": ".setup/runtime-host-request-a01.apk",
+          "sha256": "4e3cfbd24c79644946e5a774431aa7fb9455d916e35b48b27a7a7876160d17ff"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+          "sha256": "db4494e8b388204b104abb4149a4c8632b65d0796203a71928ef3c30bd6954f4"
+        },
+        {
+          "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+          "sha256": "85174d6b63d62d3a9355842f4677418550a8ee245c5f5cf91f65f4ad82296830"
+        }
+      ],
+      "deployed": [
+        {
+          "path": "spike/backend/extensions/phone.ts",
+          "expected": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19",
+          "actual": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19"
+        },
+        {
+          "path": "spike/tests/m2/pi-single.mjs",
+          "expected": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+          "actual": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90"
+        },
+        {
+          "path": "spike/tests/m2/assertions.mjs",
+          "expected": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186",
+          "actual": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186"
+        },
+        {
+          "path": "spike/tests/m2/evidence.mjs",
+          "expected": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009",
+          "actual": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009"
+        },
+        {
+          "path": "spike/tests/m2/observe-tree.mjs",
+          "expected": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7",
+          "actual": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7"
+        },
+        {
+          "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+          "expected": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9",
+          "actual": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9"
+        },
+        {
+          "path": "spike/m3/runtime/final-seven-registration-a01.mjs",
+          "expected": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8",
+          "actual": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8"
+        },
+        {
+          "path": "spike/backend/dist/backend.js",
+          "expected": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+          "actual": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c"
+        },
+        {
+          "path": "spike/backend/dist/pi-process.js",
+          "expected": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+          "actual": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108"
+        },
+        {
+          "path": "spike/backend/dist/process-tree.js",
+          "expected": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c",
+          "actual": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c"
+        },
+        {
+          "path": "spike/backend/dist/phone-mcp.js",
+          "expected": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+          "actual": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5"
+        },
+        {
+          "path": "spike/backend/dist/codex-process.js",
+          "expected": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+          "actual": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff"
+        },
+        {
+          "path": "spike/backend/dist/codex-session.js",
+          "expected": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+          "actual": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58"
+        },
+        {
+          "path": "spike/backend/dist/server.js",
+          "expected": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca",
+          "actual": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca"
+        }
+      ]
+    },
+    "limits": [
+      "Prerequisites/direct only, final model result pending.",
+      "Observer markers are public integration synchronization, not model image input or security isolation.",
+      "Earlier PNG race/anchor failures remain unchanged."
+    ]
   }
 ]
