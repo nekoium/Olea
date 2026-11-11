@@ -1,0 +1,510 @@
+{
+  "sourceCommit": "574fac6",
+  "receipts": [
+    {
+      "attemptId": "m3-fixture-reuse-a01",
+      "caseId": "phone.direct.notification",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "fail",
+      "startedAt": "2026-11-11T05:33:44.735Z",
+      "endedAt": "2026-11-11T05:38:36.155Z",
+      "summary": "Observer compared host/device clocks after one delivered anchor and failed timestamp assertion; anchor independently retained, no repost.",
+      "artifacts": [
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-final-state-a01.json",
+          "sha256": "45b5f69d40328020c6da4bd6cb5c9451847e38c358d39b987f625a91ef4b1d40"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-preservation-a01.json",
+          "sha256": "4c29ce4c4f4625fbf10403abc63d1358426a3556dfc27dc68ab76ed3329dca7a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-anchor-observed-a01.json",
+          "sha256": "6c49acae6769f69430c0940d25fbc9a21d335088b160c932427b9cfd5868155a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/runtime-before-fixture-caller.json",
+          "sha256": "16833e7d7e140f5d14b257e9cb157a1b2ade1d193234628824423dd982826c2d"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/fixture-reuse-direct-a01.mjs",
+          "sha256": "eb7144271b121d866eb7f5bfd882b9c680fc08c2aa914b0cb290c47b2341fec9"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/FIXTURE_REUSE_REPAIR.md",
+          "sha256": "a3db95aaa5a3b9e5706edf7a54e80dcddece5d01a09e2a0bc9d08a7fc8b83168"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-direct-a01.json",
+          "sha256": "d3f6abdba839d2ed578dfb621ecb9cb7048312be0bd35cdca41e47620f72b756"
+        }
+      ],
+      "assertions": [],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "574fac6",
+        "artifacts": [
+          {
+            "path": ".setup/fixture-reuse-a01.apk",
+            "sha256": "42f255f6e4282a0464727d223f55c708c991f8edf6bbc89ec5d93f9c4bba8820",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": ".setup/runtime-fixture-caller-a01.apk",
+            "sha256": "bbf670ffbe0c40e47672d446477d9502fcee059766b47a1f65393ee4b18bc3ee",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/java/dev/olea/fixture/FixtureActivity.kt",
+            "sha256": "bdc64c1a84db4fce99bb9ead44e8a3518741772c98c0cfff331c339e948a727a",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+            "sha256": "627bfbab8c1ab4d19c4a7fb37df128e86a4dfca41d6b06928731e8b518170d66",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/AndroidManifest.xml",
+            "sha256": "283da2c8155c31f02f6a75179e2f9c65ca15703c069a4dce72d20badc6e5c69a",
+            "domain": "compiled/source raw working-tree bytes"
+          }
+        ]
+      },
+      "limits": [
+        "Direct new deliveries only; original failed Pi notification remains failed.",
+        "Same task/instance reuse proved twice, not arbitrary app reliability.",
+        "Observer failures and distinct effect attempts retained; no inferred passes from dispatch."
+      ]
+    },
+    {
+      "attemptId": "m3-fixture-reuse-a02",
+      "caseId": "phone.direct.notification",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "fail",
+      "startedAt": "2026-11-11T05:35:08.678Z",
+      "endedAt": "2026-11-11T05:38:36.155Z",
+      "summary": "Observer foreground precondition failed before effect request after host restart; zero posts.",
+      "artifacts": [
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-final-state-a01.json",
+          "sha256": "45b5f69d40328020c6da4bd6cb5c9451847e38c358d39b987f625a91ef4b1d40"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-preservation-a01.json",
+          "sha256": "4c29ce4c4f4625fbf10403abc63d1358426a3556dfc27dc68ab76ed3329dca7a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-anchor-observed-a01.json",
+          "sha256": "6c49acae6769f69430c0940d25fbc9a21d335088b160c932427b9cfd5868155a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/runtime-before-fixture-caller.json",
+          "sha256": "16833e7d7e140f5d14b257e9cb157a1b2ade1d193234628824423dd982826c2d"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/fixture-reuse-direct-a01.mjs",
+          "sha256": "eb7144271b121d866eb7f5bfd882b9c680fc08c2aa914b0cb290c47b2341fec9"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/FIXTURE_REUSE_REPAIR.md",
+          "sha256": "a3db95aaa5a3b9e5706edf7a54e80dcddece5d01a09e2a0bc9d08a7fc8b83168"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-direct-a02.json",
+          "sha256": "5dabe5bffe3c77e0e7c56eb23caed13b7ec249ac9687ca22317fbfa6ed26385f"
+        }
+      ],
+      "assertions": [],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "574fac6",
+        "artifacts": [
+          {
+            "path": ".setup/fixture-reuse-a01.apk",
+            "sha256": "42f255f6e4282a0464727d223f55c708c991f8edf6bbc89ec5d93f9c4bba8820",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": ".setup/runtime-fixture-caller-a01.apk",
+            "sha256": "bbf670ffbe0c40e47672d446477d9502fcee059766b47a1f65393ee4b18bc3ee",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/java/dev/olea/fixture/FixtureActivity.kt",
+            "sha256": "bdc64c1a84db4fce99bb9ead44e8a3518741772c98c0cfff331c339e948a727a",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+            "sha256": "627bfbab8c1ab4d19c4a7fb37df128e86a4dfca41d6b06928731e8b518170d66",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/AndroidManifest.xml",
+            "sha256": "283da2c8155c31f02f6a75179e2f9c65ca15703c069a4dce72d20badc6e5c69a",
+            "domain": "compiled/source raw working-tree bytes"
+          }
+        ]
+      },
+      "limits": [
+        "Direct new deliveries only; original failed Pi notification remains failed.",
+        "Same task/instance reuse proved twice, not arbitrary app reliability.",
+        "Observer failures and distinct effect attempts retained; no inferred passes from dispatch."
+      ]
+    },
+    {
+      "attemptId": "m3-fixture-reuse-a03",
+      "caseId": "phone.direct.notification",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "fail",
+      "startedAt": "2026-11-11T05:35:34.827Z",
+      "endedAt": "2026-11-11T05:38:36.155Z",
+      "summary": "Actual old NEW_TASK-only reuse request dispatched but appended no handler event; direct failure retained before caller SINGLE_TOP fix.",
+      "artifacts": [
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-final-state-a01.json",
+          "sha256": "45b5f69d40328020c6da4bd6cb5c9451847e38c358d39b987f625a91ef4b1d40"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-preservation-a01.json",
+          "sha256": "4c29ce4c4f4625fbf10403abc63d1358426a3556dfc27dc68ab76ed3329dca7a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-anchor-observed-a01.json",
+          "sha256": "6c49acae6769f69430c0940d25fbc9a21d335088b160c932427b9cfd5868155a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/runtime-before-fixture-caller.json",
+          "sha256": "16833e7d7e140f5d14b257e9cb157a1b2ade1d193234628824423dd982826c2d"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/fixture-reuse-direct-a01.mjs",
+          "sha256": "eb7144271b121d866eb7f5bfd882b9c680fc08c2aa914b0cb290c47b2341fec9"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/FIXTURE_REUSE_REPAIR.md",
+          "sha256": "a3db95aaa5a3b9e5706edf7a54e80dcddece5d01a09e2a0bc9d08a7fc8b83168"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-direct-a03.json",
+          "sha256": "5c8ca91048cb2af9281a47086d02fb7172e636c00609fa66c08c538f3b15c13d"
+        }
+      ],
+      "assertions": [],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "574fac6",
+        "artifacts": [
+          {
+            "path": ".setup/fixture-reuse-a01.apk",
+            "sha256": "42f255f6e4282a0464727d223f55c708c991f8edf6bbc89ec5d93f9c4bba8820",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": ".setup/runtime-fixture-caller-a01.apk",
+            "sha256": "bbf670ffbe0c40e47672d446477d9502fcee059766b47a1f65393ee4b18bc3ee",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/java/dev/olea/fixture/FixtureActivity.kt",
+            "sha256": "bdc64c1a84db4fce99bb9ead44e8a3518741772c98c0cfff331c339e948a727a",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+            "sha256": "627bfbab8c1ab4d19c4a7fb37df128e86a4dfca41d6b06928731e8b518170d66",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/AndroidManifest.xml",
+            "sha256": "283da2c8155c31f02f6a75179e2f9c65ca15703c069a4dce72d20badc6e5c69a",
+            "domain": "compiled/source raw working-tree bytes"
+          }
+        ]
+      },
+      "limits": [
+        "Direct new deliveries only; original failed Pi notification remains failed.",
+        "Same task/instance reuse proved twice, not arbitrary app reliability.",
+        "Observer failures and distinct effect attempts retained; no inferred passes from dispatch."
+      ]
+    },
+    {
+      "attemptId": "m3-fixture-reuse-a04",
+      "caseId": "phone.direct.notification",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "fail",
+      "startedAt": "2026-11-11T05:36:54.824Z",
+      "endedAt": "2026-11-11T05:38:36.155Z",
+      "summary": "Native readiness fetch/cleanup failed at fixed startup delay after upgrade; zero posts; subsequent bounded readiness observations retained.",
+      "artifacts": [
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-final-state-a01.json",
+          "sha256": "45b5f69d40328020c6da4bd6cb5c9451847e38c358d39b987f625a91ef4b1d40"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-preservation-a01.json",
+          "sha256": "4c29ce4c4f4625fbf10403abc63d1358426a3556dfc27dc68ab76ed3329dca7a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-anchor-observed-a01.json",
+          "sha256": "6c49acae6769f69430c0940d25fbc9a21d335088b160c932427b9cfd5868155a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/runtime-before-fixture-caller.json",
+          "sha256": "16833e7d7e140f5d14b257e9cb157a1b2ade1d193234628824423dd982826c2d"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/fixture-reuse-direct-a01.mjs",
+          "sha256": "eb7144271b121d866eb7f5bfd882b9c680fc08c2aa914b0cb290c47b2341fec9"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/FIXTURE_REUSE_REPAIR.md",
+          "sha256": "a3db95aaa5a3b9e5706edf7a54e80dcddece5d01a09e2a0bc9d08a7fc8b83168"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-direct-a04.json",
+          "sha256": "54f45ce127635cba57edaf59f169ce5b08b8260a60891d1a93524edc2b563cbe"
+        }
+      ],
+      "assertions": [],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "574fac6",
+        "artifacts": [
+          {
+            "path": ".setup/fixture-reuse-a01.apk",
+            "sha256": "42f255f6e4282a0464727d223f55c708c991f8edf6bbc89ec5d93f9c4bba8820",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": ".setup/runtime-fixture-caller-a01.apk",
+            "sha256": "bbf670ffbe0c40e47672d446477d9502fcee059766b47a1f65393ee4b18bc3ee",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/java/dev/olea/fixture/FixtureActivity.kt",
+            "sha256": "bdc64c1a84db4fce99bb9ead44e8a3518741772c98c0cfff331c339e948a727a",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+            "sha256": "627bfbab8c1ab4d19c4a7fb37df128e86a4dfca41d6b06928731e8b518170d66",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/AndroidManifest.xml",
+            "sha256": "283da2c8155c31f02f6a75179e2f9c65ca15703c069a4dce72d20badc6e5c69a",
+            "domain": "compiled/source raw working-tree bytes"
+          }
+        ]
+      },
+      "limits": [
+        "Direct new deliveries only; original failed Pi notification remains failed.",
+        "Same task/instance reuse proved twice, not arbitrary app reliability.",
+        "Observer failures and distinct effect attempts retained; no inferred passes from dispatch."
+      ]
+    },
+    {
+      "attemptId": "m3-fixture-reuse-a05",
+      "caseId": "phone.direct.notification",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T05:37:50.862Z",
+      "endedAt": "2026-11-11T05:38:36.155Z",
+      "summary": "Two distinct new direct requests with NEW_TASK|SINGLE_TOP each ran exactlyone onNewIntent handler and added onelistener entry/fresh separateUID10217notification update while same task60/instance235237402/ActivityRecord117965953 persisted. Positive host private-oracle read denial and unchanged private hash/manifest retained; no Pi model replay.",
+      "artifacts": [
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-final-state-a01.json",
+          "sha256": "45b5f69d40328020c6da4bd6cb5c9451847e38c358d39b987f625a91ef4b1d40"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-preservation-a01.json",
+          "sha256": "4c29ce4c4f4625fbf10403abc63d1358426a3556dfc27dc68ab76ed3329dca7a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-anchor-observed-a01.json",
+          "sha256": "6c49acae6769f69430c0940d25fbc9a21d335088b160c932427b9cfd5868155a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/runtime-before-fixture-caller.json",
+          "sha256": "16833e7d7e140f5d14b257e9cb157a1b2ade1d193234628824423dd982826c2d"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/fixture-reuse-direct-a01.mjs",
+          "sha256": "eb7144271b121d866eb7f5bfd882b9c680fc08c2aa914b0cb290c47b2341fec9"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/FIXTURE_REUSE_REPAIR.md",
+          "sha256": "a3db95aaa5a3b9e5706edf7a54e80dcddece5d01a09e2a0bc9d08a7fc8b83168"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-direct-a05.json",
+          "sha256": "f231daecc6e5291950ec15c02ef31652adc3116ff957594faa8da3bd2ff5cb08"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "independent_same_instance_handler_listener_notification_or_preservation",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "574fac6",
+        "artifacts": [
+          {
+            "path": ".setup/fixture-reuse-a01.apk",
+            "sha256": "42f255f6e4282a0464727d223f55c708c991f8edf6bbc89ec5d93f9c4bba8820",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": ".setup/runtime-fixture-caller-a01.apk",
+            "sha256": "bbf670ffbe0c40e47672d446477d9502fcee059766b47a1f65393ee4b18bc3ee",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/java/dev/olea/fixture/FixtureActivity.kt",
+            "sha256": "bdc64c1a84db4fce99bb9ead44e8a3518741772c98c0cfff331c339e948a727a",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+            "sha256": "627bfbab8c1ab4d19c4a7fb37df128e86a4dfca41d6b06928731e8b518170d66",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/AndroidManifest.xml",
+            "sha256": "283da2c8155c31f02f6a75179e2f9c65ca15703c069a4dce72d20badc6e5c69a",
+            "domain": "compiled/source raw working-tree bytes"
+          }
+        ]
+      },
+      "limits": [
+        "Direct new deliveries only; original failed Pi notification remains failed.",
+        "Same task/instance reuse proved twice, not arbitrary app reliability.",
+        "Observer failures and distinct effect attempts retained; no inferred passes from dispatch."
+      ]
+    },
+    {
+      "attemptId": "m3-fixture-reuse-preservation",
+      "caseId": "preserve.recovery-hashes",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T05:37:50.862Z",
+      "endedAt": "2026-11-11T05:38:36.155Z",
+      "summary": "Seven historical canonical file hashes unchanged through install-r fixture/native caller upgrades and direct deliveries; old APKs preserved, protected modes600, no uninstall/reset.",
+      "artifacts": [
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-final-state-a01.json",
+          "sha256": "45b5f69d40328020c6da4bd6cb5c9451847e38c358d39b987f625a91ef4b1d40"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-preservation-a01.json",
+          "sha256": "4c29ce4c4f4625fbf10403abc63d1358426a3556dfc27dc68ab76ed3329dca7a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-anchor-observed-a01.json",
+          "sha256": "6c49acae6769f69430c0940d25fbc9a21d335088b160c932427b9cfd5868155a"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/runtime-before-fixture-caller.json",
+          "sha256": "16833e7d7e140f5d14b257e9cb157a1b2ade1d193234628824423dd982826c2d"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/fixture-reuse-direct-a01.mjs",
+          "sha256": "eb7144271b121d866eb7f5bfd882b9c680fc08c2aa914b0cb290c47b2341fec9"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/FIXTURE_REUSE_REPAIR.md",
+          "sha256": "a3db95aaa5a3b9e5706edf7a54e80dcddece5d01a09e2a0bc9d08a7fc8b83168"
+        },
+        {
+          "path": "git:574fac6:spike/m3/runtime/evidence/fixture-reuse-direct-a05.json",
+          "sha256": "f231daecc6e5291950ec15c02ef31652adc3116ff957594faa8da3bd2ff5cb08"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "independent_same_instance_handler_listener_notification_or_preservation",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "574fac6",
+        "artifacts": [
+          {
+            "path": ".setup/fixture-reuse-a01.apk",
+            "sha256": "42f255f6e4282a0464727d223f55c708c991f8edf6bbc89ec5d93f9c4bba8820",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": ".setup/runtime-fixture-caller-a01.apk",
+            "sha256": "bbf670ffbe0c40e47672d446477d9502fcee059766b47a1f65393ee4b18bc3ee",
+            "domain": "built and installed APK raw bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/java/dev/olea/fixture/FixtureActivity.kt",
+            "sha256": "bdc64c1a84db4fce99bb9ead44e8a3518741772c98c0cfff331c339e948a727a",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+            "sha256": "627bfbab8c1ab4d19c4a7fb37df128e86a4dfca41d6b06928731e8b518170d66",
+            "domain": "compiled/source raw working-tree bytes"
+          },
+          {
+            "path": "spike/android/fixture/src/main/AndroidManifest.xml",
+            "sha256": "283da2c8155c31f02f6a75179e2f9c65ca15703c069a4dce72d20badc6e5c69a",
+            "domain": "compiled/source raw working-tree bytes"
+          }
+        ]
+      },
+      "limits": [
+        "Direct new deliveries only; original failed Pi notification remains failed.",
+        "Same task/instance reuse proved twice, not arbitrary app reliability.",
+        "Observer failures and distinct effect attempts retained; no inferred passes from dispatch."
+      ]
+    }
+  ],
+  "distinctRequests": {
+    "anchor": 1,
+    "ignoredOldFlags": 1,
+    "finalReuse": 2,
+    "total": 4,
+    "successfulNewHandlerEvents": 3
+  },
+  "modelNotification": "original Pi failure retained",
+  "budget": {
+    "consumed": 7,
+    "unallocated": 1,
+    "assessmentConsumed": 0
+  }
+}
