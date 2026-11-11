@@ -1,0 +1,773 @@
+{
+  "attempt": "m4-backend-original-a02",
+  "at": "2026-11-11T08:02:57.065Z",
+  "modelRequests": 0,
+  "events": [
+    {
+      "type": "ready",
+      "protocol": 1,
+      "maxSessions": 2,
+      "pid": 14985
+    },
+    {
+      "type": "event",
+      "agent": "pi",
+      "session": "m4_backend_original_a02",
+      "record": {
+        "id": "5c8b810b-6baf-4714-b906-279f62cacf0e",
+        "type": "response",
+        "command": "get_state",
+        "success": true,
+        "data": {
+          "model": {
+            "id": "gpt-6.1-terra",
+            "name": "gpt-6.1-terra",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096,
+            "api": "openai-completions",
+            "provider": "olea-test",
+            "baseUrl": "https://api.chiyi.cc/v1"
+          },
+          "thinkingLevel": "off",
+          "isStreaming": false,
+          "isCompacting": false,
+          "steeringMode": "one-at-a-time",
+          "followUpMode": "one-at-a-time",
+          "sessionFile": "/workspace/m3-backend-state/m4_backend_original_a02/2026-11-11T08-03-14-169Z_01a1c9a1-ea77-74f6-b2f1-0fcfbf4cfc78.jsonl",
+          "sessionId": "01a1c9a1-ea77-74f6-b2f1-0fcfbf4cfc78",
+          "autoCompactionEnabled": true,
+          "messageCount": 0,
+          "pendingMessageCount": 0
+        }
+      }
+    },
+    {
+      "type": "event",
+      "agent": "pi",
+      "session": "m4_backend_original_a02",
+      "record": {
+        "id": "cc693b2f-9338-4649-a593-d2b98761d456",
+        "type": "response",
+        "command": "set_auto_retry",
+        "success": true
+      }
+    },
+    {
+      "type": "response",
+      "id": "m4-backend-original-a02-start",
+      "success": true,
+      "data": {
+        "pid": 15003,
+        "startupMs": 12183.823199999999,
+        "state": {
+          "model": {
+            "id": "gpt-6.1-terra",
+            "name": "gpt-6.1-terra",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096,
+            "api": "openai-completions",
+            "provider": "olea-test",
+            "baseUrl": "https://api.chiyi.cc/v1"
+          },
+          "thinkingLevel": "off",
+          "isStreaming": false,
+          "isCompacting": false,
+          "steeringMode": "one-at-a-time",
+          "followUpMode": "one-at-a-time",
+          "sessionFile": "/workspace/m3-backend-state/m4_backend_original_a02/2026-11-11T08-03-14-169Z_01a1c9a1-ea77-74f6-b2f1-0fcfbf4cfc78.jsonl",
+          "sessionId": "01a1c9a1-ea77-74f6-b2f1-0fcfbf4cfc78",
+          "autoCompactionEnabled": true,
+          "messageCount": 0,
+          "pendingMessageCount": 0
+        }
+      }
+    },
+    {
+      "type": "ready",
+      "protocol": 1,
+      "maxSessions": 2,
+      "pid": 15266
+    },
+    {
+      "type": "response",
+      "id": "m4-backend-original-a02-status",
+      "success": true,
+      "data": []
+    }
+  ],
+  "ui": [
+    {
+      "at": 1794384180286,
+      "text": "Start bridge / enable phone actions",
+      "x": 540,
+      "y": 181,
+      "route": "Authorized development UI input on existing native host"
+    },
+    {
+      "at": 1794384183290,
+      "text": "Start shared backend",
+      "x": 540,
+      "y": 433,
+      "route": "Authorized development UI input on existing native host"
+    },
+    {
+      "at": 1794384203032,
+      "text": "Start shared backend",
+      "x": 540,
+      "y": 433,
+      "route": "Authorized development UI input on existing native host"
+    }
+  ],
+  "failures": [
+    "UNEXPECTED_BACKEND_DEATH_RETAINS_PHONE_AUTHORITY",
+    "UNEXPECTED_BACKEND_DEATH_HAS_NO_VERIFIED_TRACKED_CLEANUP"
+  ],
+  "hostBefore": {
+    "pid": 11004,
+    "parent": 485,
+    "start": "1276873",
+    "uid": 10216,
+    "stat": "11004 (olea.m2.runtime) S 485 485 0 0 -1 4194624 119618 477294 7 583 592 1666 1197 8334 10 -10 22 0 1276873 16817823744 44749 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 1 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0"
+  },
+  "capabilitiesBefore": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": null,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "fixtureBefore": "f5fd70b0c4978751e9061cc5e21ebd46ad957f5ff7ca39d9acd68b269457a97c  files/oracle-value.txt\r\nf5cf7f153a56e6998d31e5245f4c1f1bb29ea8e0447c6bffea290a08911661d4  files/observed-launches.txt\r\n",
+  "agentStart": {
+    "type": "response",
+    "id": "m4-backend-original-a02-start",
+    "success": true,
+    "data": {
+      "pid": 15003,
+      "startupMs": 12183.823199999999,
+      "state": {
+        "model": {
+          "id": "gpt-6.1-terra",
+          "name": "gpt-6.1-terra",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 128000,
+          "maxTokens": 4096,
+          "api": "openai-completions",
+          "provider": "olea-test",
+          "baseUrl": "https://api.chiyi.cc/v1"
+        },
+        "thinkingLevel": "off",
+        "isStreaming": false,
+        "isCompacting": false,
+        "steeringMode": "one-at-a-time",
+        "followUpMode": "one-at-a-time",
+        "sessionFile": "/workspace/m3-backend-state/m4_backend_original_a02/2026-11-11T08-03-14-169Z_01a1c9a1-ea77-74f6-b2f1-0fcfbf4cfc78.jsonl",
+        "sessionId": "01a1c9a1-ea77-74f6-b2f1-0fcfbf4cfc78",
+        "autoCompactionEnabled": true,
+        "messageCount": 0,
+        "pendingMessageCount": 0
+      }
+    }
+  },
+  "backendIdentity": {
+    "pid": 14985,
+    "parent": 14977,
+    "start": "1504820",
+    "uid": 10216,
+    "stat": "14985 (MainThread) S 14977 485 0 0 -1 4194304 4642 95 2 1 8 14 0 0 10 -10 11 0 1504820 1479012352 13440 18446744073709551615 105553116266496 105553116267640 140723693233792 0 0 0 0 16781312 83458 0 0 0 17 2 0 0 0 0 0 105553116284024 105553116284168 105553302097920 140723693235651 140723693235685 140723693235685 140723693236110 0"
+  },
+  "work": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "queued": true
+      }
+    }
+  },
+  "started": "STARTED",
+  "beforeInterruption": [
+    {
+      "pid": 11004,
+      "parent": 485,
+      "start": "1276873",
+      "uid": 10216,
+      "stat": "11004 (olea.m2.runtime) S 485 485 0 0 -1 4194624 128610 477294 8 583 626 2147 1197 8334 10 -10 26 0 1276873 16822648832 45091 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 0 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0"
+    },
+    {
+      "pid": 14977,
+      "parent": 11004,
+      "start": "1504807",
+      "uid": 10216,
+      "stat": "14977 (libproot.so) S 11004 485 0 0 -1 4194304 1846 1023 0 0 16 326 0 2 10 -10 1 0 1504807 11075399680 894 18446744073709551615 96187852128256 96187852390000 140724257756128 0 0 0 0 2143342675 11948 1 0 0 17 1 0 0 0 0 0 96187852428512 96187852435888 96188393603072 140724257760066 140724257761153 140724257761153 140724257767311 0"
+    },
+    {
+      "pid": 14985,
+      "parent": 14977,
+      "start": "1504820",
+      "uid": 10216,
+      "stat": "14985 (MainThread) S 14977 485 0 0 -1 4194304 4646 95 2 1 8 14 0 0 10 -10 11 0 1504820 1479012352 13440 18446744073709551615 105553116266496 105553116267640 140723693233792 0 0 0 0 16781312 83458 0 0 0 17 2 0 0 0 0 0 105553116284024 105553116284168 105553302097920 140723693235651 140723693235685 140723693235685 140723693236110 0"
+    },
+    {
+      "pid": 15003,
+      "parent": 14985,
+      "start": "1504881",
+      "uid": 10216,
+      "stat": "15003 (pi) S 14985 15003 15003 0 -1 4194304 24817 0 13 0 84 325 0 0 10 -10 11 0 1504881 1655394304 35118 18446744073709551615 105553116266496 105553116267640 140731632397776 0 0 0 0 4096 864153143 0 0 0 17 1 0 0 0 0 0 105553116284024 105553116284168 105553355501568 140731632401619 140731632401893 140731632401893 140731632402318 0"
+    },
+    {
+      "pid": 15179,
+      "parent": 15003,
+      "start": "1506129",
+      "uid": 10216,
+      "stat": "15179 (bash) S 15003 15179 15179 0 -1 4194304 202 0 0 0 0 2 0 0 10 -10 1 0 1506129 4939776 896 18446744073709551615 105553116266496 105553116267640 140732119700608 0 0 0 65536 4 65538 1 0 0 17 2 0 0 0 0 0 105553116284024 105553116284168 105554129702912 140732119706883 140732119707056 140732119707056 140732119707534 0"
+    },
+    {
+      "pid": 15184,
+      "parent": 15179,
+      "start": "1506136",
+      "uid": 10216,
+      "stat": "15184 (sleep) S 15179 15179 15179 0 -1 4194304 99 0 1 0 0 0 0 0 10 -10 1 0 1506136 3272704 448 18446744073709551615 105553116266496 105553116267640 140724889080304 0 0 0 0 0 0 1 0 0 17 3 0 0 0 0 0 105553116284024 105553116284168 105553165979648 140724889087369 140724889087378 140724889087378 140724889087886 0"
+    }
+  ],
+  "interruptedAt": 1794384197452,
+  "kill": "",
+  "afterDeath": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": true,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": null,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "automaticDisabled": false,
+  "automaticCleanup": false,
+  "explicitStop": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794384199639",
+      "ok": true,
+      "result": {
+        "stopped": true
+      }
+    }
+  },
+  "afterStop": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": {
+          "owned": [
+            {
+              "pid": 14977,
+              "parent": 11004,
+              "group": 485,
+              "tracer": 0,
+              "start": 1504807,
+              "uid": 10216
+            },
+            {
+              "pid": 14979,
+              "parent": 14977,
+              "group": 485,
+              "tracer": 0,
+              "start": 1504809,
+              "uid": 10216
+            },
+            {
+              "pid": 14985,
+              "parent": 14977,
+              "group": 485,
+              "tracer": 14977,
+              "start": 1504820,
+              "uid": 10216
+            },
+            {
+              "pid": 15003,
+              "parent": 14985,
+              "group": 15003,
+              "tracer": 14977,
+              "start": 1504881,
+              "uid": 10216
+            },
+            {
+              "pid": 15179,
+              "parent": 15003,
+              "group": 15179,
+              "tracer": 14977,
+              "start": 1506129,
+              "uid": 10216
+            },
+            {
+              "pid": 15184,
+              "parent": 15179,
+              "group": 15179,
+              "tracer": 14977,
+              "start": 1506136,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+        },
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "cleanup": {
+    "owned": [
+      {
+        "pid": 14977,
+        "parent": 11004,
+        "group": 485,
+        "tracer": 0,
+        "start": 1504807,
+        "uid": 10216
+      },
+      {
+        "pid": 14979,
+        "parent": 14977,
+        "group": 485,
+        "tracer": 0,
+        "start": 1504809,
+        "uid": 10216
+      },
+      {
+        "pid": 14985,
+        "parent": 14977,
+        "group": 485,
+        "tracer": 14977,
+        "start": 1504820,
+        "uid": 10216
+      },
+      {
+        "pid": 15003,
+        "parent": 14985,
+        "group": 15003,
+        "tracer": 14977,
+        "start": 1504881,
+        "uid": 10216
+      },
+      {
+        "pid": 15179,
+        "parent": 15003,
+        "group": 15179,
+        "tracer": 14977,
+        "start": 1506129,
+        "uid": 10216
+      },
+      {
+        "pid": 15184,
+        "parent": 15179,
+        "group": 15179,
+        "tracer": 14977,
+        "start": 1506136,
+        "uid": 10216
+      }
+    ],
+    "remaining": [],
+    "faults": [],
+    "rootExitObserved": true,
+    "trackedExitVerified": true,
+    "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+  },
+  "oldIdentities": [
+    {
+      "identity": {
+        "pid": 14977,
+        "parent": 11004,
+        "start": "1504807",
+        "uid": 10216,
+        "stat": "14977 (libproot.so) S 11004 485 0 0 -1 4194304 1846 1023 0 0 16 326 0 2 10 -10 1 0 1504807 11075399680 894 18446744073709551615 96187852128256 96187852390000 140724257756128 0 0 0 0 2143342675 11948 1 0 0 17 1 0 0 0 0 0 96187852428512 96187852435888 96188393603072 140724257760066 140724257761153 140724257761153 140724257767311 0"
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 14985,
+        "parent": 14977,
+        "start": "1504820",
+        "uid": 10216,
+        "stat": "14985 (MainThread) S 14977 485 0 0 -1 4194304 4646 95 2 1 8 14 0 0 10 -10 11 0 1504820 1479012352 13440 18446744073709551615 105553116266496 105553116267640 140723693233792 0 0 0 0 16781312 83458 0 0 0 17 2 0 0 0 0 0 105553116284024 105553116284168 105553302097920 140723693235651 140723693235685 140723693235685 140723693236110 0"
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 15003,
+        "parent": 14985,
+        "start": "1504881",
+        "uid": 10216,
+        "stat": "15003 (pi) S 14985 15003 15003 0 -1 4194304 24817 0 13 0 84 325 0 0 10 -10 11 0 1504881 1655394304 35118 18446744073709551615 105553116266496 105553116267640 140731632397776 0 0 0 0 4096 864153143 0 0 0 17 1 0 0 0 0 0 105553116284024 105553116284168 105553355501568 140731632401619 140731632401893 140731632401893 140731632402318 0"
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 15179,
+        "parent": 15003,
+        "start": "1506129",
+        "uid": 10216,
+        "stat": "15179 (bash) S 15003 15179 15179 0 -1 4194304 202 0 0 0 0 2 0 0 10 -10 1 0 1506129 4939776 896 18446744073709551615 105553116266496 105553116267640 140732119700608 0 0 0 65536 4 65538 1 0 0 17 2 0 0 0 0 0 105553116284024 105553116284168 105554129702912 140732119706883 140732119707056 140732119707056 140732119707534 0"
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 15184,
+        "parent": 15179,
+        "start": "1506136",
+        "uid": 10216,
+        "stat": "15184 (sleep) S 15179 15179 15179 0 -1 4194304 99 0 1 0 0 0 0 0 10 -10 1 0 1506136 3272704 448 18446744073709551615 105553116266496 105553116267640 140724889080304 0 0 0 0 0 0 1 0 0 17 3 0 0 0 0 0 105553116284024 105553116284168 105553165979648 140724889087369 140724889087378 140724889087378 140724889087886 0"
+      },
+      "observation": "ABSENT"
+    }
+  ],
+  "restart": {
+    "type": "response",
+    "id": "m4-backend-original-a02-status",
+    "success": true,
+    "data": []
+  },
+  "afterRestart": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": true,
+        "backendStopping": false,
+        "backendCleanup": {
+          "owned": [
+            {
+              "pid": 14977,
+              "parent": 11004,
+              "group": 485,
+              "tracer": 0,
+              "start": 1504807,
+              "uid": 10216
+            },
+            {
+              "pid": 14979,
+              "parent": 14977,
+              "group": 485,
+              "tracer": 0,
+              "start": 1504809,
+              "uid": 10216
+            },
+            {
+              "pid": 14985,
+              "parent": 14977,
+              "group": 485,
+              "tracer": 14977,
+              "start": 1504820,
+              "uid": 10216
+            },
+            {
+              "pid": 15003,
+              "parent": 14985,
+              "group": 15003,
+              "tracer": 14977,
+              "start": 1504881,
+              "uid": 10216
+            },
+            {
+              "pid": 15179,
+              "parent": 15003,
+              "group": 15179,
+              "tracer": 14977,
+              "start": 1506129,
+              "uid": 10216
+            },
+            {
+              "pid": 15184,
+              "parent": 15179,
+              "group": 15179,
+              "tracer": 14977,
+              "start": 1506136,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+        },
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "lateEffect": "ABSENT",
+  "fixtureUnchanged": true,
+  "status": "fail",
+  "finalStop": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794384211587",
+      "ok": true,
+      "result": {
+        "stopped": true
+      }
+    }
+  },
+  "finalCapabilities": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": {
+          "owned": [
+            {
+              "pid": 15259,
+              "parent": 11004,
+              "group": 485,
+              "tracer": 0,
+              "start": 1506777,
+              "uid": 10216
+            },
+            {
+              "pid": 15260,
+              "parent": 15259,
+              "group": 485,
+              "tracer": 0,
+              "start": 1506778,
+              "uid": 10216
+            },
+            {
+              "pid": 15266,
+              "parent": 15259,
+              "group": 485,
+              "tracer": 15259,
+              "start": 1506787,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+        },
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "hostAfter": {
+    "pid": 11004,
+    "parent": 485,
+    "start": "1276873",
+    "uid": 10216,
+    "stat": "11004 (olea.m2.runtime) S 485 485 0 0 -1 4194624 133755 492055 8 586 636 2299 1231 8710 10 -10 23 0 1276873 16819159040 45243 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 0 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0"
+  },
+  "sameNativeHost": true,
+  "protectedEqual": [
+    {
+      "path": "files/rootfs/run/olea-provider.json",
+      "equal": true
+    },
+    {
+      "path": "files/bridge-token",
+      "equal": true
+    },
+    {
+      "path": "files/bridge-config.json",
+      "equal": true
+    }
+  ],
+  "historical": [
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/config.toml",
+      "expected": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "actual": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9"
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/.tmp/plugins/plugins/plugin-eval/fixtures/observed-usage/responses.jsonl",
+      "expected": "dcd1fda00084818e63c598eee7f7ac03ea82820a7b443a985b6035fa98eeae4b",
+      "actual": "dcd1fda00084818e63c598eee7f7ac03ea82820a7b443a985b6035fa98eeae4b"
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-45-10-01a1c6c7-4363-7b50-812f-5ab661da9101.jsonl",
+      "expected": "658ae111b3c8eab4673f3ec9c804d65844188a4eb89e4ca7ea9551572c8c8619",
+      "actual": "658ae111b3c8eab4673f3ec9c804d65844188a4eb89e4ca7ea9551572c8c8619"
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace/combined-value.txt",
+      "expected": "b37255587c561c067ca65f93b51f971093af448b655d0aeb66a9af1684f51f8a",
+      "actual": "b37255587c561c067ca65f93b51f971093af448b655d0aeb66a9af1684f51f8a"
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/config.toml",
+      "expected": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "actual": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9"
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+      "expected": "345b0884b097ec53e8fad3431de2b5f47d59b32a5212557227777869e4d7d284",
+      "actual": "0a5b101f13c8974a79ac1a6308243d75b539da57c738d19f62e696b43463b4f0"
+    },
+    {
+      "path": "files/rootfs/workspace/sentinel",
+      "expected": "d098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2",
+      "actual": "d098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2"
+    }
+  ],
+  "historicalUnchanged": false,
+  "sessionHashesUnchanged": true,
+  "finalInventory": [
+    {
+      "pid": 11004,
+      "parent": 485,
+      "start": "1276873",
+      "uid": 10216,
+      "stat": "11004 (olea.m2.runtime) S 485 485 0 0 -1 4194624 133755 492055 8 586 636 2299 1231 8710 10 -10 23 0 1276873 16819159040 45243 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 0 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0"
+    }
+  ],
+  "finishedAt": "2026-11-11T08:03:33.535Z",
+  "limit": "Finite exact PID/UID/start snapshots; no universal unseen-fork guarantee. No model turn or whole-app interruption."
+}
