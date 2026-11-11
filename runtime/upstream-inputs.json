@@ -1,0 +1,24 @@
+{
+  "status": "verified-downloads-not-runtime-acceptance",
+  "originalSourceLicense": "MIT",
+  "target": {"applicationId": "dev.olea.m2.runtime", "compileSdk": 36, "targetSdk": 36, "minSdk": 26, "abi": "x86_64", "bridgePort": 8768},
+  "components": [
+    {"name": "Gradle", "version": "9.1.0", "url": "https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip", "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806", "license": "Apache-2.0, build tool only"},
+    {"name": "Ubuntu Base", "version": "24.04.3 amd64", "url": "https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-amd64.tar.gz", "sha256": "6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9", "license": "Mixed; retain /usr/share/doc copyright and applicable corresponding source"},
+    {"name": "Node", "version": "24.20.0 Linux x64", "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz", "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2", "license": "MIT plus bundled notices"},
+    {"name": "Termux PRoot", "version": "5.1.107.102 x86_64", "url": "https://packages.termux.dev/apt/termux-main/pool/main/p/proot/proot_5.1.107.102_x86_64.deb", "sha256": "2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758", "license": "GPL-2.0; corresponding source/notices required before redistribution", "source": "https://github.com/termux/proot"},
+    {"name": "libtalloc", "version": "2.5.0 x86_64", "url": "https://packages.termux.dev/apt/termux-main/pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb", "sha256": "b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530", "license": "LGPL-3.0-or-later; source/relinking obligations", "source": "https://talloc.samba.org/"},
+    {"name": "libandroid-shmem", "version": "0.7 x86_64", "url": "https://packages.termux.dev/apt/termux-main/pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb", "sha256": "ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797", "license": "BSD-3-Clause; retain copyright/disclaimer", "source": "https://github.com/termux/libandroid-shmem"}
+  ],
+  "packagedNativeSha256": {
+    "libproot.so": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d",
+    "libloader.so": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341",
+    "libloader32.so": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9",
+    "libtalloc.so": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90",
+    "libandroid-shmem.so": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+  },
+  "verification": "New HTTPS downloads SHA256 matched recorded HTTPS-authority hashes in immutable M1 artifact-manifest.json; no GPG or new signature claim",
+  "transform": "Verified native regular-file bytes renamed to Android lib*.so packaging names, no binary edits; debug symbols retained; PackageManager extraction requested through AGP useLegacyPackaging",
+  "provenanceLimits": "No publishing; source obligations inventory is not distribution clearance; original MIT does not relicense dependencies",
+  "research": ["https://developer.android.com/about/versions/10/behavior-changes-10#execute-permission", "https://github.com/termux/proot/tree/master/src/execve", "https://github.com/termux/proot/tree/master/src/loader"]
+}

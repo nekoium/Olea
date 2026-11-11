@@ -1,0 +1,8 @@
+.gradle/
+**/build/
+local.properties
+app/src/main/jniLibs/
+app/src/main/assets/*.tar.gz
+app/src/main/assets/hashes.txt
+app/src/main/assets/linux.sh
+app/src/main/assets/prepare.sh
