@@ -1,0 +1,31 @@
+// SPDX-License-Identifier: MIT
+// Final read-only settlement checks. No device access follows release publication.
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {device,nativeRequest} from '../../m2/runtime/bridge.mjs';
+const previous=JSON.parse(readFileSync('spike/m4/runtime/evidence/FINAL_RUNTIME_CHECKPOINT.json'));
+const deployment=JSON.parse(readFileSync('spike/m4/runtime/evidence/deploy-reconcile-a01.json'));
+const shell=s=>device(['shell',s]);
+const r={receiptType:'M4 settled explicit sole emulator mutation lease RELEASE',task:'task_c830bdc0ea20',dispatch:'ctx_9c7ba62b5429',worker:'9e78162f-c4b8-4db0-987c-12277b05c76d',manager:'pi_bf06630f_e4e8_4fb8_94dc_203ef5153198',run:'run_dd39824405ae',independentAssessment:'6749a45:spike/m4/reports/FINAL_DETERMINISTIC_INDEPENDENT.md',priorFinalObservation:previous.observedAtUtc,modelRequestsThisCollector:0,budget:previous.budget};
+r.capabilities=await nativeRequest('/capabilities');const c=r.capabilities.body.result;
+assert.equal(c.phoneEnabled,false);assert.equal(c.backendRunning,false);assert.equal(c.backendStopping,false);assert.equal(c.accessibility,false);assert.equal(c.backendCleanup.trackedExitVerified,true);
+r.uidInventory=shell('ps -A -o UID,PID,PPID,NAME').split('\n').filter(l=>/^\s*1021[678]\s/.test(l));
+assert.equal(r.uidInventory.length,previous.identities.length);
+r.identities=r.uidInventory.map(line=>{const f=line.trim().split(/\s+/),pid=Number(f[1]),uid=Number(f[0]),packageName=f[3];assert(/^dev\.olea\.m2\.(runtime|fixture)$/.test(packageName));const stat=shell(`run-as ${packageName} cat /proc/${pid}/stat`).trim();const start=stat.slice(stat.lastIndexOf(')')+2).split(/\s+/)[19];const old=previous.identities.find(x=>x.pid===pid&&x.uid===uid&&x.package===packageName);assert(old);assert.equal(start,old.stat.slice(old.stat.lastIndexOf(')')+2).split(/\s+/)[19]);return{pid,uid,package:packageName,start,stat};});
+r.lastTrackedChildren=c.backendCleanup.owned.map(identity=>({identity,observation:shell(`if [ -d /proc/${identity.pid} ]; then echo PRESENT; else echo ABSENT; fi`).trim()}));assert(r.lastTrackedChildren.every(x=>x.observation==='ABSENT'));
+r.projection=shell('dumpsys media_projection');assert(r.projection.includes('null'));
+r.accessibility=shell('settings get secure enabled_accessibility_services; settings get secure accessibility_enabled');assert.equal(r.accessibility,previous.accessibility);
+r.uriGrants=shell('dumpsys activity permissions').split('\n').filter(l=>l.includes('10216')||l.includes('OleaM3'));assert(r.uriGrants.some(x=>x.includes('Documents%2FOleaM3')));
+r.retainedFiles=shell('ls -l /sdcard/Documents/OleaM3');assert.equal(r.retainedFiles,previous.retainedFiles);
+r.captureHash=shell('run-as dev.olea.m2.runtime sha256sum files/capture.png').trim();assert(r.captureHash.startsWith('9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29 '));
+r.historical=previous.historical.map(x=>{const actual=shell(`run-as dev.olea.m2.runtime sha256sum ${x.path}`).trim().split(/\s+/)[0];assert.equal(actual,x.actual);return{path:x.path,original:x.original,settled:x.actual,actual,unchangedSinceSettled:true,originalEquality:actual===x.original};});assert.equal(r.historical.filter(x=>!x.originalEquality).length,1);
+r.piSessionHashes=shell("run-as dev.olea.m2.runtime sh -c 'sha256sum files/rootfs/workspace/m3-pi-final-seven-02-state/m2_204a30734b03aa49c10ca0241a11175c/*'");assert.equal(r.piSessionHashes,previous.sessionHashes);
+r.protectedModes=shell("run-as dev.olea.m2.runtime stat -c '%a %n' files/rootfs/run/olea-provider.json files/bridge-token files/bridge-config.json");assert.equal(r.protectedModes,previous.protectedModes);
+const apkPath=shell('pm path dev.olea.m2.runtime').trim().replace(/^package:/,'');r.installedApk={path:apkPath,sha256:shell(`sha256sum ${apkPath}`).trim().split(/\s+/)[0]};assert.equal(r.installedApk.sha256,deployment.newApk.sha256);
+r.device=shell('getprop ro.boot.qemu.avd_name; getprop sys.boot_completed; getprop ro.build.version.sdk; getprop ro.product.cpu.abi');
+r.inflight={experiment:[],providerTurns:[],observers:[],basis:'This sole owner launched no work after settled checkpoint; native backend/stopping false, prior tracked children independently absent, only unchanged host/fixture identities in reviewed appUID inventory; no provider/observer was started in this release assignment.'};
+r.limits={canonicalPreservation:'FAIL retained: historical rollout contains one599byte settings append, original prefix intact; current changed hash preserved, no restore/reset/resume',processObservation:'Finite exact identity observations, not universal unseen-fork/whole-service cleanup proof',protectedEquality:'Prior measured booleans retained by reference; this release rechecks modes only, no provider secret read or new across-install equality claim',folder:'Persisted SAF grant/files retained, volatile selection lost during earlier APK update; successor must use actual picker reselection',savedGrants:'Location and notification grant observations remain in prior final receipt; no new grant mutation or broad permission retest'};
+r.preserved='All worktrees/Git/APKs/rootfs/cache/data, changed canonical bytes, original failures, selected-tree files and PNGs retained; no closure/deletion/reset/restore';
+r.observedAtUtc=new Date().toISOString();r.lease={state:'RELINQUISHED at this settled saved boundary',formerSoleOwner:r.worker,successorOwner:null,restriction:'No further emulator mutation by this worker; newly verified manager/team must explicitly assign one successor owner before continuation'};
+writeFileSync('spike/m4/runtime/evidence/EXPLICIT_LEASE_RELEASE.json',JSON.stringify(r,null,2)+'\n',{flag:'wx'});
+console.log({observedAt:r.observedAtUtc,identities:r.identities.map(({pid,uid,start})=>({pid,uid,start})),canonicalOriginalFailures:r.historical.filter(x=>!x.originalEquality).length,budget:r.budget,lease:r.lease});

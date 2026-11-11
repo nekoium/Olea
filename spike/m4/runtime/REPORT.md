@@ -2,6 +2,8 @@
 
 Bounded runtime batch completed in child branch `nekoium/m4-codex-update-recovery`. Stock Codex ordinary update and no-model protocol checks pass. Original historical canonical byte preservation **failed**. Repaired same-host backend-only interruption/restart passes. These are separate outcomes; full backend/phone acceptance remains incomplete.
 
+Subsequent settled closeout explicitly relinquished the sole lease at2026-11-11T08:27:57.828Z, successorOwnernull: [release receipt](evidence/EXPLICIT_LEASE_RELEASE.json) and [next-owner handoff](NEXT_RUNTIME_OWNER_HANDOFF.md). That receipt supersedes this report's historical retained-lease state; no experiment or device mutation followed it.
+
 ## Ownership, base and budget
 
 Manager verified exact Olea root parentage and dispatch creator/assignee/Run before granting sole emulator mutation lease in `msg_0cadfcb34a63`. Worker `9e78162f-c4b8-4db0-987c-12277b05c76d`, task `task_8cfd186a1b4a`, dispatch `ctx_ace1a863c3a3`, Run `run_dd39824405ae`; starting child HEAD `7a9ce2c`. Prior owner release at 2026-11-11T07:47:06.263Z was read in full. New baseline rechecked actual device and identities before changes.
