@@ -23,10 +23,10 @@ import java.util.concurrent.TimeUnit
 
 class RuntimeService : Service() {
     private var server: ServerSocket? = null
-    private var backend: Process? = null
+    @Volatile private var backend: Process? = null
     private var backendOwner: OwnedProcess? = null
     @Volatile private var backendStopping = false
-    private var backendCleanup: JSONObject? = null
+    @Volatile private var backendCleanup: JSONObject? = null
     private val main = Handler(Looper.getMainLooper())
     private lateinit var token: String
     @Volatile private var enabled = false
@@ -78,7 +78,12 @@ class RuntimeService : Service() {
     }
 
     private fun startBackend() {
-        if (backend?.isAlive == true || backendStopping) return
+        if (backendStopping) return
+        // Retain a dead root's owner until every tracked child has settled.
+        if (backend != null) {
+            if (backend?.isAlive != true) { enabled = false; PhoneApis.stop(); stopBackend() }
+            return
+        }
         val script = File(filesDir, "start-runtime.sh")
         if (!script.exists()) return
         val launched = OwnedProcess.launch(ProcessBuilder("/system/bin/sh", script.absolutePath).directory(filesDir).apply {
@@ -87,8 +92,19 @@ class RuntimeService : Service() {
             environment()["OLEA_APP_BASE"] = filesDir.absolutePath
             environment()["OLEA_BRIDGE_TOKEN_FILE"] = File(filesDir, "bridge-token").absolutePath
         }, File(filesDir, "backend-${System.nanoTime()}.pid"))
+        backendCleanup = null
         backend = launched.first; backendOwner = launched.second
         val current = backend ?: return
+        Thread({
+            current.waitFor()
+            main.post {
+                if (backend === current) {
+                    enabled = false
+                    PhoneApis.stop()
+                    stopBackend()
+                }
+            }
+        }, "backend-exit").start()
         Thread({ current.inputStream.bufferedReader().useLines { lines -> lines.forEach { line -> synchronized(events) { if (events.size == 200) events.removeFirst(); events.addLast(line.take(16384)) } } } }, "backend-stdout").start()
         Thread({ current.errorStream.bufferedReader().useLines { lines -> lines.forEach { /* Drain diagnostics without retaining credentials. */ } } }, "backend-stderr").start()
     }
@@ -106,8 +122,12 @@ class RuntimeService : Service() {
                 backendCleanup = owner?.stop()
                 process.waitFor(2, TimeUnit.SECONDS)
             } finally {
-                if (!process.isAlive) { backend = null; backendOwner = null }
-                backendStopping = false
+                main.post {
+                    if (backend === process && backendCleanup?.optBoolean("trackedExitVerified") == true) {
+                        backend = null; backendOwner = null
+                    }
+                    backendStopping = false
+                }
             }
         }.start()
     }

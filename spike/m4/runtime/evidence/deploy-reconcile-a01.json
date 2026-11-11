@@ -1,0 +1,120 @@
+{
+  "at": "2026-11-11T08:13:46.975Z",
+  "modelRequests": 0,
+  "scope": "Reconcile existing install; no install retry or app restart",
+  "priorCollectorFailure": "deploy-repair.mjs performed install -r and explicit launch, then GET capabilities reused dead old HTTP socket (UND_ERR_SOCKET other side closed); no prior report published",
+  "source": [
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+      "sha256": "6f7066b2763940339f1695e028d96deca650dd8807f77d2297d518b9dfb0b901",
+      "domain": "checkout bytes"
+    },
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+      "sha256": "6709dd2b09f7523cf2ad09236ff7f999c946ba443ea87568e9cc325901395b7a",
+      "domain": "checkout bytes"
+    },
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+      "sha256": "f22bb748e0f09bc39a95d63b262b6bb9450164971b1e4d5e78f42302f84f0e61",
+      "domain": "checkout bytes"
+    },
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+      "sha256": "db4494e8b388204b104abb4149a4c8632b65d0796203a71928ef3c30bd6954f4",
+      "domain": "checkout bytes"
+    },
+    {
+      "path": "spike/m4/runtime/backend-recovery.mjs",
+      "sha256": "eff1c3123438d07fe35a3f0388b301644d888b0c05b07babb58a2d73ff09a25c",
+      "domain": "checkout bytes"
+    },
+    {
+      "path": "spike/m4/runtime/build-a01.sh",
+      "sha256": "22ebdfa5e9295488f5c2ee3fff6247c1fa6dd70f7cf15585839ece3d735ae4fc",
+      "domain": "checkout bytes"
+    }
+  ],
+  "native": [
+    {
+      "path": "libandroid-shmem.so",
+      "sha256": "092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f"
+    },
+    {
+      "path": "libloader.so",
+      "sha256": "a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341"
+    },
+    {
+      "path": "libloader32.so",
+      "sha256": "fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9"
+    },
+    {
+      "path": "libproot.so",
+      "sha256": "3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d"
+    },
+    {
+      "path": "libtalloc.so",
+      "sha256": "7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90"
+    }
+  ],
+  "oldApk": {
+    "retained": ".setup/installed-before-m4.apk",
+    "sha256": "4e3cfbd24c79644946e5a774431aa7fb9455d916e35b48b27a7a7876160d17ff"
+  },
+  "newApk": {
+    "retained": ".setup/runtime-m4-a01.apk",
+    "sha256": "dba0a66bd481b16b6d04efc1ad963d8f0c95d70140b1a700106c7c8934507fdd"
+  },
+  "installed": {
+    "path": "/data/app/~~gk85mADkHfbJYsgd4p6bgw==/dev.olea.m2.runtime-mdCmY0_MGqxn7WjjFG1N2w==/base.apk",
+    "sha256": "dba0a66bd481b16b6d04efc1ad963d8f0c95d70140b1a700106c7c8934507fdd"
+  },
+  "buildExit": {
+    "exitCode": 0
+  },
+  "buildLogSha256": "95f80ac646b584fa6ff9ce19dad5cf02e9da3856d5c6f87a475b634dc6cf0c8d",
+  "capabilities": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": null,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "hostPid": "15565",
+  "hostStat": "15565 (olea.m2.runtime) S 485 485 0 0 -1 4194624 12743 0 12 0 75 335 0 0 10 -10 22 0 1565066 16806387712 39931 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 3 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0\r\n",
+  "protectedProviderEquality": {
+    "apiKeyEqual": true,
+    "baseUrlEqual": true
+  },
+  "bridgeTokenConsistent": true,
+  "protectedModes": "600 files/rootfs/run/olea-provider.json\r\n600 files/bridge-token\r\n600 files/bridge-config.json\r\n",
+  "protectedAcrossInstall": "Not retained: original collector held before bytes in memory and died before equality/report; no retrospective equality asserted.",
+  "captureHash": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29  files/capture.png\r\n",
+  "folderSelection": "Persisted SAF grant retained; volatile pointer lost at explicit APK update. No folder action/test depends on it in this batch.",
+  "status": "pass"
+}

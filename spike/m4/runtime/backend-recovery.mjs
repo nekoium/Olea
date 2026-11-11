@@ -9,6 +9,8 @@ const wait=ms=>new Promise(r=>setTimeout(r,ms)),shell=s=>device(['shell',s]);
 const secretPaths=['files/rootfs/run/olea-provider.json','files/bridge-token','files/bridge-config.json'];
 const protectedBefore=secretPaths.map(p=>device(['exec-out','run-as','dev.olea.m2.runtime','cat',p]));
 const baseline=JSON.parse(readFileSync('spike/m4/runtime/evidence/baseline-a01.json'));
+const currentHashes=()=>baseline.historical.map(x=>({path:x.path,expected:x.expected,actual:shell(`run-as dev.olea.m2.runtime sha256sum ${x.path}`).trim().split(/\s+/)[0]}));
+r.currentHashesBefore=currentHashes();
 const host=()=>shell('pidof dev.olea.m2.runtime').trim();
 function identity(pid){const stat=shell(`run-as dev.olea.m2.runtime cat /proc/${pid}/stat`).trim();const f=stat.slice(stat.lastIndexOf(')')+2).split(/\s+/);return{pid,parent:Number(f[1]),start:f[19],uid:10216,stat};}
 function identities(){return shell('ps -A -o UID,PID,PPID,NAME').split('\n').filter(l=>/^\s*10216\s/.test(l)).map(l=>identity(Number(l.trim().split(/\s+/)[1])));}
@@ -36,7 +38,7 @@ try{
  r.cleanup=r.afterStop.body.result.backendCleanup;
  r.oldIdentities=r.beforeInterruption.filter(i=>i.pid!==r.hostBefore.pid).map(i=>({identity:i,observation:shell(`if [ -d /proc/${i.pid} ]; then run-as dev.olea.m2.runtime cat /proc/${i.pid}/stat; else echo ABSENT; fi`).trim()}));
  assert(r.oldIdentities.every(i=>i.observation==='ABSENT'));assert.equal(host(),String(r.hostBefore.pid));
- await tap('Start shared backend');const status=await command(attempt+'-status',{type:'status'});r.restart=status;assert.equal(status.success,true);r.afterRestart=await nativeRequest('/capabilities');assert.equal(r.afterRestart.body.result.phoneEnabled,false);
+ await tap('Start shared backend');const status=await command(attempt+'-status',{type:'status'});r.restart=status;assert.equal(status.success,true);assert.deepEqual(status.data,[]);r.afterRestart=await nativeRequest('/capabilities');assert.equal(r.afterRestart.body.result.phoneEnabled,false);
  await wait(Math.max(0,r.interruptedAt+14000-Date.now()));r.lateEffect=shell(`run-as dev.olea.m2.runtime sh -c 'test ! -e files/rootfs/workspace/m3-backend/${attempt}-late-effect && echo ABSENT'`).trim();assert.equal(r.lateEffect,'ABSENT');
  r.fixtureUnchanged=shell('run-as dev.olea.m2.fixture sha256sum files/oracle-value.txt files/observed-launches.txt')===r.fixtureBefore;assert(r.fixtureUnchanged);
  r.status=r.failures.length?'fail':'pass';
@@ -45,9 +47,10 @@ finally{
  r.finalStop=await bridge('stop');const end=Date.now()+7000;while(Date.now()<end){r.finalCapabilities=await nativeRequest('/capabilities');if(!r.finalCapabilities.body.result.backendStopping)break;await wait(100);}
  r.hostAfter=identity(Number(host()));r.sameNativeHost=r.hostBefore?.start===r.hostAfter.start&&r.hostBefore?.pid===r.hostAfter.pid;
  r.protectedEqual=secretPaths.map((p,i)=>({path:p,equal:device(['exec-out','run-as','dev.olea.m2.runtime','cat',p])===protectedBefore[i]}));
- r.historical=baseline.historical.map(x=>({path:x.path,expected:x.expected,actual:shell(`run-as dev.olea.m2.runtime sha256sum ${x.path}`).trim().split(/\s+/)[0]}));r.historicalUnchanged=r.historical.every(x=>x.actual===x.expected);
+ r.historical=currentHashes();r.historicalUnchanged=r.historical.every(x=>x.actual===x.expected);
+ r.unchangedSinceAttemptStart=r.historical.every((x,i)=>x.actual===r.currentHashesBefore[i].actual);
  r.sessionHashesUnchanged=shell("run-as dev.olea.m2.runtime sh -c 'sha256sum files/rootfs/workspace/m3-pi-final-seven-02-state/m2_204a30734b03aa49c10ca0241a11175c/*'")===baseline.sessionHashes;
  r.finalInventory=identities();r.finishedAt=new Date().toISOString();r.limit='Finite exact PID/UID/start snapshots; no universal unseen-fork guarantee. No model turn or whole-app interruption.';
- if(!r.sameNativeHost||!r.protectedEqual.every(x=>x.equal)||!r.historicalUnchanged||!r.sessionHashesUnchanged)r.status='fail';
+ if(!r.sameNativeHost||!r.protectedEqual.every(x=>x.equal)||!r.unchangedSinceAttemptStart||!r.sessionHashesUnchanged)r.status='fail';
  writeFileSync(`spike/m4/runtime/evidence/${attempt}.json`,JSON.stringify(r,null,2)+'\n',{flag:'wx'});console.log({status:r.status,error:r.error,failures:r.failures,sameNativeHost:r.sameNativeHost,afterDeath:r.afterDeath?.body.result,final:r.finalCapabilities.body.result,inventory:r.finalInventory.map(i=>i.pid)});
 }
