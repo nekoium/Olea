@@ -2713,8 +2713,8 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "Both actual Android Pi and Codex discovery runners import the same shared Backend package with persistent adapters, serial test instances. Full shared native-controlled agent workflows/process-supervision lifecycle remain incomplete; native backendRunning flag currently false.",
+    "status": "pass",
+    "actual": "Final a03 native-owned single Node server PID22982 started stock Pi PID23003, exchanged get_state and abort_bash, then settled tracked cleanup. Dual-adapter source retained; this run exercised Pi only, not concurrent Pi/Codex on this server.",
     "attempts": [
       {
         "attemptId": "pi-combined-a01-backend-shared",
@@ -2971,9 +2971,301 @@
           "Synthetic non-credential environment sentinel was not tested because command never executed; false absence flag is not observed secret exposure.",
           "Root process exit does not establish descendant exit or permanent disabled-phone state."
         ]
+      },
+      {
+        "attemptId": "m3-b1-backend-first-failure",
+        "caseId": "backend.shared",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "fail",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "First backend attempt failed to find uppercase native button before server startup; no runtime/server outcome from that attempt.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-recovery-a01.json",
+            "sha256": "22797b0290d6ff0554aeb577d6ab0110a76ecdb1ef95f2b42680eec0a487daee"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/backend-recovery-a01.mjs",
+            "sha256": "f0789b5b0f79fad1af61755b9ba0efd0a25f76b7a2f015415c6d9b6b2ce1510f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ],
+        "failureClass": "harness"
+      },
+      {
+        "attemptId": "m3-b1-backend-shared",
+        "caseId": "backend.shared",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Final a03 native-owned single Node server PID22982 started stock Pi PID23003, exchanged get_state and abort_bash, then settled tracked cleanup. Dual-adapter source retained; this run exercised Pi only, not concurrent Pi/Codex on this server.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-recovery-a02.json",
+            "sha256": "f15c2c4c050fbf722757e701bdb7c884c63f11c9222dc034a3ae9e754cdb63f2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/backend-recovery-a01.mjs",
+            "sha256": "f0789b5b0f79fad1af61755b9ba0efd0a25f76b7a2f015415c6d9b6b2ce1510f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/start-runtime.sh",
+            "sha256": "2235de1aa2b01a4ca38a3aed5662a6d6c4c1f9717e4911f2a8a9384bf853ee8f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a03-apk.sha256",
+            "sha256": "c258e1cba6ee635e44d5eeb41a76f07ddb2ad2f0fec94eacb05c1456e12baf31"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/build-a06.txt",
+            "sha256": "4992e6fd5090b0d9d096a3c26c73100f2460b56da3c8a6350b7db202931bec38"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-payload-a02.sha256",
+            "sha256": "52451cf4101e49fb83d0f1f2a724caa02e8e60da2208c1af8b6d002c2c564428"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/initial-baseline.json",
+            "sha256": "2a9c4a0fe3d4fae728b3d037eaed1e394b6180de6258def93c26bc64bed1b55d"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/baseline-preservation.json",
+            "sha256": "6c4007f4886e3b5a6c65f46560cdcb0175127e5e9ce34a192e6dbab31d29f2a8"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "actual_shared_server_ready_pid",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "stock_pi_correlated_state",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ],
+        "execution": {
+          "apkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "backendPid": 22982,
+          "piPid": 23003,
+          "hostRealUid": 10216
+        }
       }
     ],
-    "actualAttemptId": "android-codex-a01-backend-shared"
+    "actualAttemptId": "m3-b1-backend-shared"
   },
   {
     "id": "pi.install",
@@ -4303,7 +4595,163 @@
     "mode": "model",
     "status": "untested",
     "actual": "No retained matching execution receipt.",
-    "attempts": [],
+    "attempts": [
+      {
+        "attemptId": "m3-b1-pi-bash-abort",
+        "caseId": "pi.cancel",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Stock Pi direct abort_bash acknowledged and actual bash terminal response cancelled=true arrived before native STOP; no marker persisted and six tracked native identities subsequently absent. Model-turn cancellation remains untested because this was direct RPC.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-recovery-a02.json",
+            "sha256": "f15c2c4c050fbf722757e701bdb7c884c63f11c9222dc034a3ae9e754cdb63f2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/backend-recovery-a01.mjs",
+            "sha256": "f0789b5b0f79fad1af61755b9ba0efd0a25f76b7a2f015415c6d9b6b2ce1510f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/start-runtime.sh",
+            "sha256": "2235de1aa2b01a4ca38a3aed5662a6d6c4c1f9717e4911f2a8a9384bf853ee8f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a03-apk.sha256",
+            "sha256": "c258e1cba6ee635e44d5eeb41a76f07ddb2ad2f0fec94eacb05c1456e12baf31"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/build-a06.txt",
+            "sha256": "4992e6fd5090b0d9d096a3c26c73100f2460b56da3c8a6350b7db202931bec38"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-payload-a02.sha256",
+            "sha256": "52451cf4101e49fb83d0f1f2a724caa02e8e60da2208c1af8b6d002c2c564428"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/initial-baseline.json",
+            "sha256": "2a9c4a0fe3d4fae728b3d037eaed1e394b6180de6258def93c26bc64bed1b55d"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/baseline-preservation.json",
+            "sha256": "6c4007f4886e3b5a6c65f46560cdcb0175127e5e9ce34a192e6dbab31d29f2a8"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "correlated_abort_and_bash_cancelled_terminal",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ]
+      }
+    ],
     "actualAttemptId": null
   },
   {
@@ -8400,6 +8848,162 @@
           "Root process exit does not establish descendant exit or permanent disabled-phone state."
         ],
         "failureClass": "prerequisite"
+      },
+      {
+        "attemptId": "m3-b1-codex-command-cancel",
+        "caseId": "codex.cancel",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Stock Codex0.167 command/exec/terminate completed in24.64ms with exit137 and exact command root/child gone; adapter stop and independent native nine-identity absence corroborate cleanup. DIRECT command cancellation, not model turn/interrupt; catalog model-cancel row remains untested.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/codex-cancel-a01.json",
+            "sha256": "4b600e8ddc6713d9419e868b059cc5c6b98796d40a79eb1ba88f81b74919984b"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/codex-cancel-a01-native.json",
+            "sha256": "d42c7a225faa088059ea8ee281d622d1b92dca291411d3f0a2e296e332e1f783"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/codex-cancel-a01-independent.json",
+            "sha256": "8e3507b26c1de8c13f51bfddefc94f7c8e971297267ddc501c1adc378551c8b8"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/codex-cancel-a01.sh",
+            "sha256": "c46439865d9fda77c5ea90624cf2e42c187836fd9637d9bbf828c42b228ceaed"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "command_terminated_root_child_gone",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "adapter_root_tracked_cleanup",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "nine_native_identities_absent",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ],
+        "execution": {
+          "accessMode": "full-access",
+          "filesystemIsolation": false,
+          "stockVersion": "0.167.0",
+          "guestUid": 0,
+          "hostRealUid": 10216
+        }
       }
     ],
     "actualAttemptId": "android-codex-a01-codex-cancel"
@@ -9939,10 +10543,141 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "fail",
+    "actual": "HTTPS example.org dispatch reached Chrome first-run decision; intended destination was not observed. Actual user browser setup choice remains pending; dispatch alone is insufficient.",
+    "attempts": [
+      {
+        "attemptId": "m3-b1-url-first-run",
+        "caseId": "phone.direct.intent-url",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "fail",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "HTTPS example.org dispatch reached Chrome first-run decision; intended destination was not observed. Actual user browser setup choice remains pending; dispatch alone is insufficient.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/direct-categories-a01.json",
+            "sha256": "523020ecfeab12162d0ce98ad61849ede6df96261919b99b7b9c187827f8c570"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/url-a01-ui.xml",
+            "sha256": "989a8f5c36c64735634e2595daf1ec127d120e4301261091f48382a98bc3a6d6"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/direct-categories-a01.mjs",
+            "sha256": "1239fb810eb35d2ce8291a0f501dd17c7e79757e573dbd34dcb4b35744e00b2a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ],
+        "failureClass": "permission"
+      }
+    ],
+    "actualAttemptId": "m3-b1-url-first-run"
   },
   {
     "id": "phone.pi.intent-url",
@@ -9953,8 +10688,8 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
+    "status": "blocked",
+    "actual": "Prerequisite failed/blocked: phone.direct.intent-url",
     "attempts": [],
     "actualAttemptId": null
   },
@@ -9967,8 +10702,8 @@
     ],
     "context": "android-app",
     "mode": "model",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
+    "status": "blocked",
+    "actual": "Prerequisite failed/blocked: phone.direct.intent-url",
     "attempts": [],
     "actualAttemptId": null
   },
@@ -9980,10 +10715,413 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Delayed independent observation matches newly injected24.9876/121.5432 coordinates with GPS timestamp after input and valid accuracy5; age24728ms establishes valid last-known location only, NOT under5s freshness or ordinary consent.",
+    "attempts": [
+      {
+        "attemptId": "m3-b1-location-first-failure",
+        "caseId": "phone.direct.structured-api",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "fail",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Initial last-known GPS result retained old timestamp/age over9hours; attempted under5s freshness assertion failed. Original stale callback behavior remains retained.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/direct-categories-a01.json",
+            "sha256": "523020ecfeab12162d0ce98ad61849ede6df96261919b99b7b9c187827f8c570"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/direct-categories-a01.mjs",
+            "sha256": "1239fb810eb35d2ce8291a0f501dd17c7e79757e573dbd34dcb4b35744e00b2a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ],
+        "failureClass": "runtime"
+      },
+      {
+        "attemptId": "m3-b1-location-second-failure",
+        "caseId": "phone.direct.structured-api",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "fail",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Second immediate read still returned prior coordinates and failed exact new-coordinate assertion; new fix had not arrived at this observation.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/location-a02.json",
+            "sha256": "0d44eb911b6bcd825e6cceccdcad45eb8003cffdb19be179ee65a21e9ecba760"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/location-a02.mjs",
+            "sha256": "f7cc8e653c13d275f8a01aea9930edb853a3d1aabd963d051cb02aa6fd4eb0c2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ],
+        "failureClass": "runtime"
+      },
+      {
+        "attemptId": "m3-b1-location-delayed",
+        "caseId": "phone.direct.structured-api",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Delayed independent observation matches newly injected24.9876/121.5432 coordinates with GPS timestamp after input and valid accuracy5; age24728ms establishes valid last-known location only, NOT under5s freshness or ordinary consent.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/location-a02.json",
+            "sha256": "0d44eb911b6bcd825e6cceccdcad45eb8003cffdb19be179ee65a21e9ecba760"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/location-a02-delayed-observation.json",
+            "sha256": "961199ccbade37e8c7ba50e566777dd9f68399fcb88b50e2b280a7bad7cd05d0"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/location-a02.mjs",
+            "sha256": "f7cc8e653c13d275f8a01aea9930edb853a3d1aabd963d051cb02aa6fd4eb0c2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a02-apk.sha256",
+            "sha256": "ca99b2979ec2525101184ac74658a31da775e6ea855abedeb7ed207d5c92f4e6"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "independent_injected_coordinates_match",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "gps_timestamp_after_input_valid_accuracy",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ],
+        "execution": {
+          "apkSha256": "5feae0ad07d1d3434617ab4df628050beaca0636c15e7d4df2ec11aa6730424f",
+          "ageMs": 24728,
+          "resultKind": "last-known",
+          "permissionRoute": "development grant"
+        }
+      }
+    ],
+    "actualAttemptId": "m3-b1-location-delayed"
   },
   {
     "id": "phone.pi.structured-api",
@@ -10062,10 +11200,157 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Separate fixtureUID10217 posted id42/text; initially empty listenerUID10216 returned exact package/id/text and independent notification-manager record corroborates posting. Explicit development grants, not normal user onboarding.",
+    "attempts": [
+      {
+        "attemptId": "m3-b1-notification",
+        "caseId": "phone.direct.notification",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Separate fixtureUID10217 posted id42/text; initially empty listenerUID10216 returned exact package/id/text and independent notification-manager record corroborates posting. Explicit development grants, not normal user onboarding.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/direct-categories-a01.json",
+            "sha256": "523020ecfeab12162d0ce98ad61849ede6df96261919b99b7b9c187827f8c570"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/direct-categories-a01.mjs",
+            "sha256": "1239fb810eb35d2ce8291a0f501dd17c7e79757e573dbd34dcb4b35744e00b2a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a01-apk.sha256",
+            "sha256": "8f4e6f71775cea4022bbbfc9ff5757b1726a0f69bc9841136ef086a5ffe502cb"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "empty_to_expected_listener_delta",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "independent_separate_uid_notification_record",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ],
+        "execution": {
+          "apkSha256": "6cc43cb633ca769e77b981ac253675020ecc9241aebdb23d337994eda839c21e",
+          "hostRealUid": 10216,
+          "fixtureRealUid": 10217,
+          "permissionRoute": "ADB development grants / allow_listener"
+        }
+      }
+    ],
+    "actualAttemptId": "m3-b1-notification"
   },
   {
     "id": "phone.pi.notification",
@@ -11050,8 +12335,8 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "Direct missing-token request rejected401; retain auth rejection as context only. Android permission denial/revocation/stop behavior has not been established by this check.",
+    "status": "pass",
+    "actual": "Actual native location and notification-listener requests rejected LOCATION_PERMISSION_DENIED / NOTIFICATION_ACCESS_REVOKED before explicit development grants; no location/notification result returned. This proves these two denied-read boundaries only, not revocation or all permission types.",
     "attempts": [
       {
         "attemptId": "pi-combined-a01-phone-permission-denied",
@@ -11134,9 +12419,140 @@
           "Raw runner awaiting-independent-phone-oracle remains immutable; normalized phone passes additionally require retained strict native oracle.",
           "No active cancellation, generic descendant cleanup, whole-app recovery or full-category phone acceptance inferred."
         ]
+      },
+      {
+        "attemptId": "m3-b1-permission-denied",
+        "caseId": "phone.permission-denied",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Actual native location and notification-listener requests rejected LOCATION_PERMISSION_DENIED / NOTIFICATION_ACCESS_REVOKED before explicit development grants; no location/notification result returned. This proves these two denied-read boundaries only, not revocation or all permission types.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/direct-categories-a01.json",
+            "sha256": "523020ecfeab12162d0ce98ad61849ede6df96261919b99b7b9c187827f8c570"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/direct-categories-a01.mjs",
+            "sha256": "1239fb810eb35d2ce8291a0f501dd17c7e79757e573dbd34dcb4b35744e00b2a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "exact_native_permission_errors_before_grants",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ]
       }
     ],
-    "actualAttemptId": "pi-combined-a01-phone-permission-denied"
+    "actualAttemptId": "m3-b1-permission-denied"
   },
   {
     "id": "phone.revocation",
@@ -11258,10 +12674,160 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Native STOP interrupted already-started deterministic Unix timer, rejected later fixture action PHONE_STOPPED, and independently found both tracked identities absent; late marker also absent at later recovery snapshot. No model-turn cancel or rollback claim.",
+    "attempts": [
+      {
+        "attemptId": "m3-b1-native-cancel",
+        "caseId": "phone.cancel",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Native STOP interrupted already-started deterministic Unix timer, rejected later fixture action PHONE_STOPPED, and independently found both tracked identities absent; late marker also absent at later recovery snapshot. No model-turn cancel or rollback claim.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/native-cancel-a01.json",
+            "sha256": "3fac4f83d2a09dd1ab37a3601059156852e5b82e13257cecf093bba21bf4d3aa"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/native-cancel-a01.mjs",
+            "sha256": "fcad117c83ffcd88b53e691c3af8e81b1d7cdb7bec03db5e4f7d9d31f27a80ad"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/native-cancel-a01.sh",
+            "sha256": "5f9d3b9f8a5cb0861816c93e5b571971d60d308a679e91aafc8741e6da8dc53c"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-recovery-a02.json",
+            "sha256": "f15c2c4c050fbf722757e701bdb7c884c63f11c9222dc034a3ae9e754cdb63f2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "started_pid_before_stop",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "tracked_root_children_absent",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "post_stop_action_denied",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ]
+      }
+    ],
+    "actualAttemptId": "m3-b1-native-cancel"
   },
   {
     "id": "phone.no-replay",
@@ -11271,10 +12837,171 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "After settled native STOP and explicit app force-stop/restart, owner independently compared phone audit/private oracle unchanged and late markers absent. Bounded settled-state no-replay only; no uncertain in-flight delivery or reboot replay test.",
+    "attempts": [
+      {
+        "attemptId": "m3-b1-no-replay",
+        "caseId": "phone.no-replay",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "After settled native STOP and explicit app force-stop/restart, owner independently compared phone audit/private oracle unchanged and late markers absent. Bounded settled-state no-replay only; no uncertain in-flight delivery or reboot replay test.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-recovery-a02.json",
+            "sha256": "f15c2c4c050fbf722757e701bdb7c884c63f11c9222dc034a3ae9e754cdb63f2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/backend-recovery-a01.mjs",
+            "sha256": "f0789b5b0f79fad1af61755b9ba0efd0a25f76b7a2f015415c6d9b6b2ce1510f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/start-runtime.sh",
+            "sha256": "2235de1aa2b01a4ca38a3aed5662a6d6c4c1f9717e4911f2a8a9384bf853ee8f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a03-apk.sha256",
+            "sha256": "c258e1cba6ee635e44d5eeb41a76f07ddb2ad2f0fec94eacb05c1456e12baf31"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/build-a06.txt",
+            "sha256": "4992e6fd5090b0d9d096a3c26c73100f2460b56da3c8a6350b7db202931bec38"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-payload-a02.sha256",
+            "sha256": "52451cf4101e49fb83d0f1f2a724caa02e8e60da2208c1af8b6d002c2c564428"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/initial-baseline.json",
+            "sha256": "2a9c4a0fe3d4fae728b3d037eaed1e394b6180de6258def93c26bc64bed1b55d"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/baseline-preservation.json",
+            "sha256": "6c4007f4886e3b5a6c65f46560cdcb0175127e5e9ce34a192e6dbab31d29f2a8"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "audit_oracle_unchanged_after_restart",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "no_late_markers",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ]
+      }
+    ],
+    "actualAttemptId": "m3-b1-no-replay"
   },
   {
     "id": "preserve.agent-update",
@@ -11416,10 +13143,166 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Seven prior canonical Codex config/transcript/combined-value/sentinel file hashes identical before stop, after cleanup and after explicit app restart; no reset or replacement. New Pi session identity was observed but not resumed after restart.",
+    "attempts": [
+      {
+        "attemptId": "m3-b1-recovery-hashes",
+        "caseId": "preserve.recovery-hashes",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Seven prior canonical Codex config/transcript/combined-value/sentinel file hashes identical before stop, after cleanup and after explicit app restart; no reset or replacement. New Pi session identity was observed but not resumed after restart.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-recovery-a02.json",
+            "sha256": "f15c2c4c050fbf722757e701bdb7c884c63f11c9222dc034a3ae9e754cdb63f2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/backend-recovery-a01.mjs",
+            "sha256": "f0789b5b0f79fad1af61755b9ba0efd0a25f76b7a2f015415c6d9b6b2ce1510f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/start-runtime.sh",
+            "sha256": "2235de1aa2b01a4ca38a3aed5662a6d6c4c1f9717e4911f2a8a9384bf853ee8f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a03-apk.sha256",
+            "sha256": "c258e1cba6ee635e44d5eeb41a76f07ddb2ad2f0fec94eacb05c1456e12baf31"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/build-a06.txt",
+            "sha256": "4992e6fd5090b0d9d096a3c26c73100f2460b56da3c8a6350b7db202931bec38"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-payload-a02.sha256",
+            "sha256": "52451cf4101e49fb83d0f1f2a724caa02e8e60da2208c1af8b6d002c2c564428"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/initial-baseline.json",
+            "sha256": "2a9c4a0fe3d4fae728b3d037eaed1e394b6180de6258def93c26bc64bed1b55d"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/baseline-preservation.json",
+            "sha256": "6c4007f4886e3b5a6c65f46560cdcb0175127e5e9ce34a192e6dbab31d29f2a8"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "nonempty_exact_history_hash_inventory_preserved",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ]
+      }
+    ],
+    "actualAttemptId": "m3-b1-recovery-hashes"
   },
   {
     "id": "preserve.credential-preservation",
@@ -11430,7 +13313,7 @@
     "context": "android-app",
     "mode": "direct",
     "status": "pass",
-    "actual": "Owner-local byte-equality check of protected provider config passes and mode600 persists across ordinary adjacent Pi update; no credential bytes or credential hash retained.",
+    "actual": "Owner-local equality of provider/bridge configuration and token plus mode600 persisted across explicit whole-app restart; no new protected values or digests copied into this assessment.",
     "attempts": [
       {
         "attemptId": "pi-update-a01-preserve-credential-preservation",
@@ -11510,9 +13393,164 @@
           "No model/provider calls, no repeated uncertain phone actions.",
           "Whole runtime/environment/APK update and interrupted/failed agent update recovery remain separate untested acceptance."
         ]
+      },
+      {
+        "attemptId": "m3-b1-recovery-protected",
+        "caseId": "preserve.credential-preservation",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Owner-local equality of provider/bridge configuration and token plus mode600 persisted across explicit whole-app restart; no new protected values or digests copied into this assessment.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-recovery-a02.json",
+            "sha256": "f15c2c4c050fbf722757e701bdb7c884c63f11c9222dc034a3ae9e754cdb63f2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/backend-recovery-a01.mjs",
+            "sha256": "f0789b5b0f79fad1af61755b9ba0efd0a25f76b7a2f015415c6d9b6b2ce1510f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/start-runtime.sh",
+            "sha256": "2235de1aa2b01a4ca38a3aed5662a6d6c4c1f9717e4911f2a8a9384bf853ee8f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a03-apk.sha256",
+            "sha256": "c258e1cba6ee635e44d5eeb41a76f07ddb2ad2f0fec94eacb05c1456e12baf31"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/build-a06.txt",
+            "sha256": "4992e6fd5090b0d9d096a3c26c73100f2460b56da3c8a6350b7db202931bec38"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-payload-a02.sha256",
+            "sha256": "52451cf4101e49fb83d0f1f2a724caa02e8e60da2208c1af8b6d002c2c564428"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/initial-baseline.json",
+            "sha256": "2a9c4a0fe3d4fae728b3d037eaed1e394b6180de6258def93c26bc64bed1b55d"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/baseline-preservation.json",
+            "sha256": "6c4007f4886e3b5a6c65f46560cdcb0175127e5e9ce34a192e6dbab31d29f2a8"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "owner_local_protected_equality_and_modes",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ]
       }
     ],
-    "actualAttemptId": "pi-update-a01-preserve-credential-preservation"
+    "actualAttemptId": "m3-b1-recovery-protected"
   },
   {
     "id": "lifecycle.child-death",
@@ -11548,10 +13586,171 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "untested",
-    "actual": "No retained matching execution receipt.",
-    "attempts": [],
-    "actualAttemptId": null
+    "status": "pass",
+    "actual": "Explicit force-stop/restart AFTER backend was already stopped preserved recorded files and restarted with phone/backend disabled. This is settled-state app recovery only, not active-child crash survival or unexpected backend-death recovery.",
+    "attempts": [
+      {
+        "attemptId": "m3-b1-whole-app-recovery",
+        "caseId": "lifecycle.whole-app-death",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Explicit force-stop/restart AFTER backend was already stopped preserved recorded files and restarted with phone/backend disabled. This is settled-state app recovery only, not active-child crash survival or unexpected backend-death recovery.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-recovery-a02.json",
+            "sha256": "f15c2c4c050fbf722757e701bdb7c884c63f11c9222dc034a3ae9e754cdb63f2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/backend-recovery-a01.mjs",
+            "sha256": "f0789b5b0f79fad1af61755b9ba0efd0a25f76b7a2f015415c6d9b6b2ce1510f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/start-runtime.sh",
+            "sha256": "2235de1aa2b01a4ca38a3aed5662a6d6c4c1f9717e4911f2a8a9384bf853ee8f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a03-apk.sha256",
+            "sha256": "c258e1cba6ee635e44d5eeb41a76f07ddb2ad2f0fec94eacb05c1456e12baf31"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/build-a06.txt",
+            "sha256": "4992e6fd5090b0d9d096a3c26c73100f2460b56da3c8a6350b7db202931bec38"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-payload-a02.sha256",
+            "sha256": "52451cf4101e49fb83d0f1f2a724caa02e8e60da2208c1af8b6d002c2c564428"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/initial-baseline.json",
+            "sha256": "2a9c4a0fe3d4fae728b3d037eaed1e394b6180de6258def93c26bc64bed1b55d"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/baseline-preservation.json",
+            "sha256": "6c4007f4886e3b5a6c65f46560cdcb0175127e5e9ce34a192e6dbab31d29f2a8"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "explicit_force_stop_restart_disabled_state",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "retained_state_preserved",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ]
+      }
+    ],
+    "actualAttemptId": "m3-b1-whole-app-recovery"
   },
   {
     "id": "lifecycle.app-switch",
@@ -11748,8 +13947,8 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "fail",
-    "actual": "Actual native210s timeout did not establish root exit; interrupted drain faults and surviving exact tracedGit/PRoot identities remain a failed supervision result, not masked by model success.",
+    "status": "pass",
+    "actual": "APK a01 native8s timeout settled root plus five tracked identities including PPID1 PRoot tracee; independent observer found all five absent. Original M2 210s timeout remains failed in history; final a03 scanner has separate recovery proof, not this timeout rerun.",
     "attempts": [
       {
         "attemptId": "runtime-harness-a01-timeout",
@@ -11904,9 +14103,158 @@
           "accessibility": true,
           "lease": "Currentruntimeowner retains until explicit savedrelease; no transfer."
         }
+      },
+      {
+        "attemptId": "m3-b1-timeout",
+        "caseId": "native.timeout",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "APK a01 native8s timeout settled root plus five tracked identities including PPID1 PRoot tracee; independent observer found all five absent. Original M2 210s timeout remains failed in history; final a03 scanner has separate recovery proof, not this timeout rerun.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/timeout-a01-native.json",
+            "sha256": "2412bcadb8194e56a5d6185a8d3de938ad297159edfe9fd98ab60f000131f059"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/timeout-a01-independent.json",
+            "sha256": "79d2b9df24afa84e0cebc474b2942f8d139f410a566b1fd397c715702e68db6b"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/timeout-a01.sh",
+            "sha256": "c8efee4a459d2909b6e32329058ace7a7d125565ae03f8eb8e81232cfc7e7953"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a01-apk.sha256",
+            "sha256": "8f4e6f71775cea4022bbbfc9ff5757b1726a0f69bc9841136ef086a5ffe502cb"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "native_timeout_root_exit",
+            "independent": true,
+            "passed": true
+          },
+          {
+            "name": "all_five_exact_tracked_identities_absent",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ],
+        "execution": {
+          "apkSha256": "6cc43cb633ca769e77b981ac253675020ecc9241aebdb23d337994eda839c21e",
+          "deadlineSeconds": 8,
+          "trackedIdentities": 5
+        }
       }
     ],
-    "actualAttemptId": "codex-phone-a01-original-timeout"
+    "actualAttemptId": "m3-b1-timeout"
   },
   {
     "id": "native.inherited-pipes",
@@ -12915,8 +15263,8 @@
     ],
     "context": "android-app",
     "mode": "direct",
-    "status": "fail",
-    "actual": "Native wrapper timed out210s after successful model turn; rootExitObserved=false, reparentedGit16514/16516 remained traced byPRoot16364. Later exactidentitySIGTERMrepair does not pass genericcleanup.",
+    "status": "pass",
+    "actual": "Final APK a03 actual shared-backend/Pi STOP settled native root and all six tracked identities, independently absent with no faults. Earlier a01 timeout and a02 Codex cleanup are separate proofs; original M2 cleanup failure remains retained. No universal unseen-fork guarantee.",
     "attempts": [
       {
         "attemptId": "pi-combined-a01-cost-cleanup",
@@ -13124,9 +15472,164 @@
           "accessibility": true,
           "lease": "Currentruntimeowner retains until explicit savedrelease; no transfer."
         }
+      },
+      {
+        "attemptId": "m3-b1-cleanup-final",
+        "caseId": "cost.cleanup",
+        "context": "android-app",
+        "mode": "direct",
+        "status": "pass",
+        "startedAt": "2026-11-11T02:22:11.102Z",
+        "endedAt": "2026-11-11T02:36:40.951Z",
+        "summary": "Final APK a03 actual shared-backend/Pi STOP settled native root and all six tracked identities, independently absent with no faults. Earlier a01 timeout and a02 Codex cleanup are separate proofs; original M2 cleanup failure remains retained. No universal unseen-fork guarantee.",
+        "artifacts": [
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-recovery-a02.json",
+            "sha256": "f15c2c4c050fbf722757e701bdb7c884c63f11c9222dc034a3ae9e754cdb63f2"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/backend-recovery-a01.mjs",
+            "sha256": "f0789b5b0f79fad1af61755b9ba0efd0a25f76b7a2f015415c6d9b6b2ce1510f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/start-runtime.sh",
+            "sha256": "2235de1aa2b01a4ca38a3aed5662a6d6c4c1f9717e4911f2a8a9384bf853ee8f"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/runtime-a03-apk.sha256",
+            "sha256": "c258e1cba6ee635e44d5eeb41a76f07ddb2ad2f0fec94eacb05c1456e12baf31"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/build-a06.txt",
+            "sha256": "4992e6fd5090b0d9d096a3c26c73100f2460b56da3c8a6350b7db202931bec38"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/backend-payload-a02.sha256",
+            "sha256": "52451cf4101e49fb83d0f1f2a724caa02e8e60da2208c1af8b6d002c2c564428"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/initial-baseline.json",
+            "sha256": "2a9c4a0fe3d4fae728b3d037eaed1e394b6180de6258def93c26bc64bed1b55d"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/baseline-preservation.json",
+            "sha256": "6c4007f4886e3b5a6c65f46560cdcb0175127e5e9ce34a192e6dbab31d29f2a8"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/BATCH_1.md",
+            "sha256": "a340e8deec6b01e14403bcba86e45291f5e32455dccdfa1961b849a0e79c590a"
+          },
+          {
+            "path": "git:d73a82e:spike/m3/runtime/evidence/batch-1-source-manifest.json",
+            "sha256": "fcb766137d359b20b42d38ac340d8e3ae29a4247912072caf9d6058079f4d001"
+          }
+        ],
+        "assertions": [
+          {
+            "name": "final_native_root_tracked_six_absent",
+            "independent": true,
+            "passed": true
+          }
+        ],
+        "provider": {
+          "topLevelPrompts": 0,
+          "modelRequests": 0
+        },
+        "provenance": {
+          "sourceCommit": "d73a82e",
+          "baselineCommit": "c4f125c",
+          "sourceManifest": "spike/m3/runtime/evidence/batch-1-source-manifest.json",
+          "finalApkSha256": "4e1f94403b4e23924c309360ed80f275fc8b37153763befd0eebc85a1ebf862a",
+          "sourceDomains": [
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+              "gitBlobSha256": "0e919c62703da7b68120795c7cd3c0584accce1f6916a51097cd554116ef919a",
+              "capturedRawSha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+              "gitBlobSha256": "7714dc667cda315fc3a53a7da9462c67b71e192dd484362174a8e0c3e6b88ee3",
+              "capturedRawSha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+              "gitBlobSha256": "fa5e34b6dc79ae287a28b52ba44b5a75d71bb32fdb7ccb1803e3be5e7030996b",
+              "capturedRawSha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+              "gitBlobSha256": "db2ebdbecae25ea8c77a2dbf81f60ae9a71ead6fba06f65c0f513bdc17d556b0",
+              "capturedRawSha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/modern/AndroidManifest.xml",
+              "gitBlobSha256": "66627f5b8d8b1800a9f1394eb7cda6b1330680ee6328c672fb61b5d2b90efbf1",
+              "capturedRawSha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/extensions/phone.ts",
+              "gitBlobSha256": "9f62b74233211b38ca47633c949e0e741bdca36602ba7adbd2bcbaadb6fbfb26",
+              "capturedRawSha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/codex-process.ts",
+              "gitBlobSha256": "e0202f48aaa9f8e4d94f65400d7a975360a091171ff4e3215c5d34dab87b629b",
+              "capturedRawSha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/phone-mcp.ts",
+              "gitBlobSha256": "a0771d4f1e96e60db7520171b302357f7ebc23bc37ff052827080adfc47e1679",
+              "capturedRawSha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/backend/src/process-tree.ts",
+              "gitBlobSha256": "da648df18067dada2f1e833f79a9d67066d236ba7de8c7d28a54fea16d19c4c0",
+              "capturedRawSha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/lifecycle-preflight.mjs",
+              "gitBlobSha256": "44c745519c4dc467477e2fcc86bca4d1a4d605eba142669dd86052e0f051968e",
+              "capturedRawSha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/codex/phone-mcp.test.mjs",
+              "gitBlobSha256": "f4f94e794f781f632690d79c9eed47510ec8bbffd058599410c75154b3913b8d",
+              "capturedRawSha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/tests/pi/process-tree.test.mjs",
+              "gitBlobSha256": "836ef149644783d3c2fd0698d7232b701e40602a7f8816003b10ff7277d26e69",
+              "capturedRawSha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1",
+              "domain": "Captured working-tree CRLF bytes differ from Git LF blob"
+            },
+            {
+              "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+              "gitBlobSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "capturedRawSha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa",
+              "domain": "Git blob equals captured working-tree bytes"
+            }
+          ],
+          "limits": "Raw captured source/compiled deployment domains remain separate from Git blob hashes; final native source is not retroactive a01/a02 source proof. Existing stock component versions/licenses remain unchanged; no redistribution clearance."
+        },
+        "limits": [
+          "Direct deterministic evidence only; model-selected use and model-turn cancellation remain untested.",
+          "Finite tracked UID/starttime observations; unseen forks and active whole-service death are outside this proof.",
+          "Original M2 failures and every earlier batch attempt remain retained."
+        ]
       }
     ],
-    "actualAttemptId": "codex-phone-a01-original-cleanup"
+    "actualAttemptId": "m3-b1-cleanup-final"
   },
   {
     "id": "cost.constrained-core",
