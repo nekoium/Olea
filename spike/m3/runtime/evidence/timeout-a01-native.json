@@ -1,0 +1,80 @@
+{
+  "attempt": "m3-timeout-a01",
+  "startedAtMs": 1794363851417,
+  "package": "dev.olea.m2.runtime",
+  "hostPid": 22181,
+  "hostRealUid": 10216,
+  "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+  "hostStat": "22181 (olea.m2.runtime) R 489 489 0 0 -1 4194624 14754 0 3 0 52 428 0 0 10 -10 24 0 3361114 16546656256 40764 18446744073709551615 104822510714880 104822510719280 140726445114400 0 0 0 4612 1 1073775864 0 0 0 17 3 0 0 0 0 0 104822510747648 104822510747672 104823184080896 140726445120447 140726445120546 140726445120546 140726445125598 0",
+  "targetSdk": 36,
+  "androidApi": 36,
+  "abis": "x86_64,arm64-v8a",
+  "nativeLibraryDir": "\/data\/app\/~~dt4RyqY776DnLp2cDk4R5w==\/dev.olea.m2.runtime-tVz5knUYmOwvsZMAUDPWWg==\/lib\/x86_64",
+  "childPid": null,
+  "deadlineSeconds": 8,
+  "ownershipCleanup": {
+    "owned": [
+      {
+        "pid": 22433,
+        "parent": 22181,
+        "group": 489,
+        "tracer": 0,
+        "start": 3380736,
+        "uid": 10216
+      },
+      {
+        "pid": 22441,
+        "parent": 22433,
+        "group": 489,
+        "tracer": 22433,
+        "start": 3380745,
+        "uid": 10216
+      },
+      {
+        "pid": 22442,
+        "parent": 22441,
+        "group": 489,
+        "tracer": 22433,
+        "start": 3380775,
+        "uid": 10216
+      },
+      {
+        "pid": 22443,
+        "parent": 22441,
+        "group": 489,
+        "tracer": 22433,
+        "start": 3380800,
+        "uid": 10216
+      },
+      {
+        "pid": 22452,
+        "parent": 1,
+        "group": 489,
+        "tracer": 22433,
+        "start": 3380829,
+        "uid": 10216
+      }
+    ],
+    "remaining": [],
+    "faults": [],
+    "trackedExitVerified": true,
+    "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+  },
+  "rootExitObserved": true,
+  "inheritedPipesAfterJoin": false,
+  "timedOut": true,
+  "exitCode": null,
+  "stdout": "",
+  "stderr": "WARNING: linker: Warning: failed to find generated linker configuration from \"\/linkerconfig\/ld.config.txt\"\nproot info: vpid 1: terminated with signal 15\n",
+  "stdoutObservedBytes": 0,
+  "stderrObservedBytes": 153,
+  "stdoutRetainedBytes": 0,
+  "stderrRetainedBytes": 153,
+  "outputTruncated": false,
+  "drainersStillAlive": false,
+  "stdoutDrainFault": null,
+  "stderrDrainFault": null,
+  "descendantExitVerified": true,
+  "timeoutCleanupLimit": "Bounded tracked numeric UID\/starttime cleanup; unseen forks require independent observation",
+  "endedAtMs": 1794363860076
+}

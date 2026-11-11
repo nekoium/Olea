@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 import { readFile, readdir, stat } from 'node:fs/promises';
 
-export type ProcessIdentity = { pid: number; parent: number; start: string; uid: number };
+export type ProcessIdentity = { pid: number; parent: number; group: number; start: string; uid: number };
 type ProcIO = { list: () => Promise<string[]>; owner: (pid: number | 'self') => Promise<number>; record: (pid: number) => Promise<string> };
 export const procIO: ProcIO = {
   list: () => readdir('/proc'),
@@ -16,7 +16,7 @@ export async function processIdentity(pid: number, io = procIO): Promise<Process
   const fields = text.slice(end + 2).trim().split(/\s+/);
   if (end < 0 || Number(text.slice(0, text.indexOf(' '))) !== pid || !/^\d+$/.test(fields[1] ?? '') || !/^\d+$/.test(fields[19] ?? ''))
     throw new Error('cleanup_stat_unverifiable');
-  return { pid, parent: Number(fields[1]), start: fields[19], uid };
+  return { pid, parent: Number(fields[1]), group: Number(fields[2]), start: fields[19], uid };
 }
 
 // Android/PRoot can expose empty task children files. Build the parent map from
@@ -46,7 +46,9 @@ export async function snapshotOwnedTree(rootPid: number, io = procIO,
   for (let index = 0; index < owned.length; index++) {
     checkDeadline();
     for (const record of records.values()) {
-      if (record.parent === owned[index].pid && !selected.has(record.pid)) {
+      // A detached adapter owns its session leader's group, including reparented
+      // children. Signal individually only after checking UID and start ticks.
+      if ((record.parent === owned[index].pid || (root.group === rootPid && record.group === rootPid)) && !selected.has(record.pid)) {
         if (BigInt(record.start) < BigInt(owned[index].start)) throw new Error('cleanup_identity_unverifiable');
         if (owned.length - 1 >= limits.descendants) throw new Error('descendant_limit');
         selected.add(record.pid); owned.push(record);

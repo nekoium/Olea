@@ -11,13 +11,25 @@ export const phoneTools = [
   { name: 'phone_inspect', operation: 'accessibility_tree', description: 'Inspect bounded Android UI tree. Node identifiers expire on next inspection.', properties: {}, required: [] },
   { name: 'phone_click', operation: 'accessibility_click', description: 'Accessibility click current nodeId. Open target app by clicking launcher entry, not intent.', properties: { nodeId: { type: 'string', maxLength: 256 } }, required: ['nodeId'] },
   { name: 'phone_swipe', operation: 'swipe', description: 'Use default Accessibility swipe up to open launcher app drawer, then inspect again.', properties: {}, required: [] },
+  { name: 'phone_open_url', operation: 'open_url', description: 'Open a supplied HTTPS destination in the browser; dispatch alone does not prove arrival.', properties: { url: { type: 'string', maxLength: 2048, pattern: '^https://' } }, required: ['url'] },
+  { name: 'phone_location', operation: 'location', description: 'Read last-known Android location subject to native permission; inspect timestamp and age.', properties: {}, required: [] },
+  { name: 'phone_files_write_read', operation: 'files_write_read', description: 'Create and read back a bounded file only in the folder previously selected through Android consent.', properties: { value: { type: 'string', maxLength: 128 } }, required: ['value'] },
+  { name: 'phone_notifications', operation: 'notifications', description: 'Read bounded separate fixture notifications after notification access is granted.', properties: {}, required: [] },
+  { name: 'phone_fixture_notify', operation: 'fixture_notify', description: 'Ask the separate cooperating fixture app to post its harmless test notification.', properties: {}, required: [] },
+  { name: 'phone_capture_request', operation: 'capture_request', description: 'Request fresh system screen-capture consent; user must decide. Does not grant consent.', properties: {}, required: [] },
+  { name: 'phone_capture_result', operation: 'capture_result', description: 'Read metadata of the consented capture; no input control or private oracle access.', properties: {}, required: [] },
+  { name: 'phone_folder_request', operation: 'folder_request', description: 'Request Android folder picker. User must select and grant access.', properties: {}, required: [] },
   { name: 'phone_fixture_action', operation: 'fixture_action', description: 'Write supplied value using cooperating fixture interface; cannot read verification state.', properties: { value: { type: 'string', maxLength: 128 } }, required: ['value'] },
 ];
 export async function callPhone(name: string, args: RecordData, configPath: string) {
   const tool = phoneTools.find(tool => tool.name === name);
   if (!tool || !args || Array.isArray(args) || typeof args !== 'object') throw new Error('invalid_tool');
   if (Object.keys(args).some(key => !Object.hasOwn(tool.properties, key))) throw new Error('invalid_arguments');
-  for (const key of tool.required) if (typeof args[key] !== 'string' || !args[key] || args[key].length > (key === 'nodeId' ? 256 : 128)) throw new Error('invalid_arguments');
+  for (const key of tool.required) {
+    const property = (tool.properties as Record<string, { maxLength?: number; pattern?: string }>)[key];
+    if (typeof args[key] !== 'string' || !args[key] || args[key].length > (property.maxLength ?? 128) ||
+      (property.pattern && !new RegExp(property.pattern).test(args[key]))) throw new Error('invalid_arguments');
+  }
   const config = JSON.parse(readFileSync(configPath, 'utf8'));
   const url = new URL(config.url);
   if (url.protocol !== 'http:' || url.hostname !== '127.0.0.1' || !config.token) throw new Error('invalid_bridge');

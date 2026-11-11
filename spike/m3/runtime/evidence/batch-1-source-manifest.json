@@ -1,0 +1,73 @@
+{
+  "at": "2026-11-11T02:39:07.790Z",
+  "nativeArtifact": ".setup/m3-runtime-a03.apk",
+  "nativeBuild": "build-a06.txt",
+  "backendPayload": ".setup/m3-public-a02.tar",
+  "hashes": [
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/MainActivity.kt",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "6c4864af97bcbdb6d5c568bf11e4c902d031d9fbfe18204ec020e20a991e77b6"
+    },
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/PhoneApis.kt",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "b4f7a90604c8c6dd26b8a3538ae11c595ef8053e6fc7d873df23f36a2c98ebb6"
+    },
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "46b40513853a08ae23bcbf16604797b9059a7a6f7c9ec4ea857e66de66553314"
+    },
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeService.kt",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "d1616ba7a8f9d1b0747586028bc677b011b51bfdab2f2e290e5d0ee8bad2cc87"
+    },
+    {
+      "path": "spike/android/app/src/modern/AndroidManifest.xml",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "fe3170d123076cb2b96e157c9506682cca3a0f2d9395a1d3c71e85b8a0ff9d1d"
+    },
+    {
+      "path": "spike/backend/extensions/phone.ts",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94"
+    },
+    {
+      "path": "spike/backend/src/codex-process.ts",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "da788658e618e70649fd66ad3f8f5b7d7a465a5c9c87f29bea05ab16181f0f5e"
+    },
+    {
+      "path": "spike/backend/src/phone-mcp.ts",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "4cade4dca4278e6ec76d4e01a74fd1adf835ba9933fd8a9d987bb2d1d48d8af3"
+    },
+    {
+      "path": "spike/backend/src/process-tree.ts",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "740ba1063e1bc65be8c3ec008e289bf4898a04a4fdfa0825eeefdf260afe7cb5"
+    },
+    {
+      "path": "spike/tests/codex/lifecycle-preflight.mjs",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "1866d2a5f64cb04e55f40e18028d96b07ec89ab4bb24c1f7c7865ca772bc3d54"
+    },
+    {
+      "path": "spike/tests/codex/phone-mcp.test.mjs",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "64350f16a903100b7e33d72e35156d3e3f43b104880bebd3c8251d223b679a30"
+    },
+    {
+      "path": "spike/tests/pi/process-tree.test.mjs",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "75f747d1fcb854103b4329e157e67c4779649cafb70ed28c485f0a9d864f5ee1"
+    },
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+      "domain": "raw working-tree bytes compiled/tested",
+      "sha256": "65d2256fe47f713771b6c1276eae9051cb1e498fb574f22255d422365ec9f3fa"
+    }
+  ]
+}

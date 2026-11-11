@@ -1,0 +1,63 @@
+{
+  "at": "2026-11-11T02:25:21.130Z",
+  "observed": [
+    {
+      "identity": {
+        "pid": 22433,
+        "parent": 22181,
+        "group": 489,
+        "tracer": 0,
+        "start": 3380736,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 22441,
+        "parent": 22433,
+        "group": 489,
+        "tracer": 22433,
+        "start": 3380745,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 22442,
+        "parent": 22441,
+        "group": 489,
+        "tracer": 22433,
+        "start": 3380775,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 22443,
+        "parent": 22441,
+        "group": 489,
+        "tracer": 22433,
+        "start": 3380800,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 22452,
+        "parent": 1,
+        "group": 489,
+        "tracer": 22433,
+        "start": 3380829,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    }
+  ],
+  "uidInventory": [
+    "10216 22181   489 dev.olea.m2.runtime\r"
+  ]
+}

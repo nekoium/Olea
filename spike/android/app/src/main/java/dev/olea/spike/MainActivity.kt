@@ -33,7 +33,8 @@ class MainActivity : Activity() {
     override fun onActivityResult(request: Int, result: Int, data: Intent?) {
         super.onActivityResult(request, result, data)
         if (result != RESULT_OK || data == null) return
-        if (request == 10) PhoneApis.startCapture(this, result, data)
+        if (request == 10) startForegroundService(Intent(this, RuntimeService::class.java).setAction("capture")
+            .putExtra("captureResult", result).putExtra("captureData", data))
         if (request == 11) data.data?.let { uri ->
             contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
             PhoneApis.folder = uri

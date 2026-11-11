@@ -15,11 +15,13 @@ test('narrow MCP phone mapping authenticates and preserves native denial without
   await mkdir('.setup/codex-tests', { recursive: true });
   const directory = await mkdtemp(resolve('.setup/codex-tests/mcp-'));
   let count = 0;
+  let expectedOperation = 'global_action';
+  let expectedArgs = { action: 'home' };
   const server = createServer((request, response) => {
     assert.equal(request.headers.authorization, 'Bearer fixture-only-token');
     let body = ''; request.on('data', chunk => body += chunk);
     request.on('end', () => {
-      const record = JSON.parse(body); assert.equal(record.operation, 'global_action'); assert.deepEqual(record.args, { action: 'home' });
+      const record = JSON.parse(body); assert.equal(record.operation, expectedOperation); assert.deepEqual(record.args, expectedArgs);
       count++; response.writeHead(403, { 'content-type': 'application/json' }); response.end(JSON.stringify({ ok: false, error: { code: 'PHONE_STOPPED' } }));
     });
   });
@@ -32,5 +34,11 @@ test('narrow MCP phone mapping authenticates and preserves native denial without
   await assert.rejects(callPhone('phone_shell', {}, configPath), /invalid_tool/);
   await assert.rejects(callPhone('phone_click', { nodeId: 'valid', command: 'bad' }, configPath), /invalid_arguments/);
   assert.equal(count, 1);
+  await assert.rejects(callPhone('phone_open_url', { url: 'http://example.org' }, configPath), /invalid_arguments/);
+  await assert.rejects(callPhone('phone_open_url', { url: 'https://example.org/' + 'x'.repeat(2048) }, configPath), /invalid_arguments/);
+  expectedOperation = 'open_url'; expectedArgs = { url: 'https://example.org/' + 'x'.repeat(200) };
+  assert.equal((await callPhone('phone_open_url', expectedArgs, configPath)).isError, true);
+  assert.equal(count, 2);
+  for (const name of ['phone_location', 'phone_files_write_read', 'phone_notifications', 'phone_fixture_notify', 'phone_capture_request', 'phone_capture_result', 'phone_folder_request']) assert(phoneTools.some(tool => tool.name === name));
   assert.ok(phoneTools.every(tool => !/oracle|shell|adb/.test(tool.name)));
 });

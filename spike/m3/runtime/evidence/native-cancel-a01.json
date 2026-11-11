@@ -1,0 +1,112 @@
+{
+  "attempt": "native-cancel-a01",
+  "startedAt": 1794364294830,
+  "modelRequests": 0,
+  "launch": "Starting: Intent { flg=0x18000000 cmp=dev.olea.m2.runtime/dev.olea.spike.MainActivity (has extras) }\r\nStarted m3-native-cancel-a01; collect after bounded case completes.\n",
+  "before": "22772",
+  "cancelAt": 1794364296730,
+  "stop": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794364296791",
+      "ok": true,
+      "result": {
+        "stopped": true
+      }
+    }
+  },
+  "denied": {
+    "status": 400,
+    "body": {
+      "id": "m2-1794364298918",
+      "ok": false,
+      "error": {
+        "code": "PHONE_STOPPED",
+        "message": "Native operation rejected"
+      }
+    }
+  },
+  "native": {
+    "attempt": "m3-native-cancel-a01",
+    "startedAtMs": 1794364294706,
+    "package": "dev.olea.m2.runtime",
+    "hostPid": 22517,
+    "hostRealUid": 10216,
+    "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+    "hostStat": "22517 (olea.m2.runtime) R 489 489 0 0 -1 4194624 17121 22783 0 82 56 459 18 162 10 -10 23 0 3394884 16562331648 41562 18446744073709551615 104822510714880 104822510719280 140726445114400 0 0 0 4612 1 1073775864 0 0 0 17 0 0 0 0 0 0 104822510747648 104822510747672 104823184080896 140726445120447 140726445120546 140726445120546 140726445125598 0",
+    "targetSdk": 36,
+    "androidApi": 36,
+    "abis": "x86_64,arm64-v8a",
+    "nativeLibraryDir": "/data/app/~~JJKsEKMx3IrngCuXRDXJlA==/dev.olea.m2.runtime-Hv2GfsRABgerKtn8Z4BytQ==/lib/x86_64",
+    "childPid": null,
+    "deadlineSeconds": 240,
+    "ownershipCleanup": {
+      "owned": [
+        {
+          "pid": 22764,
+          "parent": 22517,
+          "group": 489,
+          "tracer": 0,
+          "start": 3425064,
+          "uid": 10216
+        },
+        {
+          "pid": 22772,
+          "parent": 22764,
+          "group": 489,
+          "tracer": 22764,
+          "start": 3425079,
+          "uid": 10216
+        }
+      ],
+      "remaining": [],
+      "faults": [],
+      "trackedExitVerified": true,
+      "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+    },
+    "rootExitObserved": true,
+    "inheritedPipesAfterJoin": false,
+    "timedOut": false,
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "WARNING: linker: Warning: failed to find generated linker configuration from \"/linkerconfig/ld.config.txt\"\nproot info: vpid 1: terminated with signal 15\n",
+    "stdoutObservedBytes": 0,
+    "stderrObservedBytes": 153,
+    "stdoutRetainedBytes": 0,
+    "stderrRetainedBytes": 153,
+    "outputTruncated": false,
+    "drainersStillAlive": false,
+    "stdoutDrainFault": null,
+    "stderrDrainFault": null,
+    "descendantExitVerified": true,
+    "timeoutCleanupLimit": "Bounded tracked numeric UID/starttime cleanup; unseen forks require independent observation",
+    "endedAtMs": 1794364296902
+  },
+  "independentIdentities": [
+    {
+      "identity": {
+        "pid": 22764,
+        "parent": 22517,
+        "group": 489,
+        "tracer": 0,
+        "start": 3425064,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 22772,
+        "parent": 22764,
+        "group": 489,
+        "tracer": 22764,
+        "start": 3425079,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    }
+  ],
+  "lateEffect": "ABSENT",
+  "status": "pass",
+  "endedAt": 1794364299222
+}

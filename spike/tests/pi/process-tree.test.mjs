@@ -17,7 +17,7 @@ function fixture() {
     owner: async pid => pid === 'self' ? 42 : records.get(pid).uid,
     record: async pid => {
       const item = records.get(pid);
-      return `${pid} (process (name)) ${['S', String(item.parent), '999', '999', ...Array(15).fill('0'), item.start].join(' ')}`;
+      return `${pid} (process (name)) ${['S', String(item.parent), String(item.group ?? 999), '999', ...Array(15).fill('0'), item.start].join(' ')}`;
     },
   };
   return { records, io };
@@ -31,6 +31,15 @@ test('host-only: numeric parent map finds descendants without task children and 
   for (const identity of [...tree].reverse()) await signalOwnedProcess(identity, 'SIGTERM', io, (pid, signal) => signals.push({ pid, signal }));
   assert.deepEqual(signals.map(item => item.pid), [102, 101, 100]);
   assert(signals.every(item => item.pid > 0));
+});
+
+test('host-only: detached group includes reparented children, never another group or older identity', async () => {
+  const { io, records } = fixture();
+  records.get(100).group = 100;
+  records.get(103).group = 100;
+  assert.deepEqual((await snapshotOwnedTree(100, io)).map(item => item.pid), [100, 101, 103, 102]);
+  records.get(103).start = '9';
+  await assert.rejects(snapshotOwnedTree(100, io), /cleanup_identity_unverifiable/);
 });
 
 test('host-only: UID changes and PID reuse prevent signals even when the process group is shared', async () => {

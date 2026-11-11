@@ -32,11 +32,16 @@ object PhoneApis {
     fun location(context: Context): JSONObject {
         check(context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) { "LOCATION_PERMISSION_DENIED" }
         val manager = context.getSystemService(LocationManager::class.java)
-        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0f, object : android.location.LocationListener {
-            override fun onLocationChanged(location: android.location.Location) { manager.removeUpdates(this) }
-        }, Looper.getMainLooper())
+        val listener = object : android.location.LocationListener {
+            override fun onLocationChanged(location: android.location.Location) {
+                if (android.os.SystemClock.elapsedRealtimeNanos() - location.elapsedRealtimeNanos < 5000000000L) manager.removeUpdates(this)
+            }
+        }
+        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0f, listener, Looper.getMainLooper())
+        Handler(Looper.getMainLooper()).postDelayed({ manager.removeUpdates(listener) }, 10000)
         val location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER) ?: error("LOCATION_PENDING")
         return JSONObject().put("latitude", location.latitude).put("longitude", location.longitude).put("provider", location.provider).put("accuracy", location.accuracy)
+            .put("timeMs", location.time).put("ageMs", (android.os.SystemClock.elapsedRealtimeNanos() - location.elapsedRealtimeNanos) / 1000000)
     }
     fun file(context: Context, value: String): JSONObject {
         check(value.length <= 256) { "VALUE_TOO_LONG" }
@@ -49,7 +54,7 @@ object PhoneApis {
         check(received == value) { "READBACK_MISMATCH" }
         return JSONObject().put("matched", true).put("bytes", received.toByteArray().size).put("uri", uri)
     }
-    fun startCapture(activity: Activity, result: Int, data: Intent) {
+    fun startCapture(activity: Context, result: Int, data: Intent) {
         stop(); capture = null
         val metrics = activity.resources.displayMetrics
         val width = metrics.widthPixels; val height = metrics.heightPixels
@@ -84,7 +89,7 @@ class FixtureNotifications : NotificationListenerService() {
     override fun onListenerConnected() { connected = true }
     override fun onListenerDisconnected() { connected = false }
     override fun onNotificationPosted(notification: StatusBarNotification) {
-        if (notification.packageName != "dev.olea.fixture") return
+        if (notification.packageName != BuildConfig.FIXTURE_PACKAGE) return
         synchronized(received) {
             if (received.size >= 20) received.removeFirst()
             received.addLast(JSONObject().put("package", notification.packageName).put("id", notification.id)

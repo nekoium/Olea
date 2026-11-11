@@ -1,0 +1,50 @@
+{
+  "attempt": "location-a02",
+  "startedAt": 1794364102343,
+  "modelRequests": 0,
+  "previousFailure": "direct-categories-a01 stale cached callback removed listener before fresh injection",
+  "operations": [],
+  "provisioning": [
+    "",
+    "Starting: Intent { flg=0x18000000 cmp=dev.olea.m2.runtime/dev.olea.spike.MainActivity }\r\n"
+  ],
+  "registration": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794364103159",
+      "ok": true,
+      "result": {
+        "latitude": 25.033,
+        "longitude": 121.56539833333333,
+        "provider": "gps",
+        "accuracy": 5,
+        "timeMs": 1794363737167,
+        "ageMs": 366265
+      }
+    }
+  },
+  "independentInput": {
+    "longitude": 121.5432,
+    "latitude": 24.9876,
+    "at": 1794364104826,
+    "result": "OK\r\r\n"
+  },
+  "result": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794364106734",
+      "ok": true,
+      "result": {
+        "latitude": 25.033,
+        "longitude": 121.56539833333333,
+        "provider": "gps",
+        "accuracy": 5,
+        "timeMs": 1794363737167,
+        "ageMs": 369053
+      }
+    }
+  },
+  "status": "fail",
+  "error": "The expression evaluated to a falsy value:\n\n  assert(Math.abs(p.latitude-24.9876)<0.0001)\n",
+  "endedAt": 1794364106794
+}

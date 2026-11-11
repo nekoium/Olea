@@ -1,0 +1,316 @@
+{
+  "attempt": "direct-categories-a01",
+  "startedAt": 1794363731102,
+  "modelRequests": 0,
+  "provisioning": [
+    {
+      "at": 1794363731169,
+      "command": "run-as dev.olea.m2.runtime sh -c 'umask 077; touch files/enable-phone-once'",
+      "result": "",
+      "scope": "Development setup, not ordinary user consent"
+    },
+    {
+      "at": 1794363731265,
+      "command": "am start -f 0x18000000 -n dev.olea.m2.runtime/dev.olea.spike.MainActivity",
+      "result": "Starting: Intent { flg=0x18000000 cmp=dev.olea.m2.runtime/dev.olea.spike.MainActivity }\r\n",
+      "scope": "Development setup, not ordinary user consent"
+    },
+    {
+      "at": 1794363733111,
+      "command": "pm grant dev.olea.m2.runtime android.permission.ACCESS_FINE_LOCATION",
+      "result": "",
+      "scope": "Development setup, not ordinary user consent"
+    },
+    {
+      "at": 1794363733180,
+      "command": "pm grant dev.olea.m2.runtime android.permission.ACCESS_COARSE_LOCATION",
+      "result": "",
+      "scope": "Development setup, not ordinary user consent"
+    },
+    {
+      "at": 1794363735216,
+      "command": "pm grant dev.olea.m2.fixture android.permission.POST_NOTIFICATIONS",
+      "result": "",
+      "scope": "Development setup, not ordinary user consent"
+    },
+    {
+      "at": 1794363735293,
+      "command": "cmd notification allow_listener dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications",
+      "result": "",
+      "scope": "Development setup, not ordinary user consent"
+    }
+  ],
+  "cases": [
+    {
+      "name": "location-denied-before-development-grant",
+      "status": "pass",
+      "detail": {
+        "status": 400,
+        "body": {
+          "id": "m2-1794363732926",
+          "ok": false,
+          "error": {
+            "code": "LOCATION_PERMISSION_DENIED",
+            "message": "Native operation rejected"
+          }
+        }
+      }
+    },
+    {
+      "name": "structured-location-coordinate-oracle",
+      "status": "fail",
+      "error": "The expression evaluated to a falsy value:\n\n  assert(p.ageMs>=0&&p.ageMs<5000)\n"
+    },
+    {
+      "name": "notification-denied-before-development-grant",
+      "status": "pass",
+      "detail": {
+        "status": 400,
+        "body": {
+          "id": "m2-1794363735098",
+          "ok": false,
+          "error": {
+            "code": "NOTIFICATION_ACCESS_REVOKED",
+            "message": "Native operation rejected"
+          }
+        }
+      }
+    },
+    {
+      "name": "separate-app-notification",
+      "status": "pass",
+      "detail": {
+        "before": {
+          "status": 200,
+          "body": {
+            "id": "m2-1794363735972",
+            "ok": true,
+            "result": {
+              "notifications": []
+            }
+          }
+        },
+        "after": {
+          "status": 200,
+          "body": {
+            "id": "m2-1794363736943",
+            "ok": true,
+            "result": {
+              "notifications": [
+                {
+                  "package": "dev.olea.m2.fixture",
+                  "id": 42,
+                  "text": "OLEA_NOTIFICATION_FIXTURE"
+                }
+              ]
+            }
+          }
+        },
+        "dispatchedAt": 1794363736025,
+        "independentFixtureRecord": "    NotificationRecord(0x05e39244: pkg=dev.olea.m2.fixture user=UserHandle{0} id=42 tag=null importance=2 key=0|dev.olea.m2.fixture|42|null|10217: Notification(channel=fixture shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=0 color=0x00000000 vis=PRIVATE))\r\n      uid=10217 userId=0\r\n      opPkg=dev.olea.m2.fixture\r\n      icon=Icon(typ=RESOURCE pkg=dev.olea.m2.fixture id=0x0108009b)\r\n      flags=0\r\n      originalFlags=0\r\n      pri=0\r\n      key=0|dev.olea.m2.fixture|42|null|10217\r\n      seen=false\r\n      groupKey=0|dev.olea.m2.fixture|42|null|10217\r\n      notification=\r\n            fullscreenIntent=null\r\n            contentIntent=null\r\n            deleteIntent=null\r\n            number=0\r\n            groupAlertBehavior=0\r",
+        "postingPackageUid": 10217,
+        "listenerPackageUid": 10216
+      }
+    },
+    {
+      "name": "url-browser-destination",
+      "status": "fail",
+      "error": "Browser content lacks expected Example Domain"
+    }
+  ],
+  "operations": [
+    {
+      "at": 1794363733018,
+      "operation": "location",
+      "args": {},
+      "response": {
+        "status": 400,
+        "body": {
+          "id": "m2-1794363732926",
+          "ok": false,
+          "error": {
+            "code": "LOCATION_PERMISSION_DENIED",
+            "message": "Native operation rejected"
+          }
+        }
+      }
+    },
+    {
+      "at": 1794363733340,
+      "operation": "location",
+      "args": {},
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794363733236",
+          "ok": true,
+          "result": {
+            "latitude": 25.033,
+            "longitude": 121.56539833333333,
+            "provider": "gps",
+            "accuracy": 5,
+            "timeMs": 1794330459965,
+            "ageMs": 33272792
+          }
+        }
+      }
+    },
+    {
+      "at": 1794363735029,
+      "operation": "location",
+      "args": {},
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794363734974",
+          "ok": true,
+          "result": {
+            "latitude": 25.033,
+            "longitude": 121.56539833333333,
+            "provider": "gps",
+            "accuracy": 5,
+            "timeMs": 1794330459965,
+            "ageMs": 33274493
+          }
+        }
+      }
+    },
+    {
+      "at": 1794363735145,
+      "operation": "notifications",
+      "args": {},
+      "response": {
+        "status": 400,
+        "body": {
+          "id": "m2-1794363735098",
+          "ok": false,
+          "error": {
+            "code": "NOTIFICATION_ACCESS_REVOKED",
+            "message": "Native operation rejected"
+          }
+        }
+      }
+    },
+    {
+      "at": 1794363736025,
+      "operation": "notifications",
+      "args": {},
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794363735972",
+          "ok": true,
+          "result": {
+            "notifications": []
+          }
+        }
+      }
+    },
+    {
+      "at": 1794363736162,
+      "operation": "fixture_notify",
+      "args": {},
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794363736087",
+          "ok": true,
+          "result": {
+            "dispatched": true
+          }
+        }
+      }
+    },
+    {
+      "at": 1794363737015,
+      "operation": "notifications",
+      "args": {},
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794363736943",
+          "ok": true,
+          "result": {
+            "notifications": [
+              {
+                "package": "dev.olea.m2.fixture",
+                "id": 42,
+                "text": "OLEA_NOTIFICATION_FIXTURE"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "at": 1794363737448,
+      "operation": "open_url",
+      "args": {
+        "url": "https://example.org/?olea=m3-url-a01"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "m2-1794363737264",
+          "ok": true,
+          "result": {
+            "dispatched": true
+          }
+        }
+      }
+    }
+  ],
+  "baseline": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794363732037",
+      "ok": true,
+      "result": {
+        "phoneEnabled": true,
+        "accessibility": true,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": null,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "locationRegistration": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794363733236",
+      "ok": true,
+      "result": {
+        "latitude": 25.033,
+        "longitude": 121.56539833333333,
+        "provider": "gps",
+        "accuracy": 5,
+        "timeMs": 1794330459965,
+        "ageMs": 33272792
+      }
+    }
+  },
+  "geoInput": {
+    "longitude": 121.5654,
+    "latitude": 25.033,
+    "result": "OK\r\r\n"
+  },
+  "endedAt": 1794363744841
+}

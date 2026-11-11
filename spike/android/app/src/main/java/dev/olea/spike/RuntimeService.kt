@@ -24,6 +24,9 @@ import java.util.concurrent.TimeUnit
 class RuntimeService : Service() {
     private var server: ServerSocket? = null
     private var backend: Process? = null
+    private var backendOwner: OwnedProcess? = null
+    @Volatile private var backendStopping = false
+    private var backendCleanup: JSONObject? = null
     private val main = Handler(Looper.getMainLooper())
     private lateinit var token: String
     @Volatile private var enabled = false
@@ -41,9 +44,12 @@ class RuntimeService : Service() {
         File(filesDir, "bridge-config.json").writeText(JSONObject().put("url", "http://127.0.0.1:${BuildConfig.BRIDGE_PORT}").put("token", token).toString())
         getSystemService(NotificationManager::class.java).createNotificationChannel(NotificationChannel("runtime", "Feasibility runtime", NotificationManager.IMPORTANCE_LOW))
         val stop = PendingIntent.getService(this, 1, Intent(this, RuntimeService::class.java).setAction("stop"), PendingIntent.FLAG_IMMUTABLE)
-        startForeground(1, Notification.Builder(this, "runtime").setContentTitle("Olea feasibility bridge")
+        val notification = Notification.Builder(this, "runtime").setContentTitle("Olea feasibility bridge")
             .setContentText("Phone actions disabled until enabled in host").setSmallIcon(android.R.drawable.ic_media_play)
-            .addAction(Notification.Action.Builder(null, "STOP", stop).build()).build())
+            .addAction(Notification.Action.Builder(null, "STOP", stop).build()).build()
+        if (android.os.Build.VERSION.SDK_INT >= 34 && BuildConfig.FLAVOR == "modern")
+            startForeground(1, notification, android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
+        else startForeground(1, notification)
         server = ServerSocket(BuildConfig.BRIDGE_PORT, 8, InetAddress.getByName("127.0.0.1"))
         Thread({ while (server?.isClosed == false) { try { server?.accept()?.let { handle(it) } } catch (_: Exception) {} } }, "native-bridge").start()
     }
@@ -51,8 +57,20 @@ class RuntimeService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
             "enable" -> enabled = true
-            "stop" -> { enabled = false; PhoneApis.stop(); stopBackend() }
+            "stop" -> { enabled = false; PhoneApis.stop(); RuntimeProbe.cancel(); stopBackend() }
             "probe" -> if (BuildConfig.FLAVOR == "modern") RuntimeProbe.run(this, intent.getStringExtra("attempt") ?: "invalid")
+            "capture" -> {
+                @Suppress("DEPRECATION")
+                val data = intent.getParcelableExtra<Intent>("captureData")
+                if (data != null && enabled) {
+                    if (android.os.Build.VERSION.SDK_INT >= 34 && BuildConfig.FLAVOR == "modern") {
+                        val notification = Notification.Builder(this, "runtime").setContentTitle("Olea explicit-consent capture")
+                            .setSmallIcon(android.R.drawable.ic_menu_camera).build()
+                        startForeground(1, notification, android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE or android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION)
+                    }
+                    PhoneApis.startCapture(this, intent.getIntExtra("captureResult", 0), data)
+                }
+            }
             "backend" -> startBackend()
         }
         // Process death requires explicit restart; uncertain phone actions are never replayed.
@@ -60,38 +78,50 @@ class RuntimeService : Service() {
     }
 
     private fun startBackend() {
-        if (backend?.isAlive == true) return
+        if (backend?.isAlive == true || backendStopping) return
         val script = File(filesDir, "start-runtime.sh")
         if (!script.exists()) return
-        backend = ProcessBuilder("/system/bin/sh", script.absolutePath).directory(filesDir).apply {
+        val launched = OwnedProcess.launch(ProcessBuilder("/system/bin/sh", script.absolutePath).directory(filesDir).apply {
             environment()["OLEA_BRIDGE_CONFIG"] = File(filesDir, "bridge-config.json").absolutePath
             environment()["OLEA_NATIVE_DIR"] = applicationInfo.nativeLibraryDir
             environment()["OLEA_APP_BASE"] = filesDir.absolutePath
             environment()["OLEA_BRIDGE_TOKEN_FILE"] = File(filesDir, "bridge-token").absolutePath
-        }.start()
+        }, File(filesDir, "backend-${System.nanoTime()}.pid"))
+        backend = launched.first; backendOwner = launched.second
         val current = backend ?: return
         Thread({ current.inputStream.bufferedReader().useLines { lines -> lines.forEach { line -> synchronized(events) { if (events.size == 200) events.removeFirst(); events.addLast(line.take(16384)) } } } }, "backend-stdout").start()
         Thread({ current.errorStream.bufferedReader().useLines { lines -> lines.forEach { /* Drain diagnostics without retaining credentials. */ } } }, "backend-stderr").start()
     }
 
     private fun stopBackend() {
-        backend?.let { process ->
-            try { process.outputStream.bufferedWriter().apply { write("{\"id\":\"native-stop\",\"command\":\"stop\"}\n"); flush() } } catch (_: Exception) {}
-            process.destroy()
-            Thread { if (!process.waitFor(3, TimeUnit.SECONDS)) process.destroyForcibly() }.start()
-        }
-        backend = null
+        if (backendStopping) return
+        val process = backend ?: return
+        val owner = backendOwner
+        backendStopping = true
+        Thread {
+            try {
+                // EOF requests shared server shutdown; wait briefly before native cleanup.
+                runCatching { process.outputStream.close() }
+                process.waitFor(1, TimeUnit.SECONDS)
+                backendCleanup = owner?.stop()
+                process.waitFor(2, TimeUnit.SECONDS)
+            } finally {
+                if (!process.isAlive) { backend = null; backendOwner = null }
+                backendStopping = false
+            }
+        }.start()
     }
 
     private fun capabilities() = JSONObject().put("phoneEnabled", enabled)
         .put("accessibility", PhoneAccessibility.active != null).put("targetSdk", applicationInfo.targetSdkVersion)
-        .put("backendRunning", backend?.isAlive == true)
+        .put("backendRunning", backend?.isAlive == true).put("backendStopping", backendStopping)
+        .put("backendCleanup", backendCleanup ?: JSONObject.NULL)
         .put("operations", JSONArray(listOf("capabilities", "accessibility_tree", "accessibility_click", "global_action", "swipe", "open_url", "fixture_action", "location", "files_write_read", "notifications", "capture_request", "capture_result", "folder_request", "fixture_notify", "stop")))
 
     private fun phone(request: JSONObject): JSONObject {
         val operation = request.getString("operation")
         if (operation == "capabilities") return capabilities()
-        if (operation == "stop") { enabled = false; PhoneApis.stop(); stopBackend(); return JSONObject().put("stopped", true) }
+        if (operation == "stop") { enabled = false; PhoneApis.stop(); RuntimeProbe.cancel(); stopBackend(); return JSONObject().put("stopped", true) }
         check(enabled) { "PHONE_STOPPED" }
         val args = request.optJSONObject("args") ?: JSONObject()
         fun accessibility() = PhoneAccessibility.active ?: error("ACCESSIBILITY_REVOKED")
@@ -115,6 +145,7 @@ class RuntimeService : Service() {
             "files_write_read" -> PhoneApis.file(this, args.getString("value"))
             "notifications" -> { check(FixtureNotifications.connected) { "NOTIFICATION_ACCESS_REVOKED" }; synchronized(FixtureNotifications.received) { JSONObject().put("notifications", JSONArray(FixtureNotifications.received.toList())) } }
             "capture_request", "folder_request" -> {
+                if (operation == "capture_request") { PhoneApis.stop(); PhoneApis.capture = null }
                 startActivity(Intent(this, MainActivity::class.java).putExtra(if (operation == "capture_request") "capture" else "folder", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 JSONObject().put("consentRequested", true)
             }

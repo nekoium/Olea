@@ -1,0 +1,50 @@
+
+Welcome to Gradle 9.1.0!
+
+Here are the highlights of this release:
+ - Full Java 25 support
+ - Native task graph visualization
+ - Enhanced console output
+
+For more details see https://docs.gradle.org/9.1.0/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+The message received from the daemon indicates that the daemon has disappeared.
+Build request sent: Build{id=1dec38be-45e6-4764-b660-04b65b033485, currentDir=C:\Users\Aria\orca\workspaces\Olea\m3-native-phone}
+Attempting to read last messages from the daemon log...
+Daemon pid: 28836
+  log file: C:\Users\Aria\orca\workspaces\Olea\m3-native-phone\.setup\gradle-home\daemon\9.1.0\daemon-28836.out.log
+----- Last 20 lines from daemon log file - daemon-28836.out.log -----
+2026-11-11T10:15:21.590+0800 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=1dec38be-45e6-4764-b660-04b65b033485, currentDir=C:\Users\Aria\orca\workspaces\Olea\m3-native-phone} with connection: socket connection from /127.0.0.1:64546 to /127.0.0.1:64547.
+2026-11-11T10:15:21.592+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=1dec38be-45e6-4764-b660-04b65b033485, currentDir=C:\Users\Aria\orca\workspaces\Olea\m3-native-phone}, connection = DefaultDaemonConnection: socket connection from /127.0.0.1:64546 to /127.0.0.1:64547] after 0.0014166666666666668 minutes of idle
+2026-11-11T10:15:21.592+0800 [INFO] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Marking the daemon as busy, address: [64efbaf5-779c-4ce3-b6d5-bb1b71a237b2 port:64546, addresses:[localhost/127.0.0.1]]
+2026-11-11T10:15:21.592+0800 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [64efbaf5-779c-4ce3-b6d5-bb1b71a237b2 port:64546, addresses:[localhost/127.0.0.1]]
+2026-11-11T10:15:21.593+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+2026-11-11T10:15:21.594+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-11-11T10:15:21.595+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-11-11T10:15:21.595+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] resetting idle timer
+2026-11-11T10:15:21.595+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon is running. Sleeping until state changes.
+2026-11-11T10:15:21.596+0800 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=1dec38be-45e6-4764-b660-04b65b033485, currentDir=C:\Users\Aria\orca\workspaces\Olea\m3-native-phone}. Dispatching build started information...
+2026-11-11T10:15:21.596+0800 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 48: dispatching org.gradle.launcher.daemon.protocol.BuildStarted@7ab7dde8
+2026-11-11T10:15:21.598+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: [ORCA_STRUCTURED_SESSION, PATH, USERDOMAIN_ROAMINGPROFILE, NO_PROXY, EFC_16060_1262719628, PROCESSOR_LEVEL, SYSTEMDRIVE, CLOUDFLARE_API_TOKEN, ORCA_ENVIRONMENT, SESSIONNAME, ALLUSERSPROFILE, ORCA_PI_BACKGROUND_WORK_DIR, PROCESSOR_ARCHITECTURE, __COMPAT_LAYER, ANDROID_HOME, PSModulePath, PROGRAMFILES, ORCA_REMOTE_PAIRING, PI_CODING_AGENT, USERNAME, NODE_USE_ENV_PROXY, ORCA_CLI_COMMAND, PWD, EFC_16060_4126798990, ProgramFiles(x86), CHROME_CRASHPAD_PIPE_NAME, FPS_BROWSER_USER_PROFILE_STRING, ELEVENLABS_API_KEY, PATHEXT, DriverData, PI_CODING_AGENT_DIR, EFC_16060_1592913036, AI_AGENT, ALL_PROXY, WINDIR, ORCA_WSL_HOSTS_GATE_STATE, ProgramData, ProgramW6432, HOMEPATH, PROCESSOR_IDENTIFIER, ORCA_AGENT_SESSION_SPAWN_TOKEN, PUBLIC, EXEPATH, SHLVL, PI_MODEL, LOCALAPPDATA, USERDOMAIN, FPS_BROWSER_APP_PROFILE_STRING, LOGONSERVER, JAVA_HOME, ORCA_USER_DATA_PATH, PI_SESSION_FILE, PLINK_PROTOCOL, TERM, HTTP_PROXY, RlsSvcPort, EFC_16060_2283032206, PLAYWRIGHT_MCP_EXTENSION_TOKEN, MSYSTEM, OneDrive, APPDATA, GRADLE_USER_HOME, HTTPS_PROXY, SYSTEMROOT, ChocolateyInstall, EFC_16060_3789132940, OS, COMPUTERNAME, COMMONPROGRAMFILES, COMSPEC, ORCA_PI_STATUS_OWNED, PROCESSOR_REVISION, CommonProgramW6432, PI_PROVIDER, ORCA_AGENT_SESSION_ID, ORCA_PAIRING_CODE, PI_REASONING_LEVEL, TEMP, HOMEDRIVE, ORCA_TERMINAL_HANDLE, USERPROFILE, TMP, CommonProgramFiles(x86), NUMBER_OF_PROCESSORS, PI_SESSION_ID, ORCA_APP_VERSION, HOME]
+2026-11-11T10:15:21.601+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+2026-11-11T10:15:21.601+0800 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 28836). The daemon log file: C:\Users\Aria\orca\workspaces\Olea\m3-native-phone\.setup\gradle-home\daemon\9.1.0\daemon-28836.out.log
+2026-11-11T10:15:21.602+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon] Requesting daemon stop after processing Build{id=1dec38be-45e6-4764-b660-04b65b033485, currentDir=C:\Users\Aria\orca\workspaces\Olea\m3-native-phone}
+2026-11-11T10:15:21.603+0800 [LIFECYCLE] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon will be stopped at the end of the build 
+2026-11-11T10:15:21.603+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Stop as soon as idle requested. The daemon is busy
+2026-11-11T10:15:21.603+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon stop has been requested. Sleeping until state changes.
+2026-11-11T10:15:21.605+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+2026-11-11T10:15:21.605+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=27509738-7e86-470c-ab6b-37e3ca1583c7,javaHome=C:\Program Files\Android\Android Studio\jbr,javaVersion=25,javaVendor=JetBrains s.r.o.,daemonRegistryDir=C:\Users\Aria\orca\workspaces\Olea\m3-native-phone\.setup\gradle-home\daemon,pid=28836,idleTimeout=120000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=US,-Duser.language=en,-Duser.variant]----- End of the daemon log -----
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Gradle build daemon disappeared unexpectedly (it may have been killed or may have crashed)
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.

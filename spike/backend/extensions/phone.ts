@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Supported Pi extension API only; plain JSON Schema avoids a schema-builder dependency.
 import { readFileSync } from 'node:fs';
+import { phoneTools } from '../dist/phone-mcp.js';
 
 export default function (pi: any) {
   const providerPath = process.env.OLEA_PROVIDER_CONFIG;
@@ -28,6 +29,7 @@ export default function (pi: any) {
     } },
     { name: 'phone_open_url', operation: 'open_url', description: 'Request Android VIEW for an HTTPS URL. Dispatch does not prove page arrival and does not satisfy Accessibility launcher-click acceptance.', properties: { url: { type: 'string', maxLength: 2048, pattern: '^https://' } }, required: ['url'] },
     { name: 'phone_fixture_action', operation: 'fixture_action', description: 'Send a generated value to the cooperating test app through its documented interface. Does not open an app through Accessibility. Cannot read verification state.', properties: { value: { type: 'string', maxLength: 128 } }, required: ['value'] },
+    ...phoneTools.filter(tool => !['phone_capabilities', 'phone_inspect', 'phone_click', 'phone_home', 'phone_swipe', 'phone_open_url', 'phone_fixture_action'].includes(tool.name)),
   ];
   for (const tool of tools) pi.registerTool({
     name: tool.name, label: tool.name, description: tool.description,

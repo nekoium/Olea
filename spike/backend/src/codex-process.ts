@@ -85,8 +85,9 @@ export class CodexProcess extends EventEmitter {
   stop() { return this.stopping ??= this.stopInner(); }
   private async stopInner() {
     let owned: ProcessIdentity[] = [];
+    let snapshotComplete = false;
     if (process.platform === 'linux' && this.child.pid) {
-      try { owned = await snapshotOwnedTree(this.child.pid); }
+      try { owned = await snapshotOwnedTree(this.child.pid); snapshotComplete = true; }
       catch { this.emit('fault', 'cleanup_tree_unverifiable');
         try { const root = await processIdentity(this.child.pid); if (root.uid === await procIO.owner('self')) owned = [root]; } catch {}
       }
@@ -101,6 +102,13 @@ export class CodexProcess extends EventEmitter {
     // Descendants can inherit pipes after root exit. Bound draining without claiming tree exit.
     this.child.stdin.destroy(); this.child.stdout.destroy(); this.child.stderr.destroy();
     this.child.unref();
-    return { rootExited: this.rootExited, descendantsVerified: false };
+    let descendantsVerified = snapshotComplete && owned.length > 0;
+    for (const identity of owned) {
+      try {
+        const current = await processIdentity(identity.pid);
+        if (current.uid === identity.uid && current.start === identity.start) descendantsVerified = false;
+      } catch (error: any) { if (!['ENOENT', 'ESRCH'].includes(error.code)) descendantsVerified = false; }
+    }
+    return { rootExited: this.rootExited, descendantsVerified };
   }
 }

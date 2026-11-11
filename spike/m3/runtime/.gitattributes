@@ -1,0 +1,3 @@
+# Receipts retain exact captured bytes; scripts execute with Unix line endings.
+evidence/** -text
+*.sh text eol=lf

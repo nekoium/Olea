@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit
 // Disposable native runner: provisioning stages a named script; Activity only selects its attempt ID.
 object RuntimeProbe {
     @Volatile private var running = false
+    @Volatile private var owned: OwnedProcess? = null
+    fun cancel() { owned?.let { current -> Thread { current.stop() }.start() } }
     @Synchronized fun run(service: Service, attempt: String) {
         if (running || !attempt.matches(Regex("[a-z0-9-]{1,64}"))) return
         val script = File(service.filesDir, "m2/$attempt.sh")
@@ -23,12 +25,12 @@ object RuntimeProbe {
                 .put("targetSdk", service.applicationInfo.targetSdkVersion).put("androidApi", Build.VERSION.SDK_INT)
                 .put("abis", Build.SUPPORTED_ABIS.joinToString(",")).put("nativeLibraryDir", service.applicationInfo.nativeLibraryDir)
             try {
-                val child = ProcessBuilder("/system/bin/sh", script.absolutePath).apply {
+                val (child, supervisor) = OwnedProcess.launch(ProcessBuilder("/system/bin/sh", script.absolutePath).apply {
                     directory(service.filesDir)
                     environment()["OLEA_NATIVE_DIR"] = service.applicationInfo.nativeLibraryDir
                     environment()["OLEA_APP_BASE"] = service.filesDir.absolutePath
-                }.start()
-                // Android's public java.lang.Process API does not expose a child PID.
+                }, File(service.filesDir, "m2/$attempt.pid"))
+                owned = supervisor
                 report.put("childPid", JSONObject.NULL)
                 val output = java.io.ByteArrayOutputStream()
                 val errors = java.io.ByteArrayOutputStream()
@@ -49,7 +51,9 @@ object RuntimeProbe {
                     ?.readText()?.trim()?.toLongOrNull()?.coerceIn(1, 240) ?: 240
                 report.put("deadlineSeconds", deadline)
                 val exited = child.waitFor(deadline, TimeUnit.SECONDS)
-                if (!exited) child.destroyForcibly()
+                val cleanup = supervisor.stop()
+                report.put("ownershipCleanup", cleanup)
+                if (child.isAlive) child.waitFor(2, TimeUnit.SECONDS)
                 stdout.join(2000); stderr.join(2000)
                 val inheritedPipes = stdout.isAlive || stderr.isAlive
                 if (inheritedPipes) {
@@ -66,8 +70,8 @@ object RuntimeProbe {
                     .put("drainersStillAlive", stdout.isAlive || stderr.isAlive)
                     .put("stdoutDrainFault", drainFaults[0] ?: JSONObject.NULL)
                     .put("stderrDrainFault", drainFaults[1] ?: JSONObject.NULL)
-                    .put("descendantExitVerified", false)
-                    .put("timeoutCleanupLimit", "Root shell termination only; independent descendant identity checks required")
+                    .put("descendantExitVerified", cleanup.getBoolean("trackedExitVerified"))
+                    .put("timeoutCleanupLimit", "Bounded tracked numeric UID/starttime cleanup; unseen forks require independent observation")
             } catch (error: Exception) { report.put("error", error.toString().take(1024)) }
             finally {
                 try {
@@ -75,7 +79,7 @@ object RuntimeProbe {
                     File(service.filesDir, "m2/$attempt.json").writeText(report.toString(2))
                 } catch (error: java.io.IOException) {
                     android.util.Log.e("OleaM2Probe", "Receipt write failed: ${error.javaClass.simpleName}")
-                } finally { running = false }
+                } finally { owned = null; running = false }
             }
         }, "m2-runtime-probe").start()
     }
