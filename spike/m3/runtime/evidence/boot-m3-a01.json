@@ -1,0 +1,21 @@
+{
+  "attempt": "boot-m3-a01",
+  "startedAt": "2026-11-11T03:52:10.640Z",
+  "configBefore": "d52586b2631349deb331f981b2e49d57ce5440e9fe94429a1772935edd7ce502",
+  "args": [
+    "-avd",
+    "Olea_API_36",
+    "-no-snapshot",
+    "-gpu",
+    "swiftshader",
+    "-no-audio"
+  ],
+  "priorObservation": "No ADB devices or matching Windows emulator/qemu process; cause/time of shutdown unknown",
+  "modelRequests": 0,
+  "devicesBefore": "List of devices attached\r\n\r\n",
+  "launchPid": 35316,
+  "identity": "1\r\nOlea_API_36\r\n36\r\nx86_64\r\n",
+  "status": "booted",
+  "endedAt": "2026-11-11T03:52:53.030Z",
+  "configAfter": "d52586b2631349deb331f981b2e49d57ce5440e9fe94429a1772935edd7ce502"
+}

@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-11T04:10:01.814Z",
+  "providerCalls": 0,
+  "runnerDeployment": "not yet deployed",
+  "activeRecovery": "prepared, not executed",
+  "hashes": [
+    {
+      "path": "spike/tests/codex/run-stock.mjs",
+      "sha256": "d5015ea0e0036012f539ec8f6d5d7f7d152e5c06b80eefaa7abb7281f7dcf595",
+      "domain": "raw working-tree bytes"
+    },
+    {
+      "path": "spike/tests/m2/pi-single.mjs",
+      "sha256": "7b88b09ed0bcc237535b240c655d6aa25a516bf80193acc601f457f1c810dd1a",
+      "domain": "raw working-tree bytes"
+    },
+    {
+      "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+      "sha256": "cd6abd10f35dc6aef41f1adfe9907a38b26fff5d0e0e754a366db9e317091443",
+      "domain": "raw working-tree bytes"
+    },
+    {
+      "path": "spike/m3/runtime/active-recovery.mjs",
+      "sha256": "a592f106330e6ff0f95c26a0717d05eeddff6edbfbd9c1f6e8b8910f1da368da",
+      "domain": "raw working-tree bytes"
+    },
+    {
+      "path": "spike/m3/runtime/selective-revocation.mjs",
+      "sha256": "5099cf83f5a3b547618e210ec9098cbeca867d6e1d878fa1012a0952553657f0",
+      "domain": "raw working-tree bytes"
+    },
+    {
+      "path": "spike/m2/runtime/bridge.mjs",
+      "sha256": "42deeb9959183387f7c354937aeb9049644a403d68098fd3de354bed0d33233d",
+      "domain": "raw working-tree bytes"
+    }
+  ]
+}

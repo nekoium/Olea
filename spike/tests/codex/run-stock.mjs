@@ -6,15 +6,24 @@ import { randomBytes, createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { Backend } from '../../backend/dist/backend.js';
 import { codexConfig, codexPolicy } from '../../backend/dist/codex-session.js';
+import { groupedPhonePrompt } from '../../m3/runtime/grouped-phone-prompt.mjs';
 
-const [configArg, outputArg, entryArg, modelArg = 'gpt-6.1-terra', mode = 'unix', accessModeArg = process.env.OLEA_CODEX_ACCESS_MODE ?? 'workspace-write'] = process.argv.slice(2);
+const [configArg, outputArg, entryArg, modelArg = 'gpt-6.1-terra', mode = 'unix', accessModeArg = process.env.OLEA_CODEX_ACCESS_MODE ?? 'workspace-write', categoryOptionsArg] = process.argv.slice(2);
 const policy = codexPolicy(accessModeArg); // Validate explicit operator choice before reading credentials.
 const accessInstruction = accessModeArg === 'full-access'
   ? 'The operator explicitly selected stock danger-full-access with approvalPolicy never. No Codex filesystem isolation is provided. Keep this selected policy unchanged, stay within the assigned task paths, and do not inspect private files or credentials.'
   : 'Keep workspace-write sandbox and on-request approvals enabled. Stop if sandbox fails or approval is denied; never request expanded access.';
-if (!configArg || !outputArg || !entryArg || !['unix', 'phone', 'controlled'].includes(mode)) throw new Error('usage: run-stock.mjs providerPath outputPath codexEntry [model] [unix|phone|controlled] [workspace-write|full-access]');
+if (!configArg || !outputArg || !entryArg || !['unix', 'phone', 'controlled', 'phone-categories'].includes(mode)) throw new Error('usage: run-stock.mjs providerPath outputPath codexEntry [model] [unix|phone|controlled|phone-categories] [workspace-write|full-access] [public-category-options.json]');
 const output = resolve(outputArg), base = resolve(output, '..');
 await mkdir(base, { recursive: true });
+let categoryPrompt, categoryPrerequisites;
+if (mode === 'phone-categories') {
+  const options = JSON.parse(await readFile(categoryOptionsArg, 'utf8'));
+  categoryPrompt = groupedPhonePrompt({ ...options, agent: 'codex' });
+  categoryPrerequisites = { allocationId: options.allocationId, directReceipt: options.directReceipt };
+  if (!/^[a-zA-Z0-9_-]{1,64}$/.test(options.allocationId)) throw Error('invalid_allocation_id');
+  await mkdir(join(base, `allocation-${options.allocationId}.started`));
+}
 const attempt = `attempt-${Date.now()}-${randomBytes(4).toString('hex')}`;
 const directory = join(base, attempt), workspace = join(directory, 'workspace');
 await mkdir(workspace, { recursive: true });
@@ -24,7 +33,7 @@ const settings = codexConfig(modelArg, process.env.OLEA_BRIDGE_CONFIG, accessMod
 for (const required of ['request_max_retries = 0', 'stream_max_retries = 0', 'stream_idle_timeout_ms = 45000', 'inherit = "core"', 'env_key = "OLEA_CODEX_PROVIDER_KEY"', 'wire_api = "responses"']) if (!settings.includes(required)) throw new Error('unsafe_preflight');
 const safe = text => String(text).split(config.apiKey).join('[REDACTED]').slice(0, 2048);
 const marker = randomBytes(16).toString('hex');
-const report = { attempt, observedAt: new Date().toISOString(), scope: process.env.OLEA_EXECUTION_SCOPE ?? 'host-only', platform: process.platform, node: process.version, model: modelArg, accessMode: accessModeArg, stockSandbox: policy.sandbox, approvalPolicy: policy.approvalPolicy, filesystemIsolation: accessModeArg !== 'full-access', topLevelPrompts: 0, maxToolRounds: 12, maxTurnMs: 120000, streamIdleMs: 45000, requestRetries: 0, streamRetries: 0, httpRequests: null, httpRequestsLimit: 'stock protocol does not expose HTTP count; no automatic retry configured', remoteBilling: 'unknown', strictTokenCap: 'unsupported in inspected turn/start schema', events: {}, items: {}, processes: [], approvals: [], toolReceipts: [], errors: [], usage: [], assertions: {}, outcomes: {} };
+const report = { mode, categoryPrerequisites, attempt, observedAt: new Date().toISOString(), scope: process.env.OLEA_EXECUTION_SCOPE ?? 'host-only', platform: process.platform, node: process.version, model: modelArg, accessMode: accessModeArg, stockSandbox: policy.sandbox, approvalPolicy: policy.approvalPolicy, filesystemIsolation: accessModeArg !== 'full-access', topLevelPrompts: 0, maxToolRounds: 12, maxTurnMs: 120000, streamIdleMs: 45000, requestRetries: 0, streamRetries: 0, httpRequests: null, httpRequestsLimit: 'stock protocol does not expose HTTP count; no automatic retry configured', remoteBilling: 'unknown', strictTokenCap: 'unsupported in inspected turn/start schema', events: {}, items: {}, processes: [], approvals: [], toolReceipts: [], errors: [], usage: [], assertions: {}, outcomes: {} };
 for (const path of [new URL(import.meta.url), ...['backend.js', 'codex-process.js', 'codex-session.js', 'phone-mcp.js', 'pi-process.js', 'process-tree.js'].map(name => new URL(`../../backend/dist/${name}`, import.meta.url))]) {
   report.sourceSha256 ??= {};
   report.sourceSha256[path.pathname] = createHash('sha256').update(await readFile(path)).digest('hex');
@@ -46,7 +55,7 @@ backend = new Backend({ entry: '', workspace, stateDir: join(directory, 'state')
     if (record.method === 'error' && report.errors.length < 16) report.errors.push(safe(record.params?.error?.message ?? record.params?.message ?? 'upstream_error'));
     if (record.method === 'item/completed' && ['commandExecution', 'mcpToolCall'].includes(record.params?.item?.type) && report.toolReceipts.length < 32) {
       const item = record.params.item;
-      const receipt = { type: item.type, id: item.id, status: item.status, exitCode: item.exitCode, command: safe(item.command ?? ''), output: safe(item.aggregatedOutput ?? ''), error: safe(item.error ?? '') };
+      const receipt = { type: item.type, id: item.id, server: item.server, tool: item.tool, status: item.status, exitCode: item.exitCode, command: safe(item.command ?? ''), output: safe(item.aggregatedOutput ?? ''), error: safe(item.error ?? '') };
       report.toolReceipts.push({ ...receipt, sha256: createHash('sha256').update(JSON.stringify(receipt)).digest('hex') });
     }
     if (record.id !== undefined && /requestApproval$/.test(record.method)) {
@@ -68,6 +77,7 @@ try {
   report.providerConfigSha256 = createHash('sha256').update(preflightRead).digest('hex');
   let prompt = `In this workspace perform one bounded real Unix/dependency/child workflow. Use bash (Git Bash on Windows if necessary), Node and ordinary npm. Install is-number@7.0.0 with npm retries=0 and timeout=20000; do not retry failures. Create result.json containing marker "${marker}", dependency boolean from actually requiring is-number and checking 42 accepted plus "olea" rejected, child string from actually spawning Node printing 42, and secretAbsent boolean verifying OLEA_CODEX_PROVIDER_KEY is absent from the child shell environment. Do not print any environment values or inspect config/home/private files. Save an executable child-check.cjs which spawns process.execPath with ["-e","process.stdout.write('42')"] and prints its stdout; run it. ${accessInstruction} Use at most 10 tool calls and finish with a brief factual result.`;
   if (mode === 'phone') prompt = `Use registered olea_phone MCP tools to read capabilities, HOME, inspect launcher (default swipe then inspect if needed), and click Olea Fixture launcher entry through Accessibility; never launch by intent. Then generate a fresh random 32 lowercase hex value with Unix Node, save combined-value.txt, and send that same value using phone_fixture_action. Never read oracle data. No retries of uncertain phone effects; at most 12 tools. ${accessInstruction}`;
+  if (mode === 'phone-categories') prompt = categoryPrompt;
   if (mode === 'controlled') {
     const npmCli = process.env.OLEA_NPM_CLI ?? (process.platform === 'win32' ? join(dirname(process.execPath), 'node_modules/npm/bin/npm-cli.js') : resolve(dirname(process.execPath), '../lib/node_modules/npm/bin/npm-cli.js'));
     await writeFile(join(workspace, 'npmrc'), '');
@@ -83,7 +93,7 @@ try {
   finally { clearTimeout(timeout); }
   report.firstEventMs = firstEvent;
   report.outcomes.completedTurn = report.turn?.status === 'completed' ? 'pass' : 'fail';
-  if (mode !== 'phone') {
+  if (!['phone', 'phone-categories'].includes(mode)) {
     try {
       const result = JSON.parse(await readFile(join(workspace, 'result.json'), 'utf8'));
       report.assertions.exactFile = result.marker === marker;

@@ -12,13 +12,19 @@ object RuntimeProbe {
     @Volatile private var running = false
     @Volatile private var owned: OwnedProcess? = null
     @Volatile private var cancelRequested = false
-    private var cleanupStarted = false
+    private var cleanupThread: Thread? = null
     private fun requestCleanup() {
         val current = owned ?: return
-        if (cleanupStarted) return
-        cleanupStarted = true
-        Thread({ current.stop() }, "m2-probe-cleanup").start()
+        if (cleanupThread?.isAlive == true) return
+        cleanupThread = Thread({ current.stop() }, "m2-probe-cleanup").apply { start() }
     }
+    @Synchronized internal fun clearSettled(supervisor: OwnedProcess?, finishing: Boolean = false): Boolean {
+        if ((running && !finishing) || owned !== supervisor || cleanupThread?.isAlive == true) return false
+        if (supervisor != null && !supervisor.result().getBoolean("trackedExitVerified")) return false
+        owned = null; running = false; cancelRequested = false; cleanupThread = null
+        return true
+    }
+    @Synchronized internal fun idle() = !running && owned == null && cleanupThread?.isAlive != true
     @Synchronized internal fun publish(supervisor: OwnedProcess, release: () -> Unit) {
         owned = supervisor
         if (cancelRequested) requestCleanup() else release()
@@ -29,12 +35,12 @@ object RuntimeProbe {
         requestCleanup()
     }
     @Synchronized fun run(service: Service, attempt: String) {
-        if (running || !attempt.matches(Regex("[a-z0-9-]{1,64}"))) return
+        if (running || owned != null || !attempt.matches(Regex("[a-z0-9-]{1,64}"))) return
         val script = File(service.filesDir, "m2/$attempt.sh")
         if (!script.isFile) return
         cancelRequested = false
         owned = null
-        cleanupStarted = false
+        cleanupThread = null
         running = true
         Thread({
             val report = JSONObject().put("attempt", attempt).put("startedAtMs", System.currentTimeMillis())
@@ -43,6 +49,7 @@ object RuntimeProbe {
                 .put("hostStat", runCatching { File("/proc/self/stat").readText().trim() }.getOrElse { "unavailable:${it.javaClass.simpleName}" })
                 .put("targetSdk", service.applicationInfo.targetSdkVersion).put("androidApi", Build.VERSION.SDK_INT)
                 .put("abis", Build.SUPPORTED_ABIS.joinToString(",")).put("nativeLibraryDir", service.applicationInfo.nativeLibraryDir)
+            var launchOwner: OwnedProcess? = null
             try {
                 val cancelledBeforeLaunch = synchronized(this) { cancelRequested }
                 if (cancelledBeforeLaunch) {
@@ -54,6 +61,7 @@ object RuntimeProbe {
                     environment()["OLEA_NATIVE_DIR"] = service.applicationInfo.nativeLibraryDir
                     environment()["OLEA_APP_BASE"] = service.filesDir.absolutePath
                 }, File(service.filesDir, "m2/$attempt.pid")) { supervisor, release -> publish(supervisor, release) }
+                launchOwner = supervisor
                 report.put("childPid", JSONObject.NULL)
                 val output = java.io.ByteArrayOutputStream()
                 val errors = java.io.ByteArrayOutputStream()
@@ -70,7 +78,7 @@ object RuntimeProbe {
                 }.apply { start() }
                 val stdout = drain(child.inputStream, output, 0)
                 val stderr = drain(child.errorStream, errors, 1)
-                val deadline = File(service.filesDir, "m2/$attempt.deadline-seconds").takeIf { it.isFile }
+                val deadline = File(service.filesDir, "m2/$attempt.deadline-seconds").takeIf { it.exists() }
                     ?.readText()?.trim()?.toLongOrNull()?.coerceIn(1, 240) ?: 240
                 report.put("deadlineSeconds", deadline)
                 val exited = child.waitFor(deadline, TimeUnit.SECONDS)
@@ -97,12 +105,32 @@ object RuntimeProbe {
                     .put("timeoutCleanupLimit", "Bounded tracked numeric UID/starttime cleanup; unseen forks require independent observation")
             } catch (error: Exception) { report.put("error", error.toString().take(1024)) }
             finally {
+                launchOwner = launchOwner ?: synchronized(this) { owned }
+                var cleanupSettled = launchOwner == null
+                try {
+                    launchOwner?.let { supervisor ->
+                        val cleanup = supervisor.stop()
+                        report.put("finalOwnershipCleanup", cleanup)
+                        cleanupSettled = cleanup.getBoolean("trackedExitVerified")
+                    }
+                    synchronized(this) { cleanupThread }?.join(2000)
+                } catch (error: Exception) {
+                    cleanupSettled = false
+                    report.put("finalCleanupError", error.javaClass.simpleName).put("descendantExitVerified", false)
+                }
                 try {
                     report.put("endedAtMs", System.currentTimeMillis()).put("cancelRequested", cancelRequested)
-                    File(service.filesDir, "m2/$attempt.json").writeText(report.toString(2))
-                } catch (error: java.io.IOException) {
-                    android.util.Log.e("OleaM2Probe", "Receipt write failed: ${error.javaClass.simpleName}")
-                } finally { synchronized(this) { owned = null; running = false } }
+                    val receipt = File(service.filesDir, "m2/$attempt.json")
+                    val temporary = File(receipt.path + ".partial")
+                    synchronized(this) {
+                        val cleared = cleanupSettled && clearSettled(launchOwner, finishing = true)
+                        report.put("launchIdle", cleared).put("cleanupVerified", cleanupSettled)
+                        temporary.writeText(report.toString(2))
+                        check(temporary.renameTo(receipt)) { "RECEIPT_PUBLICATION_FAILED" }
+                    }
+                } catch (error: Exception) {
+                    android.util.Log.e("OleaM2Probe", "Receipt publication failed: ${error.javaClass.simpleName}")
+                }
             }
         }, "m2-runtime-probe").start()
     }

@@ -6,6 +6,7 @@ import { pathToFileURL } from 'node:url';
 import { challenge, unixPrompt, assertUnix, observeProcess } from './assertions.mjs';
 import { sha256 } from './evidence.mjs';
 import { observeTree } from './observe-tree.mjs';
+import { groupedPhonePrompt } from '../../m3/runtime/grouped-phone-prompt.mjs';
 export function bounded(promise, ms, code) {
   let timer;
   return Promise.race([promise, new Promise((_, reject) => { timer = setTimeout(() => reject(Error(code)), ms); })]).finally(() => clearTimeout(timer));
@@ -20,7 +21,7 @@ export function classifyProviderError(message) {
 }
 export async function runPiSingle(options) {
   if (options.allocatedPrompts !== 1 || !options.allocationId || !/^[\w.-]+$/.test(options.attemptId)) throw Error('explicit_single_prompt_allocation_required');
-  if (!['unix', 'combined'].includes(options.kind)) throw Error('invalid_case_kind');
+  if (!['unix', 'combined', 'phone-categories'].includes(options.kind)) throw Error('invalid_case_kind');
   if (!['host', 'android-app', 'target28-comparison'].includes(options.context)) throw Error('explicit_execution_context_required');
   if (!options.backendModule || !options.entry || !options.workspace || !options.stateDir || !options.providerConfig || !options.output) throw Error('missing_explicit_paths');
   const { Backend } = await import(pathToFileURL(resolve(options.backendModule)).href);
@@ -28,10 +29,17 @@ export async function runPiSingle(options) {
   const session = 'm2_' + c.nonce;
   await mkdir(options.workspace, { recursive: true });
   await mkdir(options.stateDir, { recursive: true, mode: 0o700 });
+  let categoryPrompt;
+  if (options.kind === 'phone-categories') {
+    categoryPrompt = groupedPhonePrompt({ ...options, agent: 'pi' });
+    if (!/^[a-zA-Z0-9_-]{1,64}$/.test(options.allocationId)) throw Error('invalid_allocation_id');
+    await mkdir(resolve(options.stateDir, `allocation-${options.allocationId}.started`));
+  }
   const env = Object.fromEntries(['PATH', 'HOME', 'TMPDIR', 'TEMP', 'SystemRoot', 'LD_LIBRARY_PATH', 'PROOT_LOADER', 'PROOT_LOADER_32'].filter(k => process.env[k]).map(k => [k, process.env[k]]));
   Object.assign(env, { OLEA_PROVIDER_CONFIG: resolve(options.providerConfig), OLEA_MODEL: options.model ?? 'gpt-6.1-terra' });
   if (options.bridgeConfig) env.OLEA_BRIDGE_CONFIG = resolve(options.bridgeConfig);
   const summary = { attemptId: options.attemptId, context: options.context, kind: options.kind, startedAt: new Date().toISOString(), status: 'fail', allocationId: options.allocationId,
+    directReceipt: options.kind === 'phone-categories' ? options.directReceipt : undefined,
     provider: { topLevelPrompts: 0, toolRounds: 0, observedUsage: {}, httpRequests: null, remoteBilling: 'unknown', strictTokenCap: 'unsupported/not established', automaticRetries: false },
     limits: { initMs: 30000, turnMs: 120000, idleMs: 45000, frameBytes: 262144, retainedDiagnosticBytes: 1048576, eventCount: 4096, maxToolRounds: 12 },
     tools: [], toolEvidence: [], providerFailures: [], faults: [], assertions: [], events: 0, timings: { firstEventMs: null, firstTextMs: null, maxEventGapMs: null }, modelChildExecution: 'not_independently_proved_by_fresh_runner_rerun', noAutomaticReplay: true, sourceSha256: sha256(await readFile(import.meta.filename)) };
@@ -69,7 +77,7 @@ export async function runPiSingle(options) {
     summary.processBefore = await observeProcess(start.pid);
     if (process.platform === 'linux') observerPromise = observeTree(start.pid, { durationMs: 120000, intervalMs: 100, shouldStop: () => turnFinished }).catch(() => ({ status: 'unverifiable', reason: 'observer_failed', samples: [] }));
     else summary.modelChildObserver = { status: 'untested', reason: 'linux_proc_required' };
-    let message = unixPrompt(c);
+    let message = options.kind === 'phone-categories' ? `${categoryPrompt} Acceptance marker ${c.nonce}.` : unixPrompt(c);
     if (options.kind === 'combined') message += ` Then use phone tools: capabilities, HOME, inspect launcher, swipe app drawer if needed, inspect and Accessibility-click ${JSON.stringify(options.targetLabel ?? 'Olea Fixture')}. Inspect foreground. Generate random16byte lowercase hex in phone-${c.nonce}.txt using Node crypto; send that value through phone_fixture_action. Never use intent/ADB/shell to launch target. Never read oracle; stop on denied permission. No retries of uncertain effects.`;
     turnStart = Date.now(); lastEvent = turnStart;
     summary.provider.topLevelPrompts = 1;
@@ -97,14 +105,21 @@ export async function runPiSingle(options) {
       summary.modelChildObserver = { status: observation.status, path, sha256: sha256(await readFile(path)), interval: '100ms requested; actual timestamps retained', causality: 'Owner must correlate Pi-rooted ancestry with tool interval; missing samples leave child causality untested.' };
     }
     clearInterval(streamTimer);
-    try { summary.assertions = await assertUnix(options.workspace, c); }
-    catch (error) { summary.independentOutcome = error.code === 'ENOENT' ? 'independent_file_or_dependency_missing' : 'independent_unix_assertion_failed'; throw Error(summary.independentOutcome); }
-    if (!summary.tools.some(tool => ['bash', 'write', 'edit'].includes(tool))) throw Error('model_tool_execution_not_observed');
+    if (options.kind !== 'phone-categories') {
+      try { summary.assertions = await assertUnix(options.workspace, c); }
+      catch (error) { summary.independentOutcome = error.code === 'ENOENT' ? 'independent_file_or_dependency_missing' : 'independent_unix_assertion_failed'; throw Error(summary.independentOutcome); }
+      if (!summary.tools.some(tool => ['bash', 'write', 'edit'].includes(tool))) throw Error('model_tool_execution_not_observed');
+    } else {
+      for (const tool of ['phone_capabilities','phone_open_url','phone_location','phone_files_write_read','phone_fixture_notify','phone_notifications'])
+        if (!summary.tools.includes(tool)) throw Error('required_phone_tool_not_observed');
+    }
     if (options.kind === 'combined') for (const tool of ['phone_capabilities', 'phone_home', 'phone_inspect', 'phone_click', 'phone_fixture_action']) if (!summary.tools.includes(tool)) throw Error('required_phone_tool_not_observed');
-    summary.status = options.kind === 'combined' ? 'awaiting-independent-phone-oracle' : 'pass';
+    summary.status = options.kind === 'phone-categories' ? 'awaiting-independent-phone-categories' : options.kind === 'combined' ? 'awaiting-independent-phone-oracle' : 'pass';
     summary.phoneValueFile = options.kind === 'combined' ? `phone-${c.nonce}.txt` : null;
-    summary.workspaceArtifact = c.file;
-    summary.workspaceArtifactSha256 = sha256(await readFile(resolve(options.workspace, c.file)));
+    if (options.kind !== 'phone-categories') {
+      summary.workspaceArtifact = c.file;
+      summary.workspaceArtifactSha256 = sha256(await readFile(resolve(options.workspace, c.file)));
+    }
     await bounded(backend.command(session, { type: 'get_state' }), 30000, 'state_deadline');
     await bounded(backend.stop(session), 10000, 'stop_deadline');
     await bounded(backend.start(session, true), 30000, 'resume_deadline');

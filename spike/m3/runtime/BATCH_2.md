@@ -1,0 +1,36 @@
+# M3 runtime batch 2: restored emulator and focused Android supervision
+
+Starting source checkpoints are `1db5c91` and `38cbe18`; independent source review is `8d1a631`. This batch used0model prompts. Budget remains5/8 consumed globally,3unallocated,0allocated here. Runtime worker retains the sole mutation lease.
+
+## Actual results
+
+The intended emulator was absent when read-only observation resumed. No emulator/qemu Windows process or ADB device was found; shutdown time/cause is unknown. The first diagnostic helper failed its uncaught bridge read after the absent-device shell failures; that limitation is retained in `consent-observation-a01-failure.json`.
+
+Manager explicitly authorized starting the existing AVD. `boot-m3-a01.json` records `Olea_API_36 -no-snapshot -gpu swiftshader -no-audio`, boot completion in about42.4s, API36/x86_64, and identical before/after AVD configuration SHA256. No wipe, snapshot restore, configuration edit or reinstall occurred during that boot. Existing packages/UIDs, rootfs sentinel and canonical combined-value hashes survived. Notification-listener binding and development location grants survived; Accessibility setting was null. This is observation after an unobserved shutdown, not a controlled active reboot/no-replay test.
+
+Before installing anything, `consent-observation-a02/a03` and `boot-restored-data-a01.json` found **no capture.png and no selected-folder grant**. Native runtime service was not started; only the permitted notification listener had bound the app process. The host development forward was restored, without changing phone permissions. No user choice was clicked or treated as consent.
+
+`RuntimeProbe` now retains per-launch ownership across its entire try/catch/finally and always attempts bounded final cleanup, including deadline-read/wait/drain exceptions. A failed cleanup remains explicitly unverified and retains ownership rather than silently allowing another launch. It joins any coalesced cleanup thread, then publishes its JSON receipt through a temporary file/rename under the launch monitor **after** state settlement. Receipt existence now implies a completed JSON publication; `launchIdle` states whether cleanup settled. External test cleanup cannot clear a still-running probe; only its own finalizer uses that explicit finishing path.
+
+The instrumentation cases now have per-case cleanup and an idle-state barrier. An unsettled case aborts the suite instead of contaminating following cases. Direct-publication fixture state is explicitly cleared only after owned exit. The post-launch exception case uses an invalid deadline-file type to trigger a real IOException after root ownership exists.
+
+Two actual installed focused runs passed all6checks: atomic owner/gate ordering with competing STOP and20repeated cancels; denied gate; immediate stop; deterministic pre-owner cancellation; post-launch exception cleanup; controlled service teardown. `instrumentation-a01{,-independent}.json/txt` refers to APK a06. After finding and correcting the external-settlement edge case, `instrumentation-a02{,-independent}.json/txt` repeats only the affected focused suite on final APK a07. Both runs independently find all10recorded numeric identities absent, with no cleanup faults. First-run results remain preserved; they are not relabeled as the final build. These are Android deterministic supervision checks, not model cancellation or arbitrary-fork guarantees.
+
+`location-revocation-a01.json` passes actual fine-location permission revocation, explicit disabled restart, development re-enable, and `LOCATION_PERMISSION_DENIED` after that re-enable. Private fixture oracle hash stayed unchanged. The original development grant was explicitly restored; phone actions were stopped again. Development enable/grant operations are labeled and do not establish ordinary user onboarding.
+
+`batch-2-state.json` compares the7canonical historical transcript/config/combined-value/sentinel hashes with batch1 and finds them identical. Protected provider/bridge files remain mode600; no protected value/digest enters new inventories. Latest observed state: primary hostUID10216/PID4251, phone/backend false, Accessibility false, no listed agent/PRoot children. Exact app/test APK and compiled-source hashes are retained. `deployed-after-boot-a01-deployed-public-hashes.txt` inventories individual deployed public dist/extension files only; historical `/opt/olea` is unchanged.
+
+## Executable preparation and remaining order
+
+No broad suite/report regeneration or provider request was run. Twofocused grouped-prompt guards and the existing invalid-access-mode runner guard pass. Prepared Pi/Codex category modes reuse their stock backend runners. They require an explicit1prompt allocation plus direct-receipt pointer and atomically claim the allocation before provider work; there is still no allocation or executed category turn. The shared prompt covers URL, location, selected-file read/write and separate notification in one bounded workflow. It explicitly makes no delivered capture-image/visual-interpretation claim. New runner sources and the shared prompt module are **not deployed** yet; future public payload must include `spike/m3/runtime/grouped-phone-prompt.mjs`.
+
+`active-recovery.mjs` is syntax-checked preparation, **not executed**. It requires enabled native actions and Accessibility, starts the existing shared backend via the native button, submits one no-model Pi bash task, identity-rechecks and interrupts the exact backend PID, then explicitly interrupts/restarts the app and checks canonical data, disabled state/private oracle and no delayed effect. It records unknown in-flight delivery rather than replaying the task. It is a finite combined backend/app interruption check, not independent proof of automatic backend-only recovery.
+
+Required next order:
+
+1. User enables native actions/Accessibility, completes Chrome's first-run choices if presented, selects Documents/OleaM3 through Android's folder picker, and personally grants one harmless capture through the system consent dialog. Current native host is foreground. No agent will choose terms/account/telemetry or system consent.
+2. Immediately collect fresh capture PNG plus metadata and independently inspect content; perform selected-folder file/readback with independent storage oracle; then verify supplied HTTPS destination. No install, force-stop or revocation before collecting these volatile grants/artifacts.
+3. Stage reviewed grouped runner/tool bytes with individual hashes and no-model registration proof. Request a specific bounded allocation from the manager only after direct prerequisites; keep the other remaining prompts unallocated. Direct versus model-selected coverage stays separate, and metadata does not become image input.
+4. Run prepared active interruption/recovery after category evidence, since whole-app restart loses the current volatile selected-folder reference. Any further file-model case would require another actual folder selection. Save final state, ownership and budget; original M2 failures stay unchanged.
+
+Accessibility, actual selected-folder consent, fresh capture consent/image and Chrome destination remain open. No host-side programmatic substitute has been credited for those user decisions. Rim was not used, as explicitly instructed.

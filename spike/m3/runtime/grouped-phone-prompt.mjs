@@ -1,0 +1,7 @@
+// SPDX-License-Identifier: MIT
+// No execution on import. Provider allocation and direct category receipt are mandatory.
+export function groupedPhonePrompt(options) {
+  if(options.allocatedPrompts!==1||!options.allocationId||!options.directReceipt||!['pi','codex'].includes(options.agent))throw Error('explicit_allocation_and_direct_prerequisites_required');
+  if(!/^https:\/\//.test(options.url)||typeof options.fileValue!=='string'||options.fileValue.length>128)throw Error('invalid_bounded_fixture');
+  return `Perform one bounded phone-category workflow with registered phone tools only. Read phone_capabilities; stop on any denied prerequisite. Open ${JSON.stringify(options.url)} with phone_open_url once, read phone_location once, create/read the bounded value ${JSON.stringify(options.fileValue)} using phone_files_write_read once in the already user-selected folder, then phone_fixture_notify once and phone_notifications once. Do not request a folder or screen-capture consent, change permissions, inspect private files, read oracle state, or use shell/ADB to control Android. Capture image input is not supplied; do not claim visual capture interpretation. Record factual results only. At most7phone calls; no retry or replay after uncertain delivery. Operator selected stock full access/approval never for Codex; Kotlin remains phone permission authority. Finish after these operations.`;
+}

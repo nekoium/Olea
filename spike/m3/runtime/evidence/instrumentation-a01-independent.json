@@ -1,0 +1,393 @@
+{
+  "at": "2026-11-11T03:57:32.158Z",
+  "summary": {
+    "at": 1794369393835,
+    "cases": [
+      {
+        "name": "atomic-owner-publication-and-gate-release",
+        "status": "pass",
+        "cleanup": [
+          {
+            "owned": [
+              {
+                "pid": 3639,
+                "parent": 3600,
+                "group": 485,
+                "tracer": 0,
+                "start": 25020,
+                "uid": 10216
+              },
+              {
+                "pid": 3642,
+                "parent": 3639,
+                "group": 485,
+                "tracer": 0,
+                "start": 25025,
+                "uid": 10216
+              }
+            ],
+            "remaining": [],
+            "faults": [],
+            "rootExitObserved": true,
+            "trackedExitVerified": true,
+            "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+          }
+        ]
+      },
+      {
+        "name": "cancel-before-launch-gate",
+        "status": "pass",
+        "cleanup": [
+          {
+            "owned": [
+              {
+                "pid": 3648,
+                "parent": 3600,
+                "group": 485,
+                "tracer": 0,
+                "start": 25277,
+                "uid": 10216
+              },
+              {
+                "pid": 3649,
+                "parent": 3648,
+                "group": 485,
+                "tracer": 0,
+                "start": 25278,
+                "uid": 10216
+              }
+            ],
+            "remaining": [],
+            "faults": [],
+            "rootExitObserved": true,
+            "trackedExitVerified": true,
+            "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+          }
+        ]
+      },
+      {
+        "name": "immediate-stop-after-root-ownership",
+        "status": "pass",
+        "cleanup": [
+          {
+            "owned": [
+              {
+                "pid": 3651,
+                "parent": 3600,
+                "group": 485,
+                "tracer": 0,
+                "start": 25524,
+                "uid": 10216
+              },
+              {
+                "pid": 3652,
+                "parent": 3651,
+                "group": 485,
+                "tracer": 0,
+                "start": 25525,
+                "uid": 10216
+              }
+            ],
+            "remaining": [],
+            "faults": [],
+            "rootExitObserved": true,
+            "trackedExitVerified": true,
+            "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+          }
+        ]
+      },
+      {
+        "name": "probe-stop-before-owned-assignment",
+        "status": "pass",
+        "cleanup": []
+      },
+      {
+        "name": "probe-post-launch-exception",
+        "status": "pass",
+        "cleanup": []
+      },
+      {
+        "name": "probe-service-teardown-during-startup",
+        "status": "pass",
+        "cleanup": []
+      }
+    ],
+    "suiteAbortedForUnsettledState": false,
+    "modelRequests": 0,
+    "directory": "/data/user/0/dev.olea.m2.runtime/files/m3-supervision-1794369384750"
+  },
+  "receipts": [
+    {
+      "path": "files/m2/m3-exception-1794369391192.json",
+      "report": {
+        "attempt": "m3-exception-1794369391192",
+        "startedAtMs": 1794369391223,
+        "package": "dev.olea.m2.runtime",
+        "hostPid": 3600,
+        "hostRealUid": 10216,
+        "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+        "hostStat": "3600 (olea.m2.runtime) S 485 485 0 0 -1 4194624 8985 3736 0 0 45 92 3 1 20 0 17 0 24959 17198264320 33674 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 3 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0",
+        "targetSdk": 36,
+        "androidApi": 36,
+        "abis": "x86_64,arm64-v8a",
+        "nativeLibraryDir": "/data/app/~~-7_6ct_l-1zkOcglBJZfxw==/dev.olea.m2.runtime-cpVTbDKFeBbKCZGRr8RRxg==/lib/x86_64",
+        "childPid": null,
+        "error": "java.io.FileNotFoundException: /data/user/0/dev.olea.m2.runtime/files/m2/m3-exception-1794369391192.deadline-seconds: open failed: EISDIR (Is a directory)",
+        "finalOwnershipCleanup": {
+          "owned": [
+            {
+              "pid": 3657,
+              "parent": 3600,
+              "group": 485,
+              "tracer": 0,
+              "start": 25662,
+              "uid": 10216
+            },
+            {
+              "pid": 3658,
+              "parent": 3657,
+              "group": 485,
+              "tracer": 0,
+              "start": 25662,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+        },
+        "endedAtMs": 1794369391893,
+        "cancelRequested": false,
+        "launchIdle": true,
+        "cleanupVerified": true
+      }
+    },
+    {
+      "path": "files/m2/m3-startup-1794369391113.json",
+      "report": {
+        "attempt": "m3-startup-1794369391113",
+        "startedAtMs": 1794369391117,
+        "package": "dev.olea.m2.runtime",
+        "hostPid": 3600,
+        "hostRealUid": 10216,
+        "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+        "hostStat": "3600 (olea.m2.runtime) S 485 485 0 0 -1 4194624 8748 3736 0 0 42 83 3 1 20 0 16 0 24959 17197101056 33354 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 2 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0",
+        "targetSdk": 36,
+        "androidApi": 36,
+        "abis": "x86_64,arm64-v8a",
+        "nativeLibraryDir": "/data/app/~~-7_6ct_l-1zkOcglBJZfxw==/dev.olea.m2.runtime-cpVTbDKFeBbKCZGRr8RRxg==/lib/x86_64",
+        "launchSuppressed": true,
+        "endedAtMs": 1794369391184,
+        "cancelRequested": true,
+        "launchIdle": true,
+        "cleanupVerified": true
+      }
+    },
+    {
+      "path": "files/m2/m3-teardown-1794369391915.json",
+      "report": {
+        "attempt": "m3-teardown-1794369391915",
+        "startedAtMs": 1794369391928,
+        "package": "dev.olea.m2.runtime",
+        "hostPid": 3600,
+        "hostRealUid": 10216,
+        "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+        "hostStat": "3600 (olea.m2.runtime) S 485 485 0 0 -1 4194624 9710 4664 0 0 49 105 5 1 20 0 17 0 24959 17198395392 34025 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 1 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0",
+        "targetSdk": 36,
+        "androidApi": 36,
+        "abis": "x86_64,arm64-v8a",
+        "nativeLibraryDir": "/data/app/~~-7_6ct_l-1zkOcglBJZfxw==/dev.olea.m2.runtime-cpVTbDKFeBbKCZGRr8RRxg==/lib/x86_64",
+        "childPid": null,
+        "deadlineSeconds": 30,
+        "ownershipCleanup": {
+          "owned": [
+            {
+              "pid": 3664,
+              "parent": 3600,
+              "group": 485,
+              "tracer": 0,
+              "start": 25732,
+              "uid": 10216
+            },
+            {
+              "pid": 3665,
+              "parent": 3664,
+              "group": 485,
+              "tracer": 0,
+              "start": 25733,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+        },
+        "rootExitObserved": true,
+        "inheritedPipesAfterJoin": false,
+        "timedOut": false,
+        "exitCode": 143,
+        "stdout": "",
+        "stderr": "Terminated \n",
+        "stdoutObservedBytes": 0,
+        "stderrObservedBytes": 12,
+        "stdoutRetainedBytes": 0,
+        "stderrRetainedBytes": 12,
+        "outputTruncated": false,
+        "drainersStillAlive": false,
+        "stdoutDrainFault": null,
+        "stderrDrainFault": null,
+        "descendantExitVerified": true,
+        "timeoutCleanupLimit": "Bounded tracked numeric UID/starttime cleanup; unseen forks require independent observation",
+        "finalOwnershipCleanup": {
+          "owned": [
+            {
+              "pid": 3664,
+              "parent": 3600,
+              "group": 485,
+              "tracer": 0,
+              "start": 25732,
+              "uid": 10216
+            },
+            {
+              "pid": 3665,
+              "parent": 3664,
+              "group": 485,
+              "tracer": 0,
+              "start": 25733,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+        },
+        "endedAtMs": 1794369393818,
+        "cancelRequested": true,
+        "launchIdle": true,
+        "cleanupVerified": true
+      }
+    }
+  ],
+  "observations": [
+    {
+      "identity": {
+        "pid": 3639,
+        "parent": 3600,
+        "group": 485,
+        "tracer": 0,
+        "start": 25020,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 3642,
+        "parent": 3639,
+        "group": 485,
+        "tracer": 0,
+        "start": 25025,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 3648,
+        "parent": 3600,
+        "group": 485,
+        "tracer": 0,
+        "start": 25277,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 3649,
+        "parent": 3648,
+        "group": 485,
+        "tracer": 0,
+        "start": 25278,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 3651,
+        "parent": 3600,
+        "group": 485,
+        "tracer": 0,
+        "start": 25524,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 3652,
+        "parent": 3651,
+        "group": 485,
+        "tracer": 0,
+        "start": 25525,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 3657,
+        "parent": 3600,
+        "group": 485,
+        "tracer": 0,
+        "start": 25662,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 3658,
+        "parent": 3657,
+        "group": 485,
+        "tracer": 0,
+        "start": 25662,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 3664,
+        "parent": 3600,
+        "group": 485,
+        "tracer": 0,
+        "start": 25732,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 3665,
+        "parent": 3664,
+        "group": 485,
+        "tracer": 0,
+        "start": 25733,
+        "uid": 10216
+      },
+      "stat": "ABSENT"
+    }
+  ],
+  "allAbsent": true,
+  "uidInventory": [
+    "10216  3673   485 dev.olea.m2.runtime\r"
+  ]
+}

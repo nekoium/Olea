@@ -1,0 +1,116 @@
+{
+  "at": 1794369528283,
+  "cases": [
+    {
+      "name": "atomic-owner-publication-and-gate-release",
+      "status": "pass",
+      "cleanup": [
+        {
+          "owned": [
+            {
+              "pid": 3917,
+              "parent": 3901,
+              "group": 485,
+              "tracer": 0,
+              "start": 38465,
+              "uid": 10216
+            },
+            {
+              "pid": 3920,
+              "parent": 3917,
+              "group": 485,
+              "tracer": 0,
+              "start": 38470,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+        }
+      ]
+    },
+    {
+      "name": "cancel-before-launch-gate",
+      "status": "pass",
+      "cleanup": [
+        {
+          "owned": [
+            {
+              "pid": 3925,
+              "parent": 3901,
+              "group": 485,
+              "tracer": 0,
+              "start": 38721,
+              "uid": 10216
+            },
+            {
+              "pid": 3926,
+              "parent": 3925,
+              "group": 485,
+              "tracer": 0,
+              "start": 38722,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+        }
+      ]
+    },
+    {
+      "name": "immediate-stop-after-root-ownership",
+      "status": "pass",
+      "cleanup": [
+        {
+          "owned": [
+            {
+              "pid": 3943,
+              "parent": 3901,
+              "group": 485,
+              "tracer": 0,
+              "start": 38968,
+              "uid": 10216
+            },
+            {
+              "pid": 3944,
+              "parent": 3943,
+              "group": 485,
+              "tracer": 0,
+              "start": 38970,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+        }
+      ]
+    },
+    {
+      "name": "probe-stop-before-owned-assignment",
+      "status": "pass",
+      "cleanup": []
+    },
+    {
+      "name": "probe-post-launch-exception",
+      "status": "pass",
+      "cleanup": []
+    },
+    {
+      "name": "probe-service-teardown-during-startup",
+      "status": "pass",
+      "cleanup": []
+    }
+  ],
+  "suiteAbortedForUnsettledState": false,
+  "modelRequests": 0,
+  "directory": "\/data\/user\/0\/dev.olea.m2.runtime\/files\/m3-supervision-1794369519186"
+}
