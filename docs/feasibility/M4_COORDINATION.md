@@ -31,6 +31,12 @@ The user's subsequent clarification refreshes the budget on manager handoff. **M
 
 Kotlin permission/lifecycle authority and one shared Node backend remain fixed. Stock Codex full access/approval never remains selected with no filesystem isolation; restricted-mode failures remain historical. No stock patches, private agent ports, wire compatibility shims, root, normal-use ADB or production UX. Routine harmless actual system consent may use established CLI/instrumentation; preserve actual consent versus development-grant labels. No computer-use chat wake/resume.
 
+## Interim evidence and independent contradiction
+
+Runtime batch `33bd1d3` records an ordinary copied-prefix stock Codex0.167.0→0.167.1 update and no-model protocol/copied-session checks. Independent assessment is active under follow-up `ctx_cc5b1cc9f271`, task `task_4121b7bc62fe`, same kept-open assessment session. No full preservation pass is established: original backend-a01/a02 both retain `historicalUnchanged=false` for canonical rollout `01a1c6d2`, expected hash prefix `345b0884` versus observed `0a5b101f`. Copied rollout equality does not establish original canonical equality. Cause remains unproved; manager instructed runtime via `msg_cfeda79a2aae` to preserve changed bytes and diagnose first-change timing/possible absolute copied-state references without resetting history. Earlier manager blanket preservation claim is withdrawn.
+
+Backend-a01 failed setup with zero matching UI nodes before interruption; only a02 measures same-host backend-only SIGKILL. That attempt left phone authority enabled and cleanup null; explicit STOP subsequently cleaned tracked identities. Original failure remains retained while runtime develops the minimal Kotlin repair. Baseline's9/9 budget is historical, not the refreshed M4 ledger. New checks and final state remain pending.
+
 ## Transfer and preservation
 
 Verified launch receipt `msg_f5b304dff8e4` sent once to predecessor `orca_session_id:pi_85fbd97d_a2b0_4d5c_b18b_5764368c44ae`. It is informational; no predecessor approval required. Predecessor confirmed via `msg_b4760a44ff41` that exact settled old runtime `ctx_1cdcd03b220d` and evidence `ctx_5d79f5334c72` were released/closed with transcripts captured; stopped review `ctx_d3425b170294` released with no action and transcript captured. No device/data/worktree or user-tab changes were made. Preserve all old worktrees/Git/APKs/rootfs/cache/data and concurrent advisory `PRODUCT_DECISION_BRIEF.html` plus user root tabs. Keep new workers open.
