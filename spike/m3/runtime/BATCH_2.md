@@ -33,4 +33,4 @@ Required next order:
 3. Stage reviewed grouped runner/tool bytes with individual hashes and no-model registration proof. Request a specific bounded allocation from the manager only after direct prerequisites; keep the other remaining prompts unallocated. Direct versus model-selected coverage stays separate, and metadata does not become image input.
 4. Run prepared active interruption/recovery after category evidence, since whole-app restart loses the current volatile selected-folder reference. Any further file-model case would require another actual folder selection. Save final state, ownership and budget; original M2 failures stay unchanged.
 
-Accessibility, actual selected-folder consent, fresh capture consent/image and Chrome destination remain open. No host-side programmatic substitute has been credited for those user decisions. Rim was not used, as explicitly instructed.
+Accessibility, actual selected-folder consent, fresh capture consent/image and Chrome destination remain open. No host-side programmatic substitute has been credited for those user decisions.
