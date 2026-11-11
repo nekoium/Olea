@@ -6,7 +6,7 @@ android {
         applicationId = "dev.olea.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
+        versionCode = 3
         versionName = "0.1-core"
         testInstrumentationRunner = "dev.olea.app.CoreInstrumentation"
         ndk { abiFilters += "x86_64" }

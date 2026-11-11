@@ -16,6 +16,8 @@ class OwnedProcess(private val process: java.lang.Process, private val identityF
     }
     private val identities = linkedMapOf<Int, Identity>()
     private val faults = mutableSetOf<String>()
+    private var observedIdentities = 0
+    private var retiredExited = 0
     @Volatile private var observing = true
     init {
         val deadline = android.os.SystemClock.elapsedRealtime() + 2000
@@ -26,6 +28,7 @@ class OwnedProcess(private val process: java.lang.Process, private val identityF
         }
         check(root != null && root.uid == Process.myUid()) { "ROOT_IDENTITY_UNAVAILABLE" }
         identities[root.pid] = root
+        observedIdentities = 1
     }
     private val observer = Thread({
         try {
@@ -40,16 +43,18 @@ class OwnedProcess(private val process: java.lang.Process, private val identityF
         val directory = File("/proc/$pid")
         if (!directory.exists()) return null
         val uid = try { Os.stat(directory.path).st_uid } catch (error: android.system.ErrnoException) {
-            if (error.errno == OsConstants.ENOENT) return null else throw error
+            if (error.errno in listOf(OsConstants.ENOENT, OsConstants.ESRCH)) return null else throw error
         }
         if (uid != Process.myUid()) error("OWNED_UID_CHANGED")
-        val text = try { File(directory, "stat").readText() } catch (error: java.io.FileNotFoundException) {
-            if (!directory.exists()) return null else throw error
+        val text = try { File(directory, "stat").readText() } catch (error: java.io.IOException) {
+            if (!directory.exists() || (error.cause as? android.system.ErrnoException)?.errno in listOf(OsConstants.ENOENT, OsConstants.ESRCH)) return null else throw error
         }
         val fields = text.substring(text.lastIndexOf(')') + 2).trim().split(Regex("\\s+"))
         val tracer = try {
             File(directory, "status").useLines { lines -> lines.first { it.startsWith("TracerPid:") }.substringAfter(':').trim().toInt() }
-        } catch (error: java.io.FileNotFoundException) { if (!directory.exists()) return null else throw error }
+        } catch (error: java.io.IOException) {
+            if (!directory.exists() || (error.cause as? android.system.ErrnoException)?.errno in listOf(OsConstants.ENOENT, OsConstants.ESRCH)) return null else throw error
+        }
         return Identity(pid, fields[1].toInt(), fields[2].toInt(), tracer, fields[19].toLong(), uid)
     }
 
@@ -63,8 +68,16 @@ class OwnedProcess(private val process: java.lang.Process, private val identityF
             check(android.os.SystemClock.elapsedRealtime() <= deadline) { "PROC_TIME_LIMIT" }
             try {
                 if (Os.stat(directory.path).st_uid == root.uid) read(directory.name.toInt())?.let { records.add(it) }
-            } catch (error: android.system.ErrnoException) { if (error.errno != OsConstants.ENOENT) throw error }
+            } catch (error: android.system.ErrnoException) { if (error.errno !in listOf(OsConstants.ENOENT, OsConstants.ESRCH)) throw error }
         }
+        // Bound concurrent ownership, not all processes ever launched by a package install.
+        // Retire only after a complete successful scan proves the old identity absent.
+        val observed = records.associateBy { it.pid }
+        val previousSize = identities.size
+        identities.entries.removeAll { (pid, identity) ->
+            pid != root.pid && observed[pid]?.let { it.start == identity.start && it.uid == identity.uid } != true
+        }
+        retiredExited += previousSize - identities.size
         val liveOwned = records.filter { record -> identities[record.pid]?.let { it.start == record.start && it.uid == record.uid } == true }.map { it.pid }.toMutableSet()
         var added: Boolean
         do {
@@ -72,7 +85,7 @@ class OwnedProcess(private val process: java.lang.Process, private val identityF
             for (record in records) if (record.pid !in identities && record.start >= root.start &&
                 (record.parent in liveOwned || record.tracer in liveOwned || (root.pid in liveOwned && root.group == root.pid && record.group == root.pid))) {
                 check(identities.size < 256) { "OWNED_PROCESS_LIMIT" }
-                identities[record.pid] = record; liveOwned.add(record.pid); added = true
+                identities[record.pid] = record; observedIdentities++; liveOwned.add(record.pid); added = true
             }
         } while (added)
     }
@@ -106,6 +119,7 @@ class OwnedProcess(private val process: java.lang.Process, private val identityF
         }
         return JSONObject().put("owned", JSONArray(identities.values.map { it.json() }))
             .put("remaining", remaining).put("faults", JSONArray(faults.toList()))
+            .put("observedIdentities", observedIdentities).put("retiredExited", retiredExited)
             .put("rootExitObserved", !process.isAlive)
             .put("trackedExitVerified", identities.isNotEmpty() && remaining.length() == 0 && faults.isEmpty() && !process.isAlive)
             .put("limit", "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation")

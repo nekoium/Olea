@@ -90,10 +90,25 @@ class RuntimeService : Service() {
 
     private fun run(command: List<String>, seconds: Int, epoch: Long) {
         val process = launch(command, epoch)
-        val drain = Thread { runCatching { process.inputStream.use { it.copyTo(java.io.OutputStream.nullOutputStream()) } } }.apply { start() }
+        val drain = Thread {
+            runCatching {
+                val phases = mapOf("Preparing Linux certificates and workspace tools" to "Installing Linux certificates and Git…", "Installing stock Pi through npm" to "Installing stock Pi through npm…", "Environment ready" to "Verifying prepared environment…")
+                process.inputStream.bufferedReader().use { reader ->
+                    val line = StringBuilder()
+                    while (true) {
+                        val next = reader.read(); if (next < 0) break
+                        if (next == 10) {
+                            if (epoch == generation.get()) phases[line.toString()]?.let { update(it) }
+                            line.setLength(0)
+                        } else if (line.length < 4096) line.append(next.toChar())
+                    }
+                }
+            }
+        }.apply { start() }
         val errors = Thread { runCatching { process.errorStream.use { it.copyTo(java.io.OutputStream.nullOutputStream()) } } }.apply { start() }
         val exited = process.waitFor(seconds.toLong(), TimeUnit.SECONDS)
         val result = synchronized(lock) { owner?.stop() }
+        if (result?.optBoolean("trackedExitVerified") != true) File(filesDir, "last-cleanup-failure.json").writeText(result?.toString(2) ?: "{}")
         drain.join(1000); errors.join(1000)
         synchronized(lock) {
             if (child === process && result?.optBoolean("trackedExitVerified") == true) { child = null; owner = null }
@@ -170,19 +185,26 @@ class RuntimeService : Service() {
                     return
                 }
                 when (action) {
-                    "start" -> { conversationReady = true; busy = false; update("Pi ready"); send("command", JSONObject().put("type", "get_messages")) }
+                    "start" -> send("command", JSONObject().put("type", "get_messages"))
                     "prompt" -> { /* Pi emits agent_end when the streamed turn finishes. */ }
                     "get_messages" -> {
                         val data = record.optJSONObject("data")?.optJSONObject("data")?.optJSONArray("messages")
-                        if (data != null && data.length() > 0) {
+                        if (data == null) { busy = false; update("Pi history response was invalid. STOP and Start to retry safely."); return }
+                        if (data.length() > 0) {
                             synchronized(messages) { messages.clear() }
                             for (index in 0 until data.length()) {
                                 val message = data.optJSONObject(index) ?: continue
-                                val content = message.optJSONArray("content") ?: continue
-                                val text = (0 until content.length()).mapNotNull { content.optJSONObject(it)?.optString("text")?.takeIf { it.isNotEmpty() } }.joinToString("\n")
-                                if (text.isNotBlank()) add("${message.optString("role")}: $text")
+                                val content = message.opt("content")
+                                val text = when (content) {
+                                    is String -> content
+                                    is JSONArray -> (0 until content.length()).mapNotNull { content.optJSONObject(it)?.optString("text")?.takeIf { it.isNotEmpty() } }.joinToString("\n")
+                                    else -> message.optString("output")
+                                }
+                                val role = if (message.optString("role") == "bashExecution") "Workspace tool" else message.optString("role")
+                                if (text.isNotBlank()) add("$role: $text")
                             }
                         }
+                        conversationReady = true; busy = false; update("Pi ready")
                     }
                     "bash" -> { busy = false; add("Workspace tool: ${record.optJSONObject("data")?.optJSONObject("data")?.optString("output", "Completed")}") }
                 }
@@ -251,7 +273,10 @@ class RuntimeService : Service() {
                 if (child == null || result?.optBoolean("trackedExitVerified") == true) {
                     child = null; owner = null
                     update("Stopped. Workspace and conversation saved.")
-                } else update("STOP requested; some tracked exits could not be verified. Tap STOP to retry.")
+                } else {
+                    File(filesDir, "last-cleanup-failure.json").writeText(result?.toString(2) ?: "{}")
+                    update("STOP requested; some tracked exits could not be verified. Tap STOP to retry.")
+                }
                 if (assistant.isNotEmpty()) { add("assistant (interrupted): $assistant"); assistant = StringBuilder() }
                 busy = false
             }
