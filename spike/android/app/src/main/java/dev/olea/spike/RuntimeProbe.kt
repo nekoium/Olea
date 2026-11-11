@@ -12,16 +12,29 @@ object RuntimeProbe {
     @Volatile private var running = false
     @Volatile private var owned: OwnedProcess? = null
     @Volatile private var cancelRequested = false
+    private var cleanupStarted = false
+    private fun requestCleanup() {
+        val current = owned ?: return
+        if (cleanupStarted) return
+        cleanupStarted = true
+        Thread({ current.stop() }, "m2-probe-cleanup").start()
+    }
+    @Synchronized internal fun publish(supervisor: OwnedProcess, release: () -> Unit) {
+        owned = supervisor
+        if (cancelRequested) requestCleanup() else release()
+    }
     @Synchronized fun cancel() {
-        if (!running) return
+        if (!running && owned == null) return
         cancelRequested = true
-        owned?.let { current -> Thread { current.stop() }.start() }
+        requestCleanup()
     }
     @Synchronized fun run(service: Service, attempt: String) {
         if (running || !attempt.matches(Regex("[a-z0-9-]{1,64}"))) return
         val script = File(service.filesDir, "m2/$attempt.sh")
         if (!script.isFile) return
         cancelRequested = false
+        owned = null
+        cleanupStarted = false
         running = true
         Thread({
             val report = JSONObject().put("attempt", attempt).put("startedAtMs", System.currentTimeMillis())
@@ -40,9 +53,7 @@ object RuntimeProbe {
                     directory(service.filesDir)
                     environment()["OLEA_NATIVE_DIR"] = service.applicationInfo.nativeLibraryDir
                     environment()["OLEA_APP_BASE"] = service.filesDir.absolutePath
-                }, File(service.filesDir, "m2/$attempt.pid")) { !cancelRequested }
-                owned = supervisor
-                if (cancelRequested) supervisor.stop()
+                }, File(service.filesDir, "m2/$attempt.pid")) { supervisor, release -> publish(supervisor, release) }
                 report.put("childPid", JSONObject.NULL)
                 val output = java.io.ByteArrayOutputStream()
                 val errors = java.io.ByteArrayOutputStream()
@@ -91,7 +102,7 @@ object RuntimeProbe {
                     File(service.filesDir, "m2/$attempt.json").writeText(report.toString(2))
                 } catch (error: java.io.IOException) {
                     android.util.Log.e("OleaM2Probe", "Receipt write failed: ${error.javaClass.simpleName}")
-                } finally { owned = null; running = false }
+                } finally { synchronized(this) { owned = null; running = false } }
             }
         }, "m2-runtime-probe").start()
     }

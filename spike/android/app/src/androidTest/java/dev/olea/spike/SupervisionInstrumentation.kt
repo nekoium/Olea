@@ -15,13 +15,11 @@ class SupervisionInstrumentation : Instrumentation() {
         val results = JSONArray()
         val directory = File(targetContext.filesDir, "m3-supervision-${System.currentTimeMillis()}")
         check(directory.mkdir())
-        fun test(name: String, action: () -> Unit) {
-            try { action(); results.put(JSONObject().put("name", name).put("status", "pass")) }
-            catch (error: Exception) { results.put(JSONObject().put("name", name).put("status", "fail").put("error", error.toString())) }
-        }
+        val checks = mutableListOf<Pair<String, () -> Unit>>()
+        fun test(name: String, action: () -> Unit) { checks.add(name to action) }
         test("cancel-before-launch-gate") {
             val effect = File(directory, "gate-effect")
-            val (child, owner) = OwnedProcess.launch(ProcessBuilder("/system/bin/sh", "-c", "echo UNEXPECTED > \"$1\"", "effect", effect.path), File(directory, "gate.pid")) { false }
+            val (child, owner) = OwnedProcess.launch(ProcessBuilder("/system/bin/sh", "-c", "echo UNEXPECTED > \"$1\"", "effect", effect.path), File(directory, "gate.pid")) { owner, _ -> owner.stop() }
             check(child.waitFor(2, java.util.concurrent.TimeUnit.SECONDS))
             check(!effect.exists())
             val first = owner.stop(); val second = owner.stop()
@@ -75,6 +73,49 @@ class SupervisionInstrumentation : Instrumentation() {
             check(result.getBoolean("rootExitObserved"))
             check(result.getJSONObject("ownershipCleanup").getBoolean("trackedExitVerified"))
             check(!effect.exists())
+        }
+        test("atomic-owner-publication-and-gate-release") {
+            val entered = java.util.concurrent.CountDownLatch(1)
+            val allowRelease = java.util.concurrent.CountDownLatch(1)
+            val stopAttempted = java.util.concurrent.CountDownLatch(1)
+            val stopReturned = java.util.concurrent.atomic.AtomicBoolean(false)
+            val launchFailure = java.util.concurrent.atomic.AtomicReference<Throwable?>()
+            val launched = java.util.concurrent.atomic.AtomicReference<Pair<java.lang.Process, OwnedProcess>>()
+            val pidFile = File(directory, "atomic.pid")
+            val launcher = Thread {
+                try {
+                    launched.set(OwnedProcess.launch(ProcessBuilder("/system/bin/sleep", "30"), pidFile) { owner, release ->
+                        RuntimeProbe.publish(owner) {
+                            entered.countDown()
+                            check(allowRelease.await(2, java.util.concurrent.TimeUnit.SECONDS))
+                            release()
+                        }
+                    })
+                } catch (error: Throwable) { launchFailure.set(error) }
+            }.apply { start() }
+            try {
+                check(entered.await(2, java.util.concurrent.TimeUnit.SECONDS))
+                val stopper = Thread { stopAttempted.countDown(); RuntimeProbe.cancel(); stopReturned.set(true) }.apply { start() }
+                check(stopAttempted.await(1, java.util.concurrent.TimeUnit.SECONDS))
+                val deadline = android.os.SystemClock.elapsedRealtime() + 1000
+                while (stopper.state != Thread.State.BLOCKED && !stopReturned.get() && android.os.SystemClock.elapsedRealtime() < deadline) Thread.sleep(5)
+                check(stopper.state == Thread.State.BLOCKED && !stopReturned.get()) { "STOP_RETURNED_BEFORE_GATE_RELEASE" }
+                check(!File(pidFile.path + ".ready").exists())
+                allowRelease.countDown()
+                launcher.join(2000); stopper.join(2000)
+                check(!launcher.isAlive && !stopper.isAlive && stopReturned.get())
+                launchFailure.get()?.let { throw IllegalStateException("LAUNCH_FAILED", it) }
+                repeat(20) { RuntimeProbe.cancel() }
+                check(Thread.getAllStackTraces().keys.count { it.isAlive && it.name == "m2-probe-cleanup" } <= 1) { "CLEANUP_NOT_COALESCED" }
+                val (child, owner) = launched.get()
+                check(child.waitFor(2, java.util.concurrent.TimeUnit.SECONDS))
+                check(owner.stop().getBoolean("trackedExitVerified"))
+            } finally { allowRelease.countDown(); launcher.join(2500); launched.get()?.second?.stop() }
+        }
+        // Run the publication test before a cancelled probe leaves its latch set.
+        for ((name, action) in checks.sortedBy { if (it.first == "atomic-owner-publication-and-gate-release") 0 else 1 }) {
+            try { action(); results.put(JSONObject().put("name", name).put("status", "pass")) }
+            catch (error: Exception) { results.put(JSONObject().put("name", name).put("status", "fail").put("error", error.toString())) }
         }
         val report = JSONObject().put("at", System.currentTimeMillis()).put("cases", results)
             .put("modelRequests", 0).put("directory", directory.path)
