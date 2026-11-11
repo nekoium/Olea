@@ -1,0 +1,46 @@
+{
+  "stabilitySamples": [
+    {
+      "at": "2026-11-11T08:57:29.667Z",
+      "sha256": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b",
+      "bytes": 35519,
+      "complete": true,
+      "stable": 0
+    },
+    {
+      "at": "2026-11-11T08:57:30.025Z",
+      "sha256": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b",
+      "bytes": 35519,
+      "complete": true,
+      "stable": 1
+    },
+    {
+      "at": "2026-11-11T08:57:30.349Z",
+      "sha256": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b",
+      "bytes": 35519,
+      "complete": true,
+      "stable": 2
+    }
+  ],
+  "at": "2026-11-11T08:57:21.799Z",
+  "attempt": "m5-final-a02-consent",
+  "requestId": "call_d3be8ad102aa44eb9e0c4222a4234a79",
+  "readyPath": "/workspace/m5-pi-final-seven-01-capture-ready.json",
+  "previousModified": 1794386118,
+  "route": "Agent-operated real SystemUI Share one app/Next/Olea Fixture; no silent grant",
+  "modelRequests": 0,
+  "nativePhoneCalls": 0,
+  "modified": 1794387448,
+  "sha256": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b",
+  "width": 1080,
+  "height": 2400,
+  "bytes": 35519,
+  "dialog": "m5-final-a02-consent-dialog-0",
+  "picker": "m5-final-a02-consent-picker",
+  "readyMarker": {
+    "requestId": "call_d3be8ad102aa44eb9e0c4222a4234a79",
+    "status": "ready",
+    "captureSha256": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b",
+    "modified": 1794387448
+  }
+}

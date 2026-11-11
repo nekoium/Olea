@@ -1,0 +1,40 @@
+{
+  "status": "pass",
+  "captureReadonlyCorrection": true,
+  "firstCollectorFailureRetained": true,
+  "exactFinalAudit": [
+    "capabilities",
+    "capture_request",
+    "capture_result",
+    "files_write_read",
+    "fixture_notify",
+    "notifications",
+    "open_url",
+    "stop"
+  ],
+  "grantsListenerPermissionsUnchanged": true,
+  "ledger": {
+    "authorized": 9,
+    "consumed": 1,
+    "allocated": 0,
+    "unallocated": 8,
+    "historicalPreM4Consumed": 9,
+    "precedingM4Consumed": 0,
+    "cumulativeConsumed": 10,
+    "topLevelSubmissions": 1,
+    "toolRounds": 8,
+    "usage": {
+      "input": 10187,
+      "output": 363,
+      "cacheRead": 0,
+      "cacheWrite": 0
+    },
+    "httpRequests": null,
+    "billing": "unknown",
+    "retry": 0,
+    "fallback": 0,
+    "replay": 0
+  },
+  "temporaryHostFilesCleaned": true,
+  "unchangedSuitesRerun": false
+}

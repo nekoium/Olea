@@ -1,0 +1,27 @@
+{
+  "allocatedPrompts": 1,
+  "allocationId": "m5-pi-final-seven-01",
+  "attemptId": "m5-pi-final-seven-01",
+  "kind": "phone-categories",
+  "context": "android-app",
+  "categories": [
+    "capture",
+    "files-media",
+    "notification",
+    "intent-url"
+  ],
+  "directReceipt": "78406de live readiness; independent2a61603; final-live-a02.json",
+  "backendModule": "/opt/olea-m3-final-ready-a01/spike/backend/dist/backend.js",
+  "entry": "/opt/agents/pi/node_modules/@earendil-works/pi-coding-agent/dist/cli.js",
+  "workspace": "/workspace/m5-pi-final-seven-01",
+  "stateDir": "/workspace/m5-pi-final-seven-01-state",
+  "providerConfig": "/run/olea-provider.json",
+  "bridgeConfig": "/run/olea-bridge.json",
+  "captureReady": "/workspace/m5-pi-final-seven-01-capture-ready.json",
+  "output": "/workspace/m5-pi-final-seven-01.json",
+  "model": "gpt-6.1-terra",
+  "url": "https://example.org/?olea=m5-pi-final-seven-01",
+  "fileValue": "OLEA_M5_794467620612_FINAL_SEVEN_01",
+  "imageDelivery": "text metadata only; no pixels delivered and no model visual interpretation",
+  "allocationStatus": "Original manager task_432cebde0ee4 / ctx_cddbd39932ba; corrected setup task_f99d0400d37b / ctx_2ac934704b0e; one original primary-terra submission, no model retry/fallback/replay"
+}
