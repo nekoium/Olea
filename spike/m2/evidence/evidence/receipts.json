@@ -16234,5 +16234,103 @@
       "Five-delivery cap is per MCP helper instance, not a persistent allocation-wide security bound.",
       "No stock-agent patch; full access has no same-UID filesystem credential isolation."
     ]
+  },
+  {
+    "attemptId": "m3-special-revocation-notification",
+    "caseId": "phone.revocation",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T05:15:30.997Z",
+    "endedAt": "2026-11-11T05:15:37.547Z",
+    "summary": "Actual notification special access removed by disallow_listener; authenticated read rejected NOTIFICATION_ACCESS_REVOKED with phoneEnabled=true. Exact fixture private-value/log hashes, foreground, existing notification identity/text/timestamps and native audit unchanged; prior listener set restored. Initial listener buffer empty, no prepopulated cache erasure/withholding proof.",
+    "artifacts": [
+      {
+        "path": "git:dca2821:spike/m3/runtime/evidence/special-access-revocation-a01.json",
+        "sha256": "cc63211ede7930c069e3ce30442e4b389b6b9b89f802c9b715f728c3de1a0d16"
+      },
+      {
+        "path": "git:dca2821:spike/m3/runtime/evidence/revocation-consent-a01.json",
+        "sha256": "64c24fcfea896898646c3aeac2e7c8af32576680982ba580ae78c7ca0fdc86dc"
+      },
+      {
+        "path": "git:dca2821:spike/m3/runtime/special-access-revocation-a01.mjs",
+        "sha256": "d27620481ef335966421f487a630151120c8d29572d5418df1c1234ec4b7afc4"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "actual_special_access_denial_with_independent_no_effect",
+        "independent": true,
+        "passed": true
+      },
+      {
+        "name": "exact_original_special_access_restored",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "provenance": {
+      "sourceCommit": "dca2821",
+      "setupRoute": "Explicitly authorized development native enable and special-access setup; no system-consent or Chrome choice clicked"
+    },
+    "limits": [
+      "Development setup/revocation, not ordinary user consent.",
+      "Notification baseline empty; no cached-data erasure proof.",
+      "Direct boundary only, no model-turn cancellation or universal permission guarantee."
+    ]
+  },
+  {
+    "attemptId": "m3-special-revocation-accessibility",
+    "caseId": "phone.revocation",
+    "context": "android-app",
+    "mode": "direct",
+    "status": "pass",
+    "startedAt": "2026-11-11T05:15:30.997Z",
+    "endedAt": "2026-11-11T05:15:37.547Z",
+    "summary": "Actual Accessibility revoked after positive inspection of effectful START SHARED BACKEND node; inspection and exact known-node click rejected ACCESSIBILITY_REVOKED while phoneEnabled=true/backend=false. Independent foreground/private fixture/log/notification/audit unchanged; prior Accessibility null/flag0 restored.",
+    "artifacts": [
+      {
+        "path": "git:dca2821:spike/m3/runtime/evidence/special-access-revocation-a01.json",
+        "sha256": "cc63211ede7930c069e3ce30442e4b389b6b9b89f802c9b715f728c3de1a0d16"
+      },
+      {
+        "path": "git:dca2821:spike/m3/runtime/evidence/revocation-consent-a01.json",
+        "sha256": "64c24fcfea896898646c3aeac2e7c8af32576680982ba580ae78c7ca0fdc86dc"
+      },
+      {
+        "path": "git:dca2821:spike/m3/runtime/special-access-revocation-a01.mjs",
+        "sha256": "d27620481ef335966421f487a630151120c8d29572d5418df1c1234ec4b7afc4"
+      }
+    ],
+    "assertions": [
+      {
+        "name": "actual_special_access_denial_with_independent_no_effect",
+        "independent": true,
+        "passed": true
+      },
+      {
+        "name": "exact_original_special_access_restored",
+        "independent": true,
+        "passed": true
+      }
+    ],
+    "provider": {
+      "topLevelPrompts": 0,
+      "modelRequests": 0
+    },
+    "provenance": {
+      "sourceCommit": "dca2821",
+      "setupRoute": "Explicitly authorized development native enable and special-access setup; no system-consent or Chrome choice clicked"
+    },
+    "limits": [
+      "Development setup/revocation, not ordinary user consent.",
+      "Notification baseline empty; no cached-data erasure proof.",
+      "Direct boundary only, no model-turn cancellation or universal permission guarantee."
+    ]
   }
 ]

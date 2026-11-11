@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: MIT
+// Offline immutable receipt assertions only.
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {readGitArtifact,sha256,assess,report} from './evidence.mjs';
+import {appendReceipts} from './receipt-store.mjs';
+const commit='dca2821',base='spike/m3/runtime/';
+const bytes=p=>readGitArtifact(`git:${commit}:${base}${p}`);
+const r=JSON.parse(bytes('evidence/special-access-revocation-a01.json'));
+assert.equal(r.status,'pass');assert.equal(r.modelRequests,0);assert.equal(r.cases.length,2);
+assert(r.cases.every(c=>c.status==='pass'));
+const notification=r.cases[0].detail,accessibility=r.cases[1].detail;
+assert.deepEqual(notification.initial.body.result.notifications,[]);
+assert.equal(notification.denied.body.error.code,'NOTIFICATION_ACCESS_REVOKED');assert.equal(notification.denied.body.result,undefined);
+assert.equal(notification.capabilities.body.result.phoneEnabled,true);
+assert(!notification.afterSetting.includes('dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications'));
+assert.deepEqual(notification.before,notification.after);assert.match(notification.before.notification,/uid=10217/);assert.match(notification.before.notification,/OLEA_NOTIFICATION_FIXTURE/);
+assert.equal(accessibility.positiveInspection.clickable,true);assert.equal(accessibility.positiveInspection.nodeText,'START SHARED BACKEND');
+assert.equal(accessibility.inspectDenied.body.error.code,'ACCESSIBILITY_REVOKED');assert.equal(accessibility.clickDenied.body.error.code,'ACCESSIBILITY_REVOKED');
+assert.equal(accessibility.afterCapabilities.body.result.phoneEnabled,true);assert.equal(accessibility.afterCapabilities.body.result.backendRunning,false);assert.equal(accessibility.afterCapabilities.body.result.accessibility,false);
+assert.deepEqual(accessibility.before,accessibility.after);
+const positive=r.operations.find(o=>o.operation==='accessibility_tree'&&o.result.body.ok).result.body.result.nodes.find(n=>n.nodeId===accessibility.positiveInspection.nodeId);
+assert.equal(positive.clickable,true);
+assert.equal(r.operations.find(o=>o.operation==='accessibility_click').args.nodeId,positive.nodeId);
+assert.equal(r.finalListeners.trim(),r.original.notificationListeners);
+assert.deepEqual(r.finalAccessibility.trim().split(/\r?\n/),[r.original.accessibility,r.original.accessibilityFlag]);
+assert.equal(r.finalCapabilities.body.result.phoneEnabled,false);assert.equal(r.finalCapabilities.body.result.backendRunning,false);
+const summaries=[['notification','Actual notification special access removed by disallow_listener; authenticated read rejected NOTIFICATION_ACCESS_REVOKED with phoneEnabled=true. Exact fixture private-value/log hashes, foreground, existing notification identity/text/timestamps and native audit unchanged; prior listener set restored. Initial listener buffer empty, no prepopulated cache erasure/withholding proof.'],['accessibility','Actual Accessibility revoked after positive inspection of effectful START SHARED BACKEND node; inspection and exact known-node click rejected ACCESSIBILITY_REVOKED while phoneEnabled=true/backend=false. Independent foreground/private fixture/log/notification/audit unchanged; prior Accessibility null/flag0 restored.']];
+const incoming=summaries.map(([id,summary])=>({attemptId:`m3-special-revocation-${id}`,caseId:'phone.revocation',context:'android-app',mode:'direct',status:'pass',startedAt:new Date(r.startedAt).toISOString(),endedAt:new Date(r.endedAt).toISOString(),summary,artifacts:['evidence/special-access-revocation-a01.json','evidence/revocation-consent-a01.json','special-access-revocation-a01.mjs'].map(p=>({path:`git:${commit}:${base}${p}`,sha256:sha256(bytes(p))})),assertions:[{name:'actual_special_access_denial_with_independent_no_effect',independent:true,passed:true},{name:'exact_original_special_access_restored',independent:true,passed:true}],provider:{topLevelPrompts:0,modelRequests:0},provenance:{sourceCommit:commit,setupRoute:r.setupRoute},limits:['Development setup/revocation, not ordinary user consent.','Notification baseline empty; no cached-data erasure proof.','Direct boundary only, no model-turn cancellation or universal permission guarantee.']}));
+const path=resolve('spike/m2/evidence/evidence/receipts.json'),old=JSON.parse(await readFile(path));assert.equal(old.length,169);
+const all=await appendReceipts(path,incoming,resolve('.'));assert.deepEqual(all.slice(0,old.length),old);
+await writeFile('spike/m3/evidence/special-access-assessment.json',JSON.stringify({sourceCommit:commit,receipts:incoming,locationAndStop:'existing passes reused',budget:r.budget,checkpoint:'active/incomplete'},null,2)+'\n');
+await report(path,resolve('spike/m2/reports'),resolve('.'),'interim');const rows=assess(all);console.log(JSON.stringify({appended:2,total:all.length,cases:rows.length,counts:Object.fromEntries(['pass','fail','blocked','untested'].map(s=>[s,rows.filter(r=>r.status===s).length]))}));
