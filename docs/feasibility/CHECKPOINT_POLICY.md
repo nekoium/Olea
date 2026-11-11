@@ -25,6 +25,12 @@ The user subsequently instructed that, when the authorized budget is reached, th
 
 One additional primary-terra Pi prompt is explicitly authorized after the original eight: allocation `m3-pi-final-seven-02`, runtime `ctx_1cdcd03b220d` / `task_b8a27b4adcd4`. Maximum cumulative budget is nine top-level prompts, with no retries, fallback or replay. After actual settlement, save independent assessment and exact final state; the sole runtime worker must explicitly relinquish its lease before successor assignment. Preserve all data/worktrees/artifacts. The new manager/team must be verified before exact old-session release. Further model spend after this single additional prompt requires a new explicit authorization; manager replacement does not reset the ledger.
 
+## Budget refresh on manager handoff
+
+The user subsequently clarified: “Budget should be refreshed when handed off to a new manager.” This supersedes the earlier no-refresh handoff rule. Each fresh manager receives a fresh allowance at the inherited nine-top-level-test-prompt cap. Preserve predecessor consumption, attempts, failures and unknown billing as immutable history; do not erase or refund them. Current M4 allowance is9 authorized,0 consumed,0 allocated,9 unallocated at this clarification. Historical consumption before M4 remains9; cumulative consumption is still9 until a new submission.
+
+A refreshed manager allowance is not an allocation to a worker or authorization to replay an uncertain request. The manager assigns finite concrete new allocations after prerequisites, with fresh IDs/claims and retained failures. No automatic transport replay or fallback. Existing deterministic M4 update/backend-only recovery work continues before dependent model work. Record subsequent claims/submissions against the M4 ledger, separately from historical consumption. Apply this refresh policy to future verified fresh-manager handoffs.
+
 ## Lean validation
 
 The user also requires overall token efficiency and reusable agent knowledge. Aim for manager contexts below 300k tokens; size checkpoints early, while still reaching the current checkpoint before handoff. Save recurring commands, diagnosed failures and successful recovery recipes in [AGENT_OPERATING_NOTES.md](AGENT_OPERATING_NOTES.md), existing guides or small task tools. Use computer control only when a necessary action has no supported cheaper interface. Avoid repeated source searches, transcript dumps, trial flags, unchanged test suites and per-receipt reporting.
