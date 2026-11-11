@@ -2,6 +2,10 @@
 
 User explicitly authorized automatic checkpoint relocation and fresh manager/team transfer when budget is reached. This is full ownership transfer, not a subordinate assignment or an approval gate. Current budget boundary is saved; original full phone/model checkpoint is incomplete and full backend goal remains open.
 
+## Final independent boundary
+
+Root `bd8bc35` integrates independent worker `67cf994`: [FINAL_BUDGET_BOUNDARY_INDEPENDENT.md](../../spike/m3/reports/FINAL_BUDGET_BOUNDARY_INDEPENDENT.md),210receipts/291unique artifact references verified, unchanged112-case totals63pass/2fail/12blocked/35untested. This is the authoritative nine-prompt partial boundary. Extra capture initiation/content is qualified separately from the failed full workflow and uncalled five tools. New manager `pi_bf06630f_e4e8_4fb8_94dc_203ef5153198` launched in this root with prompt journaled; fresh-team verification and exact old-session retirement remain pending its launch receipt.
+
 ## Exact root and result
 
 Use existing `C:/Users/Aria/Projects/Development/Olea`, Git repo `d55c3648-a5ff-4d7b-96d8-e80071701415`, no remote/duplicate clone/register/tracker/publish/push. Start current root including `d48095f` (worker `b4c693f`), not old worker branch. Preserve concurrent user advisory `docs/feasibility/PRODUCT_DECISION_BRIEF.html` if untracked. Read this file FIRST IN FULL, CHECKPOINT_POLICY.md, AGENT_OPERATING_NOTES.md, M3_COORDINATION.md, PROGRESS.md, AGENTS.md, PRODUCT.md, TECH_STACK.md, PHONE_USE_TESTS.md, and actual latest independent final report plus runtime `spike/m3/runtime/{EXTRA_PI_ATTEMPT_AND_RELEASE.md,NEXT_RUNTIME_OWNER_HANDOFF.md,evidence/EXTRA_PROMPT_FINAL_RELEASE_RECEIPT.json}`. Reuse narrow reports/recipes; no transcript dumps or broad rediscovery.
