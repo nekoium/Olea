@@ -16,7 +16,14 @@ class CoreInstrumentation : Instrumentation() {
         val base = targetContext.filesDir
         fun await(seconds: Int, condition: () -> Boolean) {
             val deadline = SystemClock.elapsedRealtime() + seconds * 1000L
-            while (!condition() && SystemClock.elapsedRealtime() < deadline) Thread.sleep(100)
+            var nextReport = SystemClock.elapsedRealtime()
+            while (!condition() && SystemClock.elapsedRealtime() < deadline) {
+                if (SystemClock.elapsedRealtime() >= nextReport) {
+                    sendStatus(1, Bundle().apply { putString("stream", RuntimeService.status + "\n") })
+                    nextReport = SystemClock.elapsedRealtime() + 10000
+                }
+                Thread.sleep(100)
+            }
             check(condition()) { "Deadline: ${RuntimeService.status}" }
         }
         fun digest(file: File) = MessageDigest.getInstance("SHA-256").digest(file.readBytes()).joinToString("") { "%02x".format(it) }

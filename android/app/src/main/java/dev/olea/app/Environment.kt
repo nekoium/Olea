@@ -26,6 +26,7 @@ class Environment(private val context: Context) {
     }
 
     private fun archive(name: String): File {
+        check(context.assets.list("")?.contains(name) == true) { "Packaged archive $name is missing. Reinstall this APK; saved data is preserved." }
         val file = File(base, "archives/$name")
         val temporary = File(base, "archives/$name.part")
         val digest = MessageDigest.getInstance("SHA-256")
@@ -43,8 +44,8 @@ class Environment(private val context: Context) {
         val root = File(base, "runtime/rootfs")
         if (!root.exists()) {
             progress("Verifying packaged Linux and Node archives…")
-            val ubuntu = archive("ubuntu.tar.gz")
-            val node = archive("node.tar.gz")
+            val ubuntu = archive("ubuntu.bin")
+            val node = archive("node.bin")
             val staging = File(base, "runtime/install-${UUID.randomUUID()}").apply { mkdirs() }
             progress("Extracting Linux…")
             run(listOf("/system/bin/tar", "-xzf", ubuntu.path, "--no-same-owner", "--exclude=usr/bin/perl5.38.2", "--exclude=usr/bin/uncompress", "-C", staging.path), 120)
@@ -65,7 +66,7 @@ class Environment(private val context: Context) {
     }
 
     fun stageBackend(run: (List<String>, Int) -> Unit) {
-        val archive = archive("backend.tar.gz")
+        val archive = archive("backend.bin")
         run(listOf("/system/bin/tar", "-xzf", archive.path, "-C", File(base, "backend").path), 60)
         File(base, "prepare.sh").copyTo(File(base, "backend/prepare.sh"), overwrite = true)
     }
