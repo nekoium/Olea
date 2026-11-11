@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-11T05:37:11.718Z",
+  "services": "ACTIVITY MANAGER SERVICES (dumpsys activity services)\r\n  User 0 active services:\r\n  * ServiceRecord{49ae21 u0 dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications c:android}\r\n    intent={act=android.service.notification.NotificationListenerService cmp=dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications}\r\n    packageName=dev.olea.m2.runtime\r\n    processName=dev.olea.m2.runtime\r\n    targetSdkVersion=36\r\n    permission=android.permission.BIND_NOTIFICATION_LISTENER_SERVICE\r\n    baseDir=/data/app/~~lagxTueSCjwJMSi6ucwWeA==/dev.olea.m2.runtime-GrImsRjymEvC_Q4zN0mRlQ==/base.apk\r\n    dataDir=/data/user/0/dev.olea.m2.runtime\r\n    app=ProcessRecord{20c4833 7918:dev.olea.m2.runtime/u0a216}\r\n    allowlistManager=true\r\n    useNewWiuLogic_forCapabilities()=true\r\n    useNewWiuLogic_forStart()=true\r\n    useNewBfslLogic()=true\r\n    mAllowWiu_noBinding=DENIED\r\n    mAllowWiu_inBindService=PROC_STATE_PERSISTENT\r\n    mAllowWiu_byBindings=DENIED\r\n    getFgsAllowWiu_legacy=PROC_STATE_PERSISTENT\r\n    getFgsAllowWiu_new=DENIED\r\n    getFgsAllowWiu_forStart=DENIED\r\n    getFgsAllowWiu_forCapabilities=DENIED\r\n    allowUiJobScheduling=false\r\n    recentCallingPackage=android\r\n    recentCallingUid=1000\r\n    mAllowStart_noBinding=DENIED\r\n    mAllowStart_inBindService=PROC_STATE_PERSISTENT\r\n    mAllowStart_byBindings=DENIED\r\n    getFgsAllowStart_legacy=PROC_STATE_PERSISTENT\r\n    getFgsAllowStart_new=DENIED\r\n    getFgsAllowStart=DENIED\r\n    startForegroundCount=0\r\n    infoAllowStartForeground=[callingPackage: android; callingUid: 1000; uidState: PER ; uidBFSL: [BFSL]; intent: Intent { act=android.service.notification.NotificationListenerService cmp=dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications }; code:PROC_STATE_PERSISTENT; tempAllowListReason:<keychain,reasonCode:KEY_CHAIN,duration:30000,callingUid:1000>; allowWiu:10; targetSdkVersion:36; callerTargetSdkVersion:36; startForegroundCount:0; bindFromPackage:null: isBindService:true]\r\n    createTime=-6s420ms startingBgTimeout=--\r\n    lastActivity=-6s419ms restartTime=-6s419ms createdFromFg=true\r\n    Bindings:\r\n    * IntentBindRecord{d198134 CREATE}:\r\n      intent={act=android.service.notification.NotificationListenerService cmp=dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications}\r\n      binder=android.os.BinderProxy@b720b5d\r\n      requested=true received=true hasBound=true doRebind=false\r\n      * Client AppBindRecord{5f35cd2 ProcessRecord{78988a8 710:system/1000}}\r\n        Per-process Connections:\r\n          ConnectionRecord{3aa488 u0 CR FGS !PRCP dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications:@eeb682b flags=0x5000101}\r\n    All Connections:\r\n      ConnectionRecord{3aa488 u0 CR FGS !PRCP dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications:@eeb682b flags=0x5000101}\r\n\r\n  * ServiceRecord{8b84e12 u0 dev.olea.m2.runtime/dev.olea.spike.RuntimeService c:dev.olea.m2.runtime}\r\n    intent={cmp=dev.olea.m2.runtime/dev.olea.spike.RuntimeService}\r\n    packageName=dev.olea.m2.runtime\r\n    processName=dev.olea.m2.runtime\r\n    targetSdkVersion=36\r\n    baseDir=/data/app/~~lagxTueSCjwJMSi6ucwWeA==/dev.olea.m2.runtime-GrImsRjymEvC_Q4zN0mRlQ==/base.apk\r\n    dataDir=/data/user/0/dev.olea.m2.runtime\r\n    app=ProcessRecord{20c4833 7918:dev.olea.m2.runtime/u0a216}\r\n    useNewWiuLogic_forCapabilities()=true\r\n    useNewWiuLogic_forStart()=true\r\n    useNewBfslLogic()=true\r\n    mAllowWiu_noBinding=PROC_STATE_TOP\r\n    mAllowWiu_inBindService=DENIED\r\n    mAllowWiu_byBindings=PROC_STATE_TOP\r\n    getFgsAllowWiu_legacy=PROC_STATE_TOP\r\n    getFgsAllowWiu_new=PROC_STATE_TOP\r\n    getFgsAllowWiu_forStart=PROC_STATE_TOP\r\n    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP\r\n    allowUiJobScheduling=true\r\n    recentCallingPackage=dev.olea.m2.runtime\r\n    recentCallingUid=10216\r\n    mAllowStart_noBinding=PROC_STATE_TOP\r\n    mAllowStart_inBindService=DENIED\r\n    mAllowStart_byBindings=PROC_STATE_TOP\r\n    getFgsAllowStart_legacy=PROC_STATE_TOP\r\n    getFgsAllowStart_new=PROC_STATE_TOP\r\n    getFgsAllowStart=PROC_STATE_TOP\r\n    startForegroundCount=1\r\n    infoAllowStartForeground=[callingPackage: dev.olea.m2.runtime; callingUid: 10216; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { xflg=0x4 cmp=dev.olea.m2.runtime/dev.olea.spike.RuntimeService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; allowWiu:12; targetSdkVersion:36; callerTargetSdkVersion:36; startForegroundCount:0; bindFromPackage:null: isBindService:false]\r\n    isForeground=true foregroundId=1 types=0x40000000 foregroundNoti=Notification(channel=runtime shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=FOREGROUND_SERVICE color=0x00000000 actions=1 vis=PRIVATE)\r\n    createTime=-15s519ms startingBgTimeout=--\r\n    lastActivity=-15s515ms restartTime=-15s515ms createdFromFg=true\r\n    startRequested=true delayedStop=false stopIfKilled=true callStart=true lastStartId=1\r\n startCommandResult=2\r\n\r\n  Connection bindings to services:\r\n  * ConnectionRecord{fe572a4 u0 CR FGSA CAPS DEAD dev.olea.m2.runtime/dev.olea.spike.PhoneAccessibility:@2be6d37 flags=0x2101001}\r\n    binding=AppBindRecord{b52b1a3 dev.olea.m2.runtime/dev.olea.spike.PhoneAccessibility:system}\r\n    conn=android.app.LoadedApk$ServiceDispatcher$InnerConnection@2be6d37 flags=0x2101001\r\n  * ConnectionRecord{3aa488 u0 CR FGS !PRCP dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications:@eeb682b flags=0x5000101}\r\n    binding=AppBindRecord{5f35cd2 dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications:system}\r\n    conn=android.app.LoadedApk$ServiceDispatcher$InnerConnection@eeb682b flags=0x5000101\r\n",
+  "processes": [
+    "10217  7596   485 dev.olea.m2.fixture\r",
+    "10216  7918   485 dev.olea.m2.runtime\r"
+  ],
+  "capabilities": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": true,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": null,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  }
+}

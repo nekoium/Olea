@@ -1,0 +1,54 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/Aria/orca/workspaces/Olea/m3-native-phone/.setup/gradle-9.1.0/lib/native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+> Task :fixture:preBuild UP-TO-DATE
+> Task :fixture:preModernDebugBuild UP-TO-DATE
+> Task :fixture:mergeModernDebugNativeDebugMetadata NO-SOURCE
+> Task :fixture:generateModernDebugResources
+> Task :fixture:packageModernDebugResources
+> Task :fixture:processModernDebugNavigationResources
+> Task :fixture:javaPreCompileModernDebug
+> Task :fixture:generateModernDebugAssets UP-TO-DATE
+> Task :fixture:mergeModernDebugAssets
+> Task :fixture:compressModernDebugAssets
+> Task :fixture:parseModernDebugLocalResources
+> Task :fixture:checkModernDebugDuplicateClasses
+> Task :fixture:desugarModernDebugFileDependencies
+> Task :fixture:generateModernDebugRFile
+> Task :fixture:mergeExtDexModernDebug
+> Task :fixture:mergeLibDexModernDebug
+> Task :fixture:checkModernDebugAarMetadata
+> Task :fixture:compileModernDebugNavigationResources
+> Task :fixture:mapModernDebugSourceSetPaths
+> Task :fixture:mergeModernDebugResources
+> Task :fixture:createModernDebugCompatibleScreenManifests
+> Task :fixture:extractDeepLinksModernDebug
+> Task :fixture:processModernDebugMainManifest
+> Task :fixture:processModernDebugManifest
+> Task :fixture:processModernDebugManifestForPackage
+> Task :fixture:processModernDebugResources
+> Task :fixture:mergeModernDebugJniLibFolders
+> Task :fixture:mergeModernDebugNativeLibs NO-SOURCE
+> Task :fixture:stripModernDebugDebugSymbols NO-SOURCE
+> Task :fixture:validateSigningModernDebug
+> Task :fixture:writeModernDebugAppMetadata
+> Task :fixture:writeModernDebugSigningConfigVersions
+> Task :fixture:compileModernDebugKotlin
+> Task :fixture:compileModernDebugJavaWithJavac NO-SOURCE
+> Task :fixture:dexBuilderModernDebug
+> Task :fixture:mergeModernDebugGlobalSynthetics
+> Task :fixture:processModernDebugJavaRes
+> Task :fixture:mergeProjectDexModernDebug
+> Task :fixture:mergeModernDebugJavaResource
+> Task :fixture:packageModernDebug
+> Task :fixture:createModernDebugApkListingFileRedirect
+> Task :fixture:assembleModernDebug
+
+BUILD SUCCESSFUL in 15s
+34 actionable tasks: 34 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html

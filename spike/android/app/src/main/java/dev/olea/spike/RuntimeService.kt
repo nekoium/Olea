@@ -151,12 +151,12 @@ class RuntimeService : Service() {
             }
             "capture_result" -> PhoneApis.capture ?: error("CAPTURE_NOT_READY")
             "fixture_notify" -> {
-                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName(BuildConfig.FIXTURE_PACKAGE, "dev.olea.fixture.FixtureActivity")).putExtra("postNotification", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName(BuildConfig.FIXTURE_PACKAGE, "dev.olea.fixture.FixtureActivity")).putExtra("postNotification", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP))
                 JSONObject().put("dispatched", true)
             }
             "fixture_action" -> {
                 val value = args.getString("value"); check(value.length <= 256) { "VALUE_TOO_LONG" }
-                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName(BuildConfig.FIXTURE_PACKAGE, "dev.olea.fixture.FixtureActivity")).putExtra("value", value).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                startActivity(Intent("dev.olea.fixture.SET_VALUE").setComponent(android.content.ComponentName(BuildConfig.FIXTURE_PACKAGE, "dev.olea.fixture.FixtureActivity")).putExtra("value", value).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP))
                 JSONObject().put("dispatched", true)
             }
             else -> error("UNKNOWN_OPERATION")

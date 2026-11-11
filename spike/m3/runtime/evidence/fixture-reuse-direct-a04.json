@@ -1,0 +1,25 @@
+{
+  "attempt": "fixture-reuse-direct-a04",
+  "startedAt": 1794375414824,
+  "modelRequests": 0,
+  "phonePosts": 0,
+  "actions": [],
+  "qualification": "Two fresh reuse requests against already observed anchor; no anchor repost or Pi/model replay",
+  "apkSha256": "42f255f6e4282a0464727d223f55c708c991f8edf6bbc89ec5d93f9c4bba8820",
+  "sourceSha256": "bdc64c1a84db4fce99bb9ead44e8a3518741772c98c0cfff331c339e948a727a",
+  "manifestUnchanged": true,
+  "oracleAfterUpgrade": "f5fd70b0c4978751e9061cc5e21ebd46ad957f5ff7ca39d9acd68b269457a97c  files/oracle-value.txt\r\n",
+  "logAfterUpgrade": "1794331642943 action=android.intent.action.MAIN\n1794331643809 action=dev.olea.fixture.SET_VALUE\n1794332253351 action=dev.olea.fixture.SET_VALUE\n1794332496365 action=dev.olea.fixture.SET_VALUE\n1794337008642 action=dev.olea.fixture.SET_VALUE\n1794337115124 action=dev.olea.fixture.SET_VALUE\n1794363735707 action=dev.olea.fixture.SET_VALUE\n1794373658883 action=dev.olea.fixture.SET_VALUE\n1794375226674 action=dev.olea.fixture.SET_VALUE callback=onCreate task=60 instance=235237402\n",
+  "uid": "package:dev.olea.m2.fixture uid:10217\r\n",
+  "developmentEnable": "",
+  "developmentRestart": "Starting: Intent { flg=0x18000000 cmp=dev.olea.m2.runtime/dev.olea.spike.MainActivity }\r\n",
+  "status": "fail",
+  "error": "fetch failed",
+  "cleanupError": "fetch failed",
+  "endedAt": 1794375416279,
+  "budget": {
+    "consumed": 7,
+    "unallocated": 1,
+    "allocated": 0
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-11T05:34:35.246Z",
+  "scope": "Read-only observation of already delivered anchor; no repost",
+  "handlerDelta": "1794375226674 action=dev.olea.fixture.SET_VALUE callback=onCreate task=60 instance=235237402\n",
+  "deviceTime": "1794375274558\r\n",
+  "foreground": "    topResumedActivity=ActivityRecord{117965953 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t60}\r",
+  "notification": [
+    "      mCreationTimeMs=1794375226673\r",
+    "      mUpdateTimeMs=1794375226673\r",
+    "      mCreationTimeMs=1794369170817\r",
+    "      mUpdateTimeMs=1794369170817\r",
+    "      mCreationTimeMs=1794369166823\r",
+    "      mUpdateTimeMs=1794369166823\r"
+  ]
+}

@@ -1,6 +1,7 @@
 package dev.olea.fixture
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import java.io.File
@@ -8,7 +9,17 @@ import java.io.File
 class FixtureActivity : Activity() {
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
-        if (intent.getBooleanExtra("testWritableExecutable", false)) {
+        handleIntent(intent, "onCreate")
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleIntent(intent, "onNewIntent")
+    }
+
+    private fun handleIntent(request: Intent, callback: String) {
+        if (request.getBooleanExtra("testWritableExecutable", false)) {
             val result = try {
                 val process = ProcessBuilder(File(filesDir, "proot").absolutePath, "--version").apply {
                     environment()["LD_LIBRARY_PATH"] = File(filesDir, "lib").absolutePath
@@ -18,16 +29,16 @@ class FixtureActivity : Activity() {
             } catch (error: Exception) { "${error.javaClass.simpleName}: ${error.message}" }
             File(filesDir, "execution-result.txt").writeText("uid=${android.os.Process.myUid()} target=${applicationInfo.targetSdkVersion}\n$result")
         }
-        if (intent.getBooleanExtra("postNotification", false)) {
+        if (request.getBooleanExtra("postNotification", false)) {
             val manager = getSystemService(android.app.NotificationManager::class.java)
             manager.createNotificationChannel(android.app.NotificationChannel("fixture", "Harmless test fixture", android.app.NotificationManager.IMPORTANCE_LOW))
             manager.notify(42, android.app.Notification.Builder(this, "fixture").setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle("Olea Fixture").setContentText("OLEA_NOTIFICATION_FIXTURE").build())
         }
-        val value = intent.getStringExtra("value")
-        if (intent.action == "dev.olea.fixture.SET_VALUE" && value != null && value.length <= 256) {
+        val value = request.getStringExtra("value")
+        if (request.action == "dev.olea.fixture.SET_VALUE" && value != null && value.length <= 256) {
             File(filesDir, "oracle-value.txt").writeText(value)
         }
-        File(filesDir, "observed-launches.txt").appendText("${System.currentTimeMillis()} action=${intent.action}\n")
+        File(filesDir, "observed-launches.txt").appendText("${System.currentTimeMillis()} action=${request.action} callback=$callback task=$taskId instance=${System.identityHashCode(this)}\n")
         setContentView(TextView(this).apply { setBackgroundColor(android.graphics.Color.rgb(23, 75, 108)); setTextColor(android.graphics.Color.WHITE); text = "Olea harmless fixture\n${if (value == null) "Opened from launcher" else "Fixture value received"}"; textSize = 24f })
     }
 }
