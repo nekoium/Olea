@@ -1,0 +1,56 @@
+{
+  "observedAt": "2026-11-11T02:08:45.489Z",
+  "repoId": "d55c3648-a5ff-4d7b-96d8-e80071701415",
+  "runId": "run_b5b2bce33e72",
+  "taskId": "task_68e5ff34d5a6",
+  "dispatchId": "ctx_4f9fe071d696",
+  "owner": "1f3cf796-8a8d-4588-ada6-5d2cfb7d5bea",
+  "lease": "EXCLUSIVE granted by manager msg_ec866d1031d1; former release930f00f",
+  "modelBudget": {
+    "globalConsumed": 5,
+    "globalTotal": 8,
+    "allocated": 0
+  },
+  "operations": [],
+  "device": "1\r\n36\r\nx86_64\r\n0-3\r\nMemTotal:        4013812 kB\r\n",
+  "packages": "package:dev.olea.m2.fixture uid:10217\r\npackage:dev.olea.m2.repeat uid:10218\r\npackage:dev.olea.m2.runtime uid:10216\r\n",
+  "processes": {
+    "error": "Command failed: C:/Users/Aria/AppData/Local/Android/Sdk/platform-tools/adb.exe -s emulator-5554 shell ps -A -o UID,PID,PPID,NAME | /system/bin/grep -E \"u0_a216|u0_a217|u0_a218\"",
+    "stderr": ""
+  },
+  "permissions": "      android.permission.POST_NOTIFICATIONS\r\n      android.permission.ACCESS_FINE_LOCATION\r\n      android.permission.ACCESS_COARSE_LOCATION\r\n      android.permission.FOREGROUND_SERVICE: granted=true\r\n      android.permission.FOREGROUND_SERVICE_SPECIAL_USE: granted=true\r\n      android.permission.INTERNET: granted=true\r\n        android.permission.POST_NOTIFICATIONS: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r\n        android.permission.ACCESS_FINE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r\n        android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r\ndev.olea.m2.runtime/dev.olea.spike.PhoneAccessibility\r\ncom.google.android.as/com.google.android.apps.miphone.aiai.common.notification.service.AiAiNotificationListenerService:com.google.android.apps.nexuslauncher/com.android.launcher3.notification.NotificationListener\r\n",
+  "foreground": "    topResumedActivity=ActivityRecord{37392680 u0 dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity t18}\r\n",
+  "data": "600 195 files/rootfs/run/olea-provider.json\r\n600 64 files/bridge-token\r\n600 108 files/bridge-config.json\r\nd098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2  files/rootfs/workspace/sentinel\r\nc8b4d325c4920bda0f3289bdd08cac2e7fd74b504919e6f85ae9a7ff30aec4d0  files/rootfs/workspace/core.mjs\r\ne046cee369496fcc10e9b7759ee794fcc62c70117b103997338c8dda89293fe0  files/rootfs/workspace/core-a01/sentinel\r\n85ab6c163d43a17ea9cf7788308bca1466f1b0a8d1cc92e26e9bf63da4062aee  files/rootfs/workspace/core-a01/.git/description\r\n1f74d5e9292979b573ebd59741d46cb93ff391acdd083d340b94370753d92437  files/rootfs/workspace/core-a01/.git/hooks/commit-msg.sample\r\ne0549964e93897b519bd8e333c037e51fff0f88ba13e086a331592bf801fa1d0  files/rootfs/workspace/core-a01/.git/hooks/fsmonitor-watchman.sample\r\n81765af2daef323061dcbc5e61fc16481cb74b3bac9ad8a174b186523586f6c5  files/rootfs/workspace/core-a01/.git/hooks/post-update.sample\r\ne15c5b469ea3e0a695bea6f2c82bcf8e62821074939ddd85b77e0007ff165475  files/rootfs/workspace/core-a01/.git/hooks/pre-applypatch.sample\r\nf9af7d95eb1231ecf2eba9770fedfa8d4797a12b02d7240e98d568201251244a  files/rootfs/workspace/core-a01/.git/hooks/pre-commit.sample\r\nd3825a70337940ebbd0a5c072984e13245920cdf8898bd225c8d27a6dfc9cb53  files/rootfs/workspace/core-a01/.git/hooks/pre-merge-commit.sample\r\necce9c7e04d3f5dd9d8ada81753dd1d549a9634b26770042b58dda00217d086a  files/rootfs/workspace/core-a01/.git/hooks/pre-push.sample\r\n4febce867790052338076f4e66cc47efb14879d18097d1d61c8261859eaaa7b3  files/rootfs/workspace/core-a01/.git/hooks/pre-rebase.sample\r\na4c3d2b9c7bb3fd8d1441c31bd4ee71a595d66b44fcf49ddb310252320169989  files/rootfs/workspace/core-a01/.git/hooks/pre-receive.sample\r\ne9ddcaa4189fddd25ed97fc8c789eca7b6ca16390b2392ae3276f0c8e1aa4619  files/rootfs/workspace/core-a01/.git/hooks/prepare-commit-msg.sample\r\na53d0741798b287c6dd7afa64aee473f305e65d3f49463bb9d7408ec3b12bf5f  files/rootfs/workspace/core-a01/.git/hooks/push-to-checkout.sample\r\n44ebfc923dc5466bc009602f0ecf067b9c65459abfe8868ddc49b78e6ced7a92  files/rootfs/workspace/core-a01/.git/hooks/sendemail-validate.sample\r\n8d5f2fa83e103cf08b57eaa67521df9194f45cbdbcb37da52ad586097a14d106  files/rootfs/workspace/core-a01/.git/hooks/update.sample\r\n0223497a0b8b033aa58a3a521b8629869386cf7ab0e2f101963d328aa62193f7  files/rootfs/workspace/core-a01/.git/hooks/applypatch-msg.sample\r\n6671fe83b7a07c8932ee89164d1f2793b2318058eb8b98dc5c06ee0a5a3b0ec1  files/rootfs/workspace/core-a01/.git/info/exclude\r\n8a2432a5fa95260e0dd338e07795c42ea0d6226e4884bb5450660869f1063e16  files/rootfs/workspace/core-a01/.git/refs/heads/master\r\n4ff045be63e137844c34e6ff2ea38f08b668f240730aafc603a723261d66fabb  files/rootfs/workspace/core-a01/.git/objects/2d/.l2s.tmp_obj_ECanUj0001.0001\r\n5c19cfbb4ed43070bc0bdcfa8647d93d7d26315bde4a0560192051ccfc46c67d  files/rootfs/workspace/core-a01/.git/objects/81/.l2s.tmp_obj_Jew46h0001.0001\r\n54321ef41a95b70f7e6527efd709e6f595fe283617288d5e4bb3f04eb9ff7c7c  files/rootfs/workspace/core-a01/.git/objects/c8/.l2s.tmp_obj_2OW7KX0001.0001\r\nf6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10  files/rootfs/workspace/core-a01/.git/HEAD\r\ncfe7ba1238c9a78be7535d7c63bcaf5a4d5011d46b07c9b45d3bbf7d6c312dfe  files/rootfs/workspace/core-a01/.git/config\r\nccc1f0fe8ed95bbca54689ddf3430a5cbaf525e089704a2975ccabe0e943c9ee  files/rootfs/workspace/core-a01/.git/COMMIT_EDITMSG\r\n20cf5623b4754c22d14e3ec4c60e581a1b4f32ef437cbb595ff6f7736993dbef  files/rootfs/workspace/core-a01/.git/index\r\nb91986502a90ea606902346878cbd7451f8fd90cc32a963a89123f019418d12d  files/rootfs/workspace/core-a01/.git/logs/HEAD\r\nb91986502a90ea606902346878cbd7451f8fd90cc32a963a89123f019418d12d  files/rootfs/workspace/core-a01/.git/logs/refs/heads/master\r\n51c133f4e41df982aef69027249ff9d7262645029f437d079adc7c83328fb620  files/rootfs/workspace/core-a01/dependency/node_modules/is-number/package.json\r\n04255e482e181687823a95b207802ddd32e746c65dce4c95a5176fc192735960  files/rootfs/workspace/core-a01/dependency/node_modules/is-number/index.js\r\n35bdd8a44339719441900fb50fbefc5e2dca1ca662cbaed7a687de842c8b70f2  files/rootfs/workspace/core-a01/dependency/node_modules/is-number/LICENSE\r\n8e676a0587ba350889df0a5fb883aeab26609ee36432e29441f55af3a0cb16ba  files/rootfs/workspace/core-a01/dependency/node_modules/is-number/README.md\r\nba0244e06732a1a93798d58dd6378edb0cea01e5a9d0857d19a917f7fa0e442b  files/rootfs/workspace/core-a01/dependency/node_modules/.package-lock.json\r\n56559fc0edfe8b9955962eba92e45631072c6574a3f5326fe059d574e6b6cbf9  files/rootfs/workspace/core-a01/dependency/package.json\r\nf0069bddbf00727c8a458cd619fca8eaa3e03b4c406388d0dadd308bee243482  files/rootfs/workspace/core-a01/dependency/package-lock.json\r\n5a2069fde21deae50fbd9fd2b58701161fa00f22c52b7cf0e39543083bb7f35e  files/rootfs/workspace/core-a01.json\r\n0d2174f6f0445b623f42d1267f6db266b19a6a9289b0bc6a1cc1a73533c7e8af  files/rootfs/workspace/pi-install-a01.json\r\n51c133f4e41df982aef69027249ff9d7262645029f437d079adc7c83328fb620  files/rootfs/workspace/pi-a01/node_modules/is-number/package.json\r\n04255e482e181687823a95b207802ddd32e746c65dce4c95a5176fc192735960  files/rootfs/workspace/pi-a01/node_modules/is-number/index.js\r\n35bdd8a44339719441900fb50fbefc5e2dca1ca662cbaed7a687de842c8b70f2  files/rootfs/workspace/pi-a01/node_modules/is-number/LICENSE\r\n8e676a0587ba350889df0a5fb883aeab26609ee36432e29441f55af3a0cb16ba  files/rootfs/workspace/pi-a01/node_modules/is-number/README.md\r\n5443876e9bb002d26872482b926393a898b18c024519f6a7e6647209e8826bd1  files/rootfs/workspace/pi-a01/node_modules/.package-lock.json\r\n98512b1d708a0672366d230dd2c108ce15363658ecf9b3ae7d1b75fef84c9d3b  files/rootfs/workspace/pi-a01/package.json\r\n5ce7210dfc7d70cc44b8f22fcd7b881b972d826049b65d6ad919f8440acf3967  files/rootfs/workspace/pi-a01/package-lock.json\r\n818bd11e73c0f524c2e2fd77525e6bbe2874838eec4f0c0b128f701194d77c34  files/rootfs/workspace/pi-a01/m2-2eb2d81ee35db0e81453d84d.json\r\n96fe5cda6cb67bc8f618eb5267de475d1a41a62d7cd88ef532f2386190f448b6  files/rootfs/workspace/pi-a01/phone-8865356727f591733b3ad698173276cb.txt\r\nc784030a5803ec24676b71dc16e80515a21aea73f03c2d7e29b9d14957d9a3dc  files/rootfs/workspace/codex-install-a01.json\r\n08ad04bf9d406f68f1efc2f6b9a489c20db9dc374d40f6ee93c26076b9eb8807  files/rootfs/workspace/pi-update-one-resources-a01.json\r\n4ac348a3f40785c4fc7eca85bd43d8ae609200bf310b365936402963f239bcd4  files/rootfs/workspace/pi-update-two-resources-a01.json\r\n387dce061f0ce9befde17f262a2dd3a51b4d196d29490fdacc47e6329f425649  files/rootfs/workspace/pi-update-a01.json\r\n6b3e35c49c7982b5393041fce641cf9381e211e0b009e54a3de6537a90925dbf  files/rootfs/workspace/lifecycle-lock-a01.started\r\nbb4674667e53f7707dbfa333092db1cac8f811ba74d0e69c495756f64d15a2a5  files/rootfs/workspace/lifecycle-lock-a01.completed\r\n9c18a155b120852efd5af78f8f3eab980f9221e91b9e3e51ddf00a7b2e8cd510  files/rootfs/workspace/lifecycle-lock-a01.json\r\n44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a  files/rootfs/root/.pi/agent/auth.json\r\n44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a  files/rootfs/root/.pi/agent/models-store.json\r\ncf18d70ec6894dfcda7585ea754a76074a993633056bfb509c839a775543a967  files/rootfs/root/.pi/agent/settings.json\r\ne3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  files/rootfs/root/.codex/tmp/arg0-linux/codex-arg0dEBGuh/.lock\r\n",
+  "installed": "package:/data/app/~~5uJ0yplvnR4RlKTcShKIEQ==/dev.olea.m2.runtime-EtEpWbFrTBTq1eID0y7QFg==/base.apk\r\npackage:/data/app/~~esmNDUzHDZPf4PIsRVNIgw==/dev.olea.m2.fixture-n4oR8UcvmMbPOsjvrsKLkw==/base.apk\r\npackage:/data/app/~~4taukMhINQUN_GY_IDdqYQ==/dev.olea.m2.repeat-wMlvE-Le9IJq_mxNd8zhEA==/base.apk\r\n",
+  "identities": "9619 (olea.m2.runtime) S 489 489 0 0 -1 4194624 21221 1068865 6 1024 184 1108 3302 23626 20 0 23 0 150689 16530935808 42733 18446744073709551615 1 1 0 0 0 0 4612 1 1073775864 0 0 0 17 1 0 0 0 0 0 0 0 0 0 0 0 0 0\r\n9732 (olea.m2.fixture) S 489 489 0 0 -1 4194624 22183 0 4026 0 76 370 0 0 10 -10 22 0 159855 16579903488 36501 18446744073709551615 1 1 0 0 0 0 4612 1 1073775864 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0\r\n12459 (.olea.m2.repeat) S 489 489 0 0 -1 4194624 15473 367554 8 663 86 505 1840 6661 20 0 24 0 348349 16607129600 40921 18446744073709551615 1 1 0 0 0 0 4612 1 1073775864 0 0 0 17 1 0 0 0 0 0 0 0 0 0 0 0 0 0\r\n",
+  "capabilities": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794362926683",
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": true,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  }
+}

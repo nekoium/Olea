@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-11T02:10:25.266Z",
+  "processes": [
+    "10216  9619   489 dev.olea.m2.runtime\r",
+    "10217  9732   489 dev.olea.m2.fixture\r",
+    "10218 12459   489 dev.olea.m2.repeat\r"
+  ],
+  "artifacts": [
+    {
+      "package": "dev.olea.m2.runtime",
+      "source": "/data/app/~~5uJ0yplvnR4RlKTcShKIEQ==/dev.olea.m2.runtime-EtEpWbFrTBTq1eID0y7QFg==/base.apk",
+      "destination": ".setup/installed-runtime.apk",
+      "sha256": "dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887",
+      "bytes": 1064243
+    },
+    {
+      "package": "dev.olea.m2.fixture",
+      "source": "/data/app/~~esmNDUzHDZPf4PIsRVNIgw==/dev.olea.m2.fixture-n4oR8UcvmMbPOsjvrsKLkw==/base.apk",
+      "destination": ".setup/installed-fixture.apk",
+      "sha256": "5db196cb82ae65278c8106fcff2a11c7d9ea4eeae0b485729daf4cf0fb05c43a",
+      "bytes": 846638
+    },
+    {
+      "package": "dev.olea.m2.repeat",
+      "source": "/data/app/~~4taukMhINQUN_GY_IDdqYQ==/dev.olea.m2.repeat-wMlvE-Le9IJq_mxNd8zhEA==/base.apk",
+      "destination": ".setup/installed-repeat.apk",
+      "sha256": "0d250d3edd73614cafa24187b46364a3660e17c835777f42842dcee987ed15d7",
+      "bytes": 1033850
+    }
+  ],
+  "hashes": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9  files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/config.toml\r\n658ae111b3c8eab4673f3ec9c804d65844188a4eb89e4ca7ea9551572c8c8619  files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-45-10-01a1c6c7-4363-7b50-812f-5ab661da9101.jsonl\r\nb37255587c561c067ca65f93b51f971093af448b655d0aeb66a9af1684f51f8a  files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace/combined-value.txt\r\n230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9  files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/config.toml\r\n345b0884b097ec53e8fad3431de2b5f47d59b32a5212557227777869e4d7d284  files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl\r\n4426d3209f180d4009c5073755dc29f151a7832c8d7eebb1633df59685d163fd  files/rootfs/opt/olea/.setup/codex-sandbox-preflight/attempt-vODbUQ/home/config.toml\r\nf4f14fb3305fd87c0a02960815c82cc339feffbf01ced31c6240472224c34e94  files/rootfs/opt/olea/.setup/codex-mcp/attempt-ZTu8D9/state/codex/discovery/home/config.toml\r\n42edc307463d2363be0805295db6e8d7599f248f7ee8254db225b3e13ce1f4b3  files/rootfs/opt/olea/.setup/codex-full-access/attempt-xDsQjf/home/config.toml\r\n9355c79e6bf9d0268f51d62afb5f945bc0576468f24ff5c97c756cfe82ae128d  files/rootfs/run/olea-provider.json\r\nd098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2  files/rootfs/workspace/sentinel\r\ne046cee369496fcc10e9b7759ee794fcc62c70117b103997338c8dda89293fe0  files/rootfs/workspace/core-a01/sentinel\r\nfiles/rootfs/opt/agents/pi/node_modules/@anthropic-ai/sdk/src/lib/sessions\r\nfiles/rootfs/opt/agents/pi/node_modules/@anthropic-ai/sdk/src/resources/beta/sessions\r\nfiles/rootfs/opt/agents/pi/node_modules/@anthropic-ai/sdk/lib/sessions\r\nfiles/rootfs/opt/agents/pi/node_modules/@anthropic-ai/sdk/resources/beta/sessions\r\nfiles/rootfs/opt/agents/pi/node_modules/openai/src/resources/beta/agents/sessions\r\nfiles/rootfs/opt/agents/pi/node_modules/openai/resources/beta/agents/sessions\r\nfiles/rootfs/opt/agents/pi-update/node_modules/@anthropic-ai/sdk/src/lib/sessions\r\nfiles/rootfs/opt/agents/pi-update/node_modules/@anthropic-ai/sdk/src/resources/beta/sessions\r\nfiles/rootfs/opt/agents/pi-update/node_modules/@anthropic-ai/sdk/lib/sessions\r\nfiles/rootfs/opt/agents/pi-update/node_modules/@anthropic-ai/sdk/resources/beta/sessions\r\nfiles/rootfs/opt/agents/pi-update/node_modules/openai/src/resources/beta/agents/sessions\r\nfiles/rootfs/opt/agents/pi-update/node_modules/openai/resources/beta/agents/sessions\r\nfiles/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/sessions\r\nfiles/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions\r\n"
+}
