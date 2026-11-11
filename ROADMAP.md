@@ -12,6 +12,14 @@ Validate dependencies in order: APP -> CONTAINER -> STOCK AGENTS -> PHONE -> OPT
 
 Use task-limited builders and verifiers when useful. Reproduce a concrete failure, fix it, verify the fix and finish. Retain a small set of cheap checks for costly recurrence; temporary diagnostics and workers need not become permanent infrastructure. The new normal manager may build directly or use bounded workers. The originating session stays available for discussion without active monitoring.
 
+## Functionality and priority discussion
+
+The user clarified the audience as agent-literate people and prefers broad execution authority by default without repeated app-level shell/file approvals. Android permissions/consent and runtime limits remain. Convenience means reducing setup friction while preserving advanced access.
+
+New user requests are phone-file cleanup, an automatically maintained central Obsidian project note, daily reminders/notifications and setting alarms. Their release placement is not yet agreed. [Feature audit and priority proposal](docs/FEATURE_PRIORITIES.md) distinguishes these requests from existing release commitments. Its suggested P0/P1/P2 order is a discussion proposal, not permission to expand the active builder's scope. A separate UI session handles presentation directly with the user.
+
+The original calendar below is a retained target and planning record, not evidence of readiness or an instruction to recreate the feasibility phase. No date, three-agent commitment or phone scope is silently removed. Publication still requires current user authorization; calendar language does not grant it.
+
 ## Historical feasibility priority
 
 This section records the earlier experiment scope. It does not assign new tests or supersede the maintained core priority.

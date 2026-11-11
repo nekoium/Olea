@@ -22,6 +22,18 @@ Olea is an Android app for using locally running agents without assembling a ter
 
 Combine freedom of agent choice with a low-friction, all-in-one experience. The agent process runs on the phone; model requests may still go to an external provider. Independent execution means no desktop or server must remain online.
 
+## Audience and execution stance
+
+The intended user already has literacy with Pi, Codex or Claude. Make agent use convenient on a phone and preserve a high ceiling; beginner education about agents is not the intended onboarding focus. The user cites DSH Go and Orca as references and prefers broad execution authority ("full YOLO") by default, with users responsible for the risks of delegated work. Their exact defaults have not been inspected here.
+
+Do not require repeated Olea-level shell/file approvals by default. Android permissions and system consent remain necessary. Full access means authority over the runtime's accessible files and tools, not root, unrestricted other-app access or hostile-agent isolation. STOP, execution visibility and actionable failures remain part of the agreed core. Detailed exposure of advanced controls remains UI design work.
+
+## Personal-agent scenarios under discussion
+
+The user wants phone-file cleanup, reading daily notes and scattered Obsidian project notes, and automatically maintaining a central project note. The user also requests daily notifications/reminders and setting alarms. These are requested capabilities, not implemented behavior or approved release placement. Actual personal-file access is not authorized by this product discussion.
+
+[Feature audit and proposed priorities](docs/FEATURE_PRIORITIES.md) separates existing commitments, new requests, dependencies and open decisions. Dedicated cleanup engines, semantic indexing, mandatory per-edit review and a specific scheduled-task UI are not agreed requirements. Notifications, scheduled agent runs and ringing alarms are distinct capabilities. [UI design handoff](docs/UI_DESIGN_HANDOFF.md) assigns a separate session to discuss presentation directly with the user while this session owns functionality/priorities.
+
 ## Agreed boundaries
 
 - Target stock or near-stock Android. Android 16 / API 36 is the initial emulator baseline; the available Android 14 phone is a later compatibility target. Neither establishes the product's minimum Android version.
@@ -96,7 +108,7 @@ Olearia has two responsibilities:
 
 Build Olea first. Extract Olearia after Olea 1.0.0. No separate reason for this sequence was explicitly given; do not supply an inferred rationale.
 
-Olea's intended capabilities include onboarding, chat, sessions, approvals, interruption, and environment management. Their detailed behavior is still being designed. Agent integrations translate each agent's session protocol into the interface's needs. MCP may expose phone tools; it is not assumed to replace the agent session protocol.
+Olea's intended capabilities include environment setup, chat, sessions, interruption and environment management. Broad execution authority is the intended default; support for any upstream-required interaction does not imply mandatory Olea approval prompts. Detailed behavior is still being designed. Agent integrations translate each agent's session protocol into the interface's needs. MCP may expose phone tools; it is not assumed to replace the agent session protocol.
 
 An installed Android app is required for permissions and Accessibility services. The reusable foundation can be code modules within that app. A separately distributed Olearia manager app is a possible later delivery form, not an initial requirement. One repository and one APK are the initial proposal.
 

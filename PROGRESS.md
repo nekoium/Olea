@@ -1,5 +1,13 @@
 # Progress
 
+## Product audience, personal-agent requests and parallel UI discussion
+
+The user clarified that Olea targets people with literacy in Pi, Codex or Claude. Prioritize convenient phone use and a high ceiling, with broad execution authority by default and user responsibility for delegated work. Do not introduce repeated app-level shell/file approvals or beginner-agent onboarding by default. Android permission/consent requirements remain. DSH Go and Orca are user-supplied references; their exact defaults have not been inspected here.
+
+Requested scenarios: clean phone files; read daily and scattered Obsidian project notes and automatically maintain a central overview; daily notification reminders; set alarms. Release placement and exact behavior remain open. `docs/FEATURE_PRIORITIES.md` records the roadmap audit and a proposed delivery order, explicitly not an approved scope expansion. The current core builder continues its existing assignment.
+
+The user requested a new normal UI session in the same root to design directly with them. `docs/UI_DESIGN_HANDOFF.md` gives its brief and separates UI artifact ownership from shared product/roadmap documents and maintained source. This session continues functionality/priorities discussion. No device work or personal-file access occurred for this product documentation.
+
 ## Maintained core approved; autonomous builder handoff
 
 The user accepted settling the core around Kotlin Android authority, packaged Linux/PRoot, one shared Node backend, stock-agent adapters and persistent user-data boundaries. Selectively reuse the spike. Reason stated by the user: fixes need an actual persistent implementation to apply to. The first core provides install/open, environment startup, stock Pi conversation/replies/tools, user STOP and saved conversation reopening. Production UI framework remains open; full agent and phone release goals remain separate.
