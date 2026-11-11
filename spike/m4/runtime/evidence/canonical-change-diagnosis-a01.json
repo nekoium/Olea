@@ -1,0 +1,76 @@
+{
+  "at": "2026-11-11T08:09:15.417Z",
+  "thread": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+  "databases": [
+    {
+      "name": "original-changed",
+      "columns": [
+        "id",
+        "rollout_path",
+        "updated_at",
+        "cwd",
+        "cli_version"
+      ],
+      "thread": {
+        "id": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+        "rollout_path": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+        "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+        "cli_version": "0.167.0",
+        "updated_at": 1794337122
+      }
+    },
+    {
+      "name": "copied-unchanged",
+      "columns": [
+        "id",
+        "rollout_path",
+        "updated_at",
+        "cwd",
+        "cli_version"
+      ],
+      "thread": {
+        "id": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+        "rollout_path": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+        "cwd": "/workspace/m4-update-a01/workspace",
+        "cli_version": "0.167.0",
+        "updated_at": 1794384016
+      }
+    }
+  ],
+  "originalPrefixExactlyUnchanged": true,
+  "appendedBytes": 599,
+  "appendedRecords": [
+    {
+      "timestamp": "2026-11-11T08:00:16.196Z",
+      "ordinal": 61,
+      "type": "event_msg",
+      "payload": {
+        "type": "thread_settings_applied",
+        "thread_id": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+        "thread_settings": {
+          "model": "gpt-6.1-terra",
+          "model_provider_id": "olea",
+          "approval_policy": "never",
+          "approvals_reviewer": "user",
+          "permission_profile": {
+            "type": "disabled"
+          },
+          "cwd": "/workspace/m4-update-a01/workspace",
+          "runtime_workspace_roots": [
+            "/workspace/m4-update-a01/workspace"
+          ],
+          "collaboration_mode": {
+            "mode": "default",
+            "settings": {
+              "model": "gpt-6.1-terra",
+              "reasoning_effort": null,
+              "developer_instructions": null
+            }
+          },
+          "disabled_plugin_ids": []
+        }
+      }
+    }
+  ],
+  "cause": "Copied CODEX_HOME SQLite threads.rollout_path retained absolute canonical path; thread/resume selected that original path and appended thread_settings_applied there. Copied JSONL remained unchanged; this was not historical canonical preservation."
+}

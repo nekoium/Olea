@@ -1,0 +1,722 @@
+{
+  "at": "2026-11-11T08:08:04.992Z",
+  "modelRequests": 0,
+  "agentLaunches": 0,
+  "transcripts": [
+    {
+      "name": "original-changed",
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+      "export": "spike/m4/runtime/evidence/original-changed-rollout.jsonl",
+      "bytes": 143981,
+      "sha256": "0a5b101f13c8974a79ac1a6308243d75b539da57c738d19f62e696b43463b4f0",
+      "stat": "143981 1794384016 files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+      "rows": [
+        {
+          "timestamp": "2026-11-10T18:57:43.907Z",
+          "type": "session_meta",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "source": "vscode",
+          "cliVersion": "0.167.0"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:43.908Z",
+          "type": "event_msg",
+          "payloadType": "task_started"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.142Z",
+          "type": "response_item",
+          "payloadType": "additional_tools",
+          "threadId": "at_01a1c6d2-c4cd-7bd1-9367-c0b0f53ca6af"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.143Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c0cbcafd6abe"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.143Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c0da851f6c15"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.144Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c0e1bf729821"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.144Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c0fab903de23"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.145Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c106ba55309c"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.160Z",
+          "type": "world_state"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.173Z",
+          "type": "turn_context",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.173Z",
+          "type": "event_msg",
+          "payloadType": "thread_settings_applied"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.229Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c523-7e21-a6b2-69f7c004e83f"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.241Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:49.480Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:49.514Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_0f560fe24ebd1893016af3692c558887d28fbae87c8356f8f1"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:49.963Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af3692d003c87d2b103d1d592307171"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:49.994Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:50.109Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d2-dc1c-7cf0-974f-fce26e008397"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:50.122Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.002Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af369323de887d28095c103ac5c1c11"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.079Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.194Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.256Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d2-f038-7b12-8bad-e4face2563be"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.269Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.412Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af36938fcc887d2b40fdc3725693a64"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.449Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.536Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.921Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-0e28-7552-a2a7-70e186078774"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.962Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.190Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af3693ef27c87d289b547a1a6d784d3"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.257Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.325Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.383Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-237e-7e01-b9b0-c275a26cb618"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.529Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.154Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af36944da0c87d29b9de3478878f810"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.206Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.339Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.376Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-3ae7-73b0-86c6-17b8e444ed8c"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.392Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:19.118Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af3694a24c087d2a0f4453a7fff2e88"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:19.159Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:19.464Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:20.114Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-5151-7fd1-bf52-1629dba4c618"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:20.174Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:25.972Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:25.998Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_0f560fe24ebd1893016af36950842c87d2ab9a574fda6290a7"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:27.668Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af369515cbc87d29def2db06542437b"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:27.931Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:28.046Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:28.108Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-708b-74d0-bbcc-86b954c562ca"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:28.124Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:34.945Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af369593c8887d2b8419b4e996bb082"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:34.984Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:35.135Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:35.239Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-8c66-7953-adba-5d17aebd3e41"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:35.284Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.615Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.649Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_0f560fe24ebd1893016af36960e73c87d285717edcd414123d"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.661Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.675Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.737Z",
+          "type": "event_msg",
+          "payloadType": "task_complete"
+        },
+        {
+          "timestamp": "2026-11-11T08:00:16.196Z",
+          "type": "event_msg",
+          "payloadType": "thread_settings_applied"
+        }
+      ]
+    },
+    {
+      "name": "copied-unchanged",
+      "path": "files/rootfs/workspace/m4-update-a01/protocol-home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+      "export": "spike/m4/runtime/evidence/copied-unchanged-rollout.jsonl",
+      "bytes": 143382,
+      "sha256": "345b0884b097ec53e8fad3431de2b5f47d59b32a5212557227777869e4d7d284",
+      "stat": "143382 1794384014 files/rootfs/workspace/m4-update-a01/protocol-home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+      "rows": [
+        {
+          "timestamp": "2026-11-10T18:57:43.907Z",
+          "type": "session_meta",
+          "threadId": "01a1c6d2-bf9b-7670-a6c0-49be86a0f916",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace",
+          "source": "vscode",
+          "cliVersion": "0.167.0"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:43.908Z",
+          "type": "event_msg",
+          "payloadType": "task_started"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.142Z",
+          "type": "response_item",
+          "payloadType": "additional_tools",
+          "threadId": "at_01a1c6d2-c4cd-7bd1-9367-c0b0f53ca6af"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.143Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c0cbcafd6abe"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.143Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c0da851f6c15"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.144Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c0e1bf729821"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.144Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c0fab903de23"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.145Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c4cd-7bd1-9367-c106ba55309c"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.160Z",
+          "type": "world_state"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.173Z",
+          "type": "turn_context",
+          "cwd": "/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.173Z",
+          "type": "event_msg",
+          "payloadType": "thread_settings_applied"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.229Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_01a1c6d2-c523-7e21-a6b2-69f7c004e83f"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:44.241Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:49.480Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:49.514Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_0f560fe24ebd1893016af3692c558887d28fbae87c8356f8f1"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:49.963Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af3692d003c87d2b103d1d592307171"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:49.994Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:50.109Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d2-dc1c-7cf0-974f-fce26e008397"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:50.122Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.002Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af369323de887d28095c103ac5c1c11"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.079Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.194Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.256Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d2-f038-7b12-8bad-e4face2563be"
+        },
+        {
+          "timestamp": "2026-11-10T18:57:55.269Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.412Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af36938fcc887d2b40fdc3725693a64"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.449Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.536Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.921Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-0e28-7552-a2a7-70e186078774"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:02.962Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.190Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af3693ef27c87d289b547a1a6d784d3"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.257Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.325Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.383Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-237e-7e01-b9b0-c275a26cb618"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:08.529Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.154Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af36944da0c87d29b9de3478878f810"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.206Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.339Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.376Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-3ae7-73b0-86c6-17b8e444ed8c"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:14.392Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:19.118Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af3694a24c087d2a0f4453a7fff2e88"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:19.159Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:19.464Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:20.114Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-5151-7fd1-bf52-1629dba4c618"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:20.174Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:25.972Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:25.998Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_0f560fe24ebd1893016af36950842c87d2ab9a574fda6290a7"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:27.668Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af369515cbc87d29def2db06542437b"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:27.931Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:28.046Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:28.108Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-708b-74d0-bbcc-86b954c562ca"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:28.124Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:34.945Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call",
+          "threadId": "ctc_0f560fe24ebd1893016af369593c8887d2b8419b4e996bb082"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:34.984Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:35.135Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:35.239Z",
+          "type": "response_item",
+          "payloadType": "custom_tool_call_output",
+          "threadId": "ctco_01a1c6d3-8c66-7953-adba-5d17aebd3e41"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:35.284Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.615Z",
+          "type": "event_msg",
+          "payloadType": "item_completed"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.649Z",
+          "type": "response_item",
+          "payloadType": "message",
+          "threadId": "msg_0f560fe24ebd1893016af36960e73c87d285717edcd414123d"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.661Z",
+          "type": "token_usage_record"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.675Z",
+          "type": "event_msg",
+          "payloadType": "token_count"
+        },
+        {
+          "timestamp": "2026-11-10T18:58:42.737Z",
+          "type": "event_msg",
+          "payloadType": "task_complete"
+        }
+      ]
+    }
+  ],
+  "original-changedDatabases": [
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/state_5.sqlite",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/state_5.sqlite-wal",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/state_5.sqlite-shm",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/logs_2.sqlite",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/logs_2.sqlite-wal",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/logs_2.sqlite-shm",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/goals_1.sqlite",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/goals_1.sqlite-wal",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/goals_1.sqlite-shm",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/memories_1.sqlite",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/memories_1.sqlite-wal",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/memories_1.sqlite-shm",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/queue_1.sqlite",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/queue_1.sqlite-wal",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/queue_1.sqlite-shm",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/thread_history_1.sqlite",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/thread_history_1.sqlite-wal",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/thread_history_1.sqlite-shm",
+    "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/.sqlite-maintenance.lock"
+  ],
+  "copied-unchangedDatabases": [
+    "files/rootfs/workspace/m4-update-a01/protocol-home/state_5.sqlite",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/state_5.sqlite-wal",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/state_5.sqlite-shm",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/logs_2.sqlite",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/logs_2.sqlite-wal",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/logs_2.sqlite-shm",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/goals_1.sqlite",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/goals_1.sqlite-wal",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/goals_1.sqlite-shm",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/memories_1.sqlite",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/memories_1.sqlite-wal",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/memories_1.sqlite-shm",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/queue_1.sqlite",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/queue_1.sqlite-wal",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/queue_1.sqlite-shm",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/thread_history_1.sqlite",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/thread_history_1.sqlite-wal",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/thread_history_1.sqlite-shm",
+    "files/rootfs/workspace/m4-update-a01/protocol-home/.sqlite-maintenance.lock"
+  ]
+}
