@@ -1,0 +1,535 @@
+{
+  "sourceCommit": "b4c693f",
+  "receipts": [
+    {
+      "attemptId": "m3-budget-boundary-turn",
+      "caseId": "pi.turn",
+      "context": "android-app",
+      "mode": "model",
+      "status": "fail",
+      "startedAt": "2026-11-11T07:43:30.229Z",
+      "endedAt": "2026-11-11T07:47:06.263Z",
+      "summary": "One extra authorized primaryPi prompt failed provider_transport15820ms after capabilities/capture_request, before5remainingtools. WholeworkflowFAILED;3rounds/1862input59output, no retry/fallback/replay.",
+      "artifacts": [
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/EXTRA_PROMPT_FINAL_RELEASE_RECEIPT.json",
+          "sha256": "bb1f4ee1473fe623529fdad5cc634e9a40a4c75fb16ae6cf53fdca478ef73098"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01.json",
+          "sha256": "663ad93043518c72d3985d33939a646e0d90c7a4cfe5df716b47f723fcfe8a3c"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01-native.json",
+          "sha256": "dccf2839d783983e2175bb8f9625ceb4493eff675cfc3df00e718b391104f86e"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-preflight-a01.json",
+          "sha256": "d524f865918664c032f450579c3b8cb722c6abebaff6e847106100dbc2281ff1"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-claim-a01.json",
+          "sha256": "b6cd50f73a4182ade3a880c69d9724261d8b78d760da58e93209904c699ba23b"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.json",
+          "sha256": "6d4325dff7fe9cb084eb99a50ebaaa0f6b20c54fea0d787ef7ce67d035735bb8"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.png",
+          "sha256": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-observer.json",
+          "sha256": "b9e9a84806cdcc3d7b8a44988a6bed3670ea8bb251250b6dce3578ee69fcd2cc"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01.json",
+          "sha256": "3599fec4767e97d4af8888cce26b04f27ad255157757a48ee9b4714edafbf784"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01-native.json",
+          "sha256": "9198712523be4a924eee43fe9d53ac995a480cb12431be612b7f3138c96f2beb"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-source-manifest-a01.json",
+          "sha256": "6eac920b797e5a1d0db594b47704ee2456d8e04bf0d67d4d7383001c6efffce7"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/EXTRA_PI_ATTEMPT_AND_RELEASE.md",
+          "sha256": "a6853c760a9d810c17728f0631b1b9089dd03e635d034cc19552646e8e273e97"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/NEXT_RUNTIME_OWNER_HANDOFF.md",
+          "sha256": "19777014416c3fa1b4249d3ff6f1ef0ec34f53fdc9ffa7d727498f523c7601c6"
+        }
+      ],
+      "assertions": [],
+      "provider": {
+        "allocationId": "m3-pi-final-seven-02",
+        "topLevelPrompts": 1,
+        "model": "gpt-6.1-terra",
+        "usage": {
+          "input": 1862,
+          "output": 59,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "httpRequests": null,
+        "billing": "unknown",
+        "retries": 0,
+        "fallbacks": 0,
+        "replays": 0
+      },
+      "provenance": {
+        "sourceCommit": "b4c693f"
+      },
+      "limits": [
+        "Whole seven-call workflow failed; only capabilities/capture_request invoked.",
+        "Fresh image independently inspected; no model capture_result or image input.",
+        "9of9 consumed;0remaining, no automatic replay or replenishment.",
+        "Partial checkpoint transfer allowed by changed user policy45d5928; full backend acceptance incomplete."
+      ]
+    },
+    {
+      "attemptId": "m3-budget-boundary-capture-partial",
+      "caseId": "phone.pi.capture",
+      "context": "android-app",
+      "mode": "model",
+      "status": "blocked",
+      "startedAt": "2026-11-11T07:43:30.229Z",
+      "endedAt": "2026-11-11T07:47:06.263Z",
+      "summary": "Causal model capture_request opened SystemUIonce; authorized observer actual one-app consent produced fresh exactPNG independently viewed. Model never called capture_result or received pixels; partial initiation succeeds but completed selected category result/workflow remains incomplete.",
+      "artifacts": [
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/EXTRA_PROMPT_FINAL_RELEASE_RECEIPT.json",
+          "sha256": "bb1f4ee1473fe623529fdad5cc634e9a40a4c75fb16ae6cf53fdca478ef73098"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01.json",
+          "sha256": "663ad93043518c72d3985d33939a646e0d90c7a4cfe5df716b47f723fcfe8a3c"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01-native.json",
+          "sha256": "dccf2839d783983e2175bb8f9625ceb4493eff675cfc3df00e718b391104f86e"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-preflight-a01.json",
+          "sha256": "d524f865918664c032f450579c3b8cb722c6abebaff6e847106100dbc2281ff1"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-claim-a01.json",
+          "sha256": "b6cd50f73a4182ade3a880c69d9724261d8b78d760da58e93209904c699ba23b"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.json",
+          "sha256": "6d4325dff7fe9cb084eb99a50ebaaa0f6b20c54fea0d787ef7ce67d035735bb8"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.png",
+          "sha256": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-observer.json",
+          "sha256": "b9e9a84806cdcc3d7b8a44988a6bed3670ea8bb251250b6dce3578ee69fcd2cc"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01.json",
+          "sha256": "3599fec4767e97d4af8888cce26b04f27ad255157757a48ee9b4714edafbf784"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01-native.json",
+          "sha256": "9198712523be4a924eee43fe9d53ac995a480cb12431be612b7f3138c96f2beb"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-source-manifest-a01.json",
+          "sha256": "6eac920b797e5a1d0db594b47704ee2456d8e04bf0d67d4d7383001c6efffce7"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/EXTRA_PI_ATTEMPT_AND_RELEASE.md",
+          "sha256": "a6853c760a9d810c17728f0631b1b9089dd03e635d034cc19552646e8e273e97"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/NEXT_RUNTIME_OWNER_HANDOFF.md",
+          "sha256": "19777014416c3fa1b4249d3ff6f1ef0ec34f53fdc9ffa7d727498f523c7601c6"
+        }
+      ],
+      "assertions": [],
+      "provider": {
+        "accountingReference": "m3-budget-boundary-turn"
+      },
+      "provenance": {
+        "sourceCommit": "b4c693f"
+      },
+      "limits": [
+        "Whole seven-call workflow failed; only capabilities/capture_request invoked.",
+        "Fresh image independently inspected; no model capture_result or image input.",
+        "9of9 consumed;0remaining, no automatic replay or replenishment.",
+        "Partial checkpoint transfer allowed by changed user policy45d5928; full backend acceptance incomplete."
+      ]
+    },
+    {
+      "attemptId": "m3-budget-boundary-capture-direct",
+      "caseId": "phone.direct.capture",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T07:43:30.229Z",
+      "endedAt": "2026-11-11T07:47:06.263Z",
+      "summary": "New model-triggered request plus authorized actual SystemUI one-app consent yielded fresh1080x2400PNG56204bytes matching observer/nativefilehash; independent evidence worker viewed harmlessfixturetext/bluebackground. Direct image proof, not model interpretation.",
+      "artifacts": [
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/EXTRA_PROMPT_FINAL_RELEASE_RECEIPT.json",
+          "sha256": "bb1f4ee1473fe623529fdad5cc634e9a40a4c75fb16ae6cf53fdca478ef73098"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01.json",
+          "sha256": "663ad93043518c72d3985d33939a646e0d90c7a4cfe5df716b47f723fcfe8a3c"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01-native.json",
+          "sha256": "dccf2839d783983e2175bb8f9625ceb4493eff675cfc3df00e718b391104f86e"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-preflight-a01.json",
+          "sha256": "d524f865918664c032f450579c3b8cb722c6abebaff6e847106100dbc2281ff1"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-claim-a01.json",
+          "sha256": "b6cd50f73a4182ade3a880c69d9724261d8b78d760da58e93209904c699ba23b"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.json",
+          "sha256": "6d4325dff7fe9cb084eb99a50ebaaa0f6b20c54fea0d787ef7ce67d035735bb8"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.png",
+          "sha256": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-observer.json",
+          "sha256": "b9e9a84806cdcc3d7b8a44988a6bed3670ea8bb251250b6dce3578ee69fcd2cc"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01.json",
+          "sha256": "3599fec4767e97d4af8888cce26b04f27ad255157757a48ee9b4714edafbf784"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01-native.json",
+          "sha256": "9198712523be4a924eee43fe9d53ac995a480cb12431be612b7f3138c96f2beb"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-source-manifest-a01.json",
+          "sha256": "6eac920b797e5a1d0db594b47704ee2456d8e04bf0d67d4d7383001c6efffce7"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/EXTRA_PI_ATTEMPT_AND_RELEASE.md",
+          "sha256": "a6853c760a9d810c17728f0631b1b9089dd03e635d034cc19552646e8e273e97"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/NEXT_RUNTIME_OWNER_HANDOFF.md",
+          "sha256": "19777014416c3fa1b4249d3ff6f1ef0ec34f53fdc9ffa7d727498f523c7601c6"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "independent_partial_capture_identity_or_preservation",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "accountingReference": "m3-budget-boundary-turn"
+      },
+      "provenance": {
+        "sourceCommit": "b4c693f"
+      },
+      "limits": [
+        "Whole seven-call workflow failed; only capabilities/capture_request invoked.",
+        "Fresh image independently inspected; no model capture_result or image input.",
+        "9of9 consumed;0remaining, no automatic replay or replenishment.",
+        "Partial checkpoint transfer allowed by changed user policy45d5928; full backend acceptance incomplete."
+      ]
+    },
+    {
+      "attemptId": "m3-budget-boundary-resume",
+      "caseId": "pi.resume",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T07:43:30.229Z",
+      "endedAt": "2026-11-11T07:47:06.263Z",
+      "summary": "Separate no-model reconciliation resumes exact new failedsession01a1c98f-ee67-76d6-a84f-07c8d66eb4db/file with marker/capture_requesthistory, transcriptbytesidentical;0extraprompt/phonecalls.",
+      "artifacts": [
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/EXTRA_PROMPT_FINAL_RELEASE_RECEIPT.json",
+          "sha256": "bb1f4ee1473fe623529fdad5cc634e9a40a4c75fb16ae6cf53fdca478ef73098"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01.json",
+          "sha256": "663ad93043518c72d3985d33939a646e0d90c7a4cfe5df716b47f723fcfe8a3c"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01-native.json",
+          "sha256": "dccf2839d783983e2175bb8f9625ceb4493eff675cfc3df00e718b391104f86e"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-preflight-a01.json",
+          "sha256": "d524f865918664c032f450579c3b8cb722c6abebaff6e847106100dbc2281ff1"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-claim-a01.json",
+          "sha256": "b6cd50f73a4182ade3a880c69d9724261d8b78d760da58e93209904c699ba23b"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.json",
+          "sha256": "6d4325dff7fe9cb084eb99a50ebaaa0f6b20c54fea0d787ef7ce67d035735bb8"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.png",
+          "sha256": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-observer.json",
+          "sha256": "b9e9a84806cdcc3d7b8a44988a6bed3670ea8bb251250b6dce3578ee69fcd2cc"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01.json",
+          "sha256": "3599fec4767e97d4af8888cce26b04f27ad255157757a48ee9b4714edafbf784"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01-native.json",
+          "sha256": "9198712523be4a924eee43fe9d53ac995a480cb12431be612b7f3138c96f2beb"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-source-manifest-a01.json",
+          "sha256": "6eac920b797e5a1d0db594b47704ee2456d8e04bf0d67d4d7383001c6efffce7"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/EXTRA_PI_ATTEMPT_AND_RELEASE.md",
+          "sha256": "a6853c760a9d810c17728f0631b1b9089dd03e635d034cc19552646e8e273e97"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/NEXT_RUNTIME_OWNER_HANDOFF.md",
+          "sha256": "19777014416c3fa1b4249d3ff6f1ef0ec34f53fdc9ffa7d727498f523c7601c6"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "independent_partial_capture_identity_or_preservation",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "accountingReference": "m3-budget-boundary-turn"
+      },
+      "provenance": {
+        "sourceCommit": "b4c693f"
+      },
+      "limits": [
+        "Whole seven-call workflow failed; only capabilities/capture_request invoked.",
+        "Fresh image independently inspected; no model capture_result or image input.",
+        "9of9 consumed;0remaining, no automatic replay or replenishment.",
+        "Partial checkpoint transfer allowed by changed user policy45d5928; full backend acceptance incomplete."
+      ]
+    },
+    {
+      "attemptId": "m3-budget-boundary-cleanup",
+      "caseId": "cost.cleanup",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T07:43:30.229Z",
+      "endedAt": "2026-11-11T07:47:06.263Z",
+      "summary": "Original failed wrapper25073ms exit1/no timeout/rootexit/nofault trackedcleanup; separate reconciliation settled cleanly. All7unique recordedPIDUIDstart identities independentlyABSENT; finite snapshots only.",
+      "artifacts": [
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/EXTRA_PROMPT_FINAL_RELEASE_RECEIPT.json",
+          "sha256": "bb1f4ee1473fe623529fdad5cc634e9a40a4c75fb16ae6cf53fdca478ef73098"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01.json",
+          "sha256": "663ad93043518c72d3985d33939a646e0d90c7a4cfe5df716b47f723fcfe8a3c"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01-native.json",
+          "sha256": "dccf2839d783983e2175bb8f9625ceb4493eff675cfc3df00e718b391104f86e"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-preflight-a01.json",
+          "sha256": "d524f865918664c032f450579c3b8cb722c6abebaff6e847106100dbc2281ff1"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-claim-a01.json",
+          "sha256": "b6cd50f73a4182ade3a880c69d9724261d8b78d760da58e93209904c699ba23b"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.json",
+          "sha256": "6d4325dff7fe9cb084eb99a50ebaaa0f6b20c54fea0d787ef7ce67d035735bb8"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.png",
+          "sha256": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-observer.json",
+          "sha256": "b9e9a84806cdcc3d7b8a44988a6bed3670ea8bb251250b6dce3578ee69fcd2cc"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01.json",
+          "sha256": "3599fec4767e97d4af8888cce26b04f27ad255157757a48ee9b4714edafbf784"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01-native.json",
+          "sha256": "9198712523be4a924eee43fe9d53ac995a480cb12431be612b7f3138c96f2beb"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-source-manifest-a01.json",
+          "sha256": "6eac920b797e5a1d0db594b47704ee2456d8e04bf0d67d4d7383001c6efffce7"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/EXTRA_PI_ATTEMPT_AND_RELEASE.md",
+          "sha256": "a6853c760a9d810c17728f0631b1b9089dd03e635d034cc19552646e8e273e97"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/NEXT_RUNTIME_OWNER_HANDOFF.md",
+          "sha256": "19777014416c3fa1b4249d3ff6f1ef0ec34f53fdc9ffa7d727498f523c7601c6"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "independent_partial_capture_identity_or_preservation",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "accountingReference": "m3-budget-boundary-turn"
+      },
+      "provenance": {
+        "sourceCommit": "b4c693f"
+      },
+      "limits": [
+        "Whole seven-call workflow failed; only capabilities/capture_request invoked.",
+        "Fresh image independently inspected; no model capture_result or image input.",
+        "9of9 consumed;0remaining, no automatic replay or replenishment.",
+        "Partial checkpoint transfer allowed by changed user policy45d5928; full backend acceptance incomplete."
+      ]
+    },
+    {
+      "attemptId": "m3-budget-boundary-preserve",
+      "caseId": "preserve.recovery-hashes",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T07:43:30.229Z",
+      "endedAt": "2026-11-11T07:47:06.263Z",
+      "summary": "Sevenhistoricalcanonicalhashes equal, failedsessionbytesidentical across reconciliation, allpriorPNGs/files/rootfs/data/cache retained and protectedmodes600.",
+      "artifacts": [
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/EXTRA_PROMPT_FINAL_RELEASE_RECEIPT.json",
+          "sha256": "bb1f4ee1473fe623529fdad5cc634e9a40a4c75fb16ae6cf53fdca478ef73098"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01.json",
+          "sha256": "663ad93043518c72d3985d33939a646e0d90c7a4cfe5df716b47f723fcfe8a3c"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-a01-native.json",
+          "sha256": "dccf2839d783983e2175bb8f9625ceb4493eff675cfc3df00e718b391104f86e"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-preflight-a01.json",
+          "sha256": "d524f865918664c032f450579c3b8cb722c6abebaff6e847106100dbc2281ff1"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-claim-a01.json",
+          "sha256": "b6cd50f73a4182ade3a880c69d9724261d8b78d760da58e93209904c699ba23b"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.json",
+          "sha256": "6d4325dff7fe9cb084eb99a50ebaaa0f6b20c54fea0d787ef7ce67d035735bb8"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-consent.png",
+          "sha256": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-observer.json",
+          "sha256": "b9e9a84806cdcc3d7b8a44988a6bed3670ea8bb251250b6dce3578ee69fcd2cc"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01.json",
+          "sha256": "3599fec4767e97d4af8888cce26b04f27ad255157757a48ee9b4714edafbf784"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-resume-a01-native.json",
+          "sha256": "9198712523be4a924eee43fe9d53ac995a480cb12431be612b7f3138c96f2beb"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/evidence/extra-pi-source-manifest-a01.json",
+          "sha256": "6eac920b797e5a1d0db594b47704ee2456d8e04bf0d67d4d7383001c6efffce7"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/EXTRA_PI_ATTEMPT_AND_RELEASE.md",
+          "sha256": "a6853c760a9d810c17728f0631b1b9089dd03e635d034cc19552646e8e273e97"
+        },
+        {
+          "path": "git:b4c693f:spike/m3/runtime/NEXT_RUNTIME_OWNER_HANDOFF.md",
+          "sha256": "19777014416c3fa1b4249d3ff6f1ef0ec34f53fdc9ffa7d727498f523c7601c6"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "independent_partial_capture_identity_or_preservation",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "accountingReference": "m3-budget-boundary-turn"
+      },
+      "provenance": {
+        "sourceCommit": "b4c693f"
+      },
+      "limits": [
+        "Whole seven-call workflow failed; only capabilities/capture_request invoked.",
+        "Fresh image independently inspected; no model capture_result or image input.",
+        "9of9 consumed;0remaining, no automatic replay or replenishment.",
+        "Partial checkpoint transfer allowed by changed user policy45d5928; full backend acceptance incomplete."
+      ]
+    }
+  ],
+  "budget": {
+    "originalConsumed": 8,
+    "userAuthorizedAdditional": 1,
+    "globalConsumed": 9,
+    "maxTotal": 9,
+    "allocated": 0,
+    "unallocated": 0,
+    "remaining": 0,
+    "explicitRetries": 0,
+    "fallbacks": 0,
+    "replays": 0,
+    "httpRequestCount": null,
+    "billing": "unknown"
+  },
+  "release": {
+    "state": "RELINQUISHED at this settled saved boundary",
+    "formerSoleOwner": "1f3cf796-8a8d-4588-ada6-5d2cfb7d5bea",
+    "successorOwner": null,
+    "restriction": "No further emulator mutation by this worker; successor must be explicitly assigned by newly verified manager/team"
+  },
+  "releaseAt": "2026-11-11T07:47:06.263Z",
+  "checkpoint": "Saved actual partial budget boundary for authorized fresh-team transfer; acceptance incomplete",
+  "modelCapture": "initiation plus independent image only, no capture_result/pixels",
+  "imageRead": {
+    "sha256": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29",
+    "text": [
+      "Olea harmless fixture",
+      "Opened from launcher"
+    ],
+    "blueBackground": true
+  }
+}
