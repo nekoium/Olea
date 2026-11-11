@@ -20,5 +20,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-This license covers original Olea backend and Pi test code only. Stock Pi,
-Node.js, Linux, PRoot and npm packages retain their own licenses.
+This license covers original Olea code only. Stock Pi, Node.js, Linux,
+PRoot and npm packages retain their own licenses.

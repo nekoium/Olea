@@ -1,0 +1,2 @@
+efd72665648d51fece209fd47738009534a3da988f67b4658308e25629ebf334 *android/app/build/outputs/apk/debug/app-debug.apk
+efd72665648d51fece209fd47738009534a3da988f67b4658308e25629ebf334 *.setup/core/olea-core-0.1-x86_64.apk

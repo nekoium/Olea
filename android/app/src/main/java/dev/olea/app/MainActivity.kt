@@ -29,6 +29,7 @@ class MainActivity : Activity() {
 
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
+        window.decorView.systemUiVisibility = android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
         val root = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(24, 24, 24, 16) }
         root.setOnApplyWindowInsetsListener { view, insets ->
             view.setPadding(24, insets.systemWindowInsetTop + 16, 24, insets.systemWindowInsetBottom + 16)
@@ -37,7 +38,7 @@ class MainActivity : Activity() {
         val title = TextView(this).apply { text = "Olea · Pi"; textSize = 24f; setTextColor(Color.BLACK) }
         status = TextView(this).apply { textSize = 14f; setPadding(0, 8, 0, 8) }
         val controls = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL }
-        fun button(label: String, action: () -> Unit) = Button(this).apply { text = label; setOnClickListener { action() }; controls.addView(this, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)) }
+        fun button(label: String, action: () -> Unit) = Button(this).apply { text = label; isAllCaps = false; setPadding(4, 0, 4, 0); maxLines = 1; setOnClickListener { action() }; controls.addView(this, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)) }
         button("Start") { service("start") }
         button("STOP") { service("stop") }
         button("Settings") { configure() }

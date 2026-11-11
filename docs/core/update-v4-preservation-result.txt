@@ -1,0 +1,6 @@
+files/data/home/core-preservation-marker.txt: OK
+files/data/workspace/core-check-1794392986417.txt: OK
+files/data/workspace/core-check-1794393286437.txt: OK
+files/data/workspace/core-check-1794393819838.txt: OK
+files/data/sessions/conversation/resume.json: OK
+files/data/conversation.json: OK

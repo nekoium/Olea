@@ -43,10 +43,23 @@ class CoreInstrumentation : Instrumentation() {
             }
             startActivitySync(Intent(targetContext, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             await(10) { RuntimeService.current != null }
+            val reservation = File(base, "data/sessions/conversation/resume.json")
+            val reservationBefore = if (reservation.isFile) reservation.readText() else null
+            if (selected == "reopen") {
+                await(10) { RuntimeService.current!!.transcript().contains("preserved workspace") }
+                check(!RuntimeService.conversationReady) { "Reopening unexpectedly started execution" }
+                receipt.put("coldDisplayReopen", "pass")
+            }
             RuntimeService.current!!.startEnvironment()
             await(1100) { RuntimeService.conversationReady || (!RuntimeService.busy && RuntimeService.status != "Environment stopped") }
             check(RuntimeService.conversationReady) { RuntimeService.status }
             receipt.put("environmentAndStockRpc", "pass")
+            if (selected == "reopen") {
+                check(reservationBefore != null && reservation.readText() == reservationBefore) { "Session reservation changed after reinstall" }
+                receipt.put("savedReservationAfterApkUpdate", "pass")
+                success = true
+                return
+            }
             val marker = "core-check-${System.currentTimeMillis()}.txt"
             RuntimeService.current!!.workspace("printf 'preserved workspace\\n' > $marker; cat $marker")
             await(130) { !RuntimeService.busy }
@@ -56,10 +69,10 @@ class CoreInstrumentation : Instrumentation() {
             check(resume.isFile)
             val saved = JSONObject(resume.readText()).getString("sessionFile")
             val transcript = File(base, "data/sessions/conversation/" + saved.substringAfterLast('/'))
-            check(transcript.isFile)
+            val canonicalExists = transcript.isFile
             val workspaceBefore = digest(workspace)
-            val transcriptBeforeBytes = transcript.readBytes()
-            val transcriptBefore = digest(transcript)
+            val transcriptBeforeBytes = if (canonicalExists) transcript.readBytes() else byteArrayOf()
+            val transcriptBefore: Any = if (canonicalExists) digest(transcript) else JSONObject.NULL
             receipt.put("workspaceTool", "pass").put("workspaceFile", marker).put("savedSession", saved)
             val effect = "must-not-appear-${System.currentTimeMillis()}.txt"
             val started = "stop-started-${System.currentTimeMillis()}.txt"
@@ -76,11 +89,12 @@ class CoreInstrumentation : Instrumentation() {
             check(RuntimeService.conversationReady) { RuntimeService.status }
             check(JSONObject(resume.readText()).getString("sessionFile") == saved)
             check(digest(workspace) == workspaceBefore)
-            // A bash interruption may append to history; require the pre-STOP transcript prefix.
-            check(transcript.readBytes().take(transcriptBeforeBytes.size).toByteArray().contentEquals(transcriptBeforeBytes))
+            // Stock Pi does not flush shell-only history before a user/assistant message.
+            if (canonicalExists) check(transcript.readBytes().take(transcriptBeforeBytes.size).toByteArray().contentEquals(transcriptBeforeBytes))
             check(RuntimeService.current!!.transcript().contains("preserved workspace")) { "Saved workspace history was not rendered" }
-            receipt.put("sameSessionReopen", "pass").put("workspaceSha256", workspaceBefore)
-                .put("transcriptBeforeStopSha256", transcriptBefore).put("transcriptAfterReopenSha256", digest(transcript))
+            receipt.put("sameSessionFileReservation", "pass").put("displayHistoryReopen", "pass").put("workspaceSha256", workspaceBefore)
+                .put("canonicalTranscript", if (canonicalExists) "preserved_prefix" else "not_created_before_chat")
+                .put("transcriptBeforeStopSha256", transcriptBefore).put("transcriptAfterReopenSha256", if (transcript.isFile) digest(transcript) else JSONObject.NULL)
             success = true
         } catch (error: Exception) { receipt.put("failure", error.message).put("status", RuntimeService.status) }
         finally {
@@ -88,7 +102,7 @@ class CoreInstrumentation : Instrumentation() {
             runCatching { await(15) { !RuntimeService.busy } }.onFailure { success = false; receipt.put("cleanupError", it.message) }
             receipt.put("finalStatus", RuntimeService.status).put("passed", success)
             val cleanupFailure = File(base, "last-cleanup-failure.json")
-            if (cleanupFailure.isFile) receipt.put("lastCleanupFailure", JSONObject(cleanupFailure.readText()))
+            if (cleanupFailure.isFile) receipt.put("retainedEarlierCleanupFailure", JSONObject(cleanupFailure.readText()))
             val destination = File(base, "core-check-${System.currentTimeMillis()}.json")
             destination.writeText(receipt.toString(2))
             finish(if (success) -1 else 0, Bundle().apply { putString("stream", receipt.toString(2)); putString("receipt", destination.path) })

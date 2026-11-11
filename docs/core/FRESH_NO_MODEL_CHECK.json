@@ -1,0 +1,39 @@
+{
+  "providerRequests": 0,
+  "stockAgent": "Pi",
+  "preservedRootfs": "\/data\/user\/0\/dev.olea.app\/files\/runtime\/rootfs-retained-1794393378406",
+  "environmentAndStockRpc": "pass",
+  "workspaceTool": "pass",
+  "workspaceFile": "core-check-1794393819838.txt",
+  "savedSession": "\/sessions\/conversation\/2026-11-11T10-29-45-447Z_01a1ca28-0f66-77c9-9a6f-898fbd0f1f90.jsonl",
+  "stopNoDelayedEffect": "pass",
+  "sameSessionFileReservation": "pass",
+  "displayHistoryReopen": "pass",
+  "workspaceSha256": "6bdeab1d031ef56650997129c4aed21f5de090ed8737f024d0bd08c40fbfa5b0",
+  "canonicalTranscript": "not_created_before_chat",
+  "transcriptBeforeStopSha256": null,
+  "transcriptAfterReopenSha256": null,
+  "finalStatus": "Stopped. Workspace and conversation saved.",
+  "passed": true,
+  "retainedEarlierCleanupFailure": {
+    "owned": [
+      {
+        "pid": 7095,
+        "parent": 7066,
+        "group": 483,
+        "tracer": 0,
+        "start": 179395,
+        "uid": 10220
+      }
+    ],
+    "remaining": [],
+    "faults": [
+      "read failed: ESRCH (No such process)"
+    ],
+    "observedIdentities": 1,
+    "retiredExited": 0,
+    "rootExitObserved": true,
+    "trackedExitVerified": false,
+    "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+  }
+}

@@ -33,7 +33,7 @@ The script downloads and verifies public runtime inputs, builds the backend, pac
 
 Workspace files, Pi home, provider settings and saved sessions live in private app storage, outside the replaceable Linux root filesystem. STOP and ordinary app updates preserve that storage. Uninstalling Olea or clearing its Android storage deletes it. Export and backup controls are not implemented yet.
 
-API keys remain in the app's private Pi configuration. The configured provider receives messages and tool results sent by Pi. Agents and their tools share the app's Unix environment and UID; PRoot provides Linux compatibility, not isolation from app data or credentials. This first core does not expose phone-control tools.
+API keys remain in the app's private Pi configuration. Before the first chat message, Pi keeps shell-only history in memory. Olea retains its display, but that history is not restored into Pi's model context. The configured provider receives messages and tool results sent by Pi. Agents and their tools share the app's Unix environment and UID; PRoot provides Linux compatibility, not isolation from app data or credentials. This first core does not expose phone-control tools.
 
 ## Current limits
 

@@ -1,0 +1,23 @@
+{
+  "providerRequests": 0,
+  "cleanup": {
+    "owned": [
+      {
+        "pid": 6738,
+        "parent": 6723,
+        "group": 483,
+        "tracer": 0,
+        "start": 171374,
+        "uid": 10220
+      }
+    ],
+    "remaining": [],
+    "faults": [],
+    "observedIdentities": 301,
+    "retiredExited": 300,
+    "rootExitObserved": true,
+    "trackedExitVerified": true,
+    "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+  },
+  "passed": true
+}

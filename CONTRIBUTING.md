@@ -32,7 +32,9 @@ adb -s emulator-5554 install -r android/app/build/outputs/apk/androidTest/debug/
 adb -s emulator-5554 shell am instrument -w dev.olea.app.test/dev.olea.app.CoreInstrumentation
 ```
 
-This check starts the actual app service and packaged environment, uses stock Pi RPC `bash` without a model prompt, verifies a workspace file, interrupts an active delayed effect, and reopens the same session. It preserves uniquely named files and saves a JSON receipt in the app's private files directory. Fresh package preparation has finite command deadlines and requires network access. Do not confuse the instrumentation shell command with a model-selected tool call.
+This check starts the actual app service and packaged environment, uses stock Pi RPC `bash` without a model prompt, verifies a workspace file, interrupts an active delayed effect, and reopens Olea's saved display and Pi's session file reservation. Stock Pi does not create its canonical transcript before a user/assistant message; canonical-chat continuation remains unverified under the prompt freeze. The check preserves uniquely named files and saves a JSON receipt in the app's private files directory. Fresh package preparation has finite command deadlines and requires network access. Do not confuse the instrumentation shell command with a model-selected tool call.
+
+Optional instrumentation selections are `-e case ownership` for sequential-child retirement, `-e case short-exits` for immediate-exit races, and `-e case reopen` for cold display/backend reopening. `-e case fresh` retains the entire old rootfs and ready marker by rename before testing a new runtime; it preserves workspace/home/session data and needs another finite package preparation. Use these for a concrete change or diagnosis, not a standing test loop.
 
 Never point these commands at historical evidence packages. Do not clear app data or reinstall by uninstalling. Installation updates must use `-r`; workspace, agent home and session state must remain under `files/data/`, outside `files/runtime/rootfs/`.
 

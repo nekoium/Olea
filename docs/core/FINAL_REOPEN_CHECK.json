@@ -1,0 +1,30 @@
+{
+  "providerRequests": 0,
+  "stockAgent": "Pi",
+  "coldDisplayReopen": "pass",
+  "environmentAndStockRpc": "pass",
+  "savedReservationAfterApkUpdate": "pass",
+  "finalStatus": "Stopped. Workspace and conversation saved.",
+  "passed": true,
+  "retainedEarlierCleanupFailure": {
+    "owned": [
+      {
+        "pid": 7095,
+        "parent": 7066,
+        "group": 483,
+        "tracer": 0,
+        "start": 179395,
+        "uid": 10220
+      }
+    ],
+    "remaining": [],
+    "faults": [
+      "read failed: ESRCH (No such process)"
+    ],
+    "observedIdentities": 1,
+    "retiredExited": 0,
+    "rootExitObserved": true,
+    "trackedExitVerified": false,
+    "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+  }
+}

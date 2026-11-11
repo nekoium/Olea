@@ -38,7 +38,6 @@ class RuntimeService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
     override fun onCreate() {
         super.onCreate()
-        current = this
         environment = Environment(this)
         val journal = File(filesDir, "data/conversation.json")
         synchronized(messages) {
@@ -53,6 +52,7 @@ class RuntimeService : Service() {
             .setContentIntent(open).addAction(Notification.Action.Builder(null, "STOP", stop).build()).build()
         if (android.os.Build.VERSION.SDK_INT >= 34) startForeground(1, notification, android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
         else startForeground(1, notification)
+        current = this
         revision++
     }
 
