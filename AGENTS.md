@@ -1,5 +1,13 @@
 # Olea agent instructions
 
+## Current authority and reading order
+
+Read `docs/CORE_BUILD_HANDOFF.md` first for the approved maintained-core scope and current execution authority, then PRODUCT.md, ROADMAP.md, PROGRESS.md, TECH_STACK.md and PHONE_USE_TESTS.md. The newly assigned core builder may implement autonomously and use bounded workers. Parallel root discussion sessions remain open; do not stop or overwrite them.
+
+Documents under `docs/feasibility/`, `spike/` and the old FEASIBILITY_BRIEF.md describe historical experiments unless explicitly referenced for a current bounded task. Their instructions to launch teams/managers, continue checkpoints, allocate/refill budgets, resume workers or claim device ownership are superseded. They supply evidence and technical recipes, not current authority. Do not follow an older document's claim that it applies to future managers. The 112-case matrix is historical, not an all-green gate.
+
+Provider-backed test spending remains frozen, with no automatic refresh on manager handoff. No historical lease transfers. The new core builder establishes one current device owner after inspecting actual state. Tests and workers serve finite implementation tasks; no standing feasibility or manager-replacement loop. Preserve historical evidence and failures.
+
 ## Documentation
 
 Read PRODUCT.md, ROADMAP.md, PROGRESS.md, TECH_STACK.md and PHONE_USE_TESTS.md before changing scope or architecture. Preserve the distinction between agreements, proposals and measured results. Technical feasibility precedes production UX implementation; existing visual studies remain discussion references.

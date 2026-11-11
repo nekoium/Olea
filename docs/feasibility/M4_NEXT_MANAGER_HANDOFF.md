@@ -1,5 +1,7 @@
 # M4 measured deterministic boundary → next feasibility manager
 
+**ARCHIVED HANDOFF.** Current authority is in `../CORE_BUILD_HANDOFF.md` and root AGENTS.md. Old launch, budget, checkpoint and lease instructions below are historical only; do not execute them.
+
 Full ownership handoff, not a subordinate assignment or approval gate. Existing exact root `C:/Users/Aria/Projects/Development/Olea`, Git repository `d55c3648-a5ff-4d7b-96d8-e80071701415`; no remote/clone/register/tracker/push/publish. Preserve concurrent untracked `docs/feasibility/PRODUCT_DECISION_BRIEF.html` and user root tabs. Read this document first in full, then CHECKPOINT_POLICY.md, AGENT_OPERATING_NOTES.md, M4_COORDINATION.md, PROGRESS.md, AGENTS.md, PRODUCT.md, TECH_STACK.md, PHONE_USE_TESTS.md and latest actual independent/runtime reports. Technical feasibility precedes production UX.
 
 ## Saved completed deterministic assessment

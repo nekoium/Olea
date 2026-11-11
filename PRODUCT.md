@@ -1,6 +1,14 @@
 # Olea: product
 
-Status: evolving product scope and decision record, not an approved implementation design. The core purpose is agreed; the full intended functionality is still being discussed.
+Status: evolving product scope and decision record. The maintained core direction below is approved; the full intended functionality remains under discussion.
+
+## Maintained core decision
+
+The user approved building a persistent Olea core through selective reuse of working spike components: Kotlin Android authority, packaged conventional Linux through PRoot, one shared TypeScript/Node backend, stock-agent adapters, and user data kept independent of replaceable runtime components. Maintain the Android environment and Olea integrations rather than private agent ports. Existing evidence is sufficient to build against this route; it does not establish universal compatibility or complete production readiness.
+
+First deliverable: install/open -> prepare/start environment -> stock Pi conversation with replies and tool activity -> user STOP -> reopen saved conversation. Pi supplies the first complete path; the release goal for other agents remains. Full production UX and its framework remain open. The user's reason for establishing this core now: fixes need a persistent implementation to apply to.
+
+[Approved design and autonomous builder assignment](docs/CORE_BUILD_HANDOFF.md) records scope, bounded validation, ownership and known limits. It supersedes earlier candidate-only language for these core responsibilities. Historical feasibility descriptions below retain their original context.
 
 ## Document responsibilities
 
@@ -108,9 +116,9 @@ Runtime decision rationale: ordinary upstream agent updates must remain usable w
 
 Runtime feasibility remains an evidence requirement. Initial interface and phone-use boundaries are established enough to begin technical discussion; detailed UI/UX design continues in a separate normal session in the same workspace. Agent version pinning or recovery policies have not been agreed and are not current scope decisions.
 
-## Technical feasibility candidate
+## Technical implementation direction
 
-The user accepted recording the candidate test stack and prioritizing technical feasibility before further production experience design. [TECH_STACK.md](TECH_STACK.md) records Kotlin Android hosting, a minimal Ubuntu/PRoot environment, stock Pi RPC, supported extension-based phone tools, and the automated evidence proposal. This selects a candidate for testing, not a validated production architecture. A persistent shared TypeScript/Node integration backend is the selected feasibility direction; Kotlin owns Android platform services and supervises it. The production UI toolkit remains open. Original Olea code is intended to use MIT; third-party components retain their own licenses. Maintain the Android runtime rather than private agent ports; normal upstream agent installation and updates are the central constraint. [FEASIBILITY_BRIEF.md](FEASIBILITY_BRIEF.md) describes the proposed separate build-and-test assignment; the user will review the scope before a session is launched.
+The previously selected feasibility stack is now the approved maintained-core direction: Kotlin Android hosting, packaged Linux/PRoot, stock Pi RPC, supported extension-based phone tools, and one shared TypeScript/Node backend. Kotlin owns Android platform authority and supervises the backend. [TECH_STACK.md](TECH_STACK.md) records the boundaries; [the core assignment](docs/CORE_BUILD_HANDOFF.md) owns current execution scope. The production UI toolkit remains open. Original Olea code uses MIT; third-party components retain their own licenses. [FEASIBILITY_BRIEF.md](FEASIBILITY_BRIEF.md) is historical and grants no new execution or provider budget.
 
 ## Limits we must establish
 
@@ -139,4 +147,4 @@ These findings come from documentation and source inspection, not local runtime 
 
 ## Documentation outcome
 
-Evolve this product document as the purpose, scope, and feasibility findings are reviewed together. The agreed schedule is recorded in ROADMAP.md: November 9–10 design and evidence, November 11–13 implementation, November 14–15 validation and hardening, and a November 15 version 1.0.0 release. Alpha releases may be published along the way. Tech stack and architecture discussion will continue in a separate session; this working record does not settle the runtime, UI toolkit, or final architecture.
+Evolve this product document as agreements and observed behavior change. ROADMAP.md records the November 15, 2026 release target and full release goals. The maintained core direction is settled; detailed product behavior, production UI toolkit and broader compatibility remain open. Historical research and experimental proposals do not grant execution authority.

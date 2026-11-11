@@ -1,5 +1,7 @@
 # M4 runtime release and next owner
 
+**ARCHIVED OWNER RECORD.** Current authority is in `docs/CORE_BUILD_HANDOFF.md` and root AGENTS.md. Ownership, budgets and next actions below are historical. No lease transfers or execution authority follows from this file.
+
 Sole emulator mutation lease explicitly **RELINQUISHED at2026-11-11T08:27:57.828Z**, successorOwnernull. Final authority: [EXPLICIT_LEASE_RELEASE.json](evidence/EXPLICIT_LEASE_RELEASE.json). Former owner `9e78162f-c4b8-4db0-987c-12277b05c76d`; release task `task_c830bdc0ea20` / dispatch `ctx_9c7ba62b5429`, manager `pi_bf06630f_e4e8_4fb8_94dc_203ef5153198`, Run `run_dd39824405ae`. No device access followed release publication. A newly verified manager/team must explicitly assign one successor before any mutation. This session/worktree stays open until new team verification; no closure/deletion is authorized here.
 
 ## Saved boundary and budget

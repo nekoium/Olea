@@ -1,6 +1,12 @@
 # Technical feasibility stack
 
-Status: agreed candidate for feasibility testing, not a validated production architecture. Product requirements remain in PRODUCT.md; phone-use priorities remain in PHONE_USE_TESTS.md.
+Status: maintained core direction approved after feasibility evidence and user discussion. The component responsibilities below are settled for core construction; specific implementation and packaging choices still require source inspection. Product requirements remain in PRODUCT.md; phone-use priorities remain in PHONE_USE_TESTS.md.
+
+## Approved transition to maintained implementation
+
+Build against Kotlin Android authority, packaged Linux/PRoot, one shared TypeScript/Node backend and stock-agent adapters. Keep workspace files, agent homes, conversations and credentials independent of replaceable runtime components. Selectively reuse working spike code; do not promote experiment machinery wholesale or maintain private agent forks.
+
+[Core design and builder handoff](docs/CORE_BUILD_HANDOFF.md) defines the first maintained Pi workflow and current authority. Earlier candidate/test descriptions below are historical context, not a requirement to repeat feasibility or wait for an all-green matrix. Production UI framework remains open. Physical ARM64, authenticated Claude, broad lifecycle/update behavior and complete data preservation remain unresolved measurements.
 
 ## Objective
 

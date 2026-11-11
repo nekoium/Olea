@@ -1,6 +1,6 @@
 # Agent operating notes: lean feasibility work
 
-Applies to current and following managers. Read with CHECKPOINT_POLICY.md and M2_CURRENT_CHECKPOINT.md; do not reload large historical transcripts when these saved facts and immutable receipts answer the question.
+**ARCHIVED M2 NOTES — NOT A CURRENT EXECUTION LIST.** Current scope and authority are in `../CORE_BUILD_HANDOFF.md` and root AGENTS.md. Results, assignments and next actions below are historical; later evidence supersedes them. Reuse a technical recipe only after checking current source and state. Do not launch teams, resume retired workers, allocate model tests or infer device ownership from this file.
 
 ## Goal and context budget
 

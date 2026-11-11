@@ -1,5 +1,17 @@
 # Progress
 
+## Maintained core approved; autonomous builder handoff
+
+The user accepted settling the core around Kotlin Android authority, packaged Linux/PRoot, one shared Node backend, stock-agent adapters and persistent user-data boundaries. Selectively reuse the spike. Reason stated by the user: fixes need an actual persistent implementation to apply to. The first core provides install/open, environment startup, stock Pi conversation/replies/tools, user STOP and saved conversation reopening. Production UI framework remains open; full agent and phone release goals remain separate.
+
+The user authorized a new normal manager in the same root to finish core construction autonomously, either directly or with bounded workers. This session remains open for discussion without active monitoring. [Approved design, plan and handoff](docs/CORE_BUILD_HANDOFF.md) governs the assignment. The earlier waiting hold is superseded only for that newly launched builder and its authorized scope. Provider-backed test spending remains frozen; no automatic refresh or allocation.
+
+Testing now follows concrete maintenance work: reproduce a bug, fix it, verify it, finish. Temporary diagnostics and workers retire with their task. Keep a small set of cheap checks where recurrence is costly. Reopen feasibility only for a specific route-changing uncertainty. The historical matrix is evidence, not an all-green gate. Remaining compatibility, preservation and lifecycle limits are retained in the handoff.
+
+Cleanup: removed clean M5 assessor checkout through Orca and verified branch `nekoium/m5-pi-independent` remains at `2a61603`. Four other children remain because of ignored setup/cache assets, an untracked M5 pause note, or M3 damaged registration. Root advisory HTML and all valuable data remain preserved. No device/provider tests occurred in this documentation/handoff preparation.
+
+Earlier sections below are historical snapshots; their autonomous loop, lease and budget statements do not grant current authority.
+
 ## M4 deterministic maintenance checkpoint — measured boundary saved
 
 Final independent assessment `6749a45`, integrated as root `b2a4108`, completes the declared bounded deterministic assessment with mixed results. [Final report](spike/m4/reports/FINAL_DETERMINISTIC_INDEPENDENT.md): ordinary copied-prefix Codex0.167.0→0.167.1/direct no-model compatibility pass; original canonical preservation FAIL due the retained599-byte settings append through copied absolute SQLite history reference; repaired same-host backend-only disable/tracked cleanup/explicit disabled restart/no-replay pass within finite observation limits. Original failure evidence remains. Final08:15:42.838Z runtime receipt has phone/backend/Accessibilityfalse, projectionnull, no operation in flight, runtime15565/fixture7596 only reviewed appUID processes. Sole runtime lease was retained at that receipt, then explicitly RELINQUISHED at08:27:57.828Z in [release receipt](spike/m4/runtime/evidence/EXPLICIT_LEASE_RELEASE.json), worker888f78b/root275ef88, with successorOwnernull/no operation in flight. Successor manager `pi_6902ee58_e023_4347_8b44_4dd411f1dcff` launched in exact root with handoff prompt journaled; new-team verification precedes old-worker resource release. M4 used0of9 refreshed prompts. Full original phone/model/backend acceptance remains open.

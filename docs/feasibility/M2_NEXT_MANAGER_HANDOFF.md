@@ -1,5 +1,7 @@
 # M2 saved checkpoint → next feasibility manager
 
+**ARCHIVED HANDOFF.** Current authority is in `../CORE_BUILD_HANDOFF.md` and root AGENTS.md. Old launch, budget, checkpoint and lease instructions below are historical only; do not execute them.
+
 Status: revised checkpoint reached and saved; full backend goal remains incomplete. Final runtime lease is explicitly relinquished at `930f00f` (worker `fcb4d02`). Independent checkpoint `2e9fa75` verifies133 retained receipts, with46pass/2fail/9blocked/55untested across112cases. This is a full ownership transfer once the successor launch receipt is saved, not reporting to the predecessor.
 
 ## Goal, checkpoint and method

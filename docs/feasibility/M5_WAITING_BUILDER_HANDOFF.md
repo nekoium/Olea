@@ -1,5 +1,7 @@
 # Waiting successor: user role discussion first
 
+**Historical hold, subsequently scoped by user approval.** The user completed role discussion and approved the maintained core direction, documentation update and handoff to a new autonomous normal manager. Read `docs/CORE_BUILD_HANDOFF.md` for that manager's current assignment. This waiting document remains the authoritative historical pause/settlement record. It does not require the newly authorized builder to wait again. Provider-test spending remains frozen; no historical lease transfers. The originating session stays open for discussion.
+
 **HOLD: WAITING / DISCUSSION ONLY.** The user explicitly said: “And the new manager should not start the loop immediately, I will talk about its role with it.” Read this handoff and introduce context, then wait for the user. Do not launch workers, start implementation/tests/coordination loops, allocate model-test prompts, or mutate runtime/device before role discussion and user authorization. The builder direction below is a future role to discuss, not permission to execute.
 
 ## Verified waiting successor

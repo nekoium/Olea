@@ -1,5 +1,7 @@
 # M3 saved budget boundary → fresh manager
 
+**ARCHIVED HANDOFF.** Current authority is in `../CORE_BUILD_HANDOFF.md` and root AGENTS.md. Old launch, budget, checkpoint and lease instructions below are historical only; do not execute them.
+
 User explicitly authorized automatic checkpoint relocation and fresh manager/team transfer when budget is reached. This is full ownership transfer, not a subordinate assignment or an approval gate. Current budget boundary is saved; original full phone/model checkpoint is incomplete and full backend goal remains open.
 
 ## Final independent boundary

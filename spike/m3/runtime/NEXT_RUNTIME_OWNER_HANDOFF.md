@@ -1,5 +1,7 @@
 # Runtime owner handoff after saved M3 partial checkpoint
 
+**ARCHIVED OWNER RECORD.** Current authority is in `docs/CORE_BUILD_HANDOFF.md` and root AGENTS.md. Ownership, budgets and next actions below are historical. No lease transfers or execution authority follows from this file.
+
 Use the same exact repo `d55c3648-a5ff-4d7b-96d8-e80071701415`, existing root `C:/Users/Aria/Projects/Development/Olea`. This worker's branch/worktree `nekoium/m3-native-phone` / `C:/Users/Aria/orca/workspaces/Olea/m3-native-phone` contains immutable M3 source/evidence; manager integrates locally. No duplicate repo, remote, tracker, push or publication. Existing M2/M1 reports remain historical; manager's independent assessment owns consolidated counts.
 
 ## Ownership and budget before any new work

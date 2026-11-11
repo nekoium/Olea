@@ -1,6 +1,8 @@
 # Phone-use tests
 
-Status: agreed coverage and alpha priority; individual full-test fixtures are proposals. No phone-use test has run yet.
+Status: agreed coverage and alpha priority; individual full-test fixtures remain proposals. Historical execution results live in PROGRESS.md and spike reports; the original not-run text below is superseded by those records.
+
+Current work follows [the maintained core assignment](docs/CORE_BUILD_HANDOFF.md). These categories describe product coverage, not a requirement to repeat every feasibility test for every agent or preserve every diagnostic permanently. Validate the native bridge, then use one predefined installed working Pi for agent-driven phone checks after the core prerequisites. No provider-backed test spending is authorized by this document.
 
 ## Access boundary
 
@@ -34,7 +36,7 @@ Opening the browser to a supplied link was the user's first concrete phone-use s
 
 ## Results
 
-Not run. Record actual device/Android version, app and fixture versions, granted access, observed outcome, and evidence when tests execute. Emulator results do not establish physical-phone compatibility.
+Historical results are recorded in PROGRESS.md and the linked spike evidence. New focused checks should record actual device/Android version, app and fixture versions, granted access, observed outcome, and evidence. Emulator results do not establish physical-phone compatibility.
 
 ## Related documents
 

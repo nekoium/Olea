@@ -1,5 +1,7 @@
 # Next feasibility milestone handoff
 
+**ARCHIVED HANDOFF.** Evidence and old instructions below describe a prior assignment. Current authority is in `../CORE_BUILD_HANDOFF.md` and root AGENTS.md. Do not launch a manager/team, spend/refresh a budget, resume a worker or infer a device lease from this file.
+
 Status: **authorized next experiment**, not a production architecture acceptance. The user approved proceeding autonomously with a **new manager and new Pi worker team after milestone save and cleanup**. Do not reopen routine scope/classification approval gates. This document is a handoff only; writing it did not start a team, execute an agent/provider request, change source, or mutate Android.
 
 ## 1. Mission and fixed boundaries

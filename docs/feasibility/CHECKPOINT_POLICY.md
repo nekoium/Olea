@@ -1,6 +1,6 @@
 # Feasibility checkpoint and manager handoff policy
 
-User instruction recorded during M2. This applies to following managers as well as the current manager.
+**ARCHIVED POLICY — NOT CURRENT INSTRUCTIONS.** This records earlier user instructions and subsequent changes during M2–M4. Its manager/team loops, automatic budget refresh, old allocations and worker-resume directions are superseded by `../CORE_BUILD_HANDOFF.md` and root AGENTS.md. No execution, spend or lease authority follows from this file. Retain its facts as historical context only.
 
 ## Goal
 

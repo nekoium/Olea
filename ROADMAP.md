@@ -2,13 +2,23 @@
 
 Target: release Olea 1.0.0 by November 15, 2026. Publish useful alpha builds along the way. Design, implementation, and validation receive the main effort; packaging and publication remain short final operations.
 
-This roadmap records interim release scope, milestones, and the agreed schedule. PRODUCT.md owns the full intended product scope. The tech stack, architecture, and detailed implementation plan remain under discussion. PRoot is the working runtime direction, subject to compatibility evidence; it is not an approved implementation design.
+This roadmap records interim release scope, milestones, and the agreed schedule. PRODUCT.md owns the full intended product scope. The Kotlin/PRoot/shared-Node/stock-adapter core direction is approved; detailed implementation and production UI choices remain open.
 
-## Technical feasibility priority
+## Current priority: maintained core
+
+The user approved shifting from repeated feasibility expansion to a maintained application using the demonstrated Kotlin/PRoot/shared-Node/stock-adapter route. First complete the install/open -> start environment -> stock Pi conversation/replies/tools -> STOP -> saved conversation reopening workflow. Selectively reuse working spike components. [Core design and autonomous build assignment](docs/CORE_BUILD_HANDOFF.md) is the current execution scope; earlier candidate-only and session-awaiting-review language below is historical.
+
+Validate dependencies in order: APP -> CONTAINER -> STOCK AGENTS -> PHONE -> OPTIONAL ECOSYSTEM. Reuse saved evidence; the historical matrix is not an all-green gate. Broad agent, phone and release goals remain, but are not all prerequisites for the first maintained Pi core. No provider-test budget refresh or allocation follows from this transition.
+
+Use task-limited builders and verifiers when useful. Reproduce a concrete failure, fix it, verify the fix and finish. Retain a small set of cheap checks for costly recurrence; temporary diagnostics and workers need not become permanent infrastructure. The new normal manager may build directly or use bounded workers. The originating session stays available for discussion without active monitoring.
+
+## Historical feasibility priority
+
+This section records the earlier experiment scope. It does not assign new tests or supersede the maintained core priority.
 
 Current technical discussion prioritizes validating the foundation before further production UX implementation. Use [TECH_STACK.md](TECH_STACK.md) as the candidate stack, without treating it as a validated architecture. First establish stock Pi Unix work and ordinary updates, direct Android bridge behavior, agent-driven phone use, and a combined workflow. Probe Codex and Claude compatibility early. Keep the baseline Linux environment fixed across Pi versions and report independent outcomes, retries, workarounds and blockers. Existing phone-use acceptance in PHONE_USE_TESTS.md remains authoritative.
 
-One shared TypeScript/Node integration backend supervised by Kotlin is now the selected feasibility direction. Measure its resource overhead, bounded buffering, active-session cost and cleanup on Android. The production UI framework remains open. The proposed separate build-and-test assignment is in [FEASIBILITY_BRIEF.md](FEASIBILITY_BRIEF.md); session launch awaits the user's scope review. No runtime or agent result follows from emulator readiness alone.
+One shared TypeScript/Node integration backend supervised by Kotlin is selected for the maintained core. Its resource overhead, bounded buffering, active-session cost and cleanup need focused verification as implementation changes. Production UI framework remains open. [FEASIBILITY_BRIEF.md](FEASIBILITY_BRIEF.md) records the historical disposable experiment; do not launch or repeat it. Current construction authority is in [the core assignment](docs/CORE_BUILD_HANDOFF.md).
 
 ## Release scope
 
