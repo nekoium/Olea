@@ -14,6 +14,6 @@ for(const name of ['runtime','fixture','repeat']) {
  const bytes=(await import('node:fs')).readFileSync(destination);
  report.artifacts.push({package:packageName,source,destination,sha256:createHash('sha256').update(bytes).digest('hex'),bytes:bytes.length});
 }
-report.hashes=shell("run-as dev.olea.m2.runtime sh -c 'find files/rootfs -type f \\( -name combined-value.txt -o -name sentinel -o -name olea-provider.json -o -name session.jsonl -o -name config.toml -o -name history.jsonl -o -name \"*rollout*\" \\) -exec sha256sum {} \\;; find files/rootfs -type d -name sessions'");
+report.hashes=shell("run-as dev.olea.m2.runtime sh -c 'find files/rootfs -type f \\( -name combined-value.txt -o -name sentinel -o -name session.jsonl -o -name config.toml -o -name history.jsonl -o -name \"*rollout*\" \\) -exec sha256sum {} \\;; find files/rootfs -type d -name sessions'");
 writeFileSync('spike/m3/runtime/evidence/baseline-preservation.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify(report));

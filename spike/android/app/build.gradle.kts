@@ -8,6 +8,7 @@ android {
         targetSdk = 28
         versionCode = 1
         versionName = "0.1-feasibility"
+        testInstrumentationRunner = "dev.olea.spike.SupervisionInstrumentation"
     }
     buildFeatures { buildConfig = true }
     flavorDimensions += "runtime"

@@ -11,11 +11,17 @@ import java.util.concurrent.TimeUnit
 object RuntimeProbe {
     @Volatile private var running = false
     @Volatile private var owned: OwnedProcess? = null
-    fun cancel() { owned?.let { current -> Thread { current.stop() }.start() } }
+    @Volatile private var cancelRequested = false
+    @Synchronized fun cancel() {
+        if (!running) return
+        cancelRequested = true
+        owned?.let { current -> Thread { current.stop() }.start() }
+    }
     @Synchronized fun run(service: Service, attempt: String) {
         if (running || !attempt.matches(Regex("[a-z0-9-]{1,64}"))) return
         val script = File(service.filesDir, "m2/$attempt.sh")
         if (!script.isFile) return
+        cancelRequested = false
         running = true
         Thread({
             val report = JSONObject().put("attempt", attempt).put("startedAtMs", System.currentTimeMillis())
@@ -25,12 +31,18 @@ object RuntimeProbe {
                 .put("targetSdk", service.applicationInfo.targetSdkVersion).put("androidApi", Build.VERSION.SDK_INT)
                 .put("abis", Build.SUPPORTED_ABIS.joinToString(",")).put("nativeLibraryDir", service.applicationInfo.nativeLibraryDir)
             try {
+                val cancelledBeforeLaunch = synchronized(this) { cancelRequested }
+                if (cancelledBeforeLaunch) {
+                    report.put("launchSuppressed", true)
+                    return@Thread
+                }
                 val (child, supervisor) = OwnedProcess.launch(ProcessBuilder("/system/bin/sh", script.absolutePath).apply {
                     directory(service.filesDir)
                     environment()["OLEA_NATIVE_DIR"] = service.applicationInfo.nativeLibraryDir
                     environment()["OLEA_APP_BASE"] = service.filesDir.absolutePath
-                }, File(service.filesDir, "m2/$attempt.pid"))
+                }, File(service.filesDir, "m2/$attempt.pid")) { !cancelRequested }
                 owned = supervisor
+                if (cancelRequested) supervisor.stop()
                 report.put("childPid", JSONObject.NULL)
                 val output = java.io.ByteArrayOutputStream()
                 val errors = java.io.ByteArrayOutputStream()
@@ -75,7 +87,7 @@ object RuntimeProbe {
             } catch (error: Exception) { report.put("error", error.toString().take(1024)) }
             finally {
                 try {
-                    report.put("endedAtMs", System.currentTimeMillis())
+                    report.put("endedAtMs", System.currentTimeMillis()).put("cancelRequested", cancelRequested)
                     File(service.filesDir, "m2/$attempt.json").writeText(report.toString(2))
                 } catch (error: java.io.IOException) {
                     android.util.Log.e("OleaM2Probe", "Receipt write failed: ${error.javaClass.simpleName}")

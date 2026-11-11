@@ -229,5 +229,5 @@ class RuntimeService : Service() {
         try { it.getOutputStream().apply { write("HTTP/1.1 $status Result\r\nContent-Type: application/json\r\nContent-Length: ${bytes.size}\r\nConnection: close\r\n\r\n".toByteArray()); write(bytes); flush() } } catch (_: Exception) {}
     }
 
-    override fun onDestroy() { enabled = false; PhoneApis.stop(); server?.close(); stopBackend(); super.onDestroy() }
+    override fun onDestroy() { enabled = false; PhoneApis.stop(); RuntimeProbe.cancel(); server?.close(); stopBackend(); super.onDestroy() }
 }
