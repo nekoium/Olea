@@ -1,0 +1,20 @@
+{
+  "allocatedPrompts": 0,
+  "allocationId": "m3-pi-final-seven-01",
+  "attemptId": "m3-pi-final-seven-01",
+  "kind": "phone-categories",
+  "context": "android-app",
+  "categories": ["capture", "files-media", "notification", "intent-url"],
+  "directReceipt": "final-seven-readonly-correction-a01.json plus final-seven-registration-a01.json; proposed only until manager grants one final prompt",
+  "backendModule": "/opt/olea-m3-final-ready-a01/spike/backend/dist/backend.js",
+  "entry": "/opt/agents/pi/node_modules/@earendil-works/pi-coding-agent/dist/cli.js",
+  "workspace": "/workspace/m3-pi-final-seven-01",
+  "stateDir": "/workspace/m3-pi-final-seven-01-state",
+  "providerConfig": "/run/olea-provider.json",
+  "bridgeConfig": "/run/olea-bridge.json",
+  "captureReady": "/workspace/m3-pi-final-seven-capture-ready.json",
+  "output": "/workspace/m3-pi-final-seven-01.json",
+  "model": "gpt-6.1-terra",
+  "url": "https://example.org/?olea=m3-pi-final-seven-01",
+  "fileValue": "OLEA_M3_PI_FINAL_SEVEN_RESERVED_NEW_MARKER"
+}

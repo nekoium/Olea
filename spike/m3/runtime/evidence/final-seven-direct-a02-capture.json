@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-11T07:15:27.818Z",
+  "attempt": "final-seven-direct-a02-capture",
+  "requestId": "final-seven-direct-a02",
+  "readyPath": "/workspace/m3-final-seven-direct-a02-ready.json",
+  "previousModified": 1794381194,
+  "route": "Agent-operated real SystemUI Share one app/Next/Olea Fixture; no silent grant",
+  "modelRequests": 0,
+  "nativePhoneCalls": 0,
+  "modified": 1794381333,
+  "sha256": "2e78828d76994a77771f67f9e82001c95fc3f277349b5616af3cb9f9d3d21427",
+  "width": 1080,
+  "height": 2400,
+  "bytes": 37950,
+  "dialog": "final-seven-direct-a02-capture-dialog-0",
+  "picker": "final-seven-direct-a02-capture-picker",
+  "readyMarker": {
+    "requestId": "final-seven-direct-a02",
+    "status": "ready",
+    "captureSha256": "2e78828d76994a77771f67f9e82001c95fc3f277349b5616af3cb9f9d3d21427",
+    "modified": 1794381333
+  }
+}

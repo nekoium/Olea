@@ -1,0 +1,110 @@
+{
+  "at": "2026-11-11T07:19:55.003Z",
+  "source": "final-seven-direct-a02.json",
+  "modelRequests": 0,
+  "nativePhoneCalls": 0,
+  "priorObserverFailure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'capture'\n- 'folder'\n",
+  "nativeAuditSuffix": [
+    {
+      "atMs": 1794381326958,
+      "operation": "capabilities",
+      "beforePackage": "dev.olea.m2.runtime",
+      "afterPackage": "dev.olea.m2.runtime"
+    },
+    {
+      "atMs": 1794381327079,
+      "operation": "capture_request",
+      "beforePackage": "dev.olea.m2.runtime",
+      "afterPackage": "dev.olea.m2.runtime"
+    },
+    {
+      "atMs": 1794381334433,
+      "operation": "capture_result",
+      "beforePackage": "dev.olea.m2.fixture",
+      "afterPackage": "dev.olea.m2.fixture"
+    },
+    {
+      "atMs": 1794381334643,
+      "operation": "files_write_read",
+      "beforePackage": "dev.olea.m2.fixture",
+      "afterPackage": "dev.olea.m2.fixture"
+    },
+    {
+      "atMs": 1794381334806,
+      "operation": "fixture_notify",
+      "beforePackage": "dev.olea.m2.fixture",
+      "afterPackage": "dev.olea.m2.fixture"
+    },
+    {
+      "atMs": 1794381335625,
+      "operation": "notifications",
+      "beforePackage": "dev.olea.m2.fixture",
+      "afterPackage": "dev.olea.m2.fixture"
+    },
+    {
+      "atMs": 1794381335816,
+      "operation": "open_url",
+      "beforePackage": "dev.olea.m2.fixture",
+      "afterPackage": "dev.olea.m2.fixture"
+    },
+    {
+      "atMs": 1794381340232,
+      "operation": "stop",
+      "beforePackage": "com.android.chrome",
+      "afterPackage": "com.android.chrome"
+    }
+  ],
+  "status": "pass",
+  "calls": [
+    "capabilities",
+    "capture_request",
+    "capture_result",
+    "files_write_read",
+    "fixture_notify",
+    "notifications",
+    "open_url"
+  ],
+  "folder": {
+    "atMs": 1794381021807,
+    "kind": "folder",
+    "delivery": "onNewIntent",
+    "task": 70,
+    "instance": 106243562
+  },
+  "capture": {
+    "atMs": 1794381327094,
+    "kind": "capture",
+    "delivery": "onNewIntent",
+    "task": 70,
+    "instance": 106243562
+  },
+  "noDuplicateRequests": true,
+  "sha256": "2e78828d76994a77771f67f9e82001c95fc3f277349b5616af3cb9f9d3d21427",
+  "captureFresh": true,
+  "visualInspection": {
+    "method": "Assistant read exact saved PNG",
+    "text": [
+      "Olea harmless fixture",
+      "Opened from launcher"
+    ],
+    "background": "Expected blue fixture",
+    "observed": true
+  },
+  "file": {
+    "value": "M3_FINAL_READY_f5bec47a6140807ba2daba4100e6065d",
+    "path": "/sdcard/Documents/OleaM3/olea-fixture-1794381334531.txt",
+    "actual": "M3_FINAL_READY_f5bec47a6140807ba2daba4100e6065d",
+    "sha256": "cc64ecf5d97011e73684d86ae14553cee10fb369db7b28cdc3f0b486450ef2a4"
+  },
+  "notification": {
+    "notifications": [
+      {
+        "package": "dev.olea.m2.fixture",
+        "id": 42,
+        "text": "OLEA_NOTIFICATION_FIXTURE"
+      }
+    ]
+  },
+  "url": "https://example.org/?olea=m3-final-seven-direct-a02",
+  "setupQualification": "Accessibility explicitly development-enabled during direct order; final background URL launched after fixture capture/notification without host foreground rescue"
+}

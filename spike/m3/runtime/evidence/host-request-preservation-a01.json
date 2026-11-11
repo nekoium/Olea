@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-11T07:04:44.206Z",
+  "preservedCaptureSha256": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b",
+  "preservedFile": {
+    "at": "2026-11-11T06:50:38.746Z",
+    "consentRoute": "Agent-operated actual Android DocumentsUI tree picker, Documents/OleaM3 USE THIS FOLDER then ALLOW; no silent grant",
+    "value": "OLEA_M3_SAF_d89dc9528423638baed64f779b7c5f4a",
+    "result": {
+      "status": 200,
+      "body": {
+        "id": "m2-1794379838747",
+        "ok": true,
+        "result": {
+          "matched": true,
+          "bytes": 44,
+          "uri": "content://com.android.externalstorage.documents/tree/primary%3ADocuments%2FOleaM3/document/primary%3ADocuments%2FOleaM3%2Folea-fixture-1794379838267.txt"
+        }
+      }
+    },
+    "storagePath": "/sdcard/Documents/OleaM3/olea-fixture-1794379838267.txt",
+    "independentBytes": "OLEA_M3_SAF_d89dc9528423638baed64f779b7c5f4a",
+    "exact": true,
+    "sha256": "caf8b0f93cd6973bd08ef2752e16adc5dd39e1fef6b5e27273a17709d5ced7b8",
+    "uriGrants": "  * UID 10216 holds:\r\n    UriPermission{62f14cc content://com.android.externalstorage.documents/tree/primary%3ADocuments%2FOleaM3 [user 0] [prefix]}\r"
+  },
+  "beforeHost": "    topResumedActivity=ActivityRecord{202354722 u0 com.android.chrome/org.chromium.chrome.browser.ChromeTabbedActivity t69}\r",
+  "previousApkSha256": "bbf670ffbe0c40e47672d446477d9502fcee059766b47a1f65393ee4b18bc3ee"
+}

@@ -11,7 +11,12 @@ test('location and notification allocation does not require browser or selected 
  const prompt=groupedPhonePrompt(options);
  assert.deepEqual(groupedPhoneTools(options.categories),['phone_capabilities','phone_location','phone_fixture_notify','phone_notifications']);
  assert(!prompt.includes('phone_open_url'));assert(!prompt.includes('phone_files_write_read'));
- assert.throws(()=>groupedPhoneTools(['capture']));assert.throws(()=>groupedPhoneTools(['notification','notification']));
+ assert.throws(()=>groupedPhoneTools(['contacts']));assert.throws(()=>groupedPhoneTools(['notification','notification']));
+});
+test('final seven-call order includes capture request/result and observer qualification',()=>{
+ const options={...valid,categories:['capture','files-media','notification','intent-url']};
+ assert.deepEqual(groupedPhoneTools(options.categories),['phone_capabilities','phone_capture_request','phone_capture_result','phone_files_write_read','phone_fixture_notify','phone_notifications','phone_open_url']);
+ const prompt=groupedPhonePrompt(options);assert(prompt.includes('At most7phone calls'));assert(prompt.includes('authorized test observer'));assert(prompt.includes('Capture image input is not supplied'));
 });
 test('grouped prompt bounds fixture inputs and avoids a capture-image claim',()=>{
  assert.throws(()=>groupedPhonePrompt({...valid,url:'http://example.org/'}));

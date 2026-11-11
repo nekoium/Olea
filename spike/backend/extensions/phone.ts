@@ -2,6 +2,7 @@
 // Supported Pi extension API only; plain JSON Schema avoids a schema-builder dependency.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { phoneTools } from '../dist/phone-mcp.js';
+import { isAbsolute } from 'node:path';
 
 export default function (pi: any) {
   const providerPath = process.env.OLEA_PROVIDER_CONFIG;
@@ -19,8 +20,13 @@ export default function (pi: any) {
 
   const limit = process.env.OLEA_PHONE_CALL_LIMIT;
   const allowlist = process.env.OLEA_PHONE_TOOL_ALLOWLIST;
-  if ((limit || allowlist) && (limit !== '5' || allowlist !== 'phone_capabilities,phone_location,phone_fixture_notify,phone_notifications')) throw new Error('invalid_phone_policy');
+  const four = 'phone_capabilities,phone_location,phone_fixture_notify,phone_notifications';
+  const seven = 'phone_capabilities,phone_capture_request,phone_capture_result,phone_files_write_read,phone_fixture_notify,phone_notifications,phone_open_url';
+  if ((limit || allowlist) && !((limit === '5' && allowlist === four) || (limit === '7' && allowlist === seven))) throw new Error('invalid_phone_policy');
   let nativeCalls = 0;
+  let captureRequestId: string | undefined;
+  const captureReady = process.env.OLEA_PHONE_CAPTURE_READY;
+  if (limit === '7' && (!captureReady || !isAbsolute(captureReady) || captureReady.includes('..'))) throw new Error('capture_readiness_path_required');
   const tools = [
     { name: 'phone_capabilities', operation: 'capabilities', description: 'Read current Android phone permissions, accessibility and stop state.', properties: {} },
     { name: 'phone_inspect', operation: 'accessibility_tree', description: 'Inspect bounded accessible Android UI nodes and foreground package. Use nodeId for clicks; inspect again after screen changes.', properties: {} },
@@ -41,6 +47,21 @@ export default function (pi: any) {
     parameters: { type: 'object', properties: tool.properties, required: tool.required ?? [], additionalProperties: false },
     async execute(_id: string, args: Record<string, unknown>, signal?: AbortSignal) {
       if (limit && nativeCalls >= Number(limit)) throw new Error('phone_policy_denied_no_native_delivery');
+      if (limit === '7' && tool.operation === 'capture_request') {
+        captureRequestId = _id;
+        writeFileSync(captureReady! + '.request.json', JSON.stringify({ requestId: _id, atMs: Date.now() }) + '\n', { mode: 0o600 });
+      }
+      if (limit === '7' && tool.operation === 'capture_result') {
+        if (!captureRequestId) throw new Error('fresh_capture_request_required');
+        const deadline = Date.now() + 35000;
+        let ready = false;
+        while (Date.now() < deadline && !signal?.aborted) {
+          try { const state = JSON.parse(readFileSync(captureReady!, 'utf8')); ready = state.requestId === captureRequestId && state.status === 'ready'; } catch {}
+          if (ready) break;
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        if (!ready) throw new Error('capture_consent_observer_not_ready_no_native_delivery');
+      }
       nativeCalls++;
       const configured = process.env.OLEA_BRIDGE_CONFIG;
       const bridge = configured ? JSON.parse(readFileSync(configured, 'utf8')) : {
@@ -83,6 +104,6 @@ export default function (pi: any) {
     const registered = pi.getAllTools().map((tool: any) => tool.name);
     const active = pi.getActiveTools();
     if (names.some(name => !registered.includes(name)) || active.length !== names.length || names.some(name => !active.includes(name))) throw new Error('phone_tool_registration_failed');
-    if (process.env.OLEA_PHONE_READINESS) writeFileSync(process.env.OLEA_PHONE_READINESS, JSON.stringify({ reason: event.reason, registeredPhoneTools: registered.filter((name: string) => name.startsWith('phone_')), active, maxNativeCalls: 5 }) + '\n', { mode: 0o600 });
+    if (process.env.OLEA_PHONE_READINESS) writeFileSync(process.env.OLEA_PHONE_READINESS, JSON.stringify({ reason: event.reason, registeredPhoneTools: registered.filter((name: string) => name.startsWith('phone_')), active, maxNativeCalls: Number(limit) }) + '\n', { mode: 0o600 });
   });
 }

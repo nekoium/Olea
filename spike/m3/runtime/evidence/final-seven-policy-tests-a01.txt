@@ -1,0 +1,14 @@
+✔ grouped prompt requires allocation and direct prerequisites before provider work (0.6633ms)
+✔ location and notification allocation does not require browser or selected files (0.6332ms)
+✔ final seven-call order includes capture request/result and observer qualification (0.136ms)
+✔ grouped prompt bounds fixture inputs and avoids a capture-image claim (0.1914ms)
+✔ Pi scoped 5-call policy blocks excess delivery (59.449ms)
+✔ Pi scoped 7-call policy blocks excess delivery and waits for matching consent observer (144.8948ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 335.4604

@@ -1,0 +1,73 @@
+{
+  "modelRequests": 0,
+  "phoneCalls": 0,
+  "expected": [
+    "phone_capabilities",
+    "phone_capture_request",
+    "phone_capture_result",
+    "phone_files_write_read",
+    "phone_fixture_notify",
+    "phone_notifications",
+    "phone_open_url"
+  ],
+  "provider": "Synthetic noncredential; startup/get_state only",
+  "start": {
+    "pid": 10664,
+    "startupMs": 11286.1963,
+    "state": {
+      "model": {
+        "id": "gpt-6.1-terra",
+        "name": "gpt-6.1-terra",
+        "reasoning": false,
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 128000,
+        "maxTokens": 4096,
+        "api": "openai-completions",
+        "provider": "olea-test",
+        "baseUrl": "https://api.chiyi.cc/v1"
+      },
+      "thinkingLevel": "off",
+      "isStreaming": false,
+      "isCompacting": false,
+      "steeringMode": "one-at-a-time",
+      "followUpMode": "one-at-a-time",
+      "sessionFile": "/workspace/m3-final-seven-registration-a01/state/readiness/2026-11-11T07-17-49-149Z_01a1c978-55dc-7438-97b4-f1a51f47cc53.jsonl",
+      "sessionId": "01a1c978-55dc-7438-97b4-f1a51f47cc53",
+      "autoCompactionEnabled": true,
+      "messageCount": 0,
+      "pendingMessageCount": 0
+    }
+  },
+  "readiness": {
+    "reason": "startup",
+    "registeredPhoneTools": [
+      "phone_capabilities",
+      "phone_open_url",
+      "phone_files_write_read",
+      "phone_notifications",
+      "phone_fixture_notify",
+      "phone_capture_request",
+      "phone_capture_result"
+    ],
+    "active": [
+      "phone_capabilities",
+      "phone_open_url",
+      "phone_files_write_read",
+      "phone_notifications",
+      "phone_fixture_notify",
+      "phone_capture_request",
+      "phone_capture_result"
+    ],
+    "maxNativeCalls": 7
+  },
+  "version": "1.5.2",
+  "status": "pass"
+}

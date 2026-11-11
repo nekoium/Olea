@@ -38,10 +38,16 @@ export async function runPiSingle(options) {
   const env = Object.fromEntries(['PATH', 'HOME', 'TMPDIR', 'TEMP', 'SystemRoot', 'LD_LIBRARY_PATH', 'PROOT_LOADER', 'PROOT_LOADER_32'].filter(k => process.env[k]).map(k => [k, process.env[k]]));
   Object.assign(env, { OLEA_PROVIDER_CONFIG: resolve(options.providerConfig), OLEA_MODEL: options.model ?? 'gpt-6.1-terra' });
   if (options.bridgeConfig) env.OLEA_BRIDGE_CONFIG = resolve(options.bridgeConfig);
-  if (options.kind === 'phone-categories') Object.assign(env, {
-    OLEA_PHONE_CALL_LIMIT: '5', OLEA_PHONE_TOOL_ALLOWLIST: 'phone_capabilities,phone_location,phone_fixture_notify,phone_notifications',
-    OLEA_PHONE_READINESS: resolve(options.stateDir, 'phone-readiness.json'),
-  });
+  if (options.kind === 'phone-categories') {
+    const selectedTools = groupedPhoneTools(options.categories);
+    const finalSeven = options.categories?.includes('capture');
+    if (finalSeven && selectedTools.join(',') !== 'phone_capabilities,phone_capture_request,phone_capture_result,phone_files_write_read,phone_fixture_notify,phone_notifications,phone_open_url') throw Error('invalid_final_phone_order');
+    Object.assign(env, { OLEA_PHONE_CALL_LIMIT: finalSeven ? '7' : '5',
+      OLEA_PHONE_TOOL_ALLOWLIST: finalSeven ? selectedTools.join(',') : 'phone_capabilities,phone_location,phone_fixture_notify,phone_notifications',
+      OLEA_PHONE_READINESS: resolve(options.stateDir, 'phone-readiness.json'),
+      ...(finalSeven ? { OLEA_PHONE_CAPTURE_READY: resolve(options.captureReady) } : {}),
+    });
+  }
   const summary = { attemptId: options.attemptId, context: options.context, kind: options.kind, startedAt: new Date().toISOString(), status: 'fail', allocationId: options.allocationId,
     directReceipt: options.kind === 'phone-categories' ? options.directReceipt : undefined,
     provider: { topLevelPrompts: 0, toolRounds: 0, observedUsage: {}, httpRequests: null, remoteBilling: 'unknown', strictTokenCap: 'unsupported/not established', automaticRetries: false },
@@ -76,7 +82,7 @@ export async function runPiSingle(options) {
     if (options.kind === 'phone-categories' && r.type === 'tool_execution_end' && typeof r.toolName === 'string' && groupedPhoneTools(options.categories).includes(r.toolName)) {
       const text = JSON.stringify(r.result ?? null);
       summary.phoneResults ??= [];
-      if (Buffer.byteLength(text) <= 4096 && summary.phoneResults.length < 5) summary.phoneResults.push({ tool: r.toolName, result: r.result, isError: r.isError === true, atMs: now });
+      if (Buffer.byteLength(text) <= 4096 && summary.phoneResults.length < Number(env.OLEA_PHONE_CALL_LIMIT)) summary.phoneResults.push({ tool: r.toolName, result: r.result, isError: r.isError === true, atMs: now });
       else fault = 'phone_result_limit';
     }
     if (r.type === 'message_end') for (const [k, v] of Object.entries(r.message?.usage ?? {})) if (['input', 'output', 'cacheRead', 'cacheWrite'].includes(k) && Number.isFinite(v)) summary.provider.observedUsage[k] = (summary.provider.observedUsage[k] ?? 0) + v;

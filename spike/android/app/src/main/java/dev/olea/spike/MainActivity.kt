@@ -11,8 +11,6 @@ import android.widget.TextView
 class MainActivity : Activity() {
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
-        if (intent.getBooleanExtra("capture", false)) startActivityForResult(getSystemService(android.media.projection.MediaProjectionManager::class.java).createScreenCaptureIntent(), 10)
-        if (intent.getBooleanExtra("folder", false)) startActivityForResult(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION), 11)
         val panel = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(24, 24, 24, 24) }
         panel.addView(TextView(this).apply { text = "Olea disposable feasibility host\nTarget SDK ${applicationInfo.targetSdkVersion}; no automatic action replay." })
         fun button(label: String, action: () -> Unit) { panel.addView(Button(this).apply { text = label; setOnClickListener { action() } }) }
@@ -25,7 +23,24 @@ class MainActivity : Activity() {
         button("STOP and revoke phone actions") { startService(Intent(this, RuntimeService::class.java).setAction("stop")) }
         setContentView(panel)
         startForegroundService(Intent(this, RuntimeService::class.java))
-        if (BuildConfig.FLAVOR == "modern") intent.getStringExtra("m2Probe")?.let { attempt ->
+        handleRequest(intent, "onCreate")
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleRequest(intent, "onNewIntent")
+    }
+
+    private fun handleRequest(request: Intent, delivery: String) {
+        for (kind in listOf("capture", "folder")) if (request.getBooleanExtra(kind, false)) {
+            if (kind == "capture") startActivityForResult(getSystemService(android.media.projection.MediaProjectionManager::class.java).createScreenCaptureIntent(), 10)
+            else startActivityForResult(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION), 11)
+            java.io.File(filesDir, "activity-request-audit.jsonl").appendText(org.json.JSONObject()
+                .put("atMs", System.currentTimeMillis()).put("kind", kind).put("delivery", delivery)
+                .put("task", taskId).put("instance", System.identityHashCode(this)).toString() + "\n")
+        }
+        if (BuildConfig.FLAVOR == "modern") request.getStringExtra("m2Probe")?.let { attempt ->
             startService(Intent(this, RuntimeService::class.java).setAction("probe").putExtra("attempt", attempt))
         }
     }

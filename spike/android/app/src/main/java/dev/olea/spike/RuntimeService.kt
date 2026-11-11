@@ -146,7 +146,7 @@ class RuntimeService : Service() {
             "notifications" -> { check(FixtureNotifications.connected) { "NOTIFICATION_ACCESS_REVOKED" }; synchronized(FixtureNotifications.received) { JSONObject().put("notifications", JSONArray(FixtureNotifications.received.toList())) } }
             "capture_request", "folder_request" -> {
                 if (operation == "capture_request") { PhoneApis.stop(); PhoneApis.capture = null }
-                startActivity(Intent(this, MainActivity::class.java).putExtra(if (operation == "capture_request") "capture" else "folder", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                startActivity(Intent(this, MainActivity::class.java).putExtra(if (operation == "capture_request") "capture" else "folder", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP))
                 JSONObject().put("consentRequested", true)
             }
             "capture_result" -> PhoneApis.capture ?: error("CAPTURE_NOT_READY")
