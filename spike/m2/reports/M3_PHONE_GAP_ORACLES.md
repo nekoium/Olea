@@ -43,5 +43,3 @@ Append one meaningful batch after owner supplies immutable runtime commits and e
 Latest saved state is **historical snapshot** at 2026-11-10T19:12:05Z in `spike/m2/runtime/FINAL_CHECKPOINT_RECEIPT.json`: phone/backend disabled, Accessibility enabled; primary/repeat hosts and fixture listed, previous leak identities absent. It is not a current device observation. Sole old runtime lease was relinquished; this evidence worker has no lease and performs no experiments or signals.
 
 Five of eight top-level prompts consumed; three remain unallocated. This worker has zero allocation and zero consumption. Worker-chat failures do not consume or authorize replacement test prompts. Model HTTP request count/billing and strict token cap remain unknown; preserve cumulative usage deduplication. Full backend goal remains open regardless of this preparation artifact; remaining ordinary Codex update/runtime recovery, broad lifecycle/constrained and physical Android14/ABI/battery/thermal gaps remain in unchanged inventory.
-
-Rim was not used, per this dispatch's explicit local-Git-only instruction.
