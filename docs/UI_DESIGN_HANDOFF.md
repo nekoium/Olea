@@ -1,5 +1,9 @@
 # UI design discussion handoff
 
+## Confirmed normal-session launch
+
+Session `pi_3675d05d_13f3_4558_b083_8d810b9ee557`; handle/tab `structured-agent-session-pi_3675d05d_13f3_4558_b083_8d810b9ee557`. Launched in the exact existing root through `orca agent launch`, normal structured session, no new worktree/Run/task. Prompt delivery `journaled`, message `1794392602443-1846c5b0bcb14b309085494874ad2222`; operation `1794392602141-384eedda255448d484d9bfbeb1d4f7fd`. Launch establishes delivery, not completed design. No monitoring loop.
+
 ## Request, scenario and intention
 
 The user requests a NEW normal session to design Olea's UI directly with them while the originating session audits functionality/priorities and another manager builds the core. This is an interactive design partnership, not autonomous production UI construction or a subordinate report task.
