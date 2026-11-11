@@ -1,0 +1,31 @@
+{
+  "attempt": "extra-pi",
+  "readyPath": "/workspace/m3-pi-final-seven-02-capture-ready.json",
+  "startedAt": "2026-11-11T07:42:50.142Z",
+  "modelRequests": 0,
+  "nativePhoneCalls": 0,
+  "result": {
+    "at": "2026-11-11T07:43:52.421Z",
+    "attempt": "extra-pi-consent",
+    "requestId": "call_b176d601f35244f0afd16a8db5ffc0ef",
+    "readyPath": "/workspace/m3-pi-final-seven-02-capture-ready.json",
+    "previousModified": 1794381333,
+    "route": "Agent-operated real SystemUI Share one app/Next/Olea Fixture; no silent grant",
+    "modelRequests": 0,
+    "nativePhoneCalls": 0,
+    "modified": 1794383037,
+    "sha256": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29",
+    "width": 1080,
+    "height": 2400,
+    "bytes": 56204,
+    "dialog": "extra-pi-consent-dialog-0",
+    "picker": "extra-pi-consent-picker",
+    "readyMarker": {
+      "requestId": "call_b176d601f35244f0afd16a8db5ffc0ef",
+      "status": "ready",
+      "captureSha256": "9edc28d24a826db748e7835db37e4165fb987a8b28927c087953771f21da1b29",
+      "modified": 1794383037
+    }
+  },
+  "status": "pass"
+}

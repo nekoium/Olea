@@ -1,0 +1,13 @@
+{
+  "allocationId": "m3-pi-final-seven-02",
+  "at": "2026-11-11T07:43:29.901Z",
+  "priorConsumed": 8,
+  "newAllocated": 1,
+  "maxTotal": 9,
+  "unallocated": 0,
+  "retryFallbackReplay": 0,
+  "claim": "new_unique_before_provider_read",
+  "keyEqualsAuthorizedRoot": true,
+  "endpointEquals": true,
+  "status": "claimed_and_ready"
+}

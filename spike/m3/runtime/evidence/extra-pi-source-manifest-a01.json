@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-11T07:49:17.285Z",
+  "deviceActionsAfterLeaseRelease": 0,
+  "hashes": [
+    {
+      "path": "spike/m3/runtime/extra-pi-options.json",
+      "sha256": "00d25122cd70a1263de7ce829b85b435a1582d67dc1fda49b8d00a8813abef01",
+      "domain": "raw working-tree bytes executed by existing runtime/host"
+    },
+    {
+      "path": "spike/m3/runtime/extra-pi-a01.sh",
+      "sha256": "b271b770268ae15f4d004dbeec382e7fe5721f9ff25793dfa95127f92fc4b08c",
+      "domain": "raw working-tree bytes executed by existing runtime/host"
+    },
+    {
+      "path": "spike/m3/runtime/claim-extra-pi.mjs",
+      "sha256": "7b29c001aa7b844c662eca99fa99469d22f4fcbd2234321450ad165cee9f7fde",
+      "domain": "raw working-tree bytes executed by existing runtime/host"
+    },
+    {
+      "path": "spike/m3/runtime/extra-pi-preflight-a01.mjs",
+      "sha256": "c36fcaea1ccad9376b11555c12ef6e84f3ca071b8e8375a6c24d0183586d1798",
+      "domain": "raw working-tree bytes executed by existing runtime/host"
+    },
+    {
+      "path": "spike/m3/runtime/extra-resume-a01.mjs",
+      "sha256": "c86224e4b60fe6e41bb86e900ae097ef4032136af4d6e272e1851eb74414e13b",
+      "domain": "raw working-tree bytes executed by existing runtime/host"
+    },
+    {
+      "path": "spike/m3/runtime/settle-extra-and-release.mjs",
+      "sha256": "e303cbb7701641ad410a212da0b91b318ccff63fc990674d5245920e1cc43935",
+      "domain": "raw working-tree bytes executed by existing runtime/host"
+    },
+    {
+      "path": "spike/m3/runtime/watch-final-capture.mjs",
+      "sha256": "9d516e21d54bda177af1acc2e5aed1905a9cd3835d52a8e6031f4f56dc1b8173",
+      "domain": "raw working-tree bytes executed by existing runtime/host"
+    },
+    {
+      "path": "spike/m3/runtime/complete-capture-consent.mjs",
+      "sha256": "bc2346fc46f99d9d94017114a68302b13b38ea744ae15f355b197b6cedfa5674",
+      "domain": "raw working-tree bytes executed by existing runtime/host"
+    }
+  ],
+  "releaseReceiptSha256": "bb1f4ee1473fe623529fdad5cc634e9a40a4c75fb16ae6cf53fdca478ef73098"
+}

@@ -1,0 +1,25 @@
+{
+  "allocatedPrompts": 1,
+  "allocationId": "m3-pi-final-seven-02",
+  "attemptId": "m3-pi-final-seven-02",
+  "kind": "phone-categories",
+  "context": "android-app",
+  "categories": [
+    "capture",
+    "files-media",
+    "notification",
+    "intent-url"
+  ],
+  "directReceipt": "1ad2f1d exact7call direct/readiness; fresh extra-pi-preflight-a01",
+  "backendModule": "/opt/olea-m3-final-ready-a01/spike/backend/dist/backend.js",
+  "entry": "/opt/agents/pi/node_modules/@earendil-works/pi-coding-agent/dist/cli.js",
+  "workspace": "/workspace/m3-pi-final-seven-02",
+  "stateDir": "/workspace/m3-pi-final-seven-02-state",
+  "providerConfig": "/run/olea-provider.json",
+  "bridgeConfig": "/run/olea-bridge.json",
+  "captureReady": "/workspace/m3-pi-final-seven-02-capture-ready.json",
+  "output": "/workspace/m3-pi-final-seven-02.json",
+  "model": "gpt-6.1-terra",
+  "url": "https://example.org/?olea=m3-pi-final-seven-02",
+  "fileValue": "OLEA_M3_EXTRA_96887ec20cd17a33462c75ff397d200c"
+}

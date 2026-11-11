@@ -1,0 +1,46 @@
+{
+  "at": "2026-11-11T07:45:50.771Z",
+  "modelRequests": 0,
+  "phoneCalls": 0,
+  "session": "m2_204a30734b03aa49c10ca0241a11175c",
+  "start": {
+    "pid": 14011,
+    "startupMs": 5779.7532,
+    "state": {
+      "model": {
+        "id": "gpt-6.1-terra",
+        "name": "gpt-6.1-terra",
+        "reasoning": false,
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 128000,
+        "maxTokens": 4096,
+        "api": "openai-completions",
+        "provider": "olea-test",
+        "baseUrl": "https://api.chiyi.cc/v1"
+      },
+      "thinkingLevel": "off",
+      "isStreaming": false,
+      "isCompacting": false,
+      "steeringMode": "one-at-a-time",
+      "followUpMode": "one-at-a-time",
+      "sessionFile": "/workspace/m3-pi-final-seven-02-state/m2_204a30734b03aa49c10ca0241a11175c/2026-11-11T07-43-35-529Z_01a1c98f-ee67-76d6-a84f-07c8d66eb4db.jsonl",
+      "sessionId": "01a1c98f-ee67-76d6-a84f-07c8d66eb4db",
+      "autoCompactionEnabled": true,
+      "messageCount": 7,
+      "pendingMessageCount": 0
+    }
+  },
+  "sameFile": true,
+  "markerPresent": true,
+  "captureRequestPresent": true,
+  "status": "pass",
+  "originalTranscriptBytesUnchanged": true
+}
