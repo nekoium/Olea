@@ -1,0 +1,3 @@
+scope=off-device compiled production Kotlin; no Android APIs invoked
+exit=0
+PASS compiled production failed-start guard: destroy requested, waitFor=false retained, closed gate is not exit, null owner does not verify cleanup, deliberate suppression distinguished

@@ -13,7 +13,8 @@ import java.util.concurrent.atomic.AtomicReference
 
 // Focused Android checks; no provider/model/rootfs access. Each case must settle before the next.
 class SupervisionInstrumentation : Instrumentation() {
-    override fun onCreate(arguments: Bundle?) { super.onCreate(arguments); start() }
+    private var selectedCase: String? = null
+    override fun onCreate(arguments: Bundle?) { selectedCase = arguments?.getString("case"); super.onCreate(arguments); start() }
     override fun onStart() {
         val results = JSONArray()
         val directory = File(targetContext.filesDir, "m3-supervision-${System.currentTimeMillis()}")
@@ -26,7 +27,7 @@ class SupervisionInstrumentation : Instrumentation() {
             check(condition()) { "SETTLEMENT_DEADLINE" }
         }
         fun test(name: String, action: () -> Unit) {
-            if (abortSuite) return
+            if (abortSuite || (selectedCase != null && selectedCase != name)) return
             val row = JSONObject().put("name", name)
             try { check(RuntimeProbe.idle()); action(); row.put("status", "pass") }
             catch (error: Exception) { row.put("status", "fail").put("error", error.toString()) }
@@ -54,6 +55,23 @@ class SupervisionInstrumentation : Instrumentation() {
             val pair = OwnedProcess.launch(ProcessBuilder("/system/bin/sleep", "30"), File(directory, "$name.pid"), publish)
             owned.add(pair.second)
             return pair
+        }
+        test("failed-start-unobserved-exit") {
+            var destroyed = false
+            val child = object : java.lang.Process() {
+                override fun getOutputStream() = java.io.ByteArrayOutputStream()
+                override fun getInputStream() = java.io.ByteArrayInputStream(byteArrayOf())
+                override fun getErrorStream() = java.io.ByteArrayInputStream(byteArrayOf())
+                override fun waitFor() = throw IllegalThreadStateException("still running")
+                override fun waitFor(timeout: Long, unit: TimeUnit) = false
+                override fun exitValue() = throw IllegalThreadStateException("still running")
+                override fun destroy() { destroyed = true }
+            }
+            val failure = OwnedProcess.stopFailedStart(child, IllegalStateException("ownership unavailable"), true)
+            check(destroyed && failure.gateNeverReleased && !failure.directChildExitObserved)
+            check(!RuntimeProbe.cleanupWithoutOwner(false, failure))
+            check(!RuntimeProbe.cleanupWithoutOwner(false, null))
+            check(RuntimeProbe.cleanupWithoutOwner(true, null))
         }
         test("atomic-owner-publication-and-gate-release") {
             val entered = CountDownLatch(1); val allowRelease = CountDownLatch(1); val attempted = CountDownLatch(1)
@@ -141,7 +159,7 @@ class SupervisionInstrumentation : Instrumentation() {
         val report = JSONObject().put("at", System.currentTimeMillis()).put("cases", results)
             .put("suiteAbortedForUnsettledState", abortSuite).put("modelRequests", 0).put("directory", directory.path)
         File(directory, "results.json").writeText(report.toString(2))
-        finish(if (!abortSuite && results.length() == 6 && (0 until results.length()).all { results.getJSONObject(it).getString("status") == "pass" }) -1 else 0,
+        finish(if (!abortSuite && results.length() == (if (selectedCase == null) 7 else 1) && (0 until results.length()).all { results.getJSONObject(it).getString("status") == "pass" }) -1 else 0,
             Bundle().apply { putString("stream", report.toString(2)); putString("receipt", File(directory, "results.json").path) })
     }
 }

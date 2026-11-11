@@ -9,6 +9,8 @@ import java.io.File
 
 // Bound numeric ownership observations; never signal by process name or a whole UID/group.
 class OwnedProcess(private val process: java.lang.Process, private val identityFile: File) {
+    class LaunchFailure(cause: Exception, val directChildExitObserved: Boolean, val gateNeverReleased: Boolean) :
+        Exception("OWNED_LAUNCH_FAILED", cause)
     data class Identity(val pid: Int, val parent: Int, val group: Int, val tracer: Int, val start: Long, val uid: Int) {
         fun json() = JSONObject().put("pid", pid).put("parent", parent).put("group", group).put("tracer", tracer).put("start", start).put("uid", uid)
     }
@@ -110,6 +112,13 @@ class OwnedProcess(private val process: java.lang.Process, private val identityF
     }
 
     companion object {
+        internal fun stopFailedStart(child: java.lang.Process, cause: Exception, gateNeverReleased: Boolean): LaunchFailure {
+            val exited = runCatching {
+                child.destroyForcibly()
+                child.waitFor(2, java.util.concurrent.TimeUnit.SECONDS)
+            }.getOrDefault(false)
+            return LaunchFailure(cause, exited, gateNeverReleased)
+        }
         fun launch(builder: ProcessBuilder, identityFile: File,
             publish: (OwnedProcess, () -> Unit) -> Unit = { _, release -> release() }): Pair<java.lang.Process, OwnedProcess> {
             check(!identityFile.exists()) { "IDENTITY_FILE_EXISTS" }
@@ -125,9 +134,7 @@ class OwnedProcess(private val process: java.lang.Process, private val identityF
                 return child to owner
             } catch (error: Exception) {
                 // Wrapper cannot execute the requested script before ownership is known.
-                child.destroyForcibly()
-                child.waitFor(2, java.util.concurrent.TimeUnit.SECONDS)
-                throw error
+                throw stopFailedStart(child, error, !readyFile.exists())
             }
         }
     }

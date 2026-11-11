@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-11T04:18:11.384Z",
+  "deviceActions": [],
+  "modelRequests": 0,
+  "build": "app and Android instrumentation pass",
+  "focusedResult": "off-device compiled production JVM guard passes",
+  "androidResult": "NOT RUN; consent hold",
+  "artifacts": [
+    {
+      "path": ".setup/m3-runtime-a08-uninstalled.apk",
+      "sha256": "594484f65756346b845ce2087181fd776b2dc7ce20abd76011a6015d8d223728",
+      "domain": "uninstalled bytes"
+    },
+    {
+      "path": ".setup/m3-supervision-a05-uninstalled.apk",
+      "sha256": "910ee7c82b6e0e0011c4aeb75ba6d51d88b7836e3ed1f9656b5a1bf2e916fafe",
+      "domain": "uninstalled bytes"
+    },
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/OwnedProcess.kt",
+      "sha256": "863b351b4b65f9261b7101714cfd3ab64f3c5b01184d4c412f9da7486ddc460f",
+      "domain": "raw compiled/tested working-tree source"
+    },
+    {
+      "path": "spike/android/app/src/main/java/dev/olea/spike/RuntimeProbe.kt",
+      "sha256": "f22bb748e0f09bc39a95d63b262b6bb9450164971b1e4d5e78f42302f84f0e61",
+      "domain": "raw compiled/tested working-tree source"
+    },
+    {
+      "path": "spike/android/app/src/androidTest/java/dev/olea/spike/SupervisionInstrumentation.kt",
+      "sha256": "cc4cb2583ebeb635a3c223561dd9f40b0e73bc80910a82a0824f8be8edc4b329",
+      "domain": "raw compiled/tested working-tree source"
+    },
+    {
+      "path": "spike/m3/runtime/FailedStartGuard.java",
+      "sha256": "d2fda497063e04c2cfc829ef14b04b480b36bc307e1add213acdb1ef1663d3b6",
+      "domain": "raw compiled/tested working-tree source"
+    }
+  ]
+}

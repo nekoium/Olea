@@ -25,6 +25,8 @@ object RuntimeProbe {
         return true
     }
     @Synchronized internal fun idle() = !running && owned == null && cleanupThread?.isAlive != true
+    internal fun cleanupWithoutOwner(suppressed: Boolean, failure: OwnedProcess.LaunchFailure?) =
+        suppressed || failure?.directChildExitObserved == true
     @Synchronized internal fun publish(supervisor: OwnedProcess, release: () -> Unit) {
         owned = supervisor
         if (cancelRequested) requestCleanup() else release()
@@ -50,6 +52,7 @@ object RuntimeProbe {
                 .put("targetSdk", service.applicationInfo.targetSdkVersion).put("androidApi", Build.VERSION.SDK_INT)
                 .put("abis", Build.SUPPORTED_ABIS.joinToString(",")).put("nativeLibraryDir", service.applicationInfo.nativeLibraryDir)
             var launchOwner: OwnedProcess? = null
+            var failedStart: OwnedProcess.LaunchFailure? = null
             try {
                 val cancelledBeforeLaunch = synchronized(this) { cancelRequested }
                 if (cancelledBeforeLaunch) {
@@ -103,10 +106,17 @@ object RuntimeProbe {
                     .put("stderrDrainFault", drainFaults[1] ?: JSONObject.NULL)
                     .put("descendantExitVerified", cleanup.getBoolean("trackedExitVerified"))
                     .put("timeoutCleanupLimit", "Bounded tracked numeric UID/starttime cleanup; unseen forks require independent observation")
-            } catch (error: Exception) { report.put("error", error.toString().take(1024)) }
+            } catch (error: Exception) {
+                if (error is OwnedProcess.LaunchFailure) {
+                    failedStart = error
+                    report.put("failedStart", JSONObject().put("directChildExitObserved", error.directChildExitObserved)
+                        .put("gateNeverReleased", error.gateNeverReleased))
+                }
+                report.put("error", error.toString().take(1024))
+            }
             finally {
                 launchOwner = launchOwner ?: synchronized(this) { owned }
-                var cleanupSettled = launchOwner == null
+                var cleanupSettled = cleanupWithoutOwner(report.optBoolean("launchSuppressed"), failedStart)
                 try {
                     launchOwner?.let { supervisor ->
                         val cleanup = supervisor.stop()
