@@ -20,7 +20,7 @@ let categoryPrompt, categoryPrerequisites;
 if (mode === 'phone-categories') {
   const options = JSON.parse(await readFile(categoryOptionsArg, 'utf8'));
   categoryPrompt = groupedPhonePrompt({ ...options, agent: 'codex' });
-  categoryPrerequisites = { allocationId: options.allocationId, directReceipt: options.directReceipt };
+  categoryPrerequisites = { allocationId: options.allocationId, directReceipt: options.directReceipt, categories: options.categories };
   if (!/^[a-zA-Z0-9_-]{1,64}$/.test(options.allocationId)) throw Error('invalid_allocation_id');
   await mkdir(join(base, `allocation-${options.allocationId}.started`));
 }

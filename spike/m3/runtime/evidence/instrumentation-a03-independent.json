@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-11T04:55:10.700Z",
+  "summary": {
+    "at": 1794372909410,
+    "cases": [
+      {
+        "name": "failed-start-unobserved-exit",
+        "status": "pass",
+        "cleanup": []
+      }
+    ],
+    "suiteAbortedForUnsettledState": false,
+    "modelRequests": 0,
+    "directory": "/data/user/0/dev.olea.m2.runtime/files/m3-supervision-1794372909356"
+  },
+  "receipts": [],
+  "observations": [],
+  "allAbsent": true,
+  "uidInventory": []
+}

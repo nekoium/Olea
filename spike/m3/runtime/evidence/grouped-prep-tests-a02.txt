@@ -1,0 +1,11 @@
+✔ grouped prompt requires allocation and direct prerequisites before provider work (0.6118ms)
+✔ location and notification allocation does not require browser or selected files (0.5705ms)
+✔ grouped prompt bounds fixture inputs and avoids a capture-image claim (0.2109ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 92.0157

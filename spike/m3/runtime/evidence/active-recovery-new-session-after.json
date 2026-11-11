@@ -1,0 +1,7 @@
+{
+  "at": "2026-11-11T05:00:31.401Z",
+  "scope": "Post-interruption state only; no before-hash for this fresh deterministic Pi session",
+  "initialDiagnosticFailure": "find -exec shell quoting lost escaped semicolon; no hashes produced and no mutation",
+  "sessionFiles": "ccf323b029b926791c0e3a7bb6df92066d5ab4cbc99544a950a2ac213c729152  files/rootfs/workspace/m3-backend-state/active_recovery_a01/resume.json\r\n",
+  "marker": "STARTED"
+}

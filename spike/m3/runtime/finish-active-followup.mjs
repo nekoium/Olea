@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: MIT
+import {device,bridge,nativeRequest} from '../../m2/runtime/bridge.mjs';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+const setup=JSON.parse(readFileSync('spike/m3/runtime/evidence/active-recovery-development-setup-a01.json','utf8'));
+const report={at:new Date().toISOString(),modelRequests:0};
+report.stop=await bridge('stop');
+report.restoreAccessibility=device(['shell',setup.accessibilityBefore==='null'?'settings delete secure enabled_accessibility_services':`settings put secure enabled_accessibility_services ${setup.accessibilityBefore}`]);
+report.restoreAccessibilityFlag=device(['shell',setup.accessibilityEnabledBefore==='null'?'settings delete secure accessibility_enabled':`settings put secure accessibility_enabled ${setup.accessibilityEnabledBefore}`]);
+report.capabilities=await nativeRequest('/capabilities');
+report.accessibilitySetting=device(['shell','settings get secure enabled_accessibility_services; settings get secure accessibility_enabled']);
+report.permissions=device(['shell','dumpsys package dev.olea.m2.runtime']).split('\n').filter(l=>/ACCESS_FINE_LOCATION: granted=|ACCESS_COARSE_LOCATION: granted=|POST_NOTIFICATIONS: granted=/.test(l)).join('\n');
+report.notificationListeners=device(['shell','settings get secure enabled_notification_listeners']);
+report.uriGrants=device(['shell','dumpsys activity permissions']).split('\n').filter(l=>l.includes('10216')||l.includes('OleaM3')).join('\n');
+report.capture=device(['shell',"run-as dev.olea.m2.runtime sh -c 'if [ -e files/capture.png ]; then echo PRESENT; else echo ABSENT; fi'"]);
+report.protectedModes=device(['shell',"run-as dev.olea.m2.runtime stat -c '%a %n' files/rootfs/run/olea-provider.json files/bridge-token files/bridge-config.json"]);
+const native=JSON.parse(readFileSync('spike/m3/runtime/evidence/mcp-fourteen-a01-native.json','utf8'));
+report.mcpNativeOriginalFaults=native.finalOwnershipCleanup.faults;
+report.mcpIndependent=native.finalOwnershipCleanup.owned.map(identity=>({identity,observation:device(['shell',`if [ -d /proc/${identity.pid} ]; then cat /proc/${identity.pid}/stat; else echo ABSENT; fi`]).trim()}));
+report.mcpAllAbsent=report.mcpIndependent.every(x=>x.observation==='ABSENT');
+report.uidInventory=device(['shell','ps -A -o UID,PID,PPID,NAME']).split('\n').filter(l=>/^\s*1021[678]\s/.test(l));
+report.installedAppSha256=createHash('sha256').update(readFileSync('.setup/m3-runtime-a08-uninstalled.apk')).digest('hex');
+report.installedTestSha256=createHash('sha256').update(readFileSync('.setup/m3-supervision-a05-uninstalled.apk')).digest('hex');
+writeFileSync('spike/m3/runtime/evidence/followup-final-state-a01.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});
+console.log({capabilities:report.capabilities,mcpAllAbsent:report.mcpAllAbsent,nativeFaults:report.mcpNativeOriginalFaults,uidInventory:report.uidInventory});

@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 import { challenge, unixPrompt, assertUnix, observeProcess } from './assertions.mjs';
 import { sha256 } from './evidence.mjs';
 import { observeTree } from './observe-tree.mjs';
-import { groupedPhonePrompt } from '../../m3/runtime/grouped-phone-prompt.mjs';
+import { groupedPhonePrompt, groupedPhoneTools } from '../../m3/runtime/grouped-phone-prompt.mjs';
 export function bounded(promise, ms, code) {
   let timer;
   return Promise.race([promise, new Promise((_, reject) => { timer = setTimeout(() => reject(Error(code)), ms); })]).finally(() => clearTimeout(timer));
@@ -110,7 +110,7 @@ export async function runPiSingle(options) {
       catch (error) { summary.independentOutcome = error.code === 'ENOENT' ? 'independent_file_or_dependency_missing' : 'independent_unix_assertion_failed'; throw Error(summary.independentOutcome); }
       if (!summary.tools.some(tool => ['bash', 'write', 'edit'].includes(tool))) throw Error('model_tool_execution_not_observed');
     } else {
-      for (const tool of ['phone_capabilities','phone_open_url','phone_location','phone_files_write_read','phone_fixture_notify','phone_notifications'])
+      for (const tool of groupedPhoneTools(options.categories))
         if (!summary.tools.includes(tool)) throw Error('required_phone_tool_not_observed');
     }
     if (options.kind === 'combined') for (const tool of ['phone_capabilities', 'phone_home', 'phone_inspect', 'phone_click', 'phone_fixture_action']) if (!summary.tools.includes(tool)) throw Error('required_phone_tool_not_observed');

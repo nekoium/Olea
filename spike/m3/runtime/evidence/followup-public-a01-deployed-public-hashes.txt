@@ -1,0 +1,8 @@
+d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c  files/rootfs/opt/olea-m3-a02/spike/backend/dist/backend.js
+d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff  files/rootfs/opt/olea-m3-a02/spike/backend/dist/codex-process.js
+9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90  files/rootfs/opt/olea-m3-a02/spike/backend/dist/codex-session.js
+28d12ed0f8878a798aac3427f5fc11f5892990f42aa0e9cc1f71f76f7b21be6f  files/rootfs/opt/olea-m3-a02/spike/backend/dist/phone-mcp.js
+aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108  files/rootfs/opt/olea-m3-a02/spike/backend/dist/pi-process.js
+529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c  files/rootfs/opt/olea-m3-a02/spike/backend/dist/process-tree.js
+1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca  files/rootfs/opt/olea-m3-a02/spike/backend/dist/server.js
+6891fe407b5967488966a60cd64737be61730fec9383a3aeb7d7a7df16b07e94  files/rootfs/opt/olea-m3-a02/spike/backend/extensions/phone.ts

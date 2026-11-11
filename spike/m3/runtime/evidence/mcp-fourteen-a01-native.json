@@ -1,0 +1,377 @@
+{
+  "attempt": "m3-mcp-fourteen-a01",
+  "startedAtMs": 1794373075460,
+  "package": "dev.olea.m2.runtime",
+  "hostPid": 5488,
+  "hostRealUid": 10216,
+  "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+  "hostStat": "5488 (olea.m2.runtime) S 485 485 0 0 -1 4194624 12755 0 0 0 60 267 0 0 10 -10 23 0 386043 16872427520 40091 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 1 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0",
+  "targetSdk": 36,
+  "androidApi": 36,
+  "abis": "x86_64,arm64-v8a",
+  "nativeLibraryDir": "\/data\/app\/~~Qa-k1Ys4l_lMjSo-5UV0oQ==\/dev.olea.m2.runtime-a8bOIYuKS7N6rQVYSA90vw==\/lib\/x86_64",
+  "childPid": null,
+  "deadlineSeconds": 240,
+  "ownershipCleanup": {
+    "owned": [
+      {
+        "pid": 5578,
+        "parent": 5488,
+        "group": 485,
+        "tracer": 0,
+        "start": 394086,
+        "uid": 10216
+      },
+      {
+        "pid": 5580,
+        "parent": 5578,
+        "group": 485,
+        "tracer": 0,
+        "start": 394090,
+        "uid": 10216
+      },
+      {
+        "pid": 5588,
+        "parent": 5578,
+        "group": 485,
+        "tracer": 5578,
+        "start": 394115,
+        "uid": 10216
+      },
+      {
+        "pid": 5599,
+        "parent": 5588,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394154,
+        "uid": 10216
+      },
+      {
+        "pid": 5637,
+        "parent": 5599,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394379,
+        "uid": 10216
+      },
+      {
+        "pid": 5640,
+        "parent": 5599,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394384,
+        "uid": 10216
+      },
+      {
+        "pid": 5641,
+        "parent": 5640,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394400,
+        "uid": 10216
+      },
+      {
+        "pid": 5642,
+        "parent": 5641,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394408,
+        "uid": 10216
+      },
+      {
+        "pid": 5643,
+        "parent": 5599,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394433,
+        "uid": 10216
+      },
+      {
+        "pid": 5647,
+        "parent": 5643,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394445,
+        "uid": 10216
+      },
+      {
+        "pid": 5648,
+        "parent": 5643,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394448,
+        "uid": 10216
+      },
+      {
+        "pid": 5650,
+        "parent": 5648,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394449,
+        "uid": 10216
+      },
+      {
+        "pid": 5651,
+        "parent": 5650,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394453,
+        "uid": 10216
+      },
+      {
+        "pid": 5652,
+        "parent": 5643,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394468,
+        "uid": 10216
+      },
+      {
+        "pid": 5653,
+        "parent": 5652,
+        "group": 5643,
+        "tracer": 0,
+        "start": 394468,
+        "uid": 10216
+      },
+      {
+        "pid": 5654,
+        "parent": 5652,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394469,
+        "uid": 10216
+      },
+      {
+        "pid": 5656,
+        "parent": 5652,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394470,
+        "uid": 10216
+      },
+      {
+        "pid": 5668,
+        "parent": 5599,
+        "group": 5668,
+        "tracer": 5578,
+        "start": 394498,
+        "uid": 10216
+      },
+      {
+        "pid": 5669,
+        "parent": 5599,
+        "group": 5669,
+        "tracer": 5578,
+        "start": 394541,
+        "uid": 10216
+      },
+      {
+        "pid": 5676,
+        "parent": 5599,
+        "group": 5676,
+        "tracer": 5578,
+        "start": 394572,
+        "uid": 10216
+      }
+    ],
+    "remaining": [],
+    "faults": [
+      "read failed: ESRCH (No such process)"
+    ],
+    "rootExitObserved": true,
+    "trackedExitVerified": false,
+    "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+  },
+  "rootExitObserved": true,
+  "inheritedPipesAfterJoin": false,
+  "timedOut": false,
+  "exitCode": 0,
+  "stdout": "{\"output\":\"\/workspace\/m3-mcp-fourteen-a01.json\",\"status\":\"pass\"}\n",
+  "stderr": "WARNING: linker: Warning: failed to find generated linker configuration from \"\/linkerconfig\/ld.config.txt\"\n",
+  "stdoutObservedBytes": 65,
+  "stderrObservedBytes": 107,
+  "stdoutRetainedBytes": 65,
+  "stderrRetainedBytes": 107,
+  "outputTruncated": false,
+  "drainersStillAlive": false,
+  "stdoutDrainFault": null,
+  "stderrDrainFault": null,
+  "descendantExitVerified": false,
+  "timeoutCleanupLimit": "Bounded tracked numeric UID\/starttime cleanup; unseen forks require independent observation",
+  "finalOwnershipCleanup": {
+    "owned": [
+      {
+        "pid": 5578,
+        "parent": 5488,
+        "group": 485,
+        "tracer": 0,
+        "start": 394086,
+        "uid": 10216
+      },
+      {
+        "pid": 5580,
+        "parent": 5578,
+        "group": 485,
+        "tracer": 0,
+        "start": 394090,
+        "uid": 10216
+      },
+      {
+        "pid": 5588,
+        "parent": 5578,
+        "group": 485,
+        "tracer": 5578,
+        "start": 394115,
+        "uid": 10216
+      },
+      {
+        "pid": 5599,
+        "parent": 5588,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394154,
+        "uid": 10216
+      },
+      {
+        "pid": 5637,
+        "parent": 5599,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394379,
+        "uid": 10216
+      },
+      {
+        "pid": 5640,
+        "parent": 5599,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394384,
+        "uid": 10216
+      },
+      {
+        "pid": 5641,
+        "parent": 5640,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394400,
+        "uid": 10216
+      },
+      {
+        "pid": 5642,
+        "parent": 5641,
+        "group": 5599,
+        "tracer": 5578,
+        "start": 394408,
+        "uid": 10216
+      },
+      {
+        "pid": 5643,
+        "parent": 5599,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394433,
+        "uid": 10216
+      },
+      {
+        "pid": 5647,
+        "parent": 5643,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394445,
+        "uid": 10216
+      },
+      {
+        "pid": 5648,
+        "parent": 5643,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394448,
+        "uid": 10216
+      },
+      {
+        "pid": 5650,
+        "parent": 5648,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394449,
+        "uid": 10216
+      },
+      {
+        "pid": 5651,
+        "parent": 5650,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394453,
+        "uid": 10216
+      },
+      {
+        "pid": 5652,
+        "parent": 5643,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394468,
+        "uid": 10216
+      },
+      {
+        "pid": 5653,
+        "parent": 5652,
+        "group": 5643,
+        "tracer": 0,
+        "start": 394468,
+        "uid": 10216
+      },
+      {
+        "pid": 5654,
+        "parent": 5652,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394469,
+        "uid": 10216
+      },
+      {
+        "pid": 5656,
+        "parent": 5652,
+        "group": 5643,
+        "tracer": 5578,
+        "start": 394470,
+        "uid": 10216
+      },
+      {
+        "pid": 5668,
+        "parent": 5599,
+        "group": 5668,
+        "tracer": 5578,
+        "start": 394498,
+        "uid": 10216
+      },
+      {
+        "pid": 5669,
+        "parent": 5599,
+        "group": 5669,
+        "tracer": 5578,
+        "start": 394541,
+        "uid": 10216
+      },
+      {
+        "pid": 5676,
+        "parent": 5599,
+        "group": 5676,
+        "tracer": 5578,
+        "start": 394572,
+        "uid": 10216
+      }
+    ],
+    "remaining": [],
+    "faults": [
+      "read failed: ESRCH (No such process)"
+    ],
+    "rootExitObserved": true,
+    "trackedExitVerified": false,
+    "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+  },
+  "endedAtMs": 1794373082437,
+  "cancelRequested": false,
+  "launchIdle": false,
+  "cleanupVerified": false
+}
