@@ -1,0 +1,106 @@
+{
+  "at": "2026-11-11T07:31:55.829Z",
+  "scope": "Final exact public deployment/installed artifact/host identities, no protected config hashes",
+  "files": [
+    {
+      "path": "spike/backend/extensions/phone.ts",
+      "expected": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19",
+      "actual": "5aa39aa9a9e47f555096260c138ebe7e89598680cb595877032343af74650d19",
+      "equal": true
+    },
+    {
+      "path": "spike/tests/m2/pi-single.mjs",
+      "expected": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+      "actual": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+      "equal": true
+    },
+    {
+      "path": "spike/tests/m2/assertions.mjs",
+      "expected": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186",
+      "actual": "d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186",
+      "equal": true
+    },
+    {
+      "path": "spike/tests/m2/evidence.mjs",
+      "expected": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009",
+      "actual": "ff4785411cba5bcfb003c36f080a741488690270d3257d57dab95d46882ff009",
+      "equal": true
+    },
+    {
+      "path": "spike/tests/m2/observe-tree.mjs",
+      "expected": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7",
+      "actual": "76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7",
+      "equal": true
+    },
+    {
+      "path": "spike/m3/runtime/grouped-phone-prompt.mjs",
+      "expected": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9",
+      "actual": "eedb411f410194b4f23331ea8b3e93ca6f2b7dde34a340f0f0d72bdb522d04e9",
+      "equal": true
+    },
+    {
+      "path": "spike/m3/runtime/final-seven-registration-a01.mjs",
+      "expected": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8",
+      "actual": "183c57eda0a66b6aa9a5d2a39f81e2aa52229b959582c38f144d9c904f8bebd8",
+      "equal": true
+    },
+    {
+      "path": "spike/backend/dist/backend.js",
+      "expected": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+      "actual": "d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c",
+      "equal": true
+    },
+    {
+      "path": "spike/backend/dist/pi-process.js",
+      "expected": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+      "actual": "aa50a797fbae8749cc7f22b73b1717618a47f23add90f00c5addef318ae66108",
+      "equal": true
+    },
+    {
+      "path": "spike/backend/dist/process-tree.js",
+      "expected": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c",
+      "actual": "529dc48096bd35fdcea466c63e18a11dc087e38ad68da32bbaf9a23b68624a8c",
+      "equal": true
+    },
+    {
+      "path": "spike/backend/dist/phone-mcp.js",
+      "expected": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+      "actual": "40fb43eb5970faee0a955280b4308de7a916932ef008f6613942fdc09c5118d5",
+      "equal": true
+    },
+    {
+      "path": "spike/backend/dist/codex-process.js",
+      "expected": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+      "actual": "d77e08ff4c853ecedad0c2b035f0d8cf0c1b8c601786d39690f088cc17d84bff",
+      "equal": true
+    },
+    {
+      "path": "spike/backend/dist/codex-session.js",
+      "expected": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+      "actual": "1fa46ae37e3f19059378fde2e3da2f81652e62ef7248c1f51e845408deca4b58",
+      "equal": true
+    },
+    {
+      "path": "spike/backend/dist/server.js",
+      "expected": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca",
+      "actual": "1c40fd4c7264a5e2251e61a2877475ba0554b321663829aa5962e036b0ec61ca",
+      "equal": true
+    }
+  ],
+  "options": {
+    "path": "spike/m3/runtime/final-seven-allocated-options.json",
+    "sha256": "4535a13058a6c02cbb4c403a8d0f4cfc8a7ca4becac655a40f5e857a04e19473"
+  },
+  "installedApk": "package:/data/app/~~ammgHUMuH7wv_oEJpJjvWw==/dev.olea.m2.runtime-uwk0BkbrOVi7taHV7w0bkw==/base.apk\r\npackage:/data/app/~~oZywTJnKXuWKYh6Ym26UvQ==/dev.olea.m2.fixture-vzGaUEj_Wu1rsGbY4i5bZA==/base.apk\r\n",
+  "hostStat": "11004 (olea.m2.runtime) S 485 485 0 0 -1 4194624 30659 69850 1 0 140 588 258 1289 10 -10 22 0 1276873 16817156096 42249 18446744073709551615 1 1 0 0 0 0 4612 1 1073775864 0 0 0 17 1 0 0 0 0 0 0 0 0 0 0 0 0 0\r\n7596 (olea.m2.fixture) S 485 485 0 0 -1 4194624 18718 0 4016 0 54 313 0 0 20 0 26 0 609171 16806100992 33866 18446744073709551615 1 1 0 0 0 0 4612 1 1073775864 0 0 0 17 3 0 0 0 0 0 0 0 0 0 0 0 0 0\r\n",
+  "apkRetained": [
+    {
+      "path": ".setup/runtime-host-request-a01.apk",
+      "sha256": "4e3cfbd24c79644946e5a774431aa7fb9455d916e35b48b27a7a7876160d17ff"
+    },
+    {
+      "path": ".setup/fixture-reuse-a01.apk",
+      "sha256": "42f255f6e4282a0464727d223f55c708c991f8edf6bbc89ec5d93f9c4bba8820"
+    }
+  ]
+}

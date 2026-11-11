@@ -1,0 +1,474 @@
+{
+  "at": "2026-11-11T07:31:08.330Z",
+  "taskId": "task_300be48de965",
+  "dispatchId": "ctx_075e0803ad32",
+  "leaseOwner": "1f3cf796-8a8d-4588-ada6-5d2cfb7d5bea",
+  "lease": "RETAINED; no experiment in flight after settlement",
+  "outcome": "Final model group FAILED provider transport before phone calls; no new category acceptance",
+  "modelRequestsThisCollector": 0,
+  "resumeNative": {
+    "attempt": "m3-final-failed-resume-a01",
+    "startedAtMs": 1794382216352,
+    "package": "dev.olea.m2.runtime",
+    "hostPid": 11004,
+    "hostRealUid": 10216,
+    "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+    "hostStat": "11004 (olea.m2.runtime) S 485 485 0 0 -1 4194624 23908 37199 1 0 111 503 147 631 10 -10 23 0 1276873 16818319360 42288 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 1 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0",
+    "targetSdk": 36,
+    "androidApi": 36,
+    "abis": "x86_64,arm64-v8a",
+    "nativeLibraryDir": "/data/app/~~ammgHUMuH7wv_oEJpJjvWw==/dev.olea.m2.runtime-uwk0BkbrOVi7taHV7w0bkw==/lib/x86_64",
+    "childPid": null,
+    "deadlineSeconds": 240,
+    "ownershipCleanup": {
+      "owned": [
+        {
+          "pid": 12783,
+          "parent": 11004,
+          "group": 485,
+          "tracer": 0,
+          "start": 1308174,
+          "uid": 10216
+        },
+        {
+          "pid": 12785,
+          "parent": 12783,
+          "group": 485,
+          "tracer": 0,
+          "start": 1308176,
+          "uid": 10216
+        },
+        {
+          "pid": 12792,
+          "parent": 12783,
+          "group": 485,
+          "tracer": 12783,
+          "start": 1308187,
+          "uid": 10216
+        },
+        {
+          "pid": 12803,
+          "parent": 12792,
+          "group": 12803,
+          "tracer": 12783,
+          "start": 1308228,
+          "uid": 10216
+        }
+      ],
+      "remaining": [],
+      "faults": [],
+      "rootExitObserved": true,
+      "trackedExitVerified": true,
+      "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+    },
+    "rootExitObserved": true,
+    "inheritedPipesAfterJoin": false,
+    "timedOut": false,
+    "exitCode": 0,
+    "stdout": "{\"status\":\"pass\",\"noPromptSent\":true}\n",
+    "stderr": "WARNING: linker: Warning: failed to find generated linker configuration from \"/linkerconfig/ld.config.txt\"\n",
+    "stdoutObservedBytes": 38,
+    "stderrObservedBytes": 107,
+    "stdoutRetainedBytes": 38,
+    "stderrRetainedBytes": 107,
+    "outputTruncated": false,
+    "drainersStillAlive": false,
+    "stdoutDrainFault": null,
+    "stderrDrainFault": null,
+    "descendantExitVerified": true,
+    "timeoutCleanupLimit": "Bounded tracked numeric UID/starttime cleanup; unseen forks require independent observation",
+    "finalOwnershipCleanup": {
+      "owned": [
+        {
+          "pid": 12783,
+          "parent": 11004,
+          "group": 485,
+          "tracer": 0,
+          "start": 1308174,
+          "uid": 10216
+        },
+        {
+          "pid": 12785,
+          "parent": 12783,
+          "group": 485,
+          "tracer": 0,
+          "start": 1308176,
+          "uid": 10216
+        },
+        {
+          "pid": 12792,
+          "parent": 12783,
+          "group": 485,
+          "tracer": 12783,
+          "start": 1308187,
+          "uid": 10216
+        },
+        {
+          "pid": 12803,
+          "parent": 12792,
+          "group": 12803,
+          "tracer": 12783,
+          "start": 1308228,
+          "uid": 10216
+        }
+      ],
+      "remaining": [],
+      "faults": [],
+      "rootExitObserved": true,
+      "trackedExitVerified": true,
+      "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+    },
+    "endedAtMs": 1794382228583,
+    "cancelRequested": false,
+    "launchIdle": true,
+    "cleanupVerified": true
+  },
+  "resume": {
+    "at": "2026-11-11T07:30:16.817Z",
+    "modelRequests": 0,
+    "phoneActions": 0,
+    "scope": "Resume/get_messages only after failed provider turn, no turn replay",
+    "session": "m2_9221203f0fe1b2c5c9b3eb570ca835e7",
+    "start": {
+      "pid": 12803,
+      "startupMs": 9901.4465,
+      "state": {
+        "model": {
+          "id": "gpt-6.1-terra",
+          "name": "gpt-6.1-terra",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 128000,
+          "maxTokens": 4096,
+          "api": "openai-completions",
+          "provider": "olea-test",
+          "baseUrl": "https://api.chiyi.cc/v1"
+        },
+        "thinkingLevel": "off",
+        "isStreaming": false,
+        "isCompacting": false,
+        "steeringMode": "one-at-a-time",
+        "followUpMode": "one-at-a-time",
+        "sessionFile": "/workspace/m3-pi-final-seven-01-state/m2_9221203f0fe1b2c5c9b3eb570ca835e7/2026-11-11T07-28-00-550Z_01a1c981-aa24-758f-b122-236fa031c7ac.jsonl",
+        "sessionId": "01a1c981-aa24-758f-b122-236fa031c7ac",
+        "autoCompactionEnabled": true,
+        "messageCount": 3,
+        "pendingMessageCount": 0
+      }
+    },
+    "sameSessionFile": true,
+    "historyCount": 3,
+    "originalAcceptanceMarkerPresent": true,
+    "providerErrorPresent": true,
+    "noPromptSent": true,
+    "status": "pass",
+    "originalTranscriptBytesUnchanged": true
+  },
+  "model": {
+    "topLevelSubmitted": 1,
+    "tools": [],
+    "status": "fail",
+    "primaryFailure": [
+      {
+        "classification": "provider_transport",
+        "stopReason": "error",
+        "atMs": 4009
+      }
+    ],
+    "secondaryRunnerFailure": "required_phone_tool_not_observed",
+    "turnMs": 4057,
+    "usage": {
+      "input": 0,
+      "output": 0,
+      "cacheRead": 0,
+      "cacheWrite": 0
+    },
+    "remainingRequests": 0
+  },
+  "observer": {
+    "attempt": "final-pi",
+    "readyPath": "/workspace/m3-pi-final-seven-capture-ready.json",
+    "startedAt": "2026-11-11T07:27:09.651Z",
+    "modelRequests": 0,
+    "nativePhoneCalls": 0,
+    "status": "fail",
+    "error": "No fresh capture request within finite observer deadline"
+  },
+  "auditAfter": "{\"atMs\":1794331505774,\"operation\":\"capabilities\"}\n{\"atMs\":1794331552901,\"operation\":\"capabilities\"}\n{\"atMs\":1794331564216,\"operation\":\"capabilities\"}\n{\"atMs\":1794331574281,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794331641584,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794331642352,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794331642592,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"525691f2:12\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794331643744,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332106802,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332250967,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332252006,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794332252376,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"eeacb70b:12\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794332253328,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332476404,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794332478982,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794332481479,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794332485068,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"cb3c97e5:12\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794332488298,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794332496342,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794333313113,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794334551176,\"operation\":\"capabilities\"}\n{\"atMs\":1794334993167,\"operation\":\"stop\"}\n{\"atMs\":1794334993388,\"operation\":\"capabilities\"}\n{\"atMs\":1794335848220,\"operation\":\"capabilities\"}\n{\"atMs\":1794335917216,\"operation\":\"capabilities\"}\n{\"atMs\":1794336259443,\"operation\":\"capabilities\"}\n{\"atMs\":1794336463672,\"operation\":\"capabilities\"}\n{\"atMs\":1794336897770,\"operation\":\"capabilities\"}\n{\"atMs\":1794336946649,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794337006574,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794337007323,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794337007518,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"506f54f6:12\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794337008621,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337075174,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794337082528,\"operation\":\"global_action\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794337088311,\"operation\":\"swipe\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794337094331,\"operation\":\"accessibility_tree\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\"}\n{\"atMs\":1794337099290,\"operation\":\"accessibility_click\",\"beforePackage\":\"com.google.android.apps.nexuslauncher\",\"afterPackage\":\"com.google.android.apps.nexuslauncher\",\"nodeId\":\"42b17ae7:18\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794337115104,\"operation\":\"fixture_action\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337438377,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337438849,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337482697,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337606031,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794337925678,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794362926165,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794363732220,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363732757,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363734459,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363735457,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363735587,\"operation\":\"fixture_notify\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794363736446,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794363736770,\"operation\":\"open_url\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794364103432,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364106220,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364132250,\"operation\":\"location\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364296280,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364528954,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364541304,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364579249,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364579394,\"operation\":\"accessibility_click\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\",\"nodeId\":\"e4a3dc59:4\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794364594870,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794364764549,\"operation\":\"capabilities\"}\n{\"atMs\":1794369859049,\"operation\":\"location\"}\n{\"atMs\":1794369862852,\"operation\":\"stop\"}\n{\"atMs\":1794372981815,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794372982042,\"operation\":\"accessibility_click\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\",\"nodeId\":\"ee78b23c:4\",\"action\":\"ACTION_CLICK\"}\n{\"atMs\":1794373187391,\"operation\":\"stop\"}\n{\"atMs\":1794373562676,\"operation\":\"location\"}\n{\"atMs\":1794373562917,\"operation\":\"notifications\"}\n{\"atMs\":1794373649948,\"operation\":\"capabilities\"}\n{\"atMs\":1794373654085,\"operation\":\"location\"}\n{\"atMs\":1794373658277,\"operation\":\"fixture_notify\"}\n{\"atMs\":1794373662576,\"operation\":\"notifications\"}\n{\"atMs\":1794373752994,\"operation\":\"stop\"}\n{\"atMs\":1794374132079,\"operation\":\"notifications\"}\n{\"atMs\":1794374134830,\"operation\":\"accessibility_tree\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794374136353,\"operation\":\"stop\"}\n{\"atMs\":1794374633129,\"operation\":\"location\"}\n{\"atMs\":1794374633442,\"operation\":\"notifications\"}\n{\"atMs\":1794374740198,\"operation\":\"capabilities\"}\n{\"atMs\":1794374743907,\"operation\":\"location\"}\n{\"atMs\":1794374748416,\"operation\":\"fixture_notify\"}\n{\"atMs\":1794374751125,\"operation\":\"notifications\"}\n{\"atMs\":1794374870626,\"operation\":\"stop\"}\n{\"atMs\":1794375225681,\"operation\":\"notifications\"}\n{\"atMs\":1794375226285,\"operation\":\"fixture_notify\"}\n{\"atMs\":1794375227726,\"operation\":\"stop\"}\n{\"atMs\":1794375309495,\"operation\":\"notifications\"}\n{\"atMs\":1794375310115,\"operation\":\"stop\"}\n{\"atMs\":1794375335716,\"operation\":\"notifications\"}\n{\"atMs\":1794375336214,\"operation\":\"fixture_notify\"}\n{\"atMs\":1794375337422,\"operation\":\"stop\"}\n{\"atMs\":1794375472060,\"operation\":\"notifications\"}\n{\"atMs\":1794375472588,\"operation\":\"fixture_notify\"}\n{\"atMs\":1794375473941,\"operation\":\"notifications\"}\n{\"atMs\":1794375474121,\"operation\":\"fixture_notify\"}\n{\"atMs\":1794375475448,\"operation\":\"notifications\"}\n{\"atMs\":1794375475735,\"operation\":\"stop\"}\n{\"atMs\":1794379772256,\"operation\":\"folder_request\"}\n{\"atMs\":1794379838650,\"operation\":\"files_write_read\"}\n{\"atMs\":1794379848668,\"operation\":\"capture_request\"}\n{\"atMs\":1794379898251,\"operation\":\"capture_result\"}\n{\"atMs\":1794379912827,\"operation\":\"capture_result\"}\n{\"atMs\":1794379933494,\"operation\":\"open_url\"}\n{\"atMs\":1794379964249,\"operation\":\"open_url\"}\n{\"atMs\":1794380251657,\"operation\":\"stop\"}\n{\"atMs\":1794381021773,\"operation\":\"folder_request\"}\n{\"atMs\":1794381186349,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794381186700,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794381186818,\"operation\":\"capture_request\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794381194077,\"operation\":\"capture_result\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794381194229,\"operation\":\"stop\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794381326444,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794381326958,\"operation\":\"capabilities\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794381327079,\"operation\":\"capture_request\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794381334433,\"operation\":\"capture_result\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794381334643,\"operation\":\"files_write_read\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794381334806,\"operation\":\"fixture_notify\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794381335625,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794381335816,\"operation\":\"open_url\",\"beforePackage\":\"dev.olea.m2.fixture\",\"afterPackage\":\"dev.olea.m2.fixture\"}\n{\"atMs\":1794381340232,\"operation\":\"stop\",\"beforePackage\":\"com.android.chrome\",\"afterPackage\":\"com.android.chrome\"}\n{\"atMs\":1794381872546,\"operation\":\"notifications\"}\n{\"atMs\":1794381985039,\"operation\":\"capabilities\"}\n{\"atMs\":1794382005779,\"operation\":\"notifications\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n{\"atMs\":1794382005975,\"operation\":\"files_write_read\",\"beforePackage\":\"dev.olea.m2.runtime\",\"afterPackage\":\"dev.olea.m2.runtime\"}\n",
+  "noModelPhoneEffects": true,
+  "fixtureLaunchAfter": "1794331642943 action=android.intent.action.MAIN\n1794331643809 action=dev.olea.fixture.SET_VALUE\n1794332253351 action=dev.olea.fixture.SET_VALUE\n1794332496365 action=dev.olea.fixture.SET_VALUE\n1794337008642 action=dev.olea.fixture.SET_VALUE\n1794337115124 action=dev.olea.fixture.SET_VALUE\n1794363735707 action=dev.olea.fixture.SET_VALUE\n1794373658883 action=dev.olea.fixture.SET_VALUE\n1794375226674 action=dev.olea.fixture.SET_VALUE callback=onCreate task=60 instance=235237402\n1794375472632 action=dev.olea.fixture.SET_VALUE callback=onNewIntent task=60 instance=235237402\n1794375474133 action=dev.olea.fixture.SET_VALUE callback=onNewIntent task=60 instance=235237402\n1794381334809 action=dev.olea.fixture.SET_VALUE callback=onNewIntent task=60 instance=235237402\n",
+  "fixtureLaunchUnchanged": true,
+  "captureModified": "1794381333",
+  "captureUnchanged": true,
+  "identities": [
+    {
+      "identity": {
+        "pid": 11789,
+        "parent": 11004,
+        "group": 485,
+        "tracer": 0,
+        "start": 1293951,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 11791,
+        "parent": 11789,
+        "group": 485,
+        "tracer": 0,
+        "start": 1293953,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 11801,
+        "parent": 11789,
+        "group": 485,
+        "tracer": 11789,
+        "start": 1293973,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 11816,
+        "parent": 11801,
+        "group": 11816,
+        "tracer": 11789,
+        "start": 1294011,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 12783,
+        "parent": 11004,
+        "group": 485,
+        "tracer": 0,
+        "start": 1308174,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 12785,
+        "parent": 12783,
+        "group": 485,
+        "tracer": 0,
+        "start": 1308176,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 12792,
+        "parent": 12783,
+        "group": 485,
+        "tracer": 12783,
+        "start": 1308187,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    },
+    {
+      "identity": {
+        "pid": 12803,
+        "parent": 12792,
+        "group": 12803,
+        "tracer": 12783,
+        "start": 1308228,
+        "uid": 10216
+      },
+      "observation": "ABSENT"
+    }
+  ],
+  "allRecordedIdentitiesAbsent": true,
+  "modelNativeCleanup": {
+    "timedOut": false,
+    "exitCode": 1,
+    "rootExitObserved": true,
+    "cleanup": {
+      "owned": [
+        {
+          "pid": 11789,
+          "parent": 11004,
+          "group": 485,
+          "tracer": 0,
+          "start": 1293951,
+          "uid": 10216
+        },
+        {
+          "pid": 11791,
+          "parent": 11789,
+          "group": 485,
+          "tracer": 0,
+          "start": 1293953,
+          "uid": 10216
+        },
+        {
+          "pid": 11801,
+          "parent": 11789,
+          "group": 485,
+          "tracer": 11789,
+          "start": 1293973,
+          "uid": 10216
+        },
+        {
+          "pid": 11816,
+          "parent": 11801,
+          "group": 11816,
+          "tracer": 11789,
+          "start": 1294011,
+          "uid": 10216
+        }
+      ],
+      "remaining": [],
+      "faults": [],
+      "rootExitObserved": true,
+      "trackedExitVerified": true,
+      "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+    }
+  },
+  "historical": [
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/config.toml",
+      "expected": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "actual": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/.tmp/plugins/plugins/plugin-eval/fixtures/observed-usage/responses.jsonl",
+      "expected": "dcd1fda00084818e63c598eee7f7ac03ea82820a7b443a985b6035fa98eeae4b",
+      "actual": "dcd1fda00084818e63c598eee7f7ac03ea82820a7b443a985b6035fa98eeae4b",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-45-10-01a1c6c7-4363-7b50-812f-5ab661da9101.jsonl",
+      "expected": "658ae111b3c8eab4673f3ec9c804d65844188a4eb89e4ca7ea9551572c8c8619",
+      "actual": "658ae111b3c8eab4673f3ec9c804d65844188a4eb89e4ca7ea9551572c8c8619",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace/combined-value.txt",
+      "expected": "b37255587c561c067ca65f93b51f971093af448b655d0aeb66a9af1684f51f8a",
+      "actual": "b37255587c561c067ca65f93b51f971093af448b655d0aeb66a9af1684f51f8a",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/config.toml",
+      "expected": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "actual": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+      "expected": "345b0884b097ec53e8fad3431de2b5f47d59b32a5212557227777869e4d7d284",
+      "actual": "345b0884b097ec53e8fad3431de2b5f47d59b32a5212557227777869e4d7d284",
+      "equal": true
+    },
+    {
+      "path": "files/rootfs/workspace/sentinel",
+      "expected": "d098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2",
+      "actual": "d098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2",
+      "equal": true
+    }
+  ],
+  "finalSessionHashes": "db5fe1f770794e69fa187c473414dd830a51c2e770ada0f86e61cc04e3780e31  files/rootfs/workspace/m3-pi-final-seven-01-state/m2_9221203f0fe1b2c5c9b3eb570ca835e7/2026-11-11T07-28-00-550Z_01a1c981-aa24-758f-b122-236fa031c7ac.jsonl\r\n79cbab6d3fc5dba7379549509ef6bdf3c21b8d2930e36a71fc62cb178c19e54f  files/rootfs/workspace/m3-pi-final-seven-01-state/m2_9221203f0fe1b2c5c9b3eb570ca835e7/resume.json\r\n",
+  "stop": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794382269546",
+      "ok": true,
+      "result": {
+        "stopped": true
+      }
+    }
+  },
+  "accessibilityRestore": "Deleted 1 rows\r\n",
+  "capabilities": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": null,
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "projection": "MEDIA PROJECTION MANAGER (dumpsys media_projection)\r\nMedia Projection: \r\nnull\r\n",
+  "accessibility": "null\r\n0\r\n",
+  "listener": "com.google.android.as/com.google.android.apps.miphone.aiai.common.notification.service.AiAiNotificationListenerService:dev.olea.m2.runtime/dev.olea.spike.FixtureNotifications:com.google.android.apps.nexuslauncher/com.android.launcher3.notification.NotificationListener\r\n",
+  "uriGrants": "  * UID 10216 holds:\r\n    UriPermission{62f14cc content://com.android.externalstorage.documents/tree/primary%3ADocuments%2FOleaM3 [user 0] [prefix]}\r",
+  "permissions": "        android.permission.POST_NOTIFICATIONS: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r\n        android.permission.ACCESS_FINE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r\n        android.permission.ACCESS_COARSE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r",
+  "uidInventory": [
+    "10217  7596   485 dev.olea.m2.fixture\r",
+    "10216 11004   485 dev.olea.m2.runtime\r"
+  ],
+  "protectedModes": "600 files/rootfs/run/olea-provider.json\r\n600 files/bridge-token\r\n600 files/bridge-config.json\r\n",
+  "budget": {
+    "globalConsumed": 8,
+    "total": 8,
+    "allocated": 0,
+    "unallocated": 0,
+    "remaining": 0,
+    "explicitRetries": 0,
+    "fallbacks": 0,
+    "replays": 0,
+    "httpRequests": null,
+    "billing": "unknown",
+    "zeroReportedUsageNotProofOfZeroRemoteBilling": true
+  },
+  "preSubmissionFailures": [
+    "Listener nonempty: preserved artifacts, bounded host refresh and actual folder reselection; no final selected-folder loss at submission",
+    "Folder request transport uncertainty during restart: snapshot showed no picker; distinct authorized native button selected/granted folder, no provider read yet",
+    "First final preflight Accessibilityfalse; explicitly re-enabled without further restart then readiness passed",
+    "Initial local consent observer refused MSYS-converted scope argument before any device action; relaunched with exact path conversion disabled before submission"
+  ],
+  "safetyAssertions": {
+    "noModelPhoneEffects": true,
+    "fixtureUnchanged": true,
+    "captureUnchanged": true,
+    "historicalUnchanged": true,
+    "identitiesAbsent": true,
+    "phoneDisabled": true,
+    "backendStopped": true
+  }
+}

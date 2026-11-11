@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-11T07:25:03.419Z",
+  "reason": "Nonempty prior direct listener prerequisite; preserve artifacts and reselect actual folder after bounded readiness refresh, no inference",
+  "capture": "2e78828d76994a77771f67f9e82001c95fc3f277349b5616af3cb9f9d3d21427  files/capture.png\r\n",
+  "files": "total 16\r\n-rw-rw---- 1 u0_a194 media_rw 44 2026-11-11 14:50 olea-fixture-1794379838267.txt\r\n-rw-rw---- 1 u0_a194 media_rw 47 2026-11-11 15:15 olea-fixture-1794381334531.txt\r\n",
+  "flag": "",
+  "refresh": "Starting: Intent { flg=0x18000000 cmp=dev.olea.m2.runtime/dev.olea.spike.MainActivity }\r\n"
+}

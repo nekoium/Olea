@@ -1,0 +1,100 @@
+{
+  "attemptId": "m3-pi-final-seven-01",
+  "context": "android-app",
+  "kind": "phone-categories",
+  "startedAt": "2026-11-11T07:27:54.689Z",
+  "status": "fail",
+  "allocationId": "m3-pi-final-seven-01",
+  "directReceipt": "final-seven-readonly-correction-a01.json;final-seven-registration-a01.json;final-pi-preflight-a01.json",
+  "provider": {
+    "topLevelPrompts": 1,
+    "toolRounds": 1,
+    "observedUsage": {
+      "input": 0,
+      "output": 0,
+      "cacheRead": 0,
+      "cacheWrite": 0
+    },
+    "httpRequests": null,
+    "remoteBilling": "unknown",
+    "strictTokenCap": "unsupported/not established",
+    "automaticRetries": false
+  },
+  "limits": {
+    "initMs": 30000,
+    "turnMs": 120000,
+    "idleMs": 45000,
+    "frameBytes": 262144,
+    "retainedDiagnosticBytes": 1048576,
+    "eventCount": 4096,
+    "maxToolRounds": 12
+  },
+  "tools": [],
+  "toolEvidence": [],
+  "providerFailures": [
+    {
+      "classification": "provider_transport",
+      "stopReason": "error",
+      "atMs": 4009
+    }
+  ],
+  "faults": [],
+  "assertions": [],
+  "events": 16,
+  "timings": {
+    "firstEventMs": 17,
+    "firstTextMs": null,
+    "maxEventGapMs": 2224
+  },
+  "modelChildExecution": "not_independently_proved_by_fresh_runner_rerun",
+  "noAutomaticReplay": true,
+  "sourceSha256": "2e14c3b51fdb6db2366a74bbca04e96fd36b718a706ad9e42588e4785f437f90",
+  "registration": {
+    "reason": "startup",
+    "registeredPhoneTools": [
+      "phone_capabilities",
+      "phone_open_url",
+      "phone_files_write_read",
+      "phone_notifications",
+      "phone_fixture_notify",
+      "phone_capture_request",
+      "phone_capture_result"
+    ],
+    "active": [
+      "phone_capabilities",
+      "phone_open_url",
+      "phone_files_write_read",
+      "phone_notifications",
+      "phone_fixture_notify",
+      "phone_capture_request",
+      "phone_capture_result"
+    ],
+    "maxNativeCalls": 7
+  },
+  "processBefore": {
+    "status": "observed",
+    "pid": 11816,
+    "state": "S",
+    "ppid": 11801,
+    "startTime": "1294011",
+    "cpuTicks": 306,
+    "rssPages": 35764,
+    "realUid": 10216,
+    "rssKiB": 143056
+  },
+  "turnWallMs": 4057,
+  "modelChildObserver": {
+    "status": "observed",
+    "path": "/workspace/m3-pi-final-seven-01.json.process-observer.json",
+    "sha256": "b29b07ec016d52ffcec07e45ab70f8b2c4818ec5f94a981c2a69ee7a03188261",
+    "interval": "100ms requested; actual timestamps retained",
+    "causality": "Owner must correlate Pi-rooted ancestry with tool interval; missing samples leave child causality untested."
+  },
+  "failure": "required_phone_tool_not_observed",
+  "processAfter": {
+    "status": "absent",
+    "pid": 11816
+  },
+  "endedAt": "2026-11-11T07:28:06.382Z",
+  "diagnosticLimit": "Only bounded metadata/hashes retained; no raw tool/provider text. Fresh independent runner child proves behavior, not model process causation."
+}

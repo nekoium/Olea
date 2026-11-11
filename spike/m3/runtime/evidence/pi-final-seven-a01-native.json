@@ -1,0 +1,117 @@
+{
+  "attempt": "m3-pi-final-seven-a01",
+  "startedAtMs": 1794382074110,
+  "package": "dev.olea.m2.runtime",
+  "hostPid": 11004,
+  "hostRealUid": 10216,
+  "hostDomain": "u:r:untrusted_app:s0:c216,c256,c512,c768\u0000",
+  "hostStat": "11004 (olea.m2.runtime) R 485 485 0 0 -1 4194624 15168 0 1 0 72 398 0 0 10 -10 23 0 1276873 16818315264 41242 18446744073709551615 97099755847680 97099755852080 140731399976128 0 0 0 4612 1 1073775864 0 0 0 17 2 0 0 0 0 0 97099755880448 97099755880472 97100348243968 140731399982015 140731399982114 140731399982114 140731399987166 0",
+  "targetSdk": 36,
+  "androidApi": 36,
+  "abis": "x86_64,arm64-v8a",
+  "nativeLibraryDir": "\/data\/app\/~~ammgHUMuH7wv_oEJpJjvWw==\/dev.olea.m2.runtime-uwk0BkbrOVi7taHV7w0bkw==\/lib\/x86_64",
+  "childPid": null,
+  "deadlineSeconds": 210,
+  "ownershipCleanup": {
+    "owned": [
+      {
+        "pid": 11789,
+        "parent": 11004,
+        "group": 485,
+        "tracer": 0,
+        "start": 1293951,
+        "uid": 10216
+      },
+      {
+        "pid": 11791,
+        "parent": 11789,
+        "group": 485,
+        "tracer": 0,
+        "start": 1293953,
+        "uid": 10216
+      },
+      {
+        "pid": 11801,
+        "parent": 11789,
+        "group": 485,
+        "tracer": 11789,
+        "start": 1293973,
+        "uid": 10216
+      },
+      {
+        "pid": 11816,
+        "parent": 11801,
+        "group": 11816,
+        "tracer": 11789,
+        "start": 1294011,
+        "uid": 10216
+      }
+    ],
+    "remaining": [],
+    "faults": [],
+    "rootExitObserved": true,
+    "trackedExitVerified": true,
+    "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+  },
+  "rootExitObserved": true,
+  "inheritedPipesAfterJoin": false,
+  "timedOut": false,
+  "exitCode": 1,
+  "stdout": "{\"attemptId\":\"m3-pi-final-seven-01\",\"status\":\"fail\",\"failure\":\"required_phone_tool_not_observed\"}\n",
+  "stderr": "WARNING: linker: Warning: failed to find generated linker configuration from \"\/linkerconfig\/ld.config.txt\"\n",
+  "stdoutObservedBytes": 98,
+  "stderrObservedBytes": 107,
+  "stdoutRetainedBytes": 98,
+  "stderrRetainedBytes": 107,
+  "outputTruncated": false,
+  "drainersStillAlive": false,
+  "stdoutDrainFault": null,
+  "stderrDrainFault": null,
+  "descendantExitVerified": true,
+  "timeoutCleanupLimit": "Bounded tracked numeric UID\/starttime cleanup; unseen forks require independent observation",
+  "finalOwnershipCleanup": {
+    "owned": [
+      {
+        "pid": 11789,
+        "parent": 11004,
+        "group": 485,
+        "tracer": 0,
+        "start": 1293951,
+        "uid": 10216
+      },
+      {
+        "pid": 11791,
+        "parent": 11789,
+        "group": 485,
+        "tracer": 0,
+        "start": 1293953,
+        "uid": 10216
+      },
+      {
+        "pid": 11801,
+        "parent": 11789,
+        "group": 485,
+        "tracer": 11789,
+        "start": 1293973,
+        "uid": 10216
+      },
+      {
+        "pid": 11816,
+        "parent": 11801,
+        "group": 11816,
+        "tracer": 11789,
+        "start": 1294011,
+        "uid": 10216
+      }
+    ],
+    "remaining": [],
+    "faults": [],
+    "rootExitObserved": true,
+    "trackedExitVerified": true,
+    "limit": "Finite 100ms ownership snapshots; unseen forks\/whole-service death require independent observation"
+  },
+  "endedAtMs": 1794382087691,
+  "cancelRequested": false,
+  "launchIdle": true,
+  "cleanupVerified": true
+}

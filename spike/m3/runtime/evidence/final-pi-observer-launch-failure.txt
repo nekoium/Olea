@@ -1,0 +1,8 @@
+file:///C:/Users/Aria/orca/workspaces/Olea/m3-native-phone/spike/m3/runtime/watch-final-capture.mjs:8
+if(!/^[a-z0-9-]+$/.test(attempt??'')||!/^\/workspace\/[a-z0-9._/-]+\.json$/.test(readyPath??'')||readyPath.includes('..'))throw Error('explicit_public_observer_scope_required');
+                                                                                                                                ^
+
+Error: explicit_public_observer_scope_required
+    at file:///C:/Users/Aria/orca/workspaces/Olea/m3-native-phone/spike/m3/runtime/watch-final-capture.mjs:8:129
+
+Node.js v24.20.0

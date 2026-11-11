@@ -1,0 +1,13 @@
+{
+  "allocationId": "m3-pi-final-seven-01",
+  "at": "2026-11-11T07:27:54.261Z",
+  "globalBefore": 7,
+  "allocated": 1,
+  "unallocated": 0,
+  "topLevelSubmittedAtClaim": 0,
+  "retriesFallbackReplays": 0,
+  "claim": "created_before_provider_read",
+  "keyEqualsAuthorizedRoot": true,
+  "endpointEquals": true,
+  "status": "claimed_and_ready"
+}
