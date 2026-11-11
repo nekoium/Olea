@@ -1,0 +1,387 @@
+{
+  "sourceCommit": "c4facc7",
+  "assessedReceipts": [
+    {
+      "attemptId": "m3-active-backend-death",
+      "caseId": "lifecycle.backend-death",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T04:56:21.112Z",
+      "endedAt": "2026-11-11T04:59:48.019Z",
+      "summary": "Active shared Node backend PID5252/start384753 was exact UID/start-rechecked and SIGKILLed after STARTED marker; native reported backendRunning=false while phone remained enabled. Subsequent whole-app interruption settled six observed identities. Combined recovery only; no autonomous backend restart.",
+      "artifacts": [
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-a01.json",
+          "sha256": "2d4ea5fb126788fbf8bee66ee41839b6770a3837867145c8822ec5002be58ed3"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/active-recovery.mjs",
+          "sha256": "a32d8ea23abfc4028f6b18e4c288c8f090e6396434372b492158540e410d9f3d"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-development-setup-a01.json",
+          "sha256": "7a26b038bfa1699a29e4e326cc8d157321c2b72efd5785bb532113d2817226a2"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-new-session-after.json",
+          "sha256": "d99cb3b40b0382e9880d096e1b9f903a4d2aa0e713079e87b2d94f703f185d14"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/followup-final-state-a01.json",
+          "sha256": "f08009ddd0ca0cca38cd3a807064d9f470d64c131687d47eb9ef7a7ebd5c4fca"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "work_started_before_exact_backend_kill",
+          "independent": true,
+          "passed": true
+        },
+        {
+          "name": "backend_dead_observed",
+          "independent": true,
+          "passed": true
+        },
+        {
+          "name": "six_original_identities_absent",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "c4facc7",
+        "installedAppSha256": "594484f65756346b845ce2087181fd776b2dc7ce20abd76011a6015d8d223728",
+        "installedTestSha256": "910ee7c82b6e0e0011c4aeb75ba6d51d88b7836e3ed1f9656b5a1bf2e916fafe",
+        "licenseLimit": "Original MIT tooling; existing third-party licenses unchanged."
+      },
+      "limits": [
+        "Combined explicit backend SIGKILL then whole-app force-stop/restart; no autonomous backend-only restart.",
+        "Historical seven-file hashes only; fresh Pi session lacks before-hash.",
+        "Original scanner ESRCH/trackedExitVerified=false retained; registration is not generic cleanup."
+      ]
+    },
+    {
+      "attemptId": "m3-active-app-death",
+      "caseId": "lifecycle.whole-app-death",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T04:56:21.112Z",
+      "endedAt": "2026-11-11T04:59:48.019Z",
+      "summary": "While deterministic Pi bash/sleep work was active after backend death, explicit whole-app force-stop/restart disabled phone/backend, independently removed original host/PRoot/backend/Pi/bash/sleep identities and prevented delayed effect after20s.",
+      "artifacts": [
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-a01.json",
+          "sha256": "2d4ea5fb126788fbf8bee66ee41839b6770a3837867145c8822ec5002be58ed3"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/active-recovery.mjs",
+          "sha256": "a32d8ea23abfc4028f6b18e4c288c8f090e6396434372b492158540e410d9f3d"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-development-setup-a01.json",
+          "sha256": "7a26b038bfa1699a29e4e326cc8d157321c2b72efd5785bb532113d2817226a2"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-new-session-after.json",
+          "sha256": "d99cb3b40b0382e9880d096e1b9f903a4d2aa0e713079e87b2d94f703f185d14"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/followup-final-state-a01.json",
+          "sha256": "f08009ddd0ca0cca38cd3a807064d9f470d64c131687d47eb9ef7a7ebd5c4fca"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "active_work_interrupted",
+          "independent": true,
+          "passed": true
+        },
+        {
+          "name": "disabled_explicit_restart",
+          "independent": true,
+          "passed": true
+        },
+        {
+          "name": "no_delayed_effect_after_full_window",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "c4facc7",
+        "installedAppSha256": "594484f65756346b845ce2087181fd776b2dc7ce20abd76011a6015d8d223728",
+        "installedTestSha256": "910ee7c82b6e0e0011c4aeb75ba6d51d88b7836e3ed1f9656b5a1bf2e916fafe",
+        "licenseLimit": "Original MIT tooling; existing third-party licenses unchanged."
+      },
+      "limits": [
+        "Combined explicit backend SIGKILL then whole-app force-stop/restart; no autonomous backend-only restart.",
+        "Historical seven-file hashes only; fresh Pi session lacks before-hash.",
+        "Original scanner ESRCH/trackedExitVerified=false retained; registration is not generic cleanup."
+      ]
+    },
+    {
+      "attemptId": "m3-active-no-replay",
+      "caseId": "phone.no-replay",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T04:56:21.112Z",
+      "endedAt": "2026-11-11T04:59:48.019Z",
+      "summary": "STARTED marker proves deterministic command began; after combined backend/app interruption no command replay, oracle unchanged and delayed marker absent beyond20s. Unknown in-flight terminal delivery remains unknown; no model replay/resume inference.",
+      "artifacts": [
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-a01.json",
+          "sha256": "2d4ea5fb126788fbf8bee66ee41839b6770a3837867145c8822ec5002be58ed3"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/active-recovery.mjs",
+          "sha256": "a32d8ea23abfc4028f6b18e4c288c8f090e6396434372b492158540e410d9f3d"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-development-setup-a01.json",
+          "sha256": "7a26b038bfa1699a29e4e326cc8d157321c2b72efd5785bb532113d2817226a2"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-new-session-after.json",
+          "sha256": "d99cb3b40b0382e9880d096e1b9f903a4d2aa0e713079e87b2d94f703f185d14"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/followup-final-state-a01.json",
+          "sha256": "f08009ddd0ca0cca38cd3a807064d9f470d64c131687d47eb9ef7a7ebd5c4fca"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "actual_started_marker",
+          "independent": true,
+          "passed": true
+        },
+        {
+          "name": "oracle_unchanged",
+          "independent": true,
+          "passed": true
+        },
+        {
+          "name": "no_late_effect",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "c4facc7",
+        "installedAppSha256": "594484f65756346b845ce2087181fd776b2dc7ce20abd76011a6015d8d223728",
+        "installedTestSha256": "910ee7c82b6e0e0011c4aeb75ba6d51d88b7836e3ed1f9656b5a1bf2e916fafe",
+        "licenseLimit": "Original MIT tooling; existing third-party licenses unchanged."
+      },
+      "limits": [
+        "Combined explicit backend SIGKILL then whole-app force-stop/restart; no autonomous backend-only restart.",
+        "Historical seven-file hashes only; fresh Pi session lacks before-hash.",
+        "Original scanner ESRCH/trackedExitVerified=false retained; registration is not generic cleanup."
+      ]
+    },
+    {
+      "attemptId": "m3-active-hashes",
+      "caseId": "preserve.recovery-hashes",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T04:56:21.112Z",
+      "endedAt": "2026-11-11T04:59:48.019Z",
+      "summary": "Seven historical canonical config/transcript/combined-value/sentinel hashes identical before/after active interruption. Fresh deterministic session has only a post-interruption resume.json hash; its first read-only diagnostic quoting failure retained, no fresh-session preservation credit.",
+      "artifacts": [
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-a01.json",
+          "sha256": "2d4ea5fb126788fbf8bee66ee41839b6770a3837867145c8822ec5002be58ed3"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/active-recovery.mjs",
+          "sha256": "a32d8ea23abfc4028f6b18e4c288c8f090e6396434372b492158540e410d9f3d"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-development-setup-a01.json",
+          "sha256": "7a26b038bfa1699a29e4e326cc8d157321c2b72efd5785bb532113d2817226a2"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-new-session-after.json",
+          "sha256": "d99cb3b40b0382e9880d096e1b9f903a4d2aa0e713079e87b2d94f703f185d14"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/followup-final-state-a01.json",
+          "sha256": "f08009ddd0ca0cca38cd3a807064d9f470d64c131687d47eb9ef7a7ebd5c4fca"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "seven_exact_preexisting_hashes_preserved",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "c4facc7",
+        "installedAppSha256": "594484f65756346b845ce2087181fd776b2dc7ce20abd76011a6015d8d223728",
+        "installedTestSha256": "910ee7c82b6e0e0011c4aeb75ba6d51d88b7836e3ed1f9656b5a1bf2e916fafe",
+        "licenseLimit": "Original MIT tooling; existing third-party licenses unchanged."
+      },
+      "limits": [
+        "Combined explicit backend SIGKILL then whole-app force-stop/restart; no autonomous backend-only restart.",
+        "Historical seven-file hashes only; fresh Pi session lacks before-hash.",
+        "Original scanner ESRCH/trackedExitVerified=false retained; registration is not generic cleanup."
+      ]
+    },
+    {
+      "attemptId": "m3-active-protected",
+      "caseId": "preserve.credential-preservation",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T04:56:21.112Z",
+      "endedAt": "2026-11-11T04:59:48.019Z",
+      "summary": "Owner-local protected provider/bridge byte equality persisted across active combined interruption; final modes600. No protected values or digests exported in new receipts.",
+      "artifacts": [
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-a01.json",
+          "sha256": "2d4ea5fb126788fbf8bee66ee41839b6770a3837867145c8822ec5002be58ed3"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/active-recovery.mjs",
+          "sha256": "a32d8ea23abfc4028f6b18e4c288c8f090e6396434372b492158540e410d9f3d"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-development-setup-a01.json",
+          "sha256": "7a26b038bfa1699a29e4e326cc8d157321c2b72efd5785bb532113d2817226a2"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/active-recovery-new-session-after.json",
+          "sha256": "d99cb3b40b0382e9880d096e1b9f903a4d2aa0e713079e87b2d94f703f185d14"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/followup-final-state-a01.json",
+          "sha256": "f08009ddd0ca0cca38cd3a807064d9f470d64c131687d47eb9ef7a7ebd5c4fca"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "owner_local_protected_equality",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "c4facc7",
+        "installedAppSha256": "594484f65756346b845ce2087181fd776b2dc7ce20abd76011a6015d8d223728",
+        "installedTestSha256": "910ee7c82b6e0e0011c4aeb75ba6d51d88b7836e3ed1f9656b5a1bf2e916fafe",
+        "licenseLimit": "Original MIT tooling; existing third-party licenses unchanged."
+      },
+      "limits": [
+        "Combined explicit backend SIGKILL then whole-app force-stop/restart; no autonomous backend-only restart.",
+        "Historical seven-file hashes only; fresh Pi session lacks before-hash.",
+        "Original scanner ESRCH/trackedExitVerified=false retained; registration is not generic cleanup."
+      ]
+    },
+    {
+      "attemptId": "m3-active-registration",
+      "caseId": "codex.tool-registration",
+      "context": "android-app",
+      "mode": "direct",
+      "status": "pass",
+      "startedAt": "2026-11-11T04:56:21.112Z",
+      "endedAt": "2026-11-11T04:59:48.019Z",
+      "summary": "Actual stock Codex0.167 full-access app-server registered exactly14 narrow phone tools without inference or phone effects using synthetic port9 bridge. Native root exited but ESRCH scanner fault retained cleanupVerified=false/launchIdle=false; later independent20identity absence is separate, not clean generic supervision.",
+      "artifacts": [
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/mcp-fourteen-a01.json",
+          "sha256": "bb01413e4445257e383e4688c17085ff08e487d2d791cd7cf6a1eb2986b8770b"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/mcp-fourteen-a01-native.json",
+          "sha256": "387031cb734c17d9fef695367b386147a8109a7bd16256c9e2c64b7edc3d9d55"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/followup-final-state-a01.json",
+          "sha256": "f08009ddd0ca0cca38cd3a807064d9f470d64c131687d47eb9ef7a7ebd5c4fca"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/evidence/mcp-fourteen-deployed-runner.sha256",
+          "sha256": "f2f1d192305ca768a8c299334e3370865eb1d6c6b68ef7dfac709102b580dfc6"
+        },
+        {
+          "path": "git:c4facc7:spike/m3/runtime/mcp-fourteen-a01.sh",
+          "sha256": "32774333053fd956c7f8ce964f4526bdaeda9f4777f88f59420e975117c0e72c"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "exact_fourteen_stock_registered_tools",
+          "independent": true,
+          "passed": true
+        }
+      ],
+      "provider": {
+        "topLevelPrompts": 0,
+        "modelRequests": 0
+      },
+      "provenance": {
+        "sourceCommit": "c4facc7",
+        "installedAppSha256": "594484f65756346b845ce2087181fd776b2dc7ce20abd76011a6015d8d223728",
+        "installedTestSha256": "910ee7c82b6e0e0011c4aeb75ba6d51d88b7836e3ed1f9656b5a1bf2e916fafe",
+        "licenseLimit": "Original MIT tooling; existing third-party licenses unchanged."
+      },
+      "limits": [
+        "Combined explicit backend SIGKILL then whole-app force-stop/restart; no autonomous backend-only restart.",
+        "Historical seven-file hashes only; fresh Pi session lacks before-hash.",
+        "Original scanner ESRCH/trackedExitVerified=false retained; registration is not generic cleanup."
+      ],
+      "execution": {
+        "accessMode": "full-access",
+        "filesystemIsolation": false,
+        "nativeTrackedExitVerified": false,
+        "independentAbsentIdentities": 20
+      }
+    }
+  ],
+  "failedStartGuard": {
+    "artifact": {
+      "path": "git:c4facc7:spike/m3/runtime/evidence/instrumentation-a03-independent.json",
+      "sha256": "bd419ee13f30a90c66ed70def0e8943bc4cae29a8d0f79b8a165139b3c70ce0d"
+    },
+    "result": "Android production classifier exercised with false-wait Process fixture; no real child created, empty observation list proves no process exit"
+  },
+  "scanner": {
+    "faults": [
+      "read failed: ESRCH (No such process)"
+    ],
+    "trackedExitVerified": false,
+    "independentAbsent": 20,
+    "genericCleanupPromotion": false
+  },
+  "budget": {
+    "consumed": 5,
+    "allocatedSeparate": 1,
+    "allocationId": "m3-codex-location-notification-01",
+    "unallocated": 2,
+    "separateAllocationConsumption": "not assessed; await receipt"
+  }
+}
