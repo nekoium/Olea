@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-11T08:38:36.337Z",
+  "selectedExistingFilesUnchanged": 4,
+  "newPrerequisiteFileCount": 1,
+  "priorPiSessionHashes": "6c096e3965a133644cb65dc6e3dddff2c481c38de891a81eb48fa21887aef606  files/rootfs/workspace/m3-pi-final-seven-02-state/m2_204a30734b03aa49c10ca0241a11175c/2026-11-11T07-43-35-529Z_01a1c98f-ee67-76d6-a84f-07c8d66eb4db.jsonl\r\n925113a733b1aff2452710767da72d69119b8b13170fb6a2df6c34d099a0eed4  files/rootfs/workspace/m3-pi-final-seven-02-state/m2_204a30734b03aa49c10ca0241a11175c/resume.json\r\n",
+  "priorPiSessionUnchanged": true,
+  "browserSignedOut": true,
+  "usageCrashReporting": false,
+  "urlReporting": false,
+  "browserDestination": "https://example.org/?olea=m5-prerequisite-a01",
+  "captureIndependentVisualInspection": {
+    "method": "read exact capture-prerequisite-a01.png",
+    "text": [
+      "Olea harmless fixture",
+      "Opened from launcher"
+    ],
+    "background": "blue",
+    "modelImageDelivery": false,
+    "modelVisualInterpretation": false
+  },
+  "status": "pass"
+}

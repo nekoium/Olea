@@ -1,0 +1,500 @@
+{
+  "at": "2026-11-11T08:37:41.337Z",
+  "modelRequests": 0,
+  "accessibility": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794386261338",
+      "ok": true,
+      "result": {
+        "package": "com.android.chrome",
+        "nodes": [
+          {
+            "nodeId": "dadd72c3:0",
+            "clickable": false,
+            "className": "android.widget.FrameLayout",
+            "bounds": [
+              0,
+              0,
+              1080,
+              2400
+            ],
+            "depth": 0
+          },
+          {
+            "nodeId": "dadd72c3:1",
+            "clickable": false,
+            "className": "android.widget.ScrollView",
+            "bounds": [
+              0,
+              118,
+              1080,
+              2337
+            ],
+            "depth": 1
+          },
+          {
+            "nodeId": "dadd72c3:2",
+            "description": "Navigate up",
+            "clickable": true,
+            "className": "android.widget.ImageButton",
+            "bounds": [
+              0,
+              118,
+              147,
+              265
+            ],
+            "depth": 2
+          },
+          {
+            "nodeId": "dadd72c3:3",
+            "text": "Google services",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              157,
+              149,
+              584,
+              234
+            ],
+            "depth": 2
+          },
+          {
+            "nodeId": "dadd72c3:4",
+            "description": "Help & feedback",
+            "viewId": "com.android.chrome:id/menu_id_targeted_help",
+            "clickable": true,
+            "className": "android.widget.Button",
+            "bounds": [
+              953,
+              128,
+              1080,
+              254
+            ],
+            "depth": 2
+          },
+          {
+            "nodeId": "dadd72c3:5",
+            "viewId": "com.android.chrome:id/recycler_view",
+            "clickable": false,
+            "className": "androidx.recyclerview.widget.RecyclerView",
+            "bounds": [
+              0,
+              265,
+              1080,
+              2337
+            ],
+            "depth": 2
+          },
+          {
+            "nodeId": "dadd72c3:6",
+            "clickable": true,
+            "className": "android.widget.LinearLayout",
+            "bounds": [
+              0,
+              265,
+              1080,
+              469
+            ],
+            "depth": 3
+          },
+          {
+            "nodeId": "dadd72c3:7",
+            "text": "Allow Chrome sign-in",
+            "viewId": "android:id/title",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              307,
+              451,
+              371
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:8",
+            "text": "Shows prompts to sign in to Chrome",
+            "viewId": "android:id/summary",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              371,
+              645,
+              427
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:9",
+            "viewId": "com.android.chrome:id/switchWidget",
+            "clickable": false,
+            "className": "android.widget.Switch",
+            "bounds": [
+              915,
+              304,
+              1024,
+              430
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:10",
+            "clickable": true,
+            "className": "android.widget.LinearLayout",
+            "bounds": [
+              0,
+              469,
+              1080,
+              773
+            ],
+            "depth": 3
+          },
+          {
+            "nodeId": "dadd72c3:11",
+            "text": "Help improve Chrome’s features and performance",
+            "viewId": "android:id/title",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              511,
+              859,
+              628
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:12",
+            "text": "Automatically sends usage statistics and crash reports to Google",
+            "viewId": "android:id/summary",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              628,
+              859,
+              731
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:13",
+            "viewId": "com.android.chrome:id/switchWidget",
+            "clickable": false,
+            "className": "android.widget.Switch",
+            "bounds": [
+              915,
+              558,
+              1024,
+              684
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:14",
+            "clickable": true,
+            "className": "android.widget.LinearLayout",
+            "bounds": [
+              0,
+              773,
+              1080,
+              977
+            ],
+            "depth": 3
+          },
+          {
+            "nodeId": "dadd72c3:15",
+            "text": "Make searches and browsing better",
+            "viewId": "android:id/title",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              815,
+              726,
+              879
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:16",
+            "text": "Sends URLs of pages you visit to Google",
+            "viewId": "android:id/summary",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              879,
+              716,
+              935
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:17",
+            "viewId": "com.android.chrome:id/switchWidget",
+            "clickable": false,
+            "className": "android.widget.Switch",
+            "bounds": [
+              915,
+              812,
+              1024,
+              938
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:18",
+            "clickable": true,
+            "className": "android.widget.LinearLayout",
+            "bounds": [
+              0,
+              977,
+              1080,
+              1322
+            ],
+            "depth": 3
+          },
+          {
+            "nodeId": "dadd72c3:19",
+            "text": "Improve search suggestions",
+            "viewId": "android:id/title",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              1019,
+              583,
+              1083
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:20",
+            "text": "When you type in the address bar or search box, Chrome sends what you type to your default search engine to get better suggestions. This is off in Incognito.",
+            "viewId": "android:id/summary",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              1083,
+              859,
+              1280
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:21",
+            "viewId": "com.android.chrome:id/switchWidget",
+            "clickable": false,
+            "className": "android.widget.Switch",
+            "bounds": [
+              915,
+              1086,
+              1024,
+              1212
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:22",
+            "clickable": true,
+            "className": "android.widget.LinearLayout",
+            "bounds": [
+              0,
+              1322,
+              1080,
+              1526
+            ],
+            "depth": 3
+          },
+          {
+            "nodeId": "dadd72c3:23",
+            "text": "Touch to Search",
+            "viewId": "android:id/title",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              1364,
+              354,
+              1428
+            ],
+            "depth": 4
+          },
+          {
+            "nodeId": "dadd72c3:24",
+            "text": "On",
+            "viewId": "android:id/summary",
+            "clickable": false,
+            "className": "android.widget.TextView",
+            "bounds": [
+              42,
+              1428,
+              91,
+              1484
+            ],
+            "depth": 4
+          }
+        ],
+        "truncated": false
+      }
+    }
+  },
+  "stop": {
+    "status": 200,
+    "body": {
+      "id": "m2-1794386261483",
+      "ok": true,
+      "result": {
+        "stopped": true
+      }
+    }
+  },
+  "disableAccessibility": "Deleted 1 rows\r\n",
+  "capabilities": {
+    "status": 200,
+    "body": {
+      "id": null,
+      "ok": true,
+      "result": {
+        "phoneEnabled": false,
+        "accessibility": false,
+        "targetSdk": 36,
+        "backendRunning": false,
+        "backendStopping": false,
+        "backendCleanup": {
+          "owned": [
+            {
+              "pid": 15954,
+              "parent": 15565,
+              "group": 485,
+              "tracer": 0,
+              "start": 1571685,
+              "uid": 10216
+            },
+            {
+              "pid": 15955,
+              "parent": 15954,
+              "group": 485,
+              "tracer": 0,
+              "start": 1571686,
+              "uid": 10216
+            },
+            {
+              "pid": 15962,
+              "parent": 15954,
+              "group": 485,
+              "tracer": 15954,
+              "start": 1571695,
+              "uid": 10216
+            },
+            {
+              "pid": 15963,
+              "parent": 15962,
+              "group": 485,
+              "tracer": 15954,
+              "start": 1571703,
+              "uid": 10216
+            }
+          ],
+          "remaining": [],
+          "faults": [],
+          "rootExitObserved": true,
+          "trackedExitVerified": true,
+          "limit": "Finite 100ms ownership snapshots; unseen forks/whole-service death require independent observation"
+        },
+        "operations": [
+          "capabilities",
+          "accessibility_tree",
+          "accessibility_click",
+          "global_action",
+          "swipe",
+          "open_url",
+          "fixture_action",
+          "location",
+          "files_write_read",
+          "notifications",
+          "capture_request",
+          "capture_result",
+          "folder_request",
+          "fixture_notify",
+          "stop"
+        ]
+      }
+    }
+  },
+  "projection": "MEDIA PROJECTION MANAGER (dumpsys media_projection)\r\nMedia Projection: \r\nnull\r\n",
+  "inventory": [
+    "10217  7596   485 dev.olea.m2.fixture\r",
+    "10216 15565   485 dev.olea.m2.runtime\r"
+  ],
+  "historical": [
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/config.toml",
+      "sha256": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "originalEquality": true,
+      "unchanged": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/.tmp/plugins/plugins/plugin-eval/fixtures/observed-usage/responses.jsonl",
+      "sha256": "dcd1fda00084818e63c598eee7f7ac03ea82820a7b443a985b6035fa98eeae4b",
+      "originalEquality": true,
+      "unchanged": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794336308686-9d540469/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-45-10-01a1c6c7-4363-7b50-812f-5ab661da9101.jsonl",
+      "sha256": "658ae111b3c8eab4673f3ec9c804d65844188a4eb89e4ca7ea9551572c8c8619",
+      "originalEquality": true,
+      "unchanged": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace/combined-value.txt",
+      "sha256": "b37255587c561c067ca65f93b51f971093af448b655d0aeb66a9af1684f51f8a",
+      "originalEquality": true,
+      "unchanged": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/config.toml",
+      "sha256": "230dc533030a4659140f8d6ccfee83f3d90b2ba867577c6e67d5bb5ec6758bb9",
+      "originalEquality": true,
+      "unchanged": true
+    },
+    {
+      "path": "files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/state/codex/case/home/sessions/2026/11/10/rollout-2026-11-10T18-57-42-01a1c6d2-bf9b-7670-a6c0-49be86a0f916.jsonl",
+      "sha256": "0a5b101f13c8974a79ac1a6308243d75b539da57c738d19f62e696b43463b4f0",
+      "originalEquality": false,
+      "unchanged": true
+    },
+    {
+      "path": "files/rootfs/workspace/sentinel",
+      "sha256": "d098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2",
+      "originalEquality": true,
+      "unchanged": true
+    }
+  ],
+  "captureHash": "c1ab3aa81f297db9a77ab715541982c19382346b02091e0405f3f7986948f51b  files/capture.png\r\n",
+  "selectedFiles": "total 40\r\n-rw-rw---- 1 u0_a194 media_rw 44 2026-11-11 14:50 olea-fixture-1794379838267.txt\r\n-rw-rw---- 1 u0_a194 media_rw 47 2026-11-11 15:15 olea-fixture-1794381334531.txt\r\n-rw-rw---- 1 u0_a194 media_rw 40 2026-11-11 15:26 olea-fixture-1794382005884.txt\r\n-rw-rw---- 1 u0_a194 media_rw 29 2026-11-11 15:42 olea-fixture-1794382968536.txt\r\n-rw-rw---- 1 u0_a194 media_rw 33 2026-11-11 16:34 olea-fixture-1794386061843.txt\r\ncaf8b0f93cd6973bd08ef2752e16adc5dd39e1fef6b5e27273a17709d5ced7b8  /sdcard/Documents/OleaM3/olea-fixture-1794379838267.txt\r\ncc64ecf5d97011e73684d86ae14553cee10fb369db7b28cdc3f0b486450ef2a4  /sdcard/Documents/OleaM3/olea-fixture-1794381334531.txt\r\n91367ee3ea6de28db33c152051f06b7c62fa09dd086f8860511ec9e04413e915  /sdcard/Documents/OleaM3/olea-fixture-1794382005884.txt\r\n0fe74a6fba8c57dfdf8f7086915c6ea5504edef2362289aba0a3b47d408a29d4  /sdcard/Documents/OleaM3/olea-fixture-1794382968536.txt\r\n7cfc9123871df786ff05c39970a690ac29b9a89f5dbd37785a394cb7fa2fb7a0  /sdcard/Documents/OleaM3/olea-fixture-1794386061843.txt\r\n",
+  "protectedModes": "600 files/rootfs/run/olea-provider.json\r\n600 files/bridge-token\r\n600 files/bridge-config.json\r\n",
+  "lease": {
+    "state": "RETAINED",
+    "owner": "c07b325c-fd1d-49d2-aaa2-abd4f3c02248",
+    "grant": "msg_f59cba7be0b2"
+  },
+  "inflight": {
+    "experiment": [],
+    "providerTurns": [],
+    "observers": []
+  },
+  "budget": {
+    "authorized": 9,
+    "consumed": 0,
+    "allocated": 0,
+    "unallocated": 9,
+    "historicalPreM4Consumed": 9,
+    "precedingM4Consumed": 0
+  },
+  "status": "settled_disabled"
+}

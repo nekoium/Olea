@@ -1,0 +1,10 @@
+{
+  "status": 200,
+  "body": {
+    "id": "m2-1794386076482",
+    "ok": true,
+    "result": {
+      "consentRequested": true
+    }
+  }
+}
