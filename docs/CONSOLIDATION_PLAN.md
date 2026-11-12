@@ -59,4 +59,14 @@ Successor handoff: preserve scope table, actual integrated commits, active task/
 
 ## Current progress
 
-Manager preparing first parallel batch. Baseline `eb1073a`. Existing untracked `.agents/`, `delegations/`, advisory HTML and `docs/ui/` belong to concurrent/previous activity and remain untouched. No current device owner assigned in this consolidation yet.
+Manager Run `run_3b684f9f9240`; scope checkpoint `8d25828` on baseline `eb1073a`. Three isolated Pi workers launched ready:
+
+| Track | Task / Dispatch | Worktree | Ownership |
+| --- | --- | --- | --- |
+| Native phone | `task_d0800acbb46f` / `ctx_0b8d16243e6e` | `C:/Users/Aria/orca/workspaces/Olea/core-phone` | New phone classes/resources + manifest |
+| Adapters | `task_e169df575b59` / `ctx_ac17c1a7c4f4` | `C:/Users/Aria/orca/workspaces/Olea/core-adapters` | `backend/` |
+| Registry | `task_690215dc1dda` / `ctx_4f0d45d85761` | `C:/Users/Aria/orca/workspaces/Olea/core-sessions` | New SessionStore class |
+
+Manager retains shared Activity/RuntimeService/Environment/runtime/integration ownership. Workers may not mutate device or submit provider tests. No device owner assigned in this consolidation yet. Worker lifecycle is report → integrate/check needed boundaries → release exact settled worker → preserve unique assets before any new disposable worktree removal. Orca delivers reports; no polling/watch loop.
+
+Existing untracked `.agents/`, `delegations/`, advisory HTML and `docs/ui/` belong to concurrent/previous activity and remain untouched. User explicitly confirmed all established approaches are agreed and routine confirmations are unnecessary. This manager has not reached the 400k usage budget; exact cumulative accounting is not yet exposed.
