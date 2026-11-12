@@ -2,7 +2,7 @@
 
 ## Current authority and reading order
 
-Read `docs/CORE_BUILD_HANDOFF.md` first for the approved maintained-core scope and current execution authority, then PRODUCT.md, ROADMAP.md, PROGRESS.md, TECH_STACK.md and PHONE_USE_TESTS.md. The newly assigned core builder may implement autonomously and use bounded workers. Parallel root discussion sessions remain open; do not stop or overwrite them.
+Read `docs/CONSOLIDATION_PLAN.md` first for the current user-authorized consolidation scope and workflow. The user approved carrying all established experimental methods into the maintained Android base, parallel workers, feature commits, lean temporary checks, and manager handoff before the 400k usage budget. Do not ask routine confirmations; escalate only crucial work-breaking decisions. Provider-backed Olea test spending remains frozen unless separately allocated. `docs/CORE_BUILD_HANDOFF.md` records the completed first-core assignment and architecture; its bounded stop-at-first-core limit is superseded by the consolidation instruction. Then read PRODUCT.md, ROADMAP.md, PROGRESS.md, TECH_STACK.md and PHONE_USE_TESTS.md. Parallel root discussion sessions remain open; do not stop or overwrite them.
 
 Documents under `docs/feasibility/`, `spike/` and the old FEASIBILITY_BRIEF.md describe historical experiments unless explicitly referenced for a current bounded task. Their instructions to launch teams/managers, continue checkpoints, allocate/refill budgets, resume workers or claim device ownership are superseded. They supply evidence and technical recipes, not current authority. Do not follow an older document's claim that it applies to future managers. The 112-case matrix is historical, not an all-green gate.
 
