@@ -255,8 +255,8 @@ class PhoneBridge(context: Context) : AutoCloseable {
                 val component = ComponentName.unflattenFromString(cooperatingComponent()) ?: error("COOPERATING_APP_REQUIRED_OPEN_PHONE_ACCESS")
                 val action = cooperatingAction(); check(action.isNotBlank()) { "COOPERATING_APP_ACTION_REQUIRED" }
                 val value = args.getString("value"); check(value.toByteArray(Charsets.UTF_8).size <= 256) { "VALUE_MAX_256_BYTES" }
-                @Suppress("DEPRECATION") val info = context.packageManager.getActivityInfo(component, 0)
-                check(info.exported && info.enabled && info.applicationInfo.enabled && component.packageName != context.packageName) { "COOPERATING_APP_EXPORTED_ACTIVITY_REQUIRED" }
+                check(component.packageName != context.packageName) { "COOPERATING_APP_MUST_BE_SEPARATE_APP" }
+                // Explicit launch works across package visibility limits; Android enforces export/permission checks.
                 context.startActivity(Intent(action).setComponent(component).putExtra("value", value).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP))
                 JSONObject().put("dispatched", true).put("component", component.flattenToString())
             }

@@ -29,6 +29,7 @@ class PhoneAccessibility : AccessibilityService() {
         val result = JSONArray()
         val generation = UUID.randomUUID().toString()
         var truncated = false
+        var remainingChildren = 600
         fun visit(node: AccessibilityNodeInfo, depth: Int) {
             val id = "$generation:${result.length()}"
             nodes[id] = node
@@ -39,7 +40,8 @@ class PhoneAccessibility : AccessibilityService() {
                 .put("className", node.className?.toString()?.take(200)).put("depth", depth)
                 .put("bounds", JSONArray(listOf(bounds.left, bounds.top, bounds.right, bounds.bottom))))
             for (i in 0 until node.childCount) {
-                if (result.length() >= 300 || depth >= 24) { truncated = true; break }
+                if (result.length() >= 300 || depth >= 24 || remainingChildren == 0) { truncated = true; break }
+                remainingChildren--
                 node.getChild(i)?.let { visit(it, depth + 1) }
             }
         }
