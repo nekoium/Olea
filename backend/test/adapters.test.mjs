@@ -61,6 +61,67 @@ test('workspace selection blocks realpath escapes, binds agent/workspace, and ke
   assert.equal((await f.backend.start('one', true, f.second)).state.resumed, true);
 });
 
+test('stop and close own pending Pi/Codex startup through settlement without late publication', { timeout: 15000 }, async t => {
+  const gates = [];
+  t.after(() => { for (const gate of gates) gate.resolve(); });
+  const f = await fixture(t);
+  const originalWorkspace = f.backend.workspace.bind(f.backend);
+  for (const method of ['start', 'startCodex']) {
+    const gate = Promise.withResolvers();
+    gates.push(gate);
+    f.backend.workspace = async (...args) => { await gate.promise; return originalWorkspace(...args); };
+    const started = f.backend[method]('early');
+    const rejected = assert.rejects(started, /start_cancelled/);
+    const stops = [f.backend.stop('early'), f.backend.stop('early')];
+    await assert.rejects(f.backend.start('early'), /already_running/);
+    gate.resolve();
+    await Promise.all([rejected, ...stops]);
+    assert.deepEqual(f.backend.status(), []);
+  }
+  f.backend.workspace = originalWorkspace;
+
+  // Hold the last asynchronous startup boundary with real fixture children alive.
+  const entered = Promise.withResolvers();
+  const release = Promise.withResolvers();
+  gates.push(release);
+  const originalSaveIdentity = f.backend.saveIdentity.bind(f.backend);
+  let arrivals = 0;
+  f.backend.saveIdentity = async (...args) => {
+    if (++arrivals === 2) entered.resolve();
+    await release.promise;
+    return originalSaveIdentity(...args);
+  };
+  const pi = f.backend.start('pi');
+  const codex = f.backend.startCodex('codex');
+  const rejected = [assert.rejects(pi, /start_cancelled/), assert.rejects(codex, /start_cancelled/)];
+  await entered.promise;
+  const pids = [f.events.find(event => event.record?.data?.pid)?.record.data.pid,
+    f.events.find(event => event.record?.method === 'olea/process')?.record.params.pid];
+  for (const pid of pids) { assert.equal(typeof pid, 'number'); process.kill(pid, 0); }
+  assert.deepEqual(f.backend.status(), []);
+  await assert.rejects(f.backend.start('third'), /session_limit/);
+  await assert.rejects(f.backend.startCodex('pi'), /already_running/);
+  let stopped = false;
+  const stops = Promise.all([f.backend.stop('pi'), f.backend.stop('pi'), f.backend.stop('codex'), f.backend.stop('codex')]).then(() => { stopped = true; });
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(stopped, false);
+  release.resolve();
+  await Promise.all([...rejected, stops]);
+  assert.deepEqual(f.backend.status(), []);
+  for (const pid of pids) assert.throws(() => process.kill(pid, 0), { code: 'ESRCH' });
+  await f.backend.stop('pi');
+  await f.backend.stop('codex');
+  const closingGate = Promise.withResolvers();
+  gates.push(closingGate);
+  f.backend.workspace = async (...args) => { await closingGate.promise; return originalWorkspace(...args); };
+  const closingStarts = [assert.rejects(f.backend.start('pi'), /backend_closed/), assert.rejects(f.backend.startCodex('codex'), /backend_closed/)];
+  const closing = [f.backend.close(), f.backend.close()];
+  closingGate.resolve();
+  await Promise.all([...closingStarts, ...closing]);
+  assert.deepEqual(f.backend.status(), []);
+  await assert.rejects(f.backend.start('pi'), /backend_closed/);
+});
+
 test('configured default remains usable without the Android workspace root on host', async t => {
   const f = await fixture(t);
   const backend = new Backend({ ...f.options, workspaceRoot: join(f.root, 'absent-root') }, () => {});

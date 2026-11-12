@@ -9,7 +9,7 @@ import { CodexSession, type CodexAccessMode } from './codex-session.js';
 export class Backend {
   private sessions = new Map<string, PiProcess>();
   private codexSessions = new Map<string, CodexSession>();
-  private starting = new Set<string>();
+  private starting = new Map<string, { cancelled: boolean; settled: Promise<void>; settle: () => void }>();
   private closed = false;
   private extension = fileURLToPath(new URL('../extensions/phone.ts', import.meta.url));
   constructor(private options: { entry: string; workspace: string; workspaceRoot?: string; stateDir: string; env?: NodeJS.ProcessEnv; codexEntry?: string; codexProviderPath?: string; codexModel?: string; codexAccessMode?: CodexAccessMode; bridgePath?: string }, private event: (record: RecordData) => void) {}
@@ -39,27 +39,42 @@ export class Backend {
     await rename(temporary, join(directory, 'identity.json'));
   }
 
+  private reserveStart(session: string) {
+    let settle!: () => void;
+    const settled = new Promise<void>(resolve => { settle = resolve; });
+    const pending = { cancelled: false, settled, settle };
+    this.starting.set(session, pending);
+    return pending;
+  }
+  private checkStart(pending: { cancelled: boolean }) {
+    if (this.closed) throw new Error('backend_closed');
+    if (pending.cancelled) throw new Error('start_cancelled');
+  }
+
   async startCodex(session: string, resume = false, requestedWorkspace?: string) {
     if (typeof session !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(session)) throw new Error('invalid_session');
     if (this.closed) throw new Error('backend_closed');
     if (this.sessions.has(session) || this.codexSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
     if (this.sessions.size + this.codexSessions.size + this.starting.size >= 2) throw new Error('session_limit');
     if (!this.options.codexEntry) throw new Error('codex_not_configured');
-    this.starting.add(session);
+    const pending = this.reserveStart(session);
     let instance: CodexSession | undefined;
     try {
       const workspace = await this.workspace(session, 'codex', requestedWorkspace);
+      this.checkStart(pending);
       const result = await CodexSession.start({ directory: resolve(this.options.stateDir, 'codex', session), workspace, entry: this.options.codexEntry, resume, providerPath: this.options.codexProviderPath, model: this.options.codexModel, accessMode: this.options.codexAccessMode, bridgePath: this.options.bridgePath }, record => this.event({ ...record, session }));
       instance = result.instance;
-      if (this.closed) { await instance.stop(); throw new Error('backend_closed'); }
+      this.checkStart(pending);
       if (instance.process.child.exitCode !== null || instance.process.child.signalCode !== null) throw new Error('codex_exited_during_start');
       const owned = instance;
       owned.process.on('exit', () => { if (this.codexSessions.get(session) === owned) this.codexSessions.delete(session); void owned.stop(); });
       await this.saveIdentity(session, 'codex', workspace);
+      this.checkStart(pending);
+      if (owned.process.child.exitCode !== null || owned.process.child.signalCode !== null) throw new Error('codex_exited_during_start');
       this.codexSessions.set(session, owned);
       return result.data;
     } catch (error) { await instance?.stop(); throw error; }
-    finally { this.starting.delete(session); }
+    finally { this.starting.delete(session); pending.settle(); }
   }
   async codexCommand(session: string, command: RecordData) {
     const instance = this.codexSessions.get(session);
@@ -77,7 +92,8 @@ export class Backend {
     if (this.closed) throw new Error('backend_closed');
     if (this.sessions.has(session) || this.codexSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
     if (this.sessions.size + this.codexSessions.size + this.starting.size >= 2) throw new Error('session_limit');
-    this.starting.add(session);
+    const pending = this.reserveStart(session);
+    let pi: PiProcess | undefined;
     try {
     const workspace = await this.workspace(session, 'pi', requestedWorkspace);
     const directory = resolve(this.options.stateDir, session);
@@ -115,22 +131,23 @@ export class Backend {
       }
       args.push('--session', candidate);
     }
-    if (this.closed) throw new Error('backend_closed');
-    const pi = new PiProcess({ entry: this.options.entry, cwd: workspace, args, env });
-    this.starting.delete(session);
-    this.sessions.set(session, pi);
+    this.checkStart(pending);
+    pi = new PiProcess({ entry: this.options.entry, cwd: workspace, args, env });
+    const owned = pi;
     pi.on('record', record => this.event({ type: 'event', agent: 'pi', session, record }));
     pi.on('fault', code => this.event({ type: 'fault', agent: 'pi', session, code }));
-    pi.on('exit', detail => { if (this.sessions.get(session) === pi) this.sessions.delete(session); this.event({ type: 'exit', agent: 'pi', session, ...detail }); void pi.stop(); });
-    try {
+    pi.on('exit', detail => { if (this.sessions.get(session) === owned) this.sessions.delete(session); this.event({ type: 'exit', agent: 'pi', session, ...detail }); void owned.stop(); });
       const state = await pi.request({ type: 'get_state' }, 60_000);
       await pi.request({ type: 'set_auto_retry', enabled: false });
       // Session files may be allocated lazily. Refresh this checkpoint after each prompt.
       await this.saveState(directory, state.data, workspace);
       await this.saveIdentity(session, 'pi', workspace);
+      this.checkStart(pending);
+      if (pi.child.exitCode !== null || pi.child.signalCode !== null) throw new Error('pi_exited_during_start');
+      this.sessions.set(session, pi);
       return { agent: 'pi', workspace, pid: pi.child.pid, startupMs: performance.now() - pi.startedAt, state: state.data };
-    } catch (error) { await pi.stop(); this.sessions.delete(session); throw error; }
-    } finally { this.starting.delete(session); }
+    } catch (error) { await pi?.stop(); throw error; }
+    finally { this.starting.delete(session); pending.settle(); }
   }
 
   private async saveState(directory: string, state: RecordData, workspace: string) {
@@ -155,13 +172,19 @@ export class Backend {
   }
 
   async stop(session: string) {
+    const pending = this.starting.get(session);
+    if (pending) {
+      pending.cancelled = true;
+      await pending.settled;
+      return;
+    }
     const codex = this.codexSessions.get(session);
-    if (codex) { const result = await codex.stop(); this.codexSessions.delete(session); return result; }
+    if (codex) { const result = await codex.stop(); if (this.codexSessions.get(session) === codex) this.codexSessions.delete(session); return result; }
     const pi = this.sessions.get(session);
     if (!pi) return;
     await pi.stop();
-    this.sessions.delete(session);
+    if (this.sessions.get(session) === pi) this.sessions.delete(session);
   }
   status() { return [...[...this.sessions].map(([session, pi]) => ({ session, agent: 'pi', workspace: pi.workspace, pid: pi.child.pid, stderrBytes: pi.stderrBytes })), ...[...this.codexSessions].map(([session, codex]) => ({ session, agent: 'codex', workspace: codex.workspace, accessMode: codex.accessMode, filesystemIsolation: false, pid: codex.process.child.pid, threadId: codex.threadId, stderrBytes: codex.process.stderrBytes }))]; }
-  async close() { this.closed = true; await Promise.all([...this.sessions.keys(), ...this.codexSessions.keys()].map(session => this.stop(session))); }
+  async close() { this.closed = true; await Promise.all([...this.starting.keys(), ...this.sessions.keys(), ...this.codexSessions.keys()].map(session => this.stop(session))); }
 }
