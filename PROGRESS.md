@@ -1,5 +1,13 @@
 # Progress
 
+## Established capabilities consolidated — 2026-11-12
+
+The user authorized carrying all useful established experimental methods into the maintained Android base, using parallel finite workers, feature commits, lean checks, and manager handoff before400k usage if needed. The bounded consolidation is complete in `dev.olea.app` `0.2-base`: Pi/Codex session/workspace controls, explicit agent maintenance, native permission-controlled phone capabilities, shared extension/MCP, cancellation and STOP/recovery integration. [Scope and progress](docs/CONSOLIDATION_PLAN.md) and [completion record](docs/CONSOLIDATION_RECORD.md) contain exact commits, evidence, retained failures and limits.
+
+Focused checks passed real stock Pi multi-session/workspace/cancel, stock Codex install/direct exec/same-thread reopen, normal Android permission routes, native Accessibility click, selected-folder readback, location/notifications, configured cooperating-app effect and consented capture. Review repairs cover blocked-provider STOP responsiveness, uncertain cancellation, startup disconnect and oversized drafts. All workers settled/released; only newly owned disposable children were removed after preservation checks. Runtime/phone tools stopped; sole device ownership relinquished. Existing history/data/UI discussions remain.
+
+No provider-backed Olea test submission occurred; spending remains frozen. Current integrated model replies/tools/phone workflows, provider-turn cancellation and canonical provider-backed continuation remain unverified. Physical ARM64/Android14, authenticated Claude, scheduling/alarms and screenshot image input remain outside established scope. Earlier entries below retain their historical status and authority limits.
+
 ## Product audience, personal-agent requests and parallel UI discussion
 
 The user clarified that Olea targets people with literacy in Pi, Codex or Claude. Prioritize convenient phone use and a high ceiling, with broad execution authority by default and user responsibility for delegated work. Do not introduce repeated app-level shell/file approvals or beginner-agent onboarding by default. Android permission/consent requirements remain. DSH Go and Orca are user-supplied references; their exact defaults have not been inspected here.

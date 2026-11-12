@@ -41,15 +41,15 @@ All workers make focused commits and report exact hashes/checks/limits. No devic
 ## Execution checklist
 
 - [x] Inspect maintained source and historical evidence; capture scope/authority and lean workflow.
-- [ ] P1-P7: maintain native phone bridge and normal permission/consent routes.
-- [x] A1-A2: maintain configurable stock adapters and phone registration (`158e9fc`, `daf020b`, `6aa79b7`); focused lazy-reservation resume repair in follow-up.
+- [x] P1-P7: maintain native phone bridge and normal permission/consent routes (`8de90cf`, `d06142f`, `3d4adeb`, SAF repair `fde6b7f`).
+- [x] A1-A2: maintain configurable stock adapters and phone registration (`158e9fc`, `daf020b`, `6aa79b7`); reserved Pi resume `d346f3d`, stock Codex history capability/capture schema `fb18229`, startup cancellation `609a250`.
 - [x] S1: persistent conversations/workspace registry and migration (`ee7c936`, worker `2797a36`).
-- [ ] Integrate Android UI/service selection, streams, phone controls and cancel.
-- [ ] U1: explicit agent install/update and preserved storage boundaries.
-- [ ] R1-R2: integrate failure/STOP/status; retain useful measurement references.
-- [ ] Build updated APK; bounded deterministic checks and serialized emulator checks for changed boundaries.
-- [ ] Update README/user limitations, contributor instructions, completion evidence and final Git checkpoint.
-- [ ] Settle/release owned workers after outputs durable; remove only newly owned clean disposable worktrees after preserving any unique ignored assets. Never clean old unrelated sessions/worktrees by inference.
+- [x] Integrate Android UI/service selection, streams, phone controls and cancel (`93f903f`, `b601ebe`).
+- [x] U1: explicit agent install/update and preserved storage boundaries (`704a527`, `93f903f`).
+- [x] R1-R2: integrate failure/STOP/status; retain useful measurement references (historical resource reports; no new benchmark fleet).
+- [x] Build updated APK; bounded deterministic checks and serialized emulator checks for changed boundaries. Final `0.2-base` SHA256 and receipts in [completion record](CONSOLIDATION_RECORD.md).
+- [x] Update README/user limitations, contributor instructions, completion evidence and final Git checkpoint.
+- [x] Settle/release owned workers after outputs durable; remove only newly owned clean disposable worktrees after preserving any unique ignored assets. Historical/unrelated sessions/worktrees preserved.
 
 ## Verification and lifecycle
 
@@ -63,13 +63,13 @@ Manager Run `run_3b684f9f9240`; scope checkpoint `8d25828` on baseline `eb1073a`
 
 | Track | Task / Dispatch | Worktree | Ownership |
 | --- | --- | --- | --- |
-| Native phone | `task_d0800acbb46f` / `ctx_0b8d16243e6e` | `C:/Users/Aria/orca/workspaces/Olea/core-phone` | New phone classes/resources + manifest |
-| Adapters | `task_e169df575b59` / `ctx_ac17c1a7c4f4`; follow-up `task_8133e68bae17` / `ctx_9f2d7dbcae4c` | `C:/Users/Aria/orca/workspaces/Olea/core-adapters` | Initial worker released after 3 commits; same chat reopened for absent reserved Pi transcript regression |
+| Native phone | `task_d0800acbb46f` / `ctx_0b8d16243e6e` | `C:/Users/Aria/orca/workspaces/Olea/core-phone` (removed after integration) | Complete; released and clean worktree removed |
+| Adapters | `task_e169df575b59` / `ctx_ac17c1a7c4f4`; follow-up `task_8133e68bae17` / `ctx_9f2d7dbcae4c` | `C:/Users/Aria/orca/workspaces/Olea/core-adapters` (removed after integration) | Complete; exact workers released; generated dependencies removed then clean worktree removed |
 | Registry | `task_690215dc1dda` / `ctx_4f0d45d85761` | `C:/Users/Aria/orca/workspaces/Olea/core-sessions` (removed after integration) | Complete `ee7c936`; exact worker released, clean worktree removed |
 
 Runtime foundation committed `704a527`: bridge directory bind, optional provider config, Codex entry/full-access environment, explicit upstream agent-maintenance script. Registry worker completed 76 bounded host assertions and API36 Kotlin compile; manager accepted evidence without repeating unchanged checks. Its worktree had no tracked/untracked/ignored changes before supported removal. Native/registry coding turns hit `terminated`; same assignments continued, no replacement worker or new provider-test spend.
 
-Manager's Android UI/service integration is in progress, exposing selection, per-session events/history, cancel/disconnect, maintenance and provider configuration. Initial read-only ADB inspection found no attached devices; process inspection found no emulator/QEMU. Manager then established sole device mutation ownership for this consolidation and started prepared Olea_API_36 without wipe or AVD configuration changes (`emulator` launcher PID29724; task logs `.setup/consolidation/emulator-{out,error}.log`). Workers have no device authority. Current boot/install state awaits inspection.
+Manager's Android integration and bounded consolidation are complete. Final scope/evidence/retained failures: [record](CONSOLIDATION_RECORD.md). All workers settled/released, new disposable children removed cleanly. Sole device ownership relinquished with no successor after stopped UI/process observation. No provider-test submission; no automatic next milestone. Initial read-only ADB inspection found no attached devices; process inspection found no emulator/QEMU. Manager then established sole device mutation ownership for this consolidation and started prepared Olea_API_36 without wipe or AVD configuration changes (`emulator` launcher PID29724; task logs `.setup/consolidation/emulator-{out,error}.log`). Workers have no device authority. Current boot/install state awaits inspection.
 
 Manager retains shared Activity/RuntimeService/Environment/runtime/integration ownership. Workers may not mutate device or submit provider tests. No device owner assigned in this consolidation yet. Worker lifecycle is report → integrate/check needed boundaries → release exact settled worker → preserve unique assets before any new disposable worktree removal. Orca delivers reports; no polling/watch loop.
 

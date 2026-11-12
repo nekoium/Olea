@@ -1,0 +1,10 @@
+{
+  "id": "bounded-native-check",
+  "ok": true,
+  "result": {
+    "matched": true,
+    "bytes": 28,
+    "uri": "content://com.android.externalstorage.documents/tree/primary%3ADocuments%2FOleaConsolidation/document/primary%3ADocuments%2FOleaConsolidation%2Folea-59be57f9-881b-4c2c-b28f-e51a935bc9cc.txt",
+    "name": "olea-59be57f9-881b-4c2c-b28f-e51a935bc9cc.txt"
+  }
+}

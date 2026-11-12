@@ -1,0 +1,12 @@
+{
+  "providerRequests": 0,
+  "twoStockPiSessions": "pass",
+  "separateWorkspace": "pass",
+  "selectionWithoutReplay": "pass",
+  "cancelShellKeepsSessionAndPreventsEffect": "pass",
+  "oversizedDraftRejected": "pass",
+  "bridgeAuthenticationAndDisabledEffects": "pass",
+  "stopAndSelectionPersistence": "pass",
+  "passed": true,
+  "finalStatus": "Stopped. Workspace and conversations saved."
+}

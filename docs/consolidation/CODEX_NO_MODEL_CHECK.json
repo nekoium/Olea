@@ -1,0 +1,10 @@
+{
+  "providerRequests": 0,
+  "stockAgent": "Codex",
+  "upstreamInstall": "pass",
+  "stockAppServerStart": "pass",
+  "directWorkspaceExec": "pass",
+  "sameThreadReopenWithoutPrompt": "pass",
+  "passed": true,
+  "finalStatus": "Stopped. Workspace and conversations saved."
+}

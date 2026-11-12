@@ -1,0 +1,8 @@
+{
+  "id": "bounded-native-check",
+  "ok": true,
+  "result": {
+    "dispatched": true,
+    "component": "dev.olea.m2.fixture/dev.olea.fixture.FixtureActivity"
+  }
+}

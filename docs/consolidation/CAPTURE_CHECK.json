@@ -1,0 +1,18 @@
+{
+  "providerRequests": 0,
+  "normalConsentCapture": "pass",
+  "capture": {
+    "requestId": "9051f850-a087-46ab-abd4-14ec9f6de34f",
+    "status": "ready",
+    "capturedAtMs": 1794480472296,
+    "width": 1080,
+    "height": 2400,
+    "bytes": 149574,
+    "mimeType": "image/png",
+    "fileName": "capture-9051f850-a087-46ab-abd4-14ec9f6de34f.png",
+    "path": "/olea-phone/capture-9051f850-a087-46ab-abd4-14ec9f6de34f.png",
+    "sha256": "bbcefc82582d9d20d61bc717fe052f7e42b628c97160fc1cdc148c9000900e67"
+  },
+  "stopInvalidatesCaptureAndEffects": "pass",
+  "passed": true
+}

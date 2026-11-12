@@ -1,0 +1,30 @@
+{
+  "id": "bounded-native-check",
+  "ok": true,
+  "result": {
+    "phoneEnabled": true,
+    "accessibility": true,
+    "folderSelected": false,
+    "folderReadWriteGranted": false,
+    "notificationAccess": false,
+    "locationPermission": false,
+    "cooperatingAppConfigured": false,
+    "captureStatus": "idle",
+    "operations": [
+      "capabilities",
+      "accessibility_tree",
+      "accessibility_click",
+      "global_action",
+      "swipe",
+      "open_url",
+      "location",
+      "files_write_read",
+      "notifications",
+      "folder_request",
+      "capture_request",
+      "capture_result",
+      "cooperating_app_action",
+      "stop"
+    ]
+  }
+}

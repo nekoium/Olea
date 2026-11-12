@@ -1,0 +1,13 @@
+{
+  "id": "bounded-native-check",
+  "ok": true,
+  "result": {
+    "latitude": 24.9876,
+    "longitude": 121.54319833333334,
+    "accuracy": 5,
+    "provider": "gps",
+    "timeMs": 1794477905834,
+    "ageMs": 2912431,
+    "lastKnown": true
+  }
+}

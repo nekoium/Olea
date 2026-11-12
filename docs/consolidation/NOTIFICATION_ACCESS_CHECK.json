@@ -1,0 +1,23 @@
+{
+  "id": "bounded-native-check",
+  "ok": true,
+  "result": {
+    "notifications": [
+      {
+        "package": "android",
+        "id": 55,
+        "timeMs": 1794477577413,
+        "title": "Serial console enabled",
+        "text": "Performance is impacted. To disable, check bootloader."
+      },
+      {
+        "package": "android",
+        "id": 2345,
+        "timeMs": 1794477575122,
+        "title": "Set a screen lock",
+        "text": "For added security, set a PIN, pattern, or password for this device."
+      }
+    ],
+    "limit": 20
+  }
+}

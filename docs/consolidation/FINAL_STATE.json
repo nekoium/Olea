@@ -1,0 +1,11 @@
+{
+  "observedAt": "2026-11-12T11:11:12.757Z",
+  "target": "Android API36 x86_64",
+  "providerPromptsSubmitted": 0,
+  "localStatus": [
+    " 1765   485 dev.olea.m2.runtime",
+    " 6829   485 dev.olea.m2.fixture",
+    " 7539   485 dev.olea.app"
+  ],
+  "apkSha256": "b46c681e01bb1852dc7e35887b6d814bee6e70ec077ad6ca7a7a6f16fd0cfdf0"
+}

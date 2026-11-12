@@ -1,0 +1,8 @@
+{
+  "id": "bounded-native-check",
+  "ok": true,
+  "result": {
+    "clicked": true,
+    "action": "ACTION_CLICK"
+  }
+}
