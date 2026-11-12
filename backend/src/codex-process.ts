@@ -34,7 +34,7 @@ export class CodexProcess extends EventEmitter {
     // Record identity before sending any protocol input; Windows has no /proc proof.
     if (process.platform === 'linux') this.identity = await processIdentity(this.child.pid);
     this.emit('record', { method: 'olea/process', params: { pid: this.child.pid, identity: this.identity ?? null } });
-    const result = await this.request('initialize', { clientInfo: { name: 'olea_spike', title: 'Olea', version: '0.0.0' }, capabilities: null });
+    const result = await this.request('initialize', { clientInfo: { name: 'olea', title: 'Olea', version: '0.1.0' }, capabilities: null });
     this.write({ method: 'initialized' });
     return result;
   }
@@ -72,7 +72,7 @@ export class CodexProcess extends EventEmitter {
   }
   approve(id: string | number, decision: string) {
     if (!this.approvals.has(id)) throw new Error('codex_approval_missing');
-    // No session-wide grants or policy amendments in this bounded harness.
+    // Only explicit per-request decisions; no implicit session-wide grants.
     if (!['accept', 'decline', 'cancel'].includes(decision)) throw new Error('codex_invalid_decision');
     this.write({ id, result: { decision } }); this.approvals.delete(id);
   }
