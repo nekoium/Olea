@@ -7,6 +7,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.Uri
+import android.os.CancellationSignal
+import android.os.ParcelFileDescriptor
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
@@ -23,6 +25,11 @@ import java.util.UUID
 import java.util.Timer
 import java.util.TimerTask
 import java.util.concurrent.CountDownLatch
+import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.SynchronousQueue
+import java.util.concurrent.ThreadPoolExecutor
+import java.util.concurrent.ExecutionException
+import java.util.concurrent.TimeoutException
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -52,6 +59,33 @@ class PhoneBridge(context: Context) : AutoCloseable {
     private var capture: JSONObject? = null
     private var captureCancel: (() -> Unit)? = null
     private var token = ""
+    private class FileRequest(val epoch: Long, val signal: CancellationSignal = CancellationSignal()) {
+        val live = AtomicBoolean(true)
+    }
+    // Keep a stuck provider's slot occupied; never replace it with another worker or queued effect.
+    private var fileRequest: FileRequest? = null
+    private var pendingFileCancellation = 0
+    private val fileWorker = ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, SynchronousQueue(),
+        { task -> Thread(task, "olea-phone-files").apply { isDaemon = true } })
+    private val fileCancellation = ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, ArrayBlockingQueue(1),
+        { task -> Thread(task, "olea-phone-file-cancel").apply { isDaemon = true } })
+
+    // Cancellation can itself call a remote provider, so never run it on main or under authority lock.
+    private fun cancelFile(request: FileRequest) = synchronized(lock) {
+        if (fileRequest === request && request.live.compareAndSet(true, false)) {
+            pendingFileCancellation++
+            fileCancellation.execute {
+                try { runCatching { request.signal.cancel() } }
+                finally { synchronized(lock) { pendingFileCancellation-- } }
+            }
+        }
+    }
+
+    private fun checkFile(request: FileRequest) = synchronized(lock) {
+        check(enabled && !closed && request.epoch == authorityEpoch && request.live.get()) {
+            "PHONE_DISABLED_ENABLE_IN_PHONE_ACCESS"
+        }
+    }
 
     fun start(): File = synchronized(lock) {
         check(!closed) { "BRIDGE_CLOSED" }
@@ -87,6 +121,7 @@ class PhoneBridge(context: Context) : AutoCloseable {
         enabled = value
         if (!value) {
             authorityEpoch++
+            fileRequest?.let(::cancelFile)
             requestId = null
             capture = null
             captureCancel?.invoke()
@@ -103,6 +138,8 @@ class PhoneBridge(context: Context) : AutoCloseable {
         server?.close(); server = null
         connection?.close(); connection = null
         timeouts.cancel()
+        fileWorker.shutdown()
+        fileCancellation.shutdown()
         configFile.delete()
         if (current === this) current = null
     }
@@ -193,23 +230,77 @@ class PhoneBridge(context: Context) : AutoCloseable {
             .put("lastKnown", true)
     }
 
-    private fun writeRead(value: String): JSONObject {
+    private fun writeRead(value: String, request: FileRequest): JSONObject {
+        checkFile(request)
         val bytes = value.toByteArray(Charsets.UTF_8)
         check(bytes.size <= 4096) { "VALUE_MAX_4096_BYTES" }
         val tree = selectedFolder() ?: error("FOLDER_REQUIRED_OPEN_PHONE_ACCESS")
+        checkFile(request)
         check(folderGranted()) { "FOLDER_PERMISSION_REVOKED_SELECT_FOLDER_AGAIN" }
         val root = DocumentsContract.buildDocumentUriUsingTree(tree, DocumentsContract.getTreeDocumentId(tree))
         val name = "olea-${UUID.randomUUID()}.txt"
-        val uri = DocumentsContract.createDocument(context.contentResolver, root, "text/plain", name) ?: error("FOLDER_CREATE_FAILED")
-        context.contentResolver.openOutputStream(uri, "w")?.use { it.write(bytes) } ?: error("FOLDER_WRITE_FAILED")
-        val read = context.contentResolver.openInputStream(uri)?.use { input ->
-            val output = java.io.ByteArrayOutputStream()
-            val buffer = ByteArray(1024)
-            while (true) { val count = input.read(buffer); if (count < 0) break; check(output.size() + count <= 4096) { "FOLDER_READ_TOO_LARGE" }; output.write(buffer, 0, count) }
-            output.toByteArray()
-        } ?: error("FOLDER_READ_FAILED")
-        check(bytes.contentEquals(read)) { "FOLDER_READBACK_MISMATCH" }
-        return JSONObject().put("matched", true).put("bytes", read.size).put("uri", uri.toString()).put("name", name)
+        checkFile(request)
+        // createDocument has no cancellation overload; even a failed call may have created a file.
+        try {
+            val resolver = context.contentResolver
+            val uri = DocumentsContract.createDocument(resolver, root, "text/plain", name) ?: error("FOLDER_CREATE_FAILED")
+            checkFile(request)
+            val writable = resolver.openFileDescriptor(uri, "w", request.signal) ?: error("FOLDER_WRITE_FAILED")
+            ParcelFileDescriptor.AutoCloseOutputStream(writable).use { output ->
+                checkFile(request)
+                output.write(bytes)
+            }
+            checkFile(request)
+            val readable = resolver.openFileDescriptor(uri, "r", request.signal) ?: error("FOLDER_READ_FAILED")
+            val read = ParcelFileDescriptor.AutoCloseInputStream(readable).use { input ->
+                val output = java.io.ByteArrayOutputStream()
+                val buffer = ByteArray(1024)
+                while (true) {
+                    checkFile(request)
+                    val count = input.read(buffer)
+                    checkFile(request)
+                    if (count < 0) break
+                    check(output.size() + count <= 4096) { "FOLDER_READ_TOO_LARGE" }
+                    output.write(buffer, 0, count)
+                }
+                output.toByteArray()
+            }
+            checkFile(request)
+            check(bytes.contentEquals(read)) { "FOLDER_READBACK_MISMATCH" }
+            return JSONObject().put("matched", true).put("bytes", read.size).put("uri", uri.toString()).put("name", name)
+        } catch (failure: Exception) {
+            // STOP cannot roll back a provider effect already in progress; never replay automatically.
+            throw IllegalStateException("FOLDER_OUTCOME_UNCERTAIN_DO_NOT_REPLAY", failure)
+        }
+    }
+
+    private fun files(request: JSONObject): JSONObject {
+        val operation = synchronized(lock) {
+            check(enabled && !closed) { "PHONE_DISABLED_ENABLE_IN_PHONE_ACCESS" }
+            check(fileRequest == null && pendingFileCancellation == 0) { "FOLDER_OPERATION_BUSY_DO_NOT_REPLAY" }
+            FileRequest(authorityEpoch).also { fileRequest = it }
+        }
+        val future = try {
+            fileWorker.submit<JSONObject> {
+                try { writeRead((request.optJSONObject("args") ?: JSONObject()).getString("value"), operation) }
+                finally { synchronized(lock) { if (fileRequest === operation) fileRequest = null } }
+            }
+        } catch (failure: Exception) {
+            synchronized(lock) { if (fileRequest === operation) fileRequest = null }
+            throw IllegalStateException("FOLDER_OPERATION_BUSY_DO_NOT_REPLAY", failure)
+        }
+        try {
+            return future.get(10, TimeUnit.SECONDS)
+        } catch (failure: ExecutionException) {
+            throw (failure.cause as? Exception ?: failure)
+        } catch (failure: TimeoutException) {
+            cancelFile(operation)
+            error("NATIVE_TIMEOUT_OUTCOME_UNCERTAIN_DO_NOT_REPLAY")
+        } catch (failure: InterruptedException) {
+            cancelFile(operation)
+            Thread.currentThread().interrupt()
+            error("NATIVE_TIMEOUT_OUTCOME_UNCERTAIN_DO_NOT_REPLAY")
+        }
     }
 
     private fun phone(request: JSONObject, admittedEpoch: Long, admittedEnabled: Boolean): JSONObject = synchronized(lock) {
@@ -217,6 +308,7 @@ class PhoneBridge(context: Context) : AutoCloseable {
         if (operation == "capabilities") return@synchronized capabilities()
         if (operation == "stop") { stop(); return@synchronized JSONObject().put("stopped", true) }
         check(enabled && !closed && admittedEnabled && admittedEpoch == authorityEpoch) { "PHONE_DISABLED_ENABLE_IN_PHONE_ACCESS" }
+        check(fileRequest == null && pendingFileCancellation == 0) { "FOLDER_OPERATION_BUSY_DO_NOT_REPLAY" }
         val args = request.optJSONObject("args") ?: JSONObject()
         fun accessibility() = PhoneAccessibility.active ?: error("ACCESSIBILITY_REQUIRED_OPEN_PHONE_ACCESS")
         when (operation) {
@@ -238,7 +330,6 @@ class PhoneBridge(context: Context) : AutoCloseable {
                 JSONObject().put("dispatched", true)
             }
             "location" -> location()
-            "files_write_read" -> writeRead(args.getString("value"))
             "notifications" -> PhoneNotifications.read(args.optInt("limit", 20))
             "folder_request", "capture_request" -> {
                 val id = if (operation == "capture_request") beginCapture() else null
@@ -332,7 +423,7 @@ class PhoneBridge(context: Context) : AutoCloseable {
                 first[0] == "GET" && first[1] in listOf("/health", "/capabilities") -> synchronized(lock) { capabilities() }
                 first[0] == "POST" && first[1] == "/phone" -> {
                     val request = JSONObject(body.toString(Charsets.UTF_8)); id = request.opt("id") ?: JSONObject.NULL
-                    onMain(request)
+                    if (request.getString("operation") == "files_write_read") files(request) else onMain(request)
                 }
                 else -> { status = 404; error("NOT_FOUND") }
             }
