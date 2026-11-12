@@ -1,0 +1,3 @@
+<resources>
+    <string name="phone_accessibility_description">Allows enabled Olea phone tools to inspect accessible screen content, click controls, swipe and navigate. Disable phone tools in Olea to stop new actions, or disable this service here to revoke access.</string>
+</resources>
