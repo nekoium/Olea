@@ -43,7 +43,7 @@ All workers make focused commits and report exact hashes/checks/limits. No devic
 - [x] Inspect maintained source and historical evidence; capture scope/authority and lean workflow.
 - [ ] P1-P7: maintain native phone bridge and normal permission/consent routes.
 - [ ] A1-A2: maintain configurable stock adapters and phone registration.
-- [ ] S1: persistent conversations/workspace registry and migration.
+- [x] S1: persistent conversations/workspace registry and migration (`ee7c936`, worker `2797a36`).
 - [ ] Integrate Android UI/service selection, streams, phone controls and cancel.
 - [ ] U1: explicit agent install/update and preserved storage boundaries.
 - [ ] R1-R2: integrate failure/STOP/status; retain useful measurement references.
@@ -65,7 +65,11 @@ Manager Run `run_3b684f9f9240`; scope checkpoint `8d25828` on baseline `eb1073a`
 | --- | --- | --- | --- |
 | Native phone | `task_d0800acbb46f` / `ctx_0b8d16243e6e` | `C:/Users/Aria/orca/workspaces/Olea/core-phone` | New phone classes/resources + manifest |
 | Adapters | `task_e169df575b59` / `ctx_ac17c1a7c4f4` | `C:/Users/Aria/orca/workspaces/Olea/core-adapters` | `backend/` |
-| Registry | `task_690215dc1dda` / `ctx_4f0d45d85761` | `C:/Users/Aria/orca/workspaces/Olea/core-sessions` | New SessionStore class |
+| Registry | `task_690215dc1dda` / `ctx_4f0d45d85761` | `C:/Users/Aria/orca/workspaces/Olea/core-sessions` (removed after integration) | Complete `ee7c936`; exact worker released, clean worktree removed |
+
+Runtime foundation committed `704a527`: bridge directory bind, optional provider config, Codex entry/full-access environment, explicit upstream agent-maintenance script. Registry worker completed 76 bounded host assertions and API36 Kotlin compile; manager accepted evidence without repeating unchanged checks. Its worktree had no tracked/untracked/ignored changes before supported removal. Native/registry coding turns hit `terminated`; same assignments continued, no replacement worker or new provider-test spend.
+
+Manager's Android UI/service integration is in progress, exposing selection, per-session events/history, cancel/disconnect, maintenance and provider configuration. Initial read-only ADB inspection found no attached devices. Device mutation is not yet assigned; no emulator startup/install occurred.
 
 Manager retains shared Activity/RuntimeService/Environment/runtime/integration ownership. Workers may not mutate device or submit provider tests. No device owner assigned in this consolidation yet. Worker lifecycle is report → integrate/check needed boundaries → release exact settled worker → preserve unique assets before any new disposable worktree removal. Orca delivers reports; no polling/watch loop.
 
