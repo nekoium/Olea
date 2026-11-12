@@ -7,3 +7,4 @@ app/src/main/assets/*.bin
 app/src/main/assets/hashes.txt
 app/src/main/assets/linux.sh
 app/src/main/assets/prepare.sh
+app/src/main/assets/agent-maintenance.sh

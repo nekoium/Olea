@@ -14,6 +14,9 @@ class CoreInstrumentation : Instrumentation() {
     override fun onCreate(arguments: Bundle?) { selected = arguments?.getString("case"); super.onCreate(arguments); start() }
     override fun onStart() {
         if (selected == "ownership" || selected == "short-exits") { ownership(); return }
+        if (selected == "consolidation") { consolidation(); return }
+        if (selected == "codex") { codex(); return }
+        if (selected == "phone") { phone(); return }
         val receipt = JSONObject().put("providerRequests", 0).put("stockAgent", "Pi")
         val base = targetContext.filesDir
         fun await(seconds: Int, condition: () -> Boolean) {
@@ -104,6 +107,189 @@ class CoreInstrumentation : Instrumentation() {
             val cleanupFailure = File(base, "last-cleanup-failure.json")
             if (cleanupFailure.isFile) receipt.put("retainedEarlierCleanupFailure", JSONObject(cleanupFailure.readText()))
             val destination = File(base, "core-check-${System.currentTimeMillis()}.json")
+            destination.writeText(receipt.toString(2))
+            finish(if (success) -1 else 0, Bundle().apply { putString("stream", receipt.toString(2)); putString("receipt", destination.path) })
+        }
+    }
+
+    private fun consolidation() {
+        val receipt = JSONObject().put("providerRequests", 0)
+        var success = false
+        fun await(seconds: Int, condition: () -> Boolean) {
+            val deadline = SystemClock.elapsedRealtime() + seconds * 1000L
+            while (!condition() && SystemClock.elapsedRealtime() < deadline) Thread.sleep(100)
+            check(condition()) { "Deadline: ${RuntimeService.status}" }
+        }
+        try {
+            startActivitySync(Intent(targetContext, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            await(10) { RuntimeService.current != null }
+            val runtime = RuntimeService.current!!
+            runtime.selectConversation("conversation")
+            runtime.startEnvironment()
+            await(120) { RuntimeService.conversationReady || !RuntimeService.busy }
+            check(RuntimeService.conversationReady) { RuntimeService.status }
+            val first = runtime.activeConversation()
+            val workspace = runtime.store.createWorkspace("Integration ${System.currentTimeMillis()}")
+            val second = runtime.store.createConversation("Second Pi", "pi", workspace.id)
+            runtime.selectConversation(second.id)
+            check(!RuntimeService.conversationReady)
+            runtime.startEnvironment()
+            await(80) { RuntimeService.conversationReady || !RuntimeService.busy }
+            check(RuntimeService.conversationReady) { RuntimeService.status }
+            runtime.workspace("printf 'separate workspace\\n' > separation.txt; cat separation.txt")
+            await(130) { !RuntimeService.busy }
+            check(File(runtime.store.workspaceFile(workspace), "separation.txt").readText() == "separate workspace\n")
+            check(!File(targetContext.filesDir, "data/workspace/separation.txt").exists())
+            runtime.selectConversation(first.id)
+            check(RuntimeService.conversationReady) { "First session was not retained" }
+            runtime.selectConversation(second.id)
+            check(runtime.transcript().contains("separate workspace"))
+            receipt.put("twoStockPiSessions", "pass").put("separateWorkspace", "pass").put("selectionWithoutReplay", "pass")
+            val started = "cancel-started-${System.currentTimeMillis()}"
+            val effect = "cancel-effect-${System.currentTimeMillis()}"
+            runtime.workspace("echo started > $started; sleep 5; echo unexpected > $effect")
+            await(10) { File(runtime.store.workspaceFile(workspace), started).isFile }
+            runtime.cancelTurn()
+            await(15) { !RuntimeService.busy }
+            check(RuntimeService.conversationReady) { "Cancel shut down the session" }
+            Thread.sleep(5200)
+            check(!File(runtime.store.workspaceFile(workspace), effect).exists())
+            check(!runtime.prompt("x".repeat(32001))) { "Oversized draft accepted" }
+            receipt.put("cancelShellKeepsSessionAndPreventsEffect", "pass").put("oversizedDraftRejected", "pass")
+            val config = JSONObject(File(targetContext.filesDir, "phone/config.json").readText())
+            fun phone(authorization: Boolean, operation: String): Int {
+                val url = java.net.URI(config.getString("url"))
+                val body = JSONObject().put("id", "integration").put("operation", operation).put("args", JSONObject()).toString().toByteArray()
+                return java.net.Socket("127.0.0.1", url.port).use { socket ->
+                    socket.soTimeout = 5000
+                    val headers = "POST /phone HTTP/1.1\r\nHost: 127.0.0.1\r\nContent-Type: application/json\r\nContent-Length: ${body.size}\r\n" +
+                        (if (authorization) "Authorization: Bearer ${config.getString("token")}\r\n" else "") + "\r\n"
+                    socket.getOutputStream().apply { write(headers.toByteArray()); write(body); flush() }
+                    socket.getInputStream().bufferedReader().readLine().split(' ')[1].toInt()
+                }
+            }
+            check(phone(false, "capabilities") == 401)
+            check(phone(true, "capabilities") == 200)
+            check(phone(true, "global_action") != 200)
+            receipt.put("bridgeAuthenticationAndDisabledEffects", "pass")
+            runtime.stopExecution()
+            await(20) { !RuntimeService.busy }
+            check(!RuntimeService.conversationReady)
+            check(SessionStore(targetContext.filesDir).active().id == second.id)
+            receipt.put("stopAndSelectionPersistence", "pass")
+            runtime.selectConversation(first.id)
+            success = true
+        } catch (error: Exception) { receipt.put("failure", error.message).put("status", RuntimeService.status) }
+        finally {
+            RuntimeService.current?.stopExecution()
+            runCatching { await(20) { !RuntimeService.busy } }.onFailure { success = false; receipt.put("cleanupFailure", it.message) }
+            receipt.put("passed", success).put("finalStatus", RuntimeService.status)
+            val destination = File(targetContext.filesDir, "consolidation-check-${System.currentTimeMillis()}.json")
+            destination.writeText(receipt.toString(2))
+            finish(if (success) -1 else 0, Bundle().apply { putString("stream", receipt.toString(2)); putString("receipt", destination.path) })
+        }
+    }
+
+    private fun codex() {
+        val receipt = JSONObject().put("providerRequests", 0).put("stockAgent", "Codex")
+        var success = false
+        fun await(seconds: Int, condition: () -> Boolean) {
+            val deadline = SystemClock.elapsedRealtime() + seconds * 1000L
+            while (!condition() && SystemClock.elapsedRealtime() < deadline) Thread.sleep(100)
+            check(condition()) { "Deadline: ${RuntimeService.status}" }
+        }
+        try {
+            startActivitySync(Intent(targetContext, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            await(10) { RuntimeService.current != null }
+            val runtime = RuntimeService.current!!
+            runtime.maintainAgent("codex", "install")
+            await(620) { !RuntimeService.busy }
+            check(RuntimeService.status.contains("complete")) { RuntimeService.status }
+            receipt.put("upstreamInstall", "pass")
+            val info = runtime.store.createConversation("Codex check", "codex", "default")
+            runtime.selectConversation(info.id)
+            runtime.startEnvironment()
+            await(90) { RuntimeService.conversationReady || !RuntimeService.busy }
+            check(RuntimeService.conversationReady) { RuntimeService.status }
+            receipt.put("stockAppServerStart", "pass")
+            val thread = File(targetContext.filesDir, "data/sessions/codex/${info.id}/thread.json")
+            val identity = JSONObject(thread.readText()).getString("threadId")
+            val marker = "codex-check-${System.currentTimeMillis()}.txt"
+            runtime.workspace("printf 'codex local shell\\n' > $marker; cat $marker")
+            await(130) { !RuntimeService.busy }
+            check(File(targetContext.filesDir, "data/workspace/$marker").readText() == "codex local shell\n")
+            check(runtime.transcript().contains("codex local shell"))
+            receipt.put("directWorkspaceExec", "pass")
+            runtime.stopExecution(); await(20) { !RuntimeService.busy }
+            runtime.startEnvironment(); await(90) { RuntimeService.conversationReady || !RuntimeService.busy }
+            check(RuntimeService.conversationReady) { RuntimeService.status }
+            check(JSONObject(thread.readText()).getString("threadId") == identity)
+            receipt.put("sameThreadReopenWithoutPrompt", "pass")
+            runtime.stopExecution(); await(20) { !RuntimeService.busy }
+            runtime.selectConversation("conversation")
+            success = true
+        } catch (error: Exception) { receipt.put("failure", error.message).put("status", RuntimeService.status) }
+        finally {
+            RuntimeService.current?.stopExecution()
+            runCatching { await(20) { !RuntimeService.busy } }.onFailure { success = false; receipt.put("cleanupFailure", it.message) }
+            receipt.put("passed", success).put("finalStatus", RuntimeService.status)
+            val destination = File(targetContext.filesDir, "codex-check-${System.currentTimeMillis()}.json")
+            destination.writeText(receipt.toString(2))
+            finish(if (success) -1 else 0, Bundle().apply { putString("stream", receipt.toString(2)); putString("receipt", destination.path) })
+        }
+    }
+
+    private fun phone() {
+        val receipt = JSONObject().put("providerRequests", 0)
+        var success = false
+        fun await(seconds: Int, condition: () -> Boolean) {
+            val deadline = SystemClock.elapsedRealtime() + seconds * 1000L
+            while (!condition() && SystemClock.elapsedRealtime() < deadline) Thread.sleep(100)
+            check(condition()) { "Phone check deadline" }
+        }
+        try {
+            startActivitySync(Intent(targetContext, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            await(10) { PhoneBridge.current != null }
+            val bridge = PhoneBridge.current!!
+            bridge.setEnabled(true)
+            val config = JSONObject(bridge.configFile.readText())
+            fun call(operation: String, args: JSONObject = JSONObject()): JSONObject {
+                val url = java.net.URI(config.getString("url"))
+                val body = JSONObject().put("id", "phone-integration").put("operation", operation).put("args", args).toString().toByteArray()
+                return java.net.Socket("127.0.0.1", url.port).use { socket ->
+                    socket.soTimeout = 12000
+                    socket.getOutputStream().apply { write(("POST /phone HTTP/1.1\r\nHost: localhost\r\nAuthorization: Bearer ${config.getString("token")}\r\nContent-Length: ${body.size}\r\n\r\n").toByteArray()); write(body); flush() }
+                    val reader = socket.getInputStream().bufferedReader()
+                    reader.readLine()
+                    while (reader.readLine().isNotEmpty()) { }
+                    JSONObject(reader.readText())
+                }
+            }
+            check(call("capabilities").getJSONObject("result").getBoolean("phoneEnabled"))
+            val request = call("capture_request").getJSONObject("result").getString("requestId")
+            check(call("capture_result", JSONObject().put("requestId", request)).getBoolean("ok"))
+            // The manager drives the normal button/SystemUI consent during this finite wait.
+            var metadata = JSONObject()
+            await(180) {
+                metadata = call("capture_result", JSONObject().put("requestId", request)).optJSONObject("result") ?: JSONObject()
+                metadata.optString("status") == "ready"
+            }
+            val png = File(bridge.directory, metadata.getString("fileName"))
+            check(png.isFile && png.length() > 100)
+            check(android.graphics.BitmapFactory.decodeFile(png.path) != null)
+            receipt.put("normalConsentCapture", "pass").put("capture", metadata)
+            val second = bridge.beginCapture()
+            bridge.stop()
+            check(!call("capture_result", JSONObject().put("requestId", second)).getBoolean("ok"))
+            check(!call("open_url", JSONObject().put("url", "https://example.org")).getBoolean("ok"))
+            receipt.put("stopInvalidatesCaptureAndEffects", "pass")
+            success = true
+        } catch (error: Exception) { receipt.put("failure", error.message) }
+        finally {
+            PhoneBridge.current?.stop()
+            RuntimeService.current?.stopExecution()
+            receipt.put("passed", success)
+            val destination = File(targetContext.filesDir, "phone-check-${System.currentTimeMillis()}.json")
             destination.writeText(receipt.toString(2))
             finish(if (success) -1 else 0, Bundle().apply { putString("stream", receipt.toString(2)); putString("receipt", destination.path) })
         }
