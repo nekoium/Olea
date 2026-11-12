@@ -34,9 +34,11 @@ export class PiProcess extends EventEmitter {
   private stopping?: Promise<void>;
   stderrBytes = 0;
   readonly startedAt = performance.now();
+  readonly workspace: string;
 
   constructor(options: { entry: string; cwd: string; args?: string[]; env?: NodeJS.ProcessEnv }) {
     super();
+    this.workspace = options.cwd;
     this.child = spawn(process.execPath, [options.entry, ...(options.args ?? [])], {
       cwd: options.cwd, env: options.env ?? process.env,
       stdio: ['pipe', 'pipe', 'pipe'], detached: process.platform !== 'win32', windowsHide: true,

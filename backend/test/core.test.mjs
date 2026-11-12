@@ -1,17 +1,18 @@
 // SPDX-License-Identifier: MIT
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdir, mkdtemp, readFile, access } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, access, rm } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { Backend } from '../dist/backend.js';
 import { JsonLines } from '../dist/pi-process.js';
 const rootDirectory = resolve(import.meta.dirname, '../..');
-const temporary = join(rootDirectory, '.setup/core/backend-tests');
+const temporary = join(rootDirectory, 'backend/.setup/tests');
 await mkdir(temporary, { recursive: true });
 const entry = join(import.meta.dirname, 'rpc-fixture.mjs');
 
-test('saved session and workspace survive STOP/reopen without automatic prompt replay', async () => {
+test('saved session and workspace survive STOP/reopen without automatic prompt replay', async t => {
   const root = await mkdtemp(join(temporary, 'persistence-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
   const workspace = join(root, 'workspace'); await mkdir(workspace);
   const stateDir = join(root, 'sessions');
   let backend = new Backend({ entry, workspace, stateDir }, () => {});

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
-import { resolve, join } from 'node:path';
+import { mkdir, readFile, realpath, rename, stat, writeFile } from 'node:fs/promises';
+import { isAbsolute, relative, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { PiProcess, type RecordData } from './pi-process.js';
@@ -12,9 +12,34 @@ export class Backend {
   private starting = new Set<string>();
   private closed = false;
   private extension = fileURLToPath(new URL('../extensions/phone.ts', import.meta.url));
-  constructor(private options: { entry: string; workspace: string; stateDir: string; env?: NodeJS.ProcessEnv; codexEntry?: string; codexProviderPath?: string; codexModel?: string; codexAccessMode?: CodexAccessMode; bridgePath?: string }, private event: (record: RecordData) => void) {}
+  constructor(private options: { entry: string; workspace: string; workspaceRoot?: string; stateDir: string; env?: NodeJS.ProcessEnv; codexEntry?: string; codexProviderPath?: string; codexModel?: string; codexAccessMode?: CodexAccessMode; bridgePath?: string }, private event: (record: RecordData) => void) {}
 
-  async startCodex(session: string, resume = false) {
+  private async workspace(session: string, agent: 'pi' | 'codex', requested?: string) {
+    if (requested !== undefined && (typeof requested !== 'string' || !isAbsolute(requested))) throw new Error('invalid_workspace');
+    const workspace = await realpath(requested ?? this.options.workspace).catch(() => { throw new Error('workspace_not_found'); });
+    // An existing configured default remains usable; explicit selections must be within the root.
+    if (requested !== undefined) {
+      const root = await realpath(this.options.workspaceRoot ?? this.options.workspace);
+      const path = relative(root, workspace);
+      if (path === '..' || path.startsWith('..\\') || path.startsWith('../') || isAbsolute(path)) throw new Error('workspace_outside_root');
+    }
+    if (!(await stat(workspace)).isDirectory()) throw new Error('invalid_workspace');
+    const directory = resolve(this.options.stateDir, session);
+    let identity: RecordData | undefined;
+    try { identity = JSON.parse(await readFile(join(directory, 'identity.json'), 'utf8')); }
+    catch (error: any) { if (error.code !== 'ENOENT') throw new Error('invalid_session_identity'); }
+    if (identity && (identity.workspace !== workspace || identity.agent !== agent)) throw new Error('session_identity_mismatch');
+    return workspace;
+  }
+  private async saveIdentity(session: string, agent: 'pi' | 'codex', workspace: string) {
+    const directory = resolve(this.options.stateDir, session);
+    await mkdir(directory, { recursive: true, mode: 0o700 });
+    const temporary = join(directory, `identity-${randomUUID()}.tmp`);
+    await writeFile(temporary, JSON.stringify({ agent, workspace }), { mode: 0o600 });
+    await rename(temporary, join(directory, 'identity.json'));
+  }
+
+  async startCodex(session: string, resume = false, requestedWorkspace?: string) {
     if (typeof session !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(session)) throw new Error('invalid_session');
     if (this.closed) throw new Error('backend_closed');
     if (this.sessions.has(session) || this.codexSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
@@ -23,15 +48,18 @@ export class Backend {
     this.starting.add(session);
     let instance: CodexSession | undefined;
     try {
-      const result = await CodexSession.start({ directory: resolve(this.options.stateDir, 'codex', session), workspace: this.options.workspace, entry: this.options.codexEntry, resume, providerPath: this.options.codexProviderPath, model: this.options.codexModel, accessMode: this.options.codexAccessMode, bridgePath: this.options.bridgePath }, record => this.event({ ...record, session }));
+      const workspace = await this.workspace(session, 'codex', requestedWorkspace);
+      const result = await CodexSession.start({ directory: resolve(this.options.stateDir, 'codex', session), workspace, entry: this.options.codexEntry, resume, providerPath: this.options.codexProviderPath, model: this.options.codexModel, accessMode: this.options.codexAccessMode, bridgePath: this.options.bridgePath }, record => this.event({ ...record, session }));
       instance = result.instance;
       if (this.closed) { await instance.stop(); throw new Error('backend_closed'); }
       if (instance.process.child.exitCode !== null || instance.process.child.signalCode !== null) throw new Error('codex_exited_during_start');
       const owned = instance;
       owned.process.on('exit', () => { if (this.codexSessions.get(session) === owned) this.codexSessions.delete(session); void owned.stop(); });
+      await this.saveIdentity(session, 'codex', workspace);
       this.codexSessions.set(session, owned);
       return result.data;
-    } finally { this.starting.delete(session); }
+    } catch (error) { await instance?.stop(); throw error; }
+    finally { this.starting.delete(session); }
   }
   async codexCommand(session: string, command: RecordData) {
     const instance = this.codexSessions.get(session);
@@ -44,28 +72,34 @@ export class Backend {
     instance.approve(id, decision);
   }
 
-  async start(session: string, resume = false) {
+  async start(session: string, resume = false, requestedWorkspace?: string) {
     if (typeof session !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(session)) throw new Error('invalid_session');
     if (this.closed) throw new Error('backend_closed');
     if (this.sessions.has(session) || this.codexSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
     if (this.sessions.size + this.codexSessions.size + this.starting.size >= 2) throw new Error('session_limit');
     this.starting.add(session);
     try {
+    const workspace = await this.workspace(session, 'pi', requestedWorkspace);
     const directory = resolve(this.options.stateDir, session);
     await mkdir(directory, { recursive: true, mode: 0o700 });
     const args = ['--mode', 'rpc', '--session-dir', directory];
-    const env = this.options.env ?? process.env;
+    const env = { ...(this.options.env ?? process.env) };
+    if (this.options.bridgePath) env.OLEA_BRIDGE_CONFIG = this.options.bridgePath;
     if (env.OLEA_PI_PROVIDER) args.push('--provider', env.OLEA_PI_PROVIDER);
     if (env.OLEA_MODEL) args.push('--model', env.OLEA_MODEL);
     if (this.options.bridgePath) args.push('--extension', this.extension);
     if (resume) {
       const saved = JSON.parse(await readFile(join(directory, 'resume.json'), 'utf8'));
-      const path = resolve(saved.sessionFile);
-      if (!path.startsWith(directory + (process.platform === 'win32' ? '\\' : '/'))) throw new Error('invalid_resume_path');
+      // Legacy checkpoints used the single configured default workspace.
+      const savedWorkspace = saved.workspace ?? await realpath(this.options.workspace);
+      if (savedWorkspace !== workspace) throw new Error('session_identity_mismatch');
+      const path = await realpath(resolve(saved.sessionFile));
+      const canonicalDirectory = await realpath(directory);
+      if (!path.startsWith(canonicalDirectory + (process.platform === 'win32' ? '\\' : '/'))) throw new Error('invalid_resume_path');
       args.push('--session', path);
     }
     if (this.closed) throw new Error('backend_closed');
-    const pi = new PiProcess({ entry: this.options.entry, cwd: this.options.workspace, args, env: this.options.env });
+    const pi = new PiProcess({ entry: this.options.entry, cwd: workspace, args, env });
     this.starting.delete(session);
     this.sessions.set(session, pi);
     pi.on('record', record => this.event({ type: 'event', agent: 'pi', session, record }));
@@ -75,16 +109,17 @@ export class Backend {
       const state = await pi.request({ type: 'get_state' }, 60_000);
       await pi.request({ type: 'set_auto_retry', enabled: false });
       // Session files may be allocated lazily. Refresh this checkpoint after each prompt.
-      await this.saveState(directory, state.data);
-      return { pid: pi.child.pid, startupMs: performance.now() - pi.startedAt, state: state.data };
+      await this.saveState(directory, state.data, workspace);
+      await this.saveIdentity(session, 'pi', workspace);
+      return { agent: 'pi', workspace, pid: pi.child.pid, startupMs: performance.now() - pi.startedAt, state: state.data };
     } catch (error) { await pi.stop(); this.sessions.delete(session); throw error; }
     } finally { this.starting.delete(session); }
   }
 
-  private async saveState(directory: string, state: RecordData) {
+  private async saveState(directory: string, state: RecordData, workspace: string) {
     if (!state?.sessionFile) return;
     const temporary = join(directory, `resume-${randomUUID()}.tmp`);
-    await writeFile(temporary, JSON.stringify({ sessionFile: state.sessionFile }), { mode: 0o600 });
+    await writeFile(temporary, JSON.stringify({ sessionFile: state.sessionFile, workspace }), { mode: 0o600 });
     await rename(temporary, join(directory, 'resume.json'));
   }
 
@@ -97,7 +132,7 @@ export class Backend {
     const result = await pi.request(command, command.type === 'bash' ? 120_000 : 30_000);
     if (command.type === 'prompt' || command.type === 'get_state' || command.type === 'bash') {
       const state = command.type === 'get_state' ? result : await pi.request({ type: 'get_state' });
-      await this.saveState(resolve(this.options.stateDir, session), state.data);
+      await this.saveState(resolve(this.options.stateDir, session), state.data, pi.workspace);
     }
     return result;
   }
@@ -110,6 +145,6 @@ export class Backend {
     await pi.stop();
     this.sessions.delete(session);
   }
-  status() { return [...[...this.sessions].map(([session, pi]) => ({ session, agent: 'pi', pid: pi.child.pid, stderrBytes: pi.stderrBytes })), ...[...this.codexSessions].map(([session, codex]) => ({ session, agent: 'codex', pid: codex.process.child.pid, threadId: codex.threadId, stderrBytes: codex.process.stderrBytes }))]; }
+  status() { return [...[...this.sessions].map(([session, pi]) => ({ session, agent: 'pi', workspace: pi.workspace, pid: pi.child.pid, stderrBytes: pi.stderrBytes })), ...[...this.codexSessions].map(([session, codex]) => ({ session, agent: 'codex', workspace: codex.workspace, accessMode: codex.accessMode, filesystemIsolation: false, pid: codex.process.child.pid, threadId: codex.threadId, stderrBytes: codex.process.stderrBytes }))]; }
   async close() { this.closed = true; await Promise.all([...this.sessions.keys(), ...this.codexSessions.keys()].map(session => this.stop(session))); }
 }

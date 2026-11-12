@@ -28,6 +28,7 @@ function output(record: RecordData) {
 }
 const backend = new Backend({
   entry: process.env.OLEA_PI_ENTRY ?? '', workspace: resolve(process.env.OLEA_WORKSPACE ?? process.cwd()),
+  workspaceRoot: resolve(process.env.OLEA_WORKSPACE_ROOT ?? '/workspace'),
   stateDir: resolve(process.env.OLEA_STATE_DIR ?? '.setup/olea-state'),
   codexEntry: process.env.OLEA_CODEX_ENTRY, codexProviderPath: process.env.OLEA_PROVIDER_CONFIG,
   codexModel: process.env.OLEA_CODEX_MODEL, codexAccessMode: process.env.OLEA_CODEX_ACCESS_MODE as 'workspace-write' | 'full-access' | undefined, bridgePath: process.env.OLEA_BRIDGE_CONFIG,
@@ -44,8 +45,8 @@ async function handle(record: RecordData) {
   try {
     if (typeof id !== 'string' || id.length > 128) throw new Error('invalid_id');
     let data;
-    if (type === 'start') data = await backend.start(session, record.resume === true);
-    else if (type === 'codex_start') data = await backend.startCodex(session, record.resume === true);
+    if (type === 'start') data = await backend.start(session, record.resume === true, record.workspace);
+    else if (type === 'codex_start') data = await backend.startCodex(session, record.resume === true, record.workspace);
     else if (type === 'codex_command') data = await backend.codexCommand(session, record.command);
     else if (type === 'codex_approval') data = backend.codexApproval(session, record.requestId, record.decision);
     else if (type === 'stop') data = await backend.stop(session);
