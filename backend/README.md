@@ -47,7 +47,7 @@ Codex commands:
 
 - `turn/start` accepts nonempty `params.text` up to 65536 characters. Only one turn or direct command may be active in a session. There is no experiment-specific tool-count cutoff or overall model-turn deadline.
 - `turn/interrupt` uses the observed active thread and turn identity. It cancels a turn separately from environment STOP.
-- `thread/read` always supplies the current `threadId` and `includeTurns:true`; use the returned `thread.turns[].items` to render saved history.
+- `thread/read` first supplies the current `threadId` and `includeTurns:true`; use returned `thread.turns[].items` to render saved history. Stock builds returning exactly `list_turns is not supported yet` get a metadata-only request with `includeTurns:false` and `historyUnavailable:stock_thread_turns_unavailable`. Android retains its saved display and reports this limit.
 - `mcpServerStatus/list` reports phone MCP registration for the current thread.
 - `command/exec` is a no-model stock app-server command, available in full-access mode. `params.command` is an argument array (1–128 strings, each at most 8192 characters); optional `timeoutMs` is 1–300000, default 120000. Cwd is fixed to this session's workspace, output cap is 65536 bytes, and sandbox policy is explicit full access. Other supplied parameters cannot change these boundaries.
 - `command/exec/terminate` targets only this session's tracked direct command, including after delivery uncertainty. Direct commands do not become model conversation turns.
@@ -76,7 +76,7 @@ STOP closes the session's supervised process tree with bounded cleanup. Root/des
 | `phone_files_write_read` | `files_write_read` | `{value}` up to 128 characters |
 | `phone_notifications` | `notifications` | `{}` |
 | `phone_capture_request` | `capture_request` | `{}` |
-| `phone_capture_result` | `capture_result` | `{}` |
+| `phone_capture_result` | `capture_result` | `{requestId}` returned by `phone_capture_request`; pending/ready/denied status |
 | `phone_folder_request` | `folder_request` | `{}` |
 | `phone_app_action` | `cooperating_app_action` | `{value}` up to 128 characters; native user configuration selects target |
 

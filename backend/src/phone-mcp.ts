@@ -18,7 +18,7 @@ export const phoneTools: PhoneTool[] = [
   { name: 'phone_files_write_read', operation: 'files_write_read', description: 'Create and read back a bounded file only in the folder previously selected through Android consent.', properties: { value: { type: 'string', maxLength: 128 } }, required: ['value'] },
   { name: 'phone_notifications', operation: 'notifications', description: 'Read bounded Android notifications after notification access is granted.', properties: {}, required: [] },
   { name: 'phone_capture_request', operation: 'capture_request', description: 'Request fresh system screen-capture consent; user must decide asynchronously. Does not grant consent.', properties: {}, required: [] },
-  { name: 'phone_capture_result', operation: 'capture_result', description: 'Read native capture request status and metadata of the consented capture, including freshness. Does not return model image input.', properties: {}, required: [] },
+  { name: 'phone_capture_result', operation: 'capture_result', description: 'Read status and metadata for the requestId returned by phone_capture_request. Consent completes asynchronously. Does not return model image input.', properties: { requestId: { type: 'string', maxLength: 64 } }, required: ['requestId'] },
   { name: 'phone_folder_request', operation: 'folder_request', description: 'Request Android folder picker. User must select and grant access.', properties: {}, required: [] },
   { name: 'phone_app_action', operation: 'cooperating_app_action', description: 'Send a bounded value through the user-configured cooperating app interface. Requires a native configured target.', properties: { value: { type: 'string', maxLength: 128 } }, required: ['value'] },
 ];

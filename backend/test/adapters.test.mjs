@@ -142,6 +142,16 @@ test('Codex preserves stream/history/interrupt and same-home resume without test
   await assert.rejects(f.backend.startCodex('codex', true, f.second), /resume_identity_mismatch/);
 });
 
+test('stock Codex without turn listing reopens metadata without fabricating history', async t => {
+  const f = await fixture(t);
+  await writeFile(join(f.workspace, 'unsupported-turns'), 'fixture');
+  const start = await f.backend.startCodex('metadata');
+  const result = await f.backend.codexCommand('metadata', { method: 'thread/read' });
+  assert.equal(result.thread.id, start.threadId);
+  assert.equal(result.historyUnavailable, 'stock_thread_turns_unavailable');
+  assert.equal(result.thread.turns, undefined);
+});
+
 test('unknown Codex delivery is never replayed', async t => {
   const child = new CodexProcess({ command: process.execPath, args: [join(import.meta.dirname, 'codex-fixture.mjs')], cwd: import.meta.dirname, env: {} });
   t.after(() => child.stop());

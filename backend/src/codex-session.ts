@@ -101,7 +101,14 @@ export class CodexSession {
   async command(method: string, params: RecordData = {}) {
     if (!params || typeof params !== 'object' || Array.isArray(params)) throw new Error('codex_invalid_input');
     if (method === 'turn/interrupt') return this.interrupt();
-    if (method === 'thread/read') return this.process.request(method, { threadId: this.threadId, includeTurns: true });
+    if (method === 'thread/read') {
+      try { return await this.process.request(method, { threadId: this.threadId, includeTurns: true }); }
+      catch (error: any) {
+        if (error.rpcMessage !== 'list_turns is not supported yet') throw error;
+        const metadata = await this.process.request(method, { threadId: this.threadId, includeTurns: false });
+        return { ...metadata, historyUnavailable: 'stock_thread_turns_unavailable' };
+      }
+    }
     if (method === 'mcpServerStatus/list') return this.process.request(method, { threadId: this.threadId });
     if (method === 'command/exec/terminate') {
       if (!this.execId) throw new Error('codex_exec_not_active');

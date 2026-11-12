@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Local app-server protocol fixture; never executes a shell or contacts a provider.
 import { createInterface } from 'node:readline';
+import { existsSync } from 'node:fs';
 let active;
 const send = value => process.stdout.write(JSON.stringify(value) + '\n');
 for await (const line of createInterface({ input: process.stdin })) {
@@ -8,7 +9,10 @@ for await (const line of createInterface({ input: process.stdin })) {
   if (method === 'initialize') send({ id, result: { userAgent: 'protocol-fixture' } });
   else if (method === 'initialized') continue;
   else if (method === 'thread/start' || method === 'thread/resume') send({ id, result: { thread: { id: params.threadId ?? 'saved-thread' }, received: params, providerConfigured: Boolean(process.env.OLEA_CODEX_PROVIDER_KEY), bridgeConfigInherited: Boolean(process.env.OLEA_BRIDGE_CONFIG) } });
-  else if (method === 'thread/read') send({ id, result: { thread: { id: params.threadId, turns: [{ id: 'saved-turn', items: [{ type: 'agentMessage', text: 'history' }] }] }, includeTurns: params.includeTurns } });
+  else if (method === 'thread/read') {
+    if (params.includeTurns && existsSync('unsupported-turns')) send({ id, error: { code: -32600, message: 'list_turns is not supported yet' } });
+    else send({ id, result: { thread: { id: params.threadId, ...(params.includeTurns ? { turns: [{ id: 'saved-turn', items: [{ type: 'agentMessage', text: 'history' }] }] } : {}) }, includeTurns: params.includeTurns } });
+  }
   else if (method === 'turn/start') {
     active = 'turn-' + id;
     send({ method: 'turn/started', params: { threadId: params.threadId, turn: { id: active } } });

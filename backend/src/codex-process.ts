@@ -44,7 +44,7 @@ export class CodexProcess extends EventEmitter {
       const pending = this.pending.get(record.id);
       if (pending) {
         clearTimeout(pending.timer); this.pending.delete(record.id);
-        record.error ? pending.reject(new Error(`codex_rpc_error_${Number.isInteger(record.error.code) ? record.error.code : 'unknown'}`)) : pending.resolve(record.result);
+        record.error ? pending.reject(Object.assign(new Error(`codex_rpc_error_${Number.isInteger(record.error.code) ? record.error.code : 'unknown'}`), { rpcMessage: record.error.message })) : pending.resolve(record.result);
       }
     } else if (record.id !== undefined && record.method) {
       if (this.approvals.size >= 32) throw new Error('approval_limit');
