@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-import { mkdir, readFile, realpath, rename, stat, writeFile } from 'node:fs/promises';
-import { isAbsolute, relative, resolve, join } from 'node:path';
+import { lstat, mkdir, readFile, realpath, rename, stat, writeFile } from 'node:fs/promises';
+import { dirname, isAbsolute, relative, resolve, join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { PiProcess, type RecordData } from './pi-process.js';
@@ -93,10 +93,27 @@ export class Backend {
       // Legacy checkpoints used the single configured default workspace.
       const savedWorkspace = saved.workspace ?? await realpath(this.options.workspace);
       if (savedWorkspace !== workspace) throw new Error('session_identity_mismatch');
-      const path = await realpath(resolve(saved.sessionFile));
+      if (typeof saved.sessionFile !== 'string' || !saved.sessionFile || saved.sessionFile.split(/[\\/]/).includes('..')) throw new Error('invalid_resume_path');
+      const path = resolve(saved.sessionFile);
+      if (!path.startsWith(directory + sep)) throw new Error('invalid_resume_path');
       const canonicalDirectory = await realpath(directory);
-      if (!path.startsWith(canonicalDirectory + (process.platform === 'win32' ? '\\' : '/'))) throw new Error('invalid_resume_path');
-      args.push('--session', path);
+      const candidate = resolve(canonicalDirectory, relative(directory, path));
+      // Only the reserved leaf may be absent; reject symlinked or missing ancestors.
+      let parent = canonicalDirectory;
+      for (const part of relative(canonicalDirectory, dirname(candidate)).split(sep).filter(Boolean)) {
+        parent = join(parent, part);
+        const info = await lstat(parent).catch(() => { throw new Error('invalid_resume_path'); });
+        if (info.isSymbolicLink() || !info.isDirectory()) throw new Error('invalid_resume_path');
+      }
+      const leaf = await lstat(candidate).catch((error: NodeJS.ErrnoException) => {
+        if (error.code !== 'ENOENT') throw new Error('invalid_resume_path');
+        return undefined;
+      });
+      if (leaf) {
+        const canonicalFile = await realpath(candidate).catch(() => { throw new Error('invalid_resume_path'); });
+        if (!canonicalFile.startsWith(canonicalDirectory + sep) || !(await stat(canonicalFile)).isFile()) throw new Error('invalid_resume_path');
+      }
+      args.push('--session', candidate);
     }
     if (this.closed) throw new Error('backend_closed');
     const pi = new PiProcess({ entry: this.options.entry, cwd: workspace, args, env });

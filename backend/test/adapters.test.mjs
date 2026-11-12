@@ -77,6 +77,33 @@ test('Pi legacy checkpoint migrates only in configured default workspace', async
   assert.equal((await f.backend.start('legacy', true)).workspace, f.workspace);
 });
 
+test('Pi reopens an absent reserved session file without creating a transcript or replaying', async t => {
+  const f = await fixture(t);
+  const start = await f.backend.start('reserved');
+  const checkpoint = join(f.options.stateDir, 'reserved/resume.json');
+  const saved = JSON.parse(await readFile(checkpoint, 'utf8'));
+  assert.equal(saved.sessionFile, start.state.sessionFile);
+  await assert.rejects(readFile(saved.sessionFile), { code: 'ENOENT' });
+  await f.backend.stop('reserved');
+  const resumed = await f.backend.start('reserved', true);
+  assert.equal(resumed.state.resumed, true);
+  assert.equal(resumed.state.sessionFile, saved.sessionFile);
+  await assert.rejects(readFile(saved.sessionFile), { code: 'ENOENT' });
+  await assert.rejects(readFile(join(f.options.stateDir, 'reserved/submissions.txt')), { code: 'ENOENT' });
+});
+
+test('Pi rejects traversal and symlink ancestors for existing and absent resume leaves', async t => {
+  const f = await fixture(t);
+  const directory = join(f.options.stateDir, 'hostile'); await mkdir(directory, { recursive: true });
+  const link = join(directory, 'escape');
+  await symlink(f.outside, link, process.platform === 'win32' ? 'junction' : 'dir');
+  await writeFile(join(f.outside, 'existing.jsonl'), 'outside\n');
+  for (const sessionFile of [join(f.outside, 'absent.jsonl'), directory + '/child/../reserved.jsonl', join(link, 'existing.jsonl'), join(link, 'absent.jsonl')]) {
+    await writeFile(join(directory, 'resume.json'), JSON.stringify({ sessionFile }));
+    await assert.rejects(f.backend.start('hostile', true), /invalid_resume_path/);
+  }
+});
+
 test('Codex preserves stream/history/interrupt and same-home resume without test turn limits', async t => {
   const f = await fixture(t);
   const providerPath = join(f.root, 'provider.json');
