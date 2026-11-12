@@ -29,6 +29,7 @@ class RuntimeService : Service() {
         var working = false
         var opening = false
         var shell = false
+        var closing = false
     }
     private data class Pending(val session: String, val action: String)
     private val serial = Executors.newSingleThreadExecutor()
@@ -192,6 +193,7 @@ class RuntimeService : Service() {
         val workspace = store.workspaces().first { it.id == view.info.workspaceId }
         val guest = store.workspacePath(workspace)
         val resume = File(filesDir, if (view.info.agent == "codex") "data/sessions/codex/${view.info.id}/thread.json" else "data/sessions/${view.info.id}/resume.json").isFile
+        view.closing = false
         view.opening = true
         update("Opening ${view.info.agent} conversation…")
         send(view.info.id, if (view.info.agent == "codex") "codex_start" else "start", resume = resume, workspace = guest)
@@ -222,15 +224,19 @@ class RuntimeService : Service() {
                 val request = pending.remove(record.optString("id")) ?: return
                 val view = displays[request.session] ?: return
                 if (!record.optBoolean("success")) {
-                    view.working = false; view.opening = false
+                    if (request.action in listOf("start", "codex_start", "get_messages", "thread/read")) view.opening = false
+                    // A lost acknowledgement can leave execution alive; retain Cancel until terminal evidence.
+                    val uncertain = record.optString("error") in listOf("rpc_timeout", "codex_delivery_unknown", "backend_request_failed", "codex_turn_delivery_unknown")
+                    if (!uncertain && request.action !in listOf("abort", "abort_bash", "turn/interrupt", "command/exec/terminate")) view.working = false
                     add(view, "Error: ${record.optString("error", "Request failed")}. No automatic retry was sent.")
                     update("Request failed. Inspect the conversation; restart explicitly if needed.")
                     refresh(); return
                 }
                 when (request.action) {
-                    "start" -> send(view.info.id, "command", JSONObject().put("type", "get_messages"))
-                    "codex_start" -> send(view.info.id, "codex_command", JSONObject().put("method", "thread/read"))
+                    "start" -> if (!view.closing) send(view.info.id, "command", JSONObject().put("type", "get_messages"))
+                    "codex_start" -> if (!view.closing) send(view.info.id, "codex_command", JSONObject().put("method", "thread/read"))
                     "get_messages" -> {
+                        if (view.closing) return
                         val messages = record.optJSONObject("data")?.optJSONObject("data")?.optJSONArray("messages") ?: error("Invalid Pi history")
                         if (messages.length() > 0) {
                             view.lines.clear()
@@ -243,6 +249,7 @@ class RuntimeService : Service() {
                         view.ready = true; view.opening = false; update("Pi ready")
                     }
                     "thread/read" -> {
+                        if (view.closing) return
                         val data = record.optJSONObject("data")
                         val turns = data?.optJSONObject("thread")?.optJSONArray("turns")
                         if (turns != null && turns.length() > 0) {
@@ -314,15 +321,16 @@ class RuntimeService : Service() {
             "error" -> add(view, "Codex: ${params.optJSONObject("error")?.optString("message", "Agent error")?.take(2048)}")
         }
     }
-    fun prompt(text: String) = synchronized(lock) {
+    fun prompt(text: String): Boolean = synchronized(lock) {
         val view = selected()
-        if (!view.ready || view.working || text.isBlank() || text.length > 32000) return@synchronized
+        if (!view.ready || view.working || text.isBlank() || text.length > 32000) return@synchronized false
         view.working = true; refresh()
         try {
             add(view, "user: $text")
             if (view.info.agent == "codex") send(view.info.id, "codex_command", JSONObject().put("method", "turn/start").put("params", JSONObject().put("text", text)))
             else send(view.info.id, "command", JSONObject().put("type", "prompt").put("message", text))
-        } catch (_: Exception) { view.working = false; update("Message delivery uncertain. No automatic replay; reopen and inspect saved history."); refresh() }
+            true
+        } catch (_: Exception) { update("Message delivery uncertain. No automatic replay; reopen and inspect saved history."); refresh(); true }
     }
     fun workspace(command: String) = synchronized(lock) {
         val view = selected()
@@ -331,7 +339,7 @@ class RuntimeService : Service() {
         try {
             if (view.info.agent == "codex") send(view.info.id, "codex_command", JSONObject().put("method", "command/exec").put("params", JSONObject().put("command", JSONArray(listOf("/bin/sh", "-c", command)))))
             else send(view.info.id, "command", JSONObject().put("type", "bash").put("command", command))
-        } catch (_: Exception) { view.working = false; view.shell = false; update("Tool delivery uncertain. No automatic replay was sent."); refresh() }
+        } catch (_: Exception) { update("Tool delivery uncertain. Cancel or STOP before continuing; no automatic replay."); refresh() }
     }
     fun cancelTurn() = synchronized(lock) {
         val view = selected()
@@ -345,6 +353,7 @@ class RuntimeService : Service() {
     fun disconnectConversation() = synchronized(lock) {
         val view = selected()
         if (!view.ready && !view.opening) return@synchronized
+        view.closing = true
         send(view.info.id, "stop")
     }
     fun maintainAgent(agent: String, operation: String) = synchronized(lock) {

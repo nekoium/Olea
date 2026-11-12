@@ -25,6 +25,10 @@ class PhoneAccessActivity : Activity() {
         captureId = state?.getString("captureId")
         offeredCaptureId = state?.getString("offeredCaptureId") ?: intent.getStringExtra("requestId")
         val layout = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(24, 24, 24, 24) }
+        layout.setOnApplyWindowInsetsListener { view, insets ->
+            view.setPadding(24, insets.systemWindowInsetTop + 16, 24, insets.systemWindowInsetBottom + 16)
+            insets
+        }
         setContentView(ScrollView(this).apply { addView(layout) })
         fun text(value: String) { layout.addView(TextView(this).apply { text = value; textSize = 16f; setPadding(0, 12, 0, 8) }) }
         fun button(title: String, action: () -> Unit) {

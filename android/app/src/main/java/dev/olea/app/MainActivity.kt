@@ -42,9 +42,9 @@ class MainActivity : Activity() {
         input = EditText(this).apply { hint = "Message agent"; setSingleLine(false); maxLines = 4 }
         val send = Button(this).apply { text = "Send"; setOnClickListener {
             val value = input.text.toString()
-            if (RuntimeService.conversationReady && !RuntimeService.busy && value.isNotBlank()) {
-                attempt { RuntimeService.current?.prompt(value) }
-                input.text.clear()
+            if (value.length > 32000) { input.error = "Messages can contain at most 32000 characters" }
+            else if (RuntimeService.conversationReady && !RuntimeService.busy && value.isNotBlank()) {
+                attempt { if (RuntimeService.current?.prompt(value) == true) input.text.clear() }
             }
         } }
         root.addView(title); root.addView(status)
