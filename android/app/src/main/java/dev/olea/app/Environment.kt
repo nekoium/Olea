@@ -19,7 +19,7 @@ class Environment(private val context: Context) {
     fun initialize() {
         check(Build.SUPPORTED_ABIS.contains("x86_64")) { "This build requires an x86_64 device; ARM64 is not packaged yet." }
         for (path in listOf("runtime", "data/workspace", "data/home", "data/sessions", "backend", "tmp", "archives")) File(base, path).mkdirs()
-        for (name in listOf("linux.sh", "prepare.sh")) {
+        for (name in listOf("linux.sh", "prepare.sh", "agent-maintenance.sh")) {
             context.assets.open(name).use { input -> File(base, name).outputStream().use { input.copyTo(it) } }
         }
         // Backend code is replaceable; persistent sessions and agent homes are separate binds.
@@ -69,6 +69,7 @@ class Environment(private val context: Context) {
         val archive = archive("backend.bin")
         run(listOf("/system/bin/tar", "-xzf", archive.path, "-C", File(base, "backend").path), 60)
         File(base, "prepare.sh").copyTo(File(base, "backend/prepare.sh"), overwrite = true)
+        File(base, "agent-maintenance.sh").copyTo(File(base, "backend/agent-maintenance.sh"), overwrite = true)
     }
 
     fun refreshDns(root: File = File(base, "runtime/rootfs")) {

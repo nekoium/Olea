@@ -47,7 +47,7 @@ xz -dc .setup/core/downloads/node.tar.xz | gzip -n > android/app/src/main/assets
 npm ci --prefix backend
 npm run build --prefix backend
 tar -czf android/app/src/main/assets/backend.bin -C backend dist
-cp runtime/linux.sh runtime/prepare.sh android/app/src/main/assets/
+cp runtime/linux.sh runtime/prepare.sh runtime/agent-maintenance.sh android/app/src/main/assets/
 sha256sum android/app/src/main/assets/*.bin | awk '{n=split($2,a,"/"); print $1" "a[n]}' > android/app/src/main/assets/hashes.txt
 if [[ ! -f .setup/core/gradle-9.1.0/bin/gradle ]]; then unzip -q .setup/core/downloads/gradle.zip -d .setup/core; fi
 .setup/core/gradle-9.1.0/bin/gradle --no-daemon -p android :app:assembleDebug --max-workers=2 "$@"
