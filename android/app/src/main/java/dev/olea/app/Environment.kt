@@ -99,9 +99,14 @@ class Environment(private val context: Context) {
         File(root, "etc/resolv.conf").writeText((servers.mapNotNull { it.hostAddress }.ifEmpty { listOf("1.1.1.1") }).joinToString("\n", postfix = "\n") { "nameserver $it" })
     }
 
+    @Volatile var boundWorkspacePaths: Set<String> = emptySet()
+        private set
+
     fun linux(vararg args: String) = listOf("/system/bin/sh", File(base, "linux.sh").path) + args
     fun builder(command: List<String>) = ProcessBuilder(command).directory(base).apply {
-        environment()["OLEA_WORKSPACE_BINDS"] = WorkspaceFolders(context, SessionStore(base)).writeBindings().path
+        val bindings = WorkspaceFolders(context, SessionStore(base)).writeBindings()
+        boundWorkspacePaths = bindings.readLines().filter { it.isNotEmpty() }.map { it.substringAfter('\t') }.toSet()
+        environment()["OLEA_WORKSPACE_BINDS"] = bindings.path
         environment()["OLEA_APP_BASE"] = base.path
         environment()["OLEA_NATIVE_DIR"] = context.applicationInfo.nativeLibraryDir
     }

@@ -13,6 +13,7 @@
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
         </activity>
         <activity android:name=".PhoneAccessActivity" android:exported="false" />
+        <activity android:name=".SharedFolderActivity" android:exported="false" />
         <service android:name=".PhoneCaptureService" android:exported="false" android:foregroundServiceType="mediaProjection" />
         <service android:name=".PhoneAccessibility" android:exported="true" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter><action android:name="android.accessibilityservice.AccessibilityService" /></intent-filter>

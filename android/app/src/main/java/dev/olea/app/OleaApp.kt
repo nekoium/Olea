@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -59,6 +61,10 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
     var draftAgent by rememberSaveable { mutableStateOf("") }
     var draftWorkspace by rememberSaveable { mutableStateOf("") }
     var managedName by rememberSaveable { mutableStateOf("") }
+    var connectionName by rememberSaveable { mutableStateOf("") }
+    var connectionForSetup by rememberSaveable { mutableStateOf(false) }
+    val foreground = foregroundRevision()
+    val sourceRevision = revision + RuntimeService.revision + foreground
     var inspectedWorkspace by rememberSaveable { mutableStateOf("") }
     var providerAgent by rememberSaveable { mutableStateOf("pi") }
     var picker by remember { mutableStateOf("") }
@@ -88,6 +94,25 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
     fun newChat() {
         draftAgent = ""; pendingFirstSend = null; draftWorkspace = filter.ifEmpty { snapshot.active?.workspaceId.orEmpty() }
         go("draft")
+    }
+    val folderPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == android.app.Activity.RESULT_OK) perform {
+            val path = result.data?.getStringExtra(SharedFolderActivity.EXTRA_PATH) ?: error("No folder was selected. Try connecting again.")
+            val name = connectionName.ifBlank { result.data?.getStringExtra(SharedFolderActivity.EXTRA_NAME).orEmpty() }
+            val item = runtime().createConnectedWorkspace(name, path)
+            managedName = ""
+            if (connectionForSetup) {
+                setupWorkspace = item.id
+                preferences.edit().putString("setup-workspace", item.id).apply()
+            } else {
+                filter = item.id; inspectedWorkspace = item.id; go("workspace")
+            }
+        }
+    }
+    fun connectFolder(forSetup: Boolean) {
+        connectionName = managedName.trim()
+        connectionForSetup = forSetup
+        folderPicker.launch(Intent(context, SharedFolderActivity::class.java))
     }
     BackHandler(drawer || details || picker.isNotBlank() || confirmStop || history.isNotEmpty() || screen !in listOf("history", "setup")) {
         when { drawer -> drawer = false; details -> details = false; picker.isNotBlank() -> picker = ""; confirmStop -> confirmStop = false; else -> back() }
@@ -141,12 +166,30 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                             2 -> {
                                 Heading("Choose a workspace")
                                 Label("Keep a project’s conversations and files together.", muted = true)
-                                snapshot.workspaces.forEach { item -> Choice(item.name, "Managed workspace", if (setupWorkspace == item.id) "Selected" else "", setupWorkspace == item.id) { setupWorkspace = item.id; preferences.edit().putString("setup-workspace", item.id).apply() } }
+                                snapshot.workspaces.forEach { item ->
+                                    val source = workspaceSourceStatus(item.id, sourceRevision)
+                                    val detail = when {
+                                        source == null -> "Checking workspace source…"
+                                        source.optString("state") == "error" -> "Source unavailable"
+                                        source.optBoolean("connected") -> source.optString("path")
+                                        else -> "Managed workspace"
+                                    }
+                                    Choice(item.name, detail, if (setupWorkspace == item.id) "Selected" else "", setupWorkspace == item.id) { setupWorkspace = item.id; preferences.edit().putString("setup-workspace", item.id).apply() }
+                                }
                                 Field("New workspace name", managedName, { managedName = it }, "Project name")
                                 Action("Create workspace", enabled = managedName.isNotBlank() && snapshot.available) { perform {
                                     val created = runtime().store.createWorkspace(managedName); setupWorkspace = created.id; managedName = ""; preferences.edit().putString("setup-workspace", created.id).apply()
                                 } }
+                                Action("Connect existing folder", enabled = snapshot.available && !snapshot.busy && !snapshot.summary.startsWith("Backend: running")) { connectFolder(true) }
+                                Label("Connecting a folder requires a stopped environment and Android all-files access. Existing content stays in place.", size = 12, muted = true)
+                                val selectedSource = workspaceSourceStatus(setupWorkspace, sourceRevision)
+                                if (selectedSource != null && selectedSource.optString("state") !in listOf("managed", "available")) {
+                                    Notice(selectedSource.optString("message", "Folder access is unavailable."), true)
+                                    if (selectedSource.optBoolean("connected")) Action("Android storage settings") { perform { context.startActivity(AndroidSharedFolders(context).settingsIntent()) } }
+                                }
+                                if (snapshot.busy || snapshot.summary.startsWith("Backend: running")) Action("STOP environment to connect a folder") { confirmStop = true }
                                 Action("Continue", primary = true, enabled = setupWorkspace.isNotBlank() && snapshot.available) { perform {
+                                    runtime().workspaceFolders.requireAvailable(setupWorkspace)
                                     val existing = preferences.getString("setup-session", null)?.let { id -> runtime().store.conversations().firstOrNull { it.id == id && it.agent == setupAgent && it.workspaceId == setupWorkspace } }
                                     val session = existing ?: runtime().store.createConversation("First conversation", setupAgent, setupWorkspace)
                                     runtime().selectConversation(session.id); preferences.edit().putString("setup-session", session.id).apply(); step(3)
@@ -224,6 +267,7 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                                     if (creating) {
                                         check(chosenAgent.isNotBlank()) { "Choose an agent before sending." }
                                         check(chosenWorkspace.isNotBlank()) { "Choose a workspace before sending." }
+                                        runtime().workspaceFolders.requireAvailable(chosenWorkspace)
                                         val title = text.lineSequence().first().take(64).replace(Regex("[/\\\\:\\p{Cntrl}]"), " ").trim().takeUnless { it.isEmpty() || it == "." || it == ".." } ?: "Conversation"
                                         val session = runtime().store.createConversation(title, chosenAgent, chosenWorkspace)
                                         runtime().selectConversation(session.id)
@@ -247,13 +291,27 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                         Heading("Create a workspace")
                         Field("Workspace name", managedName, { managedName = it }, "Project name")
                         Action("Create workspace", primary = true, enabled = managedName.isNotBlank()) { perform { val item = runtime().store.createWorkspace(managedName); filter = item.id; inspectedWorkspace = item.id; managedName = ""; go("history") } }
-                        Notice("Workspace files stay in Olea’s private storage. Android folder access is available through phone tools; it does not create a direct Linux workspace.")
-                        Action("Android folder access", onClick = phoneAccess)
+                        Label("Create a private workspace, or connect a folder from primary shared storage. Connected folders keep their existing files; agent edits apply directly.", muted = true)
+                        Action("Connect existing folder", enabled = snapshot.available && !snapshot.busy && !snapshot.summary.startsWith("Backend: running")) { connectFolder(false) }
+                        if (snapshot.busy || snapshot.summary.startsWith("Backend: running")) {
+                            Notice("Stop the environment before connecting a folder. Active conversations and terminals will stop.")
+                            Action("STOP environment") { confirmStop = true }
+                        }
                     }
                     "workspace" -> Page {
                         Heading(workspace?.name ?: "Workspace")
                         if (workspace != null) {
-                            Notice("Managed workspace\n${if (workspace.relativePath.isEmpty()) "/workspace" else "/workspace/${workspace.relativePath}"}")
+                            val source = workspaceSourceStatus(workspace.id, sourceRevision)
+                            Notice(when {
+                                source == null -> "Checking workspace source…"
+                                source.optString("state") == "error" -> "Workspace source unavailable"
+                                source.optBoolean("connected") -> "Connected folder\n${source.optString("path")}\n/workspace/${workspace.relativePath}"
+                                else -> "Managed workspace\n${if (workspace.relativePath.isEmpty()) "/workspace" else "/workspace/${workspace.relativePath}"}"
+                            })
+                            if (source != null && source.optString("state") !in listOf("managed", "available")) {
+                                Notice(source.optString("message", "Folder access is unavailable."), true)
+                                if (source.optBoolean("connected")) Action("Android storage settings") { perform { context.startActivity(AndroidSharedFolders(context).settingsIntent()) } }
+                            }
                             Choice("Conversations", "Saved sessions in this workspace") { filter = workspace.id; go("history") }
                             Choice("Files", "Browse workspace files") { go("files") }
                             Choice("Terminal", "Workspace command tools") { go("terminal") }

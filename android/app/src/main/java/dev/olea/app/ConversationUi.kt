@@ -51,7 +51,7 @@ import kotlinx.coroutines.withContext
                         Notice(snapshot.status, snapshot.status.contains("failed", true) || snapshot.status.contains("uncertain", true))
                         if (!snapshot.busy) Action(if (snapshot.environmentReady) "Start / reconnect conversation" else "Prepare and start environment", onClick = start)
                     }
-                    if (state?.state == "stopped") Label("Execution stopped. Review the last result, then reconnect to continue.", muted = true)
+                    if (state?.state == "stopped") Label(if (snapshot.ready) "Turn stopped. Review the partial reply, then send a follow-up to continue." else "Execution stopped. Review the last result, then reconnect to continue.", muted = true)
                     if (state?.state == "error") Label("Review saved results before retrying. No message is replayed automatically.", muted = true)
                     state?.interaction?.let { interaction ->
                         Notice(interaction.text)
@@ -145,39 +145,89 @@ import kotlinx.coroutines.withContext
     }
 }
 
+@Composable internal fun foregroundRevision(): Int {
+    var revision by remember { mutableIntStateOf(0) }
+    val owner = LocalContext.current as? androidx.lifecycle.LifecycleOwner
+    DisposableEffect(owner) {
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+            if (event == androidx.lifecycle.Lifecycle.Event.ON_RESUME) revision++
+        }
+        owner?.lifecycle?.addObserver(observer)
+        onDispose { owner?.lifecycle?.removeObserver(observer) }
+    }
+    return revision
+}
+
+@Composable internal fun workspaceSourceStatus(id: String, revision: Long): org.json.JSONObject? {
+    val status by produceState<org.json.JSONObject?>(null, id, revision) {
+        value = withContext(Dispatchers.IO) {
+            try { RuntimeService.current?.workspaceFolders?.status(id) }
+            catch (cancelled: kotlinx.coroutines.CancellationException) { throw cancelled }
+            catch (error: Exception) { org.json.JSONObject().put("state", "error").put("message", error.message ?: "Cannot read connected-folder metadata. Saved data was preserved.") }
+        }
+    }
+    return status
+}
+
 @Composable internal fun WorkspaceFiles(workspace: WorkspaceInfo, perform: (() -> Unit) -> Unit) {
-    val runtime = RuntimeService.current
-    val root = remember(workspace.id) { runtime?.store?.workspaceFile(workspace) }
+    val context = LocalContext.current
+    val foreground = foregroundRevision()
     var relative by rememberSaveable(workspace.id) { mutableStateOf("") }
     var listing by remember { mutableStateOf<List<File>>(emptyList()) }
     var preview by remember { mutableStateOf<String?>(null) }
     var issue by remember { mutableStateOf("") }
-    LaunchedEffect(workspace.id, relative) {
-        withContext(Dispatchers.IO) {
-            try {
-                check(root != null) { "Workspace is unavailable." }
-                val selected = File(root, relative)
-                check(selected.canonicalFile.toPath().startsWith(root.canonicalFile.toPath())) { "This link points outside the workspace." }
+    var loading by remember { mutableStateOf(true) }
+    var refresh by remember { mutableIntStateOf(0) }
+    val source = workspaceSourceStatus(workspace.id, RuntimeService.revision + foreground + refresh)
+    LaunchedEffect(workspace.id, relative, foreground, refresh) {
+        loading = true; issue = ""; listing = emptyList(); preview = null
+        try {
+            val result = withContext(Dispatchers.IO) {
+                val runtime = RuntimeService.current ?: error("Workspace is unavailable.")
+                val root = runtime.workspaceFolders.workspaceFile(workspace.id).canonicalFile
+                val selected = File(root, relative).canonicalFile
+                check(selected.toPath().startsWith(root.toPath())) { "This link points outside the workspace." }
                 if (selected.isDirectory) {
-                    preview = null; listing = selected.listFiles()?.sortedWith(compareBy<File> { !it.isDirectory }.thenBy { it.name.lowercase() }) ?: error("Folder could not be read.")
+                    val files = selected.listFiles()?.sortedWith(compareBy<File> { !it.isDirectory }.thenBy { it.name.lowercase() }) ?: error("Folder could not be read.")
+                    files to null
                 } else {
-                    check(selected.length() <= 262144) { "This file is larger than the 256 KB preview limit. Ask the agent to inspect it." }
-                    val bytes = selected.readBytes()
+                    check(selected.isFile) { "This file is missing. Restore it or refresh the parent folder." }
+                    val bytes = selected.inputStream().use { input ->
+                        val buffer = ByteArray(262145)
+                        var count = 0
+                        while (count < buffer.size) {
+                            val next = input.read(buffer, count, buffer.size - count)
+                            if (next < 0) break
+                            count += next
+                        }
+                        check(count <= 262144) { "This file is larger than the 256 KB preview limit. Ask the agent to inspect it." }
+                        buffer.copyOf(count)
+                    }
                     check(bytes.none { it == 0.toByte() }) { "Binary file. Ask the agent to inspect it." }
-                    preview = bytes.toString(Charsets.UTF_8); listing = emptyList()
+                    emptyList<File>() to bytes.toString(Charsets.UTF_8)
                 }
-                issue = ""
-            } catch (error: Exception) { issue = error.message ?: "Files could not be read."; listing = emptyList(); preview = null }
-        }
+            }
+            listing = result.first; preview = result.second
+        } catch (cancelled: kotlinx.coroutines.CancellationException) {
+            throw cancelled
+        } catch (error: Exception) {
+            issue = error.message ?: "Files could not be read."
+        } finally { loading = false }
     }
     Page {
         Label(workspace.name, size = 20)
+        if (source?.optBoolean("connected") == true) Label(source.optString("path"), mono = true, size = 12, muted = true)
         Label(if (relative.isEmpty()) "/" else relative, mono = true, size = 12, muted = true)
         if (relative.isNotEmpty()) Action("Parent folder") { relative = relative.substringBeforeLast('/', "") }
-        if (issue.isNotEmpty()) Notice(issue, true)
+        if (issue.isNotEmpty()) {
+            Notice(issue, true)
+            if (source?.optBoolean("connected") == true) Action("Android storage settings") { perform { context.startActivity(AndroidSharedFolders(context).settingsIntent()) } }
+        }
+        Action("Refresh files", enabled = !loading) { refresh++ }
+        if (loading) Label("Reading workspace…", muted = true)
         preview?.let { SelectionContainer { Label(it.ifEmpty { "Empty file" }, size = 13, mono = true) } }
-        if (preview == null && listing.isEmpty() && issue.isEmpty()) Label("This folder is empty.", muted = true)
-        listing.forEach { file -> Choice(file.name + if (file.isDirectory) "/" else "", if (file.isDirectory) "Folder" else "${file.length()} bytes") { relative = if (relative.isEmpty()) file.name else "$relative/${file.name}" } }
+        if (!loading && preview == null && listing.isEmpty() && issue.isEmpty()) Label("This folder is empty.", muted = true)
+        listing.forEach { file -> Choice(file.name + if (file.isDirectory) "/" else "", if (file.isDirectory) "Folder" else "File") { relative = if (relative.isEmpty()) file.name else "$relative/${file.name}" } }
     }
 }
 

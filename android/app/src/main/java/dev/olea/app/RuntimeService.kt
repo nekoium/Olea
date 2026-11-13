@@ -210,6 +210,7 @@ class RuntimeService : Service() {
     }
     fun prepareEnvironment() = startEnvironment(false)
     fun startEnvironment(openConversation: Boolean = true) = synchronized(lock) {
+        if (openConversation) workspaceFolders.requireAvailable(selected().info.workspaceId)
         if (preparing) return@synchronized
         if (backend && child?.isAlive == true) { if (openConversation) openSelected(); return@synchronized }
         if (child != null) { update("Tap STOP to finish prior cleanup before starting."); return@synchronized }
@@ -251,16 +252,23 @@ class RuntimeService : Service() {
             }
         }
     }
+    private fun taskWorkspacePath(workspaceId: String): String {
+        val guest = workspaceFolders.workspacePath(workspaceId)
+        if (workspaceFolders.isConnected(workspaceId)) check(guest in environment.boundWorkspacePaths) {
+            "This folder was unavailable when the environment started. STOP the environment, restore folder access, then start it again."
+        }
+        return guest
+    }
+
     private fun openSelected() {
         val view = selected()
+        val guest = taskWorkspacePath(view.info.workspaceId)
         if (view.ready || view.opening) return
         if (!agentConfiguration.status(view.info.agent).optBoolean("installed")) {
             view.outcome = "error"
             update("${view.info.agent} is not installed. Install it from Agents, then Start.")
             return
         }
-        val workspace = store.workspaces().first { it.id == view.info.workspaceId }
-        val guest = store.workspacePath(workspace)
         val checkpoint = when (view.info.agent) {
             "codex" -> "data/sessions/codex/${view.info.id}/thread.json"
             "claude" -> "data/sessions/claude/${view.info.id}/session.json"
@@ -273,6 +281,16 @@ class RuntimeService : Service() {
         send(view.info.id, when (view.info.agent) { "codex" -> "codex_start"; "claude" -> "claude_start"; else -> "start" }, resume = resume, workspace = guest)
         refresh()
     }
+    fun createConnectedWorkspace(name: String, path: String): WorkspaceInfo = synchronized(lock) {
+        check(child == null && !preparing) { "Stop the environment before connecting a workspace folder." }
+        AndroidSharedFolders(this).requireAvailable(path)
+        val item = store.createWorkspace(name)
+        workspaceFolders.connect(item.id, path)
+        update("Folder connected. Start explicitly; saved conversations remain in private storage.")
+        refresh()
+        item
+    }
+
     fun connectFolder(workspaceId: String, path: String) = synchronized(lock) {
         check(child == null && !preparing) { "Stop the environment before connecting a workspace folder" }
         workspaceFolders.connect(workspaceId, path)
@@ -284,14 +302,17 @@ class RuntimeService : Service() {
     fun createTerminal(workspaceId: String, name: String = "Terminal"): String = synchronized(lock) {
         require(name.isNotBlank() && name.length <= 160 && name.none { it.isISOControl() }) { "Enter a terminal name" }
         check(backend && child?.isAlive == true) { "Start the environment before opening a terminal" }
-        val workspace = store.workspaces().firstOrNull { it.id == workspaceId } ?: error("Unknown workspace")
+        store.workspaces().firstOrNull { it.id == workspaceId } ?: error("Unknown workspace")
+        val guest = taskWorkspacePath(workspaceId)
         val id = UUID.randomUUID().toString()
         terminalViews[id] = RuntimeTerminalState(id, workspaceId, name, "opening", "")
-        send(id, "terminal_start", workspace = store.workspacePath(workspace), action = "terminal_start", extra = JSONObject().put("name", name))
+        send(id, "terminal_start", workspace = guest, action = "terminal_start", extra = JSONObject().put("name", name))
         refresh(); id
     }
     fun terminalInput(id: String, text: String) = synchronized(lock) {
-        check(terminalViews[id]?.state == "running") { "Terminal is not running" }
+        val terminal = terminalViews[id] ?: error("Unknown terminal")
+        check(terminal.state == "running") { "Terminal is not running" }
+        taskWorkspacePath(terminal.workspaceId)
         require(text.length <= 32768) { "Terminal input is too long" }
         send(id, "terminal_command", JSONObject().put("type", "input").put("text", text), action = "terminal_input")
     }
@@ -311,6 +332,7 @@ class RuntimeService : Service() {
         val view = displays[sessionId] ?: error("Unknown conversation")
         val interaction = view.interaction ?: error("No pending interaction")
         require(interaction.requestId == requestId && decision in interaction.choices) { "Invalid interaction response" }
+        if (decision == "accept") taskWorkspacePath(view.info.workspaceId)
         check(view.info.agent == "codex") { "Interaction is not supported by this agent" }
         send(sessionId, "codex_approval", action = "codex_approval", extra = JSONObject().put("requestId", view.interactionId).put("decision", decision))
         view.interaction = null; view.interactionId = null; refresh()
@@ -349,7 +371,16 @@ class RuntimeService : Service() {
             refresh(); return
         }
         when (record.optString("type")) {
-            "ready" -> { preparing = false; if (openAfterPreparation) openSelected() else update("Environment ready · choose an agent to install or open a terminal") }
+            "ready" -> {
+                preparing = false
+                if (openAfterPreparation) {
+                    try { openSelected() } catch (error: Exception) {
+                        selected().outcome = "error"
+                        update(error.message ?: "Workspace unavailable. Restore folder access and start explicitly.")
+                        refresh()
+                    }
+                } else update("Environment ready · choose an agent to install or open a terminal")
+            }
             "response" -> {
                 val request = pending.remove(record.optString("id")) ?: return
                 if (request.action.startsWith("terminal_")) {
@@ -508,6 +539,7 @@ class RuntimeService : Service() {
     fun prompt(text: String): Boolean = synchronized(lock) {
         val view = selected()
         if (!view.ready || view.working || text.isBlank() || text.length > 32000) return@synchronized false
+        taskWorkspacePath(view.info.workspaceId)
         view.working = true; view.outcome = "working"; view.stopRequested = false; refresh()
         try {
             add(view, "user: $text")
@@ -520,6 +552,7 @@ class RuntimeService : Service() {
     fun workspace(command: String) = synchronized(lock) {
         val view = selected()
         if (!view.ready || view.working || command.isBlank() || command.length > 16384) return@synchronized
+        taskWorkspacePath(view.info.workspaceId)
         check(view.info.agent != "claude") { "Claude has no separate workspace-shell RPC. Ask Claude to use its Bash tool, or use a Pi/Codex conversation." }
         view.working = true; view.shell = true; view.outcome = "working"; view.stopRequested = false; refresh()
         try {
