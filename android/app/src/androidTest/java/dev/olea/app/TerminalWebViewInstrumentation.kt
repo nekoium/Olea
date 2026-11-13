@@ -449,7 +449,11 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             awaitCondition(8, "ordinary RuntimeService output") { current().output.contains("olea-actual-$tag") }
             awaitScript(bufferContains("olea-actual-$tag"))
             capture(receipt, "actualAfterPrintf")
-            check(visualState().getInt("sampledBright") > 0) { "Real WebView draw contains no visible terminal text pixels" }
+            val visible = visualState()
+            receipt.put("actualPixelProof", visible)
+            check(visible.getInt("sampledBright") >= 50 && (visible.optJSONObject("rows")?.optInt("textChars", 0) ?: 0) >= 20) {
+                "Real WebView draw lacks text-sized pixels (cursor alone is insufficient): $visible"
+            }
             activitySnapshot(host, receipt, "actualFinalSnapshot")
             receipt.put("ordinaryActivityTerminal", "pass")
         } catch (error: Throwable) {
