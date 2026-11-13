@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: MIT
 set -euo pipefail
+phase=inputs
+trap 'code=$?; printf "Build exited during %s (exit %s)\n" "$phase" "$code" >&2' EXIT
 trap 'code=$?; printf "Build failed at line %s (exit %s)\n" "$LINENO" "$code" >&2' ERR
 cd "$(dirname "$0")/.."
 : "${JAVA_HOME:?Set JAVA_HOME to JDK 17 or later}"
@@ -88,7 +90,17 @@ done
 printf '%s\n' "$abi" > "$assets/runtime-abi.txt"
 sha256sum "$assets"/*.bin "$assets/runtime-abi.txt" | awk '{n=split($2,a,"/"); print $1" "a[n]}' > "$assets/hashes.txt"
 if [[ ! -f .setup/core/gradle-9.1.0/bin/gradle ]]; then unzip -q "$work/downloads/gradle.zip" -d .setup/core; fi
-.setup/core/gradle-9.1.0/bin/gradle --no-daemon -p android ":app:$build_task" --max-workers=2 "-PoleaAbi=$abi" "$@"
+phase=gradle
+printf 'Build phase: %s\n' "$phase"
+if .setup/core/gradle-9.1.0/bin/gradle --no-daemon -p android ":app:$build_task" --max-workers=2 "-PoleaAbi=$abi" "$@"; then
+  printf 'Gradle exited with status 0\n'
+else
+  code=$?
+  printf 'Gradle exited with status %s\n' "$code" >&2
+  exit "$code"
+fi
+phase=apk-verification
+printf 'Build phase: %s\n' "$phase"
 apk="android/app/build/outputs/apk/$build_type/app-$build_type.apk"
 packaged_abis=$(unzip -Z1 "$apk" | awk -F/ '$1 == "lib" {print $2}' | sort -u)
 [[ $packaged_abis == "$abi" ]] || { echo "Unexpected APK native ABIs: $packaged_abis" >&2; exit 1; }
@@ -102,5 +114,7 @@ for name in libproot.so libloader.so libloader32.so libtalloc.so libandroid-shme
   [[ $actual == "$expected" ]] || { echo "Packaged native verification failed: $name" >&2; exit 1; }
 done
 # Preserve the selected artifact before another ABI build replaces the Gradle output.
+phase=artifact-copy
 cp "$apk" "$work/olea-$abi-$build_type.apk"
 sha256sum "$work/olea-$abi-$build_type.apk"
+phase=complete
