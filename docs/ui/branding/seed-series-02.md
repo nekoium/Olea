@@ -4,6 +4,8 @@
 
 **USER DECISION:** Create at least a portrait poster, landscape poster, thin landscape banner and square image. Different compositions may share the same visual language. Source: the user's request for additional promotional formats in the same message.
 
+**USER DECISION:** The four compositions in this series are accepted. Source: the user's subsequent photographic-poster request, “All of them are great.”
+
 ## Visual direction
 
 **AGENT PLAN:** Extend the selected Seed identity through scale, placement and the balance of pale and deep olive. Preserve the original leaf contour and diagonal seam. The seed is the visual signature; the compositions change around it. Careful optical spacing and the relationship of each leaf tip to the canvas edges establish continuity.
@@ -34,4 +36,4 @@ The portrait balances an isolated, monumental seed above a large left-aligned sl
 
 **OBSERVED:** The local renderer checks text measurements against available canvas space and output dimensions. A visual review checks the exact slogan wording, typography, margins, symbol placement and the overview. Intentional symbol cropping is confined to the landscape's right panel. These checks do not establish production printing or Android launcher readiness.
 
-**OPEN:** Layouts remain available for visual feedback. Export/install destinations outside `docs/ui/branding/` require a later user instruction. Selecting this promotional identity does not establish an application Material theme or change product scope.
+**OPEN:** Further refinements can follow user feedback. Export/install destinations outside `docs/ui/branding/` require a later user instruction. Selecting this promotional identity does not establish an application Material theme or change product scope.

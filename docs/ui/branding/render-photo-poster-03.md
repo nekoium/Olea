@@ -1,0 +1,102 @@
+# Photographic poster renderer 03
+
+Original layout and source code use the repository MIT license. The photograph retains its separate Pexels license; see `sources/README.md`. Fonts and original Seed geometry are documented in `directions-01.md`.
+
+Run the fenced PowerShell source from the repository root, passing `FontRoot` as the canvas-design `canvas-fonts` folder. Windows/System.Drawing only; no network requests, paid services or dependencies. Retains the source JPEG unchanged and renders the full-size poster plus preview. Pixel grading uses a fixed random seed so the noise is reproducible.
+
+```powershell
+param([Parameter(Mandatory=$true)][string]$FontRoot)
+$ErrorActionPreference = 'Stop'
+$dir = Join-Path (Get-Location) 'docs/ui/branding'
+$original = [System.IO.File]::ReadAllText((Join-Path $dir 'render-study-01.md'))
+$source = $original.Split(@('```powershell'),[System.StringSplitOptions]::None)[1].Split(@('```'),[System.StringSplitOptions]::None)[0]
+$prefix = $source.Substring(0,$source.IndexOf('$g.Clear('))
+$prefix = $prefix.Substring($prefix.IndexOf('Add-Type'))
+Invoke-Expression $prefix
+$g.Dispose(); $img.Dispose()
+Add-Type -ReferencedAssemblies System.Drawing -TypeDefinition @'
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
+public static class OleaPhotoGrade03 {
+  static byte Clamp(double n) { return (byte)Math.Max(0, Math.Min(255, Math.Round(n))); }
+  public static void Apply(Bitmap bitmap) {
+    BitmapData data = bitmap.LockBits(new Rectangle(0,0,bitmap.Width,bitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+    try {
+      int w=bitmap.Width, h=bitmap.Height, stride=data.Stride;
+      if(stride<=0) throw new InvalidOperationException("Positive bitmap stride required.");
+      byte[] bytes=new byte[stride*h]; Marshal.Copy(data.Scan0,bytes,0,bytes.Length);
+      Random rng=new Random(6231906);
+      for(int y=0;y<h;y++) {
+        double v=(double)y/(h-1);
+        // Deep olive veil behind the upper-left copy, tapering smoothly below it.
+        double top=0.52*Math.Pow(Math.Max(0,1-v/0.59),1.2);
+        double bottom=0.09*Math.Pow(Math.Max(0,(v-0.78)/0.22),1.3);
+        for(int x=0;x<w;x++) {
+          int i=y*stride+x*3;
+          double b=bytes[i], g=bytes[i+1], r=bytes[i+2];
+          double l=0.2126*r+0.7152*g+0.0722*b;
+          r=17+0.90*(0.78*r+0.22*l);
+          g=21+0.86*(0.78*g+0.22*l);
+          b=17+0.74*(0.78*b+0.22*l);
+          double nx=((double)x/(w-1)-0.5)*2;
+          double ny=(v-0.5)*2;
+          double vignette=0.065*(nx*nx+ny*ny);
+          double veil=Math.Min(0.70,top+bottom+vignette);
+          r=r*(1-veil)+27*veil; g=g*(1-veil)+38*veil; b=b*(1-veil)+27*veil;
+          // Fine monochrome grain, added before crisp graphic overlays.
+          double grain=(rng.NextDouble()+rng.NextDouble()+rng.NextDouble()-1.5)*10;
+          bytes[i]=Clamp(b+grain); bytes[i+1]=Clamp(g+grain); bytes[i+2]=Clamp(r+grain);
+        }
+      }
+      Marshal.Copy(bytes,0,data.Scan0,bytes.Length);
+    } finally { bitmap.UnlockBits(data); }
+  }
+}
+'@
+$photo=[System.Drawing.Bitmap]::new((Join-Path $dir 'sources/pexels-6231906.jpeg'))
+if($photo.Width -ne 3360 -or $photo.Height -ne 5040) { throw 'Unexpected source dimensions.' }
+$img=[System.Drawing.Bitmap]::new(1600,2400,[System.Drawing.Imaging.PixelFormat]::Format24bppRgb)
+$g=[System.Drawing.Graphics]::FromImage($img)
+$g.InterpolationMode=[System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+$g.DrawImage($photo,[System.Drawing.Rectangle]::new(0,0,1600,2400))
+$photo.Dispose(); $g.Dispose()
+[OleaPhotoGrade03]::Apply($img)
+$g=[System.Drawing.Graphics]::FromImage($img)
+$g.SmoothingMode=[System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
+$g.TextRenderingHint=[System.Drawing.Text.TextRenderingHint]::AntiAliasGridFit
+function PhotoText($s,$x,$y,$size,$family) {
+  $f=[System.Drawing.Font]::new($family,[single]$size,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Pixel)
+  $m=$g.MeasureString($s,$f)
+  if($x -lt 0 -or $y -lt 0 -or ($x+$m.Width) -gt 1500 -or ($y+$m.Height) -gt 2300) { throw "Text outside margins: $s" }
+  $b=Brush '#F4F0DA'; $g.DrawString($s,$f,$b,[single]$x,[single]$y)
+  $b.Dispose(); $f.Dispose()
+}
+# A transparent seam preserves the filtered photograph beneath the icon.
+# Use a path with an excluded seam rather than painting a solid background stroke.
+$state=$g.Save(); $g.TranslateTransform([single]78,[single]64); $g.ScaleTransform([single]1.25,[single]1.25)
+$p=[System.Drawing.Drawing2D.GraphicsPath]::new()
+$p.AddBezier([single]22,[single]79,[single]10,[single]39,[single]39,[single]17,[single]78,[single]21)
+$p.AddBezier([single]78,[single]21,[single]90,[single]61,[single]61,[single]83,[single]22,[single]79)
+$seam=[System.Drawing.Drawing2D.GraphicsPath]::new()
+$seam.AddLine([single]25,[single]76,[single]73,[single]24)
+$pen=[System.Drawing.Pen]::new([System.Drawing.Color]::Black,[single]4.2)
+$seam.Widen($pen)
+$region=[System.Drawing.Region]::new($p); $region.Exclude($seam)
+$brush=Brush '#F4F0DA'; $g.FillRegion($brush,$region)
+$brush.Dispose(); $region.Dispose(); $pen.Dispose(); $seam.Dispose(); $p.Dispose(); $g.Restore($state)
+PhotoText 'Olea' 220 70 90 $outfit
+$headline=@('Your agents.','In your hands.')
+if(($headline -join ' ') -cne 'Your agents. In your hands.') { throw 'Campaign copy mismatch.' }
+PhotoText $headline[0] 95 370 138 $sans
+PhotoText $headline[1] 95 532 138 $sans
+if($img.Width -ne 1600 -or $img.Height -ne 2400) { throw 'Incorrect poster dimensions.' }
+$img.Save((Join-Path $dir 'seed-poster-in-your-hands.png'),[System.Drawing.Imaging.ImageFormat]::Png)
+$preview=[System.Drawing.Bitmap]::new(800,1200)
+$pg=[System.Drawing.Graphics]::FromImage($preview)
+$pg.InterpolationMode=[System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+$pg.DrawImage($img,[System.Drawing.Rectangle]::new(0,0,800,1200))
+$preview.Save((Join-Path $dir 'seed-poster-in-your-hands-preview.png'),[System.Drawing.Imaging.ImageFormat]::Png)
+$pg.Dispose(); $preview.Dispose(); $g.Dispose(); $img.Dispose(); $fonts.Dispose()
+```

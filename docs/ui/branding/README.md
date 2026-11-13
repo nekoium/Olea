@@ -19,6 +19,14 @@ See [the series overview](seed-series-02.png) and [composition notes](seed-serie
 
 Each format has its own composition using the selected palette, Seed geometry and typography. [Rendering source](render-seed-series-02.md) is saved alongside the images.
 
+## Photographic poster
+
+**USER DECISION:** Add a vintage, grain-treated poster using the supplied Pexels photo and the campaign line “Your agents. In your hands.” Source: the user's photographic-poster request. This is an additional campaign line; the general slogan above remains unchanged.
+
+[View the poster](seed-poster-in-your-hands.png) · [small preview](seed-poster-in-your-hands-preview.png) · [design notes](photo-poster-03.md) · [rendering source](render-photo-poster-03.md).
+
+The poster is 1600 × 2400 (2:3). Photo by Gary Barnes on Pexels; [source and separate license notes](sources/README.md). The original photograph is retained for reproduction. It is not MIT licensed.
+
 ## Original assets
 
 | File | Purpose |
@@ -39,4 +47,4 @@ Each format has its own composition using the selected palette, Seed geometry an
 
 **OPEN:** Android adaptive-icon layers, themed-icon exports and final installation destinations remain to be designed. The promotional PNGs are digital RGB assets; physical print sizing, bleed and CMYK preparation remain open. No production UI theme decision follows from selecting this brand study.
 
-Original art and drawing source use the repository's MIT license. Fonts retain their own OFL licenses; no font binaries are bundled. Trademark similarity has not been checked.
+Original art and drawing source use the repository's MIT license. Fonts retain their own OFL licenses; no font binaries are bundled. The photographic poster includes a separately licensed Pexels image; see [photo licensing](sources/README.md). Trademark similarity has not been checked.
