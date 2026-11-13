@@ -4,7 +4,7 @@ Status: agent-managed planning document. It proposes work derived from `PRODUCT.
 
 ## User Decisions
 
-- **USER DECISION**: Olea targets Pi, Codex, and Claude Code support for version 1.0.0 targeted for November 15, 2026. Source: `PRODUCT.md`, Audience and execution stance / Agreed boundaries.
+- **USER DECISION**: Complete and publish public signed **0.1.0** with Pi, Codex and Claude Code, using the current scenario board as the interface/functionality reference. This latest release instruction supersedes the older private/timed 1.0.0 shipping target. Source: [PRODUCT.md, Release 0.1.0](../PRODUCT.md#release-010).
 - **USER DECISION**: Build Olea first and extract Olearia after 1.0.0. Source: `PRODUCT.md`, Future reusable foundation: Olearia.
 - **USER DECISION**: The maintained core uses Kotlin Android authority, packaged Linux through PRoot, one shared TypeScript/Node backend, and stock-agent adapters. Source: `PRODUCT.md`, Technical implementation direction.
 
@@ -12,6 +12,7 @@ These entries summarize decisions already recorded in `PRODUCT.md`. If they dive
 
 ## Current Baseline
 
+- **OBSERVED**: Current 0.1.0 implementation and physical signed-app acceptance are tracked in [release execution](releases/0.1.0-execution.md) and [phone acceptance](releases/0.1.0-phone-acceptance.md). Pi real tasks and optional-agent native connectivity passed; ordinary terminal and final publication gates remain open there.
 - **OBSERVED**: The maintained Android base and established capability consolidation are recorded in `docs/archive/CORE_BUILD_RECORD.md` and `docs/archive/CONSOLIDATION_RECORD.md`.
 - **OBSERVED**: The consolidated `0.2-base` APK and its finite checks are documented in `docs/archive/CONSOLIDATION_RECORD.md`. Provider-backed integrated Pi/Codex acceptance remains unverified there.
 - **OPEN**: Product decisions and release placement for new requested capabilities remain as recorded in `PRODUCT.md` and `docs/discussions/FEATURE_PRIORITIES.md`.
@@ -30,6 +31,7 @@ For each approved task:
 
 ## Current Agent Plan
 
+- **AGENT PLAN**: Finish the ordinary terminal defect, final signed-APK/source-notice snapshot, exact repository/history/artifact credential checks, public README acceptance and GitHub publication before closing 0.1.0. Preserve failures and scope limits. Current source/phone evidence, not older core matrices, determines readiness.
 - **AGENT PLAN**: Continue maintenance from the maintained Android base. Select the next feature or defect from explicit user requests and observed failures; do not infer a feature priority from this roadmap.
 - **AGENT PLAN**: For bugs, reproduce the failure, investigate alternatives, implement the smallest complete fix within approved behavior, and verify the changed path.
 - **AGENT PLAN**: Assess which task steps can be automated. Run reliable authorized steps automatically; report steps that need user participation.
