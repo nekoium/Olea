@@ -28,6 +28,8 @@ internal data class UiSnapshot(
 
 class MainActivity : ComponentActivity() {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val operations = Dispatchers.IO.limitedParallelism(1)
     private var polling: Job? = null
     private var snapshot by mutableStateOf(UiSnapshot())
     private var failure by mutableStateOf("")
@@ -35,7 +37,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        window.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         attempt { startService(Intent(this, RuntimeService::class.java)) }
         setContent {
             OleaApp(snapshot, failure, localRevision,
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
     }
     private fun attempt(action: () -> Unit) {
         scope.launch {
-            try { withContext(Dispatchers.IO) { action() }; localRevision++ }
+            try { withContext(operations) { action() }; localRevision++ }
             catch (_: CancellationException) { }
             catch (error: Exception) {
                 failure = if (error is org.json.JSONException) "Saved settings could not be read. Existing data was preserved. Check the agent configuration." else error.message?.take(500) ?: "Operation failed. Saved conversations and files were preserved."

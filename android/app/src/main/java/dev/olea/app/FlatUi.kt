@@ -33,7 +33,7 @@ internal val darkColors = FlatColors(Color(0xff202620), Color(0xff2b332a), Color
     val colors = LocalFlat.current
     BasicText(text, modifier, style = TextStyle(color = color ?: if (muted) colors.muted else colors.ink, fontSize = size.sp, lineHeight = (size * 1.45).sp, fontWeight = if (bold) FontWeight.SemiBold else FontWeight.Normal, fontFamily = if (mono) FontFamily.Monospace else FontFamily.SansSerif), maxLines = maxLines, overflow = TextOverflow.Ellipsis)
 }
-@Composable internal fun Action(text: String, modifier: Modifier = Modifier, primary: Boolean = false, enabled: Boolean = true, description: String = text, onClick: () -> Unit) {
+@Composable internal fun Action(text: String, modifier: Modifier = Modifier, primary: Boolean = false, enabled: Boolean = true, description: String = text, compact: Boolean = false, onClick: () -> Unit) {
     val colors = LocalFlat.current
     val shape = RoundedCornerShape(10.dp)
     Box(modifier.defaultMinSize(minWidth = 48.dp, minHeight = 48.dp).clip(shape)
@@ -41,7 +41,7 @@ internal val darkColors = FlatColors(Color(0xff202620), Color(0xff2b332a), Color
         .then(if (!primary) Modifier.border(1.dp, colors.line, shape) else Modifier)
         .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
         .semantics { contentDescription = description }
-        .padding(horizontal = 14.dp, vertical = 11.dp), contentAlignment = Alignment.Center) {
+        .padding(horizontal = if (compact) 4.dp else 14.dp, vertical = 11.dp), contentAlignment = Alignment.Center) {
         Label(text, size = 14, color = if (!enabled) colors.muted else if (primary) colors.surface else colors.ink, bold = primary)
     }
 }

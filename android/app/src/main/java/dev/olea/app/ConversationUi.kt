@@ -26,10 +26,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 @Composable internal fun ConversationScreen(snapshot: UiSnapshot, draft: Boolean, draftAgent: String, draftWorkspace: String, preferences: SharedPreferences,
-    chooseAgent: () -> Unit, chooseWorkspace: () -> Unit, provider: () -> Unit, start: () -> Unit, cancel: () -> Unit, stop: () -> Unit, send: (String, () -> Unit) -> Unit) {
+    chooseAgent: () -> Unit, chooseWorkspace: () -> Unit, provider: () -> Unit, perform: (() -> Unit) -> Unit, start: () -> Unit, cancel: () -> Unit, stop: () -> Unit, send: (String, (Boolean) -> Unit) -> Unit) {
     val colors = LocalFlat.current
     val id = if (draft) "new" else snapshot.active?.id ?: "new"
     var text by rememberSaveable(id) { mutableStateOf(preferences.getString("draft-$id", "")!!) }
+    var sending by remember(id) { mutableStateOf(false) }
     val keyboard = LocalSoftwareKeyboardController.current
     val scroll = rememberLazyListState()
     LaunchedEffect(snapshot.entries) {
@@ -55,7 +56,7 @@ import kotlinx.coroutines.withContext
                     state?.interaction?.let { interaction ->
                         Notice(interaction.text)
                         interaction.choices.forEach { choice -> Action(choice) {
-                            RuntimeService.current?.respondToInteraction(state.id, interaction.requestId, choice)
+                            perform { val runtime = RuntimeService.current ?: error("Environment is unavailable. Reconnect the conversation."); runtime.respondToInteraction(state.id, interaction.requestId, choice) }
                         } }
                     }
                 }
@@ -75,8 +76,12 @@ import kotlinx.coroutines.withContext
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                     Action("Provider ⌄", onClick = provider)
                     if (!draft && snapshot.busy) Action("■ Stop turn", enabled = snapshot.ready, onClick = cancel)
-                    else Action(if (draft) "↑ Send" else "↑ Send", primary = true, enabled = text.isNotBlank() && if (draft) draftAgent.isNotEmpty() && draftWorkspace.isNotEmpty() else snapshot.ready) {
-                        keyboard?.hide(); send(text) { text = ""; preferences.edit().remove("draft-$id").apply() }
+                    else Action("↑ Send", primary = true, enabled = !sending && text.isNotBlank() && if (draft) draftAgent.isNotEmpty() && draftWorkspace.isNotEmpty() else snapshot.ready) {
+                        keyboard?.hide(); sending = true
+                        send(text) { accepted ->
+                            sending = false
+                            if (accepted) { text = ""; preferences.edit().remove("draft-$id").apply() }
+                        }
                     }
                 }
             }

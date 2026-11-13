@@ -66,12 +66,15 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
     var showDiagnostics by remember { mutableStateOf(false) }
     var search by rememberSaveable { mutableStateOf("") }
     var pendingFirstSend by remember { mutableStateOf<Pair<String, String>?>(null) }
+    val operations = rememberUpdatedState(perform)
     LaunchedEffect(snapshot.active?.id, snapshot.ready, pendingFirstSend) {
         val pending = pendingFirstSend
         if (pending != null && snapshot.active?.id == pending.first && snapshot.ready) {
             pendingFirstSend = null
-            perform {
-                check(RuntimeService.current?.prompt(pending.second) == true) { "Message was not sent. Review the saved draft and send again." }
+            operations.value {
+                val runtime = RuntimeService.current ?: error("Environment is unavailable. Reconnect the conversation.")
+                check(runtime.activeConversation().id == pending.first) { "The selected conversation changed. Open your saved draft and send again." }
+                check(runtime.prompt(pending.second) == true) { "Message was not sent. Review the saved draft and send again." }
                 preferences.edit().remove("draft-${pending.first}").apply()
             }
         }
@@ -203,27 +206,38 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                         Action("New conversation", primary = true) { newChat() }
                     }
                     "draft", "chat" -> ConversationScreen(snapshot, screen == "draft", draftAgent, draftWorkspace, preferences,
-                        chooseAgent = { picker = "agent" }, chooseWorkspace = { picker = "workspace" },
+                        chooseAgent = { picker = "agent" }, chooseWorkspace = { picker = "workspace" }, perform = perform,
                         provider = {
                             if (screen == "draft" && draftAgent.isEmpty()) picker = "agent"
                             else { providerAgent = if (screen == "draft") draftAgent else snapshot.active?.agent ?: "pi"; go("provider") }
                         },
                         start = { perform { runtime().startEnvironment() } },
                         cancel = { perform { runtime().cancelTurn() } }, stop = { confirmStop = true },
-                        send = { text, accepted -> perform {
-                            if (screen == "draft") {
-                                check(draftAgent.isNotBlank()) { "Choose an agent before sending." }
-                                check(draftWorkspace.isNotBlank()) { "Choose a workspace before sending." }
-                                val session = runtime().store.createConversation(text.lineSequence().first().take(64).replace(Regex("[/\\\\:\\p{Cntrl}]"), " ").trim().ifBlank { "Conversation" }, draftAgent, draftWorkspace)
-                                runtime().selectConversation(session.id)
-                                preferences.edit().putString("draft-${session.id}", text).remove("draft-new").apply()
-                                pendingFirstSend = session.id to text
-                                screen = "chat"; runtime().startEnvironment()
-                            } else {
-                                check(runtime().prompt(text)) { "Conversation is not ready. Start it, then send again." }
-                                accepted()
+                        send = { text, completed ->
+                            val creating = screen == "draft"
+                            val chosenAgent = draftAgent
+                            val chosenWorkspace = draftWorkspace
+                            val targetSession = snapshot.active?.id
+                            perform {
+                                var accepted = false
+                                try {
+                                    if (creating) {
+                                        check(chosenAgent.isNotBlank()) { "Choose an agent before sending." }
+                                        check(chosenWorkspace.isNotBlank()) { "Choose a workspace before sending." }
+                                        val title = text.lineSequence().first().take(64).replace(Regex("[/\\\\:\\p{Cntrl}]"), " ").trim().takeUnless { it.isEmpty() || it == "." || it == ".." } ?: "Conversation"
+                                        val session = runtime().store.createConversation(title, chosenAgent, chosenWorkspace)
+                                        runtime().selectConversation(session.id)
+                                        preferences.edit().putString("draft-${session.id}", text).remove("draft-new").apply()
+                                        pendingFirstSend = session.id to text
+                                        screen = "chat"; runtime().startEnvironment()
+                                    } else {
+                                        check(runtime().activeConversation().id == targetSession) { "The selected conversation changed. Open your draft and send again." }
+                                        check(runtime().prompt(text)) { "Conversation is not ready. Start it, then send again." }
+                                    }
+                                    accepted = true
+                                } finally { completed(accepted) }
                             }
-                        } })
+                        })
                     "workspaces" -> Page {
                         snapshot.workspaces.forEach { item -> Choice(item.name, "${snapshot.conversations.count { it.workspaceId == item.id }} conversations") { filter = item.id; go("history") } }
                         Action("Create workspace", primary = true) { managedName = ""; go("create") }

@@ -113,7 +113,7 @@ private class TerminalBridge(private val input: (String) -> Unit, private val re
         Row(Modifier.fillMaxWidth().background(LocalFlat.current.panel).padding(horizontal = 3.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
             listOf("Esc" to "\u001b", "Ctrl" to "", "Tab" to "\t", "←" to "\u001b[D", "↓" to "\u001b[B", "↑" to "\u001b[A", "→" to "\u001b[C").forEach { (label, data) ->
                 Box(Modifier.weight(1f)) {
-                    Action(label, primary = label == "Ctrl" && ctrl, enabled = canInput) {
+                    Action(label, primary = label == "Ctrl" && ctrl, enabled = canInput, compact = true) {
                         if (label == "Ctrl") ctrl = !ctrl else browser?.evaluateJavascript("window.oleaKey(${JSONObject.quote(data)})", null)
                     }
                 }
