@@ -4,17 +4,19 @@ import { dirname, isAbsolute, relative, resolve, join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { PiProcess, type RecordData } from './pi-process.js';
+import { ClaudeSession } from './claude-session.js';
 import { CodexSession, type CodexAccessMode } from './codex-session.js';
 
 export class Backend {
   private sessions = new Map<string, PiProcess>();
+  private claudeSessions = new Map<string, ClaudeSession>();
   private codexSessions = new Map<string, CodexSession>();
   private starting = new Map<string, { cancelled: boolean; settled: Promise<void>; settle: () => void }>();
   private closed = false;
   private extension = fileURLToPath(new URL('../extensions/phone.ts', import.meta.url));
-  constructor(private options: { entry: string; workspace: string; workspaceRoot?: string; stateDir: string; env?: NodeJS.ProcessEnv; codexEntry?: string; codexProviderPath?: string; codexModel?: string; codexAccessMode?: CodexAccessMode; bridgePath?: string }, private event: (record: RecordData) => void) {}
+  constructor(private options: { entry: string; workspace: string; workspaceRoot?: string; stateDir: string; env?: NodeJS.ProcessEnv; codexEntry?: string; codexProviderPath?: string; codexModel?: string; codexAccessMode?: CodexAccessMode; claudeEntry?: string; claudeProviderPath?: string; bridgePath?: string }, private event: (record: RecordData) => void) {}
 
-  private async workspace(session: string, agent: 'pi' | 'codex', requested?: string) {
+  private async workspace(session: string, agent: 'pi' | 'codex' | 'claude', requested?: string) {
     if (requested !== undefined && (typeof requested !== 'string' || !isAbsolute(requested))) throw new Error('invalid_workspace');
     const workspace = await realpath(requested ?? this.options.workspace).catch(() => { throw new Error('workspace_not_found'); });
     // An existing configured default remains usable; explicit selections must be within the root.
@@ -31,7 +33,7 @@ export class Backend {
     if (identity && (identity.workspace !== workspace || identity.agent !== agent)) throw new Error('session_identity_mismatch');
     return workspace;
   }
-  private async saveIdentity(session: string, agent: 'pi' | 'codex', workspace: string) {
+  private async saveIdentity(session: string, agent: 'pi' | 'codex' | 'claude', workspace: string) {
     const directory = resolve(this.options.stateDir, session);
     await mkdir(directory, { recursive: true, mode: 0o700 });
     const temporary = join(directory, `identity-${randomUUID()}.tmp`);
@@ -51,11 +53,43 @@ export class Backend {
     if (pending.cancelled) throw new Error('start_cancelled');
   }
 
+  async startClaude(session: string, resume = false, requestedWorkspace?: string) {
+    if (typeof session !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(session)) throw new Error('invalid_session');
+    if (this.closed) throw new Error('backend_closed');
+    if (this.sessions.has(session) || this.codexSessions.has(session) || this.claudeSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
+    if (this.sessions.size + this.codexSessions.size + this.claudeSessions.size + this.starting.size >= 2) throw new Error('session_limit');
+    if (!this.options.claudeEntry) throw new Error('claude_not_configured');
+    const pending = this.reserveStart(session);
+    let instance: ClaudeSession | undefined;
+    try {
+      const workspace = await this.workspace(session, 'claude', requestedWorkspace);
+      this.checkStart(pending);
+      // Bind the immutable agent before a child can create canonical conversation data.
+      await this.saveIdentity(session, 'claude', workspace);
+      this.checkStart(pending);
+      const result = await ClaudeSession.start({ directory: resolve(this.options.stateDir, 'claude', session), workspace, entry: this.options.claudeEntry, resume, providerPath: this.options.claudeProviderPath, bridgePath: this.options.bridgePath }, record => this.event({ ...record, session }));
+      instance = result.instance;
+      this.checkStart(pending);
+      const owned = instance;
+      owned.process.on('exit', () => { if (this.claudeSessions.get(session) === owned) this.claudeSessions.delete(session); void owned.stop(); });
+      this.checkStart(pending);
+      if (owned.process.child.exitCode !== null || owned.process.child.signalCode !== null) throw new Error('claude_exited_during_start');
+      this.claudeSessions.set(session, owned);
+      return result.data;
+    } catch (error) { await instance?.stop(); throw error; }
+    finally { this.starting.delete(session); pending.settle(); }
+  }
+  async claudeCommand(session: string, command: RecordData) {
+    const instance = this.claudeSessions.get(session);
+    if (!instance) throw new Error('session_not_running');
+    return instance.command(command);
+  }
+
   async startCodex(session: string, resume = false, requestedWorkspace?: string) {
     if (typeof session !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(session)) throw new Error('invalid_session');
     if (this.closed) throw new Error('backend_closed');
-    if (this.sessions.has(session) || this.codexSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
-    if (this.sessions.size + this.codexSessions.size + this.starting.size >= 2) throw new Error('session_limit');
+    if (this.sessions.has(session) || this.codexSessions.has(session) || this.claudeSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
+    if (this.sessions.size + this.codexSessions.size + this.claudeSessions.size + this.starting.size >= 2) throw new Error('session_limit');
     if (!this.options.codexEntry) throw new Error('codex_not_configured');
     const pending = this.reserveStart(session);
     let instance: CodexSession | undefined;
@@ -90,8 +124,8 @@ export class Backend {
   async start(session: string, resume = false, requestedWorkspace?: string) {
     if (typeof session !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(session)) throw new Error('invalid_session');
     if (this.closed) throw new Error('backend_closed');
-    if (this.sessions.has(session) || this.codexSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
-    if (this.sessions.size + this.codexSessions.size + this.starting.size >= 2) throw new Error('session_limit');
+    if (this.sessions.has(session) || this.codexSessions.has(session) || this.claudeSessions.has(session) || this.starting.has(session)) throw new Error('already_running');
+    if (this.sessions.size + this.codexSessions.size + this.claudeSessions.size + this.starting.size >= 2) throw new Error('session_limit');
     const pending = this.reserveStart(session);
     let pi: PiProcess | undefined;
     try {
@@ -178,6 +212,8 @@ export class Backend {
       await pending.settled;
       return;
     }
+    const claude = this.claudeSessions.get(session);
+    if (claude) { const result = await claude.stop(); if (this.claudeSessions.get(session) === claude) this.claudeSessions.delete(session); return result; }
     const codex = this.codexSessions.get(session);
     if (codex) { const result = await codex.stop(); if (this.codexSessions.get(session) === codex) this.codexSessions.delete(session); return result; }
     const pi = this.sessions.get(session);
@@ -185,6 +221,6 @@ export class Backend {
     await pi.stop();
     if (this.sessions.get(session) === pi) this.sessions.delete(session);
   }
-  status() { return [...[...this.sessions].map(([session, pi]) => ({ session, agent: 'pi', workspace: pi.workspace, pid: pi.child.pid, stderrBytes: pi.stderrBytes })), ...[...this.codexSessions].map(([session, codex]) => ({ session, agent: 'codex', workspace: codex.workspace, accessMode: codex.accessMode, filesystemIsolation: false, pid: codex.process.child.pid, threadId: codex.threadId, stderrBytes: codex.process.stderrBytes }))]; }
-  async close() { this.closed = true; await Promise.all([...this.starting.keys(), ...this.sessions.keys(), ...this.codexSessions.keys()].map(session => this.stop(session))); }
+  status() { return [...[...this.sessions].map(([session, pi]) => ({ session, agent: 'pi', workspace: pi.workspace, pid: pi.child.pid, stderrBytes: pi.stderrBytes })), ...[...this.codexSessions].map(([session, codex]) => ({ session, agent: 'codex', workspace: codex.workspace, accessMode: codex.accessMode, filesystemIsolation: false, pid: codex.process.child.pid, threadId: codex.threadId, stderrBytes: codex.process.stderrBytes })), ...[...this.claudeSessions].map(([session, claude]) => ({ session, agent: 'claude', workspace: claude.workspace, home: claude.home, sessionId: claude.sessionId, pid: claude.process.child.pid, stderrBytes: claude.stderrBytes, filesystemIsolation: false }))]; }
+  async close() { this.closed = true; await Promise.all([...this.starting.keys(), ...this.sessions.keys(), ...this.codexSessions.keys(), ...this.claudeSessions.keys()].map(session => this.stop(session))); }
 }

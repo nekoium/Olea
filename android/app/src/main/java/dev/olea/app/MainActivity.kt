@@ -63,7 +63,7 @@ class MainActivity : Activity() {
         AlertDialog.Builder(this).setItems(choices) { _, item -> attempt {
             when (item) {
                 0 -> workspaceShell()
-                1 -> AlertDialog.Builder(this).setTitle("Provider").setItems(arrayOf("Pi · Chat Completions", "Codex · Responses")) { _, agent -> configure(if (agent == 0) "pi" else "codex") }.show()
+                1 -> AlertDialog.Builder(this).setTitle("Provider").setItems(arrayOf("Pi · Chat Completions", "Codex · Responses", "Claude · Anthropic")) { _, agent -> configure(listOf("pi", "codex", "claude")[agent]) }.show()
                 2 -> maintenance()
                 3 -> runtime().disconnectConversation()
                 4 -> AlertDialog.Builder(this).setTitle("Runtime").setMessage(runtime().runtimeSummary()).setPositiveButton("OK", null).show()
@@ -94,16 +94,16 @@ class MainActivity : Activity() {
         val available = runtime.store.workspaces()
         val fields = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(24, 8, 24, 8) }
         val name = EditText(this).apply { hint = "Conversation title"; setSingleLine(true) }
-        val agent = Spinner(this).apply { adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_dropdown_item, listOf("Pi", "Codex")) }
+        val agent = Spinner(this).apply { adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_dropdown_item, listOf("Pi", "Codex", "Claude Code")) }
         val workspace = Spinner(this).apply {
             adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_dropdown_item, available.map { it.name })
             setSelection(available.indexOfFirst { it.id == (workspaceId ?: runtime.activeConversation().workspaceId) }.coerceAtLeast(0))
         }
         fields.addView(name); fields.addView(agent); fields.addView(workspace)
         AlertDialog.Builder(this).setTitle("New conversation").setView(fields)
-            .setMessage("Each conversation keeps its agent. Codex requires installation and a Responses provider; it uses full access to app files.")
+            .setMessage("Each conversation keeps its agent. Codex and Claude require installation and provider setup; both use full access to app files.")
             .setNegativeButton("Cancel", null).setPositiveButton("Create") { _, _ -> attempt {
-                val info = runtime.store.createConversation(name.text.toString().ifBlank { "New conversation" }, if (agent.selectedItemPosition == 0) "pi" else "codex", available[workspace.selectedItemPosition].id)
+                val info = runtime.store.createConversation(name.text.toString().ifBlank { "New conversation" }, listOf("pi", "codex", "claude")[agent.selectedItemPosition], available[workspace.selectedItemPosition].id)
                 runtime.selectConversation(info.id)
             } }.show()
     }
@@ -114,9 +114,9 @@ class MainActivity : Activity() {
             .setNegativeButton("Cancel", null).setPositiveButton("Run") { _, _ -> attempt { runtime().workspace(command.text.toString()) } }.show()
     }
     private fun maintenance() {
-        AlertDialog.Builder(this).setTitle("Agent maintenance").setItems(arrayOf("Install Codex", "Update Pi", "Update Codex")) { _, index -> attempt {
-            val agent = if (index == 1) "pi" else "codex"
-            val operation = if (index == 0) "install" else "update"
+        AlertDialog.Builder(this).setTitle("Agent maintenance").setItems(arrayOf("Install Codex", "Install Claude", "Update Pi", "Update Codex", "Update Claude")) { _, index -> attempt {
+            val agent = listOf("codex", "claude", "pi", "codex", "claude")[index]
+            val operation = if (index < 2) "install" else "update"
             runtime().maintainAgent(agent, operation)
         } }.show()
     }
@@ -129,10 +129,10 @@ class MainActivity : Activity() {
         val model = EditText(this).apply { hint = "Model ID"; setSingleLine(true) }
         val key = EditText(this).apply { hint = "API key"; inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD }
         fields.addView(url); fields.addView(model); fields.addView(key)
-        val config = File(filesDir, if (agent == "pi") "data/home/.pi/agent/models.json" else "data/home/.olea/provider.json")
+        val config = File(filesDir, when (agent) { "pi" -> "data/home/.pi/agent/models.json"; "claude" -> "data/home/.olea/claude-provider.json"; else -> "data/home/.olea/provider.json" })
         fun saved(): JSONObject = if (agent == "pi") JSONObject(config.readText()).getJSONObject("providers").getJSONObject("olea") else JSONObject(config.readText())
         runCatching { val old = saved(); url.setText(old.getString("baseUrl")); model.setText(if (agent == "pi") old.getJSONArray("models").getJSONObject(0).getString("id") else old.getString("model")) }
-        val dialog = AlertDialog.Builder(this).setTitle(if (agent == "pi") "Pi provider" else "Codex Responses provider").setView(fields)
+        val dialog = AlertDialog.Builder(this).setTitle(when (agent) { "pi" -> "Pi provider"; "claude" -> "Claude Anthropic provider"; else -> "Codex Responses provider" }).setView(fields)
             .setMessage("Saved in private app storage. Messages and tool results go to this provider. Leave API key blank to retain it.")
             .setNegativeButton("Cancel", null).setPositiveButton("Save", null).create()
         dialog.setOnShowListener {
@@ -140,14 +140,14 @@ class MainActivity : Activity() {
                 val baseUrl = url.text.toString().trim()
                 val modelId = model.text.toString().trim()
                 val uri = android.net.Uri.parse(baseUrl)
-                if (uri.scheme != "https" || uri.host.isNullOrBlank() || uri.userInfo != null || modelId.isBlank()) { url.error = "Enter an HTTPS URL and model ID"; return@setOnClickListener }
+                if (uri.scheme != "https" || uri.host.isNullOrBlank() || uri.userInfo != null || uri.query != null || uri.fragment != null || modelId.isBlank() || modelId.length > 256 || modelId.any { it.isISOControl() }) { url.error = "Enter an HTTPS URL and model ID"; return@setOnClickListener }
                 val oldKey = runCatching { saved().getString("apiKey") }.getOrDefault("")
                 val apiKey = key.text.toString().ifEmpty { oldKey }
-                if (apiKey.isBlank()) { key.error = "Enter an API key"; return@setOnClickListener }
+                if (apiKey.isBlank() || apiKey.any { it == '\r' || it == '\n' }) { key.error = "Enter an API key"; return@setOnClickListener }
                 try {
                     config.parentFile!!.mkdirs()
                     val provider = JSONObject().put("baseUrl", baseUrl).put("apiKey", apiKey)
-                    val record = if (agent == "codex") provider.put("model", modelId) else {
+                    val record = if (agent != "pi") provider.put("model", modelId) else {
                         provider.put("api", "openai-completions").put("models", JSONArray().put(JSONObject().put("id", modelId).put("name", modelId).put("reasoning", false)
                             .put("input", JSONArray().put("text")).put("contextWindow", 128000).put("maxTokens", 4096)
                             .put("cost", JSONObject().put("input", 0).put("output", 0).put("cacheRead", 0).put("cacheWrite", 0))))

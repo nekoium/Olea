@@ -81,7 +81,7 @@ class SessionStore(filesDir: File) {
     /** Creation leaves selection unchanged; call select explicitly to open the new conversation. */
     fun createConversation(title: String, agent: String, workspaceId: String): ConversationInfo = synchronized(lock) {
         val cleanTitle = label(title.trim(), "Conversation title")
-        require(agent == "pi" || agent == "codex") { "Agent must be pi or codex; use a new conversation to change agents." }
+        require(agent in listOf("pi", "codex", "claude")) { "Agent must be pi, codex or claude; use a new conversation to change agents." }
         identifier(workspaceId)
         val state = load()
         require(state.workspaces.any { it.id == workspaceId }) { "Unknown workspace: $workspaceId" }
@@ -89,7 +89,7 @@ class SessionStore(filesDir: File) {
         do {
             session = ConversationInfo(UUID.randomUUID().toString(), cleanTitle, agent, workspaceId)
         } while (state.conversations.any { it.id == session.id } || File(journals, "${session.id}.json").exists()
-            || File(data, "sessions/${session.id}").exists() || File(data, "sessions/codex/${session.id}").exists())
+            || File(data, "sessions/${session.id}").exists() || File(data, "sessions/codex/${session.id}").exists() || File(data, "sessions/claude/${session.id}").exists())
         save(state.copy(conversations = state.conversations + session))
         session
     }
@@ -160,7 +160,7 @@ class SessionStore(filesDir: File) {
         for (session in state.conversations) {
             identifier(session.id)
             label(session.title, "Conversation title")
-            check(session.agent == "pi" || session.agent == "codex") { "Invalid conversation agent" }
+            check(session.agent in listOf("pi", "codex", "claude")) { "Invalid conversation agent" }
             check(state.workspaces.any { it.id == session.workspaceId }) { "Conversation workspace is missing" }
         }
         check(state.conversations.any { it.id == state.activeId }) { "Selected conversation is missing" }

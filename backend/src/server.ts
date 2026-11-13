@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { homedir } from 'node:os';
 import { Backend } from './backend.js';
 import { JsonLines, MAX_QUEUED_BYTES, type RecordData } from './pi-process.js';
 
+const claudeProviderPath = process.env.OLEA_CLAUDE_PROVIDER_CONFIG ?? (existsSync(join(homedir(), '.olea/claude-provider.json')) ? join(homedir(), '.olea/claude-provider.json') : undefined);
 const secrets: string[] = [];
 try {
   const models = JSON.parse(readFileSync(join(homedir(), '.pi/agent/models.json'), 'utf8'));
@@ -12,9 +13,9 @@ try {
     if (typeof provider.apiKey === 'string') secrets.push(provider.apiKey);
   }
 } catch { /* An unconfigured provider must not prevent no-model startup. */ }
-for (const key of ['OLEA_PROVIDER_CONFIG', 'OLEA_BRIDGE_CONFIG']) {
-  if (process.env[key]) {
-    const config = JSON.parse(readFileSync(process.env[key]!, 'utf8'));
+for (const path of [process.env.OLEA_PROVIDER_CONFIG, process.env.OLEA_BRIDGE_CONFIG, claudeProviderPath]) {
+  if (path) {
+    const config = JSON.parse(readFileSync(path, 'utf8'));
     for (const name of ['apiKey', 'token']) if (typeof config[name] === 'string') secrets.push(config[name]);
   }
 }
@@ -31,6 +32,7 @@ const backend = new Backend({
   workspaceRoot: resolve(process.env.OLEA_WORKSPACE_ROOT ?? '/workspace'),
   stateDir: resolve(process.env.OLEA_STATE_DIR ?? '.setup/olea-state'),
   codexEntry: process.env.OLEA_CODEX_ENTRY, codexProviderPath: process.env.OLEA_PROVIDER_CONFIG,
+  claudeEntry: process.env.OLEA_CLAUDE_ENTRY ?? '/opt/agents/bin/claude', claudeProviderPath,
   codexModel: process.env.OLEA_CODEX_MODEL, codexAccessMode: process.env.OLEA_CODEX_ACCESS_MODE as 'workspace-write' | 'full-access' | undefined, bridgePath: process.env.OLEA_BRIDGE_CONFIG,
 }, output);
 async function shutdown(code = 0) {
@@ -46,6 +48,8 @@ async function handle(record: RecordData) {
     if (typeof id !== 'string' || id.length > 128) throw new Error('invalid_id');
     let data;
     if (type === 'start') data = await backend.start(session, record.resume === true, record.workspace);
+    else if (type === 'claude_start') data = await backend.startClaude(session, record.resume === true, record.workspace);
+    else if (type === 'claude_command') data = await backend.claudeCommand(session, record.command);
     else if (type === 'codex_start') data = await backend.startCodex(session, record.resume === true, record.workspace);
     else if (type === 'codex_command') data = await backend.codexCommand(session, record.command);
     else if (type === 'codex_approval') data = backend.codexApproval(session, record.requestId, record.decision);

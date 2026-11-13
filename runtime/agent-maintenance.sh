@@ -1,10 +1,11 @@
 #!/bin/sh
 # SPDX-License-Identifier: MIT
 set -eu
-agent=${1:?Choose pi or codex}
+agent=${1:?Choose pi, codex or claude}
 operation=${2:?Choose install or update}
 case "$agent" in
   pi) package=@earendil-works/pi-coding-agent; initial=1.5.2 ;;
+  claude) package=@anthropic-ai/claude-code; initial=2.1.292 ;;
   codex) package=@openai/codex; initial=0.167.1 ;;
   *) echo 'Unknown agent' >&2; exit 2 ;;
 esac

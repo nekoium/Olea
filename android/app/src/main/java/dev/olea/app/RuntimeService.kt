@@ -192,11 +192,16 @@ class RuntimeService : Service() {
         if (view.ready || view.opening) return
         val workspace = store.workspaces().first { it.id == view.info.workspaceId }
         val guest = store.workspacePath(workspace)
-        val resume = File(filesDir, if (view.info.agent == "codex") "data/sessions/codex/${view.info.id}/thread.json" else "data/sessions/${view.info.id}/resume.json").isFile
+        val checkpoint = when (view.info.agent) {
+            "codex" -> "data/sessions/codex/${view.info.id}/thread.json"
+            "claude" -> "data/sessions/claude/${view.info.id}/session.json"
+            else -> "data/sessions/${view.info.id}/resume.json"
+        }
+        val resume = File(filesDir, checkpoint).isFile
         view.closing = false
         view.opening = true
         update("Opening ${view.info.agent} conversation…")
-        send(view.info.id, if (view.info.agent == "codex") "codex_start" else "start", resume = resume, workspace = guest)
+        send(view.info.id, when (view.info.agent) { "codex" -> "codex_start"; "claude" -> "claude_start"; else -> "start" }, resume = resume, workspace = guest)
         refresh()
     }
     private fun send(session: String, type: String, command: JSONObject? = null, resume: Boolean = false, workspace: String? = null, action: String? = null) {
@@ -224,9 +229,9 @@ class RuntimeService : Service() {
                 val request = pending.remove(record.optString("id")) ?: return
                 val view = displays[request.session] ?: return
                 if (!record.optBoolean("success")) {
-                    if (request.action in listOf("start", "codex_start", "get_messages", "thread/read")) view.opening = false
+                    if (request.action in listOf("start", "codex_start", "claude_start", "get_messages", "claude_history", "thread/read")) view.opening = false
                     // A lost acknowledgement can leave execution alive; retain Cancel until terminal evidence.
-                    val uncertain = record.optString("error") in listOf("rpc_timeout", "codex_delivery_unknown", "backend_request_failed", "codex_turn_delivery_unknown")
+                    val uncertain = record.optString("error") in listOf("rpc_timeout", "codex_delivery_unknown", "backend_request_failed", "codex_turn_delivery_unknown", "claude_delivery_unknown")
                     if (!uncertain && request.action !in listOf("abort", "abort_bash", "turn/interrupt", "command/exec/terminate")) view.working = false
                     add(view, "Error: ${record.optString("error", "Request failed")}. No automatic retry was sent.")
                     update("Request failed. Inspect the conversation; restart explicitly if needed.")
@@ -234,6 +239,22 @@ class RuntimeService : Service() {
                 }
                 when (request.action) {
                     "start" -> if (!view.closing) send(view.info.id, "command", JSONObject().put("type", "get_messages"))
+                    "claude_start" -> if (!view.closing) send(view.info.id, "claude_command", JSONObject().put("type", "get_messages"), action = "claude_history")
+                    "claude_history" -> {
+                        if (view.closing) return
+                        val data = record.optJSONObject("data")
+                        val messages = data?.optJSONArray("messages")
+                        if (messages != null && messages.length() > 0) {
+                            view.lines.clear()
+                            for (index in 0 until messages.length()) {
+                                val message = messages.optJSONObject(index) ?: continue
+                                val text = historyText(message)
+                                if (text.isNotBlank()) add(view, "${message.optString("role")}: $text")
+                            }
+                        }
+                        view.ready = true; view.opening = false
+                        update(if (data?.has("historyUnavailable") == true) "Claude ready · saved display; canonical history unavailable" else "Claude ready · full access")
+                    }
                     "codex_start" -> if (!view.closing) send(view.info.id, "codex_command", JSONObject().put("method", "thread/read"))
                     "get_messages" -> {
                         if (view.closing) return
@@ -275,7 +296,7 @@ class RuntimeService : Service() {
             "event" -> {
                 val view = displays[record.optString("session")] ?: return
                 val event = record.optJSONObject("record") ?: return
-                if (record.optString("agent") == "codex") codexEvent(view, event) else piEvent(view, event)
+                when (record.optString("agent")) { "codex" -> codexEvent(view, event); "claude" -> claudeEvent(view, event); else -> piEvent(view, event) }
             }
             "fault", "exit" -> {
                 val view = displays[record.optString("session")] ?: return
@@ -291,7 +312,7 @@ class RuntimeService : Service() {
     private fun finish(view: Display) {
         if (view.text.isNotEmpty()) add(view, "assistant: ${view.text}")
         view.text.setLength(0); view.working = false; view.shell = false
-        if (store.active().id == view.info.id) update("${if (view.info.agent == "pi") "Pi" else "Codex"} ready")
+        if (store.active().id == view.info.id) update("${when (view.info.agent) { "pi" -> "Pi"; "claude" -> "Claude"; else -> "Codex" }} ready")
     }
     private fun piEvent(view: Display, event: JSONObject) {
         when (event.optString("type")) {
@@ -321,6 +342,29 @@ class RuntimeService : Service() {
             "error" -> add(view, "Codex: ${params.optJSONObject("error")?.optString("message", "Agent error")?.take(2048)}")
         }
     }
+    private fun claudeEvent(view: Display, event: JSONObject) {
+        when (event.optString("type")) {
+            "stream_event" -> {
+                val delta = event.optJSONObject("event") ?: return
+                when (delta.optString("type")) {
+                    "content_block_delta" -> { val value = delta.optJSONObject("delta"); if (value?.optString("type") == "text_delta") append(view, value.optString("text")) }
+                    "content_block_start" -> { val block = delta.optJSONObject("content_block"); if (block?.optString("type") == "tool_use") add(view, "Tool: ${block.optString("name")}") }
+                }
+            }
+            "user" -> {
+                val blocks = event.optJSONObject("message")?.optJSONArray("content") ?: return
+                for (index in 0 until blocks.length()) {
+                    val block = blocks.optJSONObject(index) ?: continue
+                    if (block.optString("type") == "tool_result") add(view, "Tool result: ${block.opt("content")?.toString()?.take(8192)}")
+                }
+            }
+            "olea_interaction_required" -> add(view, "Claude requires an unsupported interaction: ${event.optString("subtype")}. No approval was sent.")
+            "result" -> {
+                if (event.optBoolean("is_error")) add(view, "Claude request failed (${event.optString("subtype")}). Check installation and Anthropic provider settings. No automatic retry was sent.")
+                finish(view)
+            }
+        }
+    }
     fun prompt(text: String): Boolean = synchronized(lock) {
         val view = selected()
         if (!view.ready || view.working || text.isBlank() || text.length > 32000) return@synchronized false
@@ -328,6 +372,7 @@ class RuntimeService : Service() {
         try {
             add(view, "user: $text")
             if (view.info.agent == "codex") send(view.info.id, "codex_command", JSONObject().put("method", "turn/start").put("params", JSONObject().put("text", text)))
+            else if (view.info.agent == "claude") send(view.info.id, "claude_command", JSONObject().put("type", "prompt").put("message", text))
             else send(view.info.id, "command", JSONObject().put("type", "prompt").put("message", text))
             true
         } catch (_: Exception) { update("Message delivery uncertain. No automatic replay; reopen and inspect saved history."); refresh(); true }
@@ -335,6 +380,7 @@ class RuntimeService : Service() {
     fun workspace(command: String) = synchronized(lock) {
         val view = selected()
         if (!view.ready || view.working || command.isBlank() || command.length > 16384) return@synchronized
+        check(view.info.agent != "claude") { "Claude has no separate workspace-shell RPC. Ask Claude to use its Bash tool, or use a Pi/Codex conversation." }
         view.working = true; view.shell = true; refresh()
         try {
             if (view.info.agent == "codex") send(view.info.id, "codex_command", JSONObject().put("method", "command/exec").put("params", JSONObject().put("command", JSONArray(listOf("/bin/sh", "-c", command)))))
@@ -346,7 +392,7 @@ class RuntimeService : Service() {
         if (!view.ready || !view.working) return@synchronized
         try {
             val method = if (view.info.agent == "codex") { if (view.shell) "command/exec/terminate" else "turn/interrupt" } else { if (view.shell) "abort_bash" else "abort" }
-            send(view.info.id, if (view.info.agent == "codex") "codex_command" else "command", JSONObject().put(if (view.info.agent == "codex") "method" else "type", method))
+            send(view.info.id, if (view.info.agent == "codex") "codex_command" else if (view.info.agent == "claude") "claude_command" else "command", JSONObject().put(if (view.info.agent == "codex") "method" else "type", method))
             update("Cancellation requested; waiting for agent completion. STOP ends all execution.")
         } catch (_: Exception) { update("Cancellation delivery uncertain. Use STOP to end execution.") }
     }
@@ -357,7 +403,7 @@ class RuntimeService : Service() {
         send(view.info.id, "stop")
     }
     fun maintainAgent(agent: String, operation: String) = synchronized(lock) {
-        if (agent !in listOf("pi", "codex") || operation !in listOf("install", "update")) return@synchronized
+        if (agent !in listOf("pi", "codex", "claude") || operation !in listOf("install", "update")) return@synchronized
         if (child != null || preparing) { update("Tap STOP before installing or updating an agent."); return@synchronized }
         if (!environment.ready) { update("Start once to prepare Linux, then STOP before agent maintenance."); return@synchronized }
         preparing = true; phone.setEnabled(false); refresh()
