@@ -27,6 +27,8 @@ Each format has its own composition using the selected palette, Seed geometry an
 
 The poster is 1600 × 2400 (2:3). Photo by Gary Barnes on Pexels; [source and separate license notes](sources/README.md). The original photograph is retained for reproduction. It is not MIT licensed.
 
+**USER DECISION:** Restore the earlier photographic treatment; the stronger green shift and coarse paper effect were too drastic. Retain that alternative for reference. Source: the user's rejection of the latest treatment and request to keep its version in the folder. [Retained green paper variant](variants/green-paper-04/README.md).
+
 ## Original assets
 
 | File | Purpose |
