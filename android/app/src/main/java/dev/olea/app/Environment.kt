@@ -16,8 +16,28 @@ class Environment(private val context: Context) {
         }
     }
 
+    private val runtimeAbi = BuildConfig.RUNTIME_ABI
+
+    private fun checkRuntime(root: File) {
+        val machine = if (runtimeAbi == "arm64-v8a") 183 else 62
+        for (path in listOf("usr/bin/dash", "opt/node/bin/node")) {
+            val file = File(root, path)
+            val header = ByteArray(20)
+            val count = if (file.isFile) file.inputStream().use { it.read(header) } else 0
+            check(count == 20 && header.take(6) == listOf<Byte>(127, 69, 76, 70, 2, 1) &&
+                (header[18].toInt() and 255) + ((header[19].toInt() and 255) shl 8) == machine) {
+                "Existing Linux/Node runtime does not match this $runtimeAbi APK ($path). Files were preserved; use the matching APK or back up data before repairing the runtime."
+            }
+        }
+    }
+
     fun initialize() {
-        check(Build.SUPPORTED_ABIS.contains("x86_64")) { "This build requires an x86_64 device; ARM64 is not packaged yet." }
+        check(Build.SUPPORTED_ABIS.contains(runtimeAbi)) { "This APK requires $runtimeAbi; install the APK matching this device." }
+        check(context.assets.open("runtime-abi.txt").bufferedReader().use { it.readText().trim() } == runtimeAbi) {
+            "Packaged Linux ABI does not match this APK. Install a matching build; saved data is preserved."
+        }
+        val root = File(base, "runtime/rootfs")
+        if (root.exists()) checkRuntime(root)
         for (path in listOf("runtime", "data/workspace", "data/home", "data/sessions", "backend", "tmp", "archives")) File(base, path).mkdirs()
         for (name in listOf("linux.sh", "prepare.sh", "agent-maintenance.sh")) {
             context.assets.open(name).use { input -> File(base, name).outputStream().use { input.copyTo(it) } }
@@ -52,6 +72,7 @@ class Environment(private val context: Context) {
             val nodeDirectory = File(staging, "opt/node").apply { mkdirs() }
             run(listOf("/system/bin/tar", "-xzf", node.path, "--strip-components=1", "-C", nodeDirectory.path), 120)
             for (path in listOf("workspace", "root", "sessions", "olea", "run")) File(staging, path).mkdirs()
+            checkRuntime(staging)
             check(staging.renameTo(root)) { "Cannot activate Linux. Existing files were preserved." }
         }
         refreshDns(root)

@@ -1,0 +1,48 @@
+Source: https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/SHA256SUMS
+6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9 *ubuntu-base-24.04.3-base-amd64.tar.gz
+7b2dced6dd56ad5e4a813fa25c8de307b655fdabc6ea9213175a92c48dabb048 *ubuntu-base-24.04.3-base-arm64.tar.gz
+
+Source: https://nodejs.org/dist/v24.20.0/SHASUMS256.txt
+5f4ddab610c1ab2016b3c227cebdbf6d9495161487e4739c7b90090595f465f7  node-v24.20.0-linux-arm64.tar.xz
+2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2  node-v24.20.0-linux-x64.tar.xz
+
+Source: https://packages.termux.dev/apt/termux-main/dists/stable/main/binary-aarch64/Packages
+Package: libandroid-shmem
+Architecture: aarch64
+Version: 0.7
+Filename: pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_aarch64.deb
+SHA256: 0da3a24d558b93c92bcf8d611e0826a99ff96e396b148e6cdf33b47c47c57ff6
+
+Package: libtalloc
+Architecture: aarch64
+Version: 2.5.0
+Filename: pool/main/libt/libtalloc/libtalloc_2.5.0_aarch64.deb
+SHA256: 556591f43bb773ad8777e1a29522640866a55f95dab71914418b94a8c58ad5a7
+
+Package: proot
+Architecture: aarch64
+Version: 5.1.107.102
+Filename: pool/main/p/proot/proot_5.1.107.102_aarch64.deb
+SHA256: 10a394b585c2fc2b2c8502544f4e5f1be581dc8bfff79e8ba62f16207423e030
+
+Source: https://packages.termux.dev/apt/termux-main/dists/stable/main/binary-x86_64/Packages
+Package: libandroid-shmem
+Architecture: x86_64
+Version: 0.7
+Filename: pool/main/liba/libandroid-shmem/libandroid-shmem_0.7_x86_64.deb
+SHA256: ffa9e4c87467b158b148d0ff92dda796aa038276c2075af3269cdcdb06f25797
+
+Package: libtalloc
+Architecture: x86_64
+Version: 2.5.0
+Filename: pool/main/libt/libtalloc/libtalloc_2.5.0_x86_64.deb
+SHA256: b8c6d95f20075dc1f9ec6573575b2444e8d526e48e0d8d6d5cf4e071e6e06530
+
+Package: proot
+Architecture: x86_64
+Version: 5.1.107.102
+Filename: pool/main/p/proot/proot_5.1.107.102_x86_64.deb
+SHA256: 2497064226c15971be8131c7facead94a06c225347796326a383c832dca57758
+
+Source: https://downloads.gradle.org/distributions/gradle-9.1.0-bin.zip.sha256
+a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806
