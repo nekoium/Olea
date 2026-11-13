@@ -32,9 +32,9 @@ Once that works, try summarizing a text file in the workspace, making a small sc
 
 ## Install and get your first reply
 
-You need an Android device supported by the release APK, internet access, free storage for its Linux environment and tools, and credentials for a compatible model provider. Root access and a connected computer are not required for normal use.
+You need an **ARM64 Android phone** for the planned 0.1.0 APK. Olea has been tested on a physical phone running **Android 14**; other Android versions and devices are not yet verified. You also need internet access, free storage for its Linux environment and tools, and credentials for a compatible model provider. Root access and a connected computer are not required for normal use.
 
-1. **Download the APK** from [Olea Releases](https://github.com/nekoium/Olea/releases). An APK is Android's app installer. Read that release's device requirements and known issues; choose the APK matching your device if several are offered.
+1. **Download the ARM64 APK** from [Olea Releases](https://github.com/nekoium/Olea/releases) when 0.1.0 is available. An APK is Android's app installer. Read the release's device requirements and known issues before installing.
 2. **Open the downloaded file.** If Android asks, allow your browser or file manager to install apps from that source, then install Olea. You can turn that permission off afterward.
 3. **Open Olea and choose Get started.** Choose your agent and a workspace. A managed workspace keeps its files inside Olea.
 4. **Prepare the environment and install your agent.** Follow setup's progress and wait for completion. This downloads packages and can take several minutes. If setup fails, read the error, check connectivity and storage, then retry explicitly.
@@ -48,7 +48,7 @@ A saved provider configuration does not prove the connection works: the first re
 
 | Agent | Provider connection |
 | --- | --- |
-| **Pi** | Configure a compatible OpenAI-style provider and a model it supports. |
+| **Pi** | Configure a provider supporting the OpenAI Responses API and your chosen model. |
 | **Codex** | Configure a provider supporting the OpenAI Responses API and your chosen model. |
 | **Claude Code** | Configure a provider supporting the Anthropic Messages API and your chosen Claude model. |
 
@@ -58,6 +58,16 @@ Olea's original code is free and open source. **Your provider may charge for mes
 
 One conversation keeps one agent. To use another, create a new conversation. Agents share the local environment and can access files available to Olea; separate workspaces help organize projects but do not isolate them from one another.
 
+## Choose where your files live
+
+A **managed workspace** keeps files inside Olea. A **connected folder** works directly with an existing folder in your phone's primary shared storage—the built-in storage you see in a file manager. Agent edits change those original files immediately; Olea does not make a separate working copy.
+
+Stop the environment before connecting a folder. Under **Workspaces → Create workspace**, choose **Connect existing folder**. Follow **Open Android storage settings** to grant **All files access**, return to Olea, browse to your folder and choose **Connect this folder**. You can also explicitly create a visible Olea folder there. This broad Android grant covers more than the chosen folder; it is not a permission limited to that one workspace. Android still protects other apps' private data. Use a managed workspace if you do not want to grant it.
+
+Connected folders support reading and writing ordinary files. Shared storage restricts running program files directly, symbolic links and some Linux file behavior, so package installation and projects that depend on those features may fail there. Keep executable tools and such projects in a managed workspace. Removable cards and cloud/document-provider folders are not supported as connected workspaces.
+
+If access is revoked or the connected folder disappears, Olea blocks work in that workspace instead of creating a replacement folder. Restore access or the original folder, then follow the recovery message; a stopped environment may need restarting. Saved conversations remain available, and you can still use managed workspaces.
+
 ## Phone access stays in your hands
 
 Open **Phone access** from the app menu to review access and enable phone tools. Enabling tools and granting Android permissions are separate steps.
@@ -65,7 +75,7 @@ Open **Phone access** from the app menu to review access and enable phone tools.
 - **Accessibility** can expose screen text and controls, clicks and gestures. Enable Olea in Android's Accessibility settings only if you want this access. Some apps expose little or no usable screen information.
 - **Browser links** ask Android to open an HTTPS address. A successful request does not guarantee that the page loaded.
 - **Location and notifications** require their respective Android grants. Location can be stale or unavailable; notification access can reveal sensitive messages from other apps.
-- **Selected folders** use Android's folder picker. This is separate from a workspace; it does not turn an arbitrary Android folder into a full agent working directory. The current folder tool supports a limited text write/read operation.
+- **Selected-folder tools** use Android's folder picker for a limited text write/read operation. That narrower grant is separate from connecting a workspace, which requires the broader All files access described above.
 - **Screen capture** needs Android's consent for each request. Protected content may be blank. The current tool returns capture status and image metadata, not image pixels to the model.
 
 Phone tools start disabled after a process restart. **STOP** disables them and interrupts agent execution and shells; **Cancel turn** requests interruption of the selected conversation's current task. STOP cannot undo a completed file change or an action already sent to Android. Android permissions can remain granted after STOP; you can revoke them in Android settings.
@@ -74,19 +84,19 @@ Olea cannot bypass Android permissions or read every app's private data. Give ag
 
 ## Your files, privacy and recovery
 
-Workspaces, saved conversations, agent settings and credentials are kept in Olea's private app storage. The model provider receives the messages and tool results the agent sends, which can include file contents and phone information. Commands and installed tools may also contact external services. Running the agent locally does not make its work offline or confidential from your chosen provider.
+Managed workspace files, saved conversations, agent settings and credentials are kept in Olea's private app storage. Connected workspace files stay in the shared folder you chose. The model provider receives the messages and tool results the agent sends, which can include file contents and phone information. Commands and installed tools may also contact external services. Running the agent locally does not make its work offline or confidential from your chosen provider.
 
 Agents can execute commands and change files with broad authority. Olea's Linux environment provides compatibility, **not a security sandbox between agents, files and credentials**. Review generated work and avoid placing sensitive material in reach of an agent you do not trust.
 
-**Back up important files separately. Uninstalling Olea or clearing its Android storage deletes local files, conversations and credentials.** Built-in export and backup are not available yet. Ordinary compatible APK updates are intended to keep app data; do not uninstall to resolve an update error without first preserving your files. The first public APK installs separately from earlier development builds and does not import their files or conversations.
+**Back up important files separately. Uninstalling Olea or clearing its Android storage deletes managed workspace files, conversations and credentials.** Connected-folder files remain in shared storage, but agent edits to them are direct and Olea provides no undo or backup. Built-in export and backup are not available yet. Ordinary compatible APK updates are intended to keep app data; do not uninstall to resolve an update error without first preserving your files. The first public APK installs separately from earlier development builds and does not import their files or conversations.
 
 Android can stop background processes, especially under battery or memory pressure. Reopen Olea, inspect the conversation and reconnect before deciding whether to send an interrupted task again. Reconnecting does not automatically resend earlier prompts. A **Done** state means the agent finished a turn; check its answer and files to confirm your task succeeded.
 
 ## Before you rely on it
 
-Olea is an early Android release. Use each release's notes for the devices, Android versions and agent versions actually checked. Continuous background execution, operation through reboot and compatibility with every future agent update are not guaranteed.
+Olea is an early Android release. Pi's file work, interruption and saved continuation, all three agents' replies, and browser/Accessibility actions have been checked on the Android 14 ARM64 phone. These checks do not establish equal tool coverage across agents or compatibility with every app. Use each release's notes for the exact devices and agent versions checked. Continuous background execution, operation through reboot and compatibility with every future agent update are not guaranteed.
 
-Scheduled tasks, reminders, alarms, general phone-folder cleanup and direct external-folder workspaces are not included. Olea currently focuses on conversations, managed workspace files and permission-controlled phone tools. It is not available for iOS.
+Scheduled tasks, reminders, alarms and general phone-folder cleanup are not included. Olea currently focuses on conversations, managed or connected workspace files and permission-controlled phone tools. It is not available for iOS.
 
 ## Help and contribute
 
@@ -96,4 +106,4 @@ For setup problems or bugs, [open an issue](https://github.com/nekoium/Olea/issu
 
 Want to build from source or contribute? See [Contributing](CONTRIBUTING.md).
 
-Original Olea code is available under the [MIT License](LICENSE). Bundled runtime components and agents retain their own licenses; see [third-party components](runtime/THIRD_PARTY.md).
+Original Olea code is available under the [MIT License](LICENSE). Bundled runtime components, Android interface libraries and agents retain their own licenses. See [third-party components](runtime/THIRD_PARTY.md) and [Android interface notices](runtime/licenses/Android-UI-NOTICES.txt). When downloading an APK, also keep its accompanying runtime NOTICES and runtime source companion from the same release page; these provide license texts, corresponding runtime source and build/replacement instructions.
