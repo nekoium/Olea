@@ -1,0 +1,2 @@
+# Android and Linux bootstrap scripts require Unix line endings.
+runtime/*.sh text eol=lf

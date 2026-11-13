@@ -68,7 +68,10 @@ xz -dc "$work/downloads/node.tar.xz" | gzip -n > "$assets/node.bin"
 npm ci --prefix backend
 npm run build --prefix backend
 tar -czf "$assets/backend.bin" -C backend dist extensions
-cp runtime/linux.sh runtime/prepare.sh runtime/agent-maintenance.sh "$assets/"
+# Normalize bootstrap scripts so Windows snapshot/export line endings cannot break Android sh.
+for name in linux.sh prepare.sh agent-maintenance.sh; do
+  node -e 'const fs=require("node:fs"); const text=fs.readFileSync(process.argv[1],"utf8").replace(/\r\n/g,"\n"); if(text.includes("\r")) throw Error("Unsupported shell-script line ending"); fs.writeFileSync(process.argv[2],text);' "runtime/$name" "$assets/$name"
+done
 printf '%s\n' "$abi" > "$assets/runtime-abi.txt"
 sha256sum "$assets"/*.bin "$assets/runtime-abi.txt" | awk '{n=split($2,a,"/"); print $1" "a[n]}' > "$assets/hashes.txt"
 if [[ ! -f .setup/core/gradle-9.1.0/bin/gradle ]]; then unzip -q "$work/downloads/gradle.zip" -d .setup/core; fi
