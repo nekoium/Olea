@@ -50,7 +50,10 @@ class PhoneBridge(context: Context) : AutoCloseable {
     val directory = File(context.filesDir, "phone")
     val configFile = File(directory, "config.json")
     @Volatile private var server: ServerSocket? = null
-    @Volatile private var connection: Socket? = null
+    private val connections = mutableSetOf<Socket>()
+    // No waiting queue: idle peers consume at most eight transport workers, never the accept loop.
+    private val connectionWorker = ThreadPoolExecutor(8, 8, 0, TimeUnit.SECONDS, SynchronousQueue(),
+        { task -> Thread(task, "olea-phone-connection").apply { isDaemon = true } })
     private var enabled = false
     private var authorityEpoch = 0L
     private var closed = false
@@ -106,9 +109,23 @@ class PhoneBridge(context: Context) : AutoCloseable {
             while (!socket.isClosed) {
                 try {
                     val client = socket.accept()
-                    connection = client
-                    if (socket.isClosed) client.close() else handle(client)
-                    connection = null
+                    synchronized(connections) {
+                        if (socket.isClosed) client.close() else {
+                            connections.add(client)
+                            try {
+                                connectionWorker.execute {
+                                    try { handle(client) }
+                                    finally {
+                                        runCatching { client.close() }
+                                        synchronized(connections) { connections.remove(client) }
+                                    }
+                                }
+                            } catch (_: java.util.concurrent.RejectedExecutionException) {
+                                connections.remove(client)
+                                client.close()
+                            }
+                        }
+                    }
                 } catch (_: Exception) { /* A closed listener terminates the finite accept loop. */ }
             }
         }, "olea-phone-bridge").apply { isDaemon = true; start() }
@@ -136,7 +153,11 @@ class PhoneBridge(context: Context) : AutoCloseable {
         stop()
         closed = true
         server?.close(); server = null
-        connection?.close(); connection = null
+        synchronized(connections) {
+            connections.forEach { runCatching { it.close() } }
+            connections.clear()
+            connectionWorker.shutdown()
+        }
         timeouts.cancel()
         fileWorker.shutdown()
         fileCancellation.shutdown()
@@ -179,6 +200,13 @@ class PhoneBridge(context: Context) : AutoCloseable {
 
     fun capturePending(id: String): Boolean = synchronized(lock) {
         enabled && !closed && requestId == id && SystemClock.elapsedRealtime() - requestAt < 120000 && capture == null
+    }
+
+    /** Read-only UI snapshot; consent alone never establishes capture completion. */
+    fun captureResult(id: String): JSONObject? = synchronized(lock) {
+        if (!enabled || closed || requestId != id) return@synchronized null
+        capture?.let { JSONObject(it.toString()) }
+            ?: JSONObject().put("requestId", id).put("status", if (capturePending(id)) "consent_pending" else "expired")
     }
 
     /** The projection service consumes consent once; a stale Activity cannot restore stopped authority. */
