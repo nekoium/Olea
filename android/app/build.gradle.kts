@@ -10,11 +10,11 @@ android {
     namespace = "dev.olea.app"
     compileSdk = 36
     defaultConfig {
-        applicationId = "dev.olea.app"
+        applicationId = "dev.olea"
         minSdk = 26
         targetSdk = 36
-        versionCode = 6
-        versionName = "0.2-base"
+        versionCode = 7
+        versionName = "0.1.0"
         testInstrumentationRunner = "dev.olea.app.CoreInstrumentation"
         buildConfigField("String", "RUNTIME_ABI", "\"$runtimeAbi\"")
         ndk { abiFilters += runtimeAbi }
