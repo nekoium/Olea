@@ -1,0 +1,8 @@
+// Opt into the terminal-only Android diagnostic without changing the normal test runner.
+gradle.beforeProject { project ->
+    project.pluginManager.withPlugin('com.android.application') {
+        project.extensions.getByName('androidComponents').finalizeDsl { android ->
+            android.defaultConfig.testInstrumentationRunner = 'dev.olea.app.TerminalWebViewInstrumentation'
+        }
+    }
+}

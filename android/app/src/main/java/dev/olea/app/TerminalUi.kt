@@ -1,7 +1,11 @@
 package dev.olea.app
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.webkit.ConsoleMessage
 import android.webkit.JavascriptInterface
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
@@ -15,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import kotlinx.coroutines.delay
 import org.json.JSONObject
 
 @Composable internal fun WorkspaceTerminal(snapshot: UiSnapshot, workspace: WorkspaceInfo?, perform: (() -> Unit) -> Unit) {
@@ -72,59 +77,120 @@ private class TerminalBridge(private val input: (String) -> Unit, private val re
     @JavascriptInterface fun ready() = loaded()
 }
 
+internal const val TERMINAL_PAGE_URL = "https://olea.invalid/terminal.html"
+
+internal fun terminalControlInput(text: String, ctrl: Boolean): String =
+    if (ctrl && text.length == 1 && text[0].code in 64..127) ((text[0].code and 31).toChar()).toString() else text
+
+internal fun terminalWriteScript(data: String, reset: Boolean) = "window.oleaWrite(${JSONObject.quote(data)},$reset)"
+internal fun terminalKeyScript(data: String) = "window.oleaKey(${JSONObject.quote(data)})"
+
+// The document and its two assets are APK resources; no request falls through to the network.
 @SuppressLint("SetJavaScriptEnabled")
+internal fun createTerminalWebView(context: Context, input: (String) -> Unit, resize: (Int, Int) -> Unit, loaded: () -> Unit, failed: (String) -> Unit): WebView =
+    WebView(context).apply {
+        setBackgroundColor(android.graphics.Color.rgb(23, 27, 22))
+        settings.javaScriptEnabled = true
+        settings.allowFileAccess = false; settings.allowContentAccess = false
+        settings.domStorageEnabled = false; settings.blockNetworkLoads = true
+        settings.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_NEVER_ALLOW
+        settings.builtInZoomControls = false; settings.displayZoomControls = false
+        isFocusable = true; isFocusableInTouchMode = true
+        addJavascriptInterface(TerminalBridge(
+            { text -> post { input(text) } },
+            { columns, rows -> post { resize(columns, rows) } },
+            { post { loaded() } }), "OleaTerminal")
+        webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean =
+                !(request.isForMainFrame && request.method == "GET" && request.url.toString() == TERMINAL_PAGE_URL)
+
+            override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse {
+                val resource = if (request.method != "GET") null else when (request.url.toString()) {
+                    TERMINAL_PAGE_URL -> if (request.isForMainFrame) R.raw.terminal to "text/html" else null
+                    "https://olea.invalid/xterm.js" -> if (!request.isForMainFrame) R.raw.xterm to "application/javascript" else null
+                    "https://olea.invalid/xterm.css" -> if (!request.isForMainFrame) R.raw.xterm_style to "text/css" else null
+                    else -> null
+                }
+                val headers = mapOf(
+                    "Content-Security-Policy" to "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+                    "X-Content-Type-Options" to "nosniff",
+                    "Cache-Control" to "no-store"
+                )
+                return if (resource != null) WebResourceResponse(resource.second, "UTF-8", 200, "OK", headers, resources.openRawResource(resource.first))
+                else WebResourceResponse("text/plain", "UTF-8", 403, "Blocked", headers, java.io.ByteArrayInputStream(ByteArray(0)))
+            }
+
+            private fun isRequired(request: WebResourceRequest) = request.isForMainFrame ||
+                request.url.toString() in listOf("https://olea.invalid/xterm.js", "https://olea.invalid/xterm.css")
+
+            override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
+                if (isRequired(request)) failed("${request.url}: ${error.description} (${error.errorCode})")
+            }
+
+            override fun onReceivedHttpError(view: WebView, request: WebResourceRequest, errorResponse: WebResourceResponse) {
+                if (isRequired(request)) failed("${request.url}: HTTP ${errorResponse.statusCode} ${errorResponse.reasonPhrase}")
+            }
+        }
+        webChromeClient = object : WebChromeClient() {
+            override fun onConsoleMessage(message: ConsoleMessage): Boolean {
+                if (message.messageLevel() == ConsoleMessage.MessageLevel.ERROR &&
+                    message.sourceId() in listOf(TERMINAL_PAGE_URL, "https://olea.invalid/xterm.js", "https://olea.invalid/xterm.css")) {
+                    failed("${message.sourceId()}:${message.lineNumber()}: ${message.message().take(300)}")
+                }
+                return true
+            }
+        }
+        loadUrl(TERMINAL_PAGE_URL)
+    }
+
 @Composable private fun TerminalViewport(terminal: RuntimeTerminalState, modifier: Modifier, perform: (() -> Unit) -> Unit) {
     val context = LocalContext.current
     var browser by remember(terminal.id) { mutableStateOf<WebView?>(null) }
     var ready by remember(terminal.id) { mutableStateOf(false) }
+    var loadError by remember(terminal.id) { mutableStateOf<String?>(null) }
     var rendered by remember(terminal.id) { mutableStateOf("") }
     var ctrl by remember(terminal.id) { mutableStateOf(false) }
     val canInput = terminal.state == "running"
     val latestId by rememberUpdatedState(terminal.id)
     val latestCanInput by rememberUpdatedState(canInput)
     Column(modifier.fillMaxWidth().background(Color(0xff171b16))) {
+        loadError?.let { Notice("Terminal display failed: $it. Reopen the terminal to retry.", true) }
         key(terminal.id) {
             AndroidView(factory = {
-                WebView(it).apply {
-                    setBackgroundColor(android.graphics.Color.rgb(23, 27, 22))
-                    settings.javaScriptEnabled = true
-                    settings.allowFileAccess = false; settings.allowContentAccess = false
-                    settings.domStorageEnabled = false; settings.blockNetworkLoads = true
-                    settings.builtInZoomControls = false; settings.displayZoomControls = false
-                    isFocusable = true; isFocusableInTouchMode = true
-                    addJavascriptInterface(TerminalBridge(
-                        { text -> if (latestCanInput) perform { RuntimeService.current?.terminalInput(latestId, if (ctrl && text.length == 1 && text[0].code in 64..127) ((text[0].code and 31).toChar()).toString() else text) }; ctrl = false },
-                        { columns, rows -> perform { RuntimeService.current?.resizeTerminal(latestId, columns, rows) } },
-                        { post { ready = true } }), "OleaTerminal")
-                    webViewClient = object : WebViewClient() {
-                        override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean = true
-                        override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse {
-                            val id = when (request.url.toString()) { "https://olea.invalid/xterm.js" -> R.raw.xterm; "https://olea.invalid/xterm.css" -> R.raw.xterm_style; else -> null }
-                            return if (id != null) WebResourceResponse(if (id == R.raw.xterm) "application/javascript" else "text/css", "UTF-8", resources.openRawResource(id))
-                            else WebResourceResponse("text/plain", "UTF-8", 404, "Not found", emptyMap(), java.io.ByteArrayInputStream(ByteArray(0)))
-                        }
-                    }
-                    val html = resources.openRawResource(R.raw.terminal).bufferedReader().use { it.readText() }
-                    loadDataWithBaseURL("https://olea.invalid/", html, "text/html", "UTF-8", null)
-                    browser = this
-                }
-            }, modifier = Modifier.weight(1f).fillMaxWidth(), onRelease = { it.removeJavascriptInterface("OleaTerminal"); it.destroy() })
+                createTerminalWebView(it,
+                    { text ->
+                        val id = latestId
+                        val data = terminalControlInput(text, ctrl)
+                        ctrl = false
+                        if (latestCanInput) perform { RuntimeService.current?.terminalInput(id, data) }
+                    },
+                    { columns, rows -> val id = latestId; perform { RuntimeService.current?.resizeTerminal(id, columns, rows) } },
+                    { if (loadError == null) ready = true },
+                    { error -> if (loadError == null) loadError = error; ready = false }
+                ).also { browser = it }
+            }, modifier = Modifier.weight(1f).fillMaxWidth(), onRelease = { browser = null; it.removeJavascriptInterface("OleaTerminal"); it.destroy() })
         }
         Row(Modifier.fillMaxWidth().background(LocalFlat.current.panel).padding(horizontal = 3.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
             listOf("Esc" to "\u001b", "Ctrl" to "", "Tab" to "\t", "←" to "\u001b[D", "↓" to "\u001b[B", "↑" to "\u001b[A", "→" to "\u001b[C").forEach { (label, data) ->
                 Box(Modifier.weight(1f)) {
-                    Action(label, primary = label == "Ctrl" && ctrl, enabled = canInput, compact = true) {
-                        if (label == "Ctrl") ctrl = !ctrl else browser?.evaluateJavascript("window.oleaKey(${JSONObject.quote(data)})", null)
+                    Action(label, primary = label == "Ctrl" && ctrl, enabled = canInput && ready, compact = true) {
+                        if (label == "Ctrl") ctrl = !ctrl else browser?.evaluateJavascript(terminalKeyScript(data), null)
                     }
                 }
             }
+        }
+    }
+    LaunchedEffect(terminal.id, browser) {
+        if (browser != null) {
+            delay(10000)
+            if (!ready && loadError == null) loadError = "The bundled terminal page did not become ready within 10 seconds."
         }
     }
     LaunchedEffect(terminal.id, ready, terminal.output) {
         if (ready) {
             val reset = !terminal.output.startsWith(rendered)
             val data = if (reset) terminal.output else terminal.output.removePrefix(rendered)
-            if (data.isNotEmpty() || reset) browser?.evaluateJavascript("window.oleaWrite(${JSONObject.quote(data)},$reset)", null)
+            if (data.isNotEmpty() || reset) browser?.evaluateJavascript(terminalWriteScript(data, reset), null)
             rendered = terminal.output
         }
     }
