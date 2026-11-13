@@ -1,0 +1,12 @@
+{
+  "results": [
+    "Layout fits 1440x1000; desktop phone fully visible",
+    "Layout fits 1440x900; desktop phone fully visible",
+    "Layout fits 1024x768; desktop phone fully visible",
+    "Layout fits 768x1000; desktop phone fully visible",
+    "Layout fits 390x1000; desktop phone fully visible",
+    "Seven scenario buttons preserve both panes and highlight selection",
+    "STOP, first-send agent locking and workspace filtering preserved",
+    "No browser exceptions"
+  ]
+}
