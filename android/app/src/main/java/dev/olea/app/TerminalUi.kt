@@ -2,6 +2,9 @@ package dev.olea.app
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.view.GestureDetector
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.webkit.ConsoleMessage
 import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
@@ -86,7 +89,7 @@ internal fun terminalWriteScript(data: String, reset: Boolean) = "window.oleaWri
 internal fun terminalKeyScript(data: String) = "window.oleaKey(${JSONObject.quote(data)})"
 
 // The document and its two assets are APK resources; no request falls through to the network.
-@SuppressLint("SetJavaScriptEnabled")
+@SuppressLint("SetJavaScriptEnabled", "ClickableViewAccessibility")
 internal fun createTerminalWebView(context: Context, input: (String) -> Unit, resize: (Int, Int) -> Unit, loaded: () -> Unit, failed: (String) -> Unit): WebView =
     WebView(context).apply {
         setBackgroundColor(android.graphics.Color.rgb(23, 27, 22))
@@ -96,6 +99,20 @@ internal fun createTerminalWebView(context: Context, input: (String) -> Unit, re
         settings.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_NEVER_ALLOW
         settings.builtInZoomControls = false; settings.displayZoomControls = false
         isFocusable = true; isFocusableInTouchMode = true
+        // WebView focus alone does not focus xterm's hidden editor on Android.
+        val taps = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
+            override fun onDown(event: MotionEvent) = true
+            override fun onSingleTapUp(event: MotionEvent): Boolean {
+                post {
+                    requestFocus()
+                    evaluateJavascript("(function(){if(typeof window.oleaFocus!=='function')return false;window.oleaFocus();return document.activeElement.classList.contains('xterm-helper-textarea')})()") { focused ->
+                        if (focused == "true") post { context.getSystemService(InputMethodManager::class.java).showSoftInput(this@apply, InputMethodManager.SHOW_IMPLICIT) }
+                    }
+                }
+                return false
+            }
+        })
+        setOnTouchListener { _, event -> taps.onTouchEvent(event); false }
         addJavascriptInterface(TerminalBridge(
             { text -> post { input(text) } },
             { columns, rows -> post { resize(columns, rows) } },

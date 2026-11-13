@@ -20,10 +20,12 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.widget.FrameLayout
+import org.json.JSONArray
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.CountDownLatch
+import java.util.concurrent.Executors
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.TimeUnit
 
@@ -44,6 +46,8 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             .put("width", view.width).put("height", view.height)
             .put("screenX", location[0]).put("screenY", location[1])
             .put("attached", view.isAttachedToWindow).put("shown", view.isShown)
+            .put("blockNetworkLoads", view.settings.blockNetworkLoads)
+            .put("allowFileAccess", view.settings.allowFileAccess).put("allowContentAccess", view.settings.allowContentAccess)
             .put("focused", view.hasFocus()).put("windowFocus", view.hasWindowFocus())
             .put("acceptingText", view.context.getSystemService(InputMethodManager::class.java).isAcceptingText)
             .put("imeVisible", if (Build.VERSION.SDK_INT >= 30) view.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) else JSONObject.NULL)
@@ -103,8 +107,8 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             stage("starting native activity")
             val host = startActivitySync(Intent(targetContext, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             activity = host
-            if (selected == "viewport") {
-                viewport(host as MainActivity, receipt)
+            if (selected == "viewport" || selected == "pty") {
+                if (selected == "pty") pty(host as MainActivity, receipt) else viewport(host as MainActivity, receipt)
                 passed = true
                 return
             }
@@ -128,8 +132,11 @@ class TerminalWebViewInstrumentation : Instrumentation() {
 
             stage("resource and navigation allowlist")
             ui {
-                check(view.settings.blockNetworkLoads && !view.settings.allowFileAccess && !view.settings.allowContentAccess)
+                check(view.settings.blockNetworkLoads && !view.settings.allowFileAccess && !view.settings.allowContentAccess) { "Native access settings differ from the production factory" }
                 val client = view.webViewClient
+                val allowedResults = JSONArray()
+                val blockedResults = JSONArray()
+                receipt.put("allowedRequests", allowedResults).put("blockedRequests", blockedResults)
                 val allowed = listOf(
                     Triple(TERMINAL_PAGE_URL, true, "text/html"),
                     Triple("https://olea.invalid/xterm.js", false, "application/javascript"),
@@ -137,8 +144,9 @@ class TerminalWebViewInstrumentation : Instrumentation() {
                 )
                 for ((url, main, mime) in allowed) {
                     val response = client.shouldInterceptRequest(view, request(url, main))!!
-                    check(response.statusCode == 200 && response.mimeType == mime)
-                    response.data.use { check(it.read() != -1) }
+                    allowedResults.put(JSONObject().put("url", url).put("main", main).put("status", response.statusCode).put("mime", response.mimeType))
+                    check(response.statusCode == 200 && response.mimeType == mime) { "Allowed $url main=$main returned ${response.statusCode}/${response.mimeType}; expected 200/$mime" }
+                    response.data.use { check(it.read() != -1) { "Allowed $url returned an empty resource" } }
                 }
                 val blocked = listOf(
                     request("https://example.com/"), request("http://127.0.0.1:8765/"),
@@ -150,12 +158,14 @@ class TerminalWebViewInstrumentation : Instrumentation() {
                 )
                 for (req in blocked) {
                     client.shouldInterceptRequest(view, req)!!.let { response ->
-                        check(response.statusCode == 403)
+                        val override = client.shouldOverrideUrlLoading(view, req)
+                        blockedResults.put(JSONObject().put("url", req.url).put("main", req.isForMainFrame).put("method", req.method).put("status", response.statusCode).put("override", override))
                         response.data.close()
+                        check(response.statusCode == 403) { "Blocked ${req.method} ${req.url} main=${req.isForMainFrame} returned ${response.statusCode}" }
+                        check(override) { "Blocked navigation ${req.method} ${req.url} main=${req.isForMainFrame} was permitted" }
                     }
-                    check(client.shouldOverrideUrlLoading(view, req))
                 }
-                check(!client.shouldOverrideUrlLoading(view, request(TERMINAL_PAGE_URL, true)))
+                check(!client.shouldOverrideUrlLoading(view, request(TERMINAL_PAGE_URL, true))) { "Main document GET navigation was rejected" }
                 // WebView may request an optional favicon; its rejection must not disable xterm.
                 client.onReceivedHttpError(view, request("https://olea.invalid/favicon.ico"), WebResourceResponse("text/plain", "UTF-8", 403, "Blocked", emptyMap(), null))
                 check(errors.isEmpty())
@@ -216,7 +226,7 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             runCatching { capture(receipt, "failureState") }.onFailure { receipt.put("captureFailure", it.toString()) }
         } finally {
             ui {
-                if (::view.isInitialized && selected != "viewport") {
+                if (::view.isInitialized && selected == "factory") {
                     (view.parent as? android.view.ViewGroup)?.removeView(view)
                     view.removeJavascriptInterface("OleaTerminal")
                     view.destroy()
@@ -282,7 +292,16 @@ class TerminalWebViewInstrumentation : Instrumentation() {
         capture(receipt, "viewportSwitched")
         receipt.put("composedSessionSwitch", "pass")
 
-        stage("real viewport tap and textarea focus")
+        stage("real viewport tap, textarea focus and keyboard")
+        tapEditor(receipt, "viewportAfterTap")
+        receipt.put("composedTapFocusAndIme", "pass")
+    }
+    private fun awaitCondition(seconds: Int, description: String, condition: () -> Boolean) {
+        val deadline = SystemClock.elapsedRealtime() + seconds * 1000L
+        while (!condition() && SystemClock.elapsedRealtime() < deadline) Thread.sleep(50)
+        check(condition()) { "Timed out: $description" }
+    }
+    private fun tapEditor(receipt: JSONObject, label: String) {
         val location = ui {
             val result = IntArray(2)
             view.getLocationOnScreen(result)
@@ -293,8 +312,123 @@ class TerminalWebViewInstrumentation : Instrumentation() {
         val up = MotionEvent.obtain(now, now + 50, MotionEvent.ACTION_UP, location[0] + 32f, location[1] + 32f, 0)
         try { sendPointerSync(down); sendPointerSync(up) } finally { down.recycle(); up.recycle() }
         awaitScript("document.activeElement && document.activeElement.classList.contains('xterm-helper-textarea')")
-        Thread.sleep(700)
-        capture(receipt, "viewportAfterTap")
-        receipt.put("composedTapFocus", "pass")
+        awaitCondition(5, "IME presentation after editor focus") {
+            ui { Build.VERSION.SDK_INT < 30 || view.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) == true }
+        }
+        capture(receipt, label)
+    }
+
+    private fun pty(host: MainActivity, receipt: JSONObject) {
+        stage("app-owned runtime without opening an agent")
+        awaitCondition(10, "RuntimeService creation") { RuntimeService.current != null }
+        val runtime = RuntimeService.current!!
+        check(runtime.environmentReady()) { "PTY diagnostic requires the already-prepared environment; it will not install packages" }
+        val selectedBefore = runtime.activeConversation().id
+        val default = runtime.store.workspaces().single { it.id == "default" }
+        check(!runtime.workspaceFolders.isConnected(default.id)) { "Default diagnostic workspace must be app-managed" }
+        val wasRunning = runtime.environmentRunning()
+        val agentsBefore = runtime.conversationStates().filter { it.ready || it.opening }.map { it.id }.toSet()
+        check(wasRunning || !RuntimeService.busy) { "Another environment operation is active" }
+        val actions = Executors.newSingleThreadExecutor()
+        val actionErrors = CopyOnWriteArrayList<String>()
+        var startedBackend = false
+        var created: String? = null
+        var failure: Throwable? = null
+        try {
+            if (!wasRunning) {
+                startedBackend = true
+                runtime.startEnvironment(false)
+                awaitCondition(90, "backend start without an agent") { runtime.environmentRunning() && !RuntimeService.busy }
+            }
+            check(runtime.conversationStates().filter { it.opening || it.ready }.all { it.id in agentsBefore }) { "PTY-only instrumentation unexpectedly opened an agent" }
+            stage("real Python PTY creation")
+            val id = runtime.createTerminal(default.id, "Terminal diagnostic")
+            created = id
+            fun current() = runtime.terminals(default.id).single { it.id == id }
+            awaitCondition(20, "real PTY running") {
+                check(current().state != "error") { "PTY creation failed" }
+                current().state == "running"
+            }
+            val initialDeadline = SystemClock.elapsedRealtime() + 2000
+            while (current().output.isEmpty() && SystemClock.elapsedRealtime() < initialDeadline) Thread.sleep(50)
+            receipt.put("initialPtyOutputChars", current().output.length)
+            val terminalState = mutableStateOf(current())
+            val previous = ui { webViews(host.window.decorView) }
+            ui {
+                host.setContent {
+                    CompositionLocalProvider(LocalFlat provides lightColors) {
+                        WorkspaceTerminal(
+                            UiSnapshot(available = true, summary = "Backend: running", terminals = listOf(terminalState.value)), default
+                        ) { action ->
+                            if (!actions.isShutdown) runCatching {
+                                actions.execute { runCatching(action).onFailure { actionErrors.add(it.javaClass.simpleName + ": " + it.message) } }
+                            }.onFailure { actionErrors.add(it.javaClass.simpleName) }
+                        }
+                    }
+                }
+            }
+            adoptViewport(host, previous)
+            awaitScript("typeof window.oleaKey === 'function'")
+            capture(receipt, "ptyViewportReady")
+            fun sync() {
+                val next = current()
+                check(next.state == "running") { "PTY changed state to ${next.state}" }
+                check(actionErrors.isEmpty()) { "Runtime input/resize failed: $actionErrors" }
+                ui { terminalState.value = next }
+            }
+            fun awaitOutput(marker: String, seconds: Int = 8) {
+                awaitCondition(seconds, "PTY output marker $marker") { sync(); current().output.contains(marker) }
+                awaitScript(bufferContains(marker))
+            }
+            stage("WebView bridge to real PTY printf and TTY status")
+            val tag = java.lang.Long.toHexString(SystemClock.uptimeMillis())
+            val marker = "olea-pty-$tag"
+            evaluate(terminalKeyScript("printf '\\n%s%s\\n' 'olea-pty-' '$tag'\r"))
+            awaitOutput(marker)
+            evaluate(terminalKeyScript("if test -t 0 && test -t 1; then printf '\\n%s%s\\n' 'olea-tty-' 'yes'; fi\r"))
+            awaitOutput("olea-tty-yes")
+            receipt.put("realPtyPrintfAndTty", "pass").put("ptyOutputCharsAfterPrintf", current().output.length)
+            capture(receipt, "ptyAfterPrintf")
+
+            stage("real foreground-job Ctrl-C through WebView bridge")
+            evaluate(terminalKeyScript("printf '\\n%s%s\\n' 'olea-busy-' '$tag'; sleep 20; printf '\\n%s%s\\n' 'olea-late-' '$tag'\r"))
+            awaitOutput("olea-busy-$tag")
+            val interruptedAt = SystemClock.elapsedRealtime()
+            evaluate(terminalKeyScript(terminalControlInput("c", true)))
+            Thread.sleep(300) // Let the foreground process handle SIGINT before entering the next command.
+            evaluate(terminalKeyScript("printf '\\n%s%s\\n' 'olea-after-' '$tag'\r"))
+            awaitOutput("olea-after-$tag")
+            check(!current().output.contains("olea-late-$tag")) { "Foreground job reached its post-sleep command" }
+            receipt.put("realPtyCtrlC", "pass").put("ctrlCContinuationMillis", SystemClock.elapsedRealtime() - interruptedAt)
+            capture(receipt, "ptyAfterCtrlC")
+            tapEditor(receipt, "ptyAfterTap")
+            receipt.put("realPtyTapFocusAndIme", "pass")
+        } catch (error: Throwable) {
+            failure = error
+            runCatching { capture(receipt, "ptyFailureState") }
+            created?.let { id ->
+                runtime.terminals(default.id).firstOrNull { it.id == id }?.let {
+                    receipt.put("ptyFailureShellState", it.state).put("ptyFailureOutputChars", it.output.length)
+                }
+            }
+            throw error
+        } finally {
+            runCatching {
+                ui { host.setContent { } }
+                actions.shutdown()
+                check(actions.awaitTermination(5, TimeUnit.SECONDS)) { "Diagnostic input actions did not settle" }
+                created?.let { runtime.closeTerminal(it) }
+                if (startedBackend) {
+                    runtime.stopExecution()
+                    awaitCondition(25, "diagnostic backend cleanup") { !runtime.environmentRunning() && !RuntimeService.busy }
+                }
+                val preserved = runtime.activeConversation().id == selectedBefore
+                receipt.put("selectionPreserved", preserved).put("stoppedOnlyBackendStartedByDiagnostic", startedBackend)
+                check(preserved) { "Conversation selection changed during the diagnostic" }
+            }.onFailure { cleanup ->
+                receipt.put("ptyCleanupFailure", cleanup.javaClass.simpleName + ": " + cleanup.message)
+                if (failure == null) throw cleanup else failure.addSuppressed(cleanup)
+            }
+        }
     }
 }
