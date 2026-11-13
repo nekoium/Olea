@@ -32,6 +32,7 @@ const backend = new Backend({
   workspaceRoot: resolve(process.env.OLEA_WORKSPACE_ROOT ?? '/workspace'),
   stateDir: resolve(process.env.OLEA_STATE_DIR ?? '.setup/olea-state'),
   codexEntry: process.env.OLEA_CODEX_ENTRY, codexProviderPath: process.env.OLEA_PROVIDER_CONFIG,
+  codexAuthPath: join(homedir(), '.codex/auth.json'), claudeAuthPath: join(homedir(), '.claude/.credentials.json'),
   claudeEntry: process.env.OLEA_CLAUDE_ENTRY ?? '/opt/agents/bin/claude', claudeProviderPath,
   codexModel: process.env.OLEA_CODEX_MODEL, codexAccessMode: process.env.OLEA_CODEX_ACCESS_MODE as 'workspace-write' | 'full-access' | undefined, bridgePath: process.env.OLEA_BRIDGE_CONFIG,
 }, output);
@@ -53,6 +54,10 @@ async function handle(record: RecordData) {
     else if (type === 'codex_start') data = await backend.startCodex(session, record.resume === true, record.workspace);
     else if (type === 'codex_command') data = await backend.codexCommand(session, record.command);
     else if (type === 'codex_approval') data = backend.codexApproval(session, record.requestId, record.decision);
+    else if (type === 'terminal_start') data = await backend.startTerminal(session, record.workspace, record.name);
+    else if (type === 'terminal_command') data = backend.terminalCommand(session, record.command);
+    else if (type === 'terminal_status') data = backend.terminalStatus();
+    else if (type === 'terminal_close') data = await backend.closeTerminal(session);
     else if (type === 'stop') data = await backend.stop(session);
     else if (type === 'status') data = backend.status();
     else if (type === 'command') data = await backend.command(session, record.command);

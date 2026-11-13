@@ -25,6 +25,8 @@ test('saved session and workspace survive STOP/reopen without automatic prompt r
   await backend.close();
   backend = new Backend({ entry, workspace, stateDir }, () => {});
   try {
+    await assert.rejects(backend.start('conversation', false), /pi_resume_required/);
+    assert.equal(await readFile(join(stateDir, 'conversation/resume.json'), 'utf8'), savedBefore);
     state = await backend.start('conversation', true);
     assert.equal(state.state.resumed, true);
     assert.equal(await readFile(join(workspace, 'workspace-kept.txt'), 'utf8'), 'kept\n');

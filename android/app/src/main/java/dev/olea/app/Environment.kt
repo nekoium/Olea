@@ -9,7 +9,7 @@ import java.util.UUID
 
 class Environment(private val context: Context) {
     val base = context.filesDir
-    val ready get() = File(base, "runtime/ready").isFile
+    val ready get() = runCatching { File(base, "runtime/ready").readText().trim() == "2" }.getOrDefault(false)
     private val hashes by lazy {
         context.assets.open("hashes.txt").bufferedReader().useLines { lines ->
             lines.associate { val parts = it.split(' '); parts[1] to parts[0] }
@@ -76,14 +76,14 @@ class Environment(private val context: Context) {
             check(staging.renameTo(root)) { "Cannot activate Linux. Existing files were preserved." }
         }
         refreshDns(root)
-        progress("Installing certificates, Git and stock Pi. Internet access is required…")
+        progress("Installing certificates, Git and terminal support. Internet access is required…")
         stageBackend(run)
         installPackages(run)
     }
 
     fun installPackages(run: (List<String>, Int) -> Unit) {
         run(linux("/bin/sh", "-c", "dpkg --configure -a && /bin/sh /olea/prepare.sh"), 960)
-        File(base, "runtime/ready").writeText("1\n")
+        File(base, "runtime/ready").writeText("2\n")
     }
 
     fun stageBackend(run: (List<String>, Int) -> Unit) {
@@ -101,6 +101,7 @@ class Environment(private val context: Context) {
 
     fun linux(vararg args: String) = listOf("/system/bin/sh", File(base, "linux.sh").path) + args
     fun builder(command: List<String>) = ProcessBuilder(command).directory(base).apply {
+        environment()["OLEA_WORKSPACE_BINDS"] = WorkspaceFolders(context, SessionStore(base)).writeBindings().path
         environment()["OLEA_APP_BASE"] = base.path
         environment()["OLEA_NATIVE_DIR"] = context.applicationInfo.nativeLibraryDir
     }

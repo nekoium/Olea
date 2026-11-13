@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { CodexProcess } from './codex-process.js';
 import type { RecordData } from './pi-process.js';
+import { linkUpstreamAuth } from './upstream-auth.js';
 
 export type CodexAccessMode = 'workspace-write' | 'full-access';
 export type ResponsesProvider = { baseUrl: string; apiKey: string; model: string };
@@ -54,13 +55,14 @@ export class CodexSession {
     this.process.on('fault', code => this.event({ type: 'fault', agent: 'codex', code }));
     this.process.on('exit', detail => this.event({ type: 'exit', agent: 'codex', ...detail }));
   }
-  static async start(options: { directory: string; workspace: string; entry: string; resume: boolean; providerPath?: string; model?: string; bridgePath?: string; accessMode?: CodexAccessMode }, event: (record: RecordData) => void) {
+  static async start(options: { directory: string; workspace: string; entry: string; resume: boolean; providerPath?: string; authPath?: string; model?: string; bridgePath?: string; accessMode?: CodexAccessMode }, event: (record: RecordData) => void) {
     const accessMode = options.accessMode ?? 'full-access';
     codexPolicy(accessMode);
     await mkdir(options.directory, { recursive: true, mode: 0o700 });
     const directory = await realpath(options.directory), cwd = await realpath(options.workspace);
     await mkdir(join(directory, 'home'), { recursive: true, mode: 0o700 });
     const home = await realpath(join(directory, 'home'));
+    if (!options.providerPath) await linkUpstreamAuth(options.authPath, join(home, 'auth.json'));
     if (home === cwd || home.startsWith(cwd + sep)) throw new Error('codex_home_inside_workspace');
     let expected: string | undefined;
     if (options.resume) {

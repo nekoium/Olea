@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { ClaudeProcess } from './claude-process.js';
 import { validateProvider, type ResponsesProvider } from './codex-session.js';
 import type { RecordData } from './pi-process.js';
+import { linkUpstreamAuth } from './upstream-auth.js';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const quote = (value: string) => process.platform === 'win32' ? `"${value.replace(/"/g, '""')}"` : `'${value.replace(/'/g, `'\\''`)}'`;
@@ -84,7 +85,7 @@ export class ClaudeSession {
       } catch (error: any) { if (error.code !== 'ENOENT') throw error; }
     }
   }
-  static async start(options: { directory: string; workspace: string; entry: string; resume: boolean; providerPath?: string; bridgePath?: string }, event: (record: RecordData) => void) {
+  static async start(options: { directory: string; workspace: string; entry: string; resume: boolean; providerPath?: string; authPath?: string; bridgePath?: string }, event: (record: RecordData) => void) {
     await mkdir(options.directory, { recursive: true, mode: 0o700 });
     const directory = await realpath(options.directory), workspace = await realpath(options.workspace);
     await mkdir(join(directory, 'home'), { recursive: true, mode: 0o700 });
@@ -92,6 +93,7 @@ export class ClaudeSession {
     if (home === workspace || home.startsWith(workspace + sep) || !home.startsWith(directory + sep)) throw new Error('claude_invalid_home');
     await mkdir(join(home, '.claude'), { recursive: true, mode: 0o700 });
     if (await realpath(join(home, '.claude')) !== join(home, '.claude')) throw new Error('claude_invalid_home');
+    if (!options.providerPath) await linkUpstreamAuth(options.authPath, join(home, '.claude', '.credentials.json'));
     let saved: RecordData | undefined;
     try { saved = JSON.parse(await readFile(join(directory, 'session.json'), 'utf8')); } catch (error: any) { if (error.code !== 'ENOENT') throw new Error('claude_invalid_checkpoint'); }
     if (options.resume && !saved) throw new Error('claude_resume_missing');

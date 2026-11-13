@@ -8,7 +8,7 @@ import { mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from 'node
 import { join, resolve } from 'node:path';
 import ts from 'typescript';
 import { Backend } from '../dist/backend.js';
-import { codexConfig, codexPolicy, validateProvider } from '../dist/codex-session.js';
+import { CodexSession, codexConfig, codexPolicy, validateProvider } from '../dist/codex-session.js';
 import { CodexProcess } from '../dist/codex-process.js';
 import { callPhone, phoneTools } from '../dist/phone-mcp.js';
 import { JsonLines } from '../dist/pi-process.js';
@@ -84,13 +84,13 @@ test('stop and close own pending Pi/Codex startup through settlement without lat
   const entered = Promise.withResolvers();
   const release = Promise.withResolvers();
   gates.push(release);
-  const originalSaveIdentity = f.backend.saveIdentity.bind(f.backend);
+  const originalSaveState = f.backend.saveState.bind(f.backend);
+  const originalCodexStart = CodexSession.start;
   let arrivals = 0;
-  f.backend.saveIdentity = async (...args) => {
-    if (++arrivals === 2) entered.resolve();
-    await release.promise;
-    return originalSaveIdentity(...args);
-  };
+  const hold = async () => { if (++arrivals === 2) entered.resolve(); await release.promise; };
+  f.backend.saveState = async (...args) => { await originalSaveState(...args); await hold(); };
+  CodexSession.start = async (...args) => { const result = await originalCodexStart(...args); await hold(); return result; };
+  t.after(() => { CodexSession.start = originalCodexStart; });
   const pi = f.backend.start('pi');
   const codex = f.backend.startCodex('codex');
   const rejected = [assert.rejects(pi, /start_cancelled/), assert.rejects(codex, /start_cancelled/)];
@@ -192,6 +192,7 @@ test('Codex preserves stream/history/interrupt and same-home resume without test
   assert.equal(exec.received.outputBytesCap, 65536);
   await assert.rejects(f.backend.codexCommand('codex', { method: 'command/exec', params: { command: ['sh'], timeoutMs: 300001 } }), /invalid_exec/);
   await f.backend.stop('codex');
+  await assert.rejects(f.backend.startCodex('codex', false, f.second), /codex_resume_required/);
   await assert.rejects(f.backend.startCodex('codex', true, f.workspace), /session_identity_mismatch/);
   const resumed = await f.backend.startCodex('codex', true, f.second);
   assert.equal(resumed.home, start.home);
