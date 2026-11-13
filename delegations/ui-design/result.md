@@ -1,3 +1,13 @@
+# UI design batch: viewport fit and compact scenario overview
+
+- **USER DECISION**: Fit the review shell within one viewport without page scrolling. The phone and demo controls must be visible together. Present scenarios as concise cards for an immediate overview, with content scrolling inside regions. Source: the user's correction, recorded in [PRODUCT.md](../../PRODUCT.md#technical-implementation-direction).
+- **OBSERVED**: The root shell now uses the available viewport height with no minimum page height. Compact screenshot cards replace the verbose list; full instructions appear only in the selected-scenario panel. The phone is a fixed 390×780 canvas scaled to its stage, with a persistent toolbar above it.
+- **OBSERVED**: [Viewport checks](../../docs/ui/checks/viewport-04/checks.json) passed at eight sizes from 390×844 through 1920×1080, including 1060×711, 1280×720 and 1024×600. Assertions verify root dimensions and full bounds of phone, controls and instructions. All seven card selections, STOP and first-send agent locking passed without browser exceptions. Visually inspected [1280×720 overview](../../docs/ui/checks/viewport-04/desktop.jpg).
+- **OBSERVED**: An initial responsive check found inherited grid columns placing the phone beyond the right edge at 1060×711. The layout now explicitly resets those columns; the full viewport matrix passed afterward. The previous layout-03 checks did not establish the user's page-scroll/control-visibility requirement; their historical results remain below.
+- **OPEN**: Material fidelity, motion and complete experience coverage remain for later passes. No real runtime functionality is connected.
+
+---
+
 # UI design batch: persistent desktop layout
 
 - **USER DECISION**: Use a browser-only phone demo with sample functionality. Match real phone UI, UX and motion as closely as possible as a design reference. Source: [PRODUCT.md](../../PRODUCT.md#technical-implementation-direction).

@@ -1,0 +1,16 @@
+{
+  "results": [
+    "Root does not scroll; full phone, controls and instruction pane fit 1440x900",
+    "Root does not scroll; full phone, controls and instruction pane fit 1280x720",
+    "Root does not scroll; full phone, controls and instruction pane fit 1060x711",
+    "Root does not scroll; full phone, controls and instruction pane fit 1024x600",
+    "Root does not scroll; full phone, controls and instruction pane fit 800x600",
+    "Root does not scroll; full phone, controls and instruction pane fit 640x480",
+    "Root does not scroll; full phone, controls and instruction pane fit 390x844",
+    "Root does not scroll; full phone, controls and instruction pane fit 1920x1080",
+    "All seven compact cards select their scenario and instructions",
+    "STOP and first-send agent locking work inside scaled phone",
+    "No browser exceptions",
+    "All seven cards visible at 1280x720; coordinate-based card and scaled STOP clicks succeed; root cannot scroll"
+  ]
+}
