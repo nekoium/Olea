@@ -223,7 +223,11 @@ class PhoneBridge(context: Context) : AutoCloseable {
         check(locationPermission()) { "LOCATION_PERMISSION_REQUIRED_OPEN_PHONE_ACCESS" }
         val manager = context.getSystemService(LocationManager::class.java)
         check(manager.isProviderEnabled(LocationManager.GPS_PROVIDER) || manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) { "LOCATION_DISABLED_ENABLE_ANDROID_LOCATION" }
-        val locations = manager.getProviders(true).mapNotNull { provider -> runCatching { manager.getLastKnownLocation(provider) }.getOrNull() }
+        val locations = try {
+            manager.getProviders(true).mapNotNull { manager.getLastKnownLocation(it) }
+        } catch (_: SecurityException) {
+            emptyList()
+        }
         val location = locations.maxByOrNull { it.elapsedRealtimeNanos } ?: error("LOCATION_UNAVAILABLE_USE_LOCATION_APP_AND_RETRY")
         return JSONObject().put("latitude", location.latitude).put("longitude", location.longitude).put("accuracy", location.accuracy)
             .put("provider", location.provider).put("timeMs", location.time).put("ageMs", ((SystemClock.elapsedRealtimeNanos() - location.elapsedRealtimeNanos) / 1000000).coerceAtLeast(0))

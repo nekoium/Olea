@@ -22,6 +22,9 @@ class RuntimeService : Service() {
         @Volatile var revision = 0L
         @Volatile var conversationReady = false
         @Volatile var busy = false
+        private val discardOutput = object : java.io.OutputStream() {
+            override fun write(value: Int) = Unit
+        }
     }
     private class Display(val info: ConversationInfo, val lines: ArrayList<String> = ArrayList()) {
         var text = StringBuilder()
@@ -137,7 +140,7 @@ class RuntimeService : Service() {
                 }
             }
         }.apply { start() }
-        val errors = Thread { runCatching { process.errorStream.use { it.copyTo(java.io.OutputStream.nullOutputStream()) } } }.apply { start() }
+        val errors = Thread { runCatching { process.errorStream.use { it.copyTo(discardOutput) } } }.apply { start() }
         val exited = process.waitFor(seconds.toLong(), TimeUnit.SECONDS)
         val result = synchronized(lock) { owner?.stop() }
         if (result?.optBoolean("trackedExitVerified") != true) File(filesDir, "last-cleanup-failure.json").writeText(result?.toString(2) ?: "{}")
@@ -164,7 +167,7 @@ class RuntimeService : Service() {
                 update("Starting shared backend…")
                 val process = launch(environment.linux("node", "/olea/dist/server.js"), epoch)
                 synchronized(lock) { check(epoch == generation.get()); backend = true }
-                Thread { runCatching { process.errorStream.use { it.copyTo(java.io.OutputStream.nullOutputStream()) } } }.start()
+                Thread { runCatching { process.errorStream.use { it.copyTo(discardOutput) } } }.start()
                 Thread {
                     try {
                         process.inputStream.bufferedReader().use { reader ->
