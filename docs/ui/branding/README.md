@@ -27,7 +27,9 @@ Each format has its own composition using the selected palette, Seed geometry an
 
 The poster is 1600 × 2400 (2:3). Photo by Gary Barnes on Pexels; [source and separate license notes](sources/README.md). The original photograph is retained for reproduction. It is not MIT licensed.
 
-**USER DECISION:** Restore the earlier photographic treatment; the stronger green shift and coarse paper effect were too drastic. Retain that alternative for reference. Source: the user's rejection of the latest treatment and request to keep its version in the folder. [Retained green paper variant](variants/green-paper-04/README.md).
+**USER DECISION:** Keep the original main poster and a gentler refinement of the olive treatment. Do not keep the rejected strong green version in the asset folder. Source: the user's clarification, “the main poster, and the less strong refined version from that green version, not keeping that green version.” [Gentle olive refinement](variants/olive-refined-04/README.md).
+
+**OBSERVED:** The main poster retains its original photographic treatment. The separate refinement preserves natural photographic colors with a mild olive bias and subtle paper texture.
 
 ## Original assets
 

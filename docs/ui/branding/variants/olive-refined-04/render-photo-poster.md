@@ -1,14 +1,14 @@
-# Photographic poster renderer 03
+# Gentle olive photographic poster renderer
 
-Original layout and source code use the repository MIT license. The photograph retains its separate Pexels license; see `sources/README.md`. Fonts and original Seed geometry are documented in `directions-01.md`.
+Original layout and source code use the repository MIT license. The photograph retains its separate Pexels license; see `../../sources/README.md`. Fonts and original Seed geometry are documented in `../../directions-01.md`.
 
-Run the fenced PowerShell source from the repository root, passing `FontRoot` as the canvas-design `canvas-fonts` folder. Windows/System.Drawing only; no network requests, paid services or dependencies. Retains the source JPEG unchanged and renders this archived variant inside `variants/green-paper-04/`. Pixel grading uses a fixed random seed so the noise is reproducible.
+Run the fenced PowerShell source from the repository root, passing `FontRoot` as the canvas-design `canvas-fonts` folder. Windows/System.Drawing only; no network requests, paid services or dependencies. Retains the source JPEG unchanged and renders the gentler refinement inside `variants/olive-refined-04/`. Pixel grading uses a fixed random seed so the noise is reproducible.
 
 ```powershell
 param([Parameter(Mandatory=$true)][string]$FontRoot)
 $ErrorActionPreference = 'Stop'
 $dir = Join-Path (Get-Location) 'docs/ui/branding'
-$archiveDir = Join-Path $dir 'variants/green-paper-04'
+$archiveDir = Join-Path $dir 'variants/olive-refined-04'
 $original = [System.IO.File]::ReadAllText((Join-Path $dir 'render-study-01.md'))
 $source = $original.Split(@('```powershell'),[System.StringSplitOptions]::None)[1].Split(@('```'),[System.StringSplitOptions]::None)[0]
 $prefix = $source.Substring(0,$source.IndexOf('$g.Clear('))
@@ -45,9 +45,9 @@ public static class OleaPhotoGrade03 {
       byte[] bytes=new byte[stride*h]; Marshal.Copy(data.Scan0,bytes,0,bytes.Length);
       Random rng=new Random(6231906);
       // Paper has diffuse tooth and uneven density at several physical scales.
-      double[,] tooth=Field(w,h,4,rng,16);
-      double[,] paper=Field(w,h,28,rng,8);
-      double[,] clouds=Field(w,h,150,rng,3.5);
+      double[,] tooth=Field(w,h,4,rng,6);
+      double[,] paper=Field(w,h,28,rng,4);
+      double[,] clouds=Field(w,h,150,rng,1.5);
       for(int y=0;y<h;y++) {
         double v=(double)y/(h-1);
         // Deep olive veil behind the upper-left copy, tapering smoothly below it.
@@ -57,17 +57,18 @@ public static class OleaPhotoGrade03 {
           int i=y*stride+x*3;
           double b=bytes[i], g=bytes[i+1], r=bytes[i+2];
           double l=0.2126*r+0.7152*g+0.0722*b;
-          // Compress the photograph into olive tones, with a permanent Seed-green veil.
-          double tone=Math.Pow(l/255.0,0.90);
-          r=28+145*tone; g=42+150*tone; b=25+104*tone;
+          // Preserve the original photographic colors, then add a restrained olive bias.
+          r=17+0.90*(0.78*r+0.22*l);
+          g=21+0.86*(0.78*g+0.22*l);
+          b=17+0.74*(0.78*b+0.22*l);
           double nx=((double)x/(w-1)-0.5)*2;
           double ny=(v-0.5)*2;
           double vignette=0.065*(nx*nx+ny*ny);
-          double veil=Math.Min(0.80,0.32+top+bottom+vignette);
+          double veil=Math.Min(0.75,0.10+top+bottom+vignette);
           r=r*(1-veil)+50*veil; g=g*(1-veil)+71*veil; b=b*(1-veil)+45*veil;
           // Soft paper texture replaces the sharp, high-contrast film speckle.
           double grain=Sample(tooth,x,y,4)+Sample(paper,x,y,28)+Sample(clouds,x,y,150)
-            +(rng.NextDouble()+rng.NextDouble()+rng.NextDouble()-1.5)*3.5;
+            +(rng.NextDouble()+rng.NextDouble()+rng.NextDouble()-1.5)*5;
           bytes[i]=Clamp(b+grain); bytes[i+1]=Clamp(g+grain); bytes[i+2]=Clamp(r+grain);
         }
       }
@@ -89,9 +90,9 @@ $g.SmoothingMode=[System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
 $g.TextRenderingHint=[System.Drawing.Text.TextRenderingHint]::AntiAliasGridFit
 # Faint short fibers sit within the paper layer, beneath the clean typography.
 $fibers=[System.Random]::new(6231907)
-$lightFiber=[System.Drawing.Pen]::new([System.Drawing.Color]::FromArgb(16,221,225,195),[single]0.65)
-$darkFiber=[System.Drawing.Pen]::new([System.Drawing.Color]::FromArgb(13,27,43,24),[single]0.65)
-for($i=0;$i -lt 26000;$i++) {
+$lightFiber=[System.Drawing.Pen]::new([System.Drawing.Color]::FromArgb(6,221,225,195),[single]0.65)
+$darkFiber=[System.Drawing.Pen]::new([System.Drawing.Color]::FromArgb(5,27,43,24),[single]0.65)
+for($i=0;$i -lt 14000;$i++) {
   $x=$fibers.NextDouble()*1600; $y=$fibers.NextDouble()*2400
   $angle=$fibers.NextDouble()*[Math]::PI*2; $length=3+$fibers.NextDouble()*12
   $dx=[Math]::Cos($angle)*$length; $dy=[Math]::Sin($angle)*$length
