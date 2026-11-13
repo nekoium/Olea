@@ -11,6 +11,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
+import android.view.accessibility.AccessibilityNodeInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.CompositionLocalProvider
@@ -29,7 +30,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.TimeUnit
 
-/** Runs the production terminal WebView on Android, without Linux, PTYs or provider requests. */
+/** Factory, Compose, and real-activity terminal diagnostics; no provider requests. */
 class TerminalWebViewInstrumentation : Instrumentation() {
     private lateinit var view: WebView
     private var selected = "factory"
@@ -97,6 +98,11 @@ class TerminalWebViewInstrumentation : Instrumentation() {
     override fun onCreate(arguments: Bundle?) { selected = arguments?.getString("case") ?: "factory"; super.onCreate(arguments); start() }
     override fun onStart() {
         val receipt = JSONObject().put("providerRequests", 0).put("case", selected)
+            .put("targetApk", targetContext.applicationInfo.sourceDir)
+            .put("testApk", context.applicationInfo.sourceDir)
+            .put("runnerClassLoader", javaClass.classLoader.toString())
+            .put("activityClassLoader", MainActivity::class.java.classLoader.toString())
+            .put("terminalClassLoader", Class.forName("dev.olea.app.TerminalUiKt").classLoader.toString())
         WebView.getCurrentWebViewPackage()?.let { receipt.put("webViewPackage", it.packageName).put("webViewVersion", it.versionName) }
         var activity: Activity? = null
         var passed = false
@@ -107,6 +113,11 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             stage("starting native activity")
             val host = startActivitySync(Intent(targetContext, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             activity = host
+            if (selected == "actual") {
+                actual(host as MainActivity, receipt)
+                passed = true
+                return
+            }
             if (selected == "viewport" || selected == "pty") {
                 if (selected == "pty") pty(host as MainActivity, receipt) else viewport(host as MainActivity, receipt)
                 passed = true
@@ -165,17 +176,31 @@ class TerminalWebViewInstrumentation : Instrumentation() {
                         check(override) { "Blocked navigation ${req.method} ${req.url} main=${req.isForMainFrame} was permitted" }
                     }
                 }
-                check(!client.shouldOverrideUrlLoading(view, request(TERMINAL_PAGE_URL, true))) { "Main document GET navigation was rejected" }
+                val mainGetOverride = client.shouldOverrideUrlLoading(view, request(TERMINAL_PAGE_URL, true))
+                receipt.put("mainGetOverride", mainGetOverride)
+                check(!mainGetOverride) { "Exact main-frame GET was intercepted as navigation" }
                 // WebView may request an optional favicon; its rejection must not disable xterm.
                 client.onReceivedHttpError(view, request("https://olea.invalid/favicon.ico"), WebResourceResponse("text/plain", "UTF-8", 403, "Blocked", emptyMap(), null))
-                check(errors.isEmpty())
+                receipt.put("errorsAfterOptionalFavicon", errors.toString())
+                check(errors.isEmpty()) { "Optional favicon reported a required-resource error: $errors" }
             }
+            receipt.put("exactResourceAndNavigationAllowlist", "pass")
             // Exercise browser-enforced CSP as well as the interceptor's exact allowlist.
+            stage("CSP connection blocking")
             evaluate("window.socketBlocked=false; try{const s=new WebSocket('wss://example.com/');s.onerror=()=>{window.socketBlocked=true}}catch(e){window.socketBlocked=e.name==='SecurityError'}")
             awaitScript("window.socketBlocked === true")
-            check(evaluate("(function(){const f=document.createElement('iframe');f.srcdoc='<script>parent.untrustedFrame=true<\\/script>';document.body.appendChild(f);return true})()") == true)
+            val socketBlocked = evaluate("window.socketBlocked === true")
+            receipt.put("socketProbeState", socketBlocked)
+            check(socketBlocked == true) { "CSP did not synchronously/ultimately block WebSocket: $socketBlocked" }
+            receipt.put("cspWebSocketBlocked", true)
+            stage("CSP frame blocking")
+            val frameCreated = evaluate("(function(){const f=document.createElement('iframe');f.srcdoc='<script>parent.untrustedFrame=true<\\/script>';document.body.appendChild(f);return true})()")
+            receipt.put("frameProbeCreated", frameCreated)
+            check(frameCreated == true) { "Inline frame probe did not run: $frameCreated" }
             Thread.sleep(200)
-            check(evaluate("window.untrustedFrame === undefined") == true)
+            val frameBlocked = evaluate("window.untrustedFrame === undefined")
+            receipt.put("frameProbeBlocked", frameBlocked)
+            check(frameBlocked == true) { "CSP allowed inline frame script to mutate its parent: $frameBlocked" }
             errors.clear() // The deliberately blocked CSP probes can report console errors.
             receipt.put("networkFileContentAndFrameBlocking", "pass")
 
@@ -223,6 +248,7 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             passed = true
         } catch (error: Throwable) {
             receipt.put("failure", "${error.javaClass.simpleName}: ${error.message}").put("phase", phase)
+                .put("failureLocation", error.stackTrace.firstOrNull { it.className.contains("TerminalWebViewInstrumentation") }?.toString())
             runCatching { capture(receipt, "failureState") }.onFailure { receipt.put("captureFailure", it.toString()) }
         } finally {
             ui {
@@ -316,6 +342,118 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             ui { Build.VERSION.SDK_INT < 30 || view.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) == true }
         }
         capture(receipt, label)
+    }
+
+    private fun accessibilityNode(label: String): AccessibilityNodeInfo? {
+        fun find(node: AccessibilityNodeInfo): AccessibilityNodeInfo? {
+            if (node.packageName?.toString() == targetContext.packageName &&
+                (node.text?.toString() == label || node.contentDescription?.toString() == label)) return node
+            for (index in 0 until node.childCount) {
+                val child = node.getChild(index) ?: continue
+                find(child)?.let { return it }
+            }
+            return null
+        }
+        return uiAutomation.rootInActiveWindow?.let(::find)
+    }
+    private fun clickLabel(label: String) {
+        awaitCondition(8, "ordinary UI control $label") { accessibilityNode(label) != null }
+        var node = accessibilityNode(label)
+        while (node != null && !node.isClickable) node = node.parent
+        check(node?.performAction(AccessibilityNodeInfo.ACTION_CLICK) == true) { "Cannot click ordinary UI control $label" }
+        Thread.sleep(250)
+    }
+    private fun activitySnapshot(host: MainActivity, receipt: JSONObject, label: String) {
+        ui {
+            val field = MainActivity::class.java.getDeclaredField("snapshot\$delegate").apply { isAccessible = true }
+            val state = field.get(host) as androidx.compose.runtime.State<*>
+            val snapshot = state.value as UiSnapshot
+            receipt.put(label, JSONObject().put("available", snapshot.available)
+                .put("activeWorkspace", snapshot.active?.workspaceId)
+                .put("terminalCount", snapshot.terminals.size)
+                .put("terminals", JSONArray(snapshot.terminals.map {
+                    JSONObject().put("id", it.id).put("workspace", it.workspaceId).put("state", it.state).put("outputChars", it.output.length)
+                })))
+        }
+    }
+    private fun actual(host: MainActivity, receipt: JSONObject) {
+        stage("ordinary MainActivity/runtime startup")
+        awaitCondition(10, "RuntimeService creation") { RuntimeService.current != null }
+        val runtime = RuntimeService.current!!
+        val selectedBefore = runtime.activeConversation().id
+        val workspace = runtime.store.workspaces().single { it.id == runtime.activeConversation().workspaceId }
+        check(!runtime.workspaceFolders.isConnected(workspace.id)) { "Actual diagnostic requires the currently selected conversation to use a managed workspace; selection was not changed" }
+        check(runtime.environmentReady()) { "Actual diagnostic requires the already-prepared environment" }
+        val wasRunning = runtime.environmentRunning()
+        check(wasRunning || !RuntimeService.busy) { "Another environment operation is active" }
+        var startedBackend = false
+        var created: String? = null
+        var failure: Throwable? = null
+        try {
+            if (!wasRunning) {
+                startedBackend = true
+                runtime.startEnvironment(false)
+                awaitCondition(90, "backend without opening an agent") { runtime.environmentRunning() && !RuntimeService.busy }
+            }
+            val id = runtime.createTerminal(workspace.id, "Actual UI diagnostic")
+            created = id
+            fun current() = runtime.terminals(workspace.id).single { it.id == id }
+            awaitCondition(20, "ordinary diagnostic PTY") { current().state == "running" }
+            activitySnapshot(host, receipt, "beforeNavigationSnapshot")
+            stage("ordinary OleaApp navigation to workspace terminal")
+            // These are the existing user controls, not replacement composition or state injection.
+            clickLabel("Conversation details")
+            clickLabel("Workspace details")
+            clickLabel("Terminal")
+            adoptViewport(host)
+            val original = view
+            receipt.put("webViewClassLoader", ui { view.javaClass.classLoader.toString() })
+            receipt.put("actualTimeline", JSONArray())
+            val timeline = receipt.getJSONArray("actualTimeline")
+            repeat(4) { index ->
+                if (index > 0) Thread.sleep(3500)
+                val attached = ui { webViews(host.window.decorView) }
+                receipt.put("actualWebViewCount", attached.size)
+                receipt.put("actualOriginalRetained", original in attached)
+                if (attached.isNotEmpty()) view = attached.first()
+                val state = JSONObject().put("sample", index).put("native", nativeState()).put("javascript", javascriptState())
+                    .put("identity", System.identityHashCode(view))
+                    .put("runtimeTerminalState", current().state).put("runtimeOutputChars", current().output.length)
+                timeline.put(state)
+                activitySnapshot(host, receipt, "actualSnapshot$index")
+            }
+            stage("ordinary terminal DOM/write availability")
+            awaitScript("typeof window.oleaWrite === 'function' && document.querySelectorAll('.xterm').length===1")
+            stage("ordinary terminal real tap and keyboard")
+            tapEditor(receipt, "actualAfterTap")
+            stage("ordinary terminal real bridge printf")
+            val tag = java.lang.Long.toHexString(SystemClock.uptimeMillis())
+            evaluate(terminalKeyScript("printf '\\n%s%s\\n' 'olea-actual-' '$tag'\r"))
+            awaitCondition(8, "ordinary RuntimeService output") { current().output.contains("olea-actual-$tag") }
+            awaitScript(bufferContains("olea-actual-$tag"))
+            capture(receipt, "actualAfterPrintf")
+            activitySnapshot(host, receipt, "actualFinalSnapshot")
+            receipt.put("ordinaryActivityTerminal", "pass")
+        } catch (error: Throwable) {
+            failure = error
+            runCatching { capture(receipt, "actualFailureState") }
+            runCatching { activitySnapshot(host, receipt, "actualFailureSnapshot") }
+            throw error
+        } finally {
+            runCatching {
+                created?.let { runtime.closeTerminal(it) }
+                if (startedBackend) {
+                    runtime.stopExecution()
+                    awaitCondition(25, "actual diagnostic backend cleanup") { !runtime.environmentRunning() && !RuntimeService.busy }
+                }
+                val preserved = runtime.activeConversation().id == selectedBefore
+                receipt.put("selectionPreserved", preserved).put("stoppedOnlyBackendStartedByDiagnostic", startedBackend)
+                check(preserved) { "Conversation selection changed" }
+            }.onFailure { cleanup ->
+                receipt.put("actualCleanupFailure", cleanup.toString())
+                if (failure == null) throw cleanup else failure.addSuppressed(cleanup)
+            }
+        }
     }
 
     private fun pty(host: MainActivity, receipt: JSONObject) {
