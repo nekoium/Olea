@@ -1,85 +1,99 @@
+<p align="center">
+  <img src="assets/readme/olea-banner.png" width="100%" alt="Olea — the agents you use, running on your phone.">
+</p>
+
 # Olea
 
-Olea runs stock coding agents locally on Android. Prepare its packaged Linux environment, use Pi or Codex in saved conversations, work with local files, and expose selected Android capabilities through permission-controlled phone tools. Model requests go to your configured provider; no desktop or server needs to remain online.
+**Bring Pi, Codex and Claude Code to your Android phone.**
 
-This early build targets Android 16 on x86_64. ARM64 phones and Android 14 have not been validated. Claude support is not included.
+Give an agent a task, follow its replies and tools, and return to the conversation later. Olea brings the agent, its working files and phone controls into one app. Your computer can stay off.
 
-## Install and start
+[Download & release notes](https://github.com/nekoium/Olea/releases) · [Report a problem](https://github.com/nekoium/Olea/issues) · [MIT license](LICENSE)
 
-Build the APK from source using the instructions below. Copy it to the Android device, open it in a file manager, and allow installation from that source when Android asks.
+> **Early release:** 0.1.0 is being prepared. Use the release page to check APK availability and tested devices before installing. Device compatibility and background reliability are still limited.
 
-1. Open Olea and tap **Start**. The APK contains Linux, Node and PRoot. First preparation needs internet access to install certificates, Git and stock Pi through ordinary package channels.
-2. Wait for **Pi ready**. If preparation fails, check connectivity and free storage, then tap **STOP** before retrying **Start**.
-3. Tap **STOP**, then **More → Provider settings → Pi**. Enter an HTTPS OpenAI-compatible Chat Completions base URL, model ID and API key. Save, then tap **Start**.
-4. Send a message. Replies stream into the conversation; tool names and bounded output appear alongside them.
-5. **Cancel turn** requests cancellation of the selected conversation's work. **STOP** ends all agent execution and disables phone tools. The foreground notification also provides STOP when Android notifications are allowed.
+## A workspace in your pocket
 
-Reopening Olea shows the last selected saved conversation. **Start** explicitly reconnects its agent; reconnecting never resends an earlier prompt. Android may terminate background processes. Inspect the saved conversation before deciding whether to resend an interrupted message.
+An agent can do more than answer questions: it can read and change files, run commands and use tools. Olea gives that work a home on your phone.
 
-## Conversations and workspaces
+- **Pick your agent.** Choose Pi, Codex or Claude Code for each new conversation. Add other agents later.
+- **Keep projects together.** A workspace is a folder for a project's files, with its conversations alongside it.
+- **See the work.** Follow replies and tool activity, send a follow-up, or stop execution when you need to.
+- **Return to a task.** Saved conversations let you review earlier work and continue with the same agent.
+- **Connect phone capabilities.** Let agents use the Android access you explicitly enable, such as opening a web link or interacting with an accessible screen.
 
-**Conversations** lists saved sessions and creates new ones. Each conversation keeps its agent and workspace. Select a workspace under **Workspaces** to see its conversations or create another. The original conversation and workspace are retained when updating from the first core.
+For a first task, try:
 
-Up to two agent sessions can run in the shared backend. Switching conversations preserves an already connected session. Use **More → Disconnect this conversation** to free a slot, or STOP to end all execution. Saved conversation count is not limited to two.
+> Create a file called hello.txt in this workspace containing “Hello from Olea”, then read it back to me.
 
-**More → Workspace shell** runs a local command through the selected agent without a model request. For example, `printf 'hello\n' > hello.txt; cat hello.txt` writes and reads a workspace file. Start the conversation first.
+Once that works, try summarizing a text file in the workspace, making a small script, or asking the agent to explain and edit a project. Check changes before relying on them. For a phone task, enable phone tools and ask it to open `https://example.com` in your browser.
 
-Workspaces are working directories, not security boundaries. Agents share the app's Unix environment and file access; the default workspace also contains directories created for additional workspaces.
+**The agent runs on your phone; the AI model usually runs at your provider.** A provider is the service that generates the agent's replies. Olea does not require a desktop relay or your own always-on server, but model requests still need a working connection to that service.
 
-## Codex
+## Install and get your first reply
 
-After preparing Linux, tap STOP and choose **More → Install or update agent → Install Codex**. Configure **More → Provider settings → Codex** with an HTTPS Responses API base URL, model ID and API key. Create a conversation with Codex selected, then tap Start.
+You need an Android device supported by the release APK, internet access, free storage for its Linux environment and tools, and credentials for a compatible model provider. Root access and a connected computer are not required for normal use.
 
-Codex uses its supported full-access mode with approval set to never. This permits access to files available to the app; it provides no filesystem isolation from other workspaces, app data or credentials. Android permissions and phone STOP still apply.
+1. **Download the APK** from [Olea Releases](https://github.com/nekoium/Olea/releases). An APK is Android's app installer. Read that release's device requirements and known issues; choose the APK matching your device if several are offered.
+2. **Open the downloaded file.** If Android asks, allow your browser or file manager to install apps from that source, then install Olea. You can turn that permission off afterward.
+3. **Open Olea and choose Get started.** Choose your agent and a workspace. A managed workspace keeps its files inside Olea.
+4. **Prepare the environment and install your agent.** Follow setup's progress and wait for completion. This downloads packages and can take several minutes. If setup fails, read the error, check connectivity and storage, then retry explicitly.
+5. **Configure the provider.** Enter the provider's API base URL, model ID and API key. The base URL is its connection address; the model ID is the exact model name it supplies. See the agent choices below. Stop the environment before changing provider settings.
+6. **Review phone access or skip it.** You can chat and work with workspace files without optional phone permissions. Enable those capabilities later when a task needs them.
+7. **Open the conversation.** Start or reconnect it if prompted, then send the `hello.txt` task above. If Olea keeps your text as a draft while connecting, press Send when ready. Confirm that the reply reports the file's contents.
 
-Olea preserves the Codex thread and home across reconnects. Some stock builds cannot list saved turns through their app-server interface. Olea then keeps its saved display and reports that limitation while reopening the same thread. Direct Workspace shell commands are displayed by Olea but do not become Codex model turns.
+A saved provider configuration does not prove the connection works: the first reply checks it. For connection errors, check the URL, model, key and provider balance under **Providers** in the app menu. Installing an agent alone does not include model access.
 
-## Phone tools
+## Choose an agent and model service
 
-Open **Phone** to enable tools and manage Android access. Phone tools start disabled after app/process restart. STOP, backend failure and agent-process failure disable them; enable them explicitly again when needed. Enabling tools does not grant Android permissions.
+| Agent | Provider connection |
+| --- | --- |
+| **Pi** | Configure a compatible OpenAI-style provider and a model it supports. |
+| **Codex** | Configure a provider supporting the OpenAI Responses API and your chosen model. |
+| **Claude Code** | Configure a provider supporting the Anthropic Messages API and your chosen Claude model. |
 
-Available capabilities:
+Use the provider's documented API address and credentials. Similar-looking API services are not always interchangeable. A consumer chat subscription may not include API access; check with your provider before paying. Agent-specific account login options depend on the upstream agent and are not a shared Olea sign-in.
 
-- **Accessibility:** inspect a bounded exposed UI tree, click a current node, navigate home, and swipe. Enable Olea in Android Accessibility settings. Coverage depends on the target app; it does not expose every screen or private app data.
-- **Browser:** request opening an HTTPS URL. Dispatch alone does not establish successful page loading.
-- **Location:** read the most recent available location after permission is granted. Results include timestamp and age; they may be stale or unavailable.
-- **Selected folder:** use Android's folder picker to grant read/write access. The current tool creates a bounded text file and reads it back in that folder. It is not a general file browser or cleanup engine.
-- **Notifications:** enable notification access to read a bounded list of active notifications from other apps. Scheduled reminders, alarms and notification posting are not included.
-- **Screen capture:** request a capture, then press **Request one screen capture** in Phone and complete Android's consent. The result contains request status and PNG metadata. Agents do not receive image pixels through this tool. Protected content may be blank. A new capture requires a new request; STOP invalidates pending consent.
-- **Cooperating app:** configure its documented exported Activity (`package/class`) and action. Olea sends a bounded string extra named `value`. The app must support this interface; there is no universal third-party integration.
+Olea's original code is free and open source. **Your provider may charge for messages, reasoning and tool results.** Olea does not include credits or a spending cap. Set limits with your provider where available, and start with a small task.
 
-Pi and Codex expose the same native tools through their supported extension and MCP interfaces. Android may block a tool's attempt to open a consent screen from the background. Open Olea's Phone screen to complete the request yourself. STOP prevents subsequent actions; it cannot undo an already dispatched Android action or a completed file write.
+One conversation keeps one agent. To use another, create a new conversation. Agents share the local environment and can access files available to Olea; separate workspaces help organize projects but do not isolate them from one another.
 
-## Agent updates and runtime status
+## Phone access stays in your hands
 
-Tap STOP before **More → Install or update agent**. Updates use each agent's ordinary upstream npm channel and leave workspace files, provider settings and saved homes in their separate storage locations. Failed or interrupted updates require an explicit retry and may leave an agent installation needing repair. Compatibility with every future version is not guaranteed. Runtime replacement/recovery controls are not implemented.
+Open **Phone access** from the app menu to review access and enable phone tools. Enabling tools and granting Android permissions are separate steps.
 
-**More → Runtime status** shows backend state and connected sessions. Continuous unattended/background survival, peak memory, battery and thermal performance are not established.
+- **Accessibility** can expose screen text and controls, clicks and gestures. Enable Olea in Android's Accessibility settings only if you want this access. Some apps expose little or no usable screen information.
+- **Browser links** ask Android to open an HTTPS address. A successful request does not guarantee that the page loaded.
+- **Location and notifications** require their respective Android grants. Location can be stale or unavailable; notification access can reveal sensitive messages from other apps.
+- **Selected folders** use Android's folder picker. This is separate from a workspace; it does not turn an arbitrary Android folder into a full agent working directory. The current folder tool supports a limited text write/read operation.
+- **Screen capture** needs Android's consent for each request. Protected content may be blank. The current tool returns capture status and image metadata, not image pixels to the model.
 
-## Build from source
+Phone tools start disabled after a process restart. **STOP** disables them and interrupts agent execution and shells; **Cancel turn** requests interruption of the selected conversation's current task. STOP cannot undo a completed file change or an action already sent to Android. Android permissions can remain granted after STOP; you can revoke them in Android settings.
 
-Requirements: Bash, Node.js 22.19 or later with npm, curl, tar, xz, gzip, unzip, a JDK supported by Gradle 9.1, and Android SDK Platform 36 / Build Tools 36. Set `JAVA_HOME` and `ANDROID_HOME` to your installed tools.
+Olea cannot bypass Android permissions or read every app's private data. Give agents tasks and access you trust them to use.
 
-```bash
-bash runtime/build.sh
-```
+## Your files, privacy and recovery
 
-The script downloads and verifies public runtime inputs, builds the backend and Pi extension, packages the runtime, and builds `android/app/build/outputs/apk/debug/app-debug.apk`. First preparation installs stock Pi 1.5.2; optional Codex installation starts with stock 0.167.1. Update controls use upstream `latest`.
+Workspaces, saved conversations, agent settings and credentials are kept in Olea's private app storage. The model provider receives the messages and tool results the agent sends, which can include file contents and phone information. Commands and installed tools may also contact external services. Running the agent locally does not make its work offline or confidential from your chosen provider.
 
-## Data and privacy
+Agents can execute commands and change files with broad authority. Olea's Linux environment provides compatibility, **not a security sandbox between agents, files and credentials**. Review generated work and avoid placing sensitive material in reach of an agent you do not trust.
 
-Workspace files, agent homes, provider settings, saved sessions and the selected-conversation registry live in private app storage, outside the replaceable Linux root filesystem. STOP and ordinary APK updates preserve that storage. Uninstalling Olea or clearing Android storage deletes it. Export and backup controls are not implemented.
+**Back up important files separately. Uninstalling Olea or clearing its Android storage deletes local files, conversations and credentials.** Built-in export and backup are not available yet. Ordinary compatible APK updates are intended to keep app data; do not uninstall to resolve an update error without first preserving your files. The first public APK installs separately from earlier development builds and does not import their files or conversations.
 
-API keys remain in private app configuration. The configured provider receives messages and tool results sent by the agent, including phone-tool results when used. PRoot provides Linux compatibility, not isolation from app data or credentials. Phone tools operate with permissions and special access you grant to Olea.
+Android can stop background processes, especially under battery or memory pressure. Reopen Olea, inspect the conversation and reconnect before deciding whether to send an interrupted task again. Reconnecting does not automatically resend earlier prompts. A **Done** state means the agent finished a turn; check its answer and files to confirm your task succeeded.
 
-Before the first chat message, Pi may keep shell-only history in memory without creating a canonical transcript. Olea retains its display; that history is not restored into Pi's model context. Display output and RPC frames are bounded, so very large histories can fail to load rather than consuming unlimited memory.
+## Before you rely on it
 
-## Current limits
+Olea is an early Android release. Use each release's notes for the devices, Android versions and agent versions actually checked. Continuous background execution, operation through reboot and compatibility with every future agent update are not guaranteed.
 
-This build integrates previously demonstrated methods, with focused checks of the maintained application. Live provider-backed replies, model-selected phone/tool actions, cancellation during a provider turn and provider-backed continuation still require acceptance verification in this build. Earlier experimental successes do not establish all current integrated outcomes.
+Scheduled tasks, reminders, alarms, general phone-folder cleanup and direct external-folder workspaces are not included. Olea currently focuses on conversations, managed workspace files and permission-controlled phone tools. It is not available for iOS.
 
-OAuth onboarding, general selected-folder editing, scheduled work, complete production navigation and broader lifecycle/device certification remain future work. Normal use needs no root or active ADB connection. Fresh setup and agent maintenance require working package repositories.
+## Help and contribute
 
-## License
+Have an idea, a question or feedback? [Join the Discord conversation](https://discord.gg/X8mCdDzz8).
 
-Original Olea code is MIT licensed. PRoot, Ubuntu, Node and other dependencies retain their own licenses. See [third-party components](runtime/THIRD_PARTY.md) for provenance and distribution limits.
+For setup problems or bugs, [open an issue](https://github.com/nekoium/Olea/issues) with your Olea version, Android version, device model, chosen agent and the steps that failed. Remove API keys, private messages and personal files from logs or screenshots before sharing them.
+
+Want to build from source or contribute? See [Contributing](CONTRIBUTING.md).
+
+Original Olea code is available under the [MIT License](LICENSE). Bundled runtime components and agents retain their own licenses; see [third-party components](runtime/THIRD_PARTY.md).
