@@ -234,10 +234,10 @@ import kotlinx.coroutines.withContext
 @Composable internal fun LicenseContent() {
     val context = LocalContext.current
     val license = remember { context.resources.openRawResource(R.raw.olea_license).bufferedReader().use { it.readText() } }
-    val xtermLicense = remember { context.resources.openRawResource(R.raw.xterm_license).bufferedReader().use { it.readText() } }
+    val androidUiNotices = remember { context.resources.openRawResource(R.raw.android_ui_notices).bufferedReader().use { it.readText() } }
     SelectionContainer { Label(license, size = 13) }
-    Heading("xterm.js")
-    SelectionContainer { Label(xtermLicense, size = 13) }
-    Label("Android Jetpack Compose and AndroidX: Apache License 2.0. Kotlin: Apache License 2.0. xterm.js: MIT License. Runtime components retain their upstream licenses.", muted = true)
+    Heading("Android UI licenses")
+    Label("AndroidX, Kotlin and kotlinx.coroutines licenses and attributions appear below, including Apache 2.0, BSD and Boost terms. xterm.js uses the MIT License.", muted = true)
+    SelectionContainer { Label(androidUiNotices, size = 13) }
     Label("Packaged Linux, Node, PRoot and agents: see the third-party notices supplied with the release. Agent updates can change installed third-party components.", muted = true)
 }

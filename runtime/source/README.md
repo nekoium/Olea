@@ -1,6 +1,6 @@
 # Olea 0.1.0 runtime source companion
 
-This archive accompanies both `arm64-v8a` and `x86_64` Olea 0.1.0 APKs. It contains the source versions selected by `olea/runtime/upstream-inputs.json`, their upstream build recipes and license notices. Olea's MIT license does not replace the licenses of the bundled software.
+This archive supplies the runtime sources for `arm64-v8a` and `x86_64` Olea 0.1.0 builds. It contains the source versions selected by `olea/runtime/upstream-inputs.json`, their upstream build recipes and license notices. Olea's MIT license does not replace the licenses of the bundled software.
 
 ## Contents
 
@@ -48,6 +48,6 @@ For the native Android components and library replacement, follow [RELINKING.md]
 
 ## Distribution
 
-Provide this companion and `olea-0.1.0-runtime-NOTICES.txt` as directly downloadable assets on the same release page as both APKs, with their checksums and a prominent source/notices link beside the APK links. Keep those source downloads available wherever the matching APKs remain downloadable. Preserve notices inside the guest and Node distributions. Include native notices in the app's About/legal materials or provide the accompanying notice file with every APK copy.
+Provide this companion and `olea-0.1.0-runtime-NOTICES.txt` as directly downloadable assets on the same release page as each matching APK, with their checksums and a prominent source/notices link beside the APK links. Keep those source downloads available wherever the matching APKs remain downloadable. Preserve notices inside the guest and Node distributions. Include native notices in the app's About/legal materials or provide the accompanying notice file with every APK copy.
 
 This route supplies source directly under GPLv2 section 3(a)'s download-equivalence paragraph and GPLv3 section 6(d), including applicable LGPL source duties. It does not depend on an upstream URL alone, a future written offer, or recipients having to request source. If APKs are mirrored, moved, or supplied outside this release page, also supply the companion/notices or establish an equivalent source distribution route for that delivery.

@@ -1,7 +1,7 @@
 {
   "format": 1,
   "release": "0.1.0",
-  "upstreamInputsCanonicalSha256": "2d51a6dd05da960640538ef1900c6fe6b68bc7ccfffef3a390d170bdef2d5698",
+  "upstreamInputsCanonicalSha256": "e51eeb5cd722f3a3f331182d884eb35864232b43b15e12d78739fb33f8ee273f",
   "ubuntuSnapshot": "20250807T000000Z",
   "verification": "Upstream HTTPS indexes/recipes; SHA-256 integrity, no GPG or reproducible-binary claim",
   "files": [

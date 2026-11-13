@@ -2,7 +2,7 @@
   "status": "verified-downloads-not-runtime-acceptance",
   "originalSourceLicense": "MIT",
   "target": {
-    "applicationId": "dev.olea.app",
+    "applicationId": "dev.olea",
     "compileSdk": 36,
     "targetSdk": 36,
     "minSdk": 26,
