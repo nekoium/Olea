@@ -2,17 +2,18 @@
 
 The maintained application is under `android/`, its shared stock-agent adapters under `backend/`, and packaging under `runtime/`. `spike/` remains historical evidence. Do not turn experiment runners or provider-budget policies into product behavior.
 
-Read `AGENTS.md` for current instructions. `docs/archive/CONSOLIDATION_PLAN.md`, `docs/archive/CORE_BUILD_HANDOFF.md`, and `docs/archive/CORE_BUILD_PLAN.md` retain completed assignment scope and history. Product discussion continues separately; preserve concurrent edits and discussion artifacts.
+Read `AGENTS.md` for repository instructions, `PRODUCT.md` for product intent, and `DESIGN.md` for interface decisions. Current release evidence lives under `docs/releases/`; completed build and consolidation records live under `docs/archive/`. Preserve concurrent edits and discussion artifacts.
 
 ## Build
 
 Set `JAVA_HOME` and `ANDROID_HOME`, then run:
 
 ```bash
-bash runtime/build.sh
-```
+OLEA_ABI=arm64-v8a bash runtime/build.sh```
 
-Inputs and Gradle caches remain under `.setup/core/`. Generated APKs, native libraries, packaged assets and backend JavaScript are ignored. The build verifies upstream archives and the final APK's asset bytes. No credential file is required to build.
+Inputs and Gradle caches remain under `.setup/core/`. Generated APKs, native libraries, packaged assets and backend JavaScript are ignored. The build verifies upstream archives and the final APK's asset bytes. No credential file is required to build. Use `OLEA_ABI=x86_64` for an x86_64 build.
+
+Release signing requires `OLEA_BUILD_TYPE=release` and the local environment variables `OLEA_SIGNING_STORE_FILE`, `OLEA_SIGNING_STORE_PASSWORD`, `OLEA_SIGNING_KEY_ALIAS`, and `OLEA_SIGNING_KEY_PASSWORD`. Never commit a keystore or signing credentials. The public package identity is `dev.olea`; the Kotlin namespace remains `dev.olea.app`. Earlier development packages used `dev.olea.app` and have separate storage and signing identities.
 
 ## Focused checks
 
@@ -27,9 +28,9 @@ Backend fixture checks cover persistence/no replay, path/agent identity, phone r
 For the finite stock-Pi Android check, select the intended emulator explicitly:
 
 ```bash
-adb -s emulator-5554 install -r android/app/build/outputs/apk/debug/app-debug.apk
-adb -s emulator-5554 install -r android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-adb -s emulator-5554 shell am instrument -w dev.olea.app.test/dev.olea.app.CoreInstrumentation
+adb -s <device-serial> install -r android/app/build/outputs/apk/debug/app-debug.apk
+adb -s <device-serial> install -r android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+adb -s <device-serial> shell am instrument -w dev.olea.test/dev.olea.app.CoreInstrumentation
 ```
 
 This check starts the actual app service and packaged environment, uses stock Pi RPC `bash` without a model prompt, verifies a workspace file, interrupts an active delayed effect, and reopens Olea's saved display and Pi's session file reservation. Stock Pi does not create its canonical transcript before a user/assistant message; canonical-chat continuation remains unverified under the prompt freeze. The check preserves uniquely named files and saves a JSON receipt in the app's private files directory. Fresh package preparation has finite command deadlines and requires network access. Do not confuse the instrumentation shell command with a model-selected tool call.
@@ -42,10 +43,10 @@ Never point these commands at historical evidence packages. Do not clear app dat
 
 ## Provider tests
 
-Provider-backed Olea test prompts remain frozen under the current assignment. Do not read the existing provider secret, submit prompts, retry, fall back or replay a request without an explicit new allocation. Coding work is authorized separately. Record live streaming/model-selected tool execution and provider-backed continuation as unverified while the freeze remains.
+Provider-backed tests require explicit user authorization and an allocation for that task. Never infer permission from credentials being present. For the 0.1.0 release assignment, the user authorized GPT for Pi/Codex and Claude for Claude Code: use the cheapest working model for connectivity-only checks, and Pi with `gpt-6.1-sol` for real functionality and phone-use tests. Keep credentials in ignored local configuration; exclude them from prompts, logs, reports, screenshots and Git history. Later work requires its own authorization.
 
 ## Known engineering boundaries
 
 Native process ownership uses finite `/proc` identity snapshots and signals recorded PID/start-time/UID matches. STOP reports uncertainty if tracked cleanup cannot be verified. This is not proof against arbitrary unseen forks or whole-service death. PRoot is compatibility infrastructure, not a same-UID credential/filesystem sandbox.
 
-The minimal Android widget presentation is an implementation choice for this first core. It does not settle the production UI toolkit or full conversation/workspace navigation.
+Production UI uses Kotlin and Jetpack Compose with the flat interface language in the current browser reference. The browser scenarios guide design; they do not prove that native behavior works. Validate changed journeys on the intended Android device and retain failed attempts and limits in the release evidence.
