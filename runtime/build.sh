@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: MIT
 set -euo pipefail
+trap 'code=$?; printf "Build failed at line %s (exit %s)\n" "$LINENO" "$code" >&2' ERR
 cd "$(dirname "$0")/.."
 : "${JAVA_HOME:?Set JAVA_HOME to JDK 17 or later}"
 : "${ANDROID_HOME:?Set ANDROID_HOME to the Android SDK with platform/build-tools 36}"
