@@ -129,7 +129,7 @@ internal fun createTerminalWebView(context: Context, input: (String) -> Unit, re
                     else -> null
                 }
                 val headers = mapOf(
-                    "Content-Security-Policy" to "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+                    "Content-Security-Policy" to "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-src 'none'; child-src 'none'; frame-ancestors 'none'",
                     "X-Content-Type-Options" to "nosniff",
                     "Cache-Control" to "no-store"
                 )
