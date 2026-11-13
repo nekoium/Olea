@@ -5,6 +5,18 @@ cd "$(dirname "$0")/.."
 : "${JAVA_HOME:?Set JAVA_HOME to JDK 17 or later}"
 : "${ANDROID_HOME:?Set ANDROID_HOME to the Android SDK with platform/build-tools 36}"
 abi=${OLEA_ABI:-x86_64}
+build_type=${OLEA_BUILD_TYPE:-debug}
+case "$build_type" in
+  debug) build_task=assembleDebug;;
+  release)
+    build_task=assembleRelease
+    : "${OLEA_SIGNING_STORE_FILE:?Set the local release keystore path}"
+    : "${OLEA_SIGNING_STORE_PASSWORD:?Supply the local release store password through the environment}"
+    : "${OLEA_SIGNING_KEY_ALIAS:?Set the release key alias}"
+    : "${OLEA_SIGNING_KEY_PASSWORD:?Supply the local release key password through the environment}"
+    ;;
+  *) echo "Unsupported OLEA_BUILD_TYPE: $build_type (use debug or release)" >&2; exit 1;;
+esac
 case "$abi" in
   x86_64) compat=x86;;
   arm64-v8a) compat=arm;;
@@ -75,8 +87,8 @@ done
 printf '%s\n' "$abi" > "$assets/runtime-abi.txt"
 sha256sum "$assets"/*.bin "$assets/runtime-abi.txt" | awk '{n=split($2,a,"/"); print $1" "a[n]}' > "$assets/hashes.txt"
 if [[ ! -f .setup/core/gradle-9.1.0/bin/gradle ]]; then unzip -q "$work/downloads/gradle.zip" -d .setup/core; fi
-.setup/core/gradle-9.1.0/bin/gradle --no-daemon -p android :app:assembleDebug --max-workers=2 "-PoleaAbi=$abi" "$@"
-apk=android/app/build/outputs/apk/debug/app-debug.apk
+.setup/core/gradle-9.1.0/bin/gradle --no-daemon -p android ":app:$build_task" --max-workers=2 "-PoleaAbi=$abi" "$@"
+apk="android/app/build/outputs/apk/$build_type/app-$build_type.apk"
 packaged_abis=$(unzip -Z1 "$apk" | awk -F/ '$1 == "lib" {print $2}' | sort -u)
 [[ $packaged_abis == "$abi" ]] || { echo "Unexpected APK native ABIs: $packaged_abis" >&2; exit 1; }
 while read -r expected name; do
@@ -89,5 +101,5 @@ for name in libproot.so libloader.so libloader32.so libtalloc.so libandroid-shme
   [[ $actual == "$expected" ]] || { echo "Packaged native verification failed: $name" >&2; exit 1; }
 done
 # Preserve the selected artifact before another ABI build replaces the Gradle output.
-cp "$apk" "$work/olea-$abi-debug.apk"
-sha256sum "$work/olea-$abi-debug.apk"
+cp "$apk" "$work/olea-$abi-$build_type.apk"
+sha256sum "$work/olea-$abi-$build_type.apk"

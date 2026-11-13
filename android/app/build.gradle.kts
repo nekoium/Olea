@@ -1,6 +1,7 @@
 plugins { id("com.android.application") }
 val runtimeAbi = providers.gradleProperty("oleaAbi").getOrElse("x86_64")
 require(runtimeAbi in setOf("x86_64", "arm64-v8a")) { "Unsupported oleaAbi: $runtimeAbi" }
+val releaseStore = providers.environmentVariable("OLEA_SIGNING_STORE_FILE").orNull
 android {
     buildFeatures { buildConfig = true }
     namespace = "dev.olea.app"
@@ -15,6 +16,16 @@ android {
         buildConfigField("String", "RUNTIME_ABI", "\"$runtimeAbi\"")
         ndk { abiFilters += runtimeAbi }
     }
+    signingConfigs {
+        create("oleaRelease") {
+            storeFile = releaseStore?.let { file(it) }
+            storePassword = providers.environmentVariable("OLEA_SIGNING_STORE_PASSWORD").orNull
+            keyAlias = providers.environmentVariable("OLEA_SIGNING_KEY_ALIAS").orNull
+            keyPassword = providers.environmentVariable("OLEA_SIGNING_KEY_PASSWORD").orNull
+            storeType = "PKCS12"
+        }
+    }
+    buildTypes { getByName("release") { signingConfig = signingConfigs.getByName("oleaRelease") } }
     androidResources { noCompress += "bin" }
     packaging { jniLibs { useLegacyPackaging = true; keepDebugSymbols += "**/*.so" } }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
