@@ -2,7 +2,7 @@ import {Browser} from 'file:///C:/Users/Aria/.agents/skills/design-taste-fronten
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-const output=resolve('docs/ui/interface-design/checks/gentle-theme');
+const output=resolve('docs/ui/interface-design/checks/flat-colors');
 const temporary=resolve('docs/ui/interface-design/.tmp');
 mkdirSync(output,{recursive:true});mkdirSync(temporary,{recursive:true});process.env.TASTE_SKILL_TMP=temporary;
 const results=[];
@@ -52,13 +52,14 @@ try{
  for(const theme of ['light','dark']){
   await p.eval(theme=>setTheme(theme),theme);
   await check('Readable primary and alert text in '+theme,()=>{const luminance=rgb=>{const c=rgb.match(/[\d.]+/g).slice(0,3).map(n=>{const v=Number(n)/255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4});return .2126*c[0]+.7152*c[1]+.0722*c[2]};const contrast=e=>{const s=getComputedStyle(e),a=luminance(s.color),b=luminance(s.backgroundColor);return(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};startScenario('tool-error');if(contrast(document.querySelector('.errorBox'))<4.5||contrast(document.querySelector('.primary'))<4.5)return false;startScenario('needs-you');return contrast(document.querySelector('.chatNotice.needs'))>=4.5&&contrast(document.querySelector('.stateChip.needs'))>=4.5});
+  await check('Borderless alerts and primary actions; distinct amber; no terminal divider in '+theme,()=>{startScenario('tool-error');const borderless=e=>['borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth'].every(key=>getComputedStyle(e)[key]==='0px');if(!borderless(document.querySelector('.errorBox'))||!borderless(document.querySelector('.actionStack .primary')))return false;startScenario('needs-you');const notice=document.querySelector('.chatNotice.needs'),amber=getComputedStyle(notice).backgroundColor.match(/\d+/g).map(Number),green=getComputedStyle(document.querySelector('.primary')).backgroundColor;if(!borderless(notice)||!borderless(document.querySelector('.primary'))||amber[0]<=amber[1]||amber[1]<=amber[2]||getComputedStyle(notice).backgroundColor===green)return false;startScenario('terminal');return getComputedStyle(document.querySelector('.terminalTabs')).borderBottomWidth==='0px'});
   await p.setViewport({width:1600,height:1100});
   const imageDirectory=resolve(theme==='dark'?'docs/ui/scenarios-dark-10':'docs/ui/scenarios-09');mkdirSync(imageDirectory,{recursive:true});
   for(const s of inventory){await p.eval(key=>startScenario(key),s.key);await settle();const clip=await p.eval(()=>{const r=document.getElementById('phone').getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height}});await p.screenshot({path:resolve(imageDirectory,s.key+'.jpg'),quality:78,clip})}
   results.push('Refreshed all 61 scenario card screenshots in '+theme);
   for(const [area]of await p.eval(()=>areas)){await p.eval(area=>selectJourney(area),area);await p.eval(()=>Promise.all([...document.querySelectorAll('#board img')].map(i=>i.decode())))}
   await p.setViewport({width:1440,height:900});
-  for(const key of ['draft','tool-error','needs-you','settings']){await p.eval(key=>{selectJourney(scenarios.find(s=>s.key===key).area);startScenario(key)},key);await p.eval(()=>Promise.all([...document.querySelectorAll('#board img')].map(i=>i.decode())));await settle();await p.screenshot({path:resolve(output,theme+'-'+key+'.jpg'),quality:85})}
+  for(const key of ['draft','tool-error','needs-you','settings','terminal']){await p.eval(key=>{selectJourney(scenarios.find(s=>s.key===key).area);startScenario(key)},key);await p.eval(()=>Promise.all([...document.querySelectorAll('#board img')].map(i=>i.decode())));await settle();await p.screenshot({path:resolve(output,theme+'-'+key+'.jpg'),quality:85})}
   await p.eval(()=>{selectJourney('daily');startScenario('draft');document.getElementById('messageInput').focus()});await settle();
   await check('Connected setup stays inside phone with keyboard in '+theme,()=>{const popup=document.querySelector('.sessionSetup').getBoundingClientRect(),phone=document.getElementById('phone').getBoundingClientRect();return popup.top>=phone.top&&popup.bottom<phone.bottom&&!!document.querySelector('.keyboard')});
   await p.screenshot({path:resolve(output,theme+'-draft-keyboard.jpg'),quality:85});
