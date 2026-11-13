@@ -33,6 +33,9 @@ Maintain security probing as a distinct workstream, independent of individual fe
 
 ## Worker and Context Lifecycle
 
+- **USER DECISION**: Start new workers as sub-sessions, not additional agent tabs in the same Orca workspace. Use a supported sub-session mechanism; do not silently substitute workspace tabs if it is unavailable. Source: the user's shipping-management instruction, “from now on keep the workers in sub-sessions not in the tabs in our same Orca workspace”.
+- **USER DECISION**: Leave already-running workers in place. Do not close, restart, or migrate them merely to adopt sub-sessions. Explicitly requested interactive discussion sessions are separate from background workers.
+
 - Keep the manager's cumulative usage below 400k. Checkpoint progress and hand off management before that boundary; do not claim exact usage if the harness does not expose it.
 - Carry active workers through a manager handoff. Transfer their exact assignment, current state, progress, pending work, ownership, and context estimate. Do not abandon or kill active workers as a context-management shortcut.
 - Around 600k worker context usage, checkpoint the worker's durable progress and arrange continuation or handoff. This is a management trigger, not a termination threshold. Do not claim exact usage when it is unavailable.
