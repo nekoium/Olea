@@ -30,7 +30,8 @@ $g.Clear([System.Drawing.ColorTranslator]::FromHtml('#32472D'))
 $g.ScaleTransform([single]3,[single]3)
 Mark 'A' 250 -42 360 '#65744D' '#32472D' '#65744D'
 Text 'Olea' 28 28 62 '#E8ECCD' $outfit
-Text 'Agents on Android' 31 191 22 '#E8ECCD'
+Text 'The agents you use,' 31 183 21 '#E8ECCD'
+Text 'running on your phone.' 31 213 21 '#E8ECCD'
 $img.Save((Join-Path $dir 'seed-banner.png'),[System.Drawing.Imaging.ImageFormat]::Png)
 $g.Dispose(); $img.Dispose(); $fonts.Dispose()
 $comparison = [System.Drawing.Bitmap]::new((Join-Path $dir 'directions-01.png'))

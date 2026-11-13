@@ -2,12 +2,29 @@
 
 **USER DECISION:** Select direction A, Seed, and save the asset set with its documentation in the repository. Source: the user's branding-session reply, “A is really great, stash this asset set in our repo. Docs can also be saved together with them if there are.”
 
-The selected identity uses a pale olive seed/leaf form with a diagonal seam on deep olive. These files preserve the selected study. They are not installed Android resources.
+The selected identity uses a pale olive seed/leaf form with a diagonal seam on deep olive. These files preserve the selected study and its promotional extensions. They are not installed Android resources.
+
+**USER DECISION:** Use the slogan “The agents you use, running on your phone.” Source: the user's follow-up branding instruction specifying that exact slogan and requesting portrait, landscape, thin-banner and square promotional images.
+
+## Promotional series
+
+See [the series overview](seed-series-02.png) and [composition notes](seed-series-02.md).
+
+| File | Dimensions | Ratio |
+| --- | --- | --- |
+| [Portrait poster](seed-poster-portrait.png) | 1600 × 2400 | 2:3 |
+| [Landscape poster](seed-poster-landscape.png) | 1920 × 1080 | 16:9 |
+| [Thin landscape banner](seed-banner-thin.png) | 2400 × 600 | 4:1 |
+| [Square promo image](seed-promo-square.png) | 1600 × 1600 | 1:1 |
+
+Each format has its own composition using the selected palette, Seed geometry and typography. [Rendering source](render-seed-series-02.md) is saved alongside the images.
+
+## Original assets
 
 | File | Purpose |
 | --- | --- |
 | [seed-icon.png](seed-icon.png) | 1024 × 1024 square icon artwork, rendered from the original geometry |
-| [seed-banner.png](seed-banner.png) | 1560 × 798 banner study, rendered at three times the comparison size |
+| [seed-banner.png](seed-banner.png) | 1560 × 798 banner, updated to the user-selected slogan |
 | [seed-study.png](seed-study.png) | Selected column from the original comparison, including circular and small-size samples |
 | [directions-01.png](directions-01.png) | Original three-direction comparison, preserved as discussion history |
 | [directions-01.md](directions-01.md) | Visual philosophies, product-copy limits, sources and font licensing |
@@ -18,6 +35,8 @@ The selected identity uses a pale olive seed/leaf form with a diagonal seam on d
 
 **OBSERVED:** The selected study uses deep olive `#32472D`, pale olive `#E8ECCD`, chartreuse `#C8DC83`, and muted olive `#65744D` for the enlarged banner motif. The wordmark uses Outfit Regular. The banner descriptor uses Instrument Sans Regular. Font provenance and licensing are recorded in [the original notes](directions-01.md#provenance).
 
-**OPEN:** “Agents on Android” remains study copy, not separately approved marketing wording. Android adaptive-icon layers, themed-icon exports and final installation destinations remain to be designed. No production UI theme decision follows from selecting this brand study.
+**OBSERVED:** The original comparison and selected study crop preserve their historical “Agents on Android” wording. Current standalone promotional images use the user-selected slogan.
+
+**OPEN:** Android adaptive-icon layers, themed-icon exports and final installation destinations remain to be designed. The promotional PNGs are digital RGB assets; physical print sizing, bleed and CMYK preparation remain open. No production UI theme decision follows from selecting this brand study.
 
 Original art and drawing source use the repository's MIT license. Fonts retain their own OFL licenses; no font binaries are bundled. Trademark similarity has not been checked.
