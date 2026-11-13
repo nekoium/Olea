@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: MIT
 set -euo pipefail
-phase=inputs
+phase=bootstrap
+printf 'Build phase: %s\n' "$phase"
 trap 'code=$?; printf "Build exited during %s (exit %s)\n" "$phase" "$code" >&2' EXIT
 trap 'code=$?; printf "Build failed at line %s (exit %s)\n" "$LINENO" "$code" >&2' ERR
 cd "$(dirname "$0")/.."
@@ -31,6 +32,8 @@ export npm_config_cache="$(pwd)/.setup/core/npm-cache"
 work=".setup/core/$abi"
 assets=android/app/src/main/assets
 out="android/app/src/main/jniLibs/$abi"
+phase=inputs
+printf 'Build phase: %s\n' "$phase"
 mkdir -p .setup/core/downloads "$work/downloads" "$assets" "$out"
 fetch() {
   local name=$1 url=$2 hash=$3
@@ -80,9 +83,17 @@ tar -xJf "$work/downloads/node.tar.xz" -C "$work/checks" --strip-components=1 --
 node runtime/verify-elf.mjs "$abi" "$work/checks/usr/bin/dash" "$work/checks/bin/node"
 cp "$work/downloads/ubuntu.tar.gz" "$assets/ubuntu.bin"
 xz -dc "$work/downloads/node.tar.xz" | gzip -n > "$assets/node.bin"
+phase=npm-install
+printf 'Build phase: %s\n' "$phase"
 npm ci --prefix backend
+phase=npm-build
+printf 'Build phase: %s\n' "$phase"
 npm run build --prefix backend
+phase=backend-archive
+printf 'Build phase: %s\n' "$phase"
 tar -czf "$assets/backend.bin" -C backend dist extensions
+phase=bootstrap-assets
+printf 'Build phase: %s\n' "$phase"
 # Normalize bootstrap scripts so Windows snapshot/export line endings cannot break Android sh.
 for name in linux.sh prepare.sh agent-maintenance.sh; do
   node -e 'const fs=require("node:fs"); const text=fs.readFileSync(process.argv[1],"utf8").replace(/\r\n/g,"\n"); if(text.includes("\r")) throw Error("Unsupported shell-script line ending"); fs.writeFileSync(process.argv[2],text);' "runtime/$name" "$assets/$name"
