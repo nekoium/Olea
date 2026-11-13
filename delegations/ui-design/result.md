@@ -1,3 +1,11 @@
+# UI design batch: portrait scenario tiles
+
+- **USER DECISION**: Scenario cards follow the portrait phone screenshot rather than a landscape container with blank side space. Source: the user's latest UI correction, “The card should just be a phone screen.”
+- **OBSERVED**: Removed padded, column-stretched wrappers and fixed-height thumbnail boxes. Tiles now use the screenshot's 390:748 aspect ratio, a short caption below and selection border on the screen. The grid packs fixed-width tiles without stretching them.
+- **OBSERVED**: [Portrait checks](../../docs/ui/checks/portrait-05/checks.json) cover screenshot proportions, full phone/control visibility and viewport fit at four sizes, plus card selection. [Desktop screenshot](../../docs/ui/checks/portrait-05/desktop.jpg).
+
+---
+
 # UI design batch: viewport fit and compact scenario overview
 
 - **USER DECISION**: Fit the review shell within one viewport without page scrolling. The phone and demo controls must be visible together. Present scenarios as concise cards for an immediate overview, with content scrolling inside regions. Source: the user's correction, recorded in [PRODUCT.md](../../PRODUCT.md#technical-implementation-direction).
