@@ -1,0 +1,1 @@
+ELF verifier self-check: 20 positive/rejection assertions passed

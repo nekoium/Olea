@@ -1,0 +1,24 @@
+PRE-CLAUDE x86_64 APK 289d832c2a954fe865a8f59f1328b1032aa4ceb53145aad134215f7aba7d3fe3 .setup/core/packaging-verification/pre-claude-d671b93/.setup/core/x86_64/olea-x86_64-debug.apk
+0f2f27aee90fa9c980b1f3e2da376bd2d936fa089cb87d17f6e1abc1c6e852d7  assets/backend.bin
+ff5e2e8c63386da28fd2c514090b6aa834256ab55287e7bee16d0063eb0ee1ba  assets/node.bin
+6bc2cde3930ad088b3bb46fa45279e96d25bc3810f209850ecbe4722711874f9  assets/ubuntu.bin
+aaf631698ae5160ceb04a97681a14887fdcab47cd6e0f163c87485b3b1340b62  assets/runtime-abi.txt
+092926060298acd3778e6239033d7aef1280dcb59aebe021a3719612e6a3465f  lib/x86_64/libandroid-shmem.so
+a836b0569c84b1661333d16bacf6b396ff08fea816a5c936a82e08ddeeca8341  lib/x86_64/libloader.so
+fd5b394aa0801619e293b76fe6e830a3beb363aed4fa4b9a5a41f1388a0cb9b9  lib/x86_64/libloader32.so
+3dd2e5b23aee8dd8588750117f03b1b7971314e7457067af803d78d57306391d  lib/x86_64/libproot.so
+7fa6722a4320495b1b85832fc7fd02de0cb367b45f116c1921b2830a6936da90  lib/x86_64/libtalloc.so
+PASS: one matching native ABI; 4 asset hashes; 5 native hashes; 3 bootstrap scripts match snapshot source
+
+PRE-CLAUDE arm64-v8a APK 7e258c0c95858e3476d19a6ad80b0a123e4201d8f3e52d2fb9b4d5f4af5a37c1 .setup/core/packaging-verification/pre-claude-d671b93/.setup/core/arm64-v8a/olea-arm64-v8a-debug.apk
+44a45bceaeda2f25d985b6377c1f486b6049f041e7e63e81f54e8ca34c62fa8b  assets/backend.bin
+a61ebdf2f994efbe816583fe69da548e589d434c588e34c9f56c4bbe99ce0322  assets/node.bin
+7b2dced6dd56ad5e4a813fa25c8de307b655fdabc6ea9213175a92c48dabb048  assets/ubuntu.bin
+7f10c3cd4593d1d6ded27d658e7c05216011c955c200aac551caad0c979d4d90  assets/runtime-abi.txt
+84475798e07c8174dbbfaec70a827fdb02f19ffa69a589380c13e7507fd0e731  lib/arm64-v8a/libandroid-shmem.so
+1da54355333cca3fb6ee10e3b82a24df24fb230c99241ce83809bf9e240609b5  lib/arm64-v8a/libloader.so
+c429996fee730e1a4fe12625b22dab5a5bc2847a4cae274d36fd4a19cd8299a8  lib/arm64-v8a/libloader32.so
+3621937c1c5a98d0d39ca599af573a6bc15128690606d535e8b05da00cec4f41  lib/arm64-v8a/libproot.so
+742b438c4d09e276985a61d44164c9de207b6d8cc268f3018cb3001961bcb309  lib/arm64-v8a/libtalloc.so
+PASS: one matching native ABI; 4 asset hashes; 5 native hashes; 3 bootstrap scripts match snapshot source
+
