@@ -4,15 +4,17 @@
 
 **USER DECISION:** The preceding four-format promotional series is accepted. Source: “All of them are great.” This new line belongs to this photographic poster; it does not replace the previously selected general slogan.
 
+**USER DECISION:** Move the vintage grade toward the brand's green, strengthen the treatment and grain, and make the photograph less visible. The texture should look like paper. Source: the user's follow-ups, “The vintage color should also be inclined to our green tone” and “The background photo can look more like paper texture”.
+
 ## Visual philosophy
 
 **AGENT PLAN:** Use the photograph's existing gesture as the center of the composition: a hand reaching toward olives. The association with the Seed identity should emerge from the subject and its color. Preserve the hand and fruit rather than obscuring them with a large emblem. Careful placement lets the photograph carry most of the meaning.
 
-Warm, softened highlights and lifted olive shadows give the picture an aged print atmosphere. Reduce saturation gently while preserving the distinction between skin, fruit and foliage. Fine, deterministic monochrome grain adds texture before any typography is drawn. The treatment should reward close viewing without becoming a distressed effect.
+A compressed olive tonal range and a permanent veil in Seed green `#32472D` make the image feel printed into green paper. The hand and fruit remain recognizable, with subdued contrast and greatly reduced natural color. Deterministic texture combines fine paper tooth, softer density variation and faint short fibers before any typography is drawn.
 
 The selected Seed icon and Outfit wordmark form a restrained signature above the headline. Instrument Sans carries the exact two-sentence line in two generous rows, positioned over the upper-left background. Painstaking attention to spacing and local tonal balance keeps the overlay clear while leaving the hand unobstructed.
 
-The composition remains photographic and quiet. A gradual olive veil beneath the lettering controls contrast; a light vignette draws attention inward. Crisp type and original icon geometry contrast with the softened photographic surface. No additional feature claims or simulated product UI are added.
+The composition remains photographic and quiet. A gradual additional olive veil beneath the lettering controls contrast; a light vignette draws attention inward. Crisp type and original icon geometry sit above the matte, textured photographic surface. No additional feature claims or simulated product UI are added.
 
 ## Saved assets
 
