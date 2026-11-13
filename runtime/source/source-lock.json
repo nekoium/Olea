@@ -1,0 +1,2164 @@
+{
+  "format": 1,
+  "release": "0.1.0",
+  "upstreamInputsCanonicalSha256": "2d51a6dd05da960640538ef1900c6fe6b68bc7ccfffef3a390d170bdef2d5698",
+  "ubuntuSnapshot": "20250807T000000Z",
+  "verification": "Upstream HTTPS indexes/recipes; SHA-256 integrity, no GPG or reproducible-binary claim",
+  "files": [
+    {
+      "path": "indexes/noble-Sources.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/dists/noble/main/source/Sources.xz",
+      "sha256": "4f8e45d8f84dd2a6b7ce87695c70336114b9e96e6fd6db066c115f758e39308e",
+      "role": "Ubuntu exact-version source index"
+    },
+    {
+      "path": "indexes/noble-updates-Sources.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/dists/noble-updates/main/source/Sources.xz",
+      "sha256": "c8e56f6cd04c58c7ef899eaa39677f71b46c3adebba67a6817fb5893f5925ee2",
+      "role": "Ubuntu exact-version source index"
+    },
+    {
+      "path": "indexes/noble-security-Sources.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/dists/noble-security/main/source/Sources.xz",
+      "sha256": "792b4d2b8837f8db9185cf60496e96c3d5fe64fa33544aa3bf4ab6044e5cc7b8",
+      "role": "Ubuntu exact-version source index"
+    },
+    {
+      "path": "ubuntu/apt/apt_2.8.3.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/apt/apt_2.8.3.dsc",
+      "sha256": "1d41cd04115e1a79f0fa4d738e5c34603ae8a4f40122d8a18a622fd6d20a5523",
+      "size": 2973,
+      "role": "Ubuntu source package",
+      "source": "apt",
+      "version": "2.8.3",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/apt/apt_2.8.3.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/apt/apt_2.8.3.tar.xz",
+      "sha256": "088522b3613b28fdbcfa61f1f7e476bf6dc6b0120a8f74409e9527580c9f9d3b",
+      "size": 2354680,
+      "role": "Ubuntu source package",
+      "source": "apt",
+      "version": "2.8.3",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/base-files/base-files_13ubuntu10.3.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/base-files/base-files_13ubuntu10.3.dsc",
+      "sha256": "ff63c6131e38123f860da9c8a5fd1149ee8f90d4a9656e10c8687661d5131104",
+      "size": 1377,
+      "role": "Ubuntu source package",
+      "source": "base-files",
+      "version": "13ubuntu10.3",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/base-files/base-files_13ubuntu10.3.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/base-files/base-files_13ubuntu10.3.tar.xz",
+      "sha256": "fed985b20cad2dda75633e28a5b7ec77a6247bee0d6d03cb4a719acd96fd7c32",
+      "size": 94184,
+      "role": "Ubuntu source package",
+      "source": "base-files",
+      "version": "13ubuntu10.3",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/base-passwd/base-passwd_3.6.3build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/base-passwd/base-passwd_3.6.3build1.dsc",
+      "sha256": "6c7289264d48fd871e1c516c8dd0814160558e339202cffa8768621785302185",
+      "size": 1779,
+      "role": "Ubuntu source package",
+      "source": "base-passwd",
+      "version": "3.6.3build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/base-passwd/base-passwd_3.6.3build1.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/base-passwd/base-passwd_3.6.3build1.tar.xz",
+      "sha256": "ea51df18f6f7d969ff93d25ce42780ded35ccb4292353780ba6ad9861857d787",
+      "size": 58252,
+      "role": "Ubuntu source package",
+      "source": "base-passwd",
+      "version": "3.6.3build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/bash/bash_5.2.21-2ubuntu4.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/bash/bash_5.2.21-2ubuntu4.dsc",
+      "sha256": "d5a89c09f42c828d5e31dc3a1680882aa0ddaad5072963e563dec7dfc4919d33",
+      "size": 2437,
+      "role": "Ubuntu source package",
+      "source": "bash",
+      "version": "5.2.21-2ubuntu4",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/bash/bash_5.2.21.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/bash/bash_5.2.21.orig.tar.xz",
+      "sha256": "ec21ab4efd6bd7a6e2802fbda622b81bfc43a8095d721234d4bf075797683014",
+      "size": 5598816,
+      "role": "Ubuntu source package",
+      "source": "bash",
+      "version": "5.2.21-2ubuntu4",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/bash/bash_5.2.21-2ubuntu4.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/bash/bash_5.2.21-2ubuntu4.debian.tar.xz",
+      "sha256": "bdb10c18d167dda3b265cb3db75314d524edbf7794fed36f0fb0dcc32f5e6ac9",
+      "size": 94124,
+      "role": "Ubuntu source package",
+      "source": "bash",
+      "version": "5.2.21-2ubuntu4",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/util-linux/util-linux_2.39.3-9ubuntu6.3.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/u/util-linux/util-linux_2.39.3-9ubuntu6.3.dsc",
+      "sha256": "31c0eb53c0350d84b383e737fad9f6f3d1158f3dd1e6ecb508fcb4f5fe587621",
+      "size": 4726,
+      "role": "Ubuntu source package",
+      "source": "util-linux",
+      "version": "2.39.3-9ubuntu6.3",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/util-linux/util-linux_2.39.3.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/u/util-linux/util-linux_2.39.3.orig.tar.xz",
+      "sha256": "7b6605e48d1a49f43cc4b4cfc59f313d0dd5402fa40b96810bd572e167dfed0f",
+      "size": 8526168,
+      "role": "Ubuntu source package",
+      "source": "util-linux",
+      "version": "2.39.3-9ubuntu6.3",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/util-linux/util-linux_2.39.3-9ubuntu6.3.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/u/util-linux/util-linux_2.39.3-9ubuntu6.3.debian.tar.xz",
+      "sha256": "7ab8d37889d0b75188e7232e375f5169ae276c4eb8e31b23a2ba60bdab8320a3",
+      "size": 146444,
+      "role": "Ubuntu source package",
+      "source": "util-linux",
+      "version": "2.39.3-9ubuntu6.3",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/coreutils/coreutils_9.4-3ubuntu6.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/c/coreutils/coreutils_9.4-3ubuntu6.dsc",
+      "sha256": "200357970374674fa936f25d0e229edf40c5a0c458f9f7914456ea16dc0c9bfd",
+      "size": 2022,
+      "role": "Ubuntu source package",
+      "source": "coreutils",
+      "version": "9.4-3ubuntu6",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/coreutils/coreutils_9.4.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/c/coreutils/coreutils_9.4.orig.tar.xz",
+      "sha256": "ea613a4cf44612326e917201bbbcdfbd301de21ffc3b59b6e5c07e040b275e52",
+      "size": 5979200,
+      "role": "Ubuntu source package",
+      "source": "coreutils",
+      "version": "9.4-3ubuntu6",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/coreutils/coreutils_9.4-3ubuntu6.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/c/coreutils/coreutils_9.4-3ubuntu6.debian.tar.xz",
+      "sha256": "1d166950ae62541490c366d75875c7a8f8895f6967678d8233b755c7b997d734",
+      "size": 40496,
+      "role": "Ubuntu source package",
+      "source": "coreutils",
+      "version": "9.4-3ubuntu6",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/dash/dash_0.5.12-6ubuntu5.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/dash/dash_0.5.12-6ubuntu5.dsc",
+      "sha256": "be4a5ba81756b24d0d22f30cd9e609f5b84f8a8d685cb9825e9eae6201c52cf9",
+      "size": 2124,
+      "role": "Ubuntu source package",
+      "source": "dash",
+      "version": "0.5.12-6ubuntu5",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/dash/dash_0.5.12.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/dash/dash_0.5.12.orig.tar.gz",
+      "sha256": "6a474ac46e8b0b32916c4c60df694c82058d3297d8b385b74508030ca4a8f28a",
+      "size": 246054,
+      "role": "Ubuntu source package",
+      "source": "dash",
+      "version": "0.5.12-6ubuntu5",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/dash/dash_0.5.12-6ubuntu5.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/dash/dash_0.5.12-6ubuntu5.debian.tar.xz",
+      "sha256": "84671be9725b738725575d44069f9e7a41344ae6a8027d8ba2d6a172b5e406d6",
+      "size": 39616,
+      "role": "Ubuntu source package",
+      "source": "dash",
+      "version": "0.5.12-6ubuntu5",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/debconf/debconf_1.5.86ubuntu1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/debconf/debconf_1.5.86ubuntu1.dsc",
+      "sha256": "fc3475b7134c7780b34d21dde63bea3be2a225215a3e9f9c90e27df40189f1bc",
+      "size": 2030,
+      "role": "Ubuntu source package",
+      "source": "debconf",
+      "version": "1.5.86ubuntu1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/debconf/debconf_1.5.86ubuntu1.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/debconf/debconf_1.5.86ubuntu1.tar.xz",
+      "sha256": "1a50d1697b9c36b3600d1746b6a47864ed4adfd26c3d180f2d2b1286ad51c6f4",
+      "size": 574112,
+      "role": "Ubuntu source package",
+      "source": "debconf",
+      "version": "1.5.86ubuntu1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/debianutils/debianutils_5.17build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/debianutils/debianutils_5.17build1.dsc",
+      "sha256": "f6479aa03505646f946cc42d7d093bc0d47dd2d374b7dcc84d84330f7e86095d",
+      "size": 1771,
+      "role": "Ubuntu source package",
+      "source": "debianutils",
+      "version": "5.17build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/debianutils/debianutils_5.17build1.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/debianutils/debianutils_5.17build1.tar.xz",
+      "sha256": "f1f157a50769fcf8117909938dd8cbb75d39da26cff5a5aa15aa34b4d6c9acc2",
+      "size": 80468,
+      "role": "Ubuntu source package",
+      "source": "debianutils",
+      "version": "5.17build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/diffutils/diffutils_3.10-1build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/diffutils/diffutils_3.10-1build1.dsc",
+      "sha256": "d03422ea8735696097295cabf35a5f7fcf1b2dc4989ea639f0efd0191874a094",
+      "size": 2192,
+      "role": "Ubuntu source package",
+      "source": "diffutils",
+      "version": "1:3.10-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/diffutils/diffutils_3.10.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/diffutils/diffutils_3.10.orig.tar.xz",
+      "sha256": "90e5e93cc724e4ebe12ede80df1634063c7a855692685919bfe60b556c9bd09e",
+      "size": 1624240,
+      "role": "Ubuntu source package",
+      "source": "diffutils",
+      "version": "1:3.10-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/diffutils/diffutils_3.10.orig.tar.xz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/diffutils/diffutils_3.10.orig.tar.xz.asc",
+      "sha256": "a94faf8f1baa04ff220f7b2ccb137c16337284e023ebc4a1d5df475c08d810f7",
+      "size": 833,
+      "role": "Ubuntu source package",
+      "source": "diffutils",
+      "version": "1:3.10-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/diffutils/diffutils_3.10-1build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/diffutils/diffutils_3.10-1build1.debian.tar.xz",
+      "sha256": "933c20fcef4bb1ebe53c15e1d7b1d3dfaf32b83bff8a2de5061f47fe11ace09a",
+      "size": 14068,
+      "role": "Ubuntu source package",
+      "source": "diffutils",
+      "version": "1:3.10-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/dpkg/dpkg_1.22.6ubuntu6.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/dpkg/dpkg_1.22.6ubuntu6.1.dsc",
+      "sha256": "48482ebaa6073ba0e15496a3dfb71a4ede2e47781588c1543e10b41360675fab",
+      "size": 3156,
+      "role": "Ubuntu source package",
+      "source": "dpkg",
+      "version": "1.22.6ubuntu6.1",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/dpkg/dpkg_1.22.6ubuntu6.1.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/dpkg/dpkg_1.22.6ubuntu6.1.tar.xz",
+      "sha256": "9400c2c7491a487d1cc247c8a27702203086ba29100c900688be520c9b34375c",
+      "size": 5548380,
+      "role": "Ubuntu source package",
+      "source": "dpkg",
+      "version": "1.22.6ubuntu6.1",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/e2fsprogs/e2fsprogs_1.47.0-2.4~exp1ubuntu4.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/e/e2fsprogs/e2fsprogs_1.47.0-2.4~exp1ubuntu4.1.dsc",
+      "sha256": "215fe7b95c246894654c59a01514dfdc16ec17a0dcb09dc7a7c1ec1246ed4964",
+      "size": 3294,
+      "role": "Ubuntu source package",
+      "source": "e2fsprogs",
+      "version": "1.47.0-2.4~exp1ubuntu4.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/e2fsprogs/e2fsprogs_1.47.0.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/e/e2fsprogs/e2fsprogs_1.47.0.orig.tar.gz",
+      "sha256": "6667afde56eef0c6af26684974400e4d2288ea49e9441bf5e6229195d51a3578",
+      "size": 9637717,
+      "role": "Ubuntu source package",
+      "source": "e2fsprogs",
+      "version": "1.47.0-2.4~exp1ubuntu4.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/e2fsprogs/e2fsprogs_1.47.0.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/e/e2fsprogs/e2fsprogs_1.47.0.orig.tar.gz.asc",
+      "sha256": "704928204a52ddaa0ac8ef549c1bfba3c38e66c361d3853c8a4c38e6082b90f1",
+      "size": 488,
+      "role": "Ubuntu source package",
+      "source": "e2fsprogs",
+      "version": "1.47.0-2.4~exp1ubuntu4.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/e2fsprogs/e2fsprogs_1.47.0-2.4~exp1ubuntu4.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/e/e2fsprogs/e2fsprogs_1.47.0-2.4~exp1ubuntu4.1.debian.tar.xz",
+      "sha256": "26b381ec175ff52d1cc2fd1b217f84b9e1d7d33a58dcbaf8942115dd27a03f84",
+      "size": 90580,
+      "role": "Ubuntu source package",
+      "source": "e2fsprogs",
+      "version": "1.47.0-2.4~exp1ubuntu4.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/findutils/findutils_4.9.0-5build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/f/findutils/findutils_4.9.0-5build1.dsc",
+      "sha256": "c586baab1e53ace30420e86364df848fb8c6f754c1935ff556060b030052f603",
+      "size": 2404,
+      "role": "Ubuntu source package",
+      "source": "findutils",
+      "version": "4.9.0-5build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/findutils/findutils_4.9.0.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/f/findutils/findutils_4.9.0.orig.tar.xz",
+      "sha256": "a2bfb8c09d436770edc59f50fa483e785b161a3b7b9d547573cb08065fd462fe",
+      "size": 2046252,
+      "role": "Ubuntu source package",
+      "source": "findutils",
+      "version": "4.9.0-5build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/findutils/findutils_4.9.0.orig.tar.xz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/f/findutils/findutils_4.9.0.orig.tar.xz.asc",
+      "sha256": "924c3719d066eda1b3e47175f8b83e90e9a23f0a639ebe7445621917b283c385",
+      "size": 488,
+      "role": "Ubuntu source package",
+      "source": "findutils",
+      "version": "4.9.0-5build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/findutils/findutils_4.9.0-5build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/f/findutils/findutils_4.9.0-5build1.debian.tar.xz",
+      "sha256": "c266ae3fdf861d29b71436237f7a564058d68810029daa95e581b219c5c69d5c",
+      "size": 32864,
+      "role": "Ubuntu source package",
+      "source": "findutils",
+      "version": "4.9.0-5build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gcc-14/gcc-14_14.2.0-4ubuntu2~24.04.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gcc-14/gcc-14_14.2.0-4ubuntu2~24.04.dsc",
+      "sha256": "608cf8f9fdaba680eb42e6e6f86b0023a8cead30ec1fca349fa4324ea2976c73",
+      "size": 46922,
+      "role": "Ubuntu source package",
+      "source": "gcc-14",
+      "version": "14.2.0-4ubuntu2~24.04",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gcc-14/gcc-14_14.2.0.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gcc-14/gcc-14_14.2.0.orig.tar.gz",
+      "sha256": "768c314c11eeab56ccebb91eb42ec4a41122fa94f0d83400126401942622197b",
+      "size": 97158172,
+      "role": "Ubuntu source package",
+      "source": "gcc-14",
+      "version": "14.2.0-4ubuntu2~24.04",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gcc-14/gcc-14_14.2.0-4ubuntu2~24.04.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gcc-14/gcc-14_14.2.0-4ubuntu2~24.04.debian.tar.xz",
+      "sha256": "8304325b5b5c13278556edaaa4dd56eae12073373ec836035b3739a7ed87d2ea",
+      "size": 1950240,
+      "role": "Ubuntu source package",
+      "source": "gcc-14",
+      "version": "14.2.0-4ubuntu2~24.04",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gnupg2/gnupg2_2.4.4-2ubuntu17.3.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gnupg2/gnupg2_2.4.4-2ubuntu17.3.dsc",
+      "sha256": "92b2dc35a39ff0a9f8ccf3cd7caae56433de3bed969fbfc1759d9c41baeb07c6",
+      "size": 3602,
+      "role": "Ubuntu source package",
+      "source": "gnupg2",
+      "version": "2.4.4-2ubuntu17.3",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gnupg2/gnupg2_2.4.4.orig.tar.bz2",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gnupg2/gnupg2_2.4.4.orig.tar.bz2",
+      "sha256": "67ebe016ca90fa7688ce67a387ebd82c6261e95897db7b23df24ff335be85bc6",
+      "size": 7886036,
+      "role": "Ubuntu source package",
+      "source": "gnupg2",
+      "version": "2.4.4-2ubuntu17.3",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gnupg2/gnupg2_2.4.4.orig.tar.bz2.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gnupg2/gnupg2_2.4.4.orig.tar.bz2.asc",
+      "sha256": "47986167998b2cb6be4e4cdeef0c468139e06580ed65ce2cf241c527d74e54db",
+      "size": 386,
+      "role": "Ubuntu source package",
+      "source": "gnupg2",
+      "version": "2.4.4-2ubuntu17.3",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gnupg2/gnupg2_2.4.4-2ubuntu17.3.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gnupg2/gnupg2_2.4.4-2ubuntu17.3.debian.tar.xz",
+      "sha256": "6f6f5d945fcf1662aa0bcd4f79d74ce4c3e86c78dbffbd4654e87c449cf534ca",
+      "size": 96100,
+      "role": "Ubuntu source package",
+      "source": "gnupg2",
+      "version": "2.4.4-2ubuntu17.3",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/grep/grep_3.11-4build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/grep/grep_3.11-4build1.dsc",
+      "sha256": "2d0a5ced73347bbf22f35421c31360fc2fe4a0e6267dc31578e2630abe97afa4",
+      "size": 2379,
+      "role": "Ubuntu source package",
+      "source": "grep",
+      "version": "3.11-4build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/grep/grep_3.11.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/grep/grep_3.11.orig.tar.xz",
+      "sha256": "1db2aedde89d0dea42b16d9528f894c8d15dae4e190b59aecc78f5a951276eab",
+      "size": 1703776,
+      "role": "Ubuntu source package",
+      "source": "grep",
+      "version": "3.11-4build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/grep/grep_3.11.orig.tar.xz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/grep/grep_3.11.orig.tar.xz.asc",
+      "sha256": "89ec23ffd59b68822732dc8204fc89883c3af30a90ae390feb94346d9d09a589",
+      "size": 833,
+      "role": "Ubuntu source package",
+      "source": "grep",
+      "version": "3.11-4build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/grep/grep_3.11-4build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/grep/grep_3.11-4build1.debian.tar.xz",
+      "sha256": "f87cd3d0db16527f5c3a8eb6c737a72b0404eaafdbba19d707f8d89315d32e4a",
+      "size": 20584,
+      "role": "Ubuntu source package",
+      "source": "grep",
+      "version": "3.11-4build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gzip/gzip_1.12-1ubuntu3.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gzip/gzip_1.12-1ubuntu3.1.dsc",
+      "sha256": "62dd2256518d009efdb82d03e1f11ab4239d619bce546b210561abccc4d2a23d",
+      "size": 2042,
+      "role": "Ubuntu source package",
+      "source": "gzip",
+      "version": "1.12-1ubuntu3.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gzip/gzip_1.12.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gzip/gzip_1.12.orig.tar.xz",
+      "sha256": "ce5e03e519f637e1f814011ace35c4f87b33c0bbabeec35baf5fbd3479e91956",
+      "size": 825548,
+      "role": "Ubuntu source package",
+      "source": "gzip",
+      "version": "1.12-1ubuntu3.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gzip/gzip_1.12-1ubuntu3.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gzip/gzip_1.12-1ubuntu3.1.debian.tar.xz",
+      "sha256": "1d0fe69725211bb5d9fc9287ec04493b964e6ff8d7f2d1ae8495d976d5cf9ee0",
+      "size": 21180,
+      "role": "Ubuntu source package",
+      "source": "gzip",
+      "version": "1.12-1ubuntu3.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/hostname/hostname_3.23+nmu2ubuntu2.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/h/hostname/hostname_3.23+nmu2ubuntu2.dsc",
+      "sha256": "547a860636d92c3696b47ca33807293b74a0c80a92e6f1210b75aa1f27650e79",
+      "size": 1567,
+      "role": "Ubuntu source package",
+      "source": "hostname",
+      "version": "3.23+nmu2ubuntu2",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/hostname/hostname_3.23+nmu2ubuntu2.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/h/hostname/hostname_3.23+nmu2ubuntu2.tar.xz",
+      "sha256": "38e2dcc815ccebd90a7623197a530da2538d8f14f64546147c95cffba5138e7f",
+      "size": 13276,
+      "role": "Ubuntu source package",
+      "source": "hostname",
+      "version": "3.23+nmu2ubuntu2",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/init-system-helpers/init-system-helpers_1.66ubuntu1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/i/init-system-helpers/init-system-helpers_1.66ubuntu1.dsc",
+      "sha256": "99bad9c4c7b98a89f4cb6b2a7151f4ed0dee46d5671712782ae98cc879d1feb2",
+      "size": 2353,
+      "role": "Ubuntu source package",
+      "source": "init-system-helpers",
+      "version": "1.66ubuntu1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/init-system-helpers/init-system-helpers_1.66ubuntu1.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/i/init-system-helpers/init-system-helpers_1.66ubuntu1.tar.xz",
+      "sha256": "ca60a744414997068de76bfeff98a6834ebd92c1c691bfc28d49df93e67b6a78",
+      "size": 45100,
+      "role": "Ubuntu source package",
+      "source": "init-system-helpers",
+      "version": "1.66ubuntu1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/acl/acl_2.3.2-1build1.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/acl/acl_2.3.2-1build1.1.dsc",
+      "sha256": "da831b979338d324df2adcedd5a06f9a5f303e83be2b43d58ee39288dde8fc88",
+      "size": 2616,
+      "role": "Ubuntu source package",
+      "source": "acl",
+      "version": "2.3.2-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/acl/acl_2.3.2.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/acl/acl_2.3.2.orig.tar.xz",
+      "sha256": "97203a72cae99ab89a067fe2210c1cbf052bc492b479eca7d226d9830883b0bd",
+      "size": 371680,
+      "role": "Ubuntu source package",
+      "source": "acl",
+      "version": "2.3.2-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/acl/acl_2.3.2.orig.tar.xz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/acl/acl_2.3.2.orig.tar.xz.asc",
+      "sha256": "184c6a903490885a096095db67b433a04542c6569f167cbe8115268c0f227273",
+      "size": 833,
+      "role": "Ubuntu source package",
+      "source": "acl",
+      "version": "2.3.2-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/acl/acl_2.3.2-1build1.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/acl/acl_2.3.2-1build1.1.debian.tar.xz",
+      "sha256": "0d324adb403a50aa2889a11e098d34ce5adecd1cb89f83799f66dbb1d8b71280",
+      "size": 23472,
+      "role": "Ubuntu source package",
+      "source": "acl",
+      "version": "2.3.2-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libassuan/libassuan_2.5.6-1build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/liba/libassuan/libassuan_2.5.6-1build1.dsc",
+      "sha256": "f1f7508772b8f7c4620b115cf5d6adce5133d3f43d2d61cf5d9ea7152fa7cf9e",
+      "size": 2734,
+      "role": "Ubuntu source package",
+      "source": "libassuan",
+      "version": "2.5.6-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libassuan/libassuan_2.5.6.orig.tar.bz2",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/liba/libassuan/libassuan_2.5.6.orig.tar.bz2",
+      "sha256": "e9fd27218d5394904e4e39788f9b1742711c3e6b41689a31aa3380bd5aa4f426",
+      "size": 577012,
+      "role": "Ubuntu source package",
+      "source": "libassuan",
+      "version": "2.5.6-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libassuan/libassuan_2.5.6.orig.tar.bz2.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/liba/libassuan/libassuan_2.5.6.orig.tar.bz2.asc",
+      "sha256": "a1be6f5611de2f563a904c539e0415dd5823d9e1c4c0c1071418e7412174eaea",
+      "size": 228,
+      "role": "Ubuntu source package",
+      "source": "libassuan",
+      "version": "2.5.6-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libassuan/libassuan_2.5.6-1build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/liba/libassuan/libassuan_2.5.6-1build1.debian.tar.xz",
+      "sha256": "f6e12195adc071a935556ccea239a64cd305ce667dde4ce9a11691e41278a1c4",
+      "size": 14412,
+      "role": "Ubuntu source package",
+      "source": "libassuan",
+      "version": "2.5.6-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/attr/attr_2.5.2-1build1.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/attr/attr_2.5.2-1build1.1.dsc",
+      "sha256": "0397ea8ae0991bbf21ca031e5312439f3b050f185c3016ef52ba4c627493debe",
+      "size": 2588,
+      "role": "Ubuntu source package",
+      "source": "attr",
+      "version": "1:2.5.2-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/attr/attr_2.5.2.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/attr/attr_2.5.2.orig.tar.xz",
+      "sha256": "f2e97b0ab7ce293681ab701915766190d607a1dba7fae8a718138150b700a70b",
+      "size": 334180,
+      "role": "Ubuntu source package",
+      "source": "attr",
+      "version": "1:2.5.2-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/attr/attr_2.5.2.orig.tar.xz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/attr/attr_2.5.2.orig.tar.xz.asc",
+      "sha256": "eeac729088d3c6379e91b7596cb3582e46b047c47f0fa3c5c77f9c9e84dc3a4c",
+      "size": 833,
+      "role": "Ubuntu source package",
+      "source": "attr",
+      "version": "1:2.5.2-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/attr/attr_2.5.2-1build1.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/attr/attr_2.5.2-1build1.1.debian.tar.xz",
+      "sha256": "9d020c0d557c8a932da9e330683e2cfaa8afc932bd9181b96dfda23077901e7f",
+      "size": 26032,
+      "role": "Ubuntu source package",
+      "source": "attr",
+      "version": "1:2.5.2-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/audit/audit_3.1.2-2.1build1.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/audit/audit_3.1.2-2.1build1.1.dsc",
+      "sha256": "3df86dee4b6d645173901fad492776add35f82c4e7c58cd8a4f82931a2588324",
+      "size": 2848,
+      "role": "Ubuntu source package",
+      "source": "audit",
+      "version": "1:3.1.2-2.1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/audit/audit_3.1.2.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/audit/audit_3.1.2.orig.tar.gz",
+      "sha256": "c0b1792d1f0a88c6f1828710509cbb987059fc68712c97669ca90eae103d287d",
+      "size": 1219860,
+      "role": "Ubuntu source package",
+      "source": "audit",
+      "version": "1:3.1.2-2.1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/audit/audit_3.1.2-2.1build1.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/a/audit/audit_3.1.2-2.1build1.1.debian.tar.xz",
+      "sha256": "ed9d8bb3ff1194b6c8943c7768596383f995b1d45dbc57b8f5ca5868a7b22558",
+      "size": 18860,
+      "role": "Ubuntu source package",
+      "source": "audit",
+      "version": "1:3.1.2-2.1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/bzip2/bzip2_1.0.8-5.1build0.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/bzip2/bzip2_1.0.8-5.1build0.1.dsc",
+      "sha256": "edf9f297ccfba3fc6f89d64fb6c63d866527498d21d0f0771a60f2fb7bc9b16a",
+      "size": 2220,
+      "role": "Ubuntu source package",
+      "source": "bzip2",
+      "version": "1.0.8-5.1build0.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/bzip2/bzip2_1.0.8.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/bzip2/bzip2_1.0.8.orig.tar.gz",
+      "sha256": "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
+      "size": 810029,
+      "role": "Ubuntu source package",
+      "source": "bzip2",
+      "version": "1.0.8-5.1build0.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/bzip2/bzip2_1.0.8-5.1build0.1.debian.tar.bz2",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/b/bzip2/bzip2_1.0.8-5.1build0.1.debian.tar.bz2",
+      "sha256": "0ac0bd78fc0a7f6311a0bb62e81037ec920eb29e315261032ee84c4018e600f3",
+      "size": 26927,
+      "role": "Ubuntu source package",
+      "source": "bzip2",
+      "version": "1.0.8-5.1build0.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/glibc/glibc_2.39-0ubuntu8.5.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/glibc/glibc_2.39-0ubuntu8.5.dsc",
+      "sha256": "3f0b7cff18a2877fe064c71cc48e61831d7529be7edde2bb9cd62e22715ed77d",
+      "size": 9387,
+      "role": "Ubuntu source package",
+      "source": "glibc",
+      "version": "2.39-0ubuntu8.5",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/glibc/glibc_2.39.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/glibc/glibc_2.39.orig.tar.xz",
+      "sha256": "f77bd47cf8170c57365ae7bf86696c118adb3b120d3259c64c502d3dc1e2d926",
+      "size": 18520988,
+      "role": "Ubuntu source package",
+      "source": "glibc",
+      "version": "2.39-0ubuntu8.5",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/glibc/glibc_2.39.orig.tar.xz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/glibc/glibc_2.39.orig.tar.xz.asc",
+      "sha256": "2cce427ef7933c17379f5514e4f0ccf8dffae5bf8c72f0f7e0bf8b8401f34be5",
+      "size": 833,
+      "role": "Ubuntu source package",
+      "source": "glibc",
+      "version": "2.39-0ubuntu8.5",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/glibc/glibc_2.39-0ubuntu8.5.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/glibc/glibc_2.39-0ubuntu8.5.debian.tar.xz",
+      "sha256": "ee9f324cb21b89a153a5b48d97f487c47cd2c611d8b8ee2cabdaa907700ce6bb",
+      "size": 465376,
+      "role": "Ubuntu source package",
+      "source": "glibc",
+      "version": "2.39-0ubuntu8.5",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libcap-ng/libcap-ng_0.8.4-2build2.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libc/libcap-ng/libcap-ng_0.8.4-2build2.dsc",
+      "sha256": "fb7456a3439418628d6c62c5545da55a7ee1a65e539b44b48c39ee9c2d3d9ce4",
+      "size": 2351,
+      "role": "Ubuntu source package",
+      "source": "libcap-ng",
+      "version": "0.8.4-2build2",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libcap-ng/libcap-ng_0.8.4.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libc/libcap-ng/libcap-ng_0.8.4.orig.tar.gz",
+      "sha256": "5615c76a61039e283a6bd107c4faf345ae5ad4dcd45907defe5e474d8fdb6fd2",
+      "size": 59317,
+      "role": "Ubuntu source package",
+      "source": "libcap-ng",
+      "version": "0.8.4-2build2",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libcap-ng/libcap-ng_0.8.4-2build2.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libc/libcap-ng/libcap-ng_0.8.4-2build2.debian.tar.xz",
+      "sha256": "dcbce4356e06358e39e94ea66c9fdf9ef4e635e560467918345c732df5237691",
+      "size": 7384,
+      "role": "Ubuntu source package",
+      "source": "libcap-ng",
+      "version": "0.8.4-2build2",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libcap2/libcap2_2.66-5ubuntu2.2.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libc/libcap2/libcap2_2.66-5ubuntu2.2.dsc",
+      "sha256": "1e63ab26851bedc1e6f1adca1e394f13233c6e3c2d8ae377b2f9a7b40659e188",
+      "size": 2319,
+      "role": "Ubuntu source package",
+      "source": "libcap2",
+      "version": "1:2.66-5ubuntu2.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libcap2/libcap2_2.66.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libc/libcap2/libcap2_2.66.orig.tar.xz",
+      "sha256": "15c40ededb3003d70a283fe587a36b7d19c8b3b554e33f86129c059a4bb466b2",
+      "size": 181592,
+      "role": "Ubuntu source package",
+      "source": "libcap2",
+      "version": "1:2.66-5ubuntu2.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libcap2/libcap2_2.66-5ubuntu2.2.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libc/libcap2/libcap2_2.66-5ubuntu2.2.debian.tar.xz",
+      "sha256": "073f990eb831c789799a7bfe45fe23726488c91d5319d0a9a3b5e7c1cdf7addc",
+      "size": 23076,
+      "role": "Ubuntu source package",
+      "source": "libcap2",
+      "version": "1:2.66-5ubuntu2.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libxcrypt/libxcrypt_4.4.36-4build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libx/libxcrypt/libxcrypt_4.4.36-4build1.dsc",
+      "sha256": "68df46e1ca34983971acc5490a3eec493c6e88cdf4868acdcafba2831e910d78",
+      "size": 2300,
+      "role": "Ubuntu source package",
+      "source": "libxcrypt",
+      "version": "1:4.4.36-4build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libxcrypt/libxcrypt_4.4.36.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libx/libxcrypt/libxcrypt_4.4.36.orig.tar.xz",
+      "sha256": "7b7abbc89f13f5194211aa6861ed954e4fa3a210a4cb64f7e13dc8cf413e7f2a",
+      "size": 392732,
+      "role": "Ubuntu source package",
+      "source": "libxcrypt",
+      "version": "1:4.4.36-4build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libxcrypt/libxcrypt_4.4.36-4build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libx/libxcrypt/libxcrypt_4.4.36-4build1.debian.tar.xz",
+      "sha256": "b75925e5d2c40abab99f8078c40f2a666125067b080466a38eb670730188ca4a",
+      "size": 8356,
+      "role": "Ubuntu source package",
+      "source": "libxcrypt",
+      "version": "1:4.4.36-4build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/db5.3/db5.3_5.3.28+dfsg2-7.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/db5.3/db5.3_5.3.28+dfsg2-7.dsc",
+      "sha256": "f7313fb306b5bf7ad6a428bffb581e649318859df139e35dd47c3d1f733803b2",
+      "size": 2374,
+      "role": "Ubuntu source package",
+      "source": "db5.3",
+      "version": "5.3.28+dfsg2-7",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/db5.3/db5.3_5.3.28+dfsg2.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/db5.3/db5.3_5.3.28+dfsg2.orig.tar.xz",
+      "sha256": "ad41b507415dec8316e828b2230242af2251d2c86eefa3c7aa9ef47c5239ef33",
+      "size": 21287688,
+      "role": "Ubuntu source package",
+      "source": "db5.3",
+      "version": "5.3.28+dfsg2-7",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/db5.3/db5.3_5.3.28+dfsg2-7.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/d/db5.3/db5.3_5.3.28+dfsg2-7.debian.tar.xz",
+      "sha256": "9cee8969e1f440ec8aa2fbacd3a5819907829e0e7e7f1f746dccaa2c93fbf3f2",
+      "size": 35232,
+      "role": "Ubuntu source package",
+      "source": "db5.3",
+      "version": "5.3.28+dfsg2-7",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/cdebconf/cdebconf_0.271ubuntu3.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/c/cdebconf/cdebconf_0.271ubuntu3.dsc",
+      "sha256": "87a9567bdbdc9401d5cde6e5dbc8fb48619d7a2ef38795156c24a7fef3200ef5",
+      "size": 2910,
+      "role": "Ubuntu source package",
+      "source": "cdebconf",
+      "version": "0.271ubuntu3",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/cdebconf/cdebconf_0.271ubuntu3.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/c/cdebconf/cdebconf_0.271ubuntu3.tar.xz",
+      "sha256": "a4b242e7aef7923fd16d3aeb5a220ab6f4d27bc005b9d1e7d67449faaa68bcd1",
+      "size": 285500,
+      "role": "Ubuntu source package",
+      "source": "cdebconf",
+      "version": "0.271ubuntu3",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libffi/libffi_3.4.6-1build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libf/libffi/libffi_3.4.6-1build1.dsc",
+      "sha256": "a7a2c320c04149192a6dd78df8be28b2b27fd38e48d76f2ee6ba0c19ae0758f6",
+      "size": 2055,
+      "role": "Ubuntu source package",
+      "source": "libffi",
+      "version": "3.4.6-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libffi/libffi_3.4.6.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libf/libffi/libffi_3.4.6.orig.tar.gz",
+      "sha256": "9ac790464c1eb2f5ab5809e978a1683e9393131aede72d1b0a0703771d3c6cda",
+      "size": 598175,
+      "role": "Ubuntu source package",
+      "source": "libffi",
+      "version": "3.4.6-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libffi/libffi_3.4.6-1build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libf/libffi/libffi_3.4.6-1build1.debian.tar.xz",
+      "sha256": "9d8712818b833baf002a2413552194b8770800cb20b802ba1d3714156eba14fe",
+      "size": 10736,
+      "role": "Ubuntu source package",
+      "source": "libffi",
+      "version": "3.4.6-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libgcrypt20/libgcrypt20_1.10.3-2build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libg/libgcrypt20/libgcrypt20_1.10.3-2build1.dsc",
+      "sha256": "ec068c9e68d41b66abb15a30524a846c1ac7a41c40168ad280dcb2f3e2ff1765",
+      "size": 2931,
+      "role": "Ubuntu source package",
+      "source": "libgcrypt20",
+      "version": "1.10.3-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libgcrypt20/libgcrypt20_1.10.3.orig.tar.bz2",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libg/libgcrypt20/libgcrypt20_1.10.3.orig.tar.bz2",
+      "sha256": "8b0870897ac5ac67ded568dcfadf45969cfa8a6beb0fd60af2a9eadc2a3272aa",
+      "size": 3783827,
+      "role": "Ubuntu source package",
+      "source": "libgcrypt20",
+      "version": "1.10.3-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libgcrypt20/libgcrypt20_1.10.3.orig.tar.bz2.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libg/libgcrypt20/libgcrypt20_1.10.3.orig.tar.bz2.asc",
+      "sha256": "f02a5f961b89c034a78decbb355ea5a8d9356df5a9636dec53ae548d7d814b14",
+      "size": 390,
+      "role": "Ubuntu source package",
+      "source": "libgcrypt20",
+      "version": "1.10.3-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libgcrypt20/libgcrypt20_1.10.3-2build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libg/libgcrypt20/libgcrypt20_1.10.3-2build1.debian.tar.xz",
+      "sha256": "0082b34a4738355c3f79fa4f88e5b5f49c2ed1394d025fbee2e6f167aa38028f",
+      "size": 36604,
+      "role": "Ubuntu source package",
+      "source": "libgcrypt20",
+      "version": "1.10.3-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gmp/gmp_6.3.0+dfsg-2ubuntu6.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gmp/gmp_6.3.0+dfsg-2ubuntu6.1.dsc",
+      "sha256": "7fdd2464ee453296e33598dad6f84dd489640c08f50552389469bcf90537582e",
+      "size": 2345,
+      "role": "Ubuntu source package",
+      "source": "gmp",
+      "version": "2:6.3.0+dfsg-2ubuntu6.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gmp/gmp_6.3.0+dfsg.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gmp/gmp_6.3.0+dfsg.orig.tar.xz",
+      "sha256": "bd2966e6d277f79328e894a5a9f3ba3fbf2ed2be81def5f48623e30c23fb1572",
+      "size": 1870556,
+      "role": "Ubuntu source package",
+      "source": "gmp",
+      "version": "2:6.3.0+dfsg-2ubuntu6.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gmp/gmp_6.3.0+dfsg-2ubuntu6.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gmp/gmp_6.3.0+dfsg-2ubuntu6.1.debian.tar.xz",
+      "sha256": "0a7592ee94876fcc0dba60c9a9fba806a72752c104c04d553803e1b7a97026a3",
+      "size": 38908,
+      "role": "Ubuntu source package",
+      "source": "gmp",
+      "version": "2:6.3.0+dfsg-2ubuntu6.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gnutls28/gnutls28_3.8.3-1.1ubuntu3.4.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gnutls28/gnutls28_3.8.3-1.1ubuntu3.4.dsc",
+      "sha256": "135c8c444bf9e4fe23d358878c0ba39b4a4abbeb3f310f869fd3a4ab548af42e",
+      "size": 3397,
+      "role": "Ubuntu source package",
+      "source": "gnutls28",
+      "version": "3.8.3-1.1ubuntu3.4",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gnutls28/gnutls28_3.8.3.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gnutls28/gnutls28_3.8.3.orig.tar.xz",
+      "sha256": "f74fc5954b27d4ec6dfbb11dea987888b5b124289a3703afcada0ee520f4173e",
+      "size": 6463720,
+      "role": "Ubuntu source package",
+      "source": "gnutls28",
+      "version": "3.8.3-1.1ubuntu3.4",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gnutls28/gnutls28_3.8.3.orig.tar.xz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gnutls28/gnutls28_3.8.3.orig.tar.xz.asc",
+      "sha256": "b2b90d225728890b0e2aa7c05e5f25f8ba1282821b46e72cd99f0c732b639cef",
+      "size": 854,
+      "role": "Ubuntu source package",
+      "source": "gnutls28",
+      "version": "3.8.3-1.1ubuntu3.4",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/gnutls28/gnutls28_3.8.3-1.1ubuntu3.4.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/g/gnutls28/gnutls28_3.8.3-1.1ubuntu3.4.debian.tar.xz",
+      "sha256": "2839cedf1673eaa7c4183dd89e1f33b7144707d67e50803c706253b6dfff1fae",
+      "size": 100104,
+      "role": "Ubuntu source package",
+      "source": "gnutls28",
+      "version": "3.8.3-1.1ubuntu3.4",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libgpg-error/libgpg-error_1.47-3build2.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libg/libgpg-error/libgpg-error_1.47-3build2.1.dsc",
+      "sha256": "3c8abf463c9ade945fe2e9d87c4aa2bff0026964207b07e99432d9ef6d9436d8",
+      "size": 3007,
+      "role": "Ubuntu source package",
+      "source": "libgpg-error",
+      "version": "1.47-3build2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libgpg-error/libgpg-error_1.47.orig.tar.bz2",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libg/libgpg-error/libgpg-error_1.47.orig.tar.bz2",
+      "sha256": "9e3c670966b96ecc746c28c2c419541e3bcb787d1a73930f5e5f5e1bcbbb9bdb",
+      "size": 1020862,
+      "role": "Ubuntu source package",
+      "source": "libgpg-error",
+      "version": "1.47-3build2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libgpg-error/libgpg-error_1.47.orig.tar.bz2.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libg/libgpg-error/libgpg-error_1.47.orig.tar.bz2.asc",
+      "sha256": "6ab547bf020761e1df80b08335773a91c345ff2c1344f15b1f7d195293ab21a5",
+      "size": 228,
+      "role": "Ubuntu source package",
+      "source": "libgpg-error",
+      "version": "1.47-3build2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libgpg-error/libgpg-error_1.47-3build2.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libg/libgpg-error/libgpg-error_1.47-3build2.1.debian.tar.xz",
+      "sha256": "f02a079a6ddf9930659c3402820b6bd190687e8f1c223f340c965a9da74abcd5",
+      "size": 18776,
+      "role": "Ubuntu source package",
+      "source": "libgpg-error",
+      "version": "1.47-3build2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/nettle/nettle_3.9.1-2.2build1.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/nettle/nettle_3.9.1-2.2build1.1.dsc",
+      "sha256": "db439554d51174b657660a2a47d3d4128838e063f3c9c7da67bb3fe91931d1d2",
+      "size": 2325,
+      "role": "Ubuntu source package",
+      "source": "nettle",
+      "version": "3.9.1-2.2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/nettle/nettle_3.9.1.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/nettle/nettle_3.9.1.orig.tar.gz",
+      "sha256": "ccfeff981b0ca71bbd6fbcb054f407c60ffb644389a5be80d6716d5b550c6ce3",
+      "size": 2396741,
+      "role": "Ubuntu source package",
+      "source": "nettle",
+      "version": "3.9.1-2.2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/nettle/nettle_3.9.1.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/nettle/nettle_3.9.1.orig.tar.gz.asc",
+      "sha256": "9746017a1a7fe60aad4b929ea592bc6ac51e12ea7179f289944eb44828d958af",
+      "size": 573,
+      "role": "Ubuntu source package",
+      "source": "nettle",
+      "version": "3.9.1-2.2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/nettle/nettle_3.9.1-2.2build1.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/nettle/nettle_3.9.1-2.2build1.1.debian.tar.xz",
+      "sha256": "be4ad3b97b32c4c4bacc10aa4caef2f3fa0840c21c642407fc3d48c4535b7c5e",
+      "size": 24848,
+      "role": "Ubuntu source package",
+      "source": "nettle",
+      "version": "3.9.1-2.2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libidn2/libidn2_2.3.7-2build1.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libi/libidn2/libidn2_2.3.7-2build1.1.dsc",
+      "sha256": "fa2970145d391578511ef78bc74a9ba7a57cff510d9e5fba39520f63b023986c",
+      "size": 2651,
+      "role": "Ubuntu source package",
+      "source": "libidn2",
+      "version": "2.3.7-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libidn2/libidn2_2.3.7.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libi/libidn2/libidn2_2.3.7.orig.tar.gz",
+      "sha256": "4c21a791b610b9519b9d0e12b8097bf2f359b12f8dd92647611a929e6bfd7d64",
+      "size": 2155214,
+      "role": "Ubuntu source package",
+      "source": "libidn2",
+      "version": "2.3.7-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libidn2/libidn2_2.3.7.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libi/libidn2/libidn2_2.3.7.orig.tar.gz.asc",
+      "sha256": "d4e78fc1c5a5c35980be3a04dd864574f450d55921360b0aa19326c75ada4a98",
+      "size": 228,
+      "role": "Ubuntu source package",
+      "source": "libidn2",
+      "version": "2.3.7-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libidn2/libidn2_2.3.7-2build1.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libi/libidn2/libidn2_2.3.7-2build1.1.debian.tar.xz",
+      "sha256": "50d3154a3a5b3506aa340c1784f96bfe0f4c5608e2a1a9dd265aa204da4ef327",
+      "size": 16468,
+      "role": "Ubuntu source package",
+      "source": "libidn2",
+      "version": "2.3.7-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/lz4/lz4_1.9.4-1build1.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/l/lz4/lz4_1.9.4-1build1.1.dsc",
+      "sha256": "ba7b585b15d8b4c955dd68c7af5aa89901cfbb3fdb4f2607ccad51628857d669",
+      "size": 2061,
+      "role": "Ubuntu source package",
+      "source": "lz4",
+      "version": "1.9.4-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/lz4/lz4_1.9.4.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/l/lz4/lz4_1.9.4.orig.tar.gz",
+      "sha256": "0b0e3aa07c8c063ddf40b082bdf7e37a1562bda40a0ff5272957f3e987e0e54b",
+      "size": 354063,
+      "role": "Ubuntu source package",
+      "source": "lz4",
+      "version": "1.9.4-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/lz4/lz4_1.9.4-1build1.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/l/lz4/lz4_1.9.4-1build1.1.debian.tar.xz",
+      "sha256": "9551b039576db7c87f38c3c847283877de65114cca06488accb9596a7c4f1ead",
+      "size": 8356,
+      "role": "Ubuntu source package",
+      "source": "lz4",
+      "version": "1.9.4-1build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/xz-utils/xz-utils_5.6.1+really5.4.5-1ubuntu0.2.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/x/xz-utils/xz-utils_5.6.1+really5.4.5-1ubuntu0.2.dsc",
+      "sha256": "72f961b40534c1254edf0950e1826635c1aaae72f2aaa588423d833374307396",
+      "size": 2639,
+      "role": "Ubuntu source package",
+      "source": "xz-utils",
+      "version": "5.6.1+really5.4.5-1ubuntu0.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/xz-utils/xz-utils_5.6.1+really5.4.5.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/x/xz-utils/xz-utils_5.6.1+really5.4.5.orig.tar.xz",
+      "sha256": "da9dec6c12cf2ecf269c31ab65b5de18e8e52b96f35d5bcd08c12b43e6878803",
+      "size": 1680520,
+      "role": "Ubuntu source package",
+      "source": "xz-utils",
+      "version": "5.6.1+really5.4.5-1ubuntu0.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/xz-utils/xz-utils_5.6.1+really5.4.5-1ubuntu0.2.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/x/xz-utils/xz-utils_5.6.1+really5.4.5-1ubuntu0.2.debian.tar.xz",
+      "sha256": "fcf6b1a987c3c82a4382b2f17a194aa9fbb1a05f307a00baf253307b10bf5ca8",
+      "size": 30776,
+      "role": "Ubuntu source package",
+      "source": "xz-utils",
+      "version": "5.6.1+really5.4.5-1ubuntu0.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libmd/libmd_1.1.0-2build1.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libm/libmd/libmd_1.1.0-2build1.1.dsc",
+      "sha256": "11dfd22bba97a4c4ca6c09f34743ac6c72a34eb81344e3a1681c45e2d60ce239",
+      "size": 2391,
+      "role": "Ubuntu source package",
+      "source": "libmd",
+      "version": "1.1.0-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libmd/libmd_1.1.0.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libm/libmd/libmd_1.1.0.orig.tar.xz",
+      "sha256": "1bd6aa42275313af3141c7cf2e5b964e8b1fd488025caf2f971f43b00776b332",
+      "size": 271228,
+      "role": "Ubuntu source package",
+      "source": "libmd",
+      "version": "1.1.0-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libmd/libmd_1.1.0.orig.tar.xz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libm/libmd/libmd_1.1.0.orig.tar.xz.asc",
+      "sha256": "402fd3024e43ab975733d09e661804a58ca58697194e4b15216b1217cfe1dadb",
+      "size": 833,
+      "role": "Ubuntu source package",
+      "source": "libmd",
+      "version": "1.1.0-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libmd/libmd_1.1.0-2build1.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libm/libmd/libmd_1.1.0-2build1.1.debian.tar.xz",
+      "sha256": "ed337af7e336b7dbb6b246c339baa34c9e832bf614a44d06158238259df12307",
+      "size": 8448,
+      "role": "Ubuntu source package",
+      "source": "libmd",
+      "version": "1.1.0-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/ncurses/ncurses_6.4+20240113-1ubuntu2.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/ncurses/ncurses_6.4+20240113-1ubuntu2.dsc",
+      "sha256": "652f97933f40b6b8b3a74953849ec13098f1fda4becb8626eece1f29e9f10686",
+      "size": 3963,
+      "role": "Ubuntu source package",
+      "source": "ncurses",
+      "version": "6.4+20240113-1ubuntu2",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/ncurses/ncurses_6.4+20240113.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/ncurses/ncurses_6.4+20240113.orig.tar.gz",
+      "sha256": "37a12a0f8ae2605012c9a164dd286b0cfa02b51b5055836d09eb3d597fc351b1",
+      "size": 3688489,
+      "role": "Ubuntu source package",
+      "source": "ncurses",
+      "version": "6.4+20240113-1ubuntu2",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/ncurses/ncurses_6.4+20240113.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/ncurses/ncurses_6.4+20240113.orig.tar.gz.asc",
+      "sha256": "b70cfa4f155f61dfa7c085ad1e3f90c73132ad198764d7793a44cd7fdca51f1b",
+      "size": 729,
+      "role": "Ubuntu source package",
+      "source": "ncurses",
+      "version": "6.4+20240113-1ubuntu2",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/ncurses/ncurses_6.4+20240113-1ubuntu2.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/ncurses/ncurses_6.4+20240113-1ubuntu2.debian.tar.xz",
+      "sha256": "cd2840e65cc833541573616ffe36eae5161c309e62eb6c97c83f08d47e1ebf59",
+      "size": 49372,
+      "role": "Ubuntu source package",
+      "source": "ncurses",
+      "version": "6.4+20240113-1ubuntu2",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/npth/npth_1.6-3.1build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/npth/npth_1.6-3.1build1.dsc",
+      "sha256": "7e83a0dc387e8ab8cf152500526fefd46440b2b652470007b57b65b579539a32",
+      "size": 2107,
+      "role": "Ubuntu source package",
+      "source": "npth",
+      "version": "1.6-3.1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/npth/npth_1.6.orig.tar.bz2",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/npth/npth_1.6.orig.tar.bz2",
+      "sha256": "1393abd9adcf0762d34798dc34fdcf4d0d22a8410721e76f1e3afcd1daa4e2d1",
+      "size": 300486,
+      "role": "Ubuntu source package",
+      "source": "npth",
+      "version": "1.6-3.1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/npth/npth_1.6-3.1build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/n/npth/npth_1.6-3.1build1.debian.tar.xz",
+      "sha256": "5ca6d77eef4b2d04db11ab1c1a4691769a419ba42391d41ae36cf8a0968ef94e",
+      "size": 11036,
+      "role": "Ubuntu source package",
+      "source": "npth",
+      "version": "1.6-3.1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/p11-kit/p11-kit_0.25.3-4ubuntu2.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/p11-kit/p11-kit_0.25.3-4ubuntu2.1.dsc",
+      "sha256": "8c97d633fe815e73655b4d4b25a997a967eebca33b42db38a07b706db692a13c",
+      "size": 2405,
+      "role": "Ubuntu source package",
+      "source": "p11-kit",
+      "version": "0.25.3-4ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/p11-kit/p11-kit_0.25.3.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/p11-kit/p11-kit_0.25.3.orig.tar.xz",
+      "sha256": "d8ddce1bb7e898986f9d250ccae7c09ce14d82f1009046d202a0eb1b428b2adc",
+      "size": 991528,
+      "role": "Ubuntu source package",
+      "source": "p11-kit",
+      "version": "0.25.3-4ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/p11-kit/p11-kit_0.25.3-4ubuntu2.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/p11-kit/p11-kit_0.25.3-4ubuntu2.1.debian.tar.xz",
+      "sha256": "f6e9bd39af9478e27900e9b557dc9352f5dcebb2da3ad8a0193686ebfe322cb2",
+      "size": 26028,
+      "role": "Ubuntu source package",
+      "source": "p11-kit",
+      "version": "0.25.3-4ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/pam/pam_1.5.3-5ubuntu5.4.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/pam/pam_1.5.3-5ubuntu5.4.dsc",
+      "sha256": "37e51bb493fa7733f869450dd8dbd6cff80d1593f1bcd52b06b0459469a17946",
+      "size": 2727,
+      "role": "Ubuntu source package",
+      "source": "pam",
+      "version": "1.5.3-5ubuntu5.4",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/pam/pam_1.5.3.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/pam/pam_1.5.3.orig.tar.xz",
+      "sha256": "7ac4b50feee004a9fa88f1dfd2d2fa738a82896763050cd773b3c54b0a818283",
+      "size": 1020076,
+      "role": "Ubuntu source package",
+      "source": "pam",
+      "version": "1.5.3-5ubuntu5.4",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/pam/pam_1.5.3-5ubuntu5.4.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/pam/pam_1.5.3-5ubuntu5.4.debian.tar.xz",
+      "sha256": "d398291747c88fb4bb621d80be1aa998b6997d7e25923ec1a064abff2bde1df3",
+      "size": 203076,
+      "role": "Ubuntu source package",
+      "source": "pam",
+      "version": "1.5.3-5ubuntu5.4",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/pcre2/pcre2_10.42-4ubuntu2.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/pcre2/pcre2_10.42-4ubuntu2.1.dsc",
+      "sha256": "6272177be186d6f8ad16b668bb508b2e07645e05b5b8402d446492cb6d18104e",
+      "size": 2277,
+      "role": "Ubuntu source package",
+      "source": "pcre2",
+      "version": "10.42-4ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/pcre2/pcre2_10.42.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/pcre2/pcre2_10.42.orig.tar.gz",
+      "sha256": "c33b418e3b936ee3153de2c61cc638e7e4fe3156022a5c77d0711bcbb9d64f1f",
+      "size": 2397194,
+      "role": "Ubuntu source package",
+      "source": "pcre2",
+      "version": "10.42-4ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/pcre2/pcre2_10.42-4ubuntu2.1.diff.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/pcre2/pcre2_10.42-4ubuntu2.1.diff.gz",
+      "sha256": "29c5cb6ff392544bf48bd3ec2a98aa0da5297457fa4f4199a1c392ec3d41f19c",
+      "size": 8431,
+      "role": "Ubuntu source package",
+      "source": "pcre2",
+      "version": "10.42-4ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/procps/procps_4.0.4-4ubuntu3.2.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/procps/procps_4.0.4-4ubuntu3.2.dsc",
+      "sha256": "eee89a6469fcc4fb8ee3844b10bf48c894322ff781e92732554c7ceed680c5a1",
+      "size": 2251,
+      "role": "Ubuntu source package",
+      "source": "procps",
+      "version": "2:4.0.4-4ubuntu3.2",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/procps/procps_4.0.4.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/procps/procps_4.0.4.orig.tar.xz",
+      "sha256": "22870d6feb2478adb617ce4f09a787addaf2d260c5a8aa7b17d889a962c5e42e",
+      "size": 1401540,
+      "role": "Ubuntu source package",
+      "source": "procps",
+      "version": "2:4.0.4-4ubuntu3.2",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/procps/procps_4.0.4-4ubuntu3.2.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/procps/procps_4.0.4-4ubuntu3.2.debian.tar.xz",
+      "sha256": "519e5cd39f4a8401dfd892134f3c5ccf5221f23fe32174393ce81cc45526f05e",
+      "size": 38784,
+      "role": "Ubuntu source package",
+      "source": "procps",
+      "version": "2:4.0.4-4ubuntu3.2",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libseccomp/libseccomp_2.5.5-1ubuntu3.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libseccomp/libseccomp_2.5.5-1ubuntu3.1.dsc",
+      "sha256": "8039579c8cd02819d8246b40483d69e2113979b5acc5900d7206e0b4bebff392",
+      "size": 2838,
+      "role": "Ubuntu source package",
+      "source": "libseccomp",
+      "version": "2.5.5-1ubuntu3.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libseccomp/libseccomp_2.5.5.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libseccomp/libseccomp_2.5.5.orig.tar.gz",
+      "sha256": "248a2c8a4d9b9858aa6baf52712c34afefcf9c9e94b76dce02c1c9aa25fb3375",
+      "size": 642445,
+      "role": "Ubuntu source package",
+      "source": "libseccomp",
+      "version": "2.5.5-1ubuntu3.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libseccomp/libseccomp_2.5.5.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libseccomp/libseccomp_2.5.5.orig.tar.gz.asc",
+      "sha256": "f3bf8a946020d3047581f11fe6ac71971a842115ddb362562b193861ef57d97b",
+      "size": 833,
+      "role": "Ubuntu source package",
+      "source": "libseccomp",
+      "version": "2.5.5-1ubuntu3.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libseccomp/libseccomp_2.5.5-1ubuntu3.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libseccomp/libseccomp_2.5.5-1ubuntu3.1.debian.tar.xz",
+      "sha256": "ee1e79bc46f18a992ac80f349fdd5cfa0b5f2f6b298473b587c7cf5af89a8df6",
+      "size": 24484,
+      "role": "Ubuntu source package",
+      "source": "libseccomp",
+      "version": "2.5.5-1ubuntu3.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libselinux/libselinux_3.5-2ubuntu2.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libselinux/libselinux_3.5-2ubuntu2.1.dsc",
+      "sha256": "96134581a745ed85b3d5f1c24cdd88fa7d3e29548c0f80a683094ed886b7f150",
+      "size": 3098,
+      "role": "Ubuntu source package",
+      "source": "libselinux",
+      "version": "3.5-2ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libselinux/libselinux_3.5.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libselinux/libselinux_3.5.orig.tar.gz",
+      "sha256": "9a3a3705ac13a2ccca2de6d652b6356fead10f36fb33115c185c5ccdf29eec19",
+      "size": 211453,
+      "role": "Ubuntu source package",
+      "source": "libselinux",
+      "version": "3.5-2ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libselinux/libselinux_3.5.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libselinux/libselinux_3.5.orig.tar.gz.asc",
+      "sha256": "fd37d441e0c08cabe9ac8f7815f52355bab2011549ec5792424fe18be9e1e015",
+      "size": 981,
+      "role": "Ubuntu source package",
+      "source": "libselinux",
+      "version": "3.5-2ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libselinux/libselinux_3.5-2ubuntu2.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libselinux/libselinux_3.5-2ubuntu2.1.debian.tar.xz",
+      "sha256": "13e47e0983f59235e34f5abe07a2a0d1af3dd2d255962c6a50fac4698c3fe891",
+      "size": 38112,
+      "role": "Ubuntu source package",
+      "source": "libselinux",
+      "version": "3.5-2ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libsemanage/libsemanage_3.5-1build5.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libsemanage/libsemanage_3.5-1build5.dsc",
+      "sha256": "352d869841ec5d98fd97791aa9b9896af905d5f3517ec99850f48b095c8c3193",
+      "size": 3105,
+      "role": "Ubuntu source package",
+      "source": "libsemanage",
+      "version": "3.5-1build5",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libsemanage/libsemanage_3.5.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libsemanage/libsemanage_3.5.orig.tar.gz",
+      "sha256": "f53534e50247538280ed0d76c6ce81d8fb3939bd64cadb89da10dba42e40dd9c",
+      "size": 185060,
+      "role": "Ubuntu source package",
+      "source": "libsemanage",
+      "version": "3.5-1build5",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libsemanage/libsemanage_3.5.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libsemanage/libsemanage_3.5.orig.tar.gz.asc",
+      "sha256": "f9126c861c666f3308b60cea4405c5e686a056113ca3cbd0a5b0e4af7600c8f5",
+      "size": 981,
+      "role": "Ubuntu source package",
+      "source": "libsemanage",
+      "version": "3.5-1build5",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libsemanage/libsemanage_3.5-1build5.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libsemanage/libsemanage_3.5-1build5.debian.tar.xz",
+      "sha256": "522654c2f5e0f508ce7c82f3c58cd394e1b9386226a2a6ac917e7fed9d8895b7",
+      "size": 30188,
+      "role": "Ubuntu source package",
+      "source": "libsemanage",
+      "version": "3.5-1build5",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libsepol/libsepol_3.5-2build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libsepol/libsepol_3.5-2build1.dsc",
+      "sha256": "476b00c198591e38927f274a17dc91bc716e619537f13db58180b10c3daa16e0",
+      "size": 2458,
+      "role": "Ubuntu source package",
+      "source": "libsepol",
+      "version": "3.5-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libsepol/libsepol_3.5.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libsepol/libsepol_3.5.orig.tar.gz",
+      "sha256": "78fdaf69924db780bac78546e43d9c44074bad798c2c415d0b9bb96d065ee8a2",
+      "size": 497522,
+      "role": "Ubuntu source package",
+      "source": "libsepol",
+      "version": "3.5-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libsepol/libsepol_3.5.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libsepol/libsepol_3.5.orig.tar.gz.asc",
+      "sha256": "2309ab5e7cd38e2eb9196f92a60e00d4508cb293f1181d34a5a050128c9b7b24",
+      "size": 981,
+      "role": "Ubuntu source package",
+      "source": "libsepol",
+      "version": "3.5-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libsepol/libsepol_3.5-2build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libs/libsepol/libsepol_3.5-2build1.debian.tar.xz",
+      "sha256": "2e0b6c45b864f36e58c2e1fdeed262283e5ad1aed1599ebb43a859a8760b2307",
+      "size": 27716,
+      "role": "Ubuntu source package",
+      "source": "libsepol",
+      "version": "3.5-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/openssl/openssl_3.0.13-0ubuntu3.5.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/o/openssl/openssl_3.0.13-0ubuntu3.5.dsc",
+      "sha256": "99de6422b34cadcaff50635515c0d294770adb247e427524803f2419fd755d70",
+      "size": 2512,
+      "role": "Ubuntu source package",
+      "source": "openssl",
+      "version": "3.0.13-0ubuntu3.5",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/openssl/openssl_3.0.13.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/o/openssl/openssl_3.0.13.orig.tar.gz",
+      "sha256": "88525753f79d3bec27d2fa7c66aa0b92b3aa9498dafd93d7cfa4b3780cdae313",
+      "size": 15294843,
+      "role": "Ubuntu source package",
+      "source": "openssl",
+      "version": "3.0.13-0ubuntu3.5",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/openssl/openssl_3.0.13-0ubuntu3.5.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/o/openssl/openssl_3.0.13-0ubuntu3.5.debian.tar.xz",
+      "sha256": "c6c977ddf3ea4fd24fe7cca6c70412b8a0a2ff9dcafdef029fa516f14524ba98",
+      "size": 169252,
+      "role": "Ubuntu source package",
+      "source": "openssl",
+      "version": "3.0.13-0ubuntu3.5",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/systemd/systemd_255.4-1ubuntu8.10.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/systemd/systemd_255.4-1ubuntu8.10.dsc",
+      "sha256": "fefade186e15bffc793d0e2a71b0b65e52593d947c798503a0fbd81a1f193481",
+      "size": 7324,
+      "role": "Ubuntu source package",
+      "source": "systemd",
+      "version": "255.4-1ubuntu8.10",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/systemd/systemd_255.4.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/systemd/systemd_255.4.orig.tar.gz",
+      "sha256": "96e75bd08c57ad401677456fb88ef54a9f05bb1695693013bc6ecce839640fd5",
+      "size": 14952427,
+      "role": "Ubuntu source package",
+      "source": "systemd",
+      "version": "255.4-1ubuntu8.10",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/systemd/systemd_255.4-1ubuntu8.10.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/systemd/systemd_255.4-1ubuntu8.10.debian.tar.xz",
+      "sha256": "59ad831094d28ab4ec6e6fdb6fa6e949d407daad5f15bc3f4e38a1560bd56e1e",
+      "size": 252212,
+      "role": "Ubuntu source package",
+      "source": "systemd",
+      "version": "255.4-1ubuntu8.10",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libtasn1-6/libtasn1-6_4.19.0-3ubuntu0.24.04.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libt/libtasn1-6/libtasn1-6_4.19.0-3ubuntu0.24.04.1.dsc",
+      "sha256": "57fe3e1b963943f035b9fbd7eb03f0e7c4546517f83cdbef5f5be1fcb4b353f7",
+      "size": 2846,
+      "role": "Ubuntu source package",
+      "source": "libtasn1-6",
+      "version": "4.19.0-3ubuntu0.24.04.1",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libtasn1-6/libtasn1-6_4.19.0.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libt/libtasn1-6/libtasn1-6_4.19.0.orig.tar.gz",
+      "sha256": "1613f0ac1cf484d6ec0ce3b8c06d56263cc7242f1c23b30d82d23de345a63f7a",
+      "size": 1786576,
+      "role": "Ubuntu source package",
+      "source": "libtasn1-6",
+      "version": "4.19.0-3ubuntu0.24.04.1",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libtasn1-6/libtasn1-6_4.19.0.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libt/libtasn1-6/libtasn1-6_4.19.0.orig.tar.gz.asc",
+      "sha256": "8410c0c004f3509c218a98b276b3308b9c46f48068e8b1a6d9ebfd61ea9f357a",
+      "size": 228,
+      "role": "Ubuntu source package",
+      "source": "libtasn1-6",
+      "version": "4.19.0-3ubuntu0.24.04.1",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libtasn1-6/libtasn1-6_4.19.0-3ubuntu0.24.04.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libt/libtasn1-6/libtasn1-6_4.19.0-3ubuntu0.24.04.1.debian.tar.xz",
+      "sha256": "85ffa2b28b2f8b81a45c885a8447bab7a5cc38d3c98c477a362d174a44b5380a",
+      "size": 24752,
+      "role": "Ubuntu source package",
+      "source": "libtasn1-6",
+      "version": "4.19.0-3ubuntu0.24.04.1",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libunistring/libunistring_1.1-2build1.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libu/libunistring/libunistring_1.1-2build1.1.dsc",
+      "sha256": "496ec65625b57a9c5cd0577843814cbd4701ab123a6146a56053dcc9463ae09e",
+      "size": 2292,
+      "role": "Ubuntu source package",
+      "source": "libunistring",
+      "version": "1.1-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libunistring/libunistring_1.1.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libu/libunistring/libunistring_1.1.orig.tar.xz",
+      "sha256": "827c1eb9cb6e7c738b171745dac0888aa58c5924df2e59239318383de0729b98",
+      "size": 2397676,
+      "role": "Ubuntu source package",
+      "source": "libunistring",
+      "version": "1.1-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libunistring/libunistring_1.1.orig.tar.xz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libu/libunistring/libunistring_1.1.orig.tar.xz.asc",
+      "sha256": "dadae6c38f85f9e8776231436c601c386924ceb44d511456c61c9be73608933d",
+      "size": 833,
+      "role": "Ubuntu source package",
+      "source": "libunistring",
+      "version": "1.1-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libunistring/libunistring_1.1-2build1.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libu/libunistring/libunistring_1.1-2build1.1.debian.tar.xz",
+      "sha256": "06254c8f2ad989bd8ff267fd921d6711fbc0390ff10b99bc3be09fe870baab5e",
+      "size": 14188,
+      "role": "Ubuntu source package",
+      "source": "libunistring",
+      "version": "1.1-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/xxhash/xxhash_0.8.2-2build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/x/xxhash/xxhash_0.8.2-2build1.dsc",
+      "sha256": "a500864f82084ce3c431c0f4a233fb1c0c48a3a8486cc49989ea073e05814d31",
+      "size": 2076,
+      "role": "Ubuntu source package",
+      "source": "xxhash",
+      "version": "0.8.2-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/xxhash/xxhash_0.8.2.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/x/xxhash/xxhash_0.8.2.orig.tar.gz",
+      "sha256": "baee0c6afd4f03165de7a4e67988d16f0f2b257b51d0e3cb91909302a26a79c4",
+      "size": 1141188,
+      "role": "Ubuntu source package",
+      "source": "xxhash",
+      "version": "0.8.2-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/xxhash/xxhash_0.8.2-2build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/x/xxhash/xxhash_0.8.2-2build1.debian.tar.xz",
+      "sha256": "2ec69c1d868b3634a91c6f9e4921b86101fd9384b186f2401fdbac532c78830c",
+      "size": 5048,
+      "role": "Ubuntu source package",
+      "source": "xxhash",
+      "version": "0.8.2-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libzstd/libzstd_1.5.5+dfsg2-2build1.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libz/libzstd/libzstd_1.5.5+dfsg2-2build1.1.dsc",
+      "sha256": "c190a5dff9e7c5b5b1399f0d701bb2c173bc7cbdf14d5e05970f5ac066c25570",
+      "size": 2485,
+      "role": "Ubuntu source package",
+      "source": "libzstd",
+      "version": "1.5.5+dfsg2-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libzstd/libzstd_1.5.5+dfsg2.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libz/libzstd/libzstd_1.5.5+dfsg2.orig.tar.xz",
+      "sha256": "d7cf3c10d416fd999cb8fcf7685d9268ba7bec8eb78121fc2d0d916fa393d22b",
+      "size": 1784164,
+      "role": "Ubuntu source package",
+      "source": "libzstd",
+      "version": "1.5.5+dfsg2-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/libzstd/libzstd_1.5.5+dfsg2-2build1.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/libz/libzstd/libzstd_1.5.5+dfsg2-2build1.1.debian.tar.xz",
+      "sha256": "c1df6d2628b26d085259b8e7ac020eb060e4c1feca98d6103058eda5ded725bc",
+      "size": 21288,
+      "role": "Ubuntu source package",
+      "source": "libzstd",
+      "version": "1.5.5+dfsg2-2build1.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/shadow/shadow_4.13+dfsg1-4ubuntu3.2.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/shadow/shadow_4.13+dfsg1-4ubuntu3.2.dsc",
+      "sha256": "0be17fd044f3e23f714a5b286a04bd040f246af1ac32fcc406b63756baa9c368",
+      "size": 2400,
+      "role": "Ubuntu source package",
+      "source": "shadow",
+      "version": "1:4.13+dfsg1-4ubuntu3.2",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/shadow/shadow_4.13+dfsg1.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/shadow/shadow_4.13+dfsg1.orig.tar.xz",
+      "sha256": "a8bb3a2aceff1cbe39d0f50687dcc1d7e7be0516a9d954d8e2eedb93f5906207",
+      "size": 1811752,
+      "role": "Ubuntu source package",
+      "source": "shadow",
+      "version": "1:4.13+dfsg1-4ubuntu3.2",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/shadow/shadow_4.13+dfsg1-4ubuntu3.2.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/shadow/shadow_4.13+dfsg1-4ubuntu3.2.debian.tar.xz",
+      "sha256": "ff01a3e94111ca8c4dca097ebe54edbee912cbdeba042c214bfa4c34e7839f61",
+      "size": 96392,
+      "role": "Ubuntu source package",
+      "source": "shadow",
+      "version": "1:4.13+dfsg1-4ubuntu3.2",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/mawk/mawk_1.3.4.20240123-1build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/m/mawk/mawk_1.3.4.20240123-1build1.dsc",
+      "sha256": "3b5a9d204c10db2e6793e4b0c10e2dda1c7584771567e6a9b8fc4e96e4124979",
+      "size": 2312,
+      "role": "Ubuntu source package",
+      "source": "mawk",
+      "version": "1.3.4.20240123-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/mawk/mawk_1.3.4.20240123.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/m/mawk/mawk_1.3.4.20240123.orig.tar.gz",
+      "sha256": "a8e319a83744b1f1fb6988dfa189d61887f866e9140cc9a49eb003b2b0655e88",
+      "size": 413943,
+      "role": "Ubuntu source package",
+      "source": "mawk",
+      "version": "1.3.4.20240123-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/mawk/mawk_1.3.4.20240123.orig.tar.gz.asc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/m/mawk/mawk_1.3.4.20240123.orig.tar.gz.asc",
+      "sha256": "3b688572de36ecbb8a013cda92e294038324ed2745485e883508e9a6fdbd2472",
+      "size": 729,
+      "role": "Ubuntu source package",
+      "source": "mawk",
+      "version": "1.3.4.20240123-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/mawk/mawk_1.3.4.20240123-1build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/m/mawk/mawk_1.3.4.20240123-1build1.debian.tar.xz",
+      "sha256": "354344a65a3626c162b69430aabc5e4861d5c4ad0c862c3df5a44c6186f273ef",
+      "size": 15704,
+      "role": "Ubuntu source package",
+      "source": "mawk",
+      "version": "1.3.4.20240123-1build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/perl/perl_5.38.2-3.2ubuntu0.2.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/perl/perl_5.38.2-3.2ubuntu0.2.dsc",
+      "sha256": "4940986b06decbd6b6bbcc40770508d72cbb06c9b4350e703fe555daaa74956b",
+      "size": 3036,
+      "role": "Ubuntu source package",
+      "source": "perl",
+      "version": "5.38.2-3.2ubuntu0.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/perl/perl_5.38.2.orig-regen-configure.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/perl/perl_5.38.2.orig-regen-configure.tar.xz",
+      "sha256": "4d1b34cc058f9963cb89785ecc040d57f6d7725cd83329cfa4ef8b27566454d2",
+      "size": 418808,
+      "role": "Ubuntu source package",
+      "source": "perl",
+      "version": "5.38.2-3.2ubuntu0.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/perl/perl_5.38.2.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/perl/perl_5.38.2.orig.tar.xz",
+      "sha256": "d91115e90b896520e83d4de6b52f8254ef2b70a8d545ffab33200ea9f1cf29e8",
+      "size": 13679524,
+      "role": "Ubuntu source package",
+      "source": "perl",
+      "version": "5.38.2-3.2ubuntu0.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/perl/perl_5.38.2-3.2ubuntu0.2.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/p/perl/perl_5.38.2-3.2ubuntu0.2.debian.tar.xz",
+      "sha256": "f7149a24aef35ff716fe9e6c724f8f9a769d1c77cddd6db301b7b7c450989b75",
+      "size": 171736,
+      "role": "Ubuntu source package",
+      "source": "perl",
+      "version": "5.38.2-3.2ubuntu0.2",
+      "index": "indexes/noble-security-Sources.xz"
+    },
+    {
+      "path": "ubuntu/sed/sed_4.9-2build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/sed/sed_4.9-2build1.dsc",
+      "sha256": "9475e46c150afd949541b1c9bdaf289245e69afcbb3bf57488d24bf4115bb8ff",
+      "size": 1992,
+      "role": "Ubuntu source package",
+      "source": "sed",
+      "version": "4.9-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/sed/sed_4.9.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/sed/sed_4.9.orig.tar.xz",
+      "sha256": "6e226b732e1cd739464ad6862bd1a1aba42d7982922da7a53519631d24975181",
+      "size": 1397092,
+      "role": "Ubuntu source package",
+      "source": "sed",
+      "version": "4.9-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/sed/sed_4.9-2build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/sed/sed_4.9-2build1.debian.tar.xz",
+      "sha256": "c46e59114267b2baffdd4a2505e548044d20d224f450c8a989822bf4802f6093",
+      "size": 62896,
+      "role": "Ubuntu source package",
+      "source": "sed",
+      "version": "4.9-2build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/sensible-utils/sensible-utils_0.0.22.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/sensible-utils/sensible-utils_0.0.22.dsc",
+      "sha256": "2a49b3be4b85b3f455f9c15c26f9bfb6c508496025a414f32649b16fe6326773",
+      "size": 1737,
+      "role": "Ubuntu source package",
+      "source": "sensible-utils",
+      "version": "0.0.22",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/sensible-utils/sensible-utils_0.0.22.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/sensible-utils/sensible-utils_0.0.22.tar.xz",
+      "sha256": "c744d604ad6e1f3c8b4831cd84d653cf86bf9867a856724bf3f4fceb2de215b5",
+      "size": 74412,
+      "role": "Ubuntu source package",
+      "source": "sensible-utils",
+      "version": "0.0.22",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/sysvinit/sysvinit_3.08-6ubuntu3.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/sysvinit/sysvinit_3.08-6ubuntu3.dsc",
+      "sha256": "e440a6f97aaf42f8067f87e2589dd7636bd0e95bc6fcb8b902f50631f83157c0",
+      "size": 2495,
+      "role": "Ubuntu source package",
+      "source": "sysvinit",
+      "version": "3.08-6ubuntu3",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/sysvinit/sysvinit_3.08.orig.tar.gz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/sysvinit/sysvinit_3.08.orig.tar.gz",
+      "sha256": "325e42ae4ae5ae3e4d989e0604aeb5e4eae5f3ee21e401db3c79000718f8c836",
+      "size": 513674,
+      "role": "Ubuntu source package",
+      "source": "sysvinit",
+      "version": "3.08-6ubuntu3",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/sysvinit/sysvinit_3.08-6ubuntu3.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/s/sysvinit/sysvinit_3.08-6ubuntu3.debian.tar.xz",
+      "sha256": "1a8a8365cdc393e349fc115094a8ef7c52082ed22e7f1337ab1b8dd6b5e0103b",
+      "size": 140128,
+      "role": "Ubuntu source package",
+      "source": "sysvinit",
+      "version": "3.08-6ubuntu3",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/tar/tar_1.35+dfsg-3build1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/t/tar/tar_1.35+dfsg-3build1.dsc",
+      "sha256": "4d312308207cec798d4335b62102f2a6b82bde6ae59b3775a3e2307ca6dd7235",
+      "size": 2141,
+      "role": "Ubuntu source package",
+      "source": "tar",
+      "version": "1.35+dfsg-3build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/tar/tar_1.35+dfsg.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/t/tar/tar_1.35+dfsg.orig.tar.xz",
+      "sha256": "9ae57e981c1e73c0eebc2b26c9b0c4497fe310ef1d516ea430efb5470b71f7a8",
+      "size": 2111608,
+      "role": "Ubuntu source package",
+      "source": "tar",
+      "version": "1.35+dfsg-3build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/tar/tar_1.35+dfsg-3build1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/t/tar/tar_1.35+dfsg-3build1.debian.tar.xz",
+      "sha256": "e895dbfe0a807ced9d0a1f85568b3d663b1fc1c91118ea56c05155c34033273e",
+      "size": 20948,
+      "role": "Ubuntu source package",
+      "source": "tar",
+      "version": "1.35+dfsg-3build1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/ubuntu-keyring/ubuntu-keyring_2023.11.28.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/u/ubuntu-keyring/ubuntu-keyring_2023.11.28.1.dsc",
+      "sha256": "c71c8e5a1dd5e8ef682b7104645a88f0bc9eeb9380bf64288adcf78f40bcf68b",
+      "size": 1872,
+      "role": "Ubuntu source package",
+      "source": "ubuntu-keyring",
+      "version": "2023.11.28.1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/ubuntu-keyring/ubuntu-keyring_2023.11.28.1.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/u/ubuntu-keyring/ubuntu-keyring_2023.11.28.1.tar.xz",
+      "sha256": "aecd455ae15561371d6e454f121f079f0641d5e1b579a5563a2bc363fc74aa2e",
+      "size": 20236,
+      "role": "Ubuntu source package",
+      "source": "ubuntu-keyring",
+      "version": "2023.11.28.1",
+      "index": "indexes/noble-Sources.xz"
+    },
+    {
+      "path": "ubuntu/zlib/zlib_1.3.dfsg-3.1ubuntu2.1.dsc",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/z/zlib/zlib_1.3.dfsg-3.1ubuntu2.1.dsc",
+      "sha256": "d083d6e1eb6f7f0dc5b107b0cc6b898f097947e1317769553f1c5c5d71ea5073",
+      "size": 3116,
+      "role": "Ubuntu source package",
+      "source": "zlib",
+      "version": "1:1.3.dfsg-3.1ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/zlib/zlib_1.3.dfsg.orig.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/z/zlib/zlib_1.3.dfsg.orig.tar.xz",
+      "sha256": "5eea0322c1c21c75cad3b607ac1c43ff5c71e014b8ac4a34300b5e2b80d02e70",
+      "size": 1128572,
+      "role": "Ubuntu source package",
+      "source": "zlib",
+      "version": "1:1.3.dfsg-3.1ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "ubuntu/zlib/zlib_1.3.dfsg-3.1ubuntu2.1.debian.tar.xz",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20250807T000000Z/pool/main/z/zlib/zlib_1.3.dfsg-3.1ubuntu2.1.debian.tar.xz",
+      "sha256": "958c7031c02f894516492954153c8d760d94e20a4039e48ca7231880b913ae26",
+      "size": 61028,
+      "role": "Ubuntu source package",
+      "source": "zlib",
+      "version": "1:1.3.dfsg-3.1ubuntu2.1",
+      "index": "indexes/noble-updates-Sources.xz"
+    },
+    {
+      "path": "node/node-v24.20.0.tar.xz",
+      "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0.tar.xz",
+      "sha256": "2732fc3f588dd335cd6779c06864f7cd424bb1b5ff9a1743059a66c54f9ca4a1",
+      "role": "Node complete upstream source"
+    },
+    {
+      "path": "node/SHASUMS256.txt",
+      "url": "https://nodejs.org/dist/v24.20.0/SHASUMS256.txt",
+      "sha256": "c614a913a302d35d1c3a1348d07d84c52e28dceb0b97fd91e4ade05906ca2bd7",
+      "role": "Node upstream checksums"
+    },
+    {
+      "path": "termux/proot-termux-packages-b734bc49dc0eedb2c454e1c5d3c48d35d81d4bc9.tar.gz",
+      "url": "https://codeload.github.com/termux/termux-packages/tar.gz/b734bc49dc0eedb2c454e1c5d3c48d35d81d4bc9",
+      "sha256": "71a87144a42f47c3e5951e1cd4cdf5364730746127b1fccf9066c1b12d69f511",
+      "role": "Termux complete build scripts and patches",
+      "commit": "b734bc49dc0eedb2c454e1c5d3c48d35d81d4bc9",
+      "package": "proot"
+    },
+    {
+      "path": "termux/libtalloc-termux-packages-bddd9721910e56bc36412a764b4b4f7bbdbb1eb1.tar.gz",
+      "url": "https://codeload.github.com/termux/termux-packages/tar.gz/bddd9721910e56bc36412a764b4b4f7bbdbb1eb1",
+      "sha256": "18080a1a9087e72e8c8878d6e4d3827a601a1bc15abbda064cd3cd30e64e2ff6",
+      "role": "Termux complete build scripts and patches",
+      "commit": "bddd9721910e56bc36412a764b4b4f7bbdbb1eb1",
+      "package": "libtalloc"
+    },
+    {
+      "path": "termux/libandroid-shmem-termux-packages-b25e257208da6d2e8b558b8a2b51762158a2e806.tar.gz",
+      "url": "https://codeload.github.com/termux/termux-packages/tar.gz/b25e257208da6d2e8b558b8a2b51762158a2e806",
+      "sha256": "76d944e9fdc03711ede52d7579bca90ac6cb04f677c3e50a08b3957b23b91f1c",
+      "role": "Termux complete build scripts and patches",
+      "commit": "b25e257208da6d2e8b558b8a2b51762158a2e806",
+      "package": "libandroid-shmem"
+    },
+    {
+      "path": "termux/proot-v5.1.107.102.zip",
+      "url": "https://github.com/termux/proot/archive/v5.1.107.102.zip",
+      "sha256": "30d12a6e2cc4147123756ff58edea262d3083bbc238c12d0ab9b39e3d1c40852",
+      "role": "Termux recipe source",
+      "package": "proot"
+    },
+    {
+      "path": "termux/talloc-2.5.0.tar.gz",
+      "url": "https://www.samba.org/ftp/talloc/talloc-2.5.0.tar.gz",
+      "sha256": "912afa237510ae542a7733998eb18a12bcda35ab6729c8e2ddb43e8d0ebab007",
+      "role": "Termux recipe source",
+      "package": "libtalloc"
+    },
+    {
+      "path": "termux/libandroid-shmem-v0.7.tar.gz",
+      "url": "https://github.com/termux/libandroid-shmem/archive/refs/tags/v0.7.tar.gz",
+      "sha256": "1e5ff8459bc0a8c229dd8a94b27d119987e09ef3414331c2b5ebfff20b98e867",
+      "role": "Termux recipe source",
+      "package": "libandroid-shmem"
+    }
+  ]
+}
