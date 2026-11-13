@@ -1,0 +1,314 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "rootFits": true,
+    "phoneFits": true,
+    "phoneColumnWidth": 396,
+    "phoneWidth": 367.5,
+    "boardWidth": 980,
+    "boardHeight": 608.9375,
+    "cards": [
+      {
+        "key": "draft",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "working",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "stopped",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "error",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "workspaces",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "history",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "rootFits": true,
+    "phoneFits": true,
+    "phoneColumnWidth": 306,
+    "phoneWidth": 256.5,
+    "boardWidth": 910,
+    "boardHeight": 428.9375,
+    "cards": [
+      {
+        "key": "draft",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "working",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "stopped",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "error",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "workspaces",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "history",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 1229,
+    "height": 711,
+    "rootFits": true,
+    "phoneFits": true,
+    "phoneColumnWidth": 301.5,
+    "phoneWidth": 252,
+    "boardWidth": 863.5,
+    "boardHeight": 419.9375,
+    "cards": [
+      {
+        "key": "draft",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "working",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "stopped",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "error",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "workspaces",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "history",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 1060,
+    "height": 711,
+    "rootFits": true,
+    "phoneFits": true,
+    "phoneColumnWidth": 301.5,
+    "phoneWidth": 256,
+    "boardWidth": 710.5,
+    "boardHeight": 427.9375,
+    "cards": [
+      {
+        "key": "draft",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "working",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "stopped",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "error",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "workspaces",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "history",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 800,
+    "height": 600,
+    "rootFits": true,
+    "phoneFits": true,
+    "phoneColumnWidth": 246,
+    "phoneWidth": 200.5,
+    "boardWidth": 506,
+    "boardHeight": 299.546875,
+    "cards": [
+      {
+        "key": "draft",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "working",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "stopped",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "error",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "workspaces",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "history",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "rootFits": true,
+    "phoneFits": true,
+    "phoneColumnWidth": 163.796875,
+    "phoneWidth": 164,
+    "boardWidth": 190.203125,
+    "boardHeight": 469.5,
+    "cards": [
+      {
+        "key": "draft",
+        "width": 74,
+        "visible": true
+      },
+      {
+        "key": "working",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "stopped",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "error",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "workspaces",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "history",
+        "width": 74,
+        "visible": false
+      },
+      {
+        "key": "chat",
+        "width": 74,
+        "visible": false
+      }
+    ]
+  }
+]

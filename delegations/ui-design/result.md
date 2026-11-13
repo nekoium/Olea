@@ -1,3 +1,11 @@
+# UI design batch: compact journey layout
+
+- **USER DECISION**: Tighten spacing and the phone column to show more cards without shrinking them. Source: the user's latest density correction, recorded in [UI notes](../../docs/ui/DESIGN_DECISIONS.md#prototype-framework-status).
+- **OBSERVED**: Card width remains 74 px. Main/return flows now occupy 438/206 px and pack beside each other where space permits. The phone column follows viewport height rather than taking nearly half the page. [Measurements](../../docs/ui/checks/density-08/checks.json) cover six viewport sizes. All seven scenarios are fully visible at the four checked desktop sizes, including 1229×711 and 1060×711; smaller screens use internal map scrolling. [Inspected reference](../../docs/ui/checks/density-08/1229x711.jpg).
+- **OBSERVED**: Coordinate-based clicks selected all seven scenarios and activated scaled-phone STOP at 1229×711. An additional 2458×1422 viewport check passed. No browser exceptions were observed.
+
+---
+
 # UI design batch: categorized journey flows
 
 - **USER DECISION**: Apply option D to the demo: journey rows with connected flows and branches. Source: [PRODUCT.md](../../PRODUCT.md#technical-implementation-direction), recording the user's explicit selection.
