@@ -5,6 +5,9 @@ import android.app.Instrumentation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Build
 import android.os.SystemClock
 import android.view.MotionEvent
@@ -54,21 +57,31 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             .put("imeVisible", if (Build.VERSION.SDK_INT >= 30) view.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) else JSONObject.NULL)
     }
     private fun javascriptState(): Any? = evaluate("""
-        (()=>{let state=null;try{if(typeof terminal!=='undefined')state={cols:terminal.cols,rows:terminal.rows,
-          bufferLines:terminal.buffer?.active?.length,cell:terminal._core?._renderService?.dimensions?.css?.cell}}
-          catch(e){state={error:String(e)}}
-        return JSON.stringify({href:location.href,readyState:document.readyState,
-          viewport:[innerWidth,innerHeight],write:typeof window.oleaWrite,bridge:typeof window.OleaTerminal,
-          xtermNodes:document.querySelectorAll('.xterm').length,styles:document.styleSheets.length,
-          scripts:Array.from(document.scripts,s=>s.src||'inline'),
-          activeElement:document.activeElement&&document.activeElement.className,
-          textarea:(()=>{const t=document.querySelector('.xterm-helper-textarea');if(!t)return null;
-            const r=t.getBoundingClientRect();return {disabled:t.disabled,readOnly:t.readOnly,width:r.width,height:r.height}})(),
-          terminal:state})})()
+        JSON.stringify({href:location.href,readyState:document.readyState,viewport:[innerWidth,innerHeight],write:typeof window.oleaWrite,bridge:typeof window.OleaTerminal,xtermNodes:document.querySelectorAll('.xterm').length,styles:document.styleSheets.length,activeElement:document.activeElement?.className,terminal:typeof terminal==='undefined'?null:{cols:terminal.cols,rows:terminal.rows}})
     """.trimIndent()).let { if (it is String) JSONObject(it) else it }
+    private fun visualState(): JSONObject {
+        val pixels = ui {
+        val bitmap = Bitmap.createBitmap(view.width.coerceAtLeast(1), view.height.coerceAtLeast(1), Bitmap.Config.ARGB_8888)
+        view.draw(Canvas(bitmap))
+        var nonBackground = 0
+        var bright = 0
+        for (y in 0 until bitmap.height step 4) for (x in 0 until bitmap.width step 4) {
+            val pixel = bitmap.getPixel(x, y)
+            if (pixel != Color.rgb(23, 27, 22)) nonBackground++
+            if (Color.red(pixel) > 100 || Color.green(pixel) > 100 || Color.blue(pixel) > 100) bright++
+        }
+        bitmap.recycle()
+        nonBackground to bright
+        }
+        return JSONObject(evaluate("""
+          (()=>{const q=s=>{const e=document.querySelector(s);if(!e)return null;const r=e.getBoundingClientRect(),c=getComputedStyle(e);
+            return {tag:e.tagName,children:e.children.length,width:r.width,height:r.height,display:c.display,visibility:c.visibility,opacity:c.opacity,color:c.color,background:c.backgroundColor,textChars:e.textContent?.length}};
+          return JSON.stringify({terminal:q('#terminal'),xterm:q('.xterm'),screen:q('.xterm-screen'),rows:q('.xterm-rows'),canvases:Array.from(document.querySelectorAll('canvas'),e=>{const r=e.getBoundingClientRect();return {width:e.width,height:e.height,cssWidth:r.width,cssHeight:r.height}}),rowCount:document.querySelectorAll('.xterm-rows > div').length,renderer:document.querySelector('.xterm-dom-renderer-owner-1')!==null})})()
+        """.trimIndent()) as String).put("sampledNonBackground", pixels.first).put("sampledBright", pixels.second)
+    }
     private fun capture(receipt: JSONObject, label: String) {
         if (!::view.isInitialized) return
-        receipt.put(label, JSONObject().put("native", nativeState()).put("javascript", javascriptState()).put("errors", errors.toString()))
+        receipt.put(label, JSONObject().put("native", nativeState()).put("javascript", javascriptState()).put("visual", visualState()).put("errors", errors.toString()))
     }
     private fun <T> ui(action: () -> T): T {
         var result: Result<T>? = null
@@ -155,6 +168,7 @@ class TerminalWebViewInstrumentation : Instrumentation() {
                 )
                 for ((url, main, mime) in allowed) {
                     val response = client.shouldInterceptRequest(view, request(url, main))!!
+                    if (url == TERMINAL_PAGE_URL) receipt.put("interceptedDocumentCsp", response.responseHeaders["Content-Security-Policy"])
                     allowedResults.put(JSONObject().put("url", url).put("main", main).put("status", response.statusCode).put("mime", response.mimeType))
                     check(response.statusCode == 200 && response.mimeType == mime) { "Allowed $url main=$main returned ${response.statusCode}/${response.mimeType}; expected 200/$mime" }
                     response.data.use { check(it.read() != -1) { "Allowed $url returned an empty resource" } }
@@ -187,17 +201,20 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             receipt.put("exactResourceAndNavigationAllowlist", "pass")
             // Exercise browser-enforced CSP as well as the interceptor's exact allowlist.
             stage("CSP connection blocking")
-            evaluate("window.socketBlocked=false; try{const s=new WebSocket('wss://example.com/');s.onerror=()=>{window.socketBlocked=true}}catch(e){window.socketBlocked=e.name==='SecurityError'}")
+            receipt.put("documentMetaCsp", evaluate("document.querySelector('meta[http-equiv=\"Content-Security-Policy\"]')?.content || null"))
+            evaluate("window.cspViolations=[];document.addEventListener('securitypolicyviolation',e=>window.cspViolations.push({directive:e.effectiveDirective,blocked:e.blockedURI,policy:e.originalPolicy}));window.socketBlocked=false; try{const s=new WebSocket('wss://example.com/');s.onerror=()=>{window.socketBlocked=true}}catch(e){window.socketBlocked=e.name==='SecurityError'}")
             awaitScript("window.socketBlocked === true")
             val socketBlocked = evaluate("window.socketBlocked === true")
             receipt.put("socketProbeState", socketBlocked)
             check(socketBlocked == true) { "CSP did not synchronously/ultimately block WebSocket: $socketBlocked" }
             receipt.put("cspWebSocketBlocked", true)
             stage("CSP frame blocking")
-            val frameCreated = evaluate("(function(){const f=document.createElement('iframe');f.srcdoc='<script>parent.untrustedFrame=true<\\/script>';document.body.appendChild(f);return true})()")
+            val frameCreated = evaluate("(function(){window.frameProbeFinished=false;const f=document.createElement('iframe');f.id='olea-frame-probe';f.onload=()=>{window.frameProbeFinished=true};f.srcdoc='<script>parent.untrustedFrame=true<\\/script>';document.body.appendChild(f);return true})()")
             receipt.put("frameProbeCreated", frameCreated)
             check(frameCreated == true) { "Inline frame probe did not run: $frameCreated" }
-            Thread.sleep(200)
+            Thread.sleep(500)
+            receipt.put("cspViolations", JSONObject("{\"events\":" + evaluate("JSON.stringify(window.cspViolations)") + "}").getJSONArray("events"))
+            receipt.put("frameProbeDetail", evaluate("JSON.stringify({finished:window.frameProbeFinished,markerType:typeof window.untrustedFrame,markerValue:String(window.untrustedFrame),frameUrl:(()=>{try{return document.getElementById('olea-frame-probe').contentWindow.location.href}catch(e){return String(e)}})()})"))
             val frameBlocked = evaluate("window.untrustedFrame === undefined")
             receipt.put("frameProbeBlocked", frameBlocked)
             check(frameBlocked == true) { "CSP allowed inline frame script to mutate its parent: $frameBlocked" }
@@ -432,6 +449,7 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             awaitCondition(8, "ordinary RuntimeService output") { current().output.contains("olea-actual-$tag") }
             awaitScript(bufferContains("olea-actual-$tag"))
             capture(receipt, "actualAfterPrintf")
+            check(visualState().getInt("sampledBright") > 0) { "Real WebView draw contains no visible terminal text pixels" }
             activitySnapshot(host, receipt, "actualFinalSnapshot")
             receipt.put("ordinaryActivityTerminal", "pass")
         } catch (error: Throwable) {
