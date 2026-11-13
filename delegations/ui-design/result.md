@@ -1,3 +1,12 @@
+# UI design batch: categorized journey flows
+
+- **USER DECISION**: Apply option D to the demo: journey rows with connected flows and branches. Source: [PRODUCT.md](../../PRODUCT.md#technical-implementation-direction), recording the user's explicit selection.
+- **OBSERVED**: Updated [the interactive demo](../../docs/ui/scenario-board-02.html) with category tabs, branching Daily work flows and Return & navigate rows. Selecting a scenario resets the interactive phone; switching categories preserves it. Undesigned coverage uses labeled placeholders. The page remains one viewport with scrolling inside the map and content regions.
+- **OBSERVED**: [Checks](../../docs/ui/checks/journey-07/checks.json) passed at 1440×900, 1280×720, 1060×711, 800×600 and 390×844, with all seven selectors, agent locking, STOP, workspace filtering and coverage tabs. [Desktop screenshot](../../docs/ui/checks/journey-07/desktop.jpg) was visually inspected.
+- **OPEN**: First-use sequence, component/motion fidelity and remaining coverage need discussion. React/TypeScript/Vite remains a recommendation; this update uses existing HTML/CSS/JavaScript. No production Android changes or provider requests occurred.
+
+---
+
 # UI design batch: portrait scenario tiles
 
 - **USER DECISION**: Scenario cards follow the portrait phone screenshot rather than a landscape container with blank side space. Source: the user's latest UI correction, “The card should just be a phone screen.”

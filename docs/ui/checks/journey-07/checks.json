@@ -1,0 +1,45 @@
+{
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "rootFits": true,
+      "phoneFits": true,
+      "controlsFit": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "rootFits": true,
+      "phoneFits": true,
+      "controlsFit": true
+    },
+    {
+      "width": 1060,
+      "height": 711,
+      "rootFits": true,
+      "phoneFits": true,
+      "controlsFit": true
+    },
+    {
+      "width": 800,
+      "height": 600,
+      "rootFits": true,
+      "phoneFits": true,
+      "controlsFit": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "rootFits": true,
+      "phoneFits": true,
+      "controlsFit": true
+    }
+  ],
+  "scenarioSelectors": 7,
+  "agentLock": true,
+  "stop": true,
+  "workspaceFilter": true,
+  "coverageTabs": true,
+  "consoleErrors": []
+}
