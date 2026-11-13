@@ -8,11 +8,11 @@ The user approved building a persistent Olea core through selective reuse of wor
 
 First deliverable: install/open -> prepare/start environment -> stock Pi conversation with replies and tool activity -> user STOP -> reopen saved conversation. Pi supplies the first complete path; the release goal for other agents remains. Full production UX and its framework remain open. The user's reason for establishing this core now: fixes need a persistent implementation to apply to.
 
-[Approved design and autonomous builder assignment](docs/CORE_BUILD_HANDOFF.md) records scope, bounded validation, ownership and known limits. It supersedes earlier candidate-only language for these core responsibilities. Historical feasibility descriptions below retain their original context.
+[Approved design and autonomous builder assignment](docs/archive/CORE_BUILD_HANDOFF.md) records scope, bounded validation, ownership and known limits. It supersedes earlier candidate-only language for these core responsibilities. Historical feasibility descriptions below retain their original context.
 
 ## Document responsibilities
 
-PRODUCT.md describes the full intended Olea product, including agreed boundaries and clearly marked future direction. ROADMAP.md assigns capabilities to interim releases and milestones. PROGRESS.md records what exists, evidence, and unresolved discussion. Intended capabilities are not claims of implemented behavior.
+PRODUCT.md describes the full intended Olea product, including agreed boundaries and clearly marked future direction. docs/ROADMAP.md assigns capabilities to interim releases and milestones. docs/PROGRESS.md records what exists, evidence, and unresolved discussion. Intended capabilities are not claims of implemented behavior.
 
 Keep these documents current as discussion proceeds. Record decisions as agreed, distinguish recommendations from decisions, and retain unresolved questions explicitly. Record only decision reasons explicitly mentioned in this chat. Do not infer missing reasons or reconstruct reasons for decisions from earlier chats; those are outside this session's scope. Preserve inherited decisions without adding rationales. Record assumptions or revisit conditions only when discussed, and distinguish proposed conditions from agreed ones. Reason for this recording policy: technology changes, so decisions need their actual justifications available for later review.
 
@@ -32,7 +32,7 @@ Do not require repeated Olea-level shell/file approvals by default. Android perm
 
 The user wants phone-file cleanup, reading daily notes and scattered Obsidian project notes, and automatically maintaining a central project note. The user also requests daily notifications/reminders and setting alarms. These are requested capabilities, not implemented behavior or approved release placement. Actual personal-file access is not authorized by this product discussion.
 
-[Feature audit and proposed priorities](docs/FEATURE_PRIORITIES.md) separates existing commitments, new requests, dependencies and open decisions. Dedicated cleanup engines, semantic indexing, mandatory per-edit review and a specific scheduled-task UI are not agreed requirements. Notifications, scheduled agent runs and ringing alarms are distinct capabilities. [UI design handoff](docs/UI_DESIGN_HANDOFF.md) assigns a separate session to discuss presentation directly with the user while this session owns functionality/priorities.
+[Feature audit and proposed priorities](docs/discussions/FEATURE_PRIORITIES.md) separates existing commitments, new requests, dependencies and open decisions. Dedicated cleanup engines, semantic indexing, mandatory per-edit review and a specific scheduled-task UI are not agreed requirements. Notifications, scheduled agent runs and ringing alarms are distinct capabilities. [UI design handoff](docs/archive/UI_DESIGN_HANDOFF.md) assigns a separate session to discuss presentation directly with the user while this session owns functionality/priorities.
 
 ## Agreed boundaries
 
@@ -83,7 +83,7 @@ These are API-level possibilities, not local validation results or a commitment 
 
 ## Phone-use validation scope
 
-The test list, agreed priorities and reasons, proposed fixtures, and results now live in [PHONE_USE_TESTS.md](PHONE_USE_TESTS.md). Alpha prioritizes opening an app through an Accessibility click; full validation covers every discussed capability category. Individual full-test fixtures remain proposals.
+The test list, agreed priorities and reasons, proposed fixtures, and results now live in [PHONE_USE_TESTS.md](docs/PHONE_USE_TESTS.md). Alpha prioritizes opening an app through an Accessibility click; full validation covers every discussed capability category. Individual full-test fixtures remain proposals.
 
 ## Visual decision references
 
@@ -130,7 +130,7 @@ Runtime feasibility remains an evidence requirement. Initial interface and phone
 
 ## Technical implementation direction
 
-The previously selected feasibility stack is now the approved maintained-core direction: Kotlin Android hosting, packaged Linux/PRoot, stock Pi RPC, supported extension-based phone tools, and one shared TypeScript/Node backend. Kotlin owns Android platform authority and supervises the backend. [TECH_STACK.md](TECH_STACK.md) records the boundaries; [the core assignment](docs/CORE_BUILD_HANDOFF.md) owns current execution scope. The production UI toolkit remains open. Original Olea code uses MIT; third-party components retain their own licenses. [FEASIBILITY_BRIEF.md](FEASIBILITY_BRIEF.md) is historical and grants no new execution or provider budget.
+The previously selected feasibility stack is now the approved maintained-core direction: Kotlin Android hosting, packaged Linux/PRoot, stock Pi RPC, supported extension-based phone tools, and one shared TypeScript/Node backend. Kotlin owns Android platform authority and supervises the backend. [TECH_STACK.md](docs/TECH_STACK.md) records the boundaries; [the core assignment](docs/archive/CORE_BUILD_HANDOFF.md) owns current execution scope. The production UI toolkit remains open. Original Olea code uses MIT; third-party components retain their own licenses. [FEASIBILITY_BRIEF.md](docs/archive/FEASIBILITY_BRIEF.md) is historical and grants no new execution or provider budget.
 
 ## Limits we must establish
 
@@ -159,4 +159,4 @@ These findings come from documentation and source inspection, not local runtime 
 
 ## Documentation outcome
 
-Evolve this product document as agreements and observed behavior change. ROADMAP.md records the November 15, 2026 release target and full release goals. The maintained core direction is settled; detailed product behavior, production UI toolkit and broader compatibility remain open. Historical research and experimental proposals do not grant execution authority.
+Evolve this product document as agreements and observed behavior change. docs/ROADMAP.md records the November 15, 2026 release target and full release goals. The maintained core direction is settled; detailed product behavior, production UI toolkit and broader compatibility remain open. Historical research and experimental proposals do not grant execution authority.

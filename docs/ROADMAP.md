@@ -12,9 +12,9 @@ These entries summarize decisions already recorded in `PRODUCT.md`. If they dive
 
 ## Current Baseline
 
-- **OBSERVED**: The maintained Android base and established capability consolidation are recorded in `docs/CORE_BUILD_RECORD.md` and `docs/CONSOLIDATION_RECORD.md`.
-- **OBSERVED**: The consolidated `0.2-base` APK and its finite checks are documented in `docs/CONSOLIDATION_RECORD.md`. Provider-backed integrated Pi/Codex acceptance remains unverified there.
-- **OPEN**: Product decisions and release placement for new requested capabilities remain as recorded in `PRODUCT.md` and `docs/FEATURE_PRIORITIES.md`.
+- **OBSERVED**: The maintained Android base and established capability consolidation are recorded in `docs/archive/CORE_BUILD_RECORD.md` and `docs/archive/CONSOLIDATION_RECORD.md`.
+- **OBSERVED**: The consolidated `0.2-base` APK and its finite checks are documented in `docs/archive/CONSOLIDATION_RECORD.md`. Provider-backed integrated Pi/Codex acceptance remains unverified there.
+- **OPEN**: Product decisions and release placement for new requested capabilities remain as recorded in `PRODUCT.md` and `docs/discussions/FEATURE_PRIORITIES.md`.
 
 Do not treat historical feasibility matrices as current acceptance gates. Read current source and bounded records before assigning work.
 
@@ -26,7 +26,7 @@ For each approved task:
 2. Identify concrete dependencies and uncertainties. Investigate route-changing uncertainty before building on assumptions.
 3. Propose a small sequence of observable deliverables. Parallelize independent work with explicit file ownership.
 4. Mark unapproved scope or design as **AGENT PLAN**. Ask the user only when a product decision is required or explicit decisions conflict.
-5. Update `PROGRESS.md` as results land. Keep focused evidence in the relevant record.
+5. Update `docs/PROGRESS.md` as results land. Keep focused evidence in the relevant record.
 
 ## Current Agent Plan
 

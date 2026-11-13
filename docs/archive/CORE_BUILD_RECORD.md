@@ -29,7 +29,7 @@ Maintained source is in `android/`, `backend/` and `runtime/`. Android identity 
 - [Fresh preservation manifest](core/fresh-preservation-before.txt) and [result](core/fresh-preservation-result.txt).
 - [APK update preservation manifest](core/update-preservation-before.txt), [version4 result](core/update-v4-preservation-result.txt), and [version5 result](core/update-v5-preservation-result.txt).
 - [Final packaged archive checks](core/PACKAGED_ASSETS.txt) and [APK hashes](core/APK_SHA256.txt).
-- Ordinary source-based build and use: [README](../README.md). Contributor checks: [CONTRIBUTING](../CONTRIBUTING.md).
+- Ordinary source-based build and use: [README](../../README.md). Contributor checks: [CONTRIBUTING](../../CONTRIBUTING.md).
 - Local build/attempt logs and all retained APKs stay in `.setup/core/`; final normal-launch screenshot is `.setup/core/olea-core-v5-open.png`. No fake model output is included in the app or acceptance evidence.
 
 ## Device and preservation

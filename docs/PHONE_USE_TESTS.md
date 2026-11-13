@@ -31,7 +31,7 @@ The following are **AGENT PLAN** test ideas, not approved fixture requirements. 
 - Keep direct native bridge results separate from agent-driven results.
 - Reuse established proofs when code and behavior are unchanged. Run new focused checks for changed or costly boundaries; do not repeat the historical matrix by default.
 - Retain failed attempts and qualify finite observations. Emulator success does not prove physical-device compatibility.
-- Current consolidation outcomes and limits are in `docs/CONSOLIDATION_RECORD.md`. Historical experiments under `spike/` are evidence only.
+- Current consolidation outcomes and limits are in `docs/archive/CONSOLIDATION_RECORD.md`. Historical experiments under `spike/` are evidence only.
 
 ## Open
 

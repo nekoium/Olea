@@ -57,7 +57,7 @@ The review found four actionable source issues and fixes: main-thread DocumentsP
 
 ## Resource evidence reused
 
-Historical [feasibility costs](../spike/reports/FEASIBILITY_REPORT.md) and [one/two-session samples](../spike/m2/reports/REPEAT_UPDATE_CHECKPOINT.md) remain useful evidence. They are finite named-process samples, not current peak memory, battery, thermals or universal concurrency guarantees. Runtime status exposes connection state only; no needless benchmark infrastructure was imported.
+Historical [feasibility costs](../../spike/reports/FEASIBILITY_REPORT.md) and [one/two-session samples](../../spike/m2/reports/REPEAT_UPDATE_CHECKPOINT.md) remain useful evidence. They are finite named-process samples, not current peak memory, battery, thermals or universal concurrency guarantees. Runtime status exposes connection state only; no needless benchmark infrastructure was imported.
 
 ## Final state and worker lifecycle
 

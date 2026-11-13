@@ -2,7 +2,7 @@
 
 The maintained application is under `android/`, its shared stock-agent adapters under `backend/`, and packaging under `runtime/`. `spike/` remains historical evidence. Do not turn experiment runners or provider-budget policies into product behavior.
 
-Read `AGENTS.md` and `docs/CONSOLIDATION_PLAN.md` for current scope and ownership. `docs/CORE_BUILD_HANDOFF.md` and `docs/CORE_BUILD_PLAN.md` retain the first-core architecture/history. Product discussion continues separately; preserve concurrent edits and discussion artifacts.
+Read `AGENTS.md` for current instructions. `docs/archive/CONSOLIDATION_PLAN.md`, `docs/archive/CORE_BUILD_HANDOFF.md`, and `docs/archive/CORE_BUILD_PLAN.md` retain completed assignment scope and history. Product discussion continues separately; preserve concurrent edits and discussion artifacts.
 
 ## Build
 

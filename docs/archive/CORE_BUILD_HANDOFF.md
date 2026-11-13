@@ -59,7 +59,7 @@ Do not overwrite concurrent product-discussion edits. Reread shared documents be
 
 ## Evidence and source map
 
-Read PRODUCT.md, ROADMAP.md, PROGRESS.md, TECH_STACK.md and PHONE_USE_TESTS.md. Then read the final settlement in `docs/feasibility/M5_WAITING_BUILDER_HANDOFF.md` as history, not an instruction to wait again. Use narrow references rather than revalidating all historical artifacts.
+Read PRODUCT.md, ROADMAP.md, PROGRESS.md, TECH_STACK.md and PHONE_USE_TESTS.md. Then read the final settlement in `docs/archive/feasibility/M5_WAITING_BUILDER_HANDOFF.md` as history, not an instruction to wait again. Use narrow references rather than revalidating all historical artifacts.
 
 Candidate reuse points:
 

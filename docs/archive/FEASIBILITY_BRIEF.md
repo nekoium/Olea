@@ -1,6 +1,6 @@
 # Feasibility build and test brief
 
-Status: archived brief for the completed disposable feasibility phase. Its required sequence, provider authorization and retry language grant no current execution or budget. Read [the maintained core assignment](docs/CORE_BUILD_HANDOFF.md) and AGENTS.md for current instructions. Preserve this brief as historical context; do not repeat or launch it.
+Status: archived brief for the completed disposable feasibility phase. Its required sequence, provider authorization and retry language grant no current execution or budget. Read [the maintained core assignment](CORE_BUILD_HANDOFF.md) and AGENTS.md for current instructions. Preserve this brief as historical context; do not repeat or launch it.
 
 ## Goal and boundary
 

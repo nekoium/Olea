@@ -6,8 +6,8 @@ This agent-maintained document records implementation details for the maintained
 
 - **USER DECISION**: The maintained core uses Kotlin Android authority, packaged Linux through PRoot, one shared TypeScript/Node backend, and stock-agent adapters. Source: `PRODUCT.md`, Technical implementation direction.
 - **OBSERVED**: Maintained code is organized under `android/`, `backend/`, and `runtime/`.
-- **OBSERVED**: Kotlin owns Android platform authority. The shared backend manages agent/session integrations. Refer to current source and `docs/CORE_BUILD_RECORD.md` / `docs/CONSOLIDATION_RECORD.md` for implemented behavior.
-- **OBSERVED**: The maintained app's current consolidated build and limitations are recorded in `docs/CONSOLIDATION_RECORD.md`.
+- **OBSERVED**: Kotlin owns Android platform authority. The shared backend manages agent/session integrations. Refer to current source and `docs/archive/CORE_BUILD_RECORD.md` / `docs/archive/CONSOLIDATION_RECORD.md` for implemented behavior.
+- **OBSERVED**: The maintained app's current consolidated build and limitations are recorded in `docs/archive/CONSOLIDATION_RECORD.md`.
 
 ## Working Rules for Implementation Choices
 
