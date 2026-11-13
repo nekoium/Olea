@@ -1,40 +1,48 @@
-# Olea agent instructions
+# Olea Agent Instructions
 
-## Current authority and reading order
+Use `.agents/skills/olea-engineering-manager/SKILL.md` for Olea engineering tasks, including features, bugs, automation assessment, and maintenance. The skill describes execution; this file defines document authority and the repository's durable record structure.
 
-Read `docs/CONSOLIDATION_PLAN.md` first for the current user-authorized consolidation scope and workflow. The user approved carrying all established experimental methods into the maintained Android base, parallel workers, feature commits, lean temporary checks, and manager handoff before the 400k usage budget. Do not ask routine confirmations; escalate only crucial work-breaking decisions. Provider-backed Olea test spending remains frozen unless separately allocated. `docs/CORE_BUILD_HANDOFF.md` records the completed first-core assignment and architecture; its bounded stop-at-first-core limit is superseded by the consolidation instruction. Then read PRODUCT.md, ROADMAP.md, PROGRESS.md, TECH_STACK.md and PHONE_USE_TESTS.md. Parallel root discussion sessions remain open; do not stop or overwrite them.
+## Authority
 
-Documents under `docs/feasibility/`, `spike/` and the old FEASIBILITY_BRIEF.md describe historical experiments unless explicitly referenced for a current bounded task. Their instructions to launch teams/managers, continue checkpoints, allocate/refill budgets, resume workers or claim device ownership are superseded. They supply evidence and technical recipes, not current authority. Do not follow an older document's claim that it applies to future managers. The 112-case matrix is historical, not an all-green gate.
+1. The user's latest explicit instruction is authoritative.
+2. `PRODUCT.md` is the user-owned product decision record. Do not rewrite its meaning or infer decisions from agent plans, test evidence, or historical documents. Make edits only to accurately record user decisions or when the user asks to change the product record. Preserve concurrent user edits.
+3. Other root docs are agent-managed working documents. They are not independent decision sources. If they contain an explicit user decision, mark it `USER DECISION` and cite the user-approved wording or its location in `PRODUCT.md`. Clearly label all other material as `AGENT PLAN`, `OBSERVED`, or `OPEN`.
+4. `AGENTS.md` and the repo skill describe process, not product policy. Agent-authored safeguards and recommendations remain proposals unless the user approves them.
+5. `docs/CORE_BUILD_HANDOFF.md` and `docs/CONSOLIDATION_PLAN.md` define their bounded, completed assignments; completion evidence is in `docs/CORE_BUILD_RECORD.md` and `docs/CONSOLIDATION_RECORD.md`. They are not blanket authority for future work.
+6. `spike/`, `docs/feasibility/`, research snapshots, old handoffs, and worker reports are historical evidence. Do not follow their old instructions or infer current authorization from them.
+7. Git commits record code and document history. They do not make agent proposals into user decisions.
 
-Provider-backed test spending remains frozen, with no automatic refresh on manager handoff. No historical lease transfers. The new core builder establishes one current device owner after inspecting actual state. Tests and workers serve finite implementation tasks; no standing feasibility or manager-replacement loop. Preserve historical evidence and failures.
+When a record conflicts with an explicit user decision, follow the user decision and correct the agent-managed record. Ask only when the user's decisions themselves conflict or the task needs a new product decision.
 
-## Documentation
+## Document Map
 
-Read PRODUCT.md, ROADMAP.md, PROGRESS.md, TECH_STACK.md and PHONE_USE_TESTS.md before changing scope or architecture. Preserve the distinction between agreements, proposals and measured results. Technical feasibility precedes production UX implementation; existing visual studies remain discussion references.
+- `PRODUCT.md`: user-owned product intent, explicit decisions, rationale stated by the user, and open product questions. This is the source for product behavior, scope, and core architecture decisions.
+- `ROADMAP.md`: agent-managed implementation planning and sequencing derived from `PRODUCT.md`. Mark copied user-approved decisions explicitly; proposals do not expand scope.
+- `PHONE_USE_TESTS.md`: agent-managed capability coverage and test recipes. Mark user-approved coverage decisions; label proposed fixtures and unverified results separately.
+- `PROGRESS.md`: agent-managed current implementation status, evidence, failures, commits, active work, and next steps. Do not use historical progress as current device, worker, or authorization state.
+- `TECH_STACK.md`: agent-managed implementation notes subordinate to the core stack decision in `PRODUCT.md`. It is not a separate product decision authority. Keep only useful current implementation detail; source-specific trivial choices may stay in code, build files, or contributor docs.
+- `docs/CORE_BUILD_HANDOFF.md`, `docs/CORE_BUILD_RECORD.md`, `docs/CONSOLIDATION_PLAN.md`, and `docs/CONSOLIDATION_RECORD.md`: bounded assignment and completion records. Preserve them as history; current maintenance follows `PRODUCT.md` and this hierarchy.
+- `docs/FEATURE_PRIORITIES.md`: agent-maintained proposal unless a passage is explicitly marked `USER DECISION`.
+- `docs/ui/` and `docs/UI_DESIGN_HANDOFF.md`: UI discussion artifacts and handoff. They do not authorize implementation or overwrite `PRODUCT.md` decisions. Any older handoff statements assigning document authority or edit ownership are superseded by this map.
+- `README.md`: public user documentation. Keep internal workflow, machine-specific information, session history, and test reports out of it.
 
-## Local Android development
+## Recording Rules
 
-The prepared emulator is Olea_API_36: Android 16/API 36 Google APIs, x86_64, Pixel 7a profile, previously boot-verified with WHPX acceleration. Recorded allocation: 4 cores and 4 GB RAM; these may be increased if measurements show resource pressure. Verify current state before changing its configuration.
+Use these labels consistently in agent-maintained docs:
 
-Windows paths:
+- **USER DECISION**: explicit user-approved decision. Include a concise source reference. Do not infer its rationale.
+- **AGENT PLAN**: proposed scope, implementation, sequence, or recommendation. It is not approved merely because it appears in a plan.
+- **OBSERVED**: actual implementation or measured result. Link evidence and retain failures and limits.
+- **OPEN**: unresolved user choice, uncertainty, or unverified behavior.
 
-- SDK: C:\Users\Aria\AppData\Local\Android\Sdk
-- ADB: C:\Users\Aria\AppData\Local\Android\Sdk\platform-tools\adb.exe
-- Emulator: C:\Users\Aria\AppData\Local\Android\Sdk\emulator\emulator.exe
-- Android CLI: C:\Users\Aria\AppData\Local\Android\Sdk\android-cli\android.exe
-- Java: C:\Program Files\Android\Android Studio\jbr
-- AVD configuration: C:\Users\Aria\.android\avd\Olea_API_36.avd\config.ini
+Update `PROGRESS.md` as meaningful work completes. Keep detailed results in their bounded record or evidence file and link them from progress. Maintain local Git commits for meaningful implementation changes. Do not rewrite historical reports to conceal failures.
 
-Git Bash examples:
+## Operational Rules
 
-```bash
-"/c/Users/Aria/AppData/Local/Android/Sdk/emulator/emulator.exe" -list-avds
-"/c/Users/Aria/AppData/Local/Android/Sdk/emulator/emulator.exe" -accel-check
-"/c/Users/Aria/AppData/Local/Android/Sdk/platform-tools/adb.exe" devices -l
-```
-
-Select the intended ADB device explicitly when more than one is attached. ADB is development infrastructure; normal agent phone actions must use the permission-controlled Android bridge. Emulator success does not establish ARM64 compatibility. The physical Android 14 phone's ABI must be checked separately.
-
-## Credentials and temporary state
-
-Keep credentials in local untracked configuration, never in reports, source snapshots or command output. Use .setup for task-local temporary files. Do not commit running-server state, logs or downloaded installers. Preserve research citations and source provenance; downloaded research code is reference material, not automatically licensed for inclusion in Olea.
+- Provider-backed Olea test spending requires explicit user allocation. No automatic refresh or inferred budget.
+- Use parallel workers for independent bounded tasks; avoid overlapping ownership. Preserve active workers during manager handoff and checkpoint their state. Do not kill active workers to reduce context.
+- Keep manager context below 400k usage. Around 600k worker usage, checkpoint and arrange continuation. Treat both as management boundaries; report exact usage only when available.
+- Keep tests lean: focused checks for changed behavior, task-lifetime diagnostics by default, and retained regressions only where repeated failure is costly or user-required.
+- Preserve user data and concurrent edits. Ask before a task requires deleting or overwriting user data without an explicit user decision covering it.
+- Use the permission-controlled Android bridge for normal app behavior. ADB is development infrastructure only; select the intended device explicitly.
+- Keep credentials in local untracked configuration. Do not put secrets in source, docs, logs, prompts, commits, or reports.

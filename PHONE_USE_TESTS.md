@@ -1,45 +1,39 @@
-# Phone-use tests
+# Phone-Use Coverage
 
-Status: agreed coverage and alpha priority; individual full-test fixtures remain proposals. Historical execution results live in PROGRESS.md and spike reports; the original not-run text below is superseded by those records.
+Status: agent-managed coverage reference. Product scope and approved coverage decisions are owned by `PRODUCT.md`. A test recipe or observed result in this file does not create new product scope.
 
-Current work follows [the maintained core assignment](docs/CORE_BUILD_HANDOFF.md). These categories describe product coverage, not a requirement to repeat every feasibility test for every agent or preserve every diagnostic permanently. Validate the native bridge, then use one predefined installed working Pi for agent-driven phone checks after the core prerequisites. No provider-backed test spending is authorized by this document.
+## User Decisions
 
-## Access boundary
+- **USER DECISION**: Phone-use capabilities are bounded by permissions and special access a user can normally grant on a stock personal Android phone; no privileged system access is implied. Source: `PRODUCT.md`, Phone-use scenario and approaches.
+- **USER DECISION**: Alpha prioritizes opening an app through an Accessibility click. Source: `PRODUCT.md`, Phone-use validation scope.
+- **USER DECISION**: Full validation covers each discussed category: intents/app links, structured Android APIs, files/media, notification access, Accessibility, screen capture, and app-specific integration. Source: `PRODUCT.md`, Phone-use validation scope.
+- **USER DECISION**: Browser opening to a supplied URL is a concrete scenario; dispatching an intent alone does not prove the destination loaded. Reading page content is not an agreed requirement. Source: `PRODUCT.md`, Phone-use scenario and approaches.
 
-Use only permissions and special access a user can normally grant on a stock personal Android phone. No root, system privileges, or active ADB connection during normal product use. Accessibility enablement and screen-capture consent are distinct system interactions.
+The list summarizes `PRODUCT.md`. If wording conflicts, `PRODUCT.md` wins. Individual fixtures, exact test data, and agent-driven acceptance details are not approved unless separately decided.
 
-## Alpha acceptance
+## Coverage Proposals
 
-The agent must open an app by clicking its launcher entry through Accessibility. An intent-only launch does not satisfy this test. Verify that the target app becomes foreground because of the click.
+The following are **AGENT PLAN** test ideas, not approved fixture requirements. Adapt them to the implementation and existing evidence.
 
-User's stated reason: Accessibility is the most important capability to test in alpha.
-
-Proposed procedure: begin on a supported launcher screen, inspect its exposed nodes, locate the target app, and invoke its click action. If no clickable node is exposed, evaluate an Accessibility gesture rather than substituting an intent launch. Exact launcher, target app, and evidence collection remain to be selected.
-
-## Full validation coverage
-
-Run a simple successful test for each category. User's stated reason: each category needs coverage. This does not commit Olea to exposing every Android API.
-
-The following individual checks are assistant proposals, pending implementation design:
-
-| Capability | Minimal test | Evidence of success |
+| Category | Candidate check | Candidate evidence |
 | --- | --- | --- |
-| Intents and app links | Request opening a supplied HTTPS URL in the browser. | Browser displays the intended destination; dispatch alone is insufficient. |
-| Structured Android APIs | Read the device's current location after the user grants access. | A valid location result is returned. Permission/provider failures must be actionable but do not count as the successful scenario. |
-| Files and media | Create and read back a small test file in a folder selected through Android's file picker. | Read-back content matches; access uses the granted folder. |
-| Notification access | Post a test notification from a separate test app and read it through the notification listener. | Expected test notification is received; reading Olea's own notification alone is insufficient. |
-| Accessibility | Locate an app entry on a supported launcher and activate it with Accessibility. | Target app becomes foreground as a result of the click. |
-| Screen capture | Capture a harmless test screen through MediaProjection after system consent. | Captured image contains the expected non-protected content. |
-| App-specific integration | Invoke a documented exported interface on a cooperating test app. | Test app confirms the requested action; fixture success makes no claim about arbitrary third-party apps. |
+| Intents and app links | Open a supplied HTTPS URL through Android. | Independently observe the intended destination, not only dispatch. |
+| Structured Android APIs | Read a permission-controlled value such as last-known location. | Record returned value, timestamp/age, and actual permission state. |
+| Files and media | Use a user-selected folder for a bounded write/readback. | Compare exact bytes through an independent check. |
+| Notifications | Read a bounded notification from another app after normal special-access enablement. | Confirm package and expected content. |
+| Accessibility | Click an exposed launcher node to open a target app. | Independently observe the target app in foreground. |
+| Screen capture | Capture harmless content after actual Android consent. | Independently inspect saved image and verify STOP revokes later effects. |
+| App-specific integration | Call a documented cooperating-app interface. | Verify the cooperating app's effect independently; do not generalize to arbitrary apps. |
 
-Opening the browser to a supplied link was the user's first concrete phone-use scenario. Reading page content back is not an agreed requirement.
+## Evidence Rules
 
-## Results
+- **OBSERVED** results must link to a dated task record or evidence file and name relevant Android/app versions and limits.
+- Keep direct native bridge results separate from agent-driven results.
+- Reuse established proofs when code and behavior are unchanged. Run new focused checks for changed or costly boundaries; do not repeat the historical matrix by default.
+- Retain failed attempts and qualify finite observations. Emulator success does not prove physical-device compatibility.
+- Current consolidation outcomes and limits are in `docs/CONSOLIDATION_RECORD.md`. Historical experiments under `spike/` are evidence only.
 
-Historical results are recorded in PROGRESS.md and the linked spike evidence. New focused checks should record actual device/Android version, app and fixture versions, granted access, observed outcome, and evidence. Emulator results do not establish physical-phone compatibility.
+## Open
 
-## Related documents
-
-- [Product scope and capability discussion](PRODUCT.md#phone-use-scenario-and-approaches)
-- [Release milestones](ROADMAP.md)
-- [Current progress](PROGRESS.md)
+- **OPEN**: Additional phone capabilities and their product/release placement, as recorded in `PRODUCT.md`.
+- **OPEN**: Exact fixtures and implementation-specific acceptance checks for future tasks.
