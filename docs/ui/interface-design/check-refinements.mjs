@@ -2,7 +2,7 @@ import {Browser} from 'file:///C:/Users/Aria/.agents/skills/design-taste-fronten
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-const output=resolve('docs/ui/interface-design/checks/flat-colors');
+const output=resolve('docs/ui/interface-design/checks/compact-setup');
 const temporary=resolve('docs/ui/interface-design/.tmp');
 mkdirSync(output,{recursive:true});mkdirSync(temporary,{recursive:true});process.env.TASTE_SKILL_TMP=temporary;
 const results=[];
@@ -14,7 +14,7 @@ try{
  await p.goto(pathToFileURL(resolve('docs/ui/scenario-board-02.html')).href,{settleMs:320});
  await check('Bottom Back removed; gesture bar centered',()=>{const phone=document.getElementById('phone').getBoundingClientRect(),bar=document.querySelector('.phoneBack .handle').getBoundingClientRect();return !document.querySelector('.phoneBack button')&&Math.abs((phone.left+phone.right-bar.left-bar.right)/2)<1});
  await p.eval(()=>startScenario('draft'));await settle();
- await check('New-session controls join the composer edge-to-edge',()=>{const popup=document.querySelector('.sessionSetup'),dock=document.querySelector('.composerDock'),box=document.querySelector('.composer');const a=popup.getBoundingClientRect(),b=box.getBoundingClientRect();return popup.parentElement===dock&&popup.contains(document.getElementById('agentSelect'))&&getComputedStyle(popup).position==='absolute'&&Math.abs(a.bottom-b.top)<=1&&getComputedStyle(popup).borderBottomWidth==='0px'&&getComputedStyle(box).borderTopLeftRadius==='0px'});
+ await check('Compact setup layer connects behind rounded composer',()=>{const popup=document.querySelector('.sessionSetup'),dock=document.querySelector('.composerDock'),box=document.querySelector('.composer');const a=popup.getBoundingClientRect(),b=box.getBoundingClientRect(),style=getComputedStyle(popup);return popup.parentElement===dock&&popup.contains(document.getElementById('agentSelect'))&&style.position==='absolute'&&a.bottom>b.top&&a.bottom<b.top+20&&style.borderWidth==='0px'&&Number(style.zIndex)<Number(getComputedStyle(box).zIndex)&&getComputedStyle(box).borderTopLeftRadius==='16px'&&style.backgroundColor!==getComputedStyle(box).backgroundColor&&[...popup.querySelectorAll('select')].every(e=>getComputedStyle(e).height==='40px'&&e.getBoundingClientRect().width<a.width/2)&&[...popup.querySelectorAll('.setupLabel')].every(e=>getComputedStyle(e).clipPath==='inset(50%)')});
  await check('Invalid send preserves setup and draft',()=>{state.draft='Inspect project';send();return state.current===null&&document.querySelector('.sessionSetup:not(.leaving)')&&state.draft==='Inspect project'});
  await check('Unavailable environment preserves setup',()=>{state.environment=false;state.draftAgent='Codex';send();const kept=state.current===null&&!!document.getElementById('agentSelect');state.environment=true;return kept});
  await check('Accepted first send animates setup out and fixes agent',()=>{state.draftAgent='Codex';send();const exit=document.querySelector('.sessionSetup.leaving');return currentSession().agent==='Codex'&&view==='chat'&&!document.getElementById('agentSelect')&&exit?.inert&&getComputedStyle(exit).animationName==='setupLeave'});
