@@ -1,0 +1,12 @@
+<resources>
+    <color name="olea_launcher_background">#33472d</color>
+    <style name="OleaTheme" parent="android:style/Theme.Light.NoTitleBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorAccent">#415739</item>
+        <item name="android:windowBackground">#fafbf8</item>
+        <item name="android:navigationBarColor">#fafbf8</item>
+        <item name="android:statusBarColor">#fafbf8</item>
+    </style>
+</resources>
