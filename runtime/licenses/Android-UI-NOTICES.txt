@@ -1,0 +1,43 @@
+Olea Android UI third-party notices
+
+AndroidX, including Compose UI/Foundation 1.9.0, Activity 1.11.0 and Graphics Path 1.0.1, is licensed under Apache License 2.0. Original native source and representative UI source headers follow in Android-UI-AndroidX-NOTICES.txt.
+
+Kotlin standard library 2.2.10 is licensed under Apache License 2.0 with the upstream GWT/Guava, ThreeTen BSD, and Boost attributions preserved in the accompanying Kotlin files. kotlinx.coroutines 1.8.1 is licensed under Apache License 2.0; its original library NOTICE and license are included.
+
+xterm.js (@xterm/xterm 5.5.0) is licensed under MIT. The exact package license is included.
+
+License and attribution files are reproduced from upstream. Their terms apply to the respective components.
+
+Original text provenance (SHA-256 of each accompanying file):
+
+Android-UI-Apache-2.0.txt
+https://raw.githubusercontent.com/JetBrains/kotlin/v2.2.10/license/LICENSE.txt
+SHA-256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
+
+Android-UI-Kotlin-COPYRIGHT.txt
+https://raw.githubusercontent.com/JetBrains/kotlin/v2.2.10/license/COPYRIGHT.txt
+SHA-256: 8f1a1700adb5490604c6094fb137bf73f6c28d3ee554b58f3ff8ef975a79672d
+
+Android-UI-Kotlin-ThreeTen-BSD.txt
+https://raw.githubusercontent.com/JetBrains/kotlin/v2.2.10/license/third_party/threetenbp_license.txt
+SHA-256: d1bc53b493a3ab387b42717ed5c4b1976a5048996f81154278100bff86d39331
+
+Android-UI-Kotlin-Boost.txt
+https://raw.githubusercontent.com/JetBrains/kotlin/v2.2.10/license/third_party/boost_LICENSE.txt
+SHA-256: 8d8291caf1cee26d23acf3eb67c9f9a2d58f1c681b16a4fbe8cbfb9e3c0b5a9b
+
+Android-UI-Coroutines-NOTICE.txt
+https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/1.8.1/license/NOTICE.txt
+SHA-256: 421d45acbd92670b4131621a28fcbb41ba0b747d3a336cb13fca38c0685426c4
+
+Android-UI-Coroutines-LICENSE.txt
+https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/1.8.1/LICENSE.txt
+SHA-256: b1febe6399dffb10d19d35e7663ab16300c93cb0476a94115df1cc0097a8ffd8
+
+Android-UI-xterm-MIT.txt
+https://registry.npmjs.org/@xterm/xterm/-/xterm-5.5.0.tgz (package/LICENSE)
+SHA-256: b569f629d00f2626a8100df2a1798210535621e42164dfd426a6fe5aac7b0ccd
+
+Android-UI-AndroidX-NOTICES.txt: copyright/license headers from the Graphics Path release revision above, the published graphics-path-1.0.1-sources.jar, ui-android-1.9.0-sources.jar and foundation-android-1.9.0-sources.jar at https://dl.google.com/dl/android/maven2/.
+
+Android-UI-Kotlin-NOTICES.txt: original attribution entries from Kotlin v2.2.10 license/README.md and kotlin-stdlib-2.2.10-sources.jar at https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.2.10/.

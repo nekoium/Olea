@@ -1,0 +1,39 @@
+Kotlin standard library 2.2.10: third-party attribution
+
+Original entries from https://github.com/JetBrains/kotlin/blob/v2.2.10/license/README.md
+
+ - Path: libraries/stdlib/src/kotlin/collections
+      - License: Apache 2 ([license/third_party/gwt_license.txt][gwt])
+      - Origin: Derived from GWT, (C) 2007-08 Google Inc.
+
+ - Path: libraries/stdlib/src/kotlin/time
+      - License: 3-clause BSD license ([license/third_party/threetenbp_license.txt][threetenbp])
+      - Origin: Copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+
+ - Path: libraries/stdlib/jvm/src/kotlin/util/UnsignedJVM.kt
+      - License: Apache 2 ([license/third_party/guava_license.txt][guava])
+      - Origin: Derived from Guava's UnsignedLongs, (C) 2011 The Guava Authors
+
+ - Path: libraries/stdlib/jvm/src/kotlin/util/MathJVM.kt
+      - License: Boost Software License 1.0 ([license/third_party/boost_LICENSE.txt][boost])
+      - Origin: Derived from boost special math functions, Copyright Eric Ford & Hubert Holin 2001.
+
+Original JVM source attribution excerpts:
+
+jvmMain/kotlin/util/MathJVM.kt
+// Inverse hyperbolic function implementations derived from boost special math functions,
+// Copyright Eric Ford & Hubert Holin 2001.
+
+jvmMain/kotlin/util/UnsignedJVM.kt
+// Division and remainder are based on Guava's UnsignedLongs implementation
+// Copyright 2011 The Guava Authors
+
+commonMain/kotlin/time/Instant.kt
+/*
+ * Copyright 2010-2024 JetBrains s.r.o. and Kotlin Programming Language contributors.
+ * Use of this source code is governed by the Apache 2.0 license that can be found in the license/LICENSE.txt file.
+ */
+
+Apache-licensed portions: Android-UI-Apache-2.0.txt (the upstream GWT and Guava license files are byte-identical to this license).
+ThreeTen attribution and full BSD terms: Android-UI-Kotlin-ThreeTen-BSD.txt.
+Boost attribution above and full Boost terms: Android-UI-Kotlin-Boost.txt.
