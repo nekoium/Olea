@@ -18,6 +18,8 @@ Status: agent-managed snapshot of maintained implementation, evidence, failures,
 
 ## Current Work
 
+- **OBSERVED**: Added `assets/readme/olea-icon-rounded.png`, a 1024 px copy with antialiased transparent corners and a 240 px corner radius, and pointed the README title to it. Original icon files are preserved. Image inspection, corner/center alpha checks and `git diff --check` pass; GitHub rendering was not checked.
+
 - **OBSERVED**: README now opens with a one-line rapid-development warning linking issues and Discord, shows the existing app icon beside the title in Myosotis's format, and has a dedicated MIT license section with upstream credits and preserved notices/source-companion guidance. Local image and notice targets exist; `git diff --check` passes. This is a documentation-only change; browser rendering and external link availability were not checked.
 
 - **OBSERVED — PUBLISHED**: [Public 0.1.0 MVP release](https://github.com/nekoium/Olea/releases/tag/0.1.0) went live at 11:00:38 local on 2026-11-14, 38 seconds after the deadline; source/tag synchronization completed around 11:02. Signed APK, complete runtime source companion, notices and checksums are public with verified matching digests. Release tag peels to `eeafd1d`. [Publication record and remaining limits](releases/0.1.0-publication.md). Temporary signing staging was removed; original key and development-app data were preserved. Terminal remains explicitly experimental under the user's MVP decision. Earlier entries below are checkpoints, not current publication state.
