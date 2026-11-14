@@ -1,8 +1,10 @@
+> ⚠️ **Olea is in rapid development — for bugs or suggestions, [open an issue](https://github.com/nekoium/Olea/issues) or [join the Discord](https://discord.gg/X8mCdDzz8).**
+
 <p align="center">
   <img src="assets/readme/olea-banner.png" width="100%" alt="Olea — the agents you use, running on your phone.">
 </p>
 
-# Olea
+# <img src="android/app/src/main/res/drawable-nodpi/seed_icon.png" width="40" height="40" align="absmiddle" alt=""> Olea
 
 **Bring Pi, Codex and Claude Code to your Android phone.**
 
@@ -106,4 +108,10 @@ For setup problems or bugs, [open an issue](https://github.com/nekoium/Olea/issu
 
 Want to build from source or contribute? See [Contributing](CONTRIBUTING.md).
 
-Original Olea code is available under the [MIT License](LICENSE). Bundled runtime components, Android interface libraries and agents retain their own licenses. See [third-party components](runtime/THIRD_PARTY.md) and [Android interface notices](runtime/licenses/Android-UI-NOTICES.txt). When downloading an APK, also keep its accompanying runtime NOTICES and runtime source companion from the same release page; these provide license texts, corresponding runtime source and build/replacement instructions.
+## License
+
+Olea is available under the [MIT License](LICENSE).
+
+Olea uses [Ubuntu Base](https://cdimage.ubuntu.com/ubuntu-base/), [Node.js](https://nodejs.org/), [Termux PRoot](https://github.com/termux/proot), [libtalloc](https://talloc.samba.org/), [libandroid-shmem](https://github.com/termux/libandroid-shmem), [AndroidX](https://developer.android.com/jetpack/androidx), [Kotlin](https://kotlinlang.org/), [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines) and [xterm.js](https://xtermjs.org/), and integrates Pi, Codex and Claude Code. These projects retain their own licenses; see [third-party components](runtime/THIRD_PARTY.md) and [Android interface notices](runtime/licenses/Android-UI-NOTICES.txt).
+
+When downloading an APK, also keep its accompanying runtime NOTICES and runtime source companion from the same release page; these provide license texts, corresponding runtime source and build/replacement instructions.
