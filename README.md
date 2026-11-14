@@ -4,7 +4,7 @@
   <img src="assets/readme/olea-banner.png" width="100%" alt="Olea — the agents you use, running on your phone.">
 </p>
 
-# <img src="assets/readme/olea-icon-rounded.png" width="40" height="40" align="absmiddle" alt=""> Olea
+# <img src="assets/readme/olea-icon-rounded.png" width="40" height="40" align="middle" alt=""> Olea
 
 **Bring Pi, Codex and Claude Code to your Android phone.**
 

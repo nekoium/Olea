@@ -18,6 +18,8 @@ Status: agent-managed snapshot of maintained implementation, evidence, failures,
 
 ## Current Work
 
+- **OBSERVED**: README title icon now uses `align="middle"` instead of the nonstandard `absmiddle` value to improve inline vertical alignment. `git diff --check` passes. Visual alignment in GitHub's renderer remains unverified.
+
 - **OBSERVED**: Added `assets/readme/olea-icon-rounded.png`, a 1024 px copy with antialiased transparent corners and a 240 px corner radius, and pointed the README title to it. Original icon files are preserved. Image inspection, corner/center alpha checks and `git diff --check` pass; GitHub rendering was not checked.
 
 - **OBSERVED**: README now opens with a one-line rapid-development warning linking issues and Discord, shows the existing app icon beside the title in Myosotis's format, and has a dedicated MIT license section with upstream credits and preserved notices/source-companion guidance. Local image and notice targets exist; `git diff --check` passes. This is a documentation-only change; browser rendering and external link availability were not checked.
