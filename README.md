@@ -108,6 +108,12 @@ For setup problems or bugs, [open an issue](https://github.com/nekoium/Olea/issu
 
 Want to build from source or contribute? See [Contributing](CONTRIBUTING.md).
 
+## Special thanks
+
+* [DSH Go](https://github.com/ccch1mneyyy/dsh-go/) - The great inspiration of the possibility of real phone use, and the PRoot approach.
+* [Orca](https://github.com/stablyai/orca/) - The powerful agent orchestrator, from which Olea learned a lot.
+* [Pi](https://github.com/earendil-works/pi) - The GOAT.
+
 ## License
 
 Olea is available under the [MIT License](LICENSE).
