@@ -75,8 +75,8 @@ class TerminalWebViewInstrumentation : Instrumentation() {
         }
         return JSONObject(evaluate("""
           (()=>{const q=s=>{const e=document.querySelector(s);if(!e)return null;const r=e.getBoundingClientRect(),c=getComputedStyle(e);
-            return {tag:e.tagName,children:e.children.length,width:r.width,height:r.height,display:c.display,visibility:c.visibility,opacity:c.opacity,color:c.color,background:c.backgroundColor,textChars:e.textContent?.length}};
-          return JSON.stringify({terminal:q('#terminal'),xterm:q('.xterm'),screen:q('.xterm-screen'),rows:q('.xterm-rows'),canvases:Array.from(document.querySelectorAll('canvas'),e=>{const r=e.getBoundingClientRect();return {width:e.width,height:e.height,cssWidth:r.width,cssHeight:r.height}}),rowCount:document.querySelectorAll('.xterm-rows > div').length,renderer:document.querySelector('.xterm-dom-renderer-owner-1')!==null})})()
+            return {tag:e.tagName,children:e.children.length,width:r.width,height:r.height,display:c.display,visibility:c.visibility,opacity:c.opacity,color:c.color,background:c.backgroundColor,position:c.position,top:c.top,bottom:c.bottom,computedHeight:c.height,inline:e.style.cssText,textChars:e.textContent?.length}};
+          return JSON.stringify({supportsDvh:CSS.supports('height','100dvh'),supportsInset:CSS.supports('inset','0'),html:q('html'),body:q('body'),terminal:q('#terminal'),xterm:q('.xterm'),screen:q('.xterm-screen'),rows:q('.xterm-rows'),canvases:Array.from(document.querySelectorAll('canvas'),e=>{const r=e.getBoundingClientRect();return {width:e.width,height:e.height,cssWidth:r.width,cssHeight:r.height}}),rowCount:document.querySelectorAll('.xterm-rows > div').length,renderer:document.querySelector('.xterm-dom-renderer-owner-1')!==null})})()
         """.trimIndent()) as String).put("sampledNonBackground", pixels.first).put("sampledBright", pixels.second)
     }
     private fun capture(receipt: JSONObject, label: String) {
@@ -451,13 +451,20 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             awaitCondition(8, "ordinary RuntimeService output") { current().output.contains("olea-actual-$tag") }
             awaitScript(bufferContains("olea-actual-$tag"))
             capture(receipt, "actualAfterPrintf")
-            val visible = visualState()
+            var visible = visualState()
             receipt.put("actualPixelProof", visible)
+            if (visible.getInt("sampledBright") < 50) {
+                stage("diagnostic explicit-pixel layout probe")
+                evaluate("[document.documentElement,document.body,document.getElementById('terminal')].forEach(e=>{e.style.position='fixed';e.style.left='0px';e.style.top='0px';e.style.margin='0px';e.style.width=innerWidth+'px';e.style.height=innerHeight+'px';e.style.overflow='hidden'});fit();terminal.refresh(0,terminal.rows-1)")
+                Thread.sleep(500)
+                visible = visualState()
+                receipt.put("explicitPixelProbe", visible)
+            }
             check(visible.getInt("sampledBright") >= 50 && (visible.optJSONObject("rows")?.optInt("textChars", 0) ?: 0) >= 20) {
                 "Real WebView draw lacks text-sized pixels (cursor alone is insufficient): $visible"
             }
             activitySnapshot(host, receipt, "actualFinalSnapshot")
-            receipt.put("ordinaryActivityTerminal", "pass")
+            receipt.put("ordinaryActivityTerminal", if (receipt.has("explicitPixelProbe")) "diagnostic-layout-override-required" else "pass")
         } catch (error: Throwable) {
             failure = error
             runCatching { capture(receipt, "actualFailureState") }
