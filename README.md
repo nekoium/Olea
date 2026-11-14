@@ -10,7 +10,7 @@ Give an agent a task, follow its replies and tools, and return to the conversati
 
 [Download & release notes](https://github.com/nekoium/Olea/releases) · [Report a problem](https://github.com/nekoium/Olea/issues) · [MIT license](LICENSE)
 
-> **Early release:** 0.1.0 is being prepared. Use the release page to check APK availability and tested devices before installing. Device compatibility and background reliability are still limited.
+> **0.1.0 MVP:** Tested on a physical Android 14 ARM64 phone. [Download the signed APK](https://github.com/nekoium/Olea/releases/download/0.1.0/olea-0.1.0-arm64-v8a.apk) and read the [release notes](https://github.com/nekoium/Olea/releases/tag/0.1.0) for compatibility and current limits. Other Android versions and continuous background execution are not verified.
 
 ## A workspace in your pocket
 

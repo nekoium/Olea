@@ -4,6 +4,8 @@ Status: evolving product scope and decision record. The maintained core directio
 
 ## Release 0.1.0
 
+**USER DECISION**: Ship this edition as an MVP before **11:00 am**, using quick tests and accepting imperfections rather than missing the deadline. Source: the user's latest instruction, “We can accept imperfection in for this MVP, but must ship on time.” This supersedes the earlier maturity expectation for this edition; keep known limitations visible and retain the credential audit before making the repository public.
+
 **USER DECISION**: Autonomously complete the app, validate it on the connected phone, and publish a signed APK as **0.1.0** with the repository public if release checks establish readiness. This supersedes the older private 1.0.0 shipping target below. Source: the user's current release instruction, “Go fully automatic” and “The repo should be public with that release in the end, if nothing wrong.”
 
 **USER DECISION**: Use [scenario board 02](docs/ui/scenario-board-02.html) as the production interface and functionality reference, preserving its design language while completing flows and correcting logic flaws. Use `docs/ui/branding/seed-icon.png` as the app icon and `docs/ui/branding/seed-poster-landscape.png` as the public README banner. Write a clear promotional README that explains value and use to nontechnical readers. Source: the same release instruction.
