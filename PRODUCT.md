@@ -2,11 +2,29 @@
 
 Status: evolving product scope and decision record. The maintained core direction below is approved; the full intended functionality remains under discussion.
 
+## Release 0.1.0
+
+**USER DECISION**: Autonomously complete the app, validate it on the connected phone, and publish a signed APK as **0.1.0** with the repository public if release checks establish readiness. This supersedes the older private 1.0.0 shipping target below. Source: the user's current release instruction, “Go fully automatic” and “The repo should be public with that release in the end, if nothing wrong.”
+
+**USER DECISION**: Use [scenario board 02](docs/ui/scenario-board-02.html) as the production interface and functionality reference, preserving its design language while completing flows and correcting logic flaws. Use `docs/ui/branding/seed-icon.png` as the app icon and `docs/ui/branding/seed-poster-landscape.png` as the public README banner. Write a clear promotional README that explains value and use to nontechnical readers. Source: the same release instruction.
+
+**USER DECISION**: Audit repository files and Git history for private credentials and sensitive information before publication. Use the supplied local signing identity; keep signing material and temporary test credentials outside tracked files. Provider testing uses GPT for Pi/Codex and Claude for Claude Code, cheapest working models for connectivity/run checks, and Pi with `gpt-6.1-sol` only for real functionality and phone-use testing. Source: the same release instruction.
+
+## Shipping-today decisions (superseded release target)
+
+**USER DECISION**: The current release target is today, superseding the older November 15, 2026 calendar target below. Version 1.0.0 retains Pi, Codex, and Claude Code support. Source: the user's shipping discussion, “keep all three agents for 1.0.0”.
+
+**USER DECISION**: Defer scheduled agent work, reminders, alarms, and general personal-folder/vault cleanup and editing workflows from today's release. Source: the user's acceptance, “Additional features go with your recom”, of the recommendation to defer those capabilities. Ordinary agent work with workspace files remains in scope.
+
+**USER DECISION**: Users choose their agent and first-run setup; installing an agent may be a prerequisite. Do not adopt the proposed automatic Pi/default-workspace policy. Detailed first-run UX remains with the separate design session, while independent functional work can proceed. Source: the user's first-run clarification and authorization to build automatable functionality first.
+
+**USER DECISION**: Distribute a signed APK through a private GitHub release. Source: the user's acceptance of the proposed distribution route, “Distribution yeah go with yours”. This does not establish that release signing or APK acceptance is complete.
+
 ## Maintained core decision
 
 The user approved building a persistent Olea core through selective reuse of working spike components: Kotlin Android authority, packaged conventional Linux through PRoot, one shared TypeScript/Node backend, stock-agent adapters, and user data kept independent of replaceable runtime components. Maintain the Android environment and Olea integrations rather than private agent ports. Existing evidence is sufficient to build against this route; it does not establish universal compatibility or complete production readiness.
 
-First deliverable: install/open -> prepare/start environment -> stock Pi conversation with replies and tool activity -> user STOP -> reopen saved conversation. Pi supplies the first complete path; the release goal for other agents remains. Full production UX and its framework remain open. The user's reason for establishing this core now: fixes need a persistent implementation to apply to.
+First deliverable: install/open -> prepare/start environment -> stock Pi conversation with replies and tool activity -> user STOP -> reopen saved conversation. Pi supplies the first complete path; the release goal for other agents remains. The production UI uses Kotlin + Jetpack Compose with the current demo’s flat design; detailed UX remains under discussion. The user's reason for establishing this core now: fixes need a persistent implementation to apply to.
 
 [Approved design and autonomous builder assignment](docs/archive/CORE_BUILD_HANDOFF.md) records scope, bounded validation, ownership and known limits. It supersedes earlier candidate-only language for these core responsibilities. Historical feasibility descriptions below retain their original context.
 
@@ -24,9 +42,9 @@ Combine freedom of agent choice with a low-friction, all-in-one experience. The 
 
 ## Audience and execution stance
 
-The intended user already has literacy with Pi, Codex or Claude. Make agent use convenient on a phone and preserve a high ceiling; beginner education about agents is not the intended onboarding focus. The user cites DSH Go and Orca as references and prefers broad execution authority ("full YOLO") by default, with users responsible for the risks of delegated work. Their exact defaults have not been inspected here.
+Olea is for users who already have literacy with Pi, Codex or Claude; it is not aimed at people unfamiliar with agent tools. The user expects Olea to be easy to use while retaining a high capability ceiling.
 
-Do not require repeated Olea-level shell/file approvals by default. Android permissions and system consent remain necessary. Full access means authority over the runtime's accessible files and tools, not root, unrestricted other-app access or hostile-agent isolation. STOP, execution visibility and actionable failures remain part of the agreed core. Detailed exposure of advanced controls remains UI design work.
+The user's preferred default is "full YOLO": give the agent broad execution authority and expect users to acknowledge the risks of the work they delegate. This records the user's product stance; it does not claim that Android permissions can be bypassed or that the runtime is isolated from other apps.
 
 ## Personal-agent scenarios under discussion
 
@@ -130,7 +148,9 @@ Runtime feasibility remains an evidence requirement. Initial interface and phone
 
 ## Technical implementation direction
 
-The previously selected feasibility stack is now the approved maintained-core direction: Kotlin Android hosting, packaged Linux/PRoot, stock Pi RPC, supported extension-based phone tools, and one shared TypeScript/Node backend. Kotlin owns Android platform authority and supervises the backend. [TECH_STACK.md](docs/TECH_STACK.md) records the boundaries; [the core assignment](docs/archive/CORE_BUILD_HANDOFF.md) owns current execution scope. The production UI toolkit remains open. Original Olea code uses MIT; third-party components retain their own licenses. [FEASIBILITY_BRIEF.md](docs/archive/FEASIBILITY_BRIEF.md) is historical and grants no new execution or provider budget.
+**USER DECISION**: The browser demo uses categorized journey rows with connected flows and branches within each row (layout option D). Scenario cards open repeatable interactive phone states. Source: the user's UI discussion selection, “D is dope. Let's go D and update the demo.” [Visual reference](docs/ui/experience-map-options-06.html#hybrid); [interactive demo](docs/ui/scenario-board-02.html). This selects the review structure; detailed flows remain subject to design feedback. **USER DECISION**: Tighten card spacing and the phone column to maximize visible scenarios, keeping cards at least their existing size. Source: the user's density correction, “include as many cards as possible in the canvas, while making them not smaller than the current design.”
+
+The previously selected feasibility stack is now the approved maintained-core direction: Kotlin Android hosting, packaged Linux/PRoot, stock Pi RPC, supported extension-based phone tools, and one shared TypeScript/Node backend. Kotlin owns Android platform authority and supervises the backend. **USER DECISION**: The production Android UI uses Kotlin + Jetpack Compose with a flat design based on the current browser demo. Material Design is no longer the selected design system. Source: the user's latest correction, “We don't use material design anymore, we'll use the flat design as the current demo.” This supersedes the earlier Material 3 selection. iOS is a future possibility, not a required target. Detailed UI behavior and the web prototype structure remain under discussion. **USER DECISION**: The design demo runs entirely in the browser with sample behavior; real functionality and an emulator/device connection are not required. Its UI, UX and motion should approximate real phone use as closely as possible so it can serve as an implementation reference. Source: the user's continued prototype discussion, “We use Browser-only phone demo” and “we don't need real functionalities for the demo.” **USER DECISION**: The prototype review page must fit one viewport without page scrolling. The full phone and demo controls must be visible together. Use compact scenario cards for an at-a-glance overview, rather than long descriptive list items; scroll only inside content regions. Source: the user's viewport/layout correction in the UI discussion. [TECH_STACK.md](docs/TECH_STACK.md) records implementation notes; the core assignment is historical bounded scope. Original Olea code uses MIT; third-party components retain their own licenses. [FEASIBILITY_BRIEF.md](docs/archive/FEASIBILITY_BRIEF.md) is historical and grants no new execution or provider budget.
 
 ## Limits we must establish
 
@@ -159,4 +179,4 @@ These findings come from documentation and source inspection, not local runtime 
 
 ## Documentation outcome
 
-Evolve this product document as agreements and observed behavior change. docs/ROADMAP.md records the November 15, 2026 release target and full release goals. The maintained core direction is settled; detailed product behavior, production UI toolkit and broader compatibility remain open. Historical research and experimental proposals do not grant execution authority.
+Evolve this product document as agreements and observed behavior change. docs/ROADMAP.md records the November 15, 2026 release target and full release goals. The maintained core direction and production Android UI toolkit are settled; detailed product behavior and broader compatibility remain open. Historical research and experimental proposals do not grant execution authority.

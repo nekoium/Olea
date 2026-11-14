@@ -1,6 +1,6 @@
 # Olea UI design decisions
 
-Status: interactive UI discussion. This file preserves inherited agreements and separates them from proposals. The user approved trying a connected walkthrough with an experience overview; the draft layouts remain subject to feedback.
+Status: visual-study and discussion history. [DESIGN.md](../../DESIGN.md) is the consolidated current UI and user experience record, including later decisions that resolve older OPEN items below. This file preserves inherited agreements, proposals and evidence; draft visual details remain subject to feedback.
 
 ## Inherited agreements
 
@@ -45,7 +45,7 @@ The user requested a slice board showing each expected scenario with a screensho
 
 ### Selected production UI toolkit: Android-first, iOS optional
 
-- **USER DECISION**: Kotlin + Jetpack Compose + Material 3 is selected for the production Android UI. Source: [PRODUCT.md, Technical implementation direction](../../PRODUCT.md#technical-implementation-direction), recording the user's confirmation in the continued UI discussion.
+- **USER DECISION**: Kotlin + Jetpack Compose remains the Android toolkit; the current demo’s flat design replaces Material Design as the visual direction. Source: [PRODUCT.md, Technical implementation direction](../../PRODUCT.md#technical-implementation-direction), recording the user's latest explicit correction. The Material comparison below is historical reasoning, not current guidance.
 - **USER DECISION**: iOS is a future possibility, not a required target. Source: the user's earlier clarification, “A future possibility, and not a must.”
 - **OPEN**: Detailed UX, component versions and expressive component choices remain unsettled. The design demo is browser-only; selecting the production toolkit does not authorize a production migration in this design discussion.
 
@@ -60,7 +60,7 @@ The following comparison preserves the earlier recommendation's engineering reas
 **OBSERVED**: This was initially a recommendation. The user's subsequent confirmation selects the toolkit, as recorded above; production implementation has not begun in this UI discussion.
 
 Sources: [Android's Compose-first guidance](https://developer.android.com/blog/posts/android-ui-development-is-compose-first); [Compose and Material 3](https://developer.android.com/compose); [Flutter platform integration](https://docs.flutter.dev/platform-integration/platform-channels).
-The user asked why Compose over Flutter, whether iOS should influence the decision, and whether Kotlin should be replaced by Dart. The comparison below is historical discussion context; the current decision is Kotlin + Jetpack Compose + Material 3, with iOS optional.
+The user asked why Compose over Flutter, whether iOS should influence the decision, and whether Kotlin should be replaced by Dart. The comparison below is historical discussion context; the current direction is Kotlin + Jetpack Compose with the demo’s flat design, with iOS optional.
 
 ### First distinguish UI portability from product portability
 
@@ -95,6 +95,8 @@ The earlier Compose recommendation assumed Android-only scope. It was too early 
 No production source or shared product documents were changed. This session records UI options only; functionality scope and release placement remain with the originating discussion.
 
 ## Prototype framework status
+
+- **OBSERVED**: The current [browser reference](scenario-board-02.html) has expanded from seven scenarios to 61 across nine categories, with repeatable screenshots and actions. [Coverage batch](../../delegations/ui-design/coverage-09.md) and [checks](checks/coverage-09/checks.json). Earlier seven-scenario layout measurements below are historical. Current UI/UX authority remains [DESIGN.md](../../DESIGN.md); Material and visual decisions are being discussed separately.
 
 - **USER DECISION**: Prioritize the number of visible scenario cards by tightening gaps and the phone column, while keeping cards at least their current size. Source: the user's density correction, “include as many cards as possible in the canvas, while making them not smaller than the current design.”
 - **OBSERVED**: The demo retains 74 px cards, reduces the main flow from 690 to 438 px, and packs a 206 px return flow alongside it when space allows. The phone column follows viewport height and phone proportions. All seven scenarios (eight tiles including a repeated resume state) fit at 1060×711, 1229×711, 1280×720 and 1440×900. Smaller viewports scroll within the map. [Measurements](checks/density-08/checks.json), [desktop reference](checks/density-08/1229x711.jpg). Coordinate clicks for all seven scenarios and phone STOP passed at 1229×711; viewport/card-size checks also passed at 2458×1422.

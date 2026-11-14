@@ -5,6 +5,7 @@ This agent-maintained document records implementation details for the maintained
 ## Current Implementation
 
 - **USER DECISION**: The maintained core uses Kotlin Android authority, packaged Linux through PRoot, one shared TypeScript/Node backend, and stock-agent adapters. Source: `PRODUCT.md`, Technical implementation direction.
+- **USER DECISION**: The production Android UI uses Kotlin + Jetpack Compose with the current browser demo’s flat design. Material Design is no longer selected. iOS is a future possibility, not a required target. Source: [PRODUCT.md, Technical implementation direction](../PRODUCT.md#technical-implementation-direction), reflecting the user's latest correction. Compose does not require adopting the Material design system; this decision does not establish a completed UI migration.
 - **OBSERVED**: Maintained code is organized under `android/`, `backend/`, and `runtime/`.
 - **OBSERVED**: Kotlin owns Android platform authority. The shared backend manages agent/session integrations. Refer to current source and `docs/archive/CORE_BUILD_RECORD.md` / `docs/archive/CONSOLIDATION_RECORD.md` for implemented behavior.
 - **OBSERVED**: The maintained app's current consolidated build and limitations are recorded in `docs/archive/CONSOLIDATION_RECORD.md`.
