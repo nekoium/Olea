@@ -4,7 +4,8 @@
 const terminal=new Terminal({cursorBlink:true,convertEol:false,fontFamily:'monospace',fontSize:14,scrollback:5000,theme:{background:'#171b16',foreground:'#dfebd5',cursor:'#afc69f',selectionBackground:'#526449'}});
 terminal.open(document.getElementById('terminal'));
 terminal.onData(data=>OleaTerminal.input(data));
-function fit(){const cell=terminal._core?terminal._core._renderService.dimensions.css.cell:null;const bounds=document.getElementById('terminal').getBoundingClientRect();if(!cell||!cell.width||!cell.height||!bounds.width||!bounds.height)return;const columns=Math.max(20,Math.floor((bounds.width-18)/cell.width));const rows=Math.max(4,Math.floor((bounds.height-16)/cell.height));if(terminal.cols!==columns||terminal.rows!==rows){terminal.resize(columns,rows);OleaTerminal.resize(columns,rows)}}
+function fit(){const root=document.getElementById('terminal');for(const element of [document.documentElement,document.body,root]){element.style.position='fixed';element.style.left='0px';element.style.top='0px';element.style.margin='0px';element.style.width=innerWidth+'px';element.style.height=innerHeight+'px';element.style.overflow='hidden'}const cell=terminal._core?terminal._core._renderService.dimensions.css.cell:null;const bounds=root.getBoundingClientRect();if(!cell||!cell.width||!cell.height||!bounds.width||!bounds.height)return;const columns=Math.max(20,Math.floor((bounds.width-18)/cell.width));const rows=Math.max(4,Math.floor((bounds.height-16)/cell.height));if(terminal.cols!==columns||terminal.rows!==rows){terminal.resize(columns,rows);OleaTerminal.resize(columns,rows)}}
+window.addEventListener('resize',fit);
 new ResizeObserver(fit).observe(document.getElementById('terminal'));
 terminal.onResize(()=>{});
 window.oleaWrite=(data,reset)=>{if(reset)terminal.reset();terminal.write(data)};
