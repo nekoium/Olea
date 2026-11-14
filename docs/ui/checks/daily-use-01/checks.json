@@ -1,0 +1,24 @@
+{
+  "results": [
+    "Resume has fixed agent identity and no agent selector",
+    "Setup appears outside composer before first send",
+    "First send fixes selected agent and presents STOP",
+    "Tool result expands",
+    "STOP retains transcript and removes running control",
+    "Workspace selects filtered Conversations",
+    "History reopens the same agent and stopped transcript",
+    "Connection loss does not replay or clear history",
+    "Completion returns to an editable conversation",
+    "Fresh-chat preference shows first-turn selectors",
+    "No page or phone horizontal overflow at 1440px",
+    "STOP stays inside phone at 1440px",
+    "Overview does not overflow at 1440px",
+    "No page or phone horizontal overflow at 768px",
+    "STOP stays inside phone at 768px",
+    "Overview does not overflow at 768px",
+    "No page or phone horizontal overflow at 390px",
+    "STOP stays inside phone at 390px",
+    "Overview does not overflow at 390px",
+    "No browser JavaScript exceptions"
+  ]
+}

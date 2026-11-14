@@ -1,0 +1,19 @@
+{
+  "results": [
+    "Scenario board is the entry view",
+    "chat: explicit instructions, screenshot and repeatable entry state",
+    "draft: explicit instructions, screenshot and repeatable entry state",
+    "working: explicit instructions, screenshot and repeatable entry state",
+    "stopped: explicit instructions, screenshot and repeatable entry state",
+    "workspaces: explicit instructions, screenshot and repeatable entry state",
+    "history: explicit instructions, screenshot and repeatable entry state",
+    "error: explicit instructions, screenshot and repeatable entry state",
+    "Interrupt slice starts working and STOP reaches the expected state",
+    "Workspace slice reaches filtered Conversations",
+    "History slice search and reopening reach the expected Pi session",
+    "Board screenshots load and scenario instructions fit at 1440px",
+    "Board screenshots load and scenario instructions fit at 768px",
+    "Board screenshots load and scenario instructions fit at 390px",
+    "No browser exceptions"
+  ]
+}

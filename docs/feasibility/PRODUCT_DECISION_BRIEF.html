@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Olea — product decision brief</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#192724;background:#f4f5f0;line-height:1.5;font-size:16px}*{box-sizing:border-box}body{margin:0}main{max-width:1050px;margin:auto;padding:32px 24px 56px}h1{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.15;max-width:900px;margin:12px 0 16px}h2{font-size:1.2rem;margin:28px 0 12px}h3{font-size:1rem;margin:0 0 6px}p{margin:8px 0 14px}a{color:#245d73;text-underline-offset:3px}a:focus-visible,summary:focus-visible{outline:3px solid #245d73;outline-offset:4px}.eyebrow{font-size:.85rem;color:#52615b}.verdict{border-left:5px solid #356b56;padding:4px 18px;background:#e7eee7}.status,.flow{display:grid;gap:12px}.status{grid-template-columns:repeat(3,1fr);margin-top:22px}.card{background:#fff;border:1px solid #d4dad0;border-radius:8px;padding:16px}.card p:last-child{margin-bottom:0}.tag{font-size:.8rem;font-weight:750;display:block;margin-bottom:7px}.measured{color:#285740}.open{color:#79550b}.limit{color:#8b3e2c}.flow{grid-template-columns:1fr 2fr;align-items:start}.phone{border:2px solid #667c6a;border-radius:10px;padding:16px;background:#fff}.cloud{border:1px dashed #87978d;border-radius:10px;padding:16px}.layers{display:grid;gap:8px}.layer{padding:10px 12px;background:#edf1eb;border-radius:5px}.connector{text-align:center;margin:6px;color:#52615b;font-size:.9rem}.fine{font-size:.88rem;color:#52615b}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;background:#fff;font-size:.94rem}th,td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid #d4dad0}th{background:#e8ede6}th:first-child{width:23%}td:nth-child(2){width:36%}ol,ul{padding-left:23px}li{margin:8px 0}details{border-top:1px solid #cbd3c8;padding:14px 0}summary{cursor:pointer;font-weight:650}details p,details ul{max-width:900px}.decision{background:#fff;border-left:4px solid #79550b;padding:12px 18px;margin-top:24px}footer{border-top:1px solid #cbd3c8;padding-top:16px;margin-top:26px;font-size:.85rem;color:#52615b}@media(max-width:720px){main{padding:22px 16px 36px}.status,.flow{grid-template-columns:1fr}th,td{padding:9px}table{font-size:.87rem}}@media print{body{background:#fff}main{max-width:none;padding:0}details{break-inside:avoid}.card,.phone,.decision{break-inside:avoid}a{color:inherit}summary::after{content:" (expand in the HTML for supporting evidence)";font-weight:400;font-size:.8rem}}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">OLEA · PRODUCT DECISION BRIEF · Evidence snapshot a1b3081 · About 2 minutes; expand below for detail</div>
+<h1>Continue the direction. Pi + Codex look promising; all agents and real phones remain unproved.</h1>
+<div class="verdict">
+<p><strong>“Maintain the Android runtime, avoid private agent ports” looks feasible for the tested Pi and Codex workflows.</strong> Both ran unchanged upstream releases on the Android emulator. Confidence is moderate in this direction, insufficient for a production or universal-agent claim.</p>
+<p>We still own the runtime, phone tools and adapters. Ordinary updates must remain possible; compatibility with future releases is not guaranteed.</p>
+</div>
+
+<div class="status" aria-label="Evidence at a glance">
+<section class="card"><span class="tag measured">MEASURED · WORKING PIECES</span><h3>Local agents + phone actions</h3><p>Stock Pi and Codex: Unix work, dependencies, saved-session continuation and phone workflows. All seven phone categories have direct measured pieces.</p></section>
+<section class="card"><span class="tag open">OPEN · MUST ESTABLISH</span><h3>Updates + real-device use</h3><p>Only a narrow Pi update is demonstrated on the current runtime. Codex updates, authenticated Claude use, ARM64, battery and heat remain unproved.</p></section>
+<section class="card"><span class="tag limit">LIMIT · ACCEPTED TRADEOFF</span><h3>Full access requires trust</h3><p>Selected Codex mode has no agent filesystem isolation. Phone permissions and STOP remain enforced by Kotlin; they do not contain hostile agent code.</p></section>
+</div>
+
+<h2>What runs where</h2>
+<div class="flow">
+<section class="cloud"><h3>External model provider</h3><p>Receives model requests and returns responses. The agent still runs on the phone.</p><p class="fine">Internet is needed for these model calls. No always-on desktop is required by the intended product.</p></section>
+<section class="phone" aria-label="Components running on the Android phone">
+<h3>Android phone — measured on emulator only</h3>
+<div class="layers">
+<div class="layer"><strong>Stock Pi / stock Codex</strong><br>Unchanged upstream agents run inside Ubuntu through PRoot, with upstream Node, Git and npm.</div>
+<div class="connector">Local session messages · model calls go to the provider</div>
+<div class="layer"><strong>One shared Node integration backend</strong><br>Original agent-specific adapters connect sessions and supplied phone tools. This code still needs maintenance.</div>
+<div class="connector">Phone requests go through Kotlin</div>
+<div class="layer"><strong>Kotlin Android host — native authority</strong><br>Checks phone permissions, handles system consent, STOP and runtime supervision. Android limits what access is possible.</div>
+</div>
+</section>
+</div>
+<p class="fine">PRoot provides Linux compatibility; it is not a security container. The shared backend is the selected direction, not proof of simultaneous multi-agent reliability.</p>
+
+<h2>What we would still have to maintain</h2>
+<p><strong>Ordinary install/update:</strong> use the agent publisher’s normal packages. <strong>Private port:</strong> modify and rebuild the agent for Olea, then repeat that work for new releases. Current successful workflows need no private source patches or private protocol shims.</p>
+<p><strong>Allowed ongoing work:</strong> package the Linux runtime, repair Android startup/cleanup/recovery, and maintain our adapters and phone tools. Supported integration APIs reduce porting work; they do not eliminate agent-specific work.</p>
+
+<h2>Obstacles, fixability and the user’s compromise</h2>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Obstacle</th><th scope="col">Evidence / likely fixability</th><th scope="col">User consequence</th></tr></thead>
+<tbody>
+<tr><td><strong>Future agent updates</strong></td><td>Pi 1.5.1 → 1.5.2 preserved tested data. Ordinary Codex and broader runtime/failed-update recovery remain unproved.</td><td>Compatibility checks and adapter upkeep remain necessary. Repeated agent patches would invalidate this direction.</td></tr>
+<tr><td><strong>Agent trust</strong></td><td>Codex full access works. Its earlier restricted sandbox failed; that is not a blocker to the chosen mode.</td><td>Agents can read files available to Olea, including same-UID credentials. Stronger isolation would need separate investigation or reduced capabilities.</td></tr>
+<tr><td><strong>Android stops work</strong></td><td>Bounded STOP, revocation and combined crash/recovery proofs exist. Broader recovery and background reliability remain open; likely engineering work, not a proven guarantee.</td><td>Expect interruption and explicit recovery. Do not promise desktop-like unattended operation.</td></tr>
+<tr><td><strong>Phone-tool reliability</strong></td><td>All seven direct categories have pieces. Model coverage is uneven; Pi notification failed. Its fixture repair passes directly, not yet as a new model result.</td><td>System consent and foreground steps can be needed. Capturing an image does not yet let the model see it.</td></tr>
+<tr><td><strong>Other agents / real phones</strong></td><td>Claude has startup/import probes only. Android 14, physical ABI/ARM64, battery and heat lack evidence. These could expose substantial blockers.</td><td>Keep the support promise narrow until measured. Three-agent production readiness is not established.</td></tr>
+</tbody>
+</table></div>
+
+<div class="decision">
+<h2 style="margin-top:0">Decisions that matter now</h2>
+<ol>
+<li><strong>Continue bounded feasibility work.</strong> Finish the current phone/recovery checkpoint; then prioritize real-phone and ordinary-update evidence before broad production commitments.</li>
+<li><strong>Keep the trust tradeoff explicit.</strong> Full-access Codex is already selected. Reopen it only if agent isolation becomes a product requirement; that changes the feasibility question.</li>
+<li><strong>Gate support claims on workflows.</strong> Pi + Codex are the evidence leaders. Claude remains a release risk. If it cannot meet acceptance, decide scope or date explicitly.</li>
+</ol>
+<p><strong>Reconsider the direction if:</strong> normal supported-agent updates repeatedly need agent source patches, or physical-phone resource/lifecycle limits make core workflows unusable. These are proposed decision gates, not newly agreed scope.</p>
+</div>
+
+<h2>Supporting evidence — expand only if useful</h2>
+<details>
+<summary>Exact progress and what “all seven categories” means</summary>
+<p>Direct measured pieces cover browser links, structured APIs/location, selected files, notification access, Accessibility, screen capture and a cooperating-app interface. They are not seven complete model-driven workflows for each agent.</p>
+<p>Codex model location + notification pass. Pi model location passes; notification failed after fixture intent reuse. A later direct repair succeeds and preserves the old model failure. The final scoped Pi group is pending native reused-request repair/readiness; it has no result yet.</p>
+<p>Latest independent inventory: <strong>189 verified receipt references; 112 assertions: 64 pass, 1 fail, 9 blocked, 38 untested.</strong> Receipts are evidence records, not 189 tests or a feasibility percentage. Historical failures remain retained. Current manager checkpoint and full backend acceptance are incomplete.</p>
+<p><a href="../../spike/m3/reports/AUTOMATED_DIRECT_INDEPENDENT.md">Latest direct assessment</a> · <a href="../../spike/m3/reports/PI_CATEGORIES_INDEPENDENT.md">Pi model outcome</a> · <a href="../../spike/m3/reports/CODEX_CATEGORIES_INDEPENDENT.md">Codex model outcome</a> · <a href="../../spike/m3/reports/FIXTURE_REUSE_INDEPENDENT.md">Direct fixture repair</a></p>
+</details>
+<details>
+<summary>Phone permissions, browser and capture qualifications</summary>
+<p>Selected-folder exact bytes, an independently viewed PNG after one-app MediaProjection consent, and the intended HTTPS browser destination now pass directly. Real system/app choices were operated by an authorized agent: selected folder, capture consent and signed-out Chrome setup with optional telemetry disabled. They are user-grantable routes, not personally completed onboarding evidence.</p>
+<p>Browser success needed host foregrounding after an earlier background dispatch failed. Android still reported partial connectivity; the observed page does not establish universally healthy networking or a fresh uncached transfer. Location results are last-known, with development grants, not proof of fresh physical GPS or normal-user onboarding.</p>
+<p>Capture tools currently initiate capture and return metadata; captured pixels are not delivered as model image input. No model vision claim follows. Stock Android also cannot grant an ordinary app unrestricted access to every other app’s private data or secure screen.</p>
+<p><a href="../../spike/m3/reports/AUTOMATED_DIRECT_INDEPENDENT.md">Consent, browser and capture evidence</a> · <a href="../../PHONE_USE_TESTS.md">Agreed phone coverage</a></p>
+</details>
+<details>
+<summary>Runtime maintenance and safety limits</summary>
+<p>Actual target-36 Kotlin service execution uses stock PRoot/Ubuntu and upstream Node/Git/npm. Stock Pi 1.5.2 and Codex 0.167 completed Unix, phone and resume workflows. The current-runtime Pi update proof is adjacent-version preservation; older Pi updates are historical evidence. Ordinary Codex updates and broad runtime/failed/interrupted-update preservation are not established.</p>
+<p>Kotlin enforces measured selective location/notification/Accessibility revocation and native STOP. Runtime startup, timeout, teardown and combined active backend/app interruption plus explicit recovery have bounded evidence, with preservation hashes and no observed uncertain-effect replay. Arbitrary unseen forks, automatic backend-only recovery, general background/reboot behavior and model-turn cancellation remain gaps. A conservative process-scanner failure is retained; later PID absence did not rewrite its result.</p>
+<p>Codex uses stock danger-full-access / approval never, explicitly selected. PRoot and shared UID do not protect Olea-readable credentials from an agent. Phone permission authority and hostile-agent containment are separate properties.</p>
+<p><a href="M2_NEXT_MANAGER_HANDOFF.md">Runtime, update and full-access evidence</a> · <a href="../../spike/m3/reports/ACTIVE_FOLLOWUP_INDEPENDENT.md">Recovery and cleanup qualifications</a> · <a href="../../spike/m3/reports/SPECIAL_ACCESS_INDEPENDENT.md">Permission revocation evidence</a></p>
+</details>
+<footer>
+Advisory snapshot of existing evidence at a1b3081; no new runtime tests or research. Some older summary documents still say “not run” or list superseded consent blockers. Later independent reports supply the measured results above. Links require the local repository alongside this standalone, network-free HTML.<br>
+<a href="../../PRODUCT.md">Product boundaries</a> · <a href="../../TECH_STACK.md">Selected feasibility direction</a> · <a href="M3_COORDINATION.md">Active checkpoint</a> · <a href="../../PROGRESS.md">Progress record</a>
+</footer>
+</main>
+</body>
+</html>
