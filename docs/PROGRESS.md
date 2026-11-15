@@ -18,6 +18,8 @@ Status: agent-managed snapshot of maintained implementation, evidence, failures,
 
 ## Current Work
 
+- **OBSERVED**: Imported unchanged Pexels photo 28950517 into [branding sources](ui/branding/sources/README.md#pexels-photo-28950517), following the previous photographic asset import. Recorded source URLs, indexed photographer credit (Ala J Graczyk), original title/description, separate license, dimensions (2543 × 3814), file size and SHA-256. JPEG structure and checksum verified; direct photo-page retrieval returned HTTP 403, so attribution comes from the indexed Pexels page.
+
 - **USER DECISION**: Ignore the whole `research/` directory rather than maintain individual research exclusions. Source: the user's research-publication cleanup instruction, “we'd rather ignore the whole research dir”.
 - **OBSERVED**: Added `/research/` to `.gitignore` and untracked all 601 research files while preserving local copies. At the user's subsequent instruction, “erase the history, keep the local”, rewrote all local branches, remote-tracking refs, and tags to remove `research/` from their entire history. Verified zero reachable research paths, identical trees outside `research/` for every rewritten ref, and unchanged SHA-256 hashes for all 601 local research files. Preserved the newer remote README edit and concurrent branding commit. **AGENT PLAN**: Publish rewritten `master` and `0.1.0` with explicit leases, remove local backup refs and old reflog entries, and verify remote refs. Existing clones and server caches may retain prior copies; historical commit IDs in working records now refer to the former history.
 
