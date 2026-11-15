@@ -31,6 +31,8 @@ The poster is 1600 × 2400 (2:3). Photo by Gary Barnes on Pexels; [source and se
 
 **OBSERVED:** The main poster retains its original photographic treatment. The separate refinement preserves natural photographic colors with a mild olive bias and subtle paper texture.
 
+**USER DECISION:** Create a further version with coarser dithering and a more paper-like background, preserving the current gentle refinement. Source: the user's next texture request. [Coarser paper version](variants/paper-dither-05/README.md); [preserved gentle refinement](variants/olive-refined-04/README.md).
+
 ## Original assets
 
 | File | Purpose |
