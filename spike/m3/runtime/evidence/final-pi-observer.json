@@ -1,9 +1,0 @@
-{
-  "attempt": "final-pi",
-  "readyPath": "/workspace/m3-pi-final-seven-capture-ready.json",
-  "startedAt": "2026-11-11T07:27:09.651Z",
-  "modelRequests": 0,
-  "nativePhoneCalls": 0,
-  "status": "fail",
-  "error": "No fresh capture request within finite observer deadline"
-}

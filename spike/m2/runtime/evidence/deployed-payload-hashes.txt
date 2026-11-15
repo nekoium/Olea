@@ -1,6 +1,0 @@
-61f26b5a6982ae085431b772d43ec585b4d252c219feec06d01c7b3bdcdc3824 *.setup/public-payload-11106c8.tar.gz
-0c5dc906d57c423a2f5295b524943e0dd0b6891fb891d25789a3955a7fa073ec *.setup/integration/spike/backend/dist/backend.js
-d8c560dc20f686bfdb261bbee642d0e91ae56f365bbdeccf72a5d3dd90b5182e *.setup/integration/spike/backend/extensions/phone.ts
-e793795aad1ce14b8cf0159b111c2cdb3dd43c009beaa74392bd15f94911e7e4 *.setup/integration/spike/tests/m2/pi-single.mjs
-d8719184575eecfd6ebc47b626f08abb40272408d3885d94325270b4e6881186 *.setup/integration/spike/tests/m2/assertions.mjs
-76bfa06835770162e00ef2ee2b4d8d0c34ae440b76db06aace427fdb999a8ad7 *.setup/integration/spike/tests/m2/observe-tree.mjs

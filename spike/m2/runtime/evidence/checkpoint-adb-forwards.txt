@@ -1,2 +1,0 @@
-emulator-5554 tcp:8768 tcp:8768
-

@@ -1,2 +1,0 @@
-eacb1fdb77d0509bbc632d10ab3cb4c673b589e67d7c1abb5ef59b3d6b2ed539 *spike/android/app/build/outputs/apk/modern/debug/app-modern-debug.apk
-5db196cb82ae65278c8106fcff2a11c7d9ea4eeae0b485729daf4cf0fb05c43a *spike/android/fixture/build/outputs/apk/modern/debug/fixture-modern-debug.apk

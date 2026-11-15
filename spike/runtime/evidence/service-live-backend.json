@@ -1,1 +1,0 @@
-{"status":200,"id":null,"ok":true,"result":{"events":["{\"type\":\"ready\",\"protocol\":1,\"maxSessions\":2,\"pid\":7823}","{\"type\":\"response\",\"id\":\"native-status-check\",\"success\":true,\"data\":[]}"]}}

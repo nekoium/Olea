@@ -1,9 +1,0 @@
-{
-  "at": "2026-11-11T05:24:35.021Z",
-  "reason": "Add bounded actual selected-phone result retention before allocation/provider read",
-  "source": "spike/tests/m2/pi-single.mjs",
-  "expected": "681467c3b5c1a918c8b653516ea4a22459142e2b0a302ea5313c23bf60742caf",
-  "actual": "681467c3b5c1a918c8b653516ea4a22459142e2b0a302ea5313c23bf60742caf",
-  "priorStagedRunnerPreserved": ".before-results",
-  "modelRequests": 0
-}

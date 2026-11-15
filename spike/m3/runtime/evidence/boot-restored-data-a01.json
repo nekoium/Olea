@@ -1,9 +1,0 @@
-{
-  "at": "2026-11-11T03:53:32.279Z",
-  "avd": "Olea_API_36\r\n36\r\nx86_64\r\n",
-  "packages": "package:dev.olea.m2.fixture uid:10217\r\npackage:dev.olea.m2.repeat uid:10218\r\npackage:dev.olea.m2.runtime uid:10216\r\n",
-  "appFiles": "total 76\r\n-rw-------  1 u0_a216 u0_a216    6 2026-11-11 10:36 backend-34535344166600.pid\r\n-rw-------  1 u0_a216 u0_a216  108 2026-11-11 10:36 bridge-config.json\r\n-rw-------  1 u0_a216 u0_a216   64 2026-11-11 01:08 bridge-token\r\n-rwx------  1 u0_a216 u0_a216  860 2026-11-11 01:19 linux.sh\r\ndrwxrwxrwx  2 u0_a216 u0_a216 4096 2026-11-11 10:31 m2\r\n-rw-------  1 u0_a216 u0_a216 7579 2026-11-11 10:39 phone-audit.jsonl\r\ndrwxrwxrwx 18 u0_a216 u0_a216 4096 2026-11-11 10:36 rootfs\r\n-rw-rw-rw-  1 u0_a216 u0_a216  557 2026-11-11 10:30 start-runtime.sh\r\ndrwxrwxrwx  3 u0_a216 u0_a216 4096 2026-11-11 10:36 tmp\r\n",
-  "rootfsState": "d098ab5e44b9aabb755f76d806598f43573c662b35e4a2eab1e312ec9ad195e2  files/rootfs/workspace/sentinel\r\nb37255587c561c067ca65f93b51f971093af448b655d0aeb66a9af1684f51f8a  files/rootfs/opt/olea/evidence/attempt-1794337061452-dffc52fe/workspace/combined-value.txt\r\n",
-  "installed": "package:/data/app/~~01oNAexQErAwgfroGdc6xQ==/dev.olea.m2.runtime-n5hfW2xyVEIzB9hZGDoMxw==/base.apk\r\n",
-  "forward": "8768\r\n"
-}

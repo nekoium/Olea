@@ -1,4 +1,0 @@
-{
-  status: 'fail',
-  error: 'No fresh capture request within finite observer deadline'
-}

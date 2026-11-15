@@ -1,2 +1,0 @@
-# Preserve captured assessment bytes across checkouts.
-*.json -text

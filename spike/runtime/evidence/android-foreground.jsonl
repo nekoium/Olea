@@ -1,9 +1,0 @@
-{"at":"2026-11-10T15:36:29.950Z","foreground":"topResumedActivity=ActivityRecord{142743190 u0 dev.olea.spike/.MainActivity t11}"}
-{"at":"2026-11-10T15:40:07.830Z","foreground":""}
-{"at":"2026-11-10T15:40:08.316Z","foreground":"topResumedActivity=ActivityRecord{28384507 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t6}"}
-{"at":"2026-11-10T15:44:49.199Z","foreground":"topResumedActivity=ActivityRecord{43920687 u0 dev.olea.spike/.MainActivity t13}"}
-{"at":"2026-11-10T15:45:55.355Z","foreground":""}
-{"at":"2026-11-10T15:45:55.811Z","foreground":"topResumedActivity=ActivityRecord{160915463 u0 dev.olea.spike/.MainActivity t14}"}
-{"at":"2026-11-10T15:46:49.903Z","foreground":"topResumedActivity=ActivityRecord{28384507 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t6}"}
-{"at":"2026-11-10T15:50:49.016Z","foreground":"topResumedActivity=ActivityRecord{101768750 u0 dev.olea.fixture/.FixtureActivity t12}"}
-{"at":"2026-11-10T15:51:11.704Z","foreground":"topResumedActivity=ActivityRecord{176720205 u0 dev.olea.fixture/.FixtureActivity t12}"}

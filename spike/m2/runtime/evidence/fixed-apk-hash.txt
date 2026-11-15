@@ -1,1 +1,0 @@
-dbd494c8f9c533b20a5ed0a067dbb2496a34c2494911a9fc9cb4fb19f6435887 *.setup/runtime-a07.apk

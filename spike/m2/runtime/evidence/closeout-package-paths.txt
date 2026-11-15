@@ -1,6 +1,0 @@
-package:/data/app/~~5uJ0yplvnR4RlKTcShKIEQ==/dev.olea.m2.runtime-EtEpWbFrTBTq1eID0y7QFg==/base.apk
-package:/data/app/~~4taukMhINQUN_GY_IDdqYQ==/dev.olea.m2.repeat-wMlvE-Le9IJq_mxNd8zhEA==/base.apk
-package:/data/app/~~esmNDUzHDZPf4PIsRVNIgw==/dev.olea.m2.fixture-n4oR8UcvmMbPOsjvrsKLkw==/base.apk
-package:dev.olea.m2.fixture uid:10217
-package:dev.olea.m2.repeat uid:10218
-package:dev.olea.m2.runtime uid:10216

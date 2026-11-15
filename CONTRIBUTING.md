@@ -1,6 +1,6 @@
 # Contributing
 
-The maintained application is under `android/`, its shared stock-agent adapters under `backend/`, and packaging under `runtime/`. `spike/` remains historical evidence. Do not turn experiment runners or provider-budget policies into product behavior.
+The maintained application is under `android/`, its shared stock-agent adapters under `backend/`, and packaging under `runtime/`. Historical `spike/` experiments are excluded from the current source tree; existing local copies are ignored. Earlier Git commits retain those experiments. Do not turn experiment runners or provider-budget policies into product behavior.
 
 Read `AGENTS.md` for repository instructions, `PRODUCT.md` for product intent, and `DESIGN.md` for interface decisions. Current release evidence lives under `docs/releases/`; completed build and consolidation records live under `docs/archive/`. Preserve concurrent edits and discussion artifacts.
 

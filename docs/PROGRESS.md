@@ -18,6 +18,9 @@ Status: agent-managed snapshot of maintained implementation, evidence, failures,
 
 ## Current Work
 
+- **USER DECISION**: Remove the historical `spike/` experiments from the shared repository while preserving local copies. Source: the user's approval of the local-preservation recommendation, “Good, let's remove that from remote.”
+- **OBSERVED**: Added `/spike/` to `.gitignore` and removed all 922 spike files (approximately 10.33 MB) from tracking. SHA-256 comparisons verified every formerly tracked local spike file remained unchanged; no spike paths remain in the index. Updated contributor guidance. This cleanup changes the current source tree only; earlier commits and release tags retain the historical experiments. No app source changed; no build or provider-backed tests were needed.
+
 - **OBSERVED**: Imported unchanged Pexels photo 28950517 into [branding sources](ui/branding/sources/README.md#pexels-photo-28950517), following the previous photographic asset import. Recorded source URLs, indexed photographer credit (Ala J Graczyk), original title/description, separate license, dimensions (2543 × 3814), file size and SHA-256. JPEG structure and checksum verified; direct photo-page retrieval returned HTTP 403, so attribution comes from the indexed Pexels page.
 
 - **USER DECISION**: Ignore the whole `research/` directory rather than maintain individual research exclusions. Source: the user's research-publication cleanup instruction, “we'd rather ignore the whole research dir”.

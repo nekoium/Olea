@@ -1,6 +1,0 @@
-{
-  "at": "2026-11-11T07:13:51.194Z",
-  "scope": "Read-only failed-direct capture diagnosis; no capture/model replay",
-  "file": "38415e1716878c3d2f54a04e21fcb5f45950d0b603cd0399083e7a5c95e43724  files/capture.png\r\n",
-  "requestAudit": "{\"atMs\":1794381021807,\"kind\":\"folder\",\"delivery\":\"onNewIntent\",\"task\":70,\"instance\":106243562}\n{\"atMs\":1794381186839,\"kind\":\"capture\",\"delivery\":\"onNewIntent\",\"task\":70,\"instance\":106243562}\n"
-}

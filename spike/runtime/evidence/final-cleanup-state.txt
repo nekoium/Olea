@@ -1,3 +1,0 @@
-u0_a216       4357   485 zygote64
-0-3
-MemTotal:        4013812 kB

@@ -1,8 +1,0 @@
-a307531b535e6d897ed42aca38009983920c0352f3ff287502a0e01f85203537 *.setup/public-full-access-fc04ee1.tar.gz
-7954694fc366ddfc32623f60ac7972c56bd41c540915bb62068d0193eae78180 *.setup/integration/spike/backend/src/backend.ts
-b21dcdcc6e9f9fb07ee364f806a75741db694f4f1fbe7d23308c8760c7907809 *.setup/integration/spike/backend/src/codex-session.ts
-8a3e2b1714bfbbce9d053ed9ed9d1c4af349d3be1a14d4704a57038f5d411214 *.setup/integration/spike/backend/src/codex-process.ts
-d95ad83ed602dc38c748557c17d533b1ae210759c44518f7238e5e2ca0529e2c *.setup/integration/spike/backend/dist/backend.js
-9721792fbca700f78722315a6f86bf45ebc8fc49216fee8c77647c34f499ba90 *.setup/integration/spike/backend/dist/codex-session.js
-307b7ddb5b01c8c12f8aac0690603a32133e100f86a0d89c3284f7e5eb954cef *.setup/integration/spike/backend/dist/codex-process.js
-a62aa5b6a9614f9f4cf3ed68c88b8562fc1e32dfe886a80582d0753195c20776 *.setup/integration/spike/tests/codex/full-access-preflight.mjs

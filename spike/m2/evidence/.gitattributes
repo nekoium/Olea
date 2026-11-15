@@ -1,2 +1,0 @@
-# Byte-hashed receipts and retained evidence must survive Windows checkout unchanged.
-**/*.json -text
