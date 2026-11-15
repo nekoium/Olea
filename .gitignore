@@ -1,4 +1,5 @@
 .setup/
+/research/
 .superpowers/**/state/
 .superpowers/brainstorm/.last-*
 .rim/
