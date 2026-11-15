@@ -1,4 +1,4 @@
-> ⚠️ **Olea is in rapid development — for bugs or suggestions, [open an issue](https://github.com/nekoium/Olea/issues) or [join the Discord](https://discord.gg/X8mCdDzz8).**
+> ⚠️ **Olea is undergoing rapid development! For bugs or suggestions, feel free to [open an issue](https://github.com/nekoium/Olea/issues) or [join the Discord](https://discord.gg/X8mCdDzz8).**
 
 <p align="center">
   <img src="assets/readme/olea-banner.png" width="100%" alt="Olea — the agents you use, running on your phone.">
