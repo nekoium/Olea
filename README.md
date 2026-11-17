@@ -34,9 +34,9 @@ Once that works, try summarizing a text file in the workspace, making a small sc
 
 ## Install and get your first reply
 
-You need an **ARM64 Android phone** for the planned 0.1.0 APK. Olea has been tested on a physical phone running **Android 14**; other Android versions and devices are not yet verified. You also need internet access, free storage for its Linux environment and tools, and credentials for a compatible model provider. Root access and a connected computer are not required for normal use.
+You need an **ARM64 Android phone** for the 0.1.0 APK. Olea has been tested on a physical phone running **Android 14**; other Android versions and devices are not yet verified. You also need internet access, free storage for its Linux environment and tools, and credentials for a compatible model provider. Root access and a connected computer are not required for normal use.
 
-1. **Download the ARM64 APK** from [Olea Releases](https://github.com/nekoium/Olea/releases) when 0.1.0 is available. An APK is Android's app installer. Read the release's device requirements and known issues before installing.
+1. **Download the signed [0.1.0 ARM64 APK](https://github.com/nekoium/Olea/releases/download/0.1.0/olea-0.1.0-arm64-v8a.apk).** An APK is Android's app installer. Read the [release notes](https://github.com/nekoium/Olea/releases/tag/0.1.0) for device requirements and known issues before installing.
 2. **Open the downloaded file.** If Android asks, allow your browser or file manager to install apps from that source, then install Olea. You can turn that permission off afterward.
 3. **Open Olea and choose Get started.** Choose your agent and a workspace. A managed workspace keeps its files inside Olea.
 4. **Prepare the environment and install your agent.** Follow setup's progress and wait for completion. This downloads packages and can take several minutes. If setup fails, read the error, check connectivity and storage, then retry explicitly.
@@ -97,6 +97,8 @@ Android can stop background processes, especially under battery or memory pressu
 ## Before you rely on it
 
 Olea is an early Android release. Pi's file work, interruption and saved continuation, all three agents' replies, and browser/Accessibility actions have been checked on the Android 14 ARM64 phone. These checks do not establish equal tool coverage across agents or compatibility with every app. Use each release's notes for the exact devices and agent versions checked. Continuous background execution, operation through reboot and compatibility with every future agent update are not guaranteed.
+
+The [terminal is experimental](https://github.com/nekoium/Olea/issues/1) and can appear blank. Use conversations and file previews for agent work while this display issue remains open.
 
 Scheduled tasks, reminders, alarms and general phone-folder cleanup are not included. Olea currently focuses on conversations, managed or connected workspace files and permission-controlled phone tools. It is not available for iOS.
 

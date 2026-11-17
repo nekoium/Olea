@@ -12,7 +12,8 @@ These entries summarize decisions already recorded in `PRODUCT.md`. If they dive
 
 ## Current Baseline
 
-- **OBSERVED**: Current 0.1.0 implementation and physical signed-app acceptance are tracked in [release execution](releases/0.1.0-execution.md) and [phone acceptance](releases/0.1.0-phone-acceptance.md). Pi real tasks and optional-agent native connectivity passed; ordinary terminal and final publication gates remain open there.
+- **OBSERVED — PUBLISHED**: Signed public [0.1.0](https://github.com/nekoium/Olea/releases/tag/0.1.0) was published on 2026-11-14 at `03:00:38Z`, 38 seconds after the user's deadline. The APK, runtime source companion, notices and checksums are available; final credential audit and publication checks are recorded in [publication](releases/0.1.0-publication.md) and [security audit](releases/0.1.0-security.md). Publication is complete.
+- **OBSERVED**: [Phone acceptance](releases/0.1.0-phone-acceptance.md) records Pi real tasks and all three agents' native connectivity. Terminal rendering/real-bridge failures remain preserved and tracked in [#1](https://github.com/nekoium/Olea/issues/1); publication does not establish terminal acceptance.
 - **OBSERVED**: The maintained Android base and established capability consolidation are recorded in `docs/archive/CORE_BUILD_RECORD.md` and `docs/archive/CONSOLIDATION_RECORD.md`.
 - **OBSERVED**: The consolidated `0.2-base` APK and its finite checks are documented in `docs/archive/CONSOLIDATION_RECORD.md`. Provider-backed integrated Pi/Codex acceptance remains unverified there.
 - **OPEN**: Product decisions and release placement for new requested capabilities remain as recorded in `PRODUCT.md` and `docs/discussions/FEATURE_PRIORITIES.md`.
@@ -31,13 +32,16 @@ For each approved task:
 
 ## Current Agent Plan
 
-- **AGENT PLAN**: Finish the ordinary terminal defect, final signed-APK/source-notice snapshot, exact repository/history/artifact credential checks, public README acceptance and GitHub publication before closing 0.1.0. Preserve failures and scope limits. Current source/phone evidence, not older core matrices, determines readiness.
+- **AGENT PLAN**: Maintain the published MVP; investigate the ordinary terminal rendering defect under [#1](https://github.com/nekoium/Olea/issues/1). Use visible output and real input evidence to assess a fix, preserving earlier failures. Completed signing, source/notice delivery, credential audit and publication are historical release work, not pending 0.1.0 gates.
+- **USER DECISION**: [#2](https://github.com/nekoium/Olea/issues/2) and [#3](https://github.com/nekoium/Olea/issues/3) are closed as not planned. Terminal access remains intentional, and additional Codex/Claude acceptance work is omitted; neither closure establishes passing tests or removes agent support. Source: [PRODUCT.md, issue triage decisions](../PRODUCT.md#issue-triage-decisions).
+- **USER DECISION**: Defer lifecycle recovery [#4](https://github.com/nekoium/Olea/issues/4) and export/restore design [#9](https://github.com/nekoium/Olea/issues/9) to “The far side”. UI improvement [#11](https://github.com/nekoium/Olea/issues/11) is T1; #11 and user stories [#13](https://github.com/nekoium/Olea/issues/13)/[#14](https://github.com/nekoium/Olea/issues/14) need discussion. No redesign or new feature behavior is selected. Source: [PRODUCT.md, issue triage decisions](../PRODUCT.md#issue-triage-decisions).
+- **OPEN**: Remaining phone-permission acceptance is tracked in [#6](https://github.com/nekoium/Olea/issues/6), and modified-library recipe validation in [#8](https://github.com/nekoium/Olea/issues/8). These gaps do not reopen completed publication. Broader Android compatibility remains unverified beyond the bounded release evidence; [#5](https://github.com/nekoium/Olea/issues/5) is closed, which alone adds no device acceptance evidence.
 - **AGENT PLAN**: Continue maintenance from the maintained Android base. Select the next feature or defect from explicit user requests and observed failures; do not infer a feature priority from this roadmap.
 - **AGENT PLAN**: For bugs, reproduce the failure, investigate alternatives, implement the smallest complete fix within approved behavior, and verify the changed path.
 - **AGENT PLAN**: Assess which task steps can be automated. Run reliable authorized steps automatically; report steps that need user participation.
 - **AGENT PLAN**: Run independent, fresh-context security-probing batches as a separate workstream. Record findings and proposals; do not let agent recommendations create user policy.
 
-No provider-backed Olea testing is authorized without a separate explicit allocation. A roadmap item does not allocate test spending.
+Issue checklists and agent proposals organize possible follow-up; they are not user commitments or new release gates. No provider-backed Olea testing is authorized without a separate explicit allocation. A roadmap item does not allocate test spending.
 
 ## Open Decisions
 
