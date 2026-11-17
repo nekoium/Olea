@@ -1,0 +1,241 @@
+{
+  "status": "OBSERVED",
+  "device": {
+    "serial": "QV7708SZCK",
+    "model": "Sony XQ-CT72",
+    "android": "14",
+    "api": 34,
+    "abi": "arm64-v8a",
+    "webViewPackage": "com.google.android.webview",
+    "webViewVersion": "157.0.8103.50"
+  },
+  "artifacts": {
+    "targetPackage": "dev.olea.terminaltest",
+    "testPackage": "dev.olea.terminaltest.test",
+    "targetSha256": "b0bd0fc9a9ee87adac8cf8d91d45f1f681f2596646a12de50ec4cab3cfd950d6",
+    "testSha256": "c0d116bc515f8eb9d9716e25e52cd3b34be1a71f2e5e76cf0e24d73edd66ffce",
+    "officialBaselineSha256": "00553730906e2b9a6cd70dc33bebff53ebba83c2d9c09a19e3ed1ba86833844c",
+    "buildType": "debug",
+    "runner": "dev.olea.app.TerminalWebViewInstrumentation",
+    "case": "actual"
+  },
+  "sourceReceipts": {
+    "final": ".setup/issue-triage/final-actual.txt",
+    "observerCounterfactual": ".setup/issue-triage/counterfactual-observer.txt",
+    "selectionRegression": ".setup/issue-triage/regression-first.txt"
+  },
+  "counterfactual": {
+    "passed": false,
+    "failure": "IllegalStateException: JavaScript condition timed out: (()=>{try{return Array.from({length:terminal.buffer.active.length},(_,i)=>\n  terminal.buffer.active.getLine(i).translateToString(true)).join('\\n').includes(\"olea-actual-169de5e4\")}catch(e){return false}})()",
+    "phase": "ordinary terminal real bridge printf",
+    "bright": 0,
+    "displayError": "Terminal display failed: https://olea.invalid/terminal.html:15: ResizeObserver loop completed with undelivered notifications.. Reopen the terminal to retry."
+  },
+  "selectionRegression": {
+    "passed": false,
+    "failure": "IllegalStateException: Leaving and returning changed the selected terminal",
+    "phase": "ordinary leave/return preserves selected session"
+  },
+  "final": {
+    "passed": true,
+    "providerRequests": 0,
+    "ordinaryActivityTerminal": "pass",
+    "keyboardAndPtyResize": {
+      "expandedRows": 43,
+      "keyboardRows": 18,
+      "columns": 47
+    },
+    "ctrlCContinuationMillis": 1282,
+    "sessionSwitching": "pass",
+    "leaveAndReturn": "pass",
+    "secondWorkspaceAndReturn": "pass",
+    "selectionPreserved": true,
+    "stoppedOnlyBackendStartedByDiagnostic": true,
+    "firstWorkspace": "5933aa1a-0bde-47e3-b2a4-b484248978e6",
+    "secondWorkspace": "582b20a9-033a-4540-8bb5-6ce06f38e356"
+  },
+  "samples": {
+    "actualAfterTap": {
+      "nativeWidth": 1096,
+      "nativeHeight": 834,
+      "imeVisible": true,
+      "viewport": [
+        417,
+        317
+      ],
+      "columns": 47,
+      "rows": 18,
+      "rootHeightCss": 317,
+      "rowTextChars": 292,
+      "sampledBright": 1165
+    },
+    "keyboardHidden": {
+      "nativeWidth": 1096,
+      "nativeHeight": 1854,
+      "imeVisible": false,
+      "viewport": [
+        417,
+        706
+      ],
+      "columns": 47,
+      "rows": 43,
+      "rootHeightCss": 706,
+      "rowTextChars": 429,
+      "sampledBright": 1590
+    },
+    "keyboardShown": {
+      "nativeWidth": 1096,
+      "nativeHeight": 834,
+      "imeVisible": true,
+      "viewport": [
+        417,
+        317
+      ],
+      "columns": 47,
+      "rows": 18,
+      "rootHeightCss": 317,
+      "rowTextChars": 429,
+      "sampledBright": 2449
+    },
+    "ptyResize": {
+      "nativeWidth": 1096,
+      "nativeHeight": 834,
+      "imeVisible": true,
+      "viewport": [
+        417,
+        317
+      ],
+      "columns": 47,
+      "rows": 18,
+      "rootHeightCss": 317,
+      "rowTextChars": 555,
+      "sampledBright": 4996
+    },
+    "after-interrupt": {
+      "nativeWidth": 1096,
+      "nativeHeight": 834,
+      "imeVisible": true,
+      "viewport": [
+        417,
+        317
+      ],
+      "columns": 47,
+      "rows": 18,
+      "rootHeightCss": 317,
+      "rowTextChars": 497,
+      "sampledBright": 4681
+    },
+    "secondShellPrompt": {
+      "nativeWidth": 1096,
+      "nativeHeight": 1854,
+      "imeVisible": false,
+      "viewport": [
+        417,
+        706
+      ],
+      "columns": 47,
+      "rows": 43,
+      "rootHeightCss": 706,
+      "rowTextChars": 292,
+      "sampledBright": 629
+    },
+    "second-shell": {
+      "nativeWidth": 1096,
+      "nativeHeight": 1854,
+      "imeVisible": false,
+      "viewport": [
+        417,
+        706
+      ],
+      "columns": 47,
+      "rows": 43,
+      "rootHeightCss": 706,
+      "rowTextChars": 441,
+      "sampledBright": 1620
+    },
+    "firstShellRestored": {
+      "nativeWidth": 1096,
+      "nativeHeight": 1854,
+      "imeVisible": false,
+      "viewport": [
+        417,
+        706
+      ],
+      "columns": 47,
+      "rows": 43,
+      "rootHeightCss": 706,
+      "rowTextChars": 898,
+      "sampledBright": 5794
+    },
+    "returnedFirstShell": {
+      "nativeWidth": 1096,
+      "nativeHeight": 1854,
+      "imeVisible": false,
+      "viewport": [
+        417,
+        706
+      ],
+      "columns": 47,
+      "rows": 43,
+      "rootHeightCss": 706,
+      "rowTextChars": 898,
+      "sampledBright": 5794
+    },
+    "otherWorkspacePrompt": {
+      "nativeWidth": 1096,
+      "nativeHeight": 1854,
+      "imeVisible": false,
+      "viewport": [
+        417,
+        706
+      ],
+      "columns": 47,
+      "rows": 43,
+      "rootHeightCss": 706,
+      "rowTextChars": 292,
+      "sampledBright": 641
+    },
+    "other-workspace": {
+      "nativeWidth": 1096,
+      "nativeHeight": 1854,
+      "imeVisible": false,
+      "viewport": [
+        417,
+        706
+      ],
+      "columns": 47,
+      "rows": 43,
+      "rootHeightCss": 706,
+      "rowTextChars": 447,
+      "sampledBright": 1633
+    },
+    "returnedFromOtherWorkspace": {
+      "nativeWidth": 1096,
+      "nativeHeight": 1854,
+      "imeVisible": false,
+      "viewport": [
+        417,
+        706
+      ],
+      "columns": 47,
+      "rows": 43,
+      "rootHeightCss": 706,
+      "rowTextChars": 898,
+      "sampledBright": 5794
+    },
+    "final-output": {
+      "nativeWidth": 1096,
+      "nativeHeight": 1854,
+      "imeVisible": false,
+      "viewport": [
+        417,
+        706
+      ],
+      "columns": 47,
+      "rows": 43,
+      "rootHeightCss": 706,
+      "rowTextChars": 1047,
+      "sampledBright": 8385
+    }
+  }
+}

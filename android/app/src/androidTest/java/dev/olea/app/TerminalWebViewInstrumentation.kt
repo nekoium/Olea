@@ -81,6 +81,17 @@ class TerminalWebViewInstrumentation : Instrumentation() {
     }
     private fun capture(receipt: JSONObject, label: String) {
         if (!::view.isInitialized) return
+        val screenshot = uiAutomation.takeScreenshot()
+        val evidence = java.io.File(targetContext.filesDir, "terminal-$label.png")
+        evidence.outputStream().use { screenshot.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        screenshot.recycle()
+        val labels = mutableListOf<String>()
+        fun collect(node: AccessibilityNodeInfo) {
+            node.text?.toString()?.let { labels.add(it) }
+            for (i in 0 until node.childCount) node.getChild(i)?.let(::collect)
+        }
+        uiAutomation.rootInActiveWindow?.let(::collect)
+        receipt.put("${label}Labels", JSONArray(labels))
         receipt.put(label, JSONObject().put("native", nativeState()).put("javascript", javascriptState()).put("visual", visualState()).put("errors", errors.toString()))
     }
     private fun <T> ui(action: () -> T): T {
@@ -108,7 +119,15 @@ class TerminalWebViewInstrumentation : Instrumentation() {
         override fun getMethod() = method
         override fun getRequestHeaders() = emptyMap<String, String>()
     }
-    override fun onCreate(arguments: Bundle?) { selected = arguments?.getString("case") ?: "factory"; super.onCreate(arguments); start() }
+    override fun onCreate(arguments: Bundle?) {
+        selected = arguments?.getString("case") ?: "factory"
+        super.onCreate(arguments)
+        if (targetContext.packageName == "dev.olea.terminaltest") {
+            targetContext.getSharedPreferences("olea-ui", android.content.Context.MODE_PRIVATE).edit()
+                .putBoolean("setup-complete", true).apply()
+        }
+        start()
+    }
     override fun onStart() {
         val receipt = JSONObject().put("providerRequests", 0).put("case", selected)
             .put("targetApk", targetContext.applicationInfo.sourceDir)
@@ -387,6 +406,8 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             val field = MainActivity::class.java.getDeclaredField("snapshot\$delegate").apply { isAccessible = true }
             val state = field.get(host) as androidx.compose.runtime.State<*>
             val snapshot = state.value as UiSnapshot
+            val failureField = MainActivity::class.java.getDeclaredField("failure\$delegate").apply { isAccessible = true }
+            receipt.put("${label}Error", (failureField.get(host) as androidx.compose.runtime.State<*>).value.toString())
             receipt.put(label, JSONObject().put("available", snapshot.available)
                 .put("activeWorkspace", snapshot.active?.workspaceId)
                 .put("terminalCount", snapshot.terminals.size)
@@ -400,16 +421,21 @@ class TerminalWebViewInstrumentation : Instrumentation() {
         awaitCondition(10, "RuntimeService creation") { RuntimeService.current != null }
         val runtime = RuntimeService.current!!
         val selectedBefore = runtime.activeConversation().id
-        val workspace = runtime.store.workspaces().single { it.id == runtime.activeConversation().workspaceId }
-        check(!runtime.workspaceFolders.isConnected(workspace.id)) { "Actual diagnostic requires the currently selected conversation to use a managed workspace; selection was not changed" }
-        check(runtime.environmentReady()) { "Actual diagnostic requires the already-prepared environment" }
+        val workspace = runtime.store.createWorkspace("Terminal regression first ${SystemClock.uptimeMillis()}")
         val wasRunning = runtime.environmentRunning()
         check(wasRunning || !RuntimeService.busy) { "Another environment operation is active" }
         var startedBackend = false
         var created: String? = null
         var failure: Throwable? = null
         try {
-            if (!wasRunning) {
+            if (!runtime.environmentReady() && targetContext.packageName == "dev.olea.terminaltest") {
+                stage("prepare isolated diagnostic environment")
+                startedBackend = true
+                runtime.prepareEnvironment()
+                awaitCondition(1200, "isolated environment preparation") { runtime.environmentReady() && runtime.environmentRunning() && !RuntimeService.busy }
+            }
+            check(runtime.environmentReady()) { "Actual diagnostic requires the already-prepared environment" }
+            if (!runtime.environmentRunning()) {
                 startedBackend = true
                 runtime.startEnvironment(false)
                 awaitCondition(90, "backend without opening an agent") { runtime.environmentRunning() && !RuntimeService.busy }
@@ -421,12 +447,13 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             activitySnapshot(host, receipt, "beforeNavigationSnapshot")
             stage("ordinary OleaApp navigation to workspace terminal")
             // These are the existing user controls, not replacement composition or state injection.
-            clickLabel("Conversation details")
-            clickLabel("Workspace details")
+            clickLabel("Workspaces")
+            clickLabel(workspace.name)
+            clickLabel("Details")
             clickLabel("Terminal")
             adoptViewport(host)
             val original = view
-            receipt.put("webViewClassLoader", ui { view.javaClass.classLoader.toString() })
+            receipt.put("firstWorkspace", workspace.id)
             receipt.put("actualTimeline", JSONArray())
             val timeline = receipt.getJSONArray("actualTimeline")
             repeat(4) { index ->
@@ -451,20 +478,14 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             awaitCondition(8, "ordinary RuntimeService output") { current().output.contains("olea-actual-$tag") }
             awaitScript(bufferContains("olea-actual-$tag"))
             capture(receipt, "actualAfterPrintf")
-            var visible = visualState()
+            val visible = visualState()
             receipt.put("actualPixelProof", visible)
-            if (visible.getInt("sampledBright") < 50) {
-                stage("diagnostic explicit-pixel layout probe")
-                evaluate("[document.documentElement,document.body,document.getElementById('terminal')].forEach(e=>{e.style.position='fixed';e.style.left='0px';e.style.top='0px';e.style.margin='0px';e.style.width=innerWidth+'px';e.style.height=innerHeight+'px';e.style.overflow='hidden'});fit();terminal.refresh(0,terminal.rows-1)")
-                Thread.sleep(500)
-                visible = visualState()
-                receipt.put("explicitPixelProbe", visible)
-            }
             check(visible.getInt("sampledBright") >= 50 && (visible.optJSONObject("rows")?.optInt("textChars", 0) ?: 0) >= 20) {
                 "Real WebView draw lacks text-sized pixels (cursor alone is insufficient): $visible"
             }
+            actualRegression(host, receipt, runtime, workspace, id, "olea-actual-$tag")
             activitySnapshot(host, receipt, "actualFinalSnapshot")
-            receipt.put("ordinaryActivityTerminal", if (receipt.has("explicitPixelProbe")) "diagnostic-layout-override-required" else "pass")
+            receipt.put("ordinaryActivityTerminal", "pass")
         } catch (error: Throwable) {
             failure = error
             runCatching { capture(receipt, "actualFailureState") }
@@ -484,6 +505,113 @@ class TerminalWebViewInstrumentation : Instrumentation() {
                 receipt.put("actualCleanupFailure", cleanup.toString())
                 if (failure == null) throw cleanup else failure.addSuppressed(cleanup)
             }
+        }
+    }
+
+    private fun actualRegression(host: MainActivity, receipt: JSONObject, runtime: RuntimeService, workspace: WorkspaceInfo, first: String, firstMarker: String) {
+        val tag = java.lang.Long.toHexString(SystemClock.uptimeMillis())
+        val shells = mutableListOf<String>()
+        fun shell(id: String) = runtime.terminals(workspace.id).first { it.id == id }
+        fun painted(marker: String, label: String) {
+            awaitScript(bufferContains(marker))
+            awaitScript("document.querySelector('.xterm-rows').textContent.includes(${JSONObject.quote(marker)})")
+            awaitCondition(5, "painted terminal text") { visualState().getInt("sampledBright") >= 50 }
+            Thread.sleep(250) // Allow the compositor to present the verified DOM rows before the screenshot.
+            capture(receipt, label)
+            check(visualState().getJSONObject("terminal").getDouble("height") > 0)
+            check(ui { view.height > 0 })
+        }
+        fun command(id: String, label: String) {
+            val marker = "olea-$label-$tag"
+            evaluate(terminalKeyScript("printf '\\n%s%s\\n' 'olea-$label-' '$tag'\r"))
+            awaitCondition(8, "PTY command $label") { runtime.store.workspaces().any { w ->
+                runtime.terminals(w.id).any { it.id == id && it.output.contains(marker) }
+            } }
+            painted(marker, label)
+        }
+        fun hideKeyboard() {
+            sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
+            awaitCondition(5, "keyboard hidden") { ui { view.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) == false } }
+        }
+        fun switchFrom(name: String, to: String, marker: String, label: String) {
+            val old = view
+            clickLabel(name)
+            clickLabel(to)
+            adoptViewport(host, listOf(old))
+            painted(marker, label)
+        }
+        fun openWorkspace(name: String) {
+            clickLabel("Back") // Workspace details.
+            clickLabel("Back") // Previous conversation list or conversation.
+            clickLabel("Workspaces")
+            clickLabel(name)
+            clickLabel("Details")
+            val old = view
+            clickLabel("Terminal")
+            adoptViewport(host, listOf(old))
+        }
+        try {
+            stage("ordinary keyboard hide/show and real PTY resize")
+            val smallRows = (evaluate("terminal.rows") as Number).toInt()
+            hideKeyboard()
+            awaitCondition(5, "terminal expands after keyboard hide") { (evaluate("terminal.rows") as Number).toInt() > smallRows }
+            painted(firstMarker, "keyboardHidden")
+            val largeRows = (evaluate("terminal.rows") as Number).toInt()
+            tapEditor(receipt, "keyboardShown")
+            awaitCondition(5, "terminal shrinks after keyboard show") { (evaluate("terminal.rows") as Number).toInt() < largeRows }
+            val rows = (evaluate("terminal.rows") as Number).toInt()
+            val cols = (evaluate("terminal.cols") as Number).toInt()
+            evaluate(terminalKeyScript("printf '\\n%s' 'olea-size-'; stty size\r"))
+            awaitCondition(8, "PTY dimensions $rows $cols") { shell(first).output.contains("olea-size-$rows $cols") }
+            painted("olea-size-$rows $cols", "ptyResize")
+            receipt.put("keyboardAndPtyResize", JSONObject().put("expandedRows", largeRows).put("keyboardRows", rows).put("columns", cols))
+
+            stage("ordinary Ctrl-C control and continuation")
+            evaluate(terminalKeyScript("printf '\\n%s%s\\n' 'olea-busy-' '$tag'; sleep 20; printf '\\n%s%s\\n' 'olea-late-' '$tag'\r"))
+            awaitCondition(8, "foreground job started") { shell(first).output.contains("olea-busy-$tag") }
+            clickLabel("Ctrl")
+            val interrupted = SystemClock.elapsedRealtime()
+            evaluate(terminalKeyScript("c"))
+            Thread.sleep(300)
+            command(first, "after-interrupt")
+            check(!shell(first).output.contains("olea-late-$tag"))
+            receipt.put("ctrlCContinuationMillis", SystemClock.elapsedRealtime() - interrupted)
+            hideKeyboard()
+
+            stage("ordinary session switching")
+            val second = runtime.createTerminal(workspace.id, "Regression second shell")
+            shells.add(second)
+            awaitCondition(20, "second shell prompt") { shell(second).state == "running" && shell(second).output.contains("#") }
+            switchFrom("Actual UI diagnostic", "Regression second shell", "#", "secondShellPrompt")
+            command(second, "second-shell")
+            switchFrom("Regression second shell", "Actual UI diagnostic", "olea-after-interrupt-$tag", "firstShellRestored")
+            receipt.put("sessionSwitching", "pass")
+
+            stage("ordinary leave/return preserves selected session")
+            val old = view
+            clickLabel("Back")
+            clickLabel("Terminal")
+            adoptViewport(host, listOf(old))
+            check(accessibilityNode("Actual UI diagnostic") != null) { "Leaving and returning changed the selected terminal" }
+            painted("olea-after-interrupt-$tag", "returnedFirstShell")
+            receipt.put("leaveAndReturn", "pass")
+
+            stage("ordinary terminal in a second workspace")
+            val other = runtime.store.createWorkspace("Terminal regression $tag")
+            val third = runtime.createTerminal(other.id, "Regression other workspace")
+            shells.add(third)
+            receipt.put("secondWorkspace", other.id)
+            awaitCondition(20, "second workspace shell") { runtime.terminals(other.id).any { it.id == third && it.state == "running" } }
+            openWorkspace(other.name)
+            painted("#", "otherWorkspacePrompt")
+            command(third, "other-workspace")
+            openWorkspace(workspace.name)
+            check(accessibilityNode("Actual UI diagnostic") != null) { "Returning from another workspace changed the selected terminal" }
+            painted("olea-after-interrupt-$tag", "returnedFromOtherWorkspace")
+            command(first, "final-output")
+            receipt.put("secondWorkspaceAndReturn", "pass")
+        } finally {
+            shells.forEach { runtime.closeTerminal(it) }
         }
     }
 

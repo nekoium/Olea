@@ -3,6 +3,9 @@ gradle.beforeProject { project ->
     project.pluginManager.withPlugin('com.android.application') {
         project.extensions.getByName('androidComponents').finalizeDsl { android ->
             android.defaultConfig.testInstrumentationRunner = 'dev.olea.app.TerminalWebViewInstrumentation'
+            if (project.providers.gradleProperty('oleaTerminalTestApp').getOrElse('false').toBoolean()) {
+                android.defaultConfig.applicationId = 'dev.olea.terminaltest'
+            }
         }
     }
 }

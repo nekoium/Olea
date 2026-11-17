@@ -16,6 +16,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,6 +55,7 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
     var setupAgent by rememberSaveable { mutableStateOf(preferences.getString("setup-agent", "")!!) }
     var setupWorkspace by rememberSaveable { mutableStateOf(preferences.getString("setup-workspace", "")!!) }
     var screen by rememberSaveable { mutableStateOf(if (setup) "setup" else if (preferences.getBoolean("fresh-chat", false)) "draft" else "chat") }
+    val terminalState = rememberSaveableStateHolder()
     val history = remember { mutableStateListOf<String>() }
     var drawer by rememberSaveable { mutableStateOf(false) }
     var details by rememberSaveable { mutableStateOf(false) }
@@ -318,7 +320,9 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                         }
                     }
                     "files", "file" -> if (workspace != null) WorkspaceFiles(workspace, perform) else Page { Notice("Select a workspace first.") }
-                    "terminal" -> WorkspaceTerminal(snapshot, workspace, perform)
+                    "terminal" -> terminalState.SaveableStateProvider(workspace?.id.orEmpty()) {
+                        WorkspaceTerminal(snapshot, workspace, perform)
+                    }
                     "agents" -> Page {
                         Heading("Agents")
                         Label("Each conversation keeps one agent. Add another agent, then start a new conversation to use it.", muted = true)
