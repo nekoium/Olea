@@ -18,6 +18,8 @@ Status: agent-managed snapshot of maintained implementation, evidence, failures,
 
 ## Current Work
 
+- **OBSERVED**: #14 discussion worker `ctx_75ac212736c0` completed its initial [diagnostic brief](discussions/issue-14/brief.md). Source inspection distinguishes connected workspaces (ordinary file tools) from the Phone access folder picker (random test-file write/read only). Historical synthetic Pi-folder acceptance does not establish the reported Obsidian case. No root cause, runtime check or fix is claimed; no device access/provider spending/public writes occurred. Issue and kept-open discussion remain open. **OPEN**: Exact request/reply/tool activity, agent/model, vault connection route and selected workspace are the first reproduction details needed.
+
 - **OBSERVED**: #13 discussion worker `ctx_61e4efdf074c` completed its preparation task in commit `96a17f9`; [discussion brief](discussions/issue-13/brief.md) distinguishes verified primitives from proposed end-to-end jobs. No device access, provider spending or public writes. Issue #13 remains open and the worker remains available in its kept-open chat. **OPEN**: Identify the viewer's intended task and prior agent experience before choosing a useful demonstration; no scenario or product change is approved by the brief.
 
 - **USER DECISION**: Delegate #1 and #7 for autonomous completion, plus one separate discussion worker each for #11, #13 and #14. User is connecting the phone for terminal acceptance. Source: current manager/delegation instruction.
