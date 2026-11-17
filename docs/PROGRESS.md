@@ -18,6 +18,8 @@ Status: agent-managed snapshot of maintained implementation, evidence, failures,
 
 ## Current Work
 
+- **OBSERVED**: #13 discussion worker `ctx_61e4efdf074c` completed its preparation task in commit `96a17f9`; [discussion brief](discussions/issue-13/brief.md) distinguishes verified primitives from proposed end-to-end jobs. No device access, provider spending or public writes. Issue #13 remains open and the worker remains available in its kept-open chat. **OPEN**: Identify the viewer's intended task and prior agent experience before choosing a useful demonstration; no scenario or product change is approved by the brief.
+
 - **USER DECISION**: Delegate #1 and #7 for autonomous completion, plus one separate discussion worker each for #11, #13 and #14. User is connecting the phone for terminal acceptance. Source: current manager/delegation instruction.
 - **OBSERVED**: Started five Pi structured sub-session workers in Orca Run `run_a118cdebb98c`: #1 `ctx_cdbed3768479` / `task_371ccee0cf99`; #7 `ctx_62024c95d770` / `task_d9b92a0c5ab3`; #11 `ctx_730ab14feada` / `task_264bd7924560`; #13 `ctx_61e4efdf074c` / `task_004943f52e45`; #14 `ctx_75ac212736c0` / `task_f6910864a2c9`. All start receipts report ready/structured; discussion workers are kept open. Briefs live in ignored `.setup/issue-triage/`. #1 alone owns device/build mutations and terminal code; #7 owns release-status docs; discussion workers own only their respective `docs/discussions/issue-N/` directories. Manager retains PRODUCT/PROGRESS ownership and integration. No provider-backed Olea test allocation or release publication is implied. Completion and physical phone connection remain unverified at dispatch.
 
