@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Olea #11 · Existing UI evidence</title>
+<style>
+:root{color-scheme:light dark;font-family:system-ui,sans-serif;background:#fafbf8;color:#242c22}*{box-sizing:border-box}body{margin:0;padding:24px;max-width:1600px;margin-inline:auto}h1{font-size:24px;margin:0 0 12px}p{line-height:1.5;max-width:90ch}a{color:inherit}.screens{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:24px}figure{margin:0;min-width:0}figcaption{min-height:110px;font-size:14px;line-height:1.5}figcaption strong{display:block;font-size:16px;margin-bottom:6px}img{display:block;width:100%;height:auto;border:1px solid #cbd2c2;border-radius:14px}footer{margin-top:28px;border-top:1px solid #cbd2c2;padding-top:16px}@media(max-width:1000px){.screens{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){body{padding:16px}.screens{grid-template-columns:1fr}figcaption{min-height:0;margin-bottom:12px}}@media(prefers-color-scheme:dark){:root{background:#202620;color:#e4e9df}}
+</style>
+</head>
+<body>
+<h1>Issue #11 · Existing UI evidence</h1>
+<p><strong>OBSERVED:</strong> Existing screenshots for discussion. Browser fixtures and a saved native release capture show different content and states; this is a visual comparison, not a controlled device test.</p>
+<p><strong>OPEN:</strong> Which part most needs to feel better first: reading and replying in a conversation, finding conversations/workspaces, or setup and management?</p>
+<p><strong>AGENT PLAN:</strong> After scope is chosen, compare two visual candidates within the approved flat green direction. No new design is selected here. <a href="brief.md">Sources and discussion brief</a>.</p>
+<div class="screens">
+<figure><figcaption><strong>Native release capture</strong>OBSERVED · Existing saved capture. Outlined Provider and prominent bottom destinations. Local image may be unavailable in a clean checkout.</figcaption><a href="../../../.setup/release-010/canceled-screen.png"><img src="../../../.setup/release-010/canceled-screen.png" alt="Saved native conversation with long sample response, outlined Provider control and prominent Conversations and Workspaces buttons"></a></figure>
+<figure><figcaption><strong>Browser reference · light</strong>OBSERVED · Simulated completed conversation. Transparent bottom destinations, quiet tool block and unobstructed reply.</figcaption><a href="../../ui/scenarios-09/chat.jpg"><img src="../../ui/scenarios-09/chat.jpg" alt="Light browser conversation reference with pale user bubble, inline agent reply, tool block and text navigation"></a></figure>
+<figure><figcaption><strong>Browser reference · dark</strong>OBSERVED · Simulated working conversation. Same structure on dark green surfaces; this is an existing theme reference.</figcaption><a href="../../ui/scenarios-dark-10/working.jpg"><img src="../../ui/scenarios-dark-10/working.jpg" alt="Dark browser conversation reference with Working chip and Stop turn control"></a></figure>
+<figure><figcaption><strong>Browser reference · draft</strong>OBSERVED · Joined workspace/agent extension above typing area. The still image cannot demonstrate first-send motion.</figcaption><a href="../../ui/scenarios-09/draft.jpg"><img src="../../ui/scenarios-09/draft.jpg" alt="Light browser new-conversation reference with workspace and agent choices joined to the composer"></a></figure>
+</div>
+<footer><p>USER DECISION · Retain flat surfaces, softened corners, green palette, minimal approachable icons, light/dark themes and unobtrusive motion. Sources: <a href="../../ui/interface-design/REFINEMENTS.md">annotated refinements</a> and <a href="../../ui/interface-design/GENTLE_THEME.md">joined composer and theme discussion</a>. Exact measurements and incidental sample choices are not automatically approvals.</p></footer>
+</body>
+</html>
