@@ -12,6 +12,12 @@ Status: evolving product scope and decision record. The maintained core directio
 
 **USER DECISION**: Audit repository files and Git history for private credentials and sensitive information before publication. Use the supplied local signing identity; keep signing material and temporary test credentials outside tracked files. Provider testing uses GPT for Pi/Codex and Claude for Claude Code, cheapest working models for connectivity/run checks, and Pi with `gpt-6.1-sol` only for real functionality and phone-use testing. Source: the same release instruction.
 
+## Issue triage decisions
+
+**USER DECISION**: Close issues [#3](https://github.com/nekoium/Olea/issues/3) and [#2](https://github.com/nekoium/Olea/issues/2) as not planned. Additional Codex/Claude acceptance work in #3 is intentionally omitted. Terminal access is intentional: users need control over their phone in the terminal, like Termux; the hardening proposed in #2 is not planned. Source: the user's current issue-review instruction. These closures do not establish passing tests or remove Codex/Claude support.
+
+**USER DECISION**: Defer lifecycle recovery [#4](https://github.com/nekoium/Olea/issues/4) and export/restore design [#9](https://github.com/nekoium/Olea/issues/9) to “The far side”; export/restore is not urgent now. Raise UI improvement [#11](https://github.com/nekoium/Olea/issues/11) to T1 for further discussion. User stories [#13](https://github.com/nekoium/Olea/issues/13) and [#14](https://github.com/nekoium/Olea/issues/14) need discussion. Source: the user's current issue-review instruction. No specific UI redesign or new feature behavior is selected by this triage.
+
 ## Shipping-today decisions (superseded release target)
 
 **USER DECISION**: The current release target is today, superseding the older November 15, 2026 calendar target below. Version 1.0.0 retains Pi, Codex, and Claude Code support. Source: the user's shipping discussion, “keep all three agents for 1.0.0”.

@@ -18,6 +18,9 @@ Status: agent-managed snapshot of maintained implementation, evidence, failures,
 
 ## Current Work
 
+- **USER DECISION**: Current issue triage closes #2 and #3 as not planned, intentionally omits #3's additional acceptance work, defers #4/#9 to “The far side”, raises #11 to T1, and reserves #11/#13/#14 for discussion. Source: [PRODUCT.md, issue triage decisions](../PRODUCT.md#issue-triage-decisions).
+- **OBSERVED**: Posted the user's rationale in replies to #2/#3 and closed both with GitHub's `not_planned` reason. Confirmed #4/#9 milestones and #11's T1 label through a fresh issue-list read. #14 reports unattractive/unresponsive UI and an unsuccessful Obsidian edit; reproduction details remain unspecified. No implementation or runtime validation was performed in this triage.
+
 - **USER DECISION**: Remove the historical `spike/` experiments from the shared repository while preserving local copies. Source: the user's approval of the local-preservation recommendation, “Good, let's remove that from remote.”
 - **OBSERVED**: Added `/spike/` to `.gitignore` and removed all 922 spike files (approximately 10.33 MB) from tracking. SHA-256 comparisons verified every formerly tracked local spike file remained unchanged; no spike paths remain in the index. Updated contributor guidance. This cleanup changes the current source tree only; earlier commits and release tags retain the historical experiments. No app source changed; no build or provider-backed tests were needed.
 
