@@ -122,7 +122,7 @@ class TerminalWebViewInstrumentation : Instrumentation() {
     override fun onCreate(arguments: Bundle?) {
         selected = arguments?.getString("case") ?: "factory"
         super.onCreate(arguments)
-        if (targetContext.packageName == "dev.olea.terminaltest") {
+        if (targetContext.packageName in setOf("dev.olea.terminaltest", "dev.olea.softtest")) {
             targetContext.getSharedPreferences("olea-ui", android.content.Context.MODE_PRIVATE).edit()
                 .putBoolean("setup-complete", true).apply()
         }
@@ -428,7 +428,7 @@ class TerminalWebViewInstrumentation : Instrumentation() {
         var created: String? = null
         var failure: Throwable? = null
         try {
-            if (!runtime.environmentReady() && targetContext.packageName == "dev.olea.terminaltest") {
+            if (!runtime.environmentReady() && targetContext.packageName in setOf("dev.olea.terminaltest", "dev.olea.softtest")) {
                 stage("prepare isolated diagnostic environment")
                 startedBackend = true
                 runtime.prepareEnvironment()

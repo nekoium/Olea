@@ -389,10 +389,14 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                     "settings" -> Page {
                         SectionLabel("When Olea opens")
                         var fresh by remember { mutableStateOf(preferences.getBoolean("fresh-chat", false)) }
-                        Choice("Resume last active session", selected = !fresh) { fresh = false; preferences.edit().putBoolean("fresh-chat", false).apply() }
-                        Choice("Open a fresh chat", selected = fresh) { fresh = true; preferences.edit().putBoolean("fresh-chat", true).apply() }
+                        Column {
+                            PreferenceChoice("Resume last active session", selected = !fresh) { fresh = false; preferences.edit().putBoolean("fresh-chat", false).apply() }
+                            PreferenceChoice("Open a fresh chat", selected = fresh) { fresh = true; preferences.edit().putBoolean("fresh-chat", true).apply() }
+                        }
                         SectionLabel("Appearance")
-                        listOf("system" to "Follow Android", "light" to "Light", "dark" to "Dark").forEach { (value, title) -> Choice(title, selected = appearance == value) { appearance = value; preferences.edit().putString("appearance", value).apply() } }
+                        Column {
+                            listOf("system" to "Follow Android", "light" to "Light", "dark" to "Dark").forEach { (value, title) -> PreferenceChoice(title, selected = appearance == value) { appearance = value; preferences.edit().putString("appearance", value).apply() } }
+                        }
                         SectionLabel("Color palette")
                         PaletteChoices(palette) { value -> palette = value; preferences.edit().putString("palette", value).apply() }
                     }
@@ -451,9 +455,11 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
 }
 @Composable internal fun Heading(text: String) { Label(text, size = 29, bold = true, modifier = Modifier.semantics { heading() }) }
 @Composable internal fun FlatDialog(title: String, dismiss: () -> Unit, content: @Composable ColumnScope.() -> Unit) {
+    val windowSize = androidx.compose.ui.platform.LocalWindowInfo.current.containerSize
+    val sheetHeight = with(androidx.compose.ui.platform.LocalDensity.current) { windowSize.height.toDp() * .85f }
     Dialog(dismiss, DialogProperties(usePlatformDefaultWidth = false)) {
         Box(Modifier.fillMaxSize().imePadding(), contentAlignment = Alignment.BottomCenter) {
-            Column(Modifier.fillMaxWidth().heightIn(max = androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp.dp * .85f)
+            Column(Modifier.fillMaxWidth().heightIn(max = sheetHeight)
                 .clip(RoundedCornerShape(topStart = 27.dp, topEnd = 27.dp)).background(LocalFlat.current.surface)
                 .verticalScroll(rememberScrollState()).padding(horizontal = 24.dp).padding(top = 12.dp, bottom = 25.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Box(Modifier.align(Alignment.CenterHorizontally).width(32.dp).height(4.dp).clip(RoundedCornerShape(3.dp)).background(LocalFlat.current.line))
@@ -485,5 +491,3 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
 
 private fun agentInstalled(context: Context, agent: String, @Suppress("UNUSED_PARAMETER") revision: Long): Boolean =
     runCatching { AgentConfiguration(context.filesDir).status(agent).optBoolean("installed") }.getOrDefault(false)
-private fun conversationState(snapshot: UiSnapshot): String = snapshot.states.firstOrNull { it.id == snapshot.active?.id }?.state
-    ?.replace('_', ' ')?.replaceFirstChar { it.uppercase() } ?: "Saved"

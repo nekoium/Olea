@@ -1,6 +1,8 @@
 package dev.olea.app
 
 import android.content.SharedPreferences
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -40,8 +42,8 @@ import kotlinx.coroutines.withContext
     LaunchedEffect(snapshot.entries, snapshot.busy) { if (nearBottom && snapshot.entries.isNotEmpty()) scroll.animateScrollToItem(snapshot.entries.lastIndex) }
     Column(Modifier.fillMaxSize()) {
         if (draft) Column(Modifier.weight(1f).fillMaxWidth().padding(horizontal = 50.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-            Label("What’s on your mind?", size = 27)
-            Label("Start with a question, a file, or something you want to get done.", Modifier.padding(top = 18.dp), size = 13, muted = true)
+            Label("What’s on\nyour mind?", Modifier.widthIn(max = 230.dp), size = 27, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+            Label("Start with a question, a file, or something you want to get done.", Modifier.widthIn(max = 230.dp).padding(top = 18.dp), size = 13, muted = true, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
         }
         else LazyColumn(Modifier.weight(1f).fillMaxWidth(), state = scroll, contentPadding = PaddingValues(horizontal = 25.dp, vertical = 14.dp), verticalArrangement = Arrangement.spacedBy(25.dp)) {
             itemsIndexed(snapshot.entries) { index, entry -> MessageEntry(entry, "${snapshot.active?.id}-$index") }
@@ -68,7 +70,7 @@ import kotlinx.coroutines.withContext
                 }
             }
         }
-        Column(Modifier.padding(horizontal = 18.dp).padding(bottom = 10.dp)) {
+        Column(Modifier.padding(horizontal = 18.dp).padding(bottom = 10.dp).animateContentSize(tween(280))) {
             if (draft) Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(topStart = 23.dp, topEnd = 23.dp)).background(colors.soft).padding(horizontal = 15.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(9.dp)) {
                 DraftChoice("Workspace", snapshot.workspaces.firstOrNull { it.id == draftWorkspace }?.name ?: "Choose workspace", Modifier.weight(1f), chooseWorkspace)
                 DraftChoice("Agent", agentNames[draftAgent] ?: "Choose agent", Modifier.weight(1f), chooseAgent)

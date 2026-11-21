@@ -32,10 +32,10 @@ import androidx.compose.ui.unit.sp
 
 internal val LocalFlat = staticCompositionLocalOf { lightColors }
 
-@Composable internal fun Label(text: String, modifier: Modifier = Modifier, size: Int = 14, muted: Boolean = false, bold: Boolean = false, color: Color? = null, mono: Boolean = false, maxLines: Int = Int.MAX_VALUE) {
+@Composable internal fun Label(text: String, modifier: Modifier = Modifier, size: Int = 14, muted: Boolean = false, bold: Boolean = false, color: Color? = null, mono: Boolean = false, maxLines: Int = Int.MAX_VALUE, textAlign: androidx.compose.ui.text.style.TextAlign = androidx.compose.ui.text.style.TextAlign.Unspecified) {
     val colors = LocalFlat.current
     BasicText(text, modifier, style = TextStyle(color = color ?: if (muted) colors.muted else colors.ink,
-        fontSize = size.sp, lineHeight = (size * if (mono) 1.8 else 1.6).sp,
+        fontSize = size.sp, lineHeight = (size * if (mono) 1.8 else 1.6).sp, textAlign = textAlign,
         fontWeight = if (bold) FontWeight.SemiBold else FontWeight.Normal,
         fontFamily = if (mono) FontFamily.Monospace else FontFamily.SansSerif), maxLines = maxLines, overflow = TextOverflow.Ellipsis)
 }
@@ -52,8 +52,8 @@ internal val LocalFlat = staticCompositionLocalOf { lightColors }
 }
 
 /** Small drawn icons avoid font-dependent symbol shapes and add no font dependency. */
-@Composable internal fun SoftIcon(name: String, modifier: Modifier = Modifier.size(21.dp), color: Color = LocalFlat.current.ink) {
-    Canvas(modifier) {
+@Composable internal fun SoftIcon(name: String, modifier: Modifier = Modifier, color: Color = LocalFlat.current.ink) {
+    Canvas(modifier.size(21.dp)) {
         val scale = size.width / 24f
         fun line(x1: Float, y1: Float, x2: Float, y2: Float) = drawLine(color, Offset(x1 * scale, y1 * scale), Offset(x2 * scale, y2 * scale), 1.7f * scale, androidx.compose.ui.graphics.StrokeCap.Round)
         fun path(vararg points: Pair<Float, Float>, close: Boolean = false) {
@@ -91,6 +91,16 @@ internal val LocalFlat = staticCompositionLocalOf { lightColors }
             Column(Modifier.weight(1f)) { Label(title, bold = true); if (detail.isNotBlank()) Label(detail, Modifier.padding(top = 4.dp), size = 11, muted = true) }
             if (selected != null) Label(if (selected) "✓" else "○", size = 17, color = colors.accent)
             else if (status.isNotBlank()) Chip(status) else Label("›", size = 19, muted = true)
+        }
+        Divider()
+    }
+}
+
+@Composable internal fun PreferenceChoice(title: String, selected: Boolean, onClick: () -> Unit) {
+    Column {
+        Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).selectable(selected, role = Role.RadioButton, onClick = onClick).padding(vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+            Label(title, Modifier.weight(1f), bold = true)
+            if (selected) Label("✓", color = LocalFlat.current.accent)
         }
         Divider()
     }
@@ -155,7 +165,7 @@ internal val LocalFlat = staticCompositionLocalOf { lightColors }
 
 @Composable internal fun Destination(text: String, icon: String, selected: Boolean, modifier: Modifier = Modifier, onClick: () -> Unit) {
     val colors = LocalFlat.current
-    Box(modifier.heightIn(min = 53.dp).selectable(selected, role = Role.Tab, onClick = onClick), contentAlignment = Alignment.Center) {
+    Box(modifier.heightIn(min = 53.dp).clickable(role = Role.Button, onClick = onClick).semantics { this.selected = selected }, contentAlignment = Alignment.Center) {
         Row(Modifier.clip(RoundedCornerShape(20.dp)).background(if (selected) colors.soft else Color.Transparent).padding(horizontal = 13.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             SoftIcon(icon, Modifier.size(17.dp), if (selected) colors.accent else colors.muted)

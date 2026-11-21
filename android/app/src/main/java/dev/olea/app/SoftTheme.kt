@@ -12,8 +12,6 @@ internal data class FlatColors(
     val terminalMuted: Color, val terminalKeys: Color, val terminalNotice: Color,
     val error: Color, val errorInk: Color, val warm: Color
 ) {
-    val panel get() = soft
-    val tool get() = paper
     fun terminalTheme(): String = JSONObject().apply {
         fun hex(color: Color) = "#%06x".format(color.toArgb() and 0xffffff)
         put("background", hex(terminalBg)); put("foreground", hex(terminalInk))
