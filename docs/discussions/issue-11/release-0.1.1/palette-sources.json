@@ -1,0 +1,58 @@
+{
+  "status": "OBSERVED",
+  "kind": "Native production Composables; synthetic conversation; Cabin; no runtime callbacks",
+  "device": "emulator-5554",
+  "api": 36,
+  "providerRequests": 0,
+  "appearance": "light",
+  "order": [
+    "green",
+    "purple",
+    "blue",
+    "rose",
+    "ochre",
+    "graphite"
+  ],
+  "composition": {
+    "width": 6600,
+    "height": 2400,
+    "gap": 24,
+    "labels": false,
+    "rescaling": false,
+    "cropping": false
+  },
+  "files": [
+    {
+      "file": "palette-captures/green.png",
+      "sha256": "2dccd8e4b8b4b5494e5006ea50a4cff78030201efa0663cd0c35b100e974b581"
+    },
+    {
+      "file": "palette-captures/purple.png",
+      "sha256": "77b29531f79ff085c8b2a3b27f7ce6fa1ea010ca2c48256fa0c9106321f01599"
+    },
+    {
+      "file": "palette-captures/blue.png",
+      "sha256": "9a858ec1a1a0e2fce04046b30be46cd3ebd8ce01a7dc152becb67bd25acc2d4b"
+    },
+    {
+      "file": "palette-captures/rose.png",
+      "sha256": "dd24e9b0ac1f13971299945759e2b3e0afd536c6937d1accdcd4bfd074c7ed6b"
+    },
+    {
+      "file": "palette-captures/ochre.png",
+      "sha256": "e0d228bd3429df732d03ce2c599af498b8606e6e9b0ce5d934dc500c3f8230b6"
+    },
+    {
+      "file": "palette-captures/graphite.png",
+      "sha256": "74ccd104ebda5ea80f82ba4924602f6a720462d06023b2d3e10e2d587b06df71"
+    },
+    {
+      "file": "palette-captures/receipt.json",
+      "sha256": "7febf9bfdf73ac2e5a90a6f3d5c58abfebce30dfaa28e3433f4e26b484e1c780"
+    }
+  ],
+  "export": {
+    "file": "palettes.png",
+    "sha256": "2cd44dd96d3bacdad5b47aded876360ccf433605f1a5a3080444ece067b565b4"
+  }
+}

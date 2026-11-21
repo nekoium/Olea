@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "failure": "",
+  "captures": [
+    {
+      "file": "green.png",
+      "palette": "green",
+      "appearance": "light",
+      "width": 1080,
+      "height": 2400
+    },
+    {
+      "file": "purple.png",
+      "palette": "purple",
+      "appearance": "light",
+      "width": 1080,
+      "height": 2400
+    },
+    {
+      "file": "blue.png",
+      "palette": "blue",
+      "appearance": "light",
+      "width": 1080,
+      "height": 2400
+    },
+    {
+      "file": "rose.png",
+      "palette": "rose",
+      "appearance": "light",
+      "width": 1080,
+      "height": 2400
+    },
+    {
+      "file": "ochre.png",
+      "palette": "ochre",
+      "appearance": "light",
+      "width": 1080,
+      "height": 2400
+    },
+    {
+      "file": "graphite.png",
+      "palette": "graphite",
+      "appearance": "light",
+      "width": 1080,
+      "height": 2400
+    }
+  ],
+  "package": "dev.olea.softtest",
+  "api": 36,
+  "providerRequests": 0,
+  "kind": "Native production Composables; synthetic conversation; Cabin; no runtime callbacks"
+}
