@@ -9,31 +9,34 @@
 <body>
   <header>
     <div class="identity"><img src="../assets/readme/olea-icon-rounded.png" alt="" width="32" height="32"><h1>Olea <span>/ Project board</span></h1></div>
-    <div class="actions"><button id="export">Export</button><button id="import">Import</button><button class="primary" id="add">+ Add task</button></div>
+    <div class="actions"><button id="export">Export</button><button id="import">Import</button><button class="primary" id="add">+ Add card</button></div>
   </header>
   <div class="toolbar">
-    <label class="search"><span>Find</span><input id="search" type="search" placeholder="Search tasks" autocomplete="off"></label>
-    <label>Status <select id="filter"><option value="">All tasks</option><option>To do</option><option>In progress</option><option>Discuss</option><option>Done</option><option>Later</option></select></label>
+    <label class="search"><span>Find</span><input id="search" type="search" placeholder="Search cards" autocomplete="off"></label>
+    <label>Show <select id="filter"><option value="">All cards</option><option value="note">Notes</option><option>To do</option><option>In progress</option><option>Discuss</option><option>Done</option><option>Later</option></select></label>
+    <div class="selection-actions"><output id="selection-count" aria-live="polite">0 selected</output><button id="edit-selection" disabled>Edit</button><button id="delete-selection" disabled>Delete</button></div>
     <output id="summary"></output>
   </div>
-  <main id="viewport" tabindex="0" aria-label="Infinite project canvas. Wheel to zoom. Middle-drag or Space and drag to pan. Click a card to edit, or drag it to move. Enter edits a focused card; Shift and arrow keys move it.">
-    <div id="world"></div>
-    <p id="empty" hidden>No matching tasks.</p>
+  <main id="viewport" tabindex="0" aria-label="Infinite canvas. Left-drag empty space to select cards. Click selects; Shift-click toggles selection. Drag cards to move the selection. Double-click or Enter edits. Middle-drag or Space-drag pans. Wheel zooms.">
+    <div id="world" role="listbox" aria-label="Canvas cards" aria-multiselectable="true"></div>
+    <div id="selection-box" hidden aria-hidden="true"></div>
+    <p id="empty" hidden>No matching cards.</p>
   </main>
-  <footer><span id="save-state" role="status">Saved in this browser</span><span class="hint">Wheel to zoom · Middle-drag to pan · Click card to edit · Drag card to move</span><div class="zoom"><button id="out" aria-label="Zoom out">−</button><output id="scale">100%</output><button id="in" aria-label="Zoom in">+</button><button id="fit">Fit all</button></div></footer>
+  <footer><span id="save-state" role="status">Saved in this browser</span><span class="hint">Drag to select · Double-click to edit · Middle-drag to pan · Wheel to zoom</span><div class="zoom"><button id="out" aria-label="Zoom out">−</button><output id="scale">100%</output><button id="in" aria-label="Zoom in">+</button><button id="fit">Fit all</button></div></footer>
   <dialog id="editor" aria-labelledby="editor-title">
     <form id="task-form">
-      <h2 id="editor-title">New task</h2>
+      <h2 id="editor-title">New card</h2>
+      <label>Type<select name="kind"><option value="note">Note</option><option value="task">Task</option></select></label>
       <label>Title<input name="title" required maxlength="180" autocomplete="off"></label>
-      <label>Status<select name="status"><option>To do</option><option>In progress</option><option>Discuss</option><option>Done</option><option>Later</option></select></label>
-      <label>Notes<textarea name="notes" rows="6" maxlength="12000" placeholder="Next action, context, or progress…"></textarea></label>
+      <label id="status-field">Status<select name="status"><option>To do</option><option>In progress</option><option>Discuss</option><option>Done</option><option>Later</option></select></label>
+      <label>Notes<textarea name="notes" rows="6" maxlength="12000" placeholder="Write anything…"></textarea></label>
       <label>Link<input name="link" type="url" maxlength="4000" placeholder="https://github.com/…"></label>
       <a id="reference" target="_blank" rel="noopener noreferrer" hidden>Open reference</a>
-      <div class="dialog-actions"><button id="delete" type="button" class="danger" hidden>Delete task</button><span></span><button id="cancel" type="button">Cancel</button><button class="primary" type="submit">Save task</button></div>
+      <div class="dialog-actions"><button id="delete" type="button" class="danger" hidden>Delete card</button><span></span><button id="cancel" type="button">Cancel</button><button class="primary" type="submit">Save card</button></div>
     </form>
   </dialog>
   <input id="file" type="file" accept="application/json,.json" hidden>
-  <noscript>This board needs JavaScript enabled to save and move tasks.</noscript>
+  <noscript>This board needs JavaScript enabled to save and move cards.</noscript>
   <script src="seed.js"></script>
   <script src="board.js"></script>
 </body>

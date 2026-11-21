@@ -1,6 +1,16 @@
 # Project board: canvas controls and Orca access
 
-## Canvas controls
+## General canvas selection and cards
+
+**USER DECISION**: The board is a general canvas; project to-do cards are one form of content. Left-drag on empty space should select cards rather than pan the board, and selected cards should be movable. Source: the user's follow-up canvas-selection clarification in this session. This supersedes the earlier empty-space panning behavior below.
+
+**OBSERVED**: Left-drag now draws a selection box in either direction; intersecting cards are selected. Shift/Ctrl/Cmd click toggles cards, and modified marquee selection adds cards. Dragging a selected card moves the entire selection. A single click selects, double-click or Enter edits, and middle-drag/Space-drag pans. Wheel zoom remains anchored under the pointer. Escape cancels a drag and restores positions, or clears selection. Ctrl/Cmd+A selects visible cards; Delete/Backspace and toolbar Delete ask before deleting. Toolbar Edit supports a single selected card. Filtering prunes selection to visible cards. Focus survives rerendering.
+
+**OBSERVED**: New cards default to plain notes without task-status chrome. The editor can convert notes into tasks and back. Existing saved cards without a `kind` remain tasks; existing positions and content load unchanged. Exports include the optional card kind. Project-document and Orca synchronization remain unimplemented.
+
+**OBSERVED**: Focused headless Chrome checks passed legacy data loading, note/task rendering, single/modifier click, deselection, live/reversed/additive marquee, no panning during marquee, group movement and reload, filtering/select-all-visible, double-click/Enter editing, blank-double-click note placement, note creation/type conversion, mixed note/task export-import roundtrip, cancelled/confirmed multi-delete, keyboard group movement, pointer-anchored wheel zoom, marquee/group movement at non-unit zoom, middle/Space panning, and viewport/editor fit at 1440/768/390 px with no browser exceptions. An initial test exposed lost keyboard focus after Escape rolled back a drag; focus restoration was added and the full focused check rerun passed. Screenshots of note/task layouts and live selection were visually reviewed. Temporary checks used an isolated browser profile and fixture cards, not the user's board storage. Physical mouse/trackpad behavior remains unchecked.
+
+## Earlier canvas controls (superseded selection behavior)
 
 **USER DECISION**: Wheel up/down enlarges/shrinks the board; middle-drag pans; dragging anywhere on a card moves it; clicking without dragging opens editing. Source: the user's canvas-input instruction in this session. The user also asked the agent to infer related interaction improvements.
 

@@ -5,6 +5,7 @@
   const statuses = ['To do', 'In progress', 'Discuss', 'Done', 'Later'];
   const viewport = $('viewport'), world = $('world'), editor = $('editor'), form = $('task-form');
   let tasks = structuredClone(window.OLEA_SEED), view = {x:24, y:24, zoom:1};
+  let selected = new Set();
   let editing = null, position = null, gesture = null, storageBlocked = false, spaceHeld = false;
 
   function validate(data) {
@@ -13,13 +14,14 @@
     for (const task of data.tasks) {
       if (!task || typeof task.id !== 'string' || !task.id || ids.has(task.id) ||
           typeof task.title !== 'string' || !task.title.trim() || task.title.length > 180 ||
+          !['task','note'].includes(task.kind ?? 'task') ||
           !statuses.includes(task.status) || typeof task.notes !== 'string' || task.notes.length > 12000 ||
           typeof task.link !== 'string' || task.link.length > 4000 ||
           !Number.isFinite(task.x) || !Number.isFinite(task.y) || Math.abs(task.x) > 1e8 || Math.abs(task.y) > 1e8) throw Error('Invalid task in board file.');
       safeLink(task.link);
       ids.add(task.id);
     }
-    return data.tasks.map(({id,title,status,notes,link,x,y}) => ({id,title,status,notes,link,x,y}));
+    return data.tasks.map(({id,title,status,notes,link,x,y,kind = 'task'}) => ({id,title,status,notes,link,x,y,kind}));
   }
   function safeLink(link) {
     if (!link) return '';
@@ -57,16 +59,30 @@
   }
   function matching() {
     const query = $('search').value.toLocaleLowerCase();
-    return tasks.filter(task => (!$('filter').value || task.status === $('filter').value) &&
+    const filter = $('filter').value;
+    return tasks.filter(task => (!filter || (filter === 'note' ? task.kind === 'note' : task.kind !== 'note' && task.status === filter)) &&
       `${task.title} ${task.notes}`.toLocaleLowerCase().includes(query));
   }
+  function updateSelection() {
+    for (const card of world.children) {
+      const active = selected.has(card.dataset.id);
+      card.classList.toggle('selected', active);
+      card.setAttribute('aria-selected', String(active));
+    }
+    $('selection-count').textContent = `${selected.size} selected`;
+    $('edit-selection').disabled = selected.size !== 1;
+    $('delete-selection').disabled = selected.size === 0;
+  }
   function render() {
+    const focusedId = document.activeElement.closest('article')?.dataset.id;
     world.replaceChildren();
     const visible = matching();
+    selected = new Set([...selected].filter(id => visible.some(task => task.id === id)));
     for (const task of visible) {
       const card = document.createElement('article');
-      card.dataset.id = task.id; card.dataset.status = task.status; card.tabIndex = 0;
-      card.setAttribute('aria-label', `${task.title}, ${task.status}. Enter to edit. Shift and arrow keys to move.`);
+      card.dataset.id = task.id; card.dataset.status = task.kind === 'note' ? '' : task.status; card.tabIndex = 0;
+      card.setAttribute('role', 'option');
+      card.setAttribute('aria-label', `${task.title}, ${task.kind === 'note' ? 'note' : task.status}. Enter to edit.`);
       card.style.left = `${task.x}px`; card.style.top = `${task.y}px`;
       const head = document.createElement('div'); head.className = 'card-head';
       const status = document.createElement('span'); status.className = 'status'; status.textContent = task.status;
@@ -81,11 +97,15 @@
         const reference = document.createElement('span'); reference.className = 'card-link';
         reference.textContent = 'Reference attached'; body.append(reference);
       }
-      card.append(head, body); world.append(card);
+      if (task.kind !== 'note') card.append(head);
+      card.append(body); world.append(card);
     }
-    $('summary').textContent = `${tasks.filter(t => t.status === 'Done').length}/${tasks.length} done · ${visible.length} shown`;
+    const taskCards = tasks.filter(task => task.kind !== 'note');
+    $('summary').textContent = `${visible.length} cards · ${taskCards.filter(t => t.status === 'Done').length}/${taskCards.length} tasks done`;
     $('empty').hidden = visible.length !== 0;
+    updateSelection();
     transform();
+    if (focusedId) ([...world.children].find(card => card.dataset.id === focusedId) || viewport).focus({preventScroll:true});
   }
   function point(clientX, clientY) {
     const rect = viewport.getBoundingClientRect();
@@ -95,8 +115,11 @@
     editing = task?.id ?? null;
     position = at || point(viewport.clientWidth / 2 + viewport.getBoundingClientRect().left - 140 * view.zoom,
       viewport.clientHeight / 2 + viewport.getBoundingClientRect().top - 100 * view.zoom);
-    $('editor-title').textContent = task ? 'Edit task' : 'New task';
+    $('editor-title').textContent = task ? 'Edit card' : 'New card';
     for (const name of ['title','status','notes','link']) form.elements[name].value = task?.[name] ?? (name === 'status' ? 'To do' : '');
+    form.elements.kind.value = task ? (task.kind ?? 'task') : 'note';
+    updateKind();
+    form.elements.title.setCustomValidity('');
     $('delete').hidden = !task;
     form.elements.link.setCustomValidity('');
     $('reference').hidden = !task?.link;
@@ -106,15 +129,20 @@
   form.addEventListener('submit', event => {
     event.preventDefault();
     const title = form.elements.title.value.trim();
-    if (!title) { form.elements.title.setCustomValidity('Enter a task title.'); form.elements.title.reportValidity(); return; }
+    if (!title) { form.elements.title.setCustomValidity('Enter a card title.'); form.elements.title.reportValidity(); return; }
     let link;
     try { link = safeLink(form.elements.link.value.trim()); }
     catch { form.elements.link.setCustomValidity('Use an http or https link.'); form.elements.link.reportValidity(); return; }
-    const fields = {title, status:form.elements.status.value, notes:form.elements.notes.value, link};
+    const fields = {title, kind:form.elements.kind.value, status:form.elements.status.value, notes:form.elements.notes.value, link};
     if (editing) Object.assign(tasks.find(task => task.id === editing), fields);
-    else tasks.push({id:crypto.randomUUID(), ...fields, ...position});
+    else {
+      const task = {id:crypto.randomUUID(), ...fields, ...position};
+      tasks.push(task); selected = new Set([task.id]);
+    }
     editor.close(); render(); save();
   });
+  function updateKind() { $('status-field').hidden = form.elements.kind.value !== 'task'; }
+  form.elements.kind.onchange = updateKind;
   form.elements.title.oninput = () => form.elements.title.setCustomValidity('');
   form.elements.link.oninput = () => {
     form.elements.link.setCustomValidity('');
@@ -126,19 +154,42 @@
   };
   $('cancel').onclick = () => editor.close();
   $('delete').onclick = () => {
-    if (!confirm('Delete this task?')) return;
+    if (!confirm('Delete this card?')) return;
     tasks = tasks.filter(task => task.id !== editing); editor.close(); render(); save();
   };
+  function deleteSelection() {
+    if (!selected.size || !confirm(`Delete ${selected.size} selected card${selected.size === 1 ? '' : 's'}?`)) return;
+    tasks = tasks.filter(task => !selected.has(task.id)); selected.clear(); render(); save();
+  }
+  $('delete-selection').onclick = deleteSelection;
+  $('edit-selection').onclick = () => editTask(tasks.find(task => selected.has(task.id)));
   $('add').onclick = () => editTask();
   $('search').oninput = render; $('filter').onchange = render;
-  viewport.addEventListener('dblclick', event => { if (!event.target.closest('article')) editTask(null, point(event.clientX,event.clientY)); });
+  viewport.addEventListener('dblclick', event => {
+    if (spaceHeld || event.button !== 0) return;
+    const card = document.elementFromPoint(event.clientX, event.clientY)?.closest('article');
+    editTask(card ? tasks.find(task => task.id === card.dataset.id) : null, point(event.clientX, event.clientY));
+  });
   viewport.addEventListener('pointerdown', event => {
     if (gesture || ![0, 1].includes(event.button)) return;
     const card = event.target.closest('article');
-    const pan = event.button === 1 || spaceHeld || !card;
-    const task = !pan && tasks.find(t => t.id === card.dataset.id);
-    gesture = {id:event.pointerId, startX:event.clientX, startY:event.clientY,
-      x:task ? task.x : view.x, y:task ? task.y : view.y, task, card, moved:false};
+    const pan = event.button === 1 || spaceHeld;
+    const additive = event.shiftKey || event.ctrlKey || event.metaKey;
+    const before = new Set(selected);
+    let mode = pan ? 'pan' : card ? 'move' : 'select';
+    if (!pan) {
+      if (card) {
+        const id = card.dataset.id;
+        if (additive && selected.has(id)) { selected.delete(id); mode = 'toggle'; }
+        else if (additive) selected.add(id);
+        else if (!selected.has(id)) selected = new Set([id]);
+      } else if (!additive) selected.clear();
+      updateSelection();
+    }
+    const cards = new Map([...world.children].map(node => [node.dataset.id, node]));
+    gesture = {id:event.pointerId, mode, startX:event.clientX, startY:event.clientY,
+      x:view.x, y:view.y, before, base:new Set(selected), moved:false,
+      origins:tasks.filter(task => selected.has(task.id)).map(task => ({task,card:cards.get(task.id),x:task.x,y:task.y}))};
     (card || viewport).focus({preventScroll:true});
     viewport.setPointerCapture(event.pointerId);
     if (pan) viewport.classList.add('panning');
@@ -149,21 +200,40 @@
     const dx = event.clientX - gesture.startX, dy = event.clientY - gesture.startY;
     if (!gesture.moved && Math.hypot(dx, dy) < 5) return;
     gesture.moved = true;
-    if (gesture.task) {
-      gesture.card.classList.add('dragging');
-      gesture.task.x = gesture.x + dx/view.zoom; gesture.task.y = gesture.y + dy/view.zoom;
-      gesture.card.style.left = `${gesture.task.x}px`; gesture.card.style.top = `${gesture.task.y}px`;
-    } else { view.x = gesture.x + dx; view.y = gesture.y + dy; transform(); }
+    if (gesture.mode === 'move') {
+      for (const {task,card,x,y} of gesture.origins) {
+        task.x = x + dx/view.zoom; task.y = y + dy/view.zoom;
+        card.classList.add('dragging');
+        card.style.left = `${task.x}px`; card.style.top = `${task.y}px`;
+      }
+    } else if (gesture.mode === 'pan') {
+      view.x = gesture.x + dx; view.y = gesture.y + dy; transform();
+    } else if (gesture.mode === 'select') {
+      const left = Math.min(gesture.startX,event.clientX), top = Math.min(gesture.startY,event.clientY);
+      const right = Math.max(gesture.startX,event.clientX), bottom = Math.max(gesture.startY,event.clientY);
+      const bounds = viewport.getBoundingClientRect(), box = $('selection-box');
+      box.hidden = false;
+      Object.assign(box.style, {left:`${left-bounds.left}px`,top:`${top-bounds.top}px`,width:`${right-left}px`,height:`${bottom-top}px`});
+      selected = new Set(gesture.base);
+      for (const card of world.children) {
+        const rect = card.getBoundingClientRect();
+        if (rect.left < right && rect.right > left && rect.top < bottom && rect.bottom > top) selected.add(card.dataset.id);
+      }
+      updateSelection();
+    }
   });
   function endGesture(event) {
     if (!gesture || event.pointerId !== gesture.id) return;
     const finished = gesture;
     gesture = null;
     viewport.classList.remove('panning');
-    finished.card?.classList.remove('dragging');
+    $('selection-box').hidden = true;
+    for (const card of world.children) card.classList.remove('dragging');
     if (viewport.hasPointerCapture(event.pointerId)) viewport.releasePointerCapture(event.pointerId);
-    if (finished.moved) save();
-    else if (finished.task && event.type === 'pointerup') editTask(finished.task);
+    if (event.type !== 'pointerup') {
+      for (const {task,x,y} of finished.origins) Object.assign(task,{x,y});
+      view.x = finished.x; view.y = finished.y; selected = finished.before; render();
+    } else if (finished.moved && ['move','pan'].includes(finished.mode)) save();
   }
   viewport.addEventListener('pointerup', endGesture); viewport.addEventListener('pointercancel', endGesture);
   viewport.addEventListener('lostpointercapture', endGesture);
@@ -180,8 +250,20 @@
     zoom(Math.exp(-Math.max(-240, Math.min(240, delta))*.002), event.clientX-rect.left, event.clientY-rect.top);
   }, {passive:false});
   viewport.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      if (gesture) endGesture({pointerId:gesture.id,type:'pointercancel'});
+      else { selected.clear(); updateSelection(); }
+      return;
+    }
     if (gesture) return;
     const card = event.target.closest('article');
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'a') {
+      event.preventDefault(); selected = new Set(matching().map(task => task.id)); updateSelection(); return;
+    }
+    if (event.key === 'Delete' || event.key === 'Backspace') {
+      event.preventDefault(); deleteSelection(); return;
+    }
     if (event.code === 'Space') {
       event.preventDefault(); spaceHeld = true; viewport.classList.add('pan-ready'); return;
     }
@@ -191,9 +273,12 @@
     const moves = {ArrowLeft:[-32,0],ArrowRight:[32,0],ArrowUp:[0,-32],ArrowDown:[0,32]};
     if (!moves[event.key]) return;
     event.preventDefault(); const [dx,dy] = moves[event.key];
-    if (event.shiftKey && card) {
-      const task = tasks.find(t => t.id === card.dataset.id); task.x += dx; task.y += dy;
-      card.style.left = `${task.x}px`; card.style.top = `${task.y}px`;
+    if (event.shiftKey && selected.size) {
+      for (const task of tasks.filter(task => selected.has(task.id))) {
+        task.x += dx; task.y += dy;
+        const node = [...world.children].find(node => node.dataset.id === task.id);
+        node.style.left = `${task.x}px`; node.style.top = `${task.y}px`;
+      }
     } else { view.x -= dx; view.y -= dy; transform(); }
     save();
   });
@@ -222,8 +307,8 @@
     try {
       if (file.size > 10_000_000) throw Error('Board file is too large (maximum 10 MB).');
       const imported = validate(JSON.parse(await file.text()));
-      if (!confirm(`Replace the current ${tasks.length} tasks with ${imported.length} imported tasks? Export first if you need a backup.`)) return;
-      tasks = imported; storageBlocked = false; $('search').value = ''; $('filter').value = ''; render(); $('fit').click(); save();
+      if (!confirm(`Replace the current ${tasks.length} cards with ${imported.length} imported cards? Export first if you need a backup.`)) return;
+      tasks = imported; selected.clear(); storageBlocked = false; $('search').value = ''; $('filter').value = ''; render(); $('fit').click(); save();
     } catch (error) { alert(`Import failed: ${error.message}`); }
     finally { $('file').value = ''; }
   };
