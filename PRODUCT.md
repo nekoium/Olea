@@ -16,6 +16,8 @@ Status: evolving product scope and decision record. The maintained core directio
 
 ## Issue triage decisions
 
+**USER DECISION**: Close [#6](https://github.com/nekoium/Olea/issues/6) (remaining phone-permission acceptance) and [#8](https://github.com/nekoium/Olea/issues/8) (modified-talloc APK replacement recipe validation) as not planned. Omit these dedicated validation assignments and prioritize actual use on phones. Source: the user's issue-review instruction, “for the tests and validations ... we should spare our efforts from doing these things. We should actually test them in our phones ... should be closed ... Issue six and issue eight.” Closure does not establish that the remaining permission cases or modified-library recipe passed; existing evidence and limitations remain. This supersedes the earlier full-validation commitment for #6's remaining cases, without changing implemented phone capabilities or source/notice delivery.
+
 **USER DECISION**: Consolidate #14 into #13 because they overlap; append #14's context as a reply to #13 and close #14 with no separate work. Source: the user's direct instruction in the #14 discussion session, relayed by worker `ctx_2628ad13bea4`; [consolidation reply](https://github.com/nekoium/Olea/issues/13#issuecomment-7058343324). UI appearance/responsiveness complaints and the unsuccessful Obsidian edit remain discussion context; no root cause or fix is established by consolidation.
 
 **USER DECISION**: Close issues [#3](https://github.com/nekoium/Olea/issues/3) and [#2](https://github.com/nekoium/Olea/issues/2) as not planned. Additional Codex/Claude acceptance work in #3 is intentionally omitted. Terminal access is intentional: users need control over their phone in the terminal, like Termux; the hardening proposed in #2 is not planned. Source: the user's current issue-review instruction. These closures do not establish passing tests or remove Codex/Claude support.
@@ -113,7 +115,7 @@ These are API-level possibilities, not local validation results or a commitment 
 
 ## Phone-use validation scope
 
-The test list, agreed priorities and reasons, proposed fixtures, and results now live in [PHONE_USE_TESTS.md](docs/PHONE_USE_TESTS.md). Alpha prioritizes opening an app through an Accessibility click; full validation covers every discussed capability category. Individual full-test fixtures remain proposals.
+The test list, agreed priorities and reasons, proposed fixtures, and results now live in [PHONE_USE_TESTS.md](docs/PHONE_USE_TESTS.md). Alpha prioritizes opening an app through an Accessibility click. The earlier full-validation commitment covered every discussed capability category; the later [issue triage decision](#issue-triage-decisions) closes #6's remaining dedicated acceptance work in favor of actual phone use. Individual full-test fixtures remain proposals.
 
 ## Visual decision references
 

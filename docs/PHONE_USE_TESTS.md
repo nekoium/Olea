@@ -6,7 +6,7 @@ Status: agent-managed coverage reference. Product scope and approved coverage de
 
 - **USER DECISION**: Phone-use capabilities are bounded by permissions and special access a user can normally grant on a stock personal Android phone; no privileged system access is implied. Source: `PRODUCT.md`, Phone-use scenario and approaches.
 - **USER DECISION**: Alpha prioritizes opening an app through an Accessibility click. Source: `PRODUCT.md`, Phone-use validation scope.
-- **USER DECISION**: Full validation covers each discussed category: intents/app links, structured Android APIs, files/media, notification access, Accessibility, screen capture, and app-specific integration. Source: `PRODUCT.md`, Phone-use validation scope.
+- **USER DECISION**: Earlier full validation covered each discussed category: intents/app links, structured Android APIs, files/media, notification access, Accessibility, screen capture, and app-specific integration. The later issue triage closes #6's remaining dedicated physical acceptance work as not planned and prioritizes actual phone use. Source: `PRODUCT.md`, Phone-use validation scope and Issue triage decisions. Existing unverified cases remain unverified.
 - **USER DECISION**: Browser opening to a supplied URL is a concrete scenario; dispatching an intent alone does not prove the destination loaded. Reading page content is not an agreed requirement. Source: `PRODUCT.md`, Phone-use scenario and approaches.
 
 The list summarizes `PRODUCT.md`. If wording conflicts, `PRODUCT.md` wins. Individual fixtures, exact test data, and agent-driven acceptance details are not approved unless separately decided.

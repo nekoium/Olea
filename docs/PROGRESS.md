@@ -18,6 +18,9 @@ Status: agent-managed snapshot of maintained implementation, evidence, failures,
 
 ## Current Work
 
+- **USER DECISION**: Close #6 and #8 as not planned, omit their dedicated validation assignments, and prioritize actual phone use. Source: [PRODUCT.md, issue triage decisions](../PRODUCT.md#issue-triage-decisions).
+- **OBSERVED**: Closed GitHub [#6](https://github.com/nekoium/Olea/issues/6) and [#8](https://github.com/nekoium/Olea/issues/8) with reason `not_planned`. Remaining physical permission-flow cases and the modified-talloc APK replacement recipe remain unverified. No app/source-companion changes, device actions, builds, or provider tests were performed.
+
 - **OBSERVED**: Replaced the board utility's limited DOM editor with a full-viewport Excalidraw canvas and visible creation tools. Added designed Note/Task presets with pointer previews, in-place content editing, restrained status treatment, and preserved full card metadata. Removed the separate card editor and native blue card-link markers at the user's correction. Legacy local-file storage remains accessible through `board/index.html`; the canvas now uses a local Node server with a Windows launcher. Build and a bounded visual/inline-edit/save spot-check passed. [Setup](../board/README.md), [reference decisions, retained limits, and evidence](reports/project-board.md#full-screen-canvas-and-inline-cards). No Android/provider work or Orca connection was performed.
 
 - **USER DECISION**: Consolidate #14 into #13; no separate #14 work remains. Source: [PRODUCT.md, issue triage](../PRODUCT.md#issue-triage-decisions) and direct user instruction relayed from the #14 discussion session.
