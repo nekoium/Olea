@@ -1,0 +1,4 @@
+emulator.log
+server.log
+.tmp/
+setup-preferences-backup.xml

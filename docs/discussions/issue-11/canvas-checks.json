@@ -1,0 +1,16 @@
+{
+  "engine": "Chromium",
+  "results": [
+    "34 raw screenshots load at 1080 × 2400",
+    "6 journey navigation controls",
+    "Zoom controls change transform",
+    "Group navigation centers relevant row",
+    "Screenshot inspector opens correct image",
+    "Notes persist and mark card",
+    "Dragging card moves it and persists position",
+    "Empty canvas drag pans viewport",
+    "Capture limits visible",
+    "Mobile viewport stays bounded"
+  ],
+  "limits": "WebKit engine not available; uses standard HTML, CSS, SVG and pointer events."
+}
