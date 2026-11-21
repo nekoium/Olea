@@ -2,6 +2,7 @@
 'use strict';
 const flow=window.OLEA_SOFT_FLOW,q=new URLSearchParams(location.search);let current=q.get('screen')||'done',dark=q.has('dark'),choice='Pi',draft='',palette=Object.hasOwn(window.OLEA_PALETTES,q.get('palette'))?q.get('palette'):window.oleaReadPalette();
 const phone=document.getElementById('phone');
+if(['cabin','fira','source','trebuchet'].includes(q.get('font')))document.body.dataset.font=q.get('font');
 const paths={menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',chat:'<path d="M4 4h16v12H9l-5 4z"/>',folder:'<path d="M3 6h7l2 3h9v11H3z"/>',leaf:'<path d="M5 19C0 6 12 2 21 3c1 11-5 19-16 16ZM5 19 17 7"/>',key:'<circle cx="8" cy="9" r="4"/><path d="m11 12 8 8m-3-3 3-3"/>',settings:'<path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="18" r="2"/>',terminal:'<path d="m5 7 5 5-5 5m8 0h6"/>',phone:'<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 18h4"/>',box:'<path d="m3 7 9-4 9 4v11l-9 4-9-4V7Zm0 0 9 5 9-5m-9 5v10"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/>',search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>'};
 const svg=id=>`<svg viewBox="0 0 24 24" aria-hidden="true">${paths[id]||paths.chat}</svg>`;
 const go=(id,text,cls='secondary')=>`<button class="${cls}" data-go="${id}">${text}</button>`;

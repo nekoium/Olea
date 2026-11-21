@@ -1,0 +1,35 @@
+{
+  "engine": "Chromium",
+  "checks": [
+    "Four reference/candidate font families actually load",
+    "Same content and distinct loaded typefaces: done",
+    "Same content and distinct loaded typefaces: settings",
+    "Same content and distinct loaded typefaces: welcome",
+    "Same content and distinct loaded typefaces: provider",
+    "Full-size Cabin preview opens",
+    "Dark mode updates all four previews"
+  ],
+  "loaded": [
+    {
+      "font": "trebuchet",
+      "loaded": "true",
+      "status": "Font loaded · Local reference · not redistributed"
+    },
+    {
+      "font": "cabin",
+      "loaded": "true",
+      "status": "Font loaded · SIL Open Font License 1.1"
+    },
+    {
+      "font": "fira",
+      "loaded": "true",
+      "status": "Font loaded · SIL Open Font License 1.1"
+    },
+    {
+      "font": "source",
+      "loaded": "true",
+      "status": "Font loaded · SIL Open Font License 1.1"
+    }
+  ],
+  "limit": "WebKit and Android rendering not tested. Font candidates not yet approved."
+}
