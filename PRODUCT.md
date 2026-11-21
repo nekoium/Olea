@@ -8,6 +8,10 @@ Status: evolving product scope and decision record. The maintained core directio
 
 [DESIGN.md](DESIGN.md#approved-soft-ui-contract) and the [Soft UI contract](docs/ui/soft/CONTRACT.md) record the adopted design, exact [palette roles](docs/ui/soft/palettes.json), and visual/native interpretation rules. This supersedes the earlier scenario-board styling as the current presentation reference. It authorizes the UI rebuild, not a change to supported agents, runtime architecture, Android access policy, provider-testing allocation or publication status. Existing broad file access remains in force; browser examples do not establish unsupported capabilities or successful native tests.
 
+## Release 0.1.1
+
+**USER DECISION**: Integrate and commit the approved native Soft interface and Cabin typography, then publish **0.1.1** as the UI update with before-and-after images in its release notes. Source: the current release instruction, “we can release 0.1.1 … this is the UI update … include before after, images in the release notes,” followed by approval of the image board, “Okay, great. Let's go.” Present the comparisons individually, each with its own caption/image, rather than including the combined board. Source: the user's latest clarification, “we should list the comparisons one by one.” The user supplied the existing signing-vault location for this release. This instruction allocates no provider-backed test spending.
+
 ## Release 0.1.0
 
 **USER DECISION**: Ship this edition as an MVP before **11:00 am**, using quick tests and accepting imperfections rather than missing the deadline. Source: the user's latest instruction, “We can accept imperfection in for this MVP, but must ship on time.” This supersedes the earlier maturity expectation for this edition; keep known limitations visible and retain the credential audit before making the repository public.

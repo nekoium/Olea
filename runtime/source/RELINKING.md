@@ -1,6 +1,6 @@
 # Rebuild and replace the native runtime
 
-Olea 0.1.0 uses talloc 2.5.0, licensed LGPL-3.0-or-later, in its native PRoot runtime. You may modify that library and reverse engineer the combined runtime to debug your modifications. Olea imposes no contractual restriction on those activities. The library's license, GPLv3 text, copyright notice, complete source and build recipes accompany the release.
+Olea uses talloc 2.5.0, licensed LGPL-3.0-or-later, in its native PRoot runtime. You may modify that library and reverse engineer the combined runtime to debug your modifications. Olea imposes no contractual restriction on those activities. The library's license, GPLv3 text, copyright notice, complete source and build recipes accompany the release.
 
 PRoot is a separate executable, launched by the Android app. Its sources permit GPL-2.0-or-later. For the PRoot/talloc linked combination, the provided distribution route uses GPLv3's compatible terms for PRoot and LGPLv3 for the library. The original PRoot GPLv2 text/notices also remain included. Merely renaming these ELF files to `lib*.so` for Android extraction does not change their license.
 
@@ -48,7 +48,7 @@ Use a separate empty directory. Requires Info-ZIP, Android SDK Build Tools 36 or
 abi=arm64-v8a
 mkdir -p "lib/$abi"
 cp /path/to/rebuilt/libtalloc.so.2.5.0 "lib/$abi/libtalloc.so"
-cp /path/to/olea-0.1.0-arm64-v8a.apk modified-unsigned.apk
+cp /path/to/olea-0.1.1-arm64-v8a.apk modified-unsigned.apk
 zip -d modified-unsigned.apk \
   'META-INF/*.SF' 'META-INF/*.RSA' 'META-INF/*.DSA' 'META-INF/*.EC' \
   'META-INF/MANIFEST.MF' "lib/$abi/libtalloc.so"

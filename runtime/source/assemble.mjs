@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // SPDX-License-Identifier: MIT
-// Assemble the 0.1.0 source companion without running upstream build scripts.
+// Assemble a release source companion without running upstream build scripts.
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -11,8 +11,11 @@ import { gunzipSync } from 'node:zlib';
 const exec = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 process.chdir(root);
-const work = '.setup/release-010/redistribution';
-const stage = `${work}/olea-0.1.0-runtime-source`;
+const version = process.argv[2] ?? fs.readFileSync('android/app/build.gradle.kts', 'utf8').match(/versionName = "([^"]+)"/)?.[1];
+if (!/^\d+\.\d+\.\d+$/.test(version ?? '')) throw Error('Expected a release version such as 0.1.1');
+const work = `.setup/release-${version.replaceAll('.', '')}/redistribution`;
+const archiveName = `olea-${version}-runtime-source`;
+const stage = `${work}/${archiveName}`;
 const lock = JSON.parse(fs.readFileSync('runtime/source/source-lock.json'));
 const inputs = JSON.parse(fs.readFileSync('runtime/upstream-inputs.json'));
 const digest = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
@@ -37,6 +40,11 @@ async function download(entry) {
   const file = `${stage}/${entry.path}`;
   if (checked(file, entry.sha256, entry.size)) return;
   fs.mkdirSync(path.dirname(file), { recursive: true });
+  const cached = `.setup/release-010/redistribution/olea-0.1.0-runtime-source/${entry.path}`;
+  if (file !== cached && checked(cached, entry.sha256, entry.size)) {
+    fs.copyFileSync(cached, file);
+    return;
+  }
   await exec('curl', ['-fsSL', '--retry', '2', '--connect-timeout', '20', '--max-time', '240', entry.url, '-o', `${file}.part`]);
   if (!checked(`${file}.part`, entry.sha256, entry.size)) throw Error(`Source hash/size mismatch: ${entry.path}`);
   fs.renameSync(`${file}.part`, file);
@@ -125,12 +133,12 @@ put('RELINKING.md', fs.readFileSync('runtime/source/RELINKING.md'));
 // Include only explicitly selected trees, never the surrounding workspace or local config.
 const files = [...selected].sort();
 put('SHA256SUMS', files.map(f => `${digest(`${stage}/${f}`)}  ${f}\n`).join(''));
-const archive = `${work}/olea-0.1.0-runtime-source.tar.gz`;
+const archive = `${work}/${archiveName}.tar.gz`;
 const archiveList = `${work}/archive-files.txt`;
-fs.writeFileSync(archiveList, [...selected].sort().map(f => `olea-0.1.0-runtime-source/${f}\0`).join(''));
+fs.writeFileSync(archiveList, [...selected].sort().map(f => `${archiveName}/${f}\0`).join(''));
 execFileSync('tar', ['--sort=name', '--mtime=2026-11-13T00:00:00Z', '--owner=0', '--group=0', '--numeric-owner', '-czf', archive, '-C', work, '--no-recursion', '--null', '-T', archiveList], { stdio: 'inherit' });
 const notices = ['runtime/THIRD_PARTY.md', ...fs.readdirSync('runtime/licenses').sort().map(f => `runtime/licenses/${f}`)].map(f => `\n===== ${f} =====\n\n${fs.readFileSync(f, 'utf8')}\n`).join('');
-const noticesFile = `${work}/olea-0.1.0-runtime-NOTICES.txt`;
+const noticesFile = `${work}/olea-${version}-runtime-NOTICES.txt`;
 fs.writeFileSync(noticesFile, notices);
 const result = { artifact: archive, sha256: digest(archive), bytes: fs.statSync(archive).size, notices: { artifact: noticesFile, sha256: digest(noticesFile), bytes: fs.statSync(noticesFile).size }, sourceFiles: lock.files.length, ubuntuSourceVersions: 65, abis: ['x86_64', 'arm64-v8a'] };
 fs.writeFileSync(`${work}/artifact.json`, JSON.stringify(result, null, 2) + '\n');

@@ -12,7 +12,7 @@ Give an agent a task, follow its replies and tools, and return to the conversati
 
 [Download & release notes](https://github.com/nekoium/Olea/releases) · [Report a problem](https://github.com/nekoium/Olea/issues) · [MIT license](LICENSE)
 
-> **0.1.0 MVP:** Tested on a physical Android 14 ARM64 phone. [Download the signed APK](https://github.com/nekoium/Olea/releases/download/0.1.0/olea-0.1.0-arm64-v8a.apk) and read the [release notes](https://github.com/nekoium/Olea/releases/tag/0.1.0) for compatibility and current limits. Other Android versions and continuous background execution are not verified.
+> **0.1.1 — the Soft UI update:** Cabin typography, quieter controls and six palettes. [Download the signed ARM64 APK](https://github.com/nekoium/Olea/releases/download/0.1.1/olea-0.1.1-arm64-v8a.apk) and read the [release notes and visual comparisons](https://github.com/nekoium/Olea/releases/tag/0.1.1). The new interface has emulator coverage; physical-device checks belong to 0.1.0 and its terminal follow-up. Broad device compatibility and continuous background execution remain unverified.
 
 ## A workspace in your pocket
 
@@ -34,17 +34,21 @@ Once that works, try summarizing a text file in the workspace, making a small sc
 
 ## Install and get your first reply
 
-You need an **ARM64 Android phone** for the 0.1.0 APK. Olea has been tested on a physical phone running **Android 14**; other Android versions and devices are not yet verified. You also need internet access, free storage for its Linux environment and tools, and credentials for a compatible model provider. Root access and a connected computer are not required for normal use.
+You need an **ARM64 Android phone** for the 0.1.1 APK. Earlier builds were tested on a physical phone running **Android 14**; the 0.1.1 interface was checked on an Android 16 emulator. Other Android versions and devices remain unverified. You also need internet access, free storage for its Linux environment and tools, and credentials for a compatible model provider. Root access and a connected computer are not required for normal use.
 
-1. **Download the signed [0.1.0 ARM64 APK](https://github.com/nekoium/Olea/releases/download/0.1.0/olea-0.1.0-arm64-v8a.apk).** An APK is Android's app installer. Read the [release notes](https://github.com/nekoium/Olea/releases/tag/0.1.0) for device requirements and known issues before installing.
+1. **Download the signed [0.1.1 ARM64 APK](https://github.com/nekoium/Olea/releases/download/0.1.1/olea-0.1.1-arm64-v8a.apk).** An APK is Android's app installer. Read the [release notes](https://github.com/nekoium/Olea/releases/tag/0.1.1) for device requirements and known issues before installing. If updating official 0.1.0, install over it; do not uninstall or clear app storage.
 2. **Open the downloaded file.** If Android asks, allow your browser or file manager to install apps from that source, then install Olea. You can turn that permission off afterward.
-3. **Open Olea and choose Get started.** Choose your agent and a workspace. A managed workspace keeps its files inside Olea.
+3. **Open Olea and choose Set up Olea.** Choose your agent and a workspace. A managed workspace keeps its files inside Olea.
 4. **Prepare the environment and install your agent.** Follow setup's progress and wait for completion. This downloads packages and can take several minutes. If setup fails, read the error, check connectivity and storage, then retry explicitly.
 5. **Configure the provider.** Enter the provider's API base URL, model ID and API key. The base URL is its connection address; the model ID is the exact model name it supplies. See the agent choices below. Stop the environment before changing provider settings.
 6. **Review phone access or skip it.** You can chat and work with workspace files without optional phone permissions. Enable those capabilities later when a task needs them.
 7. **Open the conversation.** Start or reconnect it if prompted, then send the `hello.txt` task above. If Olea keeps your text as a draft while connecting, press Send when ready. Confirm that the reply reports the file's contents.
 
 A saved provider configuration does not prove the connection works: the first reply checks it. For connection errors, check the URL, model, key and provider balance under **Providers** in the app menu. Installing an agent alone does not include model access.
+
+## Make it feel like yours
+
+Open **Settings → Color palette** to choose Olea green, Soft purple, Dusty blue, Rosewood, Ochre or Graphite. Set light, dark or Follow Android separately. All palettes share the Soft layout and bundled Cabin typography; terminal and code text stay monospace.
 
 ## Choose an agent and model service
 
@@ -64,7 +68,7 @@ One conversation keeps one agent. To use another, create a new conversation. Age
 
 A **managed workspace** keeps its project files inside Olea. A **connected folder** works directly with an existing folder in your phone's primary shared storage—the built-in storage you see in a file manager. Agent edits change those original files immediately; Olea does not make a separate working copy. Workspaces organize conversations and choose the agent's starting directory; they do not limit which files the agent can reach.
 
-In current source builds on Android 11 or later, **Phone access → Android phone file access** opens Android's **All files access** settings. Once granted, ordinary agent file tools and terminals can discover, read and edit Android-accessible shared phone files through `/sdcard` and `/storage`, including files outside the selected workspace. No per-folder authorization or phone-tools toggle is required for this access. Android still protects other apps' private data and restricted directories such as `Android/data` and `Android/obb`. Published 0.1.0 exposes connected folders to Linux; broad storage access requires a newer source build.
+In 0.1.1 on Android 11 or later, **Phone access → Android phone file access** opens Android's **All files access** settings. Once granted, ordinary agent file tools and terminals can discover, read and edit Android-accessible shared phone files through `/sdcard` and `/storage`, including files outside the selected workspace. No per-folder authorization or phone-tools toggle is required for this access. Android still protects other apps' private data and restricted directories such as `Android/data` and `Android/obb`. Published 0.1.0 exposes connected folders to Linux; update to 0.1.1 for broad shared-storage access.
 
 After granting or revoking access, **STOP** the environment and **Start** it again to refresh its storage bindings. Denying access leaves managed workspace work available. Revocation is enforced by Android; restore the grant to use shared files again.
 
@@ -102,7 +106,7 @@ Android can stop background processes, especially under battery or memory pressu
 
 Olea is an early Android release. Pi's file work, interruption and saved continuation, all three agents' replies, and browser/Accessibility actions have been checked on the Android 14 ARM64 phone. These checks do not establish equal tool coverage across agents or compatibility with every app. Use each release's notes for the exact devices and agent versions checked. Continuous background execution, operation through reboot and compatibility with every future agent update are not guaranteed.
 
-The [terminal is experimental](https://github.com/nekoium/Olea/issues/1) and can appear blank. Use conversations and file previews for agent work while this display issue remains open.
+The terminal remains experimental. Version 0.1.1 includes the [resize and workspace-shell selection fix](https://github.com/nekoium/Olea/issues/1), but display and keyboard behavior can still vary by device.
 
 Scheduled tasks, reminders, alarms and general phone-folder cleanup are not included. Olea currently focuses on conversations, managed or connected workspace files and permission-controlled phone tools. It is not available for iOS.
 
@@ -124,6 +128,6 @@ Want to build from source or contribute? See [Contributing](CONTRIBUTING.md).
 
 Olea is available under the [MIT License](LICENSE).
 
-Olea uses [Ubuntu Base](https://cdimage.ubuntu.com/ubuntu-base/), [Node.js](https://nodejs.org/), [Termux PRoot](https://github.com/termux/proot), [libtalloc](https://talloc.samba.org/), [libandroid-shmem](https://github.com/termux/libandroid-shmem), [AndroidX](https://developer.android.com/jetpack/androidx), [Kotlin](https://kotlinlang.org/), [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines) and [xterm.js](https://xtermjs.org/), and integrates Pi, Codex and Claude Code. These projects retain their own licenses; see [third-party components](runtime/THIRD_PARTY.md) and [Android interface notices](runtime/licenses/Android-UI-NOTICES.txt).
+Olea uses [Ubuntu Base](https://cdimage.ubuntu.com/ubuntu-base/), [Node.js](https://nodejs.org/), [Termux PRoot](https://github.com/termux/proot), [libtalloc](https://talloc.samba.org/), [libandroid-shmem](https://github.com/termux/libandroid-shmem), [AndroidX](https://developer.android.com/jetpack/androidx), [Kotlin](https://kotlinlang.org/), [Cabin](https://github.com/impallari/Cabin), [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines) and [xterm.js](https://xtermjs.org/), and integrates Pi, Codex and Claude Code. These projects retain their own licenses; see [third-party components](runtime/THIRD_PARTY.md) and [Android interface notices](runtime/licenses/Android-UI-NOTICES.txt).
 
 When downloading an APK, also keep its accompanying runtime NOTICES and runtime source companion from the same release page; these provide license texts, corresponding runtime source and build/replacement instructions.

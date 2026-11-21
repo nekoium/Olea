@@ -1,6 +1,6 @@
-# Olea 0.1.0 runtime source companion
+# Olea runtime source companion
 
-This archive supplies the runtime sources for `arm64-v8a` and `x86_64` Olea 0.1.0 builds. It contains the source versions selected by `olea/runtime/upstream-inputs.json`, their upstream build recipes and license notices. Olea's MIT license does not replace the licenses of the bundled software.
+This archive supplies the runtime sources for `arm64-v8a` and `x86_64` builds of the Olea version named in the archive. It contains the source versions selected by `olea/runtime/upstream-inputs.json`, their upstream build recipes and license notices. Olea's MIT license does not replace the licenses of the bundled software.
 
 ## Contents
 
@@ -16,7 +16,7 @@ This archive supplies the runtime sources for `arm64-v8a` and `x86_64` Olea 0.1.
 Verify an extracted companion on Linux:
 
 ```sh
-cd olea-0.1.0-runtime-source
+cd olea-0.1.1-runtime-source
 sha256sum -c SHA256SUMS
 ```
 
@@ -30,13 +30,15 @@ In the matching full Olea checkout, provide the exact cached runtime binary inpu
 node runtime/source/assemble.mjs
 ```
 
-Requires Node 24, curl, GNU tar with gzip/xz support, and enough free space for approximately 0.5 GB of source downloads plus staging and the output archive. On Windows, Git Bash supplies the archive tools. The script uses four download connections, verifies every source-file hash/size before use, verifies all ten binary input hashes before extracting notices, and runs no downloaded source code. Its output stays under the checkout's `.setup/release-010/redistribution/` directory:
+The default version comes from the Android build configuration. Pass an explicit version when recreating an older release, for example `node runtime/source/assemble.mjs 0.1.0`.
 
-- `olea-0.1.0-runtime-source.tar.gz`
-- `olea-0.1.0-runtime-NOTICES.txt`
+Requires Node 24, curl, GNU tar with gzip/xz support, and enough free space for approximately 0.5 GB of source downloads plus staging and the output archive. On Windows, Git Bash supplies the archive tools. The script uses four download connections, verifies every source-file hash/size before use, verifies all ten binary input hashes before extracting notices, and runs no downloaded source code. Verified 0.1.0 source downloads can be reused from the existing local cache. For 0.1.1, output stays under the checkout's `.setup/release-011/redistribution/` directory:
+
+- `olea-0.1.1-runtime-source.tar.gz`
+- `olea-0.1.1-runtime-NOTICES.txt`
 - `artifact.json` with artifact hashes and sizes
 
-The source lock is fixed for this release. For another binary revision, derive its own inventory and source lock rather than reusing this archive.
+The source lock is fixed to the pinned runtime inputs. If those inputs change, derive a matching inventory and source lock before assembling another companion.
 
 ## Build or modify upstream components
 
@@ -48,6 +50,6 @@ For the native Android components and library replacement, follow [RELINKING.md]
 
 ## Distribution
 
-Provide this companion and `olea-0.1.0-runtime-NOTICES.txt` as directly downloadable assets on the same release page as each matching APK, with their checksums and a prominent source/notices link beside the APK links. Keep those source downloads available wherever the matching APKs remain downloadable. Preserve notices inside the guest and Node distributions. Include native notices in the app's About/legal materials or provide the accompanying notice file with every APK copy.
+Provide this companion and the matching `olea-<version>-runtime-NOTICES.txt` as directly downloadable assets on the same release page as each matching APK, with their checksums and a prominent source/notices link beside the APK links. Keep those source downloads available wherever the matching APKs remain downloadable. Preserve notices inside the guest and Node distributions. Include native notices in the app's About/legal materials or provide the accompanying notice file with every APK copy.
 
 This route supplies source directly under GPLv2 section 3(a)'s download-equivalence paragraph and GPLv3 section 6(d), including applicable LGPL source duties. It does not depend on an upstream URL alone, a future written offer, or recipients having to request source. If APKs are mirrored, moved, or supplied outside this release page, also supply the companion/notices or establish an equivalent source distribution route for that delivery.
