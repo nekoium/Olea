@@ -1,24 +1,527 @@
 {
   "engine": "Chromium",
+  "specimens": 102,
   "results": [
-    "crisp chat light fits",
-    "crisp chat dark fits",
-    "crisp agents light fits",
-    "crisp agents dark fits",
-    "crisp provider light fits",
-    "crisp provider dark fits",
-    "soft chat light fits",
-    "soft chat dark fits",
-    "soft agents light fits",
-    "soft agents dark fits",
-    "soft provider light fits",
-    "soft provider dark fits",
-    "field chat light fits",
-    "field chat dark fits",
-    "field agents light fits",
-    "field agents dark fits",
-    "field provider light fits",
-    "field provider dark fits"
+    {
+      "id": "welcome",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "welcome",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "choose-agent",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "choose-agent",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "prepare",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "prepare",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "setup-error",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "setup-error",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "install",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "install",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "setup-provider",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "setup-provider",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "setup-workspace",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "setup-workspace",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "setup-access",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "setup-access",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "ready",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "ready",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "history",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "history",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "search",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "search",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "empty-history",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "empty-history",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "draft",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "draft",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "draft-agent",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "draft-agent",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "draft-workspace",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "draft-workspace",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "keyboard",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "keyboard",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "working",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "working",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "tool-detail",
+      "theme": "light",
+      "scrolls": true
+    },
+    {
+      "id": "tool-detail",
+      "theme": "dark",
+      "scrolls": true
+    },
+    {
+      "id": "needs-you",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "needs-you",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "done",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "done",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "stopped",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "stopped",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "reply-error",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "reply-error",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "concurrent",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "concurrent",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "conversation-details",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "conversation-details",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "runtime-lost",
+      "theme": "light",
+      "scrolls": true
+    },
+    {
+      "id": "runtime-lost",
+      "theme": "dark",
+      "scrolls": true
+    },
+    {
+      "id": "reconnect",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "reconnect",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "stop-confirm",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "stop-confirm",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "workspaces",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "workspaces",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "create-workspace",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "create-workspace",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "connect-folder",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "connect-folder",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "workspace-details",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "workspace-details",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "files",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "files",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "file-preview",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "file-preview",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "folder-lost",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "folder-lost",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "menu",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "menu",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "agents",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "agents",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "providers",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "providers",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "provider",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "provider",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "environment",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "environment",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "settings",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "settings",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "about",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "about",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "phone-access",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "phone-access",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "accessibility",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "accessibility",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "permission-needed",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "permission-needed",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "permission-denied",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "permission-denied",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "capture-consent",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "capture-consent",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "terminal",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "terminal",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "terminal-switch",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "terminal-switch",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "terminal-running",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "terminal-running",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "terminal-close",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "terminal-close",
+      "theme": "dark",
+      "scrolls": false
+    },
+    {
+      "id": "terminal-lost",
+      "theme": "light",
+      "scrolls": false
+    },
+    {
+      "id": "terminal-lost",
+      "theme": "dark",
+      "scrolls": false
+    }
   ],
-  "limit": "Visual proposals only; no native or WebKit validation."
+  "interactionChecks": [
+    "Welcome to agent selection",
+    "Explicit agent selection",
+    "Working to stopped",
+    "Provider detail disclosure",
+    "51-state board and 9 journeys",
+    "Walkthrough next state",
+    "Local notes persistence",
+    "Mobile board bounds"
+  ],
+  "limits": "Browser-only samples; WebKit, native Android behavior, providers and runtime not tested."
 }
