@@ -1,0 +1,19 @@
+{
+  "task": "Rebuild Olea native UI to approved Soft contract",
+  "contractCommit": "39e3a41",
+  "agent": "pi",
+  "mode": "structured",
+  "stateAtLaunch": "ready",
+  "dispatchId": "ctx_24df0f9f580b",
+  "taskId": "task_a353978de25e",
+  "runId": "run_074e3f3f0c78",
+  "workerHandle": "structworker_045b64be-53b5-4c2f-b839-fed6d1fc20b0",
+  "workspace": "d55c3648-a5ff-4d7b-96d8-e80071701415::C:/Users/Aria/orca/workspaces/Olea/soft-native-ui",
+  "path": "C:/Users/Aria/orca/workspaces/Olea/soft-native-ui",
+  "baseBranch": "master",
+  "keptOpen": true,
+  "brief": "delegations/soft-ui-rebuild/brief.md",
+  "expectedResult": "delegations/soft-ui-rebuild/result.md in the worker checkout",
+  "completion": "Orca reports worker completion; in-review workspace comment and unread marker also requested",
+  "limitations": "Ready confirms dispatch, not completed implementation or native acceptance; no provider test budget or publication authorization"
+}
