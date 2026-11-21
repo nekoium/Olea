@@ -14,12 +14,16 @@ import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import kotlinx.coroutines.delay
@@ -37,8 +41,8 @@ import org.json.JSONObject
     LaunchedEffect(terminal?.id) { selected = terminal?.id.orEmpty() }
     fun runtime() = RuntimeService.current ?: error("Start the environment first.")
     Column(Modifier.fillMaxSize()) {
-        Row(Modifier.padding(horizontal = 12.dp, vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            Action(terminal?.name ?: "Terminal sessions", Modifier.weight(1f)) { sessions = true }
+        Row(Modifier.padding(horizontal = 18.dp, vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            Action(terminal?.name?.let { "$it ⌄" } ?: "Terminal sessions", Modifier.weight(1f), description = terminal?.name ?: "Terminal sessions") { sessions = true }
             Action("＋", description = "New terminal", enabled = backendRunning) { perform { selected = runtime().createTerminal(workspace.id, "Terminal ${terminals.size + 1}") } }
             if (terminal != null) Action("Close") { closing = true }
         }
@@ -50,16 +54,19 @@ import org.json.JSONObject
             if (!backendRunning) Action(if (snapshot.environmentReady) "Start environment" else "Prepare environment", enabled = !snapshot.busy) { perform { runtime().prepareEnvironment() } }
             if (!snapshot.environmentReady) Notice("Prepare the environment first from the app menu.")
         } else {
-            Row(Modifier.padding(horizontal = 14.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Chip(terminal.state.replaceFirstChar { it.uppercase() })
-                Action("Interrupt", enabled = terminal.state == "running") { perform { runtime().interruptTerminal(terminal.id) } }
-                Action("Copy output") {
-                    val plain = terminal.output.replace(Regex("\\u001B\\[[0-?]*[ -/]*[@-~]"), "").replace(Regex("\\u001B\\][^\\u0007]*(?:\\u0007|\\u001B\\\\)"), "")
-                    context.getSystemService(android.content.ClipboardManager::class.java).setPrimaryClip(android.content.ClipData.newPlainText(terminal.name, plain))
-                }
-            }
+            val colors = LocalFlat.current
             if (terminal.state in listOf("closed", "error", "exited", "stopped")) Notice("Shell disconnected. Output is retained. Create a new terminal to run more commands.", terminal.state == "error")
             TerminalViewport(terminal, Modifier.weight(1f), perform)
+            CompositionLocalProvider(LocalFlat provides colors.copy(surface = colors.terminalBg, paper = colors.terminalNotice, ink = colors.terminalInk, muted = colors.terminalMuted, accent = colors.terminalAccent, soft = colors.terminalKeys)) {
+                Row(Modifier.fillMaxWidth().background(colors.terminalBg).padding(horizontal = 14.dp), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                    Label(terminal.state.replaceFirstChar { it.uppercase() }, Modifier.weight(1f), size = 10, muted = true)
+                    Action("Interrupt", enabled = terminal.state == "running") { perform { runtime().interruptTerminal(terminal.id) } }
+                    Action("Copy output") {
+                        val plain = terminal.output.replace(Regex("\\u001B\\[[0-?]*[ -/]*[@-~]"), "").replace(Regex("\\u001B\\][^\\u0007]*(?:\\u0007|\\u001B\\\\)"), "")
+                        context.getSystemService(android.content.ClipboardManager::class.java).setPrimaryClip(android.content.ClipData.newPlainText(terminal.name, plain))
+                    }
+                }
+            }
         }
     }
     if (sessions) FlatDialog("Terminal sessions · ${workspace.name}", { sessions = false }) {
@@ -92,7 +99,9 @@ internal fun terminalKeyScript(data: String) = "window.oleaKey(${JSONObject.quot
 @SuppressLint("SetJavaScriptEnabled", "ClickableViewAccessibility")
 internal fun createTerminalWebView(context: Context, input: (String) -> Unit, resize: (Int, Int) -> Unit, loaded: () -> Unit, failed: (String) -> Unit): WebView =
     WebView(context).apply {
-        setBackgroundColor(android.graphics.Color.rgb(23, 27, 22))
+        setBackgroundColor(android.graphics.Color.rgb(40, 50, 32))
+        outlineProvider = android.view.ViewOutlineProvider.BOUNDS
+        clipToOutline = true
         settings.javaScriptEnabled = true
         settings.allowFileAccess = false; settings.allowContentAccess = false
         settings.domStorageEnabled = false; settings.blockNetworkLoads = true
@@ -162,6 +171,8 @@ internal fun createTerminalWebView(context: Context, input: (String) -> Unit, re
 
 @Composable private fun TerminalViewport(terminal: RuntimeTerminalState, modifier: Modifier, perform: (() -> Unit) -> Unit) {
     val context = LocalContext.current
+    val colors = LocalFlat.current
+    val fontScale = LocalDensity.current.fontScale
     var browser by remember(terminal.id) { mutableStateOf<WebView?>(null) }
     var ready by remember(terminal.id) { mutableStateOf(false) }
     var loadError by remember(terminal.id) { mutableStateOf<String?>(null) }
@@ -170,7 +181,7 @@ internal fun createTerminalWebView(context: Context, input: (String) -> Unit, re
     val canInput = terminal.state == "running"
     val latestId by rememberUpdatedState(terminal.id)
     val latestCanInput by rememberUpdatedState(canInput)
-    Column(modifier.fillMaxWidth().background(Color(0xff171b16))) {
+    Column(modifier.fillMaxWidth().clipToBounds().background(colors.terminalBg)) {
         loadError?.let { Notice("Terminal display failed: $it. Reopen the terminal to retry.", true) }
         key(terminal.id) {
             AndroidView(factory = {
@@ -185,13 +196,16 @@ internal fun createTerminalWebView(context: Context, input: (String) -> Unit, re
                     { if (loadError == null) ready = true },
                     { error -> if (loadError == null) loadError = error; ready = false }
                 ).also { browser = it }
-            }, modifier = Modifier.weight(1f).fillMaxWidth(), onRelease = { browser = null; it.removeJavascriptInterface("OleaTerminal"); it.destroy() })
+            }, modifier = Modifier.weight(1f).fillMaxWidth().clipToBounds(), onRelease = { browser = null; it.removeJavascriptInterface("OleaTerminal"); it.destroy() })
         }
-        Row(Modifier.fillMaxWidth().background(LocalFlat.current.panel).padding(horizontal = 3.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
-            listOf("Esc" to "\u001b", "Ctrl" to "", "Tab" to "\t", "←" to "\u001b[D", "↓" to "\u001b[B", "↑" to "\u001b[A", "→" to "\u001b[C").forEach { (label, data) ->
-                Box(Modifier.weight(1f)) {
-                    Action(label, primary = label == "Ctrl" && ctrl, enabled = canInput && ready, compact = true) {
-                        if (label == "Ctrl") ctrl = !ctrl else browser?.evaluateJavascript(terminalKeyScript(data), null)
+        CompositionLocalProvider(LocalFlat provides colors.copy(surface = colors.terminalBg, ink = colors.terminalInk, muted = colors.terminalMuted, accent = colors.terminalAccent, soft = colors.terminalNotice)) {
+            BoxWithConstraints(Modifier.fillMaxWidth().background(colors.terminalKeys)) {
+                val keyWidth = maxOf(48.dp, (maxWidth - 6.dp) / 7)
+                Row(Modifier.horizontalScroll(rememberScrollState()).padding(horizontal = 3.dp)) {
+                    listOf("Esc" to "\u001b", "Ctrl" to "", "Tab" to "\t", "←" to "\u001b[D", "↓" to "\u001b[B", "↑" to "\u001b[A", "→" to "\u001b[C").forEach { (label, data) ->
+                        Action(label, Modifier.width(keyWidth), primary = label == "Ctrl" && ctrl, enabled = canInput && ready, compact = true) {
+                            if (label == "Ctrl") ctrl = !ctrl else browser?.evaluateJavascript(terminalKeyScript(data), null)
+                        }
                     }
                 }
             }
@@ -202,6 +216,9 @@ internal fun createTerminalWebView(context: Context, input: (String) -> Unit, re
             delay(10000)
             if (!ready && loadError == null) loadError = "The bundled terminal page did not become ready within 10 seconds."
         }
+    }
+    LaunchedEffect(ready, colors, fontScale) {
+        if (ready) browser?.evaluateJavascript("window.oleaTheme(${colors.terminalTheme()},${12 * fontScale})", null)
     }
     LaunchedEffect(terminal.id, ready, terminal.output) {
         if (ready) {

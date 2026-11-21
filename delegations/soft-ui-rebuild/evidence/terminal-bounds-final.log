@@ -1,0 +1,146 @@
+Soft UI: isolated MainActivity and actual RuntimeService creation
+Soft UI: terminal viewport bounds and native header visibility
+{
+  "providerRequests": 0,
+  "case": "terminal-fixture",
+  "package": "dev.olea.softtest",
+  "version": "0.1.0",
+  "abi": "x86_64",
+  "androidApi": 36,
+  "deviceModel": "sdk_gphone64_x86_64",
+  "captures": [
+    {
+      "file": "terminal.png",
+      "kind": "fixture shell; real clipped xterm WebView",
+      "entry": "terminal viewport bounds and native header visibility",
+      "palette": "green",
+      "theme": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "labels": [
+        "Soft UI diagnostic · Terminal",
+        "Workspace shell",
+        "Notes shell ⌄",
+        "＋",
+        "Close",
+        "Esc",
+        "Ctrl",
+        "Tab",
+        "←",
+        "↓",
+        "↑",
+        "→",
+        "Running",
+        "Interrupt",
+        "Copy output"
+      ]
+    },
+    {
+      "file": "terminal-switch.png",
+      "kind": "fixture",
+      "entry": "terminal viewport bounds and native header visibility",
+      "palette": "green",
+      "theme": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "labels": [
+        "Terminal sessions · Soft UI diagnostic",
+        "Notes shell",
+        "running",
+        "Selected",
+        "New terminal"
+      ]
+    },
+    {
+      "file": "terminal-close.png",
+      "kind": "fixture",
+      "entry": "terminal viewport bounds and native header visibility",
+      "palette": "green",
+      "theme": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "labels": [
+        "Close this shell?",
+        "This ends Notes shell. Leaving the terminal view keeps the shell open.",
+        "End shell",
+        "Keep shell"
+      ]
+    },
+    {
+      "file": "terminal-lost.png",
+      "kind": "fixture disconnected shell; real clipped xterm WebView",
+      "entry": "terminal viewport bounds and native header visibility",
+      "palette": "green",
+      "theme": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "labels": [
+        "Soft UI diagnostic · Terminal",
+        "Workspace shell",
+        "Notes shell ⌄",
+        "＋",
+        "Close",
+        "Shell disconnected. Output is retained. Create a new terminal to run more commands.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Esc",
+        "Ctrl",
+        "Tab",
+        "←",
+        "↓",
+        "↑",
+        "→",
+        "Stopped",
+        "Interrupt",
+        "Copy output"
+      ]
+    },
+    {
+      "file": "terminal-narrow-font150.png",
+      "kind": "320 dp fixture shell; 1.5 text scale; horizontally scrolling 48 dp extra keys",
+      "entry": "terminal viewport bounds and native header visibility",
+      "palette": "green",
+      "theme": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "labels": [
+        "Soft UI diagnostic · Terminal",
+        "Workspace shell",
+        "Notes shell ⌄",
+        "＋",
+        "Close",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Esc",
+        "Ctrl",
+        "Tab",
+        "←",
+        "↓",
+        "↑",
+        "→",
+        "Running",
+        "Interrupt",
+        "Copy output"
+      ]
+    }
+  ],
+  "checks": [
+    "Native registry and runtime created; no agent started",
+    "Palette default\/invalid fallback and fenced-code preservation",
+    "Native header pixel remains the exact light surface while WebView paints its dark terminal; shell picker and close controls remain reachable"
+  ],
+  "passed": true
+}

@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "fontPath": "android/app/src/main/res/font/cabin_variable.ttf",
+  "fontSha256": "a16576e6cec01cf994c46838ed1c17ffdb62cf6da8430edfbcb011f57dd62457",
+  "licensePath": "android/app/src/main/res/raw/cabin_ofl.txt",
+  "licenseSha256": "965bf33673aec648a3b399185639e502b58e52693d004fc03f6bbdf21b1a0094",
+  "axes": [
+    {
+      "tag": "wght",
+      "min": 400,
+      "default": 400,
+      "max": 700
+    },
+    {
+      "tag": "wdth",
+      "min": 75,
+      "default": 100,
+      "max": 100
+    }
+  ],
+  "coverage": {
+    "latinA": true,
+    "cjk": false,
+    "arabic": false
+  },
+  "source": "Approved master fonts/sources.json; Google Fonts Cabin git blob 27f71b39824edcb34aada65f74f23c65a6cd32e2"
+}

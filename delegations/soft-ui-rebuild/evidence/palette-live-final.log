@@ -1,0 +1,893 @@
+Terminal diagnostic: starting native activity
+Terminal diagnostic: ordinary MainActivity/runtime startup
+Terminal diagnostic: ordinary OleaApp navigation to workspace terminal
+Terminal diagnostic: ordinary terminal DOM/write availability
+Terminal diagnostic: ordinary terminal real tap and keyboard
+Terminal diagnostic: ordinary terminal real bridge printf
+Terminal diagnostic: ordinary palette selection preserves a live PTY
+{
+  "providerRequests": 0,
+  "case": "palette",
+  "targetApk": "\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk",
+  "testApk": "\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk",
+  "runnerClassLoader": "dalvik.system.PathClassLoader[DexPathList[[zip file \"\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk\", zip file \"\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk\"],nativeLibraryDirectories=[\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/lib\/x86_64, \/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk!\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk!\/lib\/x86_64, \/system\/lib64, \/system_ext\/lib64]]]",
+  "activityClassLoader": "dalvik.system.PathClassLoader[DexPathList[[zip file \"\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk\", zip file \"\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk\"],nativeLibraryDirectories=[\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/lib\/x86_64, \/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk!\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk!\/lib\/x86_64, \/system\/lib64, \/system_ext\/lib64]]]",
+  "terminalClassLoader": "dalvik.system.PathClassLoader[DexPathList[[zip file \"\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk\", zip file \"\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk\"],nativeLibraryDirectories=[\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/lib\/x86_64, \/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk!\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk!\/lib\/x86_64, \/system\/lib64, \/system_ext\/lib64]]]",
+  "webViewPackage": "com.google.android.webview",
+  "webViewVersion": "133.0.6943.137",
+  "beforeNavigationSnapshotError": "",
+  "beforeNavigationSnapshot": {
+    "available": true,
+    "activeWorkspace": "default",
+    "terminalCount": 1,
+    "terminals": [
+      {
+        "id": "7759bd56-8fc0-4d1e-999b-a8abd2d264fb",
+        "workspace": "default",
+        "state": "opening",
+        "outputChars": 0
+      }
+    ]
+  },
+  "firstWorkspace": "default",
+  "actualTimeline": [
+    {
+      "sample": 0,
+      "native": {
+        "url": "https:\/\/olea.invalid\/terminal.html",
+        "progress": 70,
+        "width": 1080,
+        "height": 1630,
+        "screenX": 0,
+        "screenY": 455,
+        "attached": true,
+        "shown": true,
+        "blockNetworkLoads": true,
+        "allowFileAccess": false,
+        "allowContentAccess": false,
+        "focused": false,
+        "windowFocus": true,
+        "acceptingText": false,
+        "imeVisible": false
+      },
+      "javascript": {
+        "href": "https:\/\/olea.invalid\/terminal.html",
+        "readyState": "loading",
+        "viewport": [
+          412,
+          621
+        ],
+        "write": "undefined",
+        "bridge": "object",
+        "xtermNodes": 0,
+        "styles": 1,
+        "activeElement": "",
+        "terminal": {}
+      },
+      "identity": 120414632,
+      "runtimeTerminalState": "running",
+      "runtimeOutputChars": 213
+    },
+    {
+      "sample": 1,
+      "native": {
+        "url": "https:\/\/olea.invalid\/terminal.html",
+        "progress": 100,
+        "width": 1080,
+        "height": 1630,
+        "screenX": 0,
+        "screenY": 455,
+        "attached": true,
+        "shown": true,
+        "blockNetworkLoads": true,
+        "allowFileAccess": false,
+        "allowContentAccess": false,
+        "focused": false,
+        "windowFocus": true,
+        "acceptingText": false,
+        "imeVisible": false
+      },
+      "javascript": {
+        "href": "https:\/\/olea.invalid\/terminal.html",
+        "readyState": "complete",
+        "viewport": [
+          412,
+          621
+        ],
+        "write": "function",
+        "bridge": "object",
+        "xtermNodes": 1,
+        "styles": 4,
+        "activeElement": "",
+        "terminal": {
+          "cols": 51,
+          "rows": 21
+        }
+      },
+      "identity": 120414632,
+      "runtimeTerminalState": "running",
+      "runtimeOutputChars": 245
+    },
+    {
+      "sample": 2,
+      "native": {
+        "url": "https:\/\/olea.invalid\/terminal.html",
+        "progress": 100,
+        "width": 1080,
+        "height": 1630,
+        "screenX": 0,
+        "screenY": 455,
+        "attached": true,
+        "shown": true,
+        "blockNetworkLoads": true,
+        "allowFileAccess": false,
+        "allowContentAccess": false,
+        "focused": false,
+        "windowFocus": true,
+        "acceptingText": false,
+        "imeVisible": false
+      },
+      "javascript": {
+        "href": "https:\/\/olea.invalid\/terminal.html",
+        "readyState": "complete",
+        "viewport": [
+          412,
+          621
+        ],
+        "write": "function",
+        "bridge": "object",
+        "xtermNodes": 1,
+        "styles": 4,
+        "activeElement": "",
+        "terminal": {
+          "cols": 51,
+          "rows": 21
+        }
+      },
+      "identity": 120414632,
+      "runtimeTerminalState": "running",
+      "runtimeOutputChars": 245
+    },
+    {
+      "sample": 3,
+      "native": {
+        "url": "https:\/\/olea.invalid\/terminal.html",
+        "progress": 100,
+        "width": 1080,
+        "height": 1630,
+        "screenX": 0,
+        "screenY": 455,
+        "attached": true,
+        "shown": true,
+        "blockNetworkLoads": true,
+        "allowFileAccess": false,
+        "allowContentAccess": false,
+        "focused": false,
+        "windowFocus": true,
+        "acceptingText": false,
+        "imeVisible": false
+      },
+      "javascript": {
+        "href": "https:\/\/olea.invalid\/terminal.html",
+        "readyState": "complete",
+        "viewport": [
+          412,
+          621
+        ],
+        "write": "function",
+        "bridge": "object",
+        "xtermNodes": 1,
+        "styles": 4,
+        "activeElement": "",
+        "terminal": {
+          "cols": 51,
+          "rows": 21
+        }
+      },
+      "identity": 120414632,
+      "runtimeTerminalState": "running",
+      "runtimeOutputChars": 245
+    }
+  ],
+  "actualWebViewCount": 1,
+  "actualOriginalRetained": true,
+  "actualSnapshot0Error": "",
+  "actualSnapshot0": {
+    "available": true,
+    "activeWorkspace": "default",
+    "terminalCount": 1,
+    "terminals": [
+      {
+        "id": "7759bd56-8fc0-4d1e-999b-a8abd2d264fb",
+        "workspace": "default",
+        "state": "running",
+        "outputChars": 213
+      }
+    ]
+  },
+  "actualSnapshot1Error": "",
+  "actualSnapshot1": {
+    "available": true,
+    "activeWorkspace": "default",
+    "terminalCount": 1,
+    "terminals": [
+      {
+        "id": "7759bd56-8fc0-4d1e-999b-a8abd2d264fb",
+        "workspace": "default",
+        "state": "running",
+        "outputChars": 245
+      }
+    ]
+  },
+  "actualSnapshot2Error": "",
+  "actualSnapshot2": {
+    "available": true,
+    "activeWorkspace": "default",
+    "terminalCount": 1,
+    "terminals": [
+      {
+        "id": "7759bd56-8fc0-4d1e-999b-a8abd2d264fb",
+        "workspace": "default",
+        "state": "running",
+        "outputChars": 245
+      }
+    ]
+  },
+  "actualSnapshot3Error": "",
+  "actualSnapshot3": {
+    "available": true,
+    "activeWorkspace": "default",
+    "terminalCount": 1,
+    "terminals": [
+      {
+        "id": "7759bd56-8fc0-4d1e-999b-a8abd2d264fb",
+        "workspace": "default",
+        "state": "running",
+        "outputChars": 245
+      }
+    ]
+  },
+  "actualAfterTapLabels": [
+    "Default · Terminal",
+    "Workspace shell",
+    "Actual UI diagnostic ⌄",
+    "＋",
+    "Close",
+    "Esc",
+    "Ctrl",
+    "Tab",
+    "←",
+    "↓",
+    "↑",
+    "→",
+    "Running",
+    "Interrupt",
+    "Copy output"
+  ],
+  "actualAfterTap": {
+    "native": {
+      "url": "https:\/\/olea.invalid\/terminal.html",
+      "progress": 100,
+      "width": 1080,
+      "height": 810,
+      "screenX": 0,
+      "screenY": 455,
+      "attached": true,
+      "shown": true,
+      "blockNetworkLoads": true,
+      "allowFileAccess": false,
+      "allowContentAccess": false,
+      "focused": true,
+      "windowFocus": true,
+      "acceptingText": true,
+      "imeVisible": true
+    },
+    "javascript": {
+      "href": "https:\/\/olea.invalid\/terminal.html",
+      "readyState": "complete",
+      "viewport": [
+        412,
+        309
+      ],
+      "write": "function",
+      "bridge": "object",
+      "xtermNodes": 1,
+      "styles": 4,
+      "activeElement": "xterm-helper-textarea",
+      "terminal": {
+        "cols": 51,
+        "rows": 10
+      }
+    },
+    "visual": {
+      "supportsDvh": true,
+      "supportsInset": true,
+      "html": {
+        "tag": "HTML",
+        "children": 2,
+        "width": 412,
+        "height": 309,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(41, 37, 50)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "309px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 309px; overflow: hidden; background: rgb(41, 37, 50);",
+        "textChars": 57118
+      },
+      "body": {
+        "tag": "BODY",
+        "children": 3,
+        "width": 412,
+        "height": 309,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(41, 37, 50)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "309px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 309px; overflow: hidden; background: rgb(41, 37, 50);",
+        "textChars": 56866
+      },
+      "terminal": {
+        "tag": "DIV",
+        "children": 1,
+        "width": 412,
+        "height": 309,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(41, 37, 50)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "309px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 309px; overflow: hidden; background: rgb(41, 37, 50);",
+        "textChars": 55075
+      },
+      "xterm": {
+        "tag": "DIV",
+        "children": 2,
+        "width": 412,
+        "height": 309,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "absolute",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "309px",
+        "inline": "",
+        "textChars": 55075
+      },
+      "screen": {
+        "tag": "DIV",
+        "children": 6,
+        "width": 367,
+        "height": 267,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "relative",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "267px",
+        "inline": "width: 367px; height: 267px;",
+        "textChars": 55075
+      },
+      "rows": {
+        "tag": "DIV",
+        "children": 10,
+        "width": 367,
+        "height": 266.96429443359375,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(233, 227, 240)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "static",
+        "top": "auto",
+        "bottom": "auto",
+        "computedHeight": "266.964px",
+        "inline": "line-height: normal; letter-spacing: 0.00857843px;",
+        "textChars": 198
+      },
+      "canvases": [],
+      "rowCount": 10,
+      "renderer": true,
+      "sampledNonBackground": 54810,
+      "sampledBright": 712
+    },
+    "errors": "[]"
+  },
+  "actualAfterPrintfLabels": [
+    "Default · Terminal",
+    "Workspace shell",
+    "Actual UI diagnostic ⌄",
+    "＋",
+    "Close",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Esc",
+    "Ctrl",
+    "Tab",
+    "←",
+    "↓",
+    "↑",
+    "→",
+    "Running",
+    "Interrupt",
+    "Copy output"
+  ],
+  "actualAfterPrintf": {
+    "native": {
+      "url": "https:\/\/olea.invalid\/terminal.html",
+      "progress": 100,
+      "width": 1080,
+      "height": 810,
+      "screenX": 0,
+      "screenY": 455,
+      "attached": true,
+      "shown": true,
+      "blockNetworkLoads": true,
+      "allowFileAccess": false,
+      "allowContentAccess": false,
+      "focused": true,
+      "windowFocus": true,
+      "acceptingText": true,
+      "imeVisible": true
+    },
+    "javascript": {
+      "href": "https:\/\/olea.invalid\/terminal.html",
+      "readyState": "complete",
+      "viewport": [
+        412,
+        309
+      ],
+      "write": "function",
+      "bridge": "object",
+      "xtermNodes": 1,
+      "styles": 4,
+      "activeElement": "xterm-helper-textarea",
+      "terminal": {
+        "cols": 51,
+        "rows": 10
+      }
+    },
+    "visual": {
+      "supportsDvh": true,
+      "supportsInset": true,
+      "html": {
+        "tag": "HTML",
+        "children": 2,
+        "width": 412,
+        "height": 309,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(41, 37, 50)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "309px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 309px; overflow: hidden; background: rgb(41, 37, 50);",
+        "textChars": 57206
+      },
+      "body": {
+        "tag": "BODY",
+        "children": 3,
+        "width": 412,
+        "height": 309,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(41, 37, 50)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "309px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 309px; overflow: hidden; background: rgb(41, 37, 50);",
+        "textChars": 56954
+      },
+      "terminal": {
+        "tag": "DIV",
+        "children": 1,
+        "width": 412,
+        "height": 309,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(41, 37, 50)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "309px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 309px; overflow: hidden; background: rgb(41, 37, 50);",
+        "textChars": 55163
+      },
+      "xterm": {
+        "tag": "DIV",
+        "children": 2,
+        "width": 412,
+        "height": 309,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "absolute",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "309px",
+        "inline": "",
+        "textChars": 55163
+      },
+      "screen": {
+        "tag": "DIV",
+        "children": 6,
+        "width": 367,
+        "height": 267,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "relative",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "267px",
+        "inline": "width: 367px; height: 267px;",
+        "textChars": 55163
+      },
+      "rows": {
+        "tag": "DIV",
+        "children": 10,
+        "width": 367,
+        "height": 266.96429443359375,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(233, 227, 240)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "static",
+        "top": "auto",
+        "bottom": "auto",
+        "computedHeight": "266.964px",
+        "inline": "line-height: normal; letter-spacing: 0.00857843px;",
+        "textChars": 286
+      },
+      "canvases": [],
+      "rowCount": 10,
+      "renderer": true,
+      "sampledNonBackground": 54810,
+      "sampledBright": 1965
+    },
+    "errors": "[]"
+  },
+  "actualPixelProof": {
+    "supportsDvh": true,
+    "supportsInset": true,
+    "html": {
+      "tag": "HTML",
+      "children": 2,
+      "width": 412,
+      "height": 309,
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgb(41, 37, 50)",
+      "position": "fixed",
+      "top": "0px",
+      "bottom": "0px",
+      "computedHeight": "309px",
+      "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 309px; overflow: hidden; background: rgb(41, 37, 50);",
+      "textChars": 57206
+    },
+    "body": {
+      "tag": "BODY",
+      "children": 3,
+      "width": 412,
+      "height": 309,
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgb(41, 37, 50)",
+      "position": "fixed",
+      "top": "0px",
+      "bottom": "0px",
+      "computedHeight": "309px",
+      "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 309px; overflow: hidden; background: rgb(41, 37, 50);",
+      "textChars": 56954
+    },
+    "terminal": {
+      "tag": "DIV",
+      "children": 1,
+      "width": 412,
+      "height": 309,
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgb(41, 37, 50)",
+      "position": "fixed",
+      "top": "0px",
+      "bottom": "0px",
+      "computedHeight": "309px",
+      "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 309px; overflow: hidden; background: rgb(41, 37, 50);",
+      "textChars": 55163
+    },
+    "xterm": {
+      "tag": "DIV",
+      "children": 2,
+      "width": 412,
+      "height": 309,
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "position": "absolute",
+      "top": "0px",
+      "bottom": "0px",
+      "computedHeight": "309px",
+      "inline": "",
+      "textChars": 55163
+    },
+    "screen": {
+      "tag": "DIV",
+      "children": 6,
+      "width": 367,
+      "height": 267,
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "position": "relative",
+      "top": "0px",
+      "bottom": "0px",
+      "computedHeight": "267px",
+      "inline": "width: 367px; height: 267px;",
+      "textChars": 55163
+    },
+    "rows": {
+      "tag": "DIV",
+      "children": 10,
+      "width": 367,
+      "height": 266.96429443359375,
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "color": "rgb(233, 227, 240)",
+      "background": "rgba(0, 0, 0, 0)",
+      "position": "static",
+      "top": "auto",
+      "bottom": "auto",
+      "computedHeight": "266.964px",
+      "inline": "line-height: normal; letter-spacing: 0.00857843px;",
+      "textChars": 286
+    },
+    "canvases": [],
+    "rowCount": 10,
+    "renderer": true,
+    "sampledNonBackground": 54810,
+    "sampledBright": 1965
+  },
+  "paletteReturnLabels": [
+    "Default · Terminal",
+    "Workspace shell",
+    "Actual UI diagnostic ⌄",
+    "＋",
+    "Close",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Esc",
+    "Ctrl",
+    "Tab",
+    "←",
+    "↓",
+    "↑",
+    "→",
+    "Running",
+    "Interrupt",
+    "Copy output"
+  ],
+  "paletteReturn": {
+    "native": {
+      "url": "https:\/\/olea.invalid\/terminal.html",
+      "progress": 100,
+      "width": 1080,
+      "height": 1630,
+      "screenX": 0,
+      "screenY": 455,
+      "attached": true,
+      "shown": true,
+      "blockNetworkLoads": true,
+      "allowFileAccess": false,
+      "allowContentAccess": false,
+      "focused": false,
+      "windowFocus": true,
+      "acceptingText": false,
+      "imeVisible": false
+    },
+    "javascript": {
+      "href": "https:\/\/olea.invalid\/terminal.html",
+      "readyState": "complete",
+      "viewport": [
+        412,
+        621
+      ],
+      "write": "function",
+      "bridge": "object",
+      "xtermNodes": 1,
+      "styles": 4,
+      "activeElement": "xterm-helper-textarea",
+      "terminal": {
+        "cols": 51,
+        "rows": 21
+      }
+    },
+    "visual": {
+      "supportsDvh": true,
+      "supportsInset": true,
+      "html": {
+        "tag": "HTML",
+        "children": 2,
+        "width": 412,
+        "height": 621,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(37, 45, 59)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "621px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 621px; overflow: hidden; background: rgb(37, 45, 59);",
+        "textChars": 57295
+      },
+      "body": {
+        "tag": "BODY",
+        "children": 3,
+        "width": 412,
+        "height": 621,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(37, 45, 59)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "621px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 621px; overflow: hidden; background: rgb(37, 45, 59);",
+        "textChars": 57043
+      },
+      "terminal": {
+        "tag": "DIV",
+        "children": 1,
+        "width": 412,
+        "height": 621,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(37, 45, 59)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "621px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 621px; overflow: hidden; background: rgb(37, 45, 59);",
+        "textChars": 55252
+      },
+      "xterm": {
+        "tag": "DIV",
+        "children": 2,
+        "width": 412,
+        "height": 621,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "absolute",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "621px",
+        "inline": "",
+        "textChars": 55252
+      },
+      "screen": {
+        "tag": "DIV",
+        "children": 6,
+        "width": 367,
+        "height": 560,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "relative",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "560px",
+        "inline": "width: 367px; height: 560px;",
+        "textChars": 55252
+      },
+      "rows": {
+        "tag": "DIV",
+        "children": 21,
+        "width": 367,
+        "height": 560,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(229, 236, 246)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "static",
+        "top": "auto",
+        "bottom": "auto",
+        "computedHeight": "560px",
+        "inline": "line-height: normal; letter-spacing: 0.00857843px;",
+        "textChars": 375
+      },
+      "canvases": [],
+      "rowCount": 21,
+      "renderer": true,
+      "sampledNonBackground": 110160,
+      "sampledBright": 2642
+    },
+    "errors": "[]"
+  },
+  "palettePreservesLivePtyAndAppearance": "pass",
+  "terminalPaletteBackground": "#252d3b",
+  "palette": "blue",
+  "actualFinalSnapshotError": "",
+  "actualFinalSnapshot": {
+    "available": true,
+    "activeWorkspace": "default",
+    "terminalCount": 1,
+    "terminals": [
+      {
+        "id": "7759bd56-8fc0-4d1e-999b-a8abd2d264fb",
+        "workspace": "default",
+        "state": "running",
+        "outputChars": 660
+      }
+    ]
+  },
+  "ordinaryActivityTerminal": "pass",
+  "selectionPreserved": true,
+  "stoppedOnlyBackendStartedByDiagnostic": true,
+  "passed": true
+}

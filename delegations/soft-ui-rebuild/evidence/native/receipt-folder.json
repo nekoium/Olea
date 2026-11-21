@@ -1,0 +1,35 @@
+{
+  "providerRequests": 0,
+  "case": "folder",
+  "package": "dev.olea.softtest",
+  "version": "0.1.0",
+  "abi": "x86_64",
+  "androidApi": 36,
+  "deviceModel": "sdk_gphone64_x86_64",
+  "captures": [
+    {
+      "file": "connect-folder.png",
+      "kind": "actual Android grant-required state; no phone folder content read",
+      "entry": "actual connected-folder activity without an Android all-files grant",
+      "palette": "green",
+      "theme": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "labels": [
+        "Connect a folder",
+        "Bring your files",
+        "Choose an existing folder in primary shared storage. Agent changes apply directly to its files.",
+        "All-files access is broader than this folder. Android still protects other apps’ private data. Linux tools and credentials stay in Olea’s private storage.",
+        "Phone file access was not granted. Open Android settings and allow all-files access, or continue with managed workspace files.",
+        "Open Android storage settings",
+        "Refresh access"
+      ]
+    }
+  ],
+  "checks": [
+    "Native registry and runtime created; no agent started",
+    "Palette default\/invalid fallback and fenced-code preservation",
+    "Actual connected-folder entry shows permission-required state and preserves cancellation; no grant changed or folder connected"
+  ],
+  "passed": true
+}

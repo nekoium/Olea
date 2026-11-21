@@ -1,0 +1,343 @@
+{
+  "providerRequests": 0,
+  "device": "emulator-5554",
+  "api": 36,
+  "abi": "x86_64",
+  "registeredFamily": "FontListFontFamily(fonts=[ResourceFont(resId=2131034112, weight=FontWeight(weight=400), style=Normal, loadingStrategy=Blocking), ResourceFont(resId=2131034112, weight=FontWeight(weight=500), style=Normal, loadingStrategy=Blocking), ResourceFont(resId=2131034112, weight=FontWeight(weight=600), style=Normal, loadingStrategy=Blocking), ResourceFont(resId=2131034112, weight=FontWeight(weight=700), style=Normal, loadingStrategy=Blocking)])",
+  "package": "dev.olea.softtest",
+  "font": "Cabin",
+  "captures": [
+    {
+      "file": "weights-and-fallback.png",
+      "entry": "packaged font, four actual variable weights and fallback",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "conversation-top.png",
+      "entry": "long conversation at default and narrow enlarged text",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "conversation-end.png",
+      "entry": "long conversation at default and narrow enlarged text",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "conversation-code.png",
+      "entry": "long conversation at default and narrow enlarged text",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "conversation-narrow-top.png",
+      "entry": "long conversation at default and narrow enlarged text",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 320,
+      "fontScale": 1.5,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "conversation-narrow-end.png",
+      "entry": "long conversation at default and narrow enlarged text",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 320,
+      "fontScale": 1.5,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "conversation-reference.png",
+      "entry": "long conversation at default and narrow enlarged text",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "draft.png",
+      "entry": "joined composer and real IME",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "draft-keyboard.png",
+      "entry": "joined composer and real IME",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic draft with actual Android IME"
+    },
+    {
+      "file": "settings.png",
+      "entry": "Settings palette change retains Cabin and draft",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "settings-purple.png",
+      "entry": "Settings palette change retains Cabin and draft",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "purple",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "draft-purple.png",
+      "entry": "Settings palette change retains Cabin and draft",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "purple",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "draft-narrow-keyboard.png",
+      "entry": "Settings palette change retains Cabin and draft",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 320,
+      "fontScale": 1.5,
+      "kind": "320 dp \/ 1.5× sp; actual Android IME"
+    },
+    {
+      "file": "settings-narrow.png",
+      "entry": "Settings palette change retains Cabin and draft",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 320,
+      "fontScale": 1.5,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "settings-purple-dark.png",
+      "entry": "Settings palette change retains Cabin and draft",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "purple",
+      "appearance": "dark",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "onboarding.png",
+      "entry": "onboarding, provider fields, phone access and license inclusion",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "onboarding-narrow.png",
+      "entry": "onboarding, provider fields, phone access and license inclusion",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 320,
+      "fontScale": 1.5,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "provider.png",
+      "entry": "onboarding, provider fields, phone access and license inclusion",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "provider-narrow.png",
+      "entry": "onboarding, provider fields, phone access and license inclusion",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 320,
+      "fontScale": 1.5,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "provider-narrow-actions.png",
+      "entry": "onboarding, provider fields, phone access and license inclusion",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 320,
+      "fontScale": 1.5,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "phone-access.png",
+      "entry": "onboarding, provider fields, phone access and license inclusion",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    },
+    {
+      "file": "cabin-license.png",
+      "entry": "onboarding, provider fields, phone access and license inclusion",
+      "font": "Cabin variable upright; wght 400\/500\/600\/700; wdth 100; no synthesis",
+      "palette": "green",
+      "appearance": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "contentWidthDp": 411,
+      "fontScale": 1,
+      "kind": "synthetic snapshot; production Composables"
+    }
+  ],
+  "weights": {
+    "400": {
+      "androidTypefaceWeight": 400,
+      "fakeBold": false,
+      "widthPxAt48": 575,
+      "glyphAlphaCoverage": 1650737,
+      "cjkFallbackGlyph": true,
+      "arabicFallbackGlyph": true,
+      "emojiFallbackGlyph": true
+    },
+    "500": {
+      "androidTypefaceWeight": 400,
+      "fakeBold": false,
+      "widthPxAt48": 578,
+      "glyphAlphaCoverage": 1828623,
+      "cjkFallbackGlyph": true,
+      "arabicFallbackGlyph": true,
+      "emojiFallbackGlyph": true
+    },
+    "600": {
+      "androidTypefaceWeight": 400,
+      "fakeBold": false,
+      "widthPxAt48": 582,
+      "glyphAlphaCoverage": 1914930,
+      "cjkFallbackGlyph": true,
+      "arabicFallbackGlyph": true,
+      "emojiFallbackGlyph": true
+    },
+    "700": {
+      "androidTypefaceWeight": 400,
+      "fakeBold": false,
+      "widthPxAt48": 585,
+      "glyphAlphaCoverage": 2058835,
+      "cjkFallbackGlyph": true,
+      "arabicFallbackGlyph": true,
+      "emojiFallbackGlyph": true
+    }
+  },
+  "wrapping": [
+    {
+      "widthDp": 411,
+      "fontScale": 1,
+      "bodySizeSp": 14,
+      "lineHeightSp": 25.2,
+      "lineCount": 5,
+      "previousSystemSansLineCount": 5,
+      "heightPx": 312,
+      "overflowWidth": false,
+      "overflowHeight": false
+    },
+    {
+      "widthDp": 320,
+      "fontScale": 1.5,
+      "bodySizeSp": 14,
+      "lineHeightSp": 25.2,
+      "lineCount": 10,
+      "previousSystemSansLineCount": 11,
+      "heightPx": 1006,
+      "overflowWidth": false,
+      "overflowHeight": false
+    }
+  ],
+  "checks": [
+    "APK font\/OFL hashes match approved sources; four resolved weight shapes differ with increasing coverage and no fake bold; Android fallback resolves CJK\/Arabic\/emoji",
+    "Ordinary palette selection preserves four resolved Cabin typefaces and unsent draft",
+    "Production labels\/replies\/fields\/composer\/settings\/onboarding\/phone\/license paths rendered; code remains monospace"
+  ],
+  "passed": true
+}

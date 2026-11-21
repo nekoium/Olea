@@ -1,2 +1,5 @@
 # Android and Linux bootstrap scripts require Unix line endings.
 runtime/*.sh text eol=lf
+
+# Preserve the approved font license bytes and provenance hash on every platform.
+android/app/src/main/res/raw/cabin_ofl.txt -text

@@ -1,0 +1,17 @@
+{
+  "license": "SIL Open Font License 1.1; copyright and terms in each OFL.txt",
+  "files": [
+    {
+      "path": "docs\\discussions\\issue-11\\fonts\\cabin\\Cabin[wdth,wght].ttf",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/cabin/Cabin%5Bwdth%2Cwght%5D.ttf",
+      "gitBlob": "27f71b39824edcb34aada65f74f23c65a6cd32e2",
+      "sha256": "a16576e6cec01cf994c46838ed1c17ffdb62cf6da8430edfbcb011f57dd62457"
+    },
+    {
+      "path": "docs\\discussions\\issue-11\\fonts\\cabin\\OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/cabin/OFL.txt",
+      "gitBlob": "32dcc07056ddbb3f2750509405551c6d557890ad",
+      "sha256": "965bf33673aec648a3b399185639e502b58e52693d004fc03f6bbdf21b1a0094"
+    }
+  ]
+}

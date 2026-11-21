@@ -1,0 +1,9 @@
+// Explicit diagnostic identity only; production package/version/signing are unchanged.
+gradle.beforeProject { project ->
+    project.pluginManager.withPlugin('com.android.application') {
+        project.extensions.getByName('androidComponents').finalizeDsl { android ->
+            android.defaultConfig.applicationId = 'dev.olea.softtest'
+            android.defaultConfig.testInstrumentationRunner = project.providers.gradleProperty('softRunner').getOrElse('dev.olea.app.SoftUiInstrumentation')
+        }
+    }
+}

@@ -1,0 +1,31 @@
+Preparing environment
+Exit: 0
+Exit: 0
+Exit: 0
+stderr: WARNING: linker: Warning: failed to find generated linker configuration from "/linkerconfig/ld.config.txt"
+Preparing Linux certificates and workspace tools
+Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:4 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1198 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1401 kB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [239 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble/main Translation-en [513 kB]
+Get:9 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1231 kB]
+Get:10 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [15.0 MB]
+Get:11 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [248 kB]
+Get:12 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1792 kB]
+Get:13 http://security.ubuntu.com/ubuntu noble-security/restricted Translation-en [414 kB]
+Ign:13 http://security.ubuntu.com/ubuntu noble-security/restricted Translation-en
+Get:14 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [45.4 kB]
+Get:15 http://security.ubuntu.com/ubuntu noble-security/multiverse Translation-en [12.7 kB]
+Get:13 http://security.ubuntu.com/ubuntu noble-security/restricted Translation-en [414 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble/universe Translation-en [5982 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [93.9 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble/restricted Translation-en [18.7 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [269 kB]
+Get:20 http://archive.ubuntu.com/ubuntu noble/multiverse Translation-en [118 kB]
+Get:21 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1475 kB]
+Exit: 124
+IllegalStateException: Operation failed (124). Open diagnostics for the underlying error, then retry explicitly.

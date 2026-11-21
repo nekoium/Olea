@@ -1,0 +1,47 @@
+Soft UI: isolated MainActivity and actual RuntimeService creation
+Soft UI: terminal viewport bounds and native header visibility
+{
+  "providerRequests": 0,
+  "case": "terminal-fixture",
+  "package": "dev.olea.softtest",
+  "version": "0.1.0",
+  "abi": "x86_64",
+  "androidApi": 36,
+  "deviceModel": "sdk_gphone64_x86_64",
+  "captures": [
+    {
+      "file": "failure-terminal-fixture.png",
+      "kind": "fixture",
+      "entry": "terminal viewport bounds and native header visibility",
+      "palette": "green",
+      "theme": "light",
+      "widthPx": 1080,
+      "heightPx": 2400,
+      "labels": [
+        "Soft UI diagnostic · Terminal",
+        "Workspace shell",
+        "Notes shell ⌄",
+        "＋",
+        "Close",
+        "Esc",
+        "Ctrl",
+        "Tab",
+        "←",
+        "↓",
+        "↑",
+        "→",
+        "Running",
+        "Interrupt",
+        "Copy output"
+      ]
+    }
+  ],
+  "checks": [
+    "Native registry and runtime created; no agent started",
+    "Palette default\/invalid fallback and fenced-code preservation"
+  ],
+  "failure": "IllegalStateException: Terminal overpainted native header: ff283220",
+  "phase": "terminal viewport bounds and native header visibility",
+  "location": "dev.olea.app.SoftUiInstrumentation.terminalFixture(SoftUiInstrumentation.kt:206)",
+  "passed": false
+}

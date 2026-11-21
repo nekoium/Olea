@@ -1,6 +1,8 @@
 package dev.olea.app
 
 import android.content.SharedPreferences
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.io.File
@@ -39,13 +42,16 @@ import kotlinx.coroutines.withContext
     val nearBottom by remember { derivedStateOf { scroll.layoutInfo.visibleItemsInfo.lastOrNull()?.index?.let { it >= scroll.layoutInfo.totalItemsCount - 3 } ?: true } }
     LaunchedEffect(snapshot.entries, snapshot.busy) { if (nearBottom && snapshot.entries.isNotEmpty()) scroll.animateScrollToItem(snapshot.entries.lastIndex) }
     Column(Modifier.fillMaxSize()) {
-        if (draft) Box(Modifier.weight(1f).fillMaxWidth().padding(28.dp), contentAlignment = Alignment.Center) { Label("What’s on your mind?", size = 26) }
-        else LazyColumn(Modifier.weight(1f).fillMaxWidth(), state = scroll, contentPadding = PaddingValues(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
+        if (draft) Column(Modifier.weight(1f).fillMaxWidth().padding(horizontal = 50.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Label("What’s on\nyour mind?", Modifier.widthIn(max = 230.dp), size = 27, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+            Label("Start with a question, a file, or something you want to get done.", Modifier.widthIn(max = 230.dp).padding(top = 18.dp), size = 13, muted = true, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+        }
+        else LazyColumn(Modifier.weight(1f).fillMaxWidth(), state = scroll, contentPadding = PaddingValues(horizontal = 25.dp, vertical = 14.dp), verticalArrangement = Arrangement.spacedBy(25.dp)) {
             itemsIndexed(snapshot.entries) { index, entry -> MessageEntry(entry, "${snapshot.active?.id}-$index") }
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     val state = snapshot.states.firstOrNull { it.id == snapshot.active?.id }
-                    if (state != null) Chip(when (state.state) { "needs_you" -> "Needs you"; "opening" -> "Opening"; "working" -> "Working"; "done" -> "Done"; "stopped" -> "Stopped"; "error" -> "Error"; "ready" -> "Ready"; else -> "Saved" })
+                    if (state != null) Chip(displayConversationState(state.state))
                     if (snapshot.entries.isEmpty()) Label("Start this conversation, then send your first message.", muted = true)
                     if (!snapshot.ready || snapshot.status.contains("uncertain", true) || snapshot.status.contains("failed", true)) {
                         Notice(snapshot.status, snapshot.status.contains("failed", true) || snapshot.status.contains("uncertain", true))
@@ -54,38 +60,50 @@ import kotlinx.coroutines.withContext
                     if (state?.state == "stopped") Label(if (snapshot.ready) "Turn stopped. Review the partial reply, then send a follow-up to continue." else "Execution stopped. Review the last result, then reconnect to continue.", muted = true)
                     if (state?.state == "error") Label("Review saved results before retrying. No message is replayed automatically.", muted = true)
                     state?.interaction?.let { interaction ->
-                        Notice(interaction.text)
-                        interaction.choices.forEach { choice -> Action(choice) {
-                            perform { val runtime = RuntimeService.current ?: error("Environment is unavailable. Reconnect the conversation."); runtime.respondToInteraction(state.id, interaction.requestId, choice) }
-                        } }
-                    }
-                }
-            }
-        }
-        Column(Modifier.padding(horizontal = 14.dp).padding(bottom = 12.dp), verticalArrangement = Arrangement.spacedBy(0.dp)) {
-            if (draft) Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)).background(colors.panel).padding(10.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Action(snapshot.workspaces.firstOrNull { it.id == draftWorkspace }?.name ?: "Choose workspace", Modifier.weight(1f), onClick = chooseWorkspace)
-                Action(agentNames[draftAgent] ?: "Choose agent", Modifier.weight(1f), onClick = chooseAgent)
-            }
-            Column(Modifier.fillMaxWidth().border(1.dp, colors.line, RoundedCornerShape(16.dp)).padding(12.dp)) {
-                BasicTextField(text, { value ->
-                    if (value.length <= 32000) { text = value; preferences.edit().putString("draft-$id", value).apply() }
-                }, Modifier.fillMaxWidth().heightIn(min = 62.dp, max = 160.dp).verticalScroll(rememberScrollState()).semantics { contentDescription = "Message" },
-                    textStyle = TextStyle(color = colors.ink, fontSize = 15.sp, lineHeight = 22.sp), cursorBrush = SolidColor(colors.accent),
-                    decorationBox = { inner -> Box { if (text.isEmpty()) Label(if (draft) "Ask anything…" else "Message ${agentNames[snapshot.active?.agent].orEmpty()}…", muted = true); inner() } })
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Action("Provider ⌄", onClick = provider)
-                    if (!draft && snapshot.busy) Action("■ Stop turn", enabled = snapshot.ready, onClick = cancel)
-                    else Action("↑ Send", primary = true, enabled = !sending && text.isNotBlank() && if (draft) draftAgent.isNotEmpty() && draftWorkspace.isNotEmpty() else snapshot.ready) {
-                        keyboard?.hide(); sending = true
-                        send(text) { accepted ->
-                            sending = false
-                            if (accepted) { text = ""; preferences.edit().remove("draft-$id").apply() }
+                        SoftCard {
+                            Label("Needs your answer", size = 12, bold = true, color = colors.accent)
+                            Label(interaction.text)
+                            interaction.choices.forEach { choice -> Action(choice) {
+                                perform { val runtime = RuntimeService.current ?: error("Environment is unavailable. Reconnect the conversation."); runtime.respondToInteraction(state.id, interaction.requestId, choice) }
+                            } }
                         }
                     }
                 }
             }
-            if (!draft && snapshot.busy) Action("STOP all execution", Modifier.fillMaxWidth(), onClick = stop)
+        }
+        Column(Modifier.padding(horizontal = 18.dp).padding(bottom = 10.dp).animateContentSize(tween(280))) {
+            if (draft) Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(topStart = 23.dp, topEnd = 23.dp)).background(colors.soft).padding(horizontal = 15.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(9.dp)) {
+                DraftChoice("Workspace", snapshot.workspaces.firstOrNull { it.id == draftWorkspace }?.name ?: "Choose workspace", Modifier.weight(1f), chooseWorkspace)
+                DraftChoice("Agent", agentNames[draftAgent] ?: "Choose agent", Modifier.weight(1f), chooseAgent)
+            }
+            val shape = if (draft) RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp) else RoundedCornerShape(24.dp)
+            Column(Modifier.fillMaxWidth().clip(shape).background(colors.paper).padding(16.dp)) {
+                BasicTextField(text, { value ->
+                    if (value.length <= 32000) { text = value; preferences.edit().putString("draft-$id", value).apply() }
+                }, Modifier.fillMaxWidth().heightIn(min = 48.dp, max = 128.dp).verticalScroll(rememberScrollState()).semantics { contentDescription = "Message" },
+                    textStyle = TextStyle(color = colors.ink, fontSize = 14.sp, lineHeight = 21.sp, fontFamily = SoftFontFamily, fontSynthesis = FontSynthesis.None), cursorBrush = SolidColor(colors.accent),
+                    decorationBox = { inner -> Box { if (text.isEmpty()) Label(if (draft) "What would you like to do?" else "Message ${agentNames[snapshot.active?.agent].orEmpty()}…", muted = true); inner() } })
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                    Box(Modifier.weight(1f).heightIn(min = 48.dp).clickable(role = Role.Button, onClick = provider).semantics { contentDescription = "Provider configuration" }, contentAlignment = Alignment.CenterStart) {
+                        Label("${agentNames[if (draft) draftAgent else snapshot.active?.agent] ?: "Provider"} / Connection ⌄", size = 10, muted = true)
+                    }
+                    if (!draft && snapshot.busy) Action("■ Stop turn", enabled = snapshot.ready, onClick = cancel)
+                    else {
+                        val enabled = !sending && text.isNotBlank() && if (draft) draftAgent.isNotEmpty() && draftWorkspace.isNotEmpty() else snapshot.ready
+                        Box(Modifier.size(48.dp).clip(androidx.compose.foundation.shape.CircleShape).clickable(enabled = enabled, role = Role.Button) {
+                            keyboard?.hide(); sending = true
+                            send(text) { accepted ->
+                                sending = false
+                                if (accepted) { text = ""; preferences.edit().remove("draft-$id").apply() }
+                            }
+                        }.semantics { contentDescription = "Send message" }, contentAlignment = Alignment.Center) {
+                            Box(Modifier.size(34.dp).clip(androidx.compose.foundation.shape.CircleShape).background(if (enabled) colors.accent else colors.soft), contentAlignment = Alignment.Center) {
+                                SoftIcon("↑", color = if (enabled) colors.surface else colors.muted)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -96,15 +114,18 @@ import kotlinx.coroutines.withContext
     val tool = entry.startsWith("tool:") || entry.startsWith("Tool") || entry.startsWith("Workspace tool:") || entry.startsWith("toolResult:") || entry.startsWith("commandExecution:")
     val error = entry.startsWith("Error:") || entry.startsWith("Pi:") || entry.startsWith("Codex:") || entry.startsWith("Claude request failed")
     var expanded by rememberSaveable(key) { mutableStateOf(false) }
-    if (tool) Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(colors.tool).padding(horizontal = 12.dp)) {
-        Row(Modifier.fillMaxWidth().clickable(role = Role.Button) { expanded = !expanded }.padding(vertical = 12.dp).semantics { stateDescription = if (expanded) "Expanded" else "Collapsed" }, verticalAlignment = Alignment.CenterVertically) {
-            Label(entry.lineSequence().first(), Modifier.weight(1f), size = 14, maxLines = 2); Label(if (expanded) "⌃" else "⌄")
+    if (tool) Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(13.dp)).background(colors.paper).padding(horizontal = 14.dp)) {
+        Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable(role = Role.Button) { expanded = !expanded }.padding(vertical = 14.dp).semantics { stateDescription = if (expanded) "Expanded" else "Collapsed" }, verticalAlignment = Alignment.CenterVertically) {
+            Label(entry.lineSequence().first(), Modifier.weight(1f), size = 11, muted = true, maxLines = 2); Label(if (expanded) "⌃" else "⌄", muted = true)
         }
-        if (expanded) SelectionContainer { Label(entry.substringAfter('\n', "No additional tool output."), Modifier.padding(bottom = 12.dp), size = 12, mono = true) }
+        if (expanded) SelectionContainer { Label(entry.substringAfter('\n', "No additional tool output."), Modifier.padding(bottom = 14.dp), size = 11, mono = true) }
     } else {
-        val text = when { user -> entry.substringAfter(": ", entry); entry.startsWith("assistant:") || entry.startsWith("agentMessage:") -> entry.substringAfter(": ", entry); else -> entry }
+        val text = when { user -> entry.substringAfter(": ", entry); entry.startsWith("assistant:") || entry.startsWith("assistant (") || entry.startsWith("agentMessage:") -> entry.substringAfter(": ", entry); else -> entry }
         SelectionContainer {
-            Label(text, Modifier.fillMaxWidth().then(if (user) Modifier.padding(start = 24.dp).clip(RoundedCornerShape(16.dp)).background(colors.panel).padding(horizontal = 14.dp, vertical = 12.dp) else if (error) Modifier.clip(RoundedCornerShape(12.dp)).background(colors.error).padding(12.dp) else Modifier), color = if (error) colors.errorInk else colors.ink)
+            if (user || error) Label(text, Modifier.fillMaxWidth().then(if (user) Modifier.padding(start = 23.dp)
+                .clip(RoundedCornerShape(topStart = 22.dp, topEnd = 22.dp, bottomStart = 22.dp, bottomEnd = 5.dp)).background(colors.soft).padding(horizontal = 16.dp, vertical = 14.dp)
+                else Modifier.clip(RoundedCornerShape(16.dp)).background(colors.error).padding(16.dp)), size = 14, color = if (error) colors.errorInk else colors.ink)
+            else ReplyBody(text)
         }
     }
 }
@@ -120,8 +141,8 @@ import kotlinx.coroutines.withContext
     var saving by remember { mutableStateOf(false) }
     val canSave = !snapshot.busy && !snapshot.summary.startsWith("Backend: running")
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Heading("Configure ${agentNames[agent]}")
-        Label(if (agent == "claude") "Anthropic Messages API" else "OpenAI Responses API", muted = true)
+        Heading("Connect a provider")
+        Label("For ${agentNames[agent]} · ${if (agent == "claude") "Anthropic Messages API" else "OpenAI Responses API"}", size = 13, muted = true)
         Notice("Credentials stay in private app storage. Prompts and tool results go to this endpoint. Leave API key blank to keep the saved key.")
         Field("HTTPS API base URL", endpoint, { endpoint = it }, if (agent == "claude") "https://api.anthropic.com" else "https://api.openai.com/v1")
         Field("Model ID", model, { model = it }, "Your provider’s model ID")
@@ -215,7 +236,8 @@ import kotlinx.coroutines.withContext
         } finally { loading = false }
     }
     Page {
-        Label(workspace.name, size = 20)
+        Heading(if (preview == null) "Files" else relative.substringAfterLast('/'))
+        Label(workspace.name, size = 12, muted = true)
         if (source?.optBoolean("connected") == true) Label(source.optString("path"), mono = true, size = 12, muted = true)
         Label(if (relative.isEmpty()) "/" else relative, mono = true, size = 12, muted = true)
         if (relative.isNotEmpty()) Action("Parent folder") { relative = relative.substringBeforeLast('/', "") }
@@ -235,7 +257,11 @@ import kotlinx.coroutines.withContext
     val context = LocalContext.current
     val license = remember { context.resources.openRawResource(R.raw.olea_license).bufferedReader().use { it.readText() } }
     val androidUiNotices = remember { context.resources.openRawResource(R.raw.android_ui_notices).bufferedReader().use { it.readText() } }
+    val cabinLicense = remember { context.resources.openRawResource(R.raw.cabin_ofl).bufferedReader().use { it.readText() } }
     SelectionContainer { Label(license, size = 13) }
+    Heading("Cabin typeface")
+    Label("Cabin is bundled under the SIL Open Font License 1.1. Copyright and full terms follow.", muted = true)
+    SelectionContainer { Label(cabinLicense, size = 13) }
     Heading("Android UI licenses")
     Label("AndroidX, Kotlin and kotlinx.coroutines licenses and attributions appear below, including Apache 2.0, BSD and Boost terms. xterm.js uses the MIT License.", muted = true)
     SelectionContainer { Label(androidUiNotices, size = 13) }

@@ -43,6 +43,7 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
     val context = LocalContext.current
     val preferences = remember { context.getSharedPreferences("olea-ui", Context.MODE_PRIVATE) }
     var appearance by rememberSaveable { mutableStateOf(preferences.getString("appearance", "system")!!) }
+    var palette by rememberSaveable { mutableStateOf(softPalette(preferences.getString("palette", null)).id) }
     val dark = appearance == "dark" || (appearance == "system" && isSystemInDarkTheme())
     SideEffect {
         val activity = context as? android.app.Activity
@@ -119,7 +120,7 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
     BackHandler(drawer || details || picker.isNotBlank() || confirmStop || history.isNotEmpty() || screen !in listOf("history", "setup")) {
         when { drawer -> drawer = false; details -> details = false; picker.isNotBlank() -> picker = ""; confirmStop -> confirmStop = false; else -> back() }
     }
-    CompositionLocalProvider(LocalFlat provides if (dark) darkColors else lightColors) {
+    CompositionLocalProvider(LocalFlat provides if (dark) softPalette(palette).dark else softPalette(palette).light) {
         val colors = LocalFlat.current
         Column(Modifier.fillMaxSize().background(colors.surface).safeDrawingPadding().imePadding()) {
             val heading = when (screen) {
@@ -130,16 +131,19 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                 "phone" -> "Phone access"; "agents" -> "Agents"; "providers" -> "Providers"; "environment" -> "Environment"
                 "settings" -> "Settings"; "about" -> "Olea"; "licenses" -> "Licenses"; else -> "Olea"
             }
-            Row(Modifier.fillMaxWidth().padding(horizontal = 6.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+            val mainDestination = screen in listOf("chat", "draft", "history", "workspaces")
+            val keyboardVisible = WindowInsets.ime.getBottom(androidx.compose.ui.platform.LocalDensity.current) > 0
+            Row(Modifier.fillMaxWidth().heightIn(min = 68.dp).padding(horizontal = 13.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
                 if (screen == "setup") {
-                    if (setupStep > 0) Glyph("‹", "Previous setup step") { step(setupStep - 1) } else Spacer(Modifier.width(14.dp))
-                } else Glyph(if (screen in listOf("chat", "draft", "history", "workspaces")) "☰" else "‹", if (screen in listOf("chat", "draft", "history", "workspaces")) "Open app menu" else "Back") { if (screen in listOf("chat", "draft", "history", "workspaces")) drawer = true else back() }
+                    if (setupStep > 0) Glyph("‹", "Previous setup step") { step(setupStep - 1) } else Spacer(Modifier.width(10.dp))
+                } else Glyph(if (mainDestination) "☰" else "‹", if (mainDestination) "Open app menu" else "Back") { if (mainDestination) drawer = true else back() }
                 Column(Modifier.weight(1f).padding(horizontal = 4.dp)) {
                     Label(heading, size = 16, bold = true, maxLines = 1)
-                    if (screen == "chat") Label("${agentName(snapshot.active?.agent)} · ${currentWorkspace?.name.orEmpty()}", size = 12, muted = true, maxLines = 1)
+                    if (screen == "chat") Label("${currentWorkspace?.name.orEmpty()} / ${agentName(snapshot.active?.agent)}", size = 11, muted = true, maxLines = 1)
+                    if (screen == "terminal") Label("Workspace shell", size = 11, muted = true)
                 }
-                if (!setup) {
-                    Glyph("＋", "New conversation") { newChat() }
+                if (!setup && mainDestination) {
+                    if (screen != "draft") Glyph("＋", "New conversation") { newChat() }
                     if (screen in listOf("chat", "draft")) Glyph("⋯", "Conversation details") { details = true }
                 }
             }
@@ -151,14 +155,16 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                     "setup" -> Page {
                         when (setupStep) {
                             0 -> {
-                                Image(painterResource(R.drawable.seed_icon), "Olea leaf", Modifier.size(76.dp).clip(RoundedCornerShape(18.dp)))
-                                Heading("Your agents.\nOn your phone.")
-                                Label("Prepare Olea, choose an agent and set up a workspace before your first task.", muted = true)
-                                Notice("Pi · Codex · Claude Code\nAgents run locally. Model requests go to your configured provider. Agents can change workspace files and run commands.")
-                                Action("Get started", primary = true) { step(1) }
+                                Spacer(Modifier.height(25.dp))
+                                Image(painterResource(R.drawable.seed_icon), "Olea leaf", Modifier.size(63.dp).clip(RoundedCornerShape(23.dp)))
+                                Spacer(Modifier.height(10.dp))
+                                Label("A little space.\nA lot of possibility.", size = 38)
+                                Label("Your agents, conversations and workspace files.\nOn your phone.", size = 13, muted = true)
+                                Notice("Agents run locally. Model requests use your chosen provider. Agents can change files and run commands.")
+                                Action("Set up Olea", primary = true) { step(1) }
                             }
                             1 -> {
-                                Heading("Choose your agent")
+                                Heading("Who will you work with?")
                                 Label("Choose one to set up now. You can add the others later.", muted = true)
                                 agentNames.forEach { (id, name) -> Choice(name, when (id) { "pi" -> "Stock Pi · Responses provider"; "codex" -> "Stock Codex · Responses provider"; else -> "Stock Claude Code · Anthropic provider" }, if (setupAgent == id) "Selected" else "", setupAgent == id) {
                                     setupAgent = id; preferences.edit().putString("setup-agent", id).apply()
@@ -228,8 +234,12 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                                 Action("Continue with current access") { step(7) }
                             }
                             else -> {
-                                Heading("You’re ready")
-                                Notice("${agentName(setupAgent)} · ${snapshot.workspaces.firstOrNull { it.id == setupWorkspace }?.name.orEmpty()}\nLinux prepared · Provider configuration saved")
+                                Heading("Start your first conversation")
+                                SoftCard {
+                                    Label(agentName(setupAgent), bold = true)
+                                    Label(snapshot.workspaces.firstOrNull { it.id == setupWorkspace }?.name.orEmpty(), size = 12, muted = true)
+                                    Label(if (snapshot.environmentReady) "Linux prepared · Provider configuration saved" else "Environment needs attention", size = 12, muted = true)
+                                }
                                 Label("The first reply checks your provider connection. If it fails, edit the provider and retry explicitly.", muted = true)
                                 Action("Open conversation", primary = true) {
                                     preferences.edit().putBoolean("setup-complete", true).apply(); setup = false; screen = "chat"; history.clear()
@@ -248,7 +258,12 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                         if (list.isEmpty()) { Heading("No conversations here"); Label("Start a conversation in this workspace.", muted = true) }
                         list.forEach { item ->
                             val name = snapshot.workspaces.firstOrNull { it.id == item.workspaceId }?.name.orEmpty()
-                            Choice(item.title, "${if (filter.isEmpty()) "$name · " else ""}${agentName(item.agent)}", if (item.id == snapshot.active?.id) conversationState(snapshot) else snapshot.states.firstOrNull { it.id == item.id }?.state?.replace('_', ' ')?.replaceFirstChar { it.uppercase() } ?: "Saved") { pendingFirstSend = null; perform { runtime().selectConversation(item.id); go("chat") } }
+                            val state = snapshot.states.firstOrNull { it.id == item.id }
+                            ConversationRow(item.title, "${if (filter.isEmpty()) "$name / " else ""}${agentName(item.agent)}",
+                                state?.messages?.lastOrNull { it.role == "assistant" || it.role == "user" }?.text.orEmpty(),
+                                state?.state?.let(::displayConversationState) ?: "Saved") {
+                                pendingFirstSend = null; perform { runtime().selectConversation(item.id); go("chat") }
+                            }
                         }
                         Action("New conversation", primary = true) { newChat() }
                     }
@@ -287,7 +302,10 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                             }
                         })
                     "workspaces" -> Page {
-                        snapshot.workspaces.forEach { item -> Choice(item.name, "${snapshot.conversations.count { it.workspaceId == item.id }} conversations") { filter = item.id; go("history") } }
+                        Heading("Spaces for your work")
+                        snapshot.workspaces.forEach { item -> SoftCard {
+                            Choice(item.name, "${snapshot.conversations.count { it.workspaceId == item.id }} conversations") { filter = item.id; go("history") }
+                        } }
                         Action("Create workspace", primary = true) { managedName = ""; go("create") }
                         Label("Select a workspace to see its conversations. Open conversation details to inspect files and tools.", muted = true)
                     }
@@ -326,12 +344,15 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                         WorkspaceTerminal(snapshot, workspace, perform)
                     }
                     "agents" -> Page {
-                        Heading("Agents")
-                        Label("Each conversation keeps one agent. Add another agent, then start a new conversation to use it.", muted = true)
+                        Heading("Your agents")
+                        Label("Each conversation keeps its agent. Choose another when you start a new conversation.", size = 13, muted = true)
                         agentNames.forEach { (id, name) ->
                             val installed = agentInstalled(context, id, revision + RuntimeService.revision)
-                            Choice(name, if (installed) "Installed · configure provider" else "Not installed", if (installed) "Installed" else "Not set up") { providerAgent = id; go("provider") }
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            SoftCard {
+                                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                    Column(Modifier.weight(1f)) { Label(name, bold = true); Label(if (installed) "Installed" else "Not installed", size = 11, muted = true) }
+                                    Action("Configure") { providerAgent = id; go("provider") }
+                                }
                                 Action(if (installed) "Update $name" else "Install $name", enabled = snapshot.environmentReady && !snapshot.busy && !snapshot.summary.startsWith("Backend: running")) { perform { runtime().maintainAgent(id, if (installed) "update" else "install") } }
                             }
                         }
@@ -340,7 +361,7 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                         Action("Environment") { go("environment") }
                     }
                     "providers" -> Page {
-                        Heading("Providers")
+                        Heading("Your connections")
                         Label("Each adapter uses its own connection. Messages and tool results are sent to the provider configured for that agent.", muted = true)
                         agentNames.forEach { (id, name) ->
                             val saved = remember(revision, id) { runCatching { AgentConfiguration(context.filesDir).status(id) }.getOrNull() }
@@ -355,23 +376,29 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                         PhoneSummary(); Action("Manage Android access", primary = true, onClick = phoneAccess)
                     }
                     "environment" -> Page {
-                        Heading("Environment")
+                        Heading("Local environment")
                         Notice(snapshot.status, snapshot.status.contains("failed", true))
                         SharedStorageAccess(sourceRevision)
                         SelectionContainer { Label(snapshot.summary, mono = true, size = 13) }
                         Label(if (snapshot.environmentReady) "Linux is prepared." else "Linux preparation is required before agents can run.", muted = true)
                         Action(if (snapshot.busy) "Starting or working…" else "Start / reconnect selected conversation", primary = true, enabled = snapshot.available && !snapshot.busy) { perform { runtime().startEnvironment() } }
                         Action("STOP all execution") { confirmStop = true }
-                        SelectionContainer { Label(snapshot.diagnostics.ifEmpty { "No setup or installation diagnostics recorded." }, mono = true, size = 12) }
+                        Choice("Diagnostics", "Setup and installation details") { showDiagnostics = true }
                         Label("Android can end background processes. Saved messages remain available. Restarting does not replay prompts.", muted = true)
                     }
                     "settings" -> Page {
-                        Heading("When Olea opens")
+                        SectionLabel("When Olea opens")
                         var fresh by remember { mutableStateOf(preferences.getBoolean("fresh-chat", false)) }
-                        Choice("Resume last active session", selected = !fresh, status = if (!fresh) "Selected" else "") { fresh = false; preferences.edit().putBoolean("fresh-chat", false).apply() }
-                        Choice("Open a fresh chat", selected = fresh, status = if (fresh) "Selected" else "") { fresh = true; preferences.edit().putBoolean("fresh-chat", true).apply() }
-                        Heading("Appearance")
-                        listOf("system" to "Follow Android", "light" to "Light", "dark" to "Dark").forEach { (value, title) -> Choice(title, selected = appearance == value, status = if (appearance == value) "Selected" else "") { appearance = value; preferences.edit().putString("appearance", value).apply() } }
+                        Column {
+                            PreferenceChoice("Resume last active session", selected = !fresh) { fresh = false; preferences.edit().putBoolean("fresh-chat", false).apply() }
+                            PreferenceChoice("Open a fresh chat", selected = fresh) { fresh = true; preferences.edit().putBoolean("fresh-chat", true).apply() }
+                        }
+                        SectionLabel("Appearance")
+                        Column {
+                            listOf("system" to "Follow Android", "light" to "Light", "dark" to "Dark").forEach { (value, title) -> PreferenceChoice(title, selected = appearance == value) { appearance = value; preferences.edit().putString("appearance", value).apply() } }
+                        }
+                        SectionLabel("Color palette")
+                        PaletteChoices(palette) { value -> palette = value; preferences.edit().putString("palette", value).apply() }
                     }
                     "about" -> Page {
                         Image(painterResource(R.drawable.seed_icon), "Olea leaf", Modifier.size(76.dp).clip(RoundedCornerShape(18.dp)))
@@ -388,11 +415,10 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                     }
                 }
             }
-            if (!setup && screen != "terminal") {
-                Divider()
-                Row(Modifier.padding(horizontal = 14.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Action("Conversations", Modifier.weight(1f), primary = screen in listOf("history", "chat", "draft")) { go("history") }
-                    Action("Workspaces", Modifier.weight(1f), primary = screen == "workspaces") { go("workspaces") }
+            if (!setup && mainDestination && !keyboardVisible) {
+                Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
+                    Destination("Conversations", "chat", screen in listOf("history", "chat", "draft"), Modifier.weight(1f)) { go("history") }
+                    Destination("Workspaces", "folder", screen == "workspaces", Modifier.weight(1f)) { go("workspaces") }
                 }
             }
         }
@@ -400,7 +426,7 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
             SelectionContainer { Label(snapshot.diagnostics.ifEmpty { "No diagnostics recorded yet." }, mono = true, size = 12) }
         }
         if (drawer) FlatDialog("Olea", { drawer = false }) {
-            listOf("Agents" to "agents", "Providers" to "providers", "Environment" to "environment", "Phone access" to "phone", "Settings" to "settings", "About" to "about").forEach { (title, target) -> Action(title, Modifier.fillMaxWidth()) { go(target) } }
+            listOf("Agents" to "agents", "Providers" to "providers", "Environment" to "environment", "Phone access" to "phone", "Settings" to "settings", "About" to "about").forEach { (title, target) -> Choice(title) { go(target) } }
         }
         if (details) FlatDialog("Conversation details", { details = false }) {
             Label("${if (screen == "draft") agentName(draftAgent) else agentName(snapshot.active?.agent)} · ${currentWorkspace?.name.orEmpty()}", muted = true)
@@ -425,14 +451,21 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
 }
 
 @Composable internal fun Page(content: @Composable ColumnScope.() -> Unit) {
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 16.dp), verticalArrangement = Arrangement.spacedBy(12.dp), content = content)
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 25.dp, vertical = 14.dp), verticalArrangement = Arrangement.spacedBy(12.dp), content = content)
 }
-@Composable internal fun Heading(text: String) { Label(text, size = 25, modifier = Modifier.semantics { heading() }) }
+@Composable internal fun Heading(text: String) { Label(text, size = 29, bold = true, modifier = Modifier.semantics { heading() }) }
 @Composable internal fun FlatDialog(title: String, dismiss: () -> Unit, content: @Composable ColumnScope.() -> Unit) {
+    val windowSize = androidx.compose.ui.platform.LocalWindowInfo.current.containerSize
+    val sheetHeight = with(androidx.compose.ui.platform.LocalDensity.current) { windowSize.height.toDp() * .85f }
     Dialog(dismiss, DialogProperties(usePlatformDefaultWidth = false)) {
-        Column(Modifier.fillMaxWidth().padding(20.dp).heightIn(max = 650.dp).clip(RoundedCornerShape(20.dp)).background(LocalFlat.current.surface).verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) { Label(title, Modifier.weight(1f), size = 20, bold = true); Glyph("×", "Close dialog", dismiss) }
-            content()
+        Box(Modifier.fillMaxSize().imePadding(), contentAlignment = Alignment.BottomCenter) {
+            Column(Modifier.fillMaxWidth().heightIn(max = sheetHeight)
+                .clip(RoundedCornerShape(topStart = 27.dp, topEnd = 27.dp)).background(LocalFlat.current.surface)
+                .verticalScroll(rememberScrollState()).padding(horizontal = 24.dp).padding(top = 12.dp, bottom = 25.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Box(Modifier.align(Alignment.CenterHorizontally).width(32.dp).height(4.dp).clip(RoundedCornerShape(3.dp)).background(LocalFlat.current.line))
+                Row(verticalAlignment = Alignment.CenterVertically) { Label(title, Modifier.weight(1f).semantics { heading() }, size = 21, bold = true); Glyph("×", "Close dialog", dismiss) }
+                content()
+            }
         }
     }
 }
@@ -458,5 +491,3 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
 
 private fun agentInstalled(context: Context, agent: String, @Suppress("UNUSED_PARAMETER") revision: Long): Boolean =
     runCatching { AgentConfiguration(context.filesDir).status(agent).optBoolean("installed") }.getOrDefault(false)
-private fun conversationState(snapshot: UiSnapshot): String = snapshot.states.firstOrNull { it.id == snapshot.active?.id }?.state
-    ?.replace('_', ' ')?.replaceFirstChar { it.uppercase() } ?: "Saved"

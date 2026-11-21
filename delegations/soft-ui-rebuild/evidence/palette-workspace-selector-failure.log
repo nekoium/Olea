@@ -1,0 +1,48 @@
+Terminal diagnostic: starting native activity
+Terminal diagnostic: ordinary MainActivity/runtime startup
+Terminal diagnostic: ordinary OleaApp navigation to workspace terminal
+{
+  "providerRequests": 0,
+  "case": "palette",
+  "targetApk": "\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk",
+  "testApk": "\/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/base.apk",
+  "runnerClassLoader": "dalvik.system.PathClassLoader[DexPathList[[zip file \"\/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/base.apk\", zip file \"\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk\"],nativeLibraryDirectories=[\/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/lib\/x86_64, \/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/base.apk!\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk!\/lib\/x86_64, \/system\/lib64, \/system_ext\/lib64]]]",
+  "activityClassLoader": "dalvik.system.PathClassLoader[DexPathList[[zip file \"\/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/base.apk\", zip file \"\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk\"],nativeLibraryDirectories=[\/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/lib\/x86_64, \/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/base.apk!\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk!\/lib\/x86_64, \/system\/lib64, \/system_ext\/lib64]]]",
+  "terminalClassLoader": "dalvik.system.PathClassLoader[DexPathList[[zip file \"\/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/base.apk\", zip file \"\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk\"],nativeLibraryDirectories=[\/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/lib\/x86_64, \/data\/app\/~~c9AakTYUeGFz4GNlPEqtTg==\/dev.olea.softtest.test-dSA43b547Tfd43IRMT_JvQ==\/base.apk!\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk!\/lib\/x86_64, \/system\/lib64, \/system_ext\/lib64]]]",
+  "webViewPackage": "com.google.android.webview",
+  "webViewVersion": "133.0.6943.137",
+  "beforeNavigationSnapshotError": "",
+  "beforeNavigationSnapshot": {
+    "available": true,
+    "activeWorkspace": "default",
+    "terminalCount": 1,
+    "terminals": [
+      {
+        "id": "6343fc8b-5822-421b-8f00-b20e84716866",
+        "workspace": "02b02888-8ebc-4de8-a840-f1e4e0e46311",
+        "state": "opening",
+        "outputChars": 0
+      }
+    ]
+  },
+  "actualFailureSnapshotError": "",
+  "actualFailureSnapshot": {
+    "available": true,
+    "activeWorkspace": "default",
+    "terminalCount": 1,
+    "terminals": [
+      {
+        "id": "6343fc8b-5822-421b-8f00-b20e84716866",
+        "workspace": "02b02888-8ebc-4de8-a840-f1e4e0e46311",
+        "state": "running",
+        "outputChars": 260
+      }
+    ]
+  },
+  "selectionPreserved": true,
+  "stoppedOnlyBackendStartedByDiagnostic": true,
+  "failure": "IllegalStateException: Timed out: ordinary UI control Terminal regression first 86964116",
+  "phase": "ordinary OleaApp navigation to workspace terminal",
+  "failureLocation": "dev.olea.app.TerminalWebViewInstrumentation.awaitCondition(TerminalWebViewInstrumentation.kt:366)",
+  "passed": false
+}

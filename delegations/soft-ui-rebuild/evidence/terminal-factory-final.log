@@ -1,0 +1,308 @@
+Terminal diagnostic: starting native activity
+Terminal diagnostic: factory document/bridge readiness
+Terminal diagnostic: resource and navigation allowlist
+Terminal diagnostic: CSP connection blocking
+Terminal diagnostic: CSP frame blocking
+Terminal diagnostic: control keys and quoting
+Terminal diagnostic: real xterm output
+{
+  "providerRequests": 0,
+  "case": "factory",
+  "targetApk": "\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk",
+  "testApk": "\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk",
+  "runnerClassLoader": "dalvik.system.PathClassLoader[DexPathList[[zip file \"\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk\", zip file \"\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk\"],nativeLibraryDirectories=[\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/lib\/x86_64, \/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk!\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk!\/lib\/x86_64, \/system\/lib64, \/system_ext\/lib64]]]",
+  "activityClassLoader": "dalvik.system.PathClassLoader[DexPathList[[zip file \"\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk\", zip file \"\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk\"],nativeLibraryDirectories=[\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/lib\/x86_64, \/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk!\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk!\/lib\/x86_64, \/system\/lib64, \/system_ext\/lib64]]]",
+  "terminalClassLoader": "dalvik.system.PathClassLoader[DexPathList[[zip file \"\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk\", zip file \"\/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk\"],nativeLibraryDirectories=[\/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/lib\/x86_64, \/data\/app\/~~8iiNLCYni16sikUSOBM8DA==\/dev.olea.softtest.test-akyloBszOris2et-PITCRA==\/base.apk!\/lib\/x86_64, \/data\/app\/~~Er_1gvUVgHc16fIGPOhs5A==\/dev.olea.softtest-SPF053-5a2F7JIfQ7Zzkvg==\/base.apk!\/lib\/x86_64, \/system\/lib64, \/system_ext\/lib64]]]",
+  "webViewPackage": "com.google.android.webview",
+  "webViewVersion": "133.0.6943.137",
+  "readyCallback": true,
+  "factoryAfterReadyWaitLabels": [
+    "Conversation",
+    "Default \/ Pi",
+    "Saved",
+    "Start this conversation, then send your first message.",
+    "Environment stopped",
+    "Start \/ reconnect conversation",
+    "",
+    "Message Pi…",
+    "Pi \/ Connection ⌄",
+    "Conversations",
+    "Workspaces"
+  ],
+  "factoryAfterReadyWait": {
+    "native": {
+      "url": "https:\/\/olea.invalid\/terminal.html",
+      "progress": 100,
+      "width": 1080,
+      "height": 600,
+      "screenX": 0,
+      "screenY": 0,
+      "attached": true,
+      "shown": true,
+      "blockNetworkLoads": true,
+      "allowFileAccess": false,
+      "allowContentAccess": false,
+      "focused": false,
+      "windowFocus": true,
+      "acceptingText": false,
+      "imeVisible": false
+    },
+    "javascript": {
+      "href": "https:\/\/olea.invalid\/terminal.html",
+      "readyState": "complete",
+      "viewport": [
+        412,
+        229
+      ],
+      "write": "function",
+      "bridge": "object",
+      "xtermNodes": 1,
+      "styles": 4,
+      "activeElement": "",
+      "terminal": {
+        "cols": 51,
+        "rows": 7
+      }
+    },
+    "visual": {
+      "supportsDvh": true,
+      "supportsInset": true,
+      "html": {
+        "tag": "HTML",
+        "children": 2,
+        "width": 412,
+        "height": 229,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(40, 50, 32)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "229px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 229px; overflow: hidden;",
+        "textChars": 56921
+      },
+      "body": {
+        "tag": "BODY",
+        "children": 3,
+        "width": 412,
+        "height": 229,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(40, 50, 32)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "229px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 229px; overflow: hidden;",
+        "textChars": 56669
+      },
+      "terminal": {
+        "tag": "DIV",
+        "children": 1,
+        "width": 412,
+        "height": 229,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(40, 50, 32)",
+        "position": "fixed",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "229px",
+        "inline": "position: fixed; left: 0px; top: 0px; margin: 0px; width: 412px; height: 229px; overflow: hidden;",
+        "textChars": 54878
+      },
+      "xterm": {
+        "tag": "DIV",
+        "children": 2,
+        "width": 412,
+        "height": 229,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "absolute",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "229px",
+        "inline": "",
+        "textChars": 54878
+      },
+      "screen": {
+        "tag": "DIV",
+        "children": 6,
+        "width": 367,
+        "height": 187,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "relative",
+        "top": "0px",
+        "bottom": "0px",
+        "computedHeight": "187px",
+        "inline": "width: 367px; height: 187px;",
+        "textChars": 54878
+      },
+      "rows": {
+        "tag": "DIV",
+        "children": 7,
+        "width": 367,
+        "height": 187,
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "color": "rgb(234, 240, 222)",
+        "background": "rgba(0, 0, 0, 0)",
+        "position": "static",
+        "top": "auto",
+        "bottom": "auto",
+        "computedHeight": "187px",
+        "inline": "line-height: normal; letter-spacing: 0.0125px;",
+        "textChars": 1
+      },
+      "canvases": [],
+      "rowCount": 7,
+      "renderer": true,
+      "sampledNonBackground": 40500,
+      "sampledBright": 0
+    },
+    "errors": "[]"
+  },
+  "realBundledDocumentScriptStyleReadyAndResize": "pass",
+  "allowedRequests": [
+    {
+      "url": "https:\/\/olea.invalid\/terminal.html",
+      "main": true,
+      "status": 200,
+      "mime": "text\/html"
+    },
+    {
+      "url": "https:\/\/olea.invalid\/xterm.js",
+      "main": false,
+      "status": 200,
+      "mime": "application\/javascript"
+    },
+    {
+      "url": "https:\/\/olea.invalid\/xterm.css",
+      "main": false,
+      "status": 200,
+      "mime": "text\/css"
+    }
+  ],
+  "blockedRequests": [
+    {
+      "url": "https:\/\/example.com\/",
+      "main": false,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "http:\/\/127.0.0.1:8765\/",
+      "main": false,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "file:\/\/\/etc\/passwd",
+      "main": false,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "file:\/\/\/android_asset\/runtime-abi.txt",
+      "main": false,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "content:\/\/dev.olea\/private",
+      "main": false,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "data:text\/html,untrusted",
+      "main": true,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "https:\/\/olea.invalid\/other",
+      "main": false,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "https:\/\/olea.invalid\/xterm.js?extra=1",
+      "main": false,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "https:\/\/olea.invalid\/xterm.js",
+      "main": true,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "https:\/\/olea.invalid\/terminal.html",
+      "main": false,
+      "method": "GET",
+      "status": 403,
+      "override": true
+    },
+    {
+      "url": "https:\/\/olea.invalid\/terminal.html",
+      "main": true,
+      "method": "POST",
+      "status": 403,
+      "override": true
+    }
+  ],
+  "interceptedDocumentCsp": "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-src 'none'; child-src 'none'; frame-ancestors 'none'",
+  "mainGetOverride": false,
+  "errorsAfterOptionalFavicon": "[]",
+  "exactResourceAndNavigationAllowlist": "pass",
+  "documentMetaCsp": "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-src 'none'; child-src 'none'",
+  "socketProbeState": true,
+  "cspWebSocketBlocked": true,
+  "frameProbeCreated": true,
+  "cspViolations": [
+    {
+      "directive": "connect-src",
+      "blocked": "wss:\/\/example.com\/",
+      "policy": "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-src 'none'; child-src 'none'; frame-ancestors 'none'"
+    },
+    {
+      "directive": "connect-src",
+      "blocked": "wss:\/\/example.com\/",
+      "policy": "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-src 'none'; child-src 'none'"
+    }
+  ],
+  "frameProbeDetail": "{\"finished\":true,\"markerType\":\"boolean\",\"markerValue\":\"true\",\"frameUrl\":\"about:srcdoc\"}",
+  "frameProbeBlocked": false,
+  "srcdocPolicyLimitObserved": true,
+  "networkFileContentBlocking": "pass",
+  "controlInputQuotingAndBridgeLimits": "pass",
+  "realXtermAnsiAndUntrustedOutput": "pass",
+  "loadHttpAndJavaScriptErrorCallbacks": "pass",
+  "passed": true
+}
