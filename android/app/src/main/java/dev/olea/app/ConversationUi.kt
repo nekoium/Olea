@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.io.File
@@ -80,7 +81,7 @@ import kotlinx.coroutines.withContext
                 BasicTextField(text, { value ->
                     if (value.length <= 32000) { text = value; preferences.edit().putString("draft-$id", value).apply() }
                 }, Modifier.fillMaxWidth().heightIn(min = 48.dp, max = 128.dp).verticalScroll(rememberScrollState()).semantics { contentDescription = "Message" },
-                    textStyle = TextStyle(color = colors.ink, fontSize = 14.sp, lineHeight = 21.sp), cursorBrush = SolidColor(colors.accent),
+                    textStyle = TextStyle(color = colors.ink, fontSize = 14.sp, lineHeight = 21.sp, fontFamily = SoftFontFamily, fontSynthesis = FontSynthesis.None), cursorBrush = SolidColor(colors.accent),
                     decorationBox = { inner -> Box { if (text.isEmpty()) Label(if (draft) "What would you like to do?" else "Message ${agentNames[snapshot.active?.agent].orEmpty()}…", muted = true); inner() } })
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                     Box(Modifier.weight(1f).heightIn(min = 48.dp).clickable(role = Role.Button, onClick = provider).semantics { contentDescription = "Provider configuration" }, contentAlignment = Alignment.CenterStart) {
@@ -256,7 +257,11 @@ import kotlinx.coroutines.withContext
     val context = LocalContext.current
     val license = remember { context.resources.openRawResource(R.raw.olea_license).bufferedReader().use { it.readText() } }
     val androidUiNotices = remember { context.resources.openRawResource(R.raw.android_ui_notices).bufferedReader().use { it.readText() } }
+    val cabinLicense = remember { context.resources.openRawResource(R.raw.cabin_ofl).bufferedReader().use { it.readText() } }
     SelectionContainer { Label(license, size = 13) }
+    Heading("Cabin typeface")
+    Label("Cabin is bundled under the SIL Open Font License 1.1. Copyright and full terms follow.", muted = true)
+    SelectionContainer { Label(cabinLicense, size = 13) }
     Heading("Android UI licenses")
     Label("AndroidX, Kotlin and kotlinx.coroutines licenses and attributions appear below, including Apache 2.0, BSD and Boost terms. xterm.js uses the MIT License.", muted = true)
     SelectionContainer { Label(androidUiNotices, size = 13) }

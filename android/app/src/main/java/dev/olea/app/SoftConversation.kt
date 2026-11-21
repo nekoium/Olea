@@ -17,6 +17,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -86,7 +87,7 @@ internal fun replyBlocks(text: String): List<ReplyBlock> {
                     }
                     append(block.text.substring(last))
                 }
-                BasicText(rich, style = TextStyle(color = colors.ink, fontFamily = FontFamily.SansSerif, fontSize = if (block.heading) 19.sp else 14.sp,
+                BasicText(rich, style = TextStyle(color = colors.ink, fontFamily = SoftFontFamily, fontSynthesis = FontSynthesis.None, fontSize = if (block.heading) 19.sp else 14.sp,
                     lineHeight = if (block.heading) 27.sp else 25.2.sp, fontWeight = if (block.heading) FontWeight.SemiBold else FontWeight.Normal))
             }
         }

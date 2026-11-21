@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.text.style.TextOverflow
@@ -37,7 +38,7 @@ internal val LocalFlat = staticCompositionLocalOf { lightColors }
     BasicText(text, modifier, style = TextStyle(color = color ?: if (muted) colors.muted else colors.ink,
         fontSize = size.sp, lineHeight = (size * if (mono) 1.8 else 1.6).sp, textAlign = textAlign,
         fontWeight = if (bold) FontWeight.SemiBold else FontWeight.Normal,
-        fontFamily = if (mono) FontFamily.Monospace else FontFamily.SansSerif), maxLines = maxLines, overflow = TextOverflow.Ellipsis)
+        fontFamily = if (mono) FontFamily.Monospace else SoftFontFamily, fontSynthesis = FontSynthesis.None), maxLines = maxLines, overflow = TextOverflow.Ellipsis)
 }
 
 @Composable internal fun Action(text: String, modifier: Modifier = Modifier, primary: Boolean = false, enabled: Boolean = true, description: String = text, compact: Boolean = false, onClick: () -> Unit) {
@@ -132,7 +133,7 @@ internal val LocalFlat = staticCompositionLocalOf { lightColors }
         Label(label, size = 12, bold = true)
         BasicTextField(value, onChange, Modifier.fillMaxWidth().defaultMinSize(minHeight = 48.dp).clip(RoundedCornerShape(12.dp))
             .background(colors.paper).padding(13.dp).semantics { contentDescription = label },
-            textStyle = TextStyle(color = colors.ink, fontSize = 13.sp, lineHeight = 20.sp), cursorBrush = SolidColor(colors.accent),
+            textStyle = TextStyle(color = colors.ink, fontSize = 13.sp, lineHeight = 20.sp, fontFamily = SoftFontFamily, fontSynthesis = FontSynthesis.None), cursorBrush = SolidColor(colors.accent),
             singleLine = !multiline, maxLines = if (multiline) 6 else 1,
             visualTransformation = if (secret) PasswordVisualTransformation() else VisualTransformation.None,
             keyboardOptions = KeyboardOptions(keyboardType = if (secret || label == "API key") KeyboardType.Password else KeyboardType.Text, autoCorrectEnabled = !secret && label != "API key"),
