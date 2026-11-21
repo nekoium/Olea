@@ -1,5 +1,5 @@
 {
-  "status": "AGENT PLAN: selected images for release 0.1.1; not published",
+  "status": "OBSERVED: published in release 0.1.1 as five individual comparisons",
   "before": {
     "version": "0.1.0 (code 7), ARM64",
     "captureManifest": "../screens.js",

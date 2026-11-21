@@ -51,4 +51,4 @@
 
 **OBSERVED**: Final manager verification/progress/notes commit `61b265c` was separately scanned with Gitleaks: 0 findings. No further production source change followed the signed build.
 
-**AGENT PLAN**: Push the reviewed source/tag, upload the four assets as a draft, verify remote digests and image links, then publish 0.1.1 under the user's release instruction. Record final URL, tag and download verification after publication.
+**OBSERVED — completed**: Source/tag pushed, all four draft assets verified against remote digests, and 0.1.1 published. [Publication record](release-0.1.1-publication.md) contains the final URL, tag, artifact hashes and public download/image checks.
