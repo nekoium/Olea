@@ -12,6 +12,9 @@ Status: agent-managed snapshot of current state. It is not a product decision so
 
 ## Issues
 
+- **USER DECISION**: Default agent file access covers phone files available through Android's broad grant without per-folder authorization; workspaces organize work rather than constrain reach. Source: [PRODUCT.md, issue triage decisions](../PRODUCT.md#issue-triage-decisions), direct user instruction relayed from #13. Android grant/private-app boundaries remain; removal of every scoped-folder feature is not decided.
+- **OBSERVED**: #13 worker reports MANAGE_EXTERNAL_STORAGE already exists while Linux exposes connected-workspace bindings only. Broad default runtime access is not implemented or verified by this decision update. Routine worker monitoring remains disabled at the user's request.
+
 - **USER DECISION**: Closed as not planned: #2, #3, #6, #8, #14 (consolidated into #13). Deferred to “The far side”: #4, #9. #11 is T1. #11 and #13 need discussion. Source: [PRODUCT.md, issue triage decisions](../PRODUCT.md#issue-triage-decisions).
 - **OBSERVED**: Closed as completed: #1, #5, #7. Closed as not planned: #10. Open: #4, #9, #12 (“The far side”), #11, #13.
 - **OPEN**: #11 needs a first area chosen for visual candidates; no redesign is approved. [Brief](discussions/issue-11/brief.md), [evidence board](discussions/issue-11/evidence.html).
