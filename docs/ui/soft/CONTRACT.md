@@ -38,6 +38,8 @@ Read alongside [PRODUCT.md](../../../PRODUCT.md) and [DESIGN.md](../../../DESIGN
 9. Keep details on demand: tool output, workspace files, diagnostics and advanced configuration should not occupy the default conversation surface.
 10. Support unobtrusive motion and reduced motion. Joining draft setup to the composer and removing it after the accepted first send should feel continuous.
 
+**USER DECISION — typography update**: Use Cabin as the native Soft UI typeface. Source: issue #11 font-comparison discussion, “I think cabin is great. Let's delegate a worker to make this change to app.” This supersedes the initial native system-sans substitution below. Use the approved Cabin files and SIL Open Font License from `docs/discussions/issue-11/fonts/cabin/`; preserve monospace for terminal/code and Android fallback for scripts Cabin does not cover. Selection follows the browser comparison at `docs/discussions/issue-11/font-comparison.html`.
+
 ## Layout, typography and components
 
 **OBSERVED — approved reference measurements**: The following are extracted from the approved browser reference. They define the starting composition and visual proportions for native implementation.
@@ -66,7 +68,7 @@ Read alongside [PRODUCT.md](../../../PRODUCT.md) and [DESIGN.md](../../../DESIGN
 
 **AGENT PLAN — Android translation**: Use Kotlin/Jetpack Compose, mapping spacing and shapes to dp and text to sp. Preserve proportions while responding to native font scaling, screen size and insets. Touch targets must be at least 48 dp even when the visible icon is smaller. Browser system bars, gesture indicators and keyboard are not app widgets to copy onto Android.
 
-**OBSERVED**: The browser uses `Trebuchet MS`, then `Segoe UI`, then Arial/sans-serif. Trebuchet is not bundled or licensed for distribution by this reference. **AGENT PLAN**: Start with available native sans-serif typography and compare its character against the reference; use a properly licensed font only if necessary. Record a material font substitution and its visual effect. Do not silently claim pixel-identical font rendering.
+**OBSERVED — superseded initial adaptation**: The browser originally used `Trebuchet MS`, then `Segoe UI`, then Arial/sans-serif. Trebuchet is not bundled or licensed for distribution by this reference. **AGENT PLAN**: Start with available native sans-serif typography and compare its character against the reference; use a properly licensed font only if necessary. Record a material font substitution and its visual effect. Do not silently claim pixel-identical font rendering.
 
 **AGENT PLAN**: Carry forward the existing nonintrusive motion direction: approximately 240 ms content, 260 ms overlays and 280 ms sheets/setup exit, with smooth deceleration and a reduced-motion route. These timings are implementation guidance, not a claim that the static Soft specimens demonstrate every animation.
 
