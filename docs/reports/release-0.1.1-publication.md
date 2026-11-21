@@ -19,6 +19,8 @@
 
 **OBSERVED**: Public notes match [the committed notes](../releases/0.1.1.md), with five separately captioned comparisons and no combined overview embedded. All five images were fetched from the public tag and match their approved hashes. Source and notices remain direct downloads beside the APK.
 
+**OBSERVED — note-size follow-up**: At the user's request, the published notes now use five linked previews at 320 px width inside a collapsed comparison section. Each pair retains its own caption; download links stay near the top. GitHub's Markdown renderer preserves the width and collapsed state, and the remote body matches the updated local notes. This is an editorial update; the release tag and downloadable artifacts retain their original values.
+
 ## Checks and limits
 
 **OBSERVED**: Signed package is `dev.olea`, 0.1.1/code 8, ARM64 only, non-debuggable. Certificate SHA-256 `1ada0fabc25ecfadc24947af43e56d7301b4f08f2262e434a90817510dca4989` matches 0.1.0. Packaged Cabin and OFL bytes match the approved sources. Release assembly/lint passed: 0 errors / 39 warnings. Backend focused tests: 20 pass / 0 fail / 1 Windows-symlink skip. The signed APK installed over 0.1.0 on `emulator-5554` and retained its setup step. [Verification](release-0.1.1-verification.md).
