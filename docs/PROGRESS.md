@@ -4,6 +4,8 @@ Status: agent-managed snapshot of current state. It is not a product decision so
 
 ## Current state
 
+- **OBSERVED**: Broad-access worker completed `94fb76f`; manager reviewed production bindings, permission/restart status, user copy and [bounded report](reports/broad-file-access.md). Android-granted shared storage is exposed at `/sdcard` and `/storage`, independently of workspace cwd/phone-tool toggle. Focused emulator denial/grant/revocation, stock Pi read/edit outside cwd, connected cwd separation, APK/backend builds and host checks passed; one Windows symlink skip, zero provider requests. Posted evidence and closed #13 as completed for its assigned access-scope implementation. Local source only, not pushed/released; physical/OEM UX, live service restart, in-flight revocation and secondary volumes unverified. Original refusal/UI symptoms are not claimed fixed. Worker assignment is complete; earlier pending entries below are dispatch history.
+
 - **USER DECISION**: The broad-file-access implementation worker owns #13; the former #13 discussion session is no longer needed. Source: current user instruction. Manager relayed issue ownership to `ctx_bbddc9e7f0b1`. **OBSERVED**: Old discussion dispatch `ctx_716c9f53d914` is settled; stop performed no process action, and release refused with `identity_unproven`. Its retirement is recorded, but physical chat closure is not confirmed.
 - **USER DECISION**: Delegate implementation of the approved broad phone-file access default. Source: current user instruction, “delegate a worker to make that change, the access scope.”
 - **OBSERVED**: Pi structured worker `ctx_bbddc9e7f0b1`, Task `task_0be51ae1d330`, Run `run_a118cdebb98c` started ready for access-scope implementation. Brief: ignored `.setup/broad-file-access/worker.md`; expected report: `docs/reports/broad-file-access.md`. Owns relevant runtime/Android/backend/UI access changes and focused verification; preserve board/UI work and user data. No provider spending or publication authorized. No routine monitoring; completion pending.
@@ -20,7 +22,7 @@ Status: agent-managed snapshot of current state. It is not a product decision so
 - **OBSERVED**: #13 worker reports MANAGE_EXTERNAL_STORAGE already exists while Linux exposes connected-workspace bindings only. Broad default runtime access is not implemented or verified by this decision update. Routine worker monitoring remains disabled at the user's request.
 
 - **USER DECISION**: Closed as not planned: #2, #3, #6, #8, #14 (consolidated into #13). Deferred to “The far side”: #4, #9. #11 is T1. #11 and #13 need discussion. Source: [PRODUCT.md, issue triage decisions](../PRODUCT.md#issue-triage-decisions).
-- **OBSERVED**: Closed as completed: #1, #5, #7. Closed as not planned: #10. Open: #4, #9, #12 (“The far side”), #11, #13.
+- **OBSERVED**: Closed as completed: #1, #5, #7, #13 (assigned access-scope implementation). Closed as not planned: #10. Open: #4, #9, #12 (“The far side”), #11.
 - **OPEN**: #11 needs a first area chosen for visual candidates; no redesign is approved. [Brief](discussions/issue-11/brief.md), [evidence board](discussions/issue-11/evidence.html).
 - **OPEN**: #13 needs the viewer's intended task and prior agent experience before choosing a demonstration. [Brief](discussions/issue-13/brief.md). #14 context: [archived brief](archive/issues/14-discussion/brief.md).
 - **OBSERVED**: At the last record, #11 discussion worker `ctx_730ab14feada` and #13 discussion worker `ctx_61e4efdf074c` were kept open. Their current state is not verified.
