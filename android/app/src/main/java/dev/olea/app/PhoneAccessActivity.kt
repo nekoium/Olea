@@ -15,6 +15,7 @@ import android.os.Looper
 import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -40,7 +41,7 @@ class PhoneAccessActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        enableEdgeToEdge()
         captureId = savedInstanceState?.getString("captureId")
         offeredCaptureId = if (savedInstanceState != null) savedInstanceState.getString("offeredCaptureId") else intent.getStringExtra("requestId")
         resultCaptureId = savedInstanceState?.getString("resultCaptureId")
@@ -53,6 +54,7 @@ class PhoneAccessActivity : ComponentActivity() {
         setContent {
             PhoneAccessUi(state, intent.getStringExtra("request").orEmpty(),
                 getSharedPreferences("olea-ui", MODE_PRIVATE).getString("appearance", "system") ?: "system",
+                getSharedPreferences("olea-ui", MODE_PRIVATE).getString("palette", "green") ?: "green",
                 component, cooperatingAction, { component = it }, { cooperatingAction = it },
                 onSaveApp = { attempt {
                     bridge().configureCooperatingApp(component.trim(), cooperatingAction.trim())
@@ -80,6 +82,7 @@ class PhoneAccessActivity : ComponentActivity() {
                 message("If Android does not show a prompt, allow notifications in Olea’s app settings.")
                 requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 11)
             } else openSettings(Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE, packageName))
+            PhoneAccessAction.SharedFiles -> openSettings(AndroidSharedFolders(this).settingsIntent())
             PhoneAccessAction.Folder -> {
                 bridge()
                 startActivityForResult(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or
@@ -168,6 +171,7 @@ class PhoneAccessActivity : ComponentActivity() {
                 locationOn = getSystemService(LocationManager::class.java).let {
                     it.isProviderEnabled(LocationManager.GPS_PROVIDER) || it.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
                 },
+                sharedFiles = RuntimeService.current?.sharedStorageStatus() ?: AndroidSharedFolders(this).access().message,
                 folder = when { phone == null -> "Unavailable"; phone.folderGranted() -> "Granted"; phone.selectedFolder() != null -> "Access lost"; else -> "Not selected" },
                 appNotifications = getSystemService(NotificationManager::class.java).areNotificationsEnabled(),
                 capture = captureMessage, captureBusy = captureBusy)

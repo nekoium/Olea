@@ -22,6 +22,7 @@ internal data class PhoneAccessState(
     val location: String = "Not allowed",
     val locationOn: Boolean = false,
     val folder: String = "Not selected",
+    val sharedFiles: String = "Checking Android file access…",
     val appNotifications: Boolean = false,
     val capture: String = "Each capture needs fresh Android consent.",
     val captureBusy: Boolean = false,
@@ -31,13 +32,14 @@ internal data class PhoneAccessState(
 
 internal enum class PhoneAccessAction {
     Enable, Disable, Accessibility, NotificationAccess, Location, LocationSettings,
-    AppSettings, AppNotifications, Folder, RevokeFolder, Capture, DeclineCapture, Return
+    AppSettings, AppNotifications, SharedFiles, Folder, RevokeFolder, Capture, DeclineCapture, Return
 }
 
 @Composable internal fun PhoneAccessUi(
     state: PhoneAccessState,
     initialPage: String,
     appearance: String,
+    palette: String = "green",
     component: String,
     action: String,
     onComponent: (String) -> Unit,
@@ -47,21 +49,28 @@ internal enum class PhoneAccessAction {
 ) {
     var page by rememberSaveable { mutableStateOf(initialPage.takeIf { it in listOf("capture", "folder") }.orEmpty()) }
     val dark = appearance == "dark" || (appearance == "system" && isSystemInDarkTheme())
+    val context = androidx.compose.ui.platform.LocalContext.current
+    SideEffect {
+        (context as? android.app.Activity)?.let { activity ->
+            androidx.core.view.WindowCompat.getInsetsController(activity.window, activity.window.decorView).apply {
+                isAppearanceLightStatusBars = !dark; isAppearanceLightNavigationBars = !dark
+            }
+        }
+    }
     fun back() {
         if (page == "capture") perform(PhoneAccessAction.DeclineCapture)
         if (page.isNotEmpty()) page = "" else perform(PhoneAccessAction.Return)
     }
     BackHandler { back() }
-    CompositionLocalProvider(LocalFlat provides if (dark) darkColors else lightColors) {
+    CompositionLocalProvider(LocalFlat provides if (dark) softPalette(palette).dark else softPalette(palette).light) {
         val colors = LocalFlat.current
         Column(Modifier.fillMaxSize().background(colors.surface).safeDrawingPadding().imePadding()) {
-            Row(Modifier.fillMaxWidth().padding(horizontal = 6.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+            Row(Modifier.fillMaxWidth().heightIn(min = 68.dp).padding(horizontal = 13.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
                 Glyph("‹", "Back") { back() }
-                Label("Phone access", Modifier.weight(1f).semantics { heading() }, bold = true, size = 18)
+                Label("Phone access", Modifier.weight(1f).semantics { heading() }, bold = true, size = 16)
             }
-            Divider()
             key(page) {
-                Column(Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Column(Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 25.dp, vertical = 14.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     Label(when (page) {
                         "accessibility" -> "Accessibility access"
                         "notifications" -> "Notification access"
@@ -71,20 +80,10 @@ internal enum class PhoneAccessAction {
                         "cooperating" -> "Cooperating app"
                         "app-notifications" -> "Olea notifications"
                         else -> "Choose your capabilities"
-                    }, Modifier.semantics { heading() }, size = 25)
+                    }, Modifier.semantics { heading() }, size = 29, bold = true)
                     if (state.message.isNotBlank()) Notice(state.message, error = state.error)
                     if (!state.available) Notice("Environment unavailable. Return to Olea and start it from Environment to enable phone tools.")
-                    else {
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
-                            Label("Phone tools", Modifier.weight(1f), bold = true)
-                            Chip(if (state.enabled) "Enabled" else "Disabled")
-                        }
-                        Label(if (state.enabled) "Agents can use the capabilities you grant below. You can disable phone tools at any time."
-                            else "Enable phone tools explicitly when you want agents to use granted capabilities. Opening this screen grants nothing.", size = 14, muted = true)
-                        Action(if (state.enabled) "Disable phone tools" else "Enable phone tools", Modifier.fillMaxWidth(), primary = !state.enabled) {
-                            perform(if (state.enabled) PhoneAccessAction.Disable else PhoneAccessAction.Enable)
-                        }
-                    }
+                    else if (page.isNotEmpty() && !state.enabled) Notice("Phone tools are disabled. Android grants remain separate; enable tools from the capability list when needed.")
                     when (page) {
                         "accessibility" -> {
                             Chip(state.accessibility)
@@ -135,7 +134,17 @@ internal enum class PhoneAccessAction {
                             Action("Open Android app settings", Modifier.fillMaxWidth()) { perform(PhoneAccessAction.AppSettings) }
                         }
                         else -> {
-                            Label("Grant only the capabilities you want. Optional access can be enabled later.", muted = true)
+                            Label("Permissions stay under your control. Enable only the capabilities your tasks need.", size = 13, muted = true)
+                            SoftCard {
+                                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                                    Label("Phone tools", Modifier.weight(1f), bold = true)
+                                    Chip(if (state.enabled) "Enabled" else "Disabled")
+                                }
+                                Action(if (state.enabled) "Disable phone tools" else "Enable phone tools", enabled = state.available) {
+                                    perform(if (state.enabled) PhoneAccessAction.Disable else PhoneAccessAction.Enable)
+                                }
+                            }
+                            Choice("Shared phone files", state.sharedFiles) { perform(PhoneAccessAction.SharedFiles) }
                             Choice("Accessibility", "Inspect and interact with exposed app controls", status = state.accessibility) { page = "accessibility" }
                             Choice("Notification access", "Read notifications shared by Android", status = state.notifications) { page = "notifications" }
                             Choice("Location", "Approximate or precise location", status = state.location) { page = "location" }

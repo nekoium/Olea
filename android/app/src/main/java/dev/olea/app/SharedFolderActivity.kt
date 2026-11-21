@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -37,11 +38,13 @@ class SharedFolderActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setResult(Activity.RESULT_CANCELED)
         setContent {
             val appearance = getSharedPreferences("olea-ui", MODE_PRIVATE).getString("appearance", "system")
             val dark = appearance == "dark" || (appearance == "system" && isSystemInDarkTheme())
-            CompositionLocalProvider(LocalFlat provides if (dark) darkColors else lightColors) {
+            val palette = softPalette(getSharedPreferences("olea-ui", MODE_PRIVATE).getString("palette", "green"))
+            CompositionLocalProvider(LocalFlat provides if (dark) palette.dark else palette.light) {
                 SharedFolderScreen(folders, revision, onSettings = {
                     startActivity(folders.settingsIntent())
                 }, onConnect = { folder ->
@@ -114,11 +117,12 @@ private fun SharedFolderScreen(
     }
 
     Column(Modifier.fillMaxSize().background(LocalFlat.current.surface).safeDrawingPadding()
-        .verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Label("Connect a folder", size = 22, bold = true)
-            Action("Cancel", onClick = onBack)
+        .verticalScroll(rememberScrollState()).padding(horizontal = 25.dp, vertical = 14.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Row(Modifier.fillMaxWidth().heightIn(min = 54.dp), verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+            Glyph("‹", "Cancel", onBack)
+            Label("Connect a folder", Modifier.weight(1f), size = 16, bold = true)
         }
+        Heading("Bring your files")
         Label("Choose an existing folder in primary shared storage. Agent changes apply directly to its files.", muted = true)
         Label("All-files access is broader than this folder. Android still protects other apps’ private data. Linux tools and credentials stay in Olea’s private storage.", size = 13, muted = true)
         val current = access
