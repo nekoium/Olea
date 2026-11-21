@@ -1,0 +1,1 @@
+PASS: all 168 palette roles, six names/swatches, shared semantic colors, default and unknown-ID fallback match the approved contract.

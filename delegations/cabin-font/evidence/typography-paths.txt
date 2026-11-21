@@ -1,0 +1,21 @@
+android/app/src/main/java\dev\olea\app\ConversationUi.kt:12:import androidx.compose.foundation.text.BasicTextField
+android/app/src/main/java\dev\olea\app\ConversationUi.kt:23:import androidx.compose.ui.text.TextStyle
+android/app/src/main/java\dev\olea\app\ConversationUi.kt:81:                BasicTextField(text, { value ->
+android/app/src/main/java\dev\olea\app\ConversationUi.kt:84:                    textStyle = TextStyle(color = colors.ink, fontSize = 14.sp, lineHeight = 21.sp, fontFamily = SoftFontFamily, fontSynthesis = FontSynthesis.None), cursorBrush = SolidColor(colors.accent),
+android/app/src/main/java\dev\olea\app\FlatUi.kt:12:import androidx.compose.foundation.text.BasicText
+android/app/src/main/java\dev\olea\app\FlatUi.kt:13:import androidx.compose.foundation.text.BasicTextField
+android/app/src/main/java\dev\olea\app\FlatUi.kt:25:import androidx.compose.ui.text.TextStyle
+android/app/src/main/java\dev\olea\app\FlatUi.kt:26:import androidx.compose.ui.text.font.FontFamily
+android/app/src/main/java\dev\olea\app\FlatUi.kt:38:    BasicText(text, modifier, style = TextStyle(color = color ?: if (muted) colors.muted else colors.ink,
+android/app/src/main/java\dev\olea\app\FlatUi.kt:41:        fontFamily = if (mono) FontFamily.Monospace else SoftFontFamily, fontSynthesis = FontSynthesis.None), maxLines = maxLines, overflow = TextOverflow.Ellipsis)
+android/app/src/main/java\dev\olea\app\FlatUi.kt:134:        BasicTextField(value, onChange, Modifier.fillMaxWidth().defaultMinSize(minHeight = 48.dp).clip(RoundedCornerShape(12.dp))
+android/app/src/main/java\dev\olea\app\FlatUi.kt:136:            textStyle = TextStyle(color = colors.ink, fontSize = 13.sp, lineHeight = 20.sp, fontFamily = SoftFontFamily, fontSynthesis = FontSynthesis.None), cursorBrush = SolidColor(colors.accent),
+android/app/src/main/java\dev\olea\app\OleaApp.kt:15:import androidx.compose.foundation.text.BasicTextField
+android/app/src/main/java\dev\olea\app\OleaApp.kt:28:import androidx.compose.ui.text.TextStyle
+android/app/src/main/java\dev\olea\app\SoftConversation.kt:7:import androidx.compose.foundation.text.BasicText
+android/app/src/main/java\dev\olea\app\SoftConversation.kt:17:import androidx.compose.ui.text.TextStyle
+android/app/src/main/java\dev\olea\app\SoftConversation.kt:19:import androidx.compose.ui.text.font.FontFamily
+android/app/src/main/java\dev\olea\app\SoftConversation.kt:85:                        addStyle(if (bold) SpanStyle(fontWeight = FontWeight.SemiBold) else SpanStyle(fontFamily = FontFamily.Monospace, color = colors.accent, background = colors.soft), start, length)
+android/app/src/main/java\dev\olea\app\SoftConversation.kt:90:                BasicText(rich, style = TextStyle(color = colors.ink, fontFamily = SoftFontFamily, fontSynthesis = FontSynthesis.None, fontSize = if (block.heading) 19.sp else 14.sp,
+android/app/src/main/java\dev\olea\app\SoftTypography.kt:4:import androidx.compose.ui.text.font.FontFamily
+android/app/src/main/java\dev\olea\app\SoftTypography.kt:10:internal val SoftFontFamily = FontFamily(
