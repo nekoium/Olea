@@ -1,0 +1,361 @@
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\AndroidManifest.xml:2: Warning: The Google Play store has a policy that limits usage of MANAGE_EXTERNAL_STORAGE [ScopedStorage]
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ScopedStorage":
+   Scoped storage is enforced on Android 10+ (or Android 11+ if using
+   requestLegacyExternalStorage). In particular, WRITE_EXTERNAL_STORAGE will
+   no longer provide write access to all files; it will provide the equivalent
+   of READ_EXTERNAL_STORAGE instead.
+
+   As of Android 13, if you need to query or interact with MediaStore or media
+   files on the shared storage, you should be using instead one or more new
+   storage permissions:
+   * android.permission.READ_MEDIA_IMAGES
+   * android.permission.READ_MEDIA_VIDEO
+   * android.permission.READ_MEDIA_AUDIO
+
+   and then add maxSdkVersion="33" to the older permission. See the developer
+   guide for how to do this:
+   https://developer.android.com/about/versions/13/behavior-changes-13#granula
+   r-media-permissions
+
+   The MANAGE_EXTERNAL_STORAGE permission can be used to manage all files, but
+   it is rarely necessary and most apps on Google Play are not allowed to use
+   it. Most apps should instead migrate to use scoped storage. To modify or
+   delete files, apps should request write access from the user as described
+   at https://goo.gle/android-mediastore-createwriterequest.
+
+   To learn more, read these resources: Play policy:
+   https://goo.gle/policy-storage-help Allowable use cases:
+   https://goo.gle/policy-storage-usecases
+
+   https://goo.gle/android-storage-usecases
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\AndroidSharedFolders.kt:78: Warning: Field requires API level 30 (current min is 26): android.provider.Settings#ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION [InlinedApi]
+        val specific = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\AndroidSharedFolders.kt:81: Warning: Field requires API level 30 (current min is 26): android.provider.Settings#ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION [InlinedApi]
+            else Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "InlinedApi":
+   This check scans through all the Android API field references in the
+   application and flags certain constants, such as static final integers and
+   Strings, which were introduced in later versions. These will actually be
+   copied into the class files rather than being referenced, which means that
+   the value is available even when running on older devices. In some cases
+   that's fine, and in other cases it can result in a runtime crash or
+   incorrect behavior. It depends on the context, so consider the code
+   carefully and decide whether it's safe and can be suppressed or whether the
+   code needs to be guarded.
+
+   If you really want to use this API and don't need to support older devices
+   just set the minSdkVersion in your build.gradle or AndroidManifest.xml
+   files.
+
+   If your code is deliberately accessing newer APIs, and you have ensured
+   (e.g. with conditional execution) that this code will only ever be called
+   on a supported platform, then you can annotate your class or method with
+   the @TargetApi annotation specifying the local minimum SDK to apply, such
+   as @TargetApi(11), such that this check considers 11 rather than your
+   manifest file's minimum SDK as the required API level.
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\build.gradle.kts:15: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk = 36
+        ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application or sdk runs on a version of Android that is more
+   recent than your targetSdk specifies that it has been tested with, various
+   compatibility modes kick in. This ensures that your application continues
+   to work, but it may look out of place. For example, if the targetSdk is
+   less than 14, your app may get an option button in the UI.
+
+   To fix this issue, set the targetSdk to the highest available value. Then
+   test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\PhoneBridge.kt:244: Warning: Do not hardcode "/sdcard/"; use Environment.getExternalStorageDirectory().getPath() instead [SdCardPath]
+            .put("linuxPath", "/sdcard").put("independentOfPhoneTools", true))
+                               ~~~~~~~
+
+   Explanation for issues of type "SdCardPath":
+   Your code should not reference the /sdcard path directly; instead use
+   Environment.getExternalStorageDirectory().getPath().
+
+   Similarly, do not reference the /data/data/ path directly; it can vary in
+   multi-user scenarios. Instead, use Context.getFilesDir().getPath().
+
+   https://developer.android.com/training/data-storage#filesExternal
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\AndroidSharedFolders.kt:80: Warning: Consider adding a <queries> declaration to your manifest when calling this method; see https://g.co/dev/packagevisibility for details [QueryPermissionsNeeded]
+        return if (specific.resolveActivity(context.packageManager) != null) specific
+                            ~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "QueryPermissionsNeeded":
+   Apps that target Android 11 cannot query or interact with other installed
+   apps by default. If you need to query or interact with other installed
+   apps, you may need to add a <queries> declaration in your manifest.
+
+   As a corollary, the methods PackageManager#getInstalledPackages and
+   PackageManager#getInstalledApplications will no longer return information
+   about all installed apps. To query specific apps or types of apps, you can
+   use methods like PackageManager#getPackageInfo or
+   PackageManager#queryIntentActivities.
+
+   https://g.co/dev/packagevisibility
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\ConversationUi.kt:257: Warning: Reading Resources using LocalContext.current.resources [LocalContextResourcesRead from androidx.compose.ui]
+    val license = remember { context.resources.openRawResource(R.raw.olea_license).bufferedReader().use { it.readText() } }
+                             ~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\ConversationUi.kt:258: Warning: Reading Resources using LocalContext.current.resources [LocalContextResourcesRead from androidx.compose.ui]
+    val androidUiNotices = remember { context.resources.openRawResource(R.raw.android_ui_notices).bufferedReader().use { it.readText() } }
+                                      ~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "LocalContextResourcesRead":
+   Changes to the Configuration object will not cause
+   LocalContext.current.resources reads to be invalidated, so calls to APIs
+   suchas Resources.getString() will not be updated when the Configuration
+   changes. Instead, use LocalResources.current to retrieve the Resources -
+   this will invalidate callers when the Configuration changes, to ensure that
+   these calls reflect the latest values.
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.ui
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\FlatUi.kt:129: Warning: Modifier parameter should be the first optional parameter [ModifierParameter from androidx.compose.ui]
+@Composable internal fun Field(label: String, value: String, onChange: (String) -> Unit, placeholder: String = "", secret: Boolean = false, multiline: Boolean = false, modifier: Modifier = Modifier) {
+                                                                                                                                                                        ~~~~~~~~
+
+   Explanation for issues of type "ModifierParameter":
+   The first (or only) Modifier parameter in a Composable function should
+   follow the following rules:
+   - Be named modifier
+   - Have a type of Modifier
+   - Either have no default value, or have a default value of Modifier
+   - If optional, be the first optional parameter in the parameter list
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.ui
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\build.gradle.kts:20: Warning: Missing x86_64 ABI support for ChromeOS [ChromeOsAbiSupport]
+        ndk { abiFilters += runtimeAbi }
+                            ~~~~~~~~~~
+
+   Explanation for issues of type "ChromeOsAbiSupport":
+   To properly support ChromeOS, your Android application should have an x86
+   and/or x86_64 binary as part of the build configuration. To fix the issue,
+   ensure your files are properly optimized for ARM; the binary translator
+   will then ensure compatibility with x86. Alternatively, add an abiSplit for
+   x86 within your build.gradle file and create the required x86
+   dependencies.
+
+   https://developer.android.com/ndk/guides/abis
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\res\mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 26. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\PhoneBridge.kt:44: Warning: Do not place Android context classes in static fields (static reference to PhoneBridge which has field context pointing to Context); this is a memory leak [StaticFieldLeak]
+    companion object { @Volatile var current: PhoneBridge? = null; private set }
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "StaticFieldLeak":
+   A static field will leak contexts.
+
+   Non-static inner classes have an implicit reference to their outer class.
+   If that outer class is for example a Fragment or Activity, then this
+   reference means that the long-running handler/loader/task will hold a
+   reference to the activity which prevents it from getting garbage
+   collected.
+
+   Similarly, direct field references to activities and fragments from these
+   longer running instances can cause leaks.
+
+   ViewModel classes should never point to Views or non-application Contexts.
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\res\values\ui_theme.xml:2: Warning: The resource R.color.olea_launcher_background appears to be unused [UnusedResources]
+    <color name="olea_launcher_background">#33472d</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\res\raw\xterm_license.txt: Warning: The resource R.raw.xterm_license appears to be unused [UnusedResources]
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+   Available options:
+
+   **skip-libraries** (default is true):
+   Whether the unused resource check should skip reporting unused resources in libraries.
+
+   Many libraries will declare resources that are part of the library surface; other modules depending on the library will also reference the resources. To avoid reporting all these resources as unused (in the context of a library), the unused resource check normally skips reporting unused resources in libraries. Instead, run the unused resource check on the consuming app module (along with `checkDependencies=true`).
+
+   However, there are cases where you want to check that all the resources declared in a library are used; in that case, you can disable the skip option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UnusedResources">
+           <option name="skip-libraries" value="true" />
+       </issue>
+   </lint>
+   ```
+
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\AndroidSharedFolders.kt:44: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        if (!observed.getBoolean("ever-granted", false)) observed.edit().putBoolean("ever-granted", true).apply()
+                                                         ~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\AndroidSharedFolders.kt:77: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        observed.edit().putBoolean("requested", true).apply()
+        ~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\AndroidSharedFolders.kt:79: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+            Uri.parse("package:${context.packageName}"))
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\ConversationUi.kt:81: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                    if (value.length <= 32000) { text = value; preferences.edit().putString("draft-$id", value).apply() }
+                                                               ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\ConversationUi.kt:96: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                                if (accepted) { text = ""; preferences.edit().remove("draft-$id").apply() }
+                                                           ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:87: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                preferences.edit().remove("draft-${pending.first}").apply()
+                ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:96: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+    fun step(next: Int) { setupStep = next; preferences.edit().putInt("setup-step", next).apply() }
+                                            ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:109: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                preferences.edit().putString("setup-workspace", item.id).apply()
+                ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:170: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                                    setupAgent = id; preferences.edit().putString("setup-agent", id).apply()
+                                                     ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:186: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                                    Choice(item.name, detail, if (setupWorkspace == item.id) "Selected" else "", setupWorkspace == item.id) { setupWorkspace = item.id; preferences.edit().putString("setup-workspace", item.id).apply() }
+                                                                                                                                                                        ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:190: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                                    val created = runtime().store.createWorkspace(managedName); setupWorkspace = created.id; managedName = ""; preferences.edit().putString("setup-workspace", created.id).apply()
+                                                                                                                                               ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:204: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                                    runtime().selectConversation(session.id); preferences.edit().putString("setup-session", session.id).apply(); step(3)
+                                                                              ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:245: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                                    preferences.edit().putBoolean("setup-complete", true).apply(); setup = false; screen = "chat"; history.clear()
+                                    ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:293: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                                        preferences.edit().putString("draft-${session.id}", text).remove("draft-new").apply()
+                                        ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:393: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                            PreferenceChoice("Resume last active session", selected = !fresh) { fresh = false; preferences.edit().putBoolean("fresh-chat", false).apply() }
+                                                                                                               ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:394: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                            PreferenceChoice("Open a fresh chat", selected = fresh) { fresh = true; preferences.edit().putBoolean("fresh-chat", true).apply() }
+                                                                                                    ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:398: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                            listOf("system" to "Follow Android", "light" to "Light", "dark" to "Dark").forEach { (value, title) -> PreferenceChoice(title, selected = appearance == value) { appearance = value; preferences.edit().putString("appearance", value).apply() } }
+                                                                                                                                                                                                                 ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\OleaApp.kt:401: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                        PaletteChoices(palette) { value -> palette = value; preferences.edit().putString("palette", value).apply() }
+                                                                            ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\PhoneAccessActivity.kt:80: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+            PhoneAccessAction.AppSettings -> openSettings(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName")))
+                                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\PhoneAccessActivity.kt:146: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        if (granted && !observed.getBoolean(key, false)) observed.edit().putBoolean(key, true).apply()
+                                                         ~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\PhoneBridge.kt:181: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        check(preferences.edit().putString("folder", uri.toString()).commit()) { "FOLDER_SAVE_FAILED" }
+              ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\PhoneBridge.kt:190: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        check(preferences.edit().putString("component", component).putString("action", action).commit()) { "APP_CONFIG_SAVE_FAILED" }
+              ~~~~~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\PhoneBridge.kt:362: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                val uri = Uri.parse(url)
+                          ~~~~~~~~~~~~~~
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\java\dev\olea\app\PhoneCaptureService.kt:78: Warning: Use the KTX function createBitmap instead? [UseKtx]
+                        val padded = Bitmap.createBitmap(plane.rowStride / plane.pixelStride, height, Bitmap.Config.ARGB_8888)
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseKtx":
+   The Android KTX libraries decorates the Android platform SDK as well as
+   various libraries with more convenient extension functions available from
+   Kotlin, allowing you to use default parameters, named parameters, and
+   more.
+
+   Available options:
+
+   **remove-defaults** (default is true):
+   Whether to skip arguments that match the defaults provided by the extension.
+
+   Extensions often provide default values for some of the parameters. For example:
+   ```kotlin
+   fun Path.readLines(charset: Charset = Charsets.UTF_8): List<String> { return Files.readAllLines(this, charset) }
+   ```
+   This lint check will by default automatically omit parameters that match the default, so if your code was calling
+
+   ```kotlin
+   Files.readAllLines(file, Charset.UTF_8)
+   ```
+   lint would replace this with
+   ```kotlin
+   file.readLines()
+   ```
+   rather than
+
+   ```kotlin
+   file.readLines(Charset.UTF_8
+   ```
+   You can turn this behavior off using this option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="remove-defaults" value="true" />
+       </issue>
+   </lint>
+   ```
+
+   **require-present** (default is true):
+   Whether to only offer extensions already available.
+
+   This option lets you only have lint suggest extension replacements if those extensions are already available on the class path (in other words, you're already depending on the library containing the extension method.)
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="require-present" value="true" />
+       </issue>
+   </lint>
+   ```
+
+0 errors, 38 warnings

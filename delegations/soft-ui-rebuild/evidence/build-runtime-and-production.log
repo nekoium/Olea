@@ -1,0 +1,227 @@
+Build phase: bootstrap
+Build phase: inputs
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0                              0100    169 100    169   0      0    131      0   00:01   00:01              0100    169 100    169   0      0    131      0   00:01   00:01              0
+  0      0   0      0   0      0      0      0           00:01              0  0      0   0      0   0      0      0      0           00:02              0  0      0   0      0   0      0      0      0           00:02              0  0      0   0      0   0      0      0      0           00:02              0
+  0      0   0      0   0      0      0      0           00:02              0  0      0   0      0   0      0      0      0           00:04              0  0 128.2M   0 326.1k   0      0  60399      0   37:07   00:05   37:02 318.7k  0 128.2M   0  1.06M   0      0 166.5k      0   13:09   00:06   13:03 528.5k  2 128.2M   2  2.64M   0      0 357.5k      0   06:07   00:07   06:00 882.0k  3 128.2M   3  4.83M   0      0 577.2k      0   03:47   00:08   03:39  1.18M  6 128.2M   6  8.39M   0      0 897.6k      0   02:26   00:09   02:17  1.65M  9 128.2M   9 12.62M   0      0  1.19M      0   01:47   00:10   01:37  2.43M 11 128.2M  11 15.34M   0      0  1.31M      0   01:37   00:11   01:26  2.81M 13 128.2M  13 17.46M   0      0  1.37M      0   01:33   00:12   01:21  2.90M 16 128.2M  16 20.60M   0      0  1.50M      0   01:25   00:13   01:12  3.08M 18 128.2M  18 24.24M   0      0  1.64M      0   01:17   00:14   01:03  3.07M 22 128.2M  22 28.45M   0      0  1.80M      0   01:11   00:15   00:56  3.05M 25 128.2M  25 33.08M   0      0  1.96M      0   01:05   00:16   00:49  3.40M 30 128.2M  30 38.55M   0      0  2.15M      0   00:59   00:17   00:42  4.02M 34 128.2M  34 44.42M   0      0  2.34M      0   00:54   00:18   00:36  4.53M 40 128.2M  40 51.73M   0      0  2.59M      0   00:49   00:19   00:30  5.26M 46 128.2M  46 59.64M   0      0  2.84M      0   00:45   00:20   00:25  5.97M 51 128.2M  51 65.82M   0      0  2.98M      0   00:42   00:22   00:20  6.32M 57 128.2M  57 73.33M   0      0  3.18M      0   00:40   00:23   00:17  6.79M 61 128.2M  61 78.41M   0      0  3.25M      0   00:39   00:24   00:15  6.61M 66 128.2M  66 85.57M   0      0  3.40M      0   00:37   00:25   00:12  6.55M 72 128.2M  72 92.83M   0      0  3.55M      0   00:36   00:26   00:10  6.45M 80 128.2M  80 103.6M   0      0  3.82M      0   00:33   00:27   00:06  7.42M 86 128.2M  86 111.1M   0      0  3.94M      0   00:32   00:28   00:04  7.38M 93 128.2M  93 120.0M   0      0  4.11M      0   00:31   00:29   00:02  8.10M100 128.2M 100 128.2M   0      0  4.25M      0   00:30   00:30          8.10M100 128.2M 100 128.2M   0      0  4.25M      0   00:30   00:30          8.10M100 128.2M 100 128.2M   0      0  4.25M      0   00:30   00:30          8.10M
+.setup/core/x86_64/downloads/gradle.zip.part: OK
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0           00:02              0  0 28.59M   0 160.0k   0      0  50865      0   09:49   00:03   09:46 159.6k  3 28.59M   3 992.0k   0      0 235.0k      0   02:04   00:04   02:00 495.4k 10 28.59M  10  2.92M   0      0 571.5k      0   00:51   00:05   00:46 991.9k 19 28.59M  19  5.50M   0      0 900.0k      0   00:32   00:06   00:26  1.36M 32 28.59M  32  9.31M   0      0  1.25M      0   00:22   00:07   00:15  1.79M 49 28.59M  49 14.14M   0      0  1.65M      0   00:17   00:08   00:09  2.61M 71 28.59M  71 20.35M   0      0  2.12M      0   00:13   00:09   00:04  3.61M 93 28.59M  93 26.68M   0      0  2.51M      0   00:11   00:10   00:01  4.40M100 28.59M 100 28.59M   0      0  2.62M      0   00:10   00:10          4.40M100 28.59M 100 28.59M   0      0  2.62M      0   00:10   00:10          4.40M100 28.59M 100 28.59M   0      0  2.62M      0   00:10   00:10          4.40M
+.setup/core/x86_64/downloads/ubuntu.tar.gz.part: OK
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0           00:01              0  0 30.36M   0 256.0k   0      0 102.6k      0   05:02   00:02   05:00 252.4k  3 30.36M   3  1.07M   0      0 313.6k      0   01:39   00:03   01:36 541.1k  7 30.36M   7  2.29M   0      0 509.9k      0   01:00   00:04   00:56 750.7k 12 30.36M  12  3.69M   0      0 670.9k      0   00:46   00:05   00:41 909.9k 17 30.36M  17  5.43M   0      0 837.6k      0   00:37   00:06   00:31  1.05M 26 30.36M  26  8.01M   0      0  1.04M      0   00:28   00:07   00:21  1.50M 36 30.36M  36 11.21M   0      0  1.29M      0   00:23   00:08   00:15  1.97M 48 30.36M  48 14.73M   0      0  1.52M      0   00:19   00:09   00:10  2.46M 65 30.36M  65 19.88M   0      0  1.85M      0   00:16   00:10   00:06  3.18M 85 30.36M  85 25.92M   0      0  2.20M      0   00:13   00:11   00:02  4.00M 96 30.36M  96 29.33M   0      0  2.29M      0   00:13   00:12   00:01  4.16M100 30.36M 100 30.36M   0      0  2.31M      0   00:13   00:13          4.16M100 30.36M 100 30.36M   0      0  2.31M      0   00:13   00:13          4.16M100 30.36M 100 30.36M   0      0  2.31M      0   00:13   00:13          4.16M
+.setup/core/x86_64/downloads/node.tar.xz.part: OK
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0           00:01              0 28 111.3k  28  32436   0      0  14822      0   00:07   00:02   00:05  32364100 111.3k 100 111.3k   0      0  45274      0   00:02   00:02          32364100 111.3k 100 111.3k   0      0  45266      0   00:02   00:02          32364100 111.3k 100 111.3k   0      0  45260      0   00:02   00:02          32364
+.setup/core/x86_64/downloads/proot.deb.part: OK
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0           00:02              0 46  34536  46  16054   0      0   4033      0   00:08   00:03   00:05  14247100  34536 100  34536   0      0   8585      0   00:04   00:04          14247100  34536 100  34536   0      0   8584      0   00:04   00:04          14247100  34536 100  34536   0      0   8583      0   00:04   00:04          14247
+.setup/core/x86_64/downloads/libtalloc.deb.part: OK
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0           00:01              0100   7388 100   7388   0      0   3851      0   00:01   00:01              0100   7388 100   7388   0      0   3851      0   00:01   00:01              0100   7388 100   7388   0      0   3850      0   00:01   00:01              0
+.setup/core/x86_64/downloads/libandroid-shmem.deb.part: OK
+.setup\core\x86_64\debs\proot\data.tar.xz
+.setup\core\x86_64\debs\libtalloc\data.tar.xz
+.setup\core\x86_64\debs\libandroid-shmem\data.tar.xz
+ELF x86_64: android/app/src/main/jniLibs/x86_64/libproot.so
+ELF x86_64: android/app/src/main/jniLibs/x86_64/libloader.so
+ELF x86_64: android/app/src/main/jniLibs/x86_64/libtalloc.so
+ELF x86_64: android/app/src/main/jniLibs/x86_64/libandroid-shmem.so
+ELF x86: android/app/src/main/jniLibs/x86_64/libloader32.so
+ELF x86_64: .setup/core/x86_64/checks/usr/bin/dash
+ELF x86_64: .setup/core/x86_64/checks/bin/node
+Build phase: npm-install
+
+added 3 packages, and audited 4 packages in 7s
+
+found 0 vulnerabilities
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.3
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+npm notice To update run: npm install -g npm@12.2.3
+npm notice
+Build phase: npm-build
+
+> olea-backend@0.1.0 build
+> tsc -p tsconfig.json
+
+Build phase: backend-archive
+Build phase: bootstrap-assets
+Build phase: gradle
+
+Welcome to Gradle 9.1.0!
+
+Here are the highlights of this release:
+ - Full Java 25 support
+ - Native task graph visualization
+ - Enhanced console output
+
+For more details see https://docs.gradle.org/9.1.0/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.1.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+> Task :app:preBuild
+> Task :app:preDebugBuild
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:generateDebugBuildConfig
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:processDebugNavigationResources
+> Task :app:javaPreCompileDebug
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:parseDebugLocalResources
+> Task :app:mergeDebugAssets
+> Task :app:generateDebugRFile
+> Task :app:compressDebugAssets
+> Task :app:compileDebugKotlin
+> Task :app:desugarDebugFileDependencies
+> Task :app:checkDebugAarMetadata
+> Task :app:compileDebugNavigationResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:mergeDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+
+> Task :app:processDebugMainManifest
+C:\Users\Aria\orca\workspaces\Olea\soft-native-ui\android\app\src\main\AndroidManifest.xml:11:266-298 Warning:
+	android:extractNativeLibs should not be specified in this source AndroidManifest.xml file. See https://d.android.com/guide/topics/manifest/application-element#extractNativeLibs for more information.
+The AGP Upgrade Assistant can remove the attribute from the AndroidManifest.xml file and update the build file accordingly. See https://d.android.com/studio/build/agp-upgrade-assistant for more information.
+
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:processDebugResources
+> Task :app:checkDebugDuplicateClasses
+
+> Task :app:compileDebugKotlin
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/main/java/dev/olea/app/PhoneAccessActivity.kt:88:17 'fun startActivityForResult(intent: Intent, requestCode: Int): Unit' is deprecated. This method has been deprecated in favor of using the Activity Result API
+      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt
+      contracts for common intents available in
+      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for
+      testing, and allow receiving results in separate, testable classes independent from your
+      activity. Use
+      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}
+      passing in a {@link StartActivityForResult} object for the {@link ActivityResultContract}.
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/main/java/dev/olea/app/PhoneAccessActivity.kt:124:15 'fun startActivityForResult(intent: Intent, requestCode: Int): Unit' is deprecated. This method has been deprecated in favor of using the Activity Result API
+      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt
+      contracts for common intents available in
+      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for
+      testing, and allow receiving results in separate, testable classes independent from your
+      activity. Use
+      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}
+      passing in a {@link StartActivityForResult} object for the {@link ActivityResultContract}.
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/main/java/dev/olea/app/PhoneAccessActivity.kt:218:38 The corresponding parameter in the supertype 'ComponentActivity' is named 'outState'. This may cause problems when calling this function with named arguments.
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/main/java/dev/olea/app/PhoneAccessActivity.kt:227:15 'fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray): Unit' is deprecated. This method has been deprecated in favor of using the Activity Result API
+      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt
+      contracts for common intents available in
+      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for
+      testing, and allow receiving results in separate, testable classes independent from your
+      activity. Use
+      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)} passing
+      in a {@link RequestMultiplePermissions} object for the {@link ActivityResultContract} and
+      handling the result in the {@link ActivityResultCallback#onActivityResult(Object) callback}.
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/main/java/dev/olea/app/PhoneAccessActivity.kt:236:35 The corresponding parameter in the supertype 'ComponentActivity' is named 'requestCode'. This may cause problems when calling this function with named arguments.
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/main/java/dev/olea/app/PhoneAccessActivity.kt:236:49 The corresponding parameter in the supertype 'ComponentActivity' is named 'resultCode'. This may cause problems when calling this function with named arguments.
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/main/java/dev/olea/app/PhoneAccessActivity.kt:237:15 'fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Unit' is deprecated. This method has been deprecated in favor of using the Activity Result API
+      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt
+      contracts for common intents available in
+      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for
+      testing, and allow receiving results in separate, testable classes independent from your
+      activity. Use
+      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}
+      with the appropriate {@link ActivityResultContract} and handling the result in the
+      {@link ActivityResultCallback#onActivityResult(Object) callback}.
+
+> Task :app:mergeExtDexDebug
+> Task :app:compileDebugJavaWithJavac
+> Task :app:dexBuilderDebug
+> Task :app:processDebugJavaRes
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:mergeLibDexDebug
+> Task :app:mergeProjectDexDebug
+> Task :app:mergeDebugJniLibFolders
+> Task :app:mergeDebugJavaResource
+> Task :app:mergeDebugNativeLibs
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:stripDebugDebugSymbols
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:processDebugAndroidTestManifest
+> Task :app:generateDebugAndroidTestBuildConfig
+> Task :app:generateDebugAndroidTestResources
+> Task :app:packageDebugAndroidTestResources
+> Task :app:processDebugAndroidTestNavigationResources
+> Task :app:parseDebugAndroidTestLocalResources
+> Task :app:generateDebugAndroidTestRFile
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+> Task :app:javaPreCompileDebugAndroidTest
+> Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :app:mergeDebugAndroidTestAssets
+> Task :app:compressDebugAndroidTestAssets
+> Task :app:desugarDebugAndroidTestFileDependencies
+> Task :app:checkDebugAndroidTestAarMetadata
+> Task :app:compileDebugAndroidTestNavigationResources
+> Task :app:mapDebugAndroidTestSourceSetPaths
+> Task :app:mergeDebugAndroidTestResources
+> Task :app:processDebugAndroidTestResources
+> Task :app:checkDebugAndroidTestDuplicateClasses
+> Task :app:mergeExtDexDebugAndroidTest
+> Task :app:mergeLibDexDebugAndroidTest
+> Task :app:mergeDebugAndroidTestJniLibFolders
+> Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
+> Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
+> Task :app:validateSigningDebugAndroidTest
+> Task :app:writeDebugAndroidTestSigningConfigVersions
+
+> Task :app:compileDebugAndroidTestKotlin
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/androidTest/java/dev/olea/app/TerminalWebViewInstrumentation.kt:135:39 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'ClassLoader?'.
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/androidTest/java/dev/olea/app/TerminalWebViewInstrumentation.kt:136:41 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'ClassLoader?'.
+w: file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/src/androidTest/java/dev/olea/app/TerminalWebViewInstrumentation.kt:137:41 Only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type 'ClassLoader?'.
+
+> Task :app:generateDebugAndroidTestLintModel
+> Task :app:compileDebugAndroidTestJavaWithJavac
+> Task :app:dexBuilderDebugAndroidTest
+> Task :app:processDebugAndroidTestJavaRes
+> Task :app:mergeDebugAndroidTestGlobalSynthetics
+> Task :app:mergeDebugAndroidTestJavaResource
+> Task :app:extractProguardFiles
+> Task :app:mergeProjectDexDebugAndroidTest
+> Task :app:generateDebugLintReportModel
+> Task :app:preDebugUnitTestBuild
+> Task :app:generateDebugUnitTestLintModel
+> Task :app:packageDebugAndroidTest
+> Task :app:lintAnalyzeDebug
+> Task :app:createDebugAndroidTestApkListingFileRedirect
+> Task :app:assembleDebugAndroidTest
+The Daemon will expire after the build after running out of JVM Metaspace.
+The project memory settings are likely not configured or are configured to an insufficient value.
+The daemon will restart for the next build, which may increase subsequent build times.
+These settings can be adjusted by setting 'org.gradle.jvmargs' in 'gradle.properties'.
+The currently configured max heap space is '512 MiB' and the configured max metaspace is '384 MiB'.
+For more information on how to set these values, please refer to https://docs.gradle.org/9.1.0/userguide/build_environment.html#sec:configuring_jvm_memory in the Gradle documentation.
+To disable this warning, set 'org.gradle.daemon.performance.disable-logging=true'.
+> Task :app:lintAnalyzeDebugAndroidTest
+> Task :app:lintAnalyzeDebugUnitTest
+
+> Task :app:lintReportDebug
+Wrote HTML report to file:///C:/Users/Aria/orca/workspaces/Olea/soft-native-ui/android/app/build/reports/lint-results-debug.html
+
+> Task :app:lintDebug
+
+BUILD SUCCESSFUL in 13m 35s
+80 actionable tasks: 80 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html
+Gradle exited with status 0
+Build phase: apk-verification
+a1320768bdea228136983197109f64ca687803e78fc55ae67198ea1e6a82122b *.setup/core/x86_64/olea-x86_64-debug.apk
+Build exited during complete (exit 0)
