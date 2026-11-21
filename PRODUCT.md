@@ -16,6 +16,8 @@ Status: evolving product scope and decision record. The maintained core directio
 
 ## Issue triage decisions
 
+**USER DECISION**: Consolidate #14 into #13 because they overlap; append #14's context as a reply to #13 and close #14 with no separate work. Source: the user's direct instruction in the #14 discussion session, relayed by worker `ctx_2628ad13bea4`; [consolidation reply](https://github.com/nekoium/Olea/issues/13#issuecomment-7058343324). UI appearance/responsiveness complaints and the unsuccessful Obsidian edit remain discussion context; no root cause or fix is established by consolidation.
+
 **USER DECISION**: Close issues [#3](https://github.com/nekoium/Olea/issues/3) and [#2](https://github.com/nekoium/Olea/issues/2) as not planned. Additional Codex/Claude acceptance work in #3 is intentionally omitted. Terminal access is intentional: users need control over their phone in the terminal, like Termux; the hardening proposed in #2 is not planned. Source: the user's current issue-review instruction. These closures do not establish passing tests or remove Codex/Claude support.
 
 **USER DECISION**: Defer lifecycle recovery [#4](https://github.com/nekoium/Olea/issues/4) and export/restore design [#9](https://github.com/nekoium/Olea/issues/9) to “The far side”; export/restore is not urgent now. Raise UI improvement [#11](https://github.com/nekoium/Olea/issues/11) to T1 for further discussion. User stories [#13](https://github.com/nekoium/Olea/issues/13) and [#14](https://github.com/nekoium/Olea/issues/14) need discussion. Source: the user's current issue-review instruction. No specific UI redesign or new feature behavior is selected by this triage.
