@@ -1,0 +1,90 @@
+{
+  "status": "AGENT PLAN: selected images for release 0.1.1; not published",
+  "before": {
+    "version": "0.1.0 (code 7), ARM64",
+    "captureManifest": "../screens.js",
+    "note": "Actual Android captures; setup gate bypassed for post-onboarding inspection."
+  },
+  "after": {
+    "implementation": "21c5ab0",
+    "evidenceCommit": "c0793ee",
+    "note": "Actual Android rendering of diagnostic sample content; Cabin font. No provider requests."
+  },
+  "export": {
+    "sourceDimensions": [
+      1080,
+      2400
+    ],
+    "dimensions": [
+      1040,
+      1220
+    ],
+    "screenDimensions": [
+      450,
+      1000
+    ],
+    "treatment": "Complete frames, identical scaling. No retouching."
+  },
+  "comparisons": [
+    {
+      "image": "conversation.png",
+      "sha256": "4be7555d2995d54090305a9aff0d642ffb467f1e6d06252df5e59cc5be2ab09d",
+      "before": {
+        "path": "docs/discussions/issue-11/captures/new-conversation.png",
+        "sha256": "2f222226f11c690f0e2ff3b630401d9cc0f69b67a672fd56a734cfa2ec436561"
+      },
+      "after": {
+        "path": "delegations/cabin-font/evidence/native/draft.png",
+        "sha256": "7d21e0976968ff361a0999be2b709817445da8012c86da957e010beb26861afb"
+      }
+    },
+    {
+      "image": "settings.png",
+      "sha256": "d9dead25fa2ee57ed8bbea8c380d4d8460c13b3bf9f6b5f4cbd760fbb6b26471",
+      "before": {
+        "path": "docs/discussions/issue-11/captures/settings-light.png",
+        "sha256": "b773ac062b62025cb8bbbfab84c5cd6047e393bec840921433c2824b22abbb65"
+      },
+      "after": {
+        "path": "delegations/cabin-font/evidence/native/settings.png",
+        "sha256": "d27bfb6b72729d9c2844535ffae3c052fb2709157584580640490490371129e2"
+      }
+    },
+    {
+      "image": "first-use.png",
+      "sha256": "0502e8012fbe298cfbbc13b3d004b44477d6602ccf08bd8950d96b68fcaa1f3b",
+      "before": {
+        "path": "docs/discussions/issue-11/captures/welcome.png",
+        "sha256": "ec701dee39044588f1a97cb23115766645ea2a8acc5f801aedf8addb5400dfa3"
+      },
+      "after": {
+        "path": "delegations/cabin-font/evidence/native/onboarding.png",
+        "sha256": "62f4c86a27b75e59f426283edb65b56d94139b19a9310f11a766e99dde3cbe1a"
+      }
+    },
+    {
+      "image": "provider.png",
+      "sha256": "21a744423039462f00d3c79acfee8151f10f0145cd307469517827b8763ab500",
+      "before": {
+        "path": "docs/discussions/issue-11/captures/provider-editor.png",
+        "sha256": "7af40345d06df50a31e130de2836070c340315e718eb3600bdeb6957aa385ad3"
+      },
+      "after": {
+        "path": "delegations/cabin-font/evidence/native/provider.png",
+        "sha256": "152fd7df63800a3fa39bc93b8591fed3317b8b73e3da8d51a68a51bbdd13c771"
+      }
+    },
+    {
+      "image": "phone-access.png",
+      "sha256": "103a8838f4ab97580b00a4a4126628f47ba99d9f5599b7c2ef7bbc04313e0d90",
+      "before": {
+        "path": "docs/discussions/issue-11/captures/phone-access-entry.png",
+        "sha256": "9ec3cf82f18fa9581d3c2cbecb4fcb890ea91e25b6c4bf60fdf42c0880bb6e68"
+      },
+      "after": {
+        "path": "delegations/cabin-font/evidence/native/phone-access.png",
+        "sha256": "a79d635fbc1ffd28ee18540e01efd0e565fde71d21f28c07410f3d20438295a2"
+      }
+    }
+  ]
+}
