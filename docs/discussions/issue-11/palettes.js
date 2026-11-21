@@ -1,14 +1,34 @@
-// Shared by the board and every phone specimen; palettes change color roles only.
+// Each palette supplies the same roles. Geometry, typography and state meaning stay shared.
 window.OLEA_PALETTES = {
   green: {
-    name: 'Olea green', description: 'The default', swatch: '#496754',
-    light: {bg:'#f8faf7',paper:'#ffffff',ink:'#2e3931',muted:'#6a756d',line:'#e1e8e1',accent:'#496754',soft:'#e8f0e9',keyboard:'#e1e8e1','terminal-bg':'#233029','terminal-ink':'#e5eee7','terminal-accent':'#b4d1bb','terminal-muted':'#a3b5a7','terminal-keys':'#2d3d33','terminal-notice':'#34473b'},
-    dark: {bg:'#242d27',paper:'#2e3931',ink:'#edf2ed',muted:'#b1bfb4',line:'#435047',accent:'#b4d1bb',soft:'#36483c',keyboard:'#344139','terminal-bg':'#202a24','terminal-ink':'#e5eee7','terminal-accent':'#b4d1bb','terminal-muted':'#a3b5a7','terminal-keys':'#2d3d33','terminal-notice':'#34473b'}
+    name:'Olea green', description:'Default · Warm olive', swatch:'#5d652f',
+    light:{bg:'#fafaf4',paper:'#fffffb',ink:'#34372a',muted:'#696b58',line:'#e5e6d6',accent:'#5d652f',soft:'#eef0db',keyboard:'#e3e5d3','terminal-bg':'#2b2f20','terminal-ink':'#edf0dd','terminal-accent':'#cbd38f','terminal-muted':'#b4b89c','terminal-keys':'#373d29','terminal-notice':'#41482f'},
+    dark:{bg:'#292c22',paper:'#33372a',ink:'#f0f1e2',muted:'#bec2a7',line:'#4a4f39',accent:'#cbd38f',soft:'#41482f',keyboard:'#3a402d','terminal-bg':'#25291c','terminal-ink':'#edf0dd','terminal-accent':'#cbd38f','terminal-muted':'#b4b89c','terminal-keys':'#343a26','terminal-notice':'#41482f'}
   },
   purple: {
-    name: 'Soft purple', description: 'The original palette', swatch: '#66518a',
-    light: {bg:'#faf9fc',paper:'#ffffff',ink:'#302d3d',muted:'#767082',line:'#e7e2ed',accent:'#66518a',soft:'#eee9f5',keyboard:'#e7e3ed','terminal-bg':'#292532','terminal-ink':'#e9e3f0','terminal-accent':'#c4b0df','terminal-muted':'#a69ab6','terminal-keys':'#342e3e','terminal-notice':'#393142'},
-    dark: {bg:'#26232e',paper:'#302c3b',ink:'#f0edf6',muted:'#b5acc4',line:'#494153',accent:'#ccbaea',soft:'#3c334e',keyboard:'#3c3548','terminal-bg':'#25212e','terminal-ink':'#e9e3f0','terminal-accent':'#c4b0df','terminal-muted':'#a69ab6','terminal-keys':'#342e3e','terminal-notice':'#393142'}
+    name:'Soft purple', description:'Quiet lavender', swatch:'#66518a',
+    light:{bg:'#faf9fc',paper:'#ffffff',ink:'#302d3d',muted:'#6a6476',line:'#e7e2ed',accent:'#66518a',soft:'#eee9f5',keyboard:'#e7e3ed','terminal-bg':'#292532','terminal-ink':'#e9e3f0','terminal-accent':'#c4b0df','terminal-muted':'#a69ab6','terminal-keys':'#342e3e','terminal-notice':'#393142'},
+    dark:{bg:'#26232e',paper:'#302c3b',ink:'#f0edf6',muted:'#b5acc4',line:'#494153',accent:'#ccbaea',soft:'#3c334e',keyboard:'#3c3548','terminal-bg':'#25212e','terminal-ink':'#e9e3f0','terminal-accent':'#c4b0df','terminal-muted':'#a69ab6','terminal-keys':'#342e3e','terminal-notice':'#393142'}
+  },
+  blue: {
+    name:'Dusty blue', description:'Soft cornflower', swatch:'#50668c',
+    light:{bg:'#f8f9fc',paper:'#ffffff',ink:'#2d3441',muted:'#5e697c',line:'#e1e5ee',accent:'#50668c',soft:'#e8edf7',keyboard:'#e0e6f0','terminal-bg':'#252d3b','terminal-ink':'#e5ecf6','terminal-accent':'#b3c7eb','terminal-muted':'#a1afc5','terminal-keys':'#303b4d','terminal-notice':'#39455b'},
+    dark:{bg:'#232a36',paper:'#2d3645',ink:'#edf1f8',muted:'#afbdd3',line:'#424f64',accent:'#b3c7eb',soft:'#374761',keyboard:'#344158','terminal-bg':'#202733','terminal-ink':'#e5ecf6','terminal-accent':'#b3c7eb','terminal-muted':'#a1afc5','terminal-keys':'#303b4d','terminal-notice':'#39455b'}
+  },
+  rose: {
+    name:'Rosewood', description:'Muted rose & plum', swatch:'#88566b',
+    light:{bg:'#fcf8f9',paper:'#fffdfd',ink:'#402f37',muted:'#75616b',line:'#eddee4',accent:'#88566b',soft:'#f4e7ed',keyboard:'#ecdee5','terminal-bg':'#34272e','terminal-ink':'#f2e4eb','terminal-accent':'#e0b4c6','terminal-muted':'#bda4af','terminal-keys':'#44323c','terminal-notice':'#503b46'},
+    dark:{bg:'#30252b',paper:'#3b2e35',ink:'#f7edf1',muted:'#ceb2be',line:'#59414c',accent:'#e0b4c6',soft:'#503744',keyboard:'#49333e','terminal-bg':'#2c2127','terminal-ink':'#f2e4eb','terminal-accent':'#e0b4c6','terminal-muted':'#bda4af','terminal-keys':'#44323c','terminal-notice':'#503b46'}
+  },
+  ochre: {
+    name:'Ochre', description:'Old gold & parchment', swatch:'#80612c',
+    light:{bg:'#fcfaf5',paper:'#fffef9',ink:'#403629',muted:'#72654f',line:'#eae2d2',accent:'#80612c',soft:'#f2ebd9',keyboard:'#e9e1ce','terminal-bg':'#332c20','terminal-ink':'#f1eada','terminal-accent':'#d9c08b','terminal-muted':'#b9ac93','terminal-keys':'#433a29','terminal-notice':'#4e432f'},
+    dark:{bg:'#2e291f',paper:'#393225',ink:'#f5efe1',muted:'#c6b99b',line:'#544831',accent:'#dfc68f',soft:'#4b3e29',keyboard:'#453b28','terminal-bg':'#29241a','terminal-ink':'#f1eada','terminal-accent':'#d9c08b','terminal-muted':'#b9ac93','terminal-keys':'#433a29','terminal-notice':'#4e432f'}
+  },
+  graphite: {
+    name:'Graphite', description:'Warm stone & charcoal', swatch:'#64615c',
+    light:{bg:'#faf9f7',paper:'#fffefd',ink:'#373531',muted:'#6b6760',line:'#e6e2dc',accent:'#64615c',soft:'#eeebe6',keyboard:'#e4e0d9','terminal-bg':'#2c2b28','terminal-ink':'#edeae3','terminal-accent':'#ccc6bb','terminal-muted':'#b0aba1','terminal-keys':'#3b3935','terminal-notice':'#46423d'},
+    dark:{bg:'#292825',paper:'#34322e',ink:'#f2efe8',muted:'#bfb9ad',line:'#4e4a43',accent:'#d0cabe',soft:'#46413a',keyboard:'#3e3a34','terminal-bg':'#252421','terminal-ink':'#edeae3','terminal-accent':'#ccc6bb','terminal-muted':'#b0aba1','terminal-keys':'#3b3935','terminal-notice':'#46423d'}
   }
 };
 window.OLEA_PALETTE_KEY = 'olea-soft-palette-v1';

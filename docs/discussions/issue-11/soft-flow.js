@@ -1,6 +1,7 @@
 window.OLEA_SOFT_FLOW = {
   decision: {status:'USER DECISION',source:'User in issue #11 chat: “the soft, the purple one, its design is great … drop the two other directions … go with that soft direction.”',scope:'Soft visual direction selected. Detailed layouts and behavior below remain AGENT PLAN.'},
   paletteDecision:{status:'USER DECISION',source:'User in issue #11 chat: “purple … should work only as … one of the options … main tone to be green” and “make a palette option in the mood board … also add the select palette option in the app … design principles … should be consistent.”',scope:'Green is the default; purple is an alternative. Share Soft typography, spacing, geometry and hierarchy across palettes. Exact color values remain AGENT PLAN.'},
+  paletteExpansion:{status:'USER DECISION',source:'User in issue #11 chat: “mainly green, but also inclined to old yellow” and “a full color set of options. Perhaps six … same design principles.”',scope:'Preview six complete palettes; default Olea green leans warm olive/yellow rather than cyan. Exact values and the other palette identities remain AGENT PLAN.'},
   groups:[
     {id:'first-use',title:'First use',note:'Choose an agent, prepare the environment, and recover from setup failure.',screens:['welcome','choose-agent','prepare','setup-error','install','setup-provider']},
     {id:'finish-setup',title:'Finish setup',note:'Choose a workspace, review optional phone access, and enter the app.',screens:['setup-workspace','setup-access','ready']},

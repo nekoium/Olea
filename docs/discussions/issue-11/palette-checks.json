@@ -1,100 +1,108 @@
 {
   "engine": "Chromium",
   "results": [
-    "204 screen/palette/theme combinations fit; paired palette geometry and typography match",
-    "Fresh default is green",
-    "App palette persists across navigation and reload",
-    "Board palette updates loaded previews",
-    "Settings palette updates board and all loaded specimens",
-    "Dark mode retains selected palette",
-    "Newly loaded journeys use current palette",
-    "Mobile board palette control fits",
-    "Shared body, secondary, accent and terminal text pairs meet 4.5:1"
+    "72 representative screen/palette/theme checks passed",
+    "All six board options update loaded phone previews",
+    "App Settings selection synchronizes board",
+    "Mobile six-palette picker fits",
+    "96 shared text contrast pairs meet 4.5:1"
   ],
   "contrasts": [
     {
       "palette": "green",
       "theme": "light",
       "pair": "ink/bg",
-      "ratio": 11.46
+      "ratio": 11.61
     },
     {
       "palette": "green",
       "theme": "light",
       "pair": "muted/bg",
-      "ratio": 4.57
+      "ratio": 5.21
     },
     {
       "palette": "green",
       "theme": "light",
       "pair": "muted/paper",
-      "ratio": 4.8
+      "ratio": 5.45
+    },
+    {
+      "palette": "green",
+      "theme": "light",
+      "pair": "muted/soft",
+      "ratio": 4.71
     },
     {
       "palette": "green",
       "theme": "light",
       "pair": "accent/bg",
-      "ratio": 5.97
+      "ratio": 5.95
     },
     {
       "palette": "green",
       "theme": "light",
       "pair": "accent/soft",
-      "ratio": 5.39
+      "ratio": 5.38
     },
     {
       "palette": "green",
       "theme": "light",
       "pair": "terminal-muted/terminal-bg",
-      "ratio": 6.37
+      "ratio": 6.72
     },
     {
       "palette": "green",
       "theme": "light",
       "pair": "terminal-ink/terminal-bg",
-      "ratio": 11.61
+      "ratio": 11.83
     },
     {
       "palette": "green",
       "theme": "dark",
       "pair": "ink/bg",
-      "ratio": 12.52
+      "ratio": 12.44
     },
     {
       "palette": "green",
       "theme": "dark",
       "pair": "muted/bg",
-      "ratio": 7.42
+      "ratio": 7.76
     },
     {
       "palette": "green",
       "theme": "dark",
       "pair": "muted/paper",
-      "ratio": 6.29
+      "ratio": 6.66
+    },
+    {
+      "palette": "green",
+      "theme": "dark",
+      "pair": "muted/soft",
+      "ratio": 5.23
     },
     {
       "palette": "green",
       "theme": "dark",
       "pair": "accent/bg",
-      "ratio": 8.64
+      "ratio": 8.97
     },
     {
       "palette": "green",
       "theme": "dark",
       "pair": "accent/soft",
-      "ratio": 5.95
+      "ratio": 6.04
     },
     {
       "palette": "green",
       "theme": "dark",
       "pair": "terminal-muted/terminal-bg",
-      "ratio": 6.86
+      "ratio": 7.28
     },
     {
       "palette": "green",
       "theme": "dark",
       "pair": "terminal-ink/terminal-bg",
-      "ratio": 12.49
+      "ratio": 12.82
     },
     {
       "palette": "purple",
@@ -106,12 +114,18 @@
       "palette": "purple",
       "theme": "light",
       "pair": "muted/bg",
-      "ratio": 4.54
+      "ratio": 5.41
     },
     {
       "palette": "purple",
       "theme": "light",
       "pair": "muted/paper",
+      "ratio": 5.68
+    },
+    {
+      "palette": "purple",
+      "theme": "light",
+      "pair": "muted/soft",
       "ratio": 4.76
     },
     {
@@ -159,6 +173,12 @@
     {
       "palette": "purple",
       "theme": "dark",
+      "pair": "muted/soft",
+      "ratio": 5.44
+    },
+    {
+      "palette": "purple",
+      "theme": "dark",
       "pair": "accent/bg",
       "ratio": 8.65
     },
@@ -179,7 +199,391 @@
       "theme": "dark",
       "pair": "terminal-ink/terminal-bg",
       "ratio": 12.51
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "pair": "ink/bg",
+      "ratio": 11.88
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "pair": "muted/bg",
+      "ratio": 5.27
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "pair": "muted/paper",
+      "ratio": 5.54
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "pair": "muted/soft",
+      "ratio": 4.72
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "pair": "accent/bg",
+      "ratio": 5.51
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "pair": "accent/soft",
+      "ratio": 4.94
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.23
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 11.64
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "pair": "ink/bg",
+      "ratio": 12.73
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "pair": "muted/bg",
+      "ratio": 7.58
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "pair": "muted/paper",
+      "ratio": 6.4
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "pair": "muted/soft",
+      "ratio": 4.94
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "pair": "accent/bg",
+      "ratio": 8.44
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "pair": "accent/soft",
+      "ratio": 5.49
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.76
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 12.62
+    },
+    {
+      "palette": "rose",
+      "theme": "light",
+      "pair": "ink/bg",
+      "ratio": 11.87
+    },
+    {
+      "palette": "rose",
+      "theme": "light",
+      "pair": "muted/bg",
+      "ratio": 5.42
+    },
+    {
+      "palette": "rose",
+      "theme": "light",
+      "pair": "muted/paper",
+      "ratio": 5.63
+    },
+    {
+      "palette": "rose",
+      "theme": "light",
+      "pair": "muted/soft",
+      "ratio": 4.76
+    },
+    {
+      "palette": "rose",
+      "theme": "light",
+      "pair": "accent/bg",
+      "ratio": 5.55
+    },
+    {
+      "palette": "rose",
+      "theme": "light",
+      "pair": "accent/soft",
+      "ratio": 4.87
+    },
+    {
+      "palette": "rose",
+      "theme": "light",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.16
+    },
+    {
+      "palette": "rose",
+      "theme": "light",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 11.57
+    },
+    {
+      "palette": "rose",
+      "theme": "dark",
+      "pair": "ink/bg",
+      "ratio": 12.87
+    },
+    {
+      "palette": "rose",
+      "theme": "dark",
+      "pair": "muted/bg",
+      "ratio": 7.53
+    },
+    {
+      "palette": "rose",
+      "theme": "dark",
+      "pair": "muted/paper",
+      "ratio": 6.59
+    },
+    {
+      "palette": "rose",
+      "theme": "dark",
+      "pair": "muted/soft",
+      "ratio": 5.45
+    },
+    {
+      "palette": "rose",
+      "theme": "dark",
+      "pair": "accent/bg",
+      "ratio": 8.08
+    },
+    {
+      "palette": "rose",
+      "theme": "dark",
+      "pair": "accent/soft",
+      "ratio": 5.84
+    },
+    {
+      "palette": "rose",
+      "theme": "dark",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.72
+    },
+    {
+      "palette": "rose",
+      "theme": "dark",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 12.61
+    },
+    {
+      "palette": "ochre",
+      "theme": "light",
+      "pair": "ink/bg",
+      "ratio": 11.32
+    },
+    {
+      "palette": "ochre",
+      "theme": "light",
+      "pair": "muted/bg",
+      "ratio": 5.46
+    },
+    {
+      "palette": "ochre",
+      "theme": "light",
+      "pair": "muted/paper",
+      "ratio": 5.64
+    },
+    {
+      "palette": "ochre",
+      "theme": "light",
+      "pair": "muted/soft",
+      "ratio": 4.79
+    },
+    {
+      "palette": "ochre",
+      "theme": "light",
+      "pair": "accent/bg",
+      "ratio": 5.49
+    },
+    {
+      "palette": "ochre",
+      "theme": "light",
+      "pair": "accent/soft",
+      "ratio": 4.82
+    },
+    {
+      "palette": "ochre",
+      "theme": "light",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.17
+    },
+    {
+      "palette": "ochre",
+      "theme": "light",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 11.51
+    },
+    {
+      "palette": "ochre",
+      "theme": "dark",
+      "pair": "ink/bg",
+      "ratio": 12.6
+    },
+    {
+      "palette": "ochre",
+      "theme": "dark",
+      "pair": "muted/bg",
+      "ratio": 7.44
+    },
+    {
+      "palette": "ochre",
+      "theme": "dark",
+      "pair": "muted/paper",
+      "ratio": 6.53
+    },
+    {
+      "palette": "ochre",
+      "theme": "dark",
+      "pair": "muted/soft",
+      "ratio": 5.35
+    },
+    {
+      "palette": "ochre",
+      "theme": "dark",
+      "pair": "accent/bg",
+      "ratio": 8.68
+    },
+    {
+      "palette": "ochre",
+      "theme": "dark",
+      "pair": "accent/soft",
+      "ratio": 6.24
+    },
+    {
+      "palette": "ochre",
+      "theme": "dark",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.89
+    },
+    {
+      "palette": "ochre",
+      "theme": "dark",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 12.87
+    },
+    {
+      "palette": "graphite",
+      "theme": "light",
+      "pair": "ink/bg",
+      "ratio": 11.63
+    },
+    {
+      "palette": "graphite",
+      "theme": "light",
+      "pair": "muted/bg",
+      "ratio": 5.34
+    },
+    {
+      "palette": "graphite",
+      "theme": "light",
+      "pair": "muted/paper",
+      "ratio": 5.58
+    },
+    {
+      "palette": "graphite",
+      "theme": "light",
+      "pair": "muted/soft",
+      "ratio": 4.73
+    },
+    {
+      "palette": "graphite",
+      "theme": "light",
+      "pair": "accent/bg",
+      "ratio": 5.86
+    },
+    {
+      "palette": "graphite",
+      "theme": "light",
+      "pair": "accent/soft",
+      "ratio": 5.18
+    },
+    {
+      "palette": "graphite",
+      "theme": "light",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.19
+    },
+    {
+      "palette": "graphite",
+      "theme": "light",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 11.78
+    },
+    {
+      "palette": "graphite",
+      "theme": "dark",
+      "pair": "ink/bg",
+      "ratio": 12.84
+    },
+    {
+      "palette": "graphite",
+      "theme": "dark",
+      "pair": "muted/bg",
+      "ratio": 7.55
+    },
+    {
+      "palette": "graphite",
+      "theme": "dark",
+      "pair": "muted/paper",
+      "ratio": 6.55
+    },
+    {
+      "palette": "graphite",
+      "theme": "dark",
+      "pair": "muted/soft",
+      "ratio": 5.18
+    },
+    {
+      "palette": "graphite",
+      "theme": "dark",
+      "pair": "accent/bg",
+      "ratio": 9.04
+    },
+    {
+      "palette": "graphite",
+      "theme": "dark",
+      "pair": "accent/soft",
+      "ratio": 6.2
+    },
+    {
+      "palette": "graphite",
+      "theme": "dark",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.79
+    },
+    {
+      "palette": "graphite",
+      "theme": "dark",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 12.92
     }
   ],
-  "limit": "Browser prototype; this is not a full accessibility audit or native implementation test."
+  "limit": "Representative browser states; not a full accessibility audit or Android implementation test."
 }
