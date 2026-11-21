@@ -2,42 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Olea · Project board</title>
-  <link rel="stylesheet" href="board.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Open Olea canvas</title>
+  <style>body{font:16px/1.6 system-ui,sans-serif;color:#283524;background:#f7f8f5;max-width:560px;margin:12vh auto;padding:24px}h1{font-size:24px}a,button{color:#415739}a{display:inline-block;padding:10px 0}button{font:inherit;cursor:pointer;padding:8px 12px;border:1px solid #cbd2c2;background:#fff;border-radius:6px}code{background:#e6eddf;padding:2px 6px}</style>
 </head>
 <body>
-  <header>
-    <div class="identity"><img src="../assets/readme/olea-icon-rounded.png" alt="" width="32" height="32"><h1>Olea <span>/ Project board</span></h1></div>
-    <div class="actions"><button id="export">Export</button><button id="import">Import</button><button class="primary" id="add">+ Add card</button></div>
-  </header>
-  <div class="toolbar">
-    <label class="search"><span>Find</span><input id="search" type="search" placeholder="Search cards" autocomplete="off"></label>
-    <label>Show <select id="filter"><option value="">All cards</option><option value="note">Notes</option><option>To do</option><option>In progress</option><option>Discuss</option><option>Done</option><option>Later</option></select></label>
-    <div class="selection-actions"><output id="selection-count" aria-live="polite">0 selected</output><button id="edit-selection" disabled>Edit</button><button id="delete-selection" disabled>Delete</button></div>
-    <output id="summary"></output>
-  </div>
-  <main id="viewport" tabindex="0" aria-label="Infinite canvas. Left-drag empty space to select cards. Click selects; Shift-click toggles selection. Drag cards to move the selection. Double-click or Enter edits. Middle-drag or Space-drag pans. Wheel zooms.">
-    <div id="world" role="listbox" aria-label="Canvas cards" aria-multiselectable="true"></div>
-    <div id="selection-box" hidden aria-hidden="true"></div>
-    <p id="empty" hidden>No matching cards.</p>
-  </main>
-  <footer><span id="save-state" role="status">Saved in this browser</span><span class="hint">Drag to select · Double-click to edit · Middle-drag to pan · Wheel to zoom</span><div class="zoom"><button id="out" aria-label="Zoom out">−</button><output id="scale">100%</output><button id="in" aria-label="Zoom in">+</button><button id="fit">Fit all</button></div></footer>
-  <dialog id="editor" aria-labelledby="editor-title">
-    <form id="task-form">
-      <h2 id="editor-title">New card</h2>
-      <label>Type<select name="kind"><option value="note">Note</option><option value="task">Task</option></select></label>
-      <label>Title<input name="title" required maxlength="180" autocomplete="off"></label>
-      <label id="status-field">Status<select name="status"><option>To do</option><option>In progress</option><option>Discuss</option><option>Done</option><option>Later</option></select></label>
-      <label>Notes<textarea name="notes" rows="6" maxlength="12000" placeholder="Write anything…"></textarea></label>
-      <label>Link<input name="link" type="url" maxlength="4000" placeholder="https://github.com/…"></label>
-      <a id="reference" target="_blank" rel="noopener noreferrer" hidden>Open reference</a>
-      <div class="dialog-actions"><button id="delete" type="button" class="danger" hidden>Delete card</button><span></span><button id="cancel" type="button">Cancel</button><button class="primary" type="submit">Save card</button></div>
-    </form>
-  </dialog>
-  <input id="file" type="file" accept="application/json,.json" hidden>
-  <noscript>This board needs JavaScript enabled to save and move cards.</noscript>
-  <script src="seed.js"></script>
-  <script src="board.js"></script>
+  <h1>Olea canvas</h1>
+  <p>Start the canvas with <code>start.cmd</code> in this folder, or run <code>npm install</code> then <code>npm start</code>.</p>
+  <a id="open" href="http://127.0.0.1:4173/app.html">Open canvas</a>
+  <p id="migration" hidden>Your previous cards are ready to import when you open the canvas. The original saved board stays here.</p>
+  <button id="backup" hidden>Download previous board</button>
+  <script>
+    if (location.protocol !== 'file:') location.replace(new URL('app.html',location.href).href);
+    try {
+      const saved = localStorage.getItem('olea-project-board-v1');
+      if (saved) {
+        JSON.parse(saved);
+        document.querySelector('#open').hash = new URLSearchParams({'olea-board':saved}).toString();
+        document.querySelector('#migration').hidden = false;
+        const backup = document.querySelector('#backup'); backup.hidden = false;
+        backup.onclick = () => {
+          const url = URL.createObjectURL(new Blob([saved],{type:'application/json'}));
+          const link = document.createElement('a'); link.href=url; link.download='olea-board-backup.json'; link.click();
+          setTimeout(()=>URL.revokeObjectURL(url),1000);
+        };
+      }
+    } catch { document.querySelector('#migration').hidden=false; document.querySelector('#migration').textContent='Previous board data could not be read. It has not been changed.'; }
+  </script>
 </body>
 </html>

@@ -15,6 +15,18 @@ Inputs and Gradle caches remain under `.setup/core/`. Generated APKs, native lib
 
 Release signing requires `OLEA_BUILD_TYPE=release` and the local environment variables `OLEA_SIGNING_STORE_FILE`, `OLEA_SIGNING_STORE_PASSWORD`, `OLEA_SIGNING_KEY_ALIAS`, and `OLEA_SIGNING_KEY_PASSWORD`. Never commit a keystore or signing credentials. The public package identity is `dev.olea`; the Kotlin namespace remains `dev.olea.app`. Earlier development packages used `dev.olea.app` and have separate storage and signing identities.
 
+## Canvas utility
+
+The separate `board/` web app uses Excalidraw and React. Use Node.js 22.12 or newer:
+
+```bash
+npm ci --prefix board
+npm start --prefix board
+npm run build --prefix board
+```
+
+`board/start.cmd` provides the Windows launcher. The editor entry is `app.html`; `index.html` preserves migration access to browser storage from the former directly opened board. Generated dependencies, fonts, and `dist/` remain ignored. Keep the canvas and its storage separate from the Android app. Prefer a short visual pass and focused diagnosis of reported failures over broad interaction suites for reversible canvas changes.
+
 ## Focused checks
 
 ```bash

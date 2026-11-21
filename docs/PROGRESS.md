@@ -18,6 +18,8 @@ Status: agent-managed snapshot of maintained implementation, evidence, failures,
 
 ## Current Work
 
+- **OBSERVED**: Replaced the board utility's limited DOM editor with a full-viewport Excalidraw canvas and visible creation tools. Added designed Note/Task presets with pointer previews, in-place content editing, restrained status treatment, and preserved full card metadata. Removed the separate card editor and native blue card-link markers at the user's correction. Legacy local-file storage remains accessible through `board/index.html`; the canvas now uses a local Node server with a Windows launcher. Build and a bounded visual/inline-edit/save spot-check passed. [Setup](../board/README.md), [reference decisions, retained limits, and evidence](reports/project-board.md#full-screen-canvas-and-inline-cards). No Android/provider work or Orca connection was performed.
+
 - **USER DECISION**: Consolidate #14 into #13; no separate #14 work remains. Source: [PRODUCT.md, issue triage](../PRODUCT.md#issue-triage-decisions) and direct user instruction relayed from the #14 discussion session.
 - **OBSERVED**: #14 worker reports posting the [context reply to #13](https://github.com/nekoium/Olea/issues/13#issuecomment-7058343324) and closing #14 as not planned. This records overlap, not a proven diagnosis or fix. Manager relays consolidation context to #13; routine monitoring remains disabled at the user's request.
 
