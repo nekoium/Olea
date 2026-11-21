@@ -1,9 +1,9 @@
 // Each palette supplies the same roles. Geometry, typography and state meaning stay shared.
 window.OLEA_PALETTES = {
   green: {
-    name:'Olea green', description:'Default · Warm olive', swatch:'#5d652f',
-    light:{bg:'#fafaf4',paper:'#fffffb',ink:'#34372a',muted:'#696b58',line:'#e5e6d6',accent:'#5d652f',soft:'#eef0db',keyboard:'#e3e5d3','terminal-bg':'#2b2f20','terminal-ink':'#edf0dd','terminal-accent':'#cbd38f','terminal-muted':'#b4b89c','terminal-keys':'#373d29','terminal-notice':'#41482f'},
-    dark:{bg:'#292c22',paper:'#33372a',ink:'#f0f1e2',muted:'#bec2a7',line:'#4a4f39',accent:'#cbd38f',soft:'#41482f',keyboard:'#3a402d','terminal-bg':'#25291c','terminal-ink':'#edf0dd','terminal-accent':'#cbd38f','terminal-muted':'#b4b89c','terminal-keys':'#343a26','terminal-notice':'#41482f'}
+    name:'Olea green', description:'Default · Leaf green', swatch:'#4f653b',
+    light:{bg:'#f8faf5',paper:'#fffffc',ink:'#30382b',muted:'#626c59',line:'#e1e7d8',accent:'#4f653b',soft:'#e9efdd',keyboard:'#dfe6d5','terminal-bg':'#283220','terminal-ink':'#eaf0de','terminal-accent':'#bed29b','terminal-muted':'#afbc9e','terminal-keys':'#34422a','terminal-notice':'#3e4d32'},
+    dark:{bg:'#272e23',paper:'#313a2b',ink:'#eef2e5',muted:'#b8c4a7',line:'#46533a',accent:'#bed29b',soft:'#3d4a30',keyboard:'#35432c','terminal-bg':'#232d1d','terminal-ink':'#eaf0de','terminal-accent':'#bed29b','terminal-muted':'#afbc9e','terminal-keys':'#303e26','terminal-notice':'#3e4d32'}
   },
   purple: {
     name:'Soft purple', description:'Quiet lavender', swatch:'#66518a',
