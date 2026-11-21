@@ -2,6 +2,12 @@
 
 Status: evolving product scope and decision record. The maintained core direction below is approved; the full intended functionality remains under discussion.
 
+## Approved interface rebuild — issue #11
+
+**USER DECISION**: Adopt the Soft UI and six-palette design from the issue #11 discussion, with the latest leaf-green Olea green as default. Save its UI, palette, principles and guidelines as official contract documentation, and delegate native implementation from the ground up. Source: the user's instruction, “That will be our design … save that UI and palette design as official contract docs … delegate another worker … update the interface from ground up … in accordance with … our design principles and guidelines.” The final green correction, “the warm one was too yellow … still wanted … green … Just The green one,” selects reference commit `ccabc09`; the prior yellow-olive version remains at `6efb50e`.
+
+[DESIGN.md](DESIGN.md#approved-soft-ui-contract) and the [Soft UI contract](docs/ui/soft/CONTRACT.md) record the adopted design, exact [palette roles](docs/ui/soft/palettes.json), and visual/native interpretation rules. This supersedes the earlier scenario-board styling as the current presentation reference. It authorizes the UI rebuild, not a change to supported agents, runtime architecture, Android access policy, provider-testing allocation or publication status. Existing broad file access remains in force; browser examples do not establish unsupported capabilities or successful native tests.
+
 ## Release 0.1.0
 
 **USER DECISION**: Ship this edition as an MVP before **11:00 am**, using quick tests and accepting imperfections rather than missing the deadline. Source: the user's latest instruction, “We can accept imperfection in for this MVP, but must ship on time.” This supersedes the earlier maturity expectation for this edition; keep known limitations visible and retain the credential audit before making the repository public.

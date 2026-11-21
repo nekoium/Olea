@@ -2,6 +2,14 @@
 
 Status: current UI and user experience decision record, with a proposed coverage map. This document records agreed behavior and guides further design; it does not claim that the browser demo or Android app implements every journey.
 
+## Approved Soft UI contract
+
+**USER DECISION**: Adopt the Soft interface and six-palette system shown in the issue #11 mood board, including the latest leaf-green Olea default, and rebuild the native interface accordingly. Source: the user's current instruction, “That will be our design … save that UI and palette design as official contract docs … delegate another worker … update the interface from ground up.” The preceding palette correction approves greener Olea green while preserving the prior yellow-olive version in Git.
+
+The official [Soft UI contract](docs/ui/soft/CONTRACT.md), [palette values](docs/ui/soft/palettes.json), and pinned visual reference at `ccabc09` now define current presentation. They supersede older visual styling in scenario board 02 and the earlier flat-color studies. Kotlin + Jetpack Compose and previously approved product behavior remain in force. The contract records native adaptation and capability limits; sample browser states are not runtime acceptance evidence.
+
+**AGENT PLAN**: [Implementation plan](docs/ui/soft/IMPLEMENTATION.md) defines the bounded rebuild and verification. The exact implementation is not established until its worker supplies native results. Historical OPEN appearance notes below are superseded where the new contract provides a selected design; unresolved product and technical questions remain open.
+
 ## How to read this document
 
 - **USER DECISION** records an explicit user choice, with its source.
