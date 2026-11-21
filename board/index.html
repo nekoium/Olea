@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Olea · Project board</title>
+  <link rel="stylesheet" href="board.css">
+</head>
+<body>
+  <header>
+    <div class="identity"><img src="../assets/readme/olea-icon-rounded.png" alt="" width="32" height="32"><h1>Olea <span>/ Project board</span></h1></div>
+    <div class="actions"><button id="export">Export</button><button id="import">Import</button><button class="primary" id="add">+ Add task</button></div>
+  </header>
+  <div class="toolbar">
+    <label class="search"><span>Find</span><input id="search" type="search" placeholder="Search tasks" autocomplete="off"></label>
+    <label>Status <select id="filter"><option value="">All tasks</option><option>To do</option><option>In progress</option><option>Discuss</option><option>Done</option><option>Later</option></select></label>
+    <output id="summary"></output>
+  </div>
+  <main id="viewport" tabindex="0" aria-label="Infinite project canvas. Drag empty space to pan. Use arrow keys to pan, or Shift and arrow keys to move a focused task.">
+    <div id="world"></div>
+    <p id="empty" hidden>No matching tasks.</p>
+  </main>
+  <footer><span id="save-state" role="status">Saved in this browser</span><span class="hint">Drag canvas to pan · Drag card header to move · Double-click canvas to add</span><div class="zoom"><button id="out" aria-label="Zoom out">−</button><output id="scale">100%</output><button id="in" aria-label="Zoom in">+</button><button id="fit">Fit all</button></div></footer>
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form id="task-form">
+      <h2 id="editor-title">New task</h2>
+      <label>Title<input name="title" required maxlength="180" autocomplete="off"></label>
+      <label>Status<select name="status"><option>To do</option><option>In progress</option><option>Discuss</option><option>Done</option><option>Later</option></select></label>
+      <label>Notes<textarea name="notes" rows="6" maxlength="12000" placeholder="Next action, context, or progress…"></textarea></label>
+      <label>Link<input name="link" type="url" maxlength="4000" placeholder="https://github.com/…"></label>
+      <div class="dialog-actions"><button id="delete" type="button" class="danger" hidden>Delete task</button><span></span><button id="cancel" type="button">Cancel</button><button class="primary" type="submit">Save task</button></div>
+    </form>
+  </dialog>
+  <input id="file" type="file" accept="application/json,.json" hidden>
+  <noscript>This board needs JavaScript enabled to save and move tasks.</noscript>
+  <script src="seed.js"></script>
+  <script src="board.js"></script>
+</body>
+</html>
