@@ -48,6 +48,8 @@ A saved provider configuration does not prove the connection works: the first re
 
 ## Make it feel like yours
 
+<a href="https://raw.githubusercontent.com/nekoium/Olea/610d654cbe7acca3867d529252bc818c34c186c4/docs/discussions/issue-11/release-0.1.1/palettes.png"><img src="https://raw.githubusercontent.com/nekoium/Olea/610d654cbe7acca3867d529252bc818c34c186c4/docs/discussions/issue-11/release-0.1.1/palettes.png" width="960" alt="Olea green, Soft purple, Dusty blue, Rosewood, Ochre and Graphite shown side by side."></a>
+
 Open **Settings → Color palette** to choose Olea green, Soft purple, Dusty blue, Rosewood, Ochre or Graphite. Set light, dark or Follow Android separately. All palettes share the Soft layout and bundled Cabin typography; terminal and code text stay monospace.
 
 ## Choose an agent and model service
