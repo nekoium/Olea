@@ -4,6 +4,9 @@ Status: agent-managed snapshot of current state. It is not a product decision so
 
 ## Current state
 
+- **USER DECISION**: Delegate implementation of the approved broad phone-file access default. Source: current user instruction, “delegate a worker to make that change, the access scope.”
+- **OBSERVED**: Pi structured worker `ctx_bbddc9e7f0b1`, Task `task_0be51ae1d330`, Run `run_a118cdebb98c` started ready for access-scope implementation. Brief: ignored `.setup/broad-file-access/worker.md`; expected report: `docs/reports/broad-file-access.md`. Owns relevant runtime/Android/backend/UI access changes and focused verification; preserve board/UI work and user data. No provider spending or publication authorized. No routine monitoring; completion pending.
+
 - **OBSERVED — PUBLISHED**: Public [0.1.0](https://github.com/nekoium/Olea/releases/tag/0.1.0) (`dev.olea`, 0.1.0/code 7, signed ARM64) was published on 2026-11-14. Assets, checksums, audit and limits: [publication record](archive/release-0.1.0/0.1.0-publication.md), [phone acceptance](archive/release-0.1.0/0.1.0-phone-acceptance.md), [public notes](archive/release-0.1.0/0.1.0.md).
 - **OBSERVED**: Terminal fix `c6d6f34` (#1) passed physical Android 14 acceptance on a debug build and is pushed. It is not in a release, and release-signed APK acceptance was not performed. [Report](archive/issues/1-terminal.md).
 - **OBSERVED**: Commits after `33ffd6d` are local and not pushed: the `board/` canvas utility, the app icon matched to `assets/readme/olea-icon-rounded.png`, issue-triage records and this documentation restructure.
