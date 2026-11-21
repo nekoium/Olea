@@ -45,4 +45,10 @@
 
 **OPEN**: No physical device was connected for this release. Fresh provider-backed conversations, OEM/older Android font rendering, process-death recovery and broad device compatibility remain unverified. Existing worker emulator checks and historical physical checks retain their original scope. System keyboards/permission dialogs use Android typography; Cabin lacks some scripts and relies on Android fallback. The terminal remains experimental. Dedicated modified-talloc execution validation and broader permission matrices remain omitted under the existing user decisions.
 
-**AGENT PLAN**: Complete the independent publication review, commit the release record, push source/tag, upload the four assets as a draft, verify remote digests and image links, then publish 0.1.1 under the user's release instruction. Record final URL, tag and download verification after publication.
+## Publication review
+
+**OBSERVED**: Independent Pi review found no critical/high source blocker or owned credential leak in the unpublished delta through `59922b0`. Git/blob/metadata scans and OCR of 158 new image blobs found no credential leaks. Its final-APK scan covers SHA-256 `84159c529acbd50c061de47df31658fd280ad9fb6c1b22024bc6153cba6fdf38`, 131 ZIP members and 12,160 expanded files. The 11 raw and 21 decoded scanner hits all match audited 0.1.0 public upstream fixtures by canonical member, complete scanned-file hash, rule and location; **zero new findings**, no decode failures. The scan independently reconfirms packaged Cabin/OFL hashes. Redacted evidence: `.setup/release-011/review/apk-baseline-comparison.json` and the hash-bound APK snapshot summary. Scanning/OCR remain heuristic, not a guarantee against every encoding or vulnerability.
+
+**OBSERVED**: Final manager verification/progress/notes commit `61b265c` was separately scanned with Gitleaks: 0 findings. No further production source change followed the signed build.
+
+**AGENT PLAN**: Push the reviewed source/tag, upload the four assets as a draft, verify remote digests and image links, then publish 0.1.1 under the user's release instruction. Record final URL, tag and download verification after publication.
