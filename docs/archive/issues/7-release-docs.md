@@ -4,13 +4,13 @@
 
 ## Changes
 
-- **OBSERVED**: [README](../../README.md#install-and-get-your-first-reply) now describes the available signed ARM64 APK, links its exact download and release notes, and discloses the blank experimental terminal with [#1](https://github.com/nekoium/Olea/issues/1). Public copy contains no internal workflow or test report.
-- **OBSERVED**: [Roadmap](../ROADMAP.md) records completed publication/audit/source-notice delivery separately from terminal maintenance and bounded acceptance gaps. It reflects the [user's triage](../../PRODUCT.md#issue-triage-decisions): #2/#3 closed as not planned, #4/#9 deferred to “The far side”, #11 T1 and #11/#13/#14 needing discussion. Proposed checklists are not commitments. Closed #5 does not imply new compatibility evidence.
+- **OBSERVED**: [README](../../../README.md#install-and-get-your-first-reply) now describes the available signed ARM64 APK, links its exact download and release notes, and discloses the blank experimental terminal with [#1](https://github.com/nekoium/Olea/issues/1). Public copy contains no internal workflow or test report.
+- **OBSERVED**: [Roadmap](../../ROADMAP.md) records completed publication/audit/source-notice delivery separately from terminal maintenance and bounded acceptance gaps. It reflects the [user's triage](../../../PRODUCT.md#issue-triage-decisions): #2/#3 closed as not planned, #4/#9 deferred to “The far side”, #11 T1 and #11/#13/#14 needing discussion. Proposed checklists are not commitments. Closed #5 does not imply new compatibility evidence.
 - **OBSERVED**: Twelve bounded release reports receive only an opening supersession note. Their original bodies, failed receipts, preliminary hashes, limits and proposed checks are unchanged. Notes link the later publication/phone evidence and corresponding remaining issues without claiming all proposed checks passed or historical workers remain active.
 
 ## Read-only public verification
 
-**OBSERVED**: Verified on 2026-11-17 UTC using `gh repo view`, `gh release view 0.1.0`, `gh issue list --state all`, and read-only issue API calls. Repository visibility is `PUBLIC`; release is neither draft nor prerelease, published `2026-11-14T03:00:38Z`. This matches the [bounded publication record](../releases/0.1.0-publication.md), including the missed deadline by 38 seconds.
+**OBSERVED**: Verified on 2026-11-17 UTC using `gh repo view`, `gh release view 0.1.0`, `gh issue list --state all`, and read-only issue API calls. Repository visibility is `PUBLIC`; release is neither draft nor prerelease, published `2026-11-14T03:00:38Z`. This matches the [bounded publication record](../release-0.1.0/0.1.0-publication.md), including the missed deadline by 38 seconds.
 
 | Public asset | Bytes | GitHub SHA-256 |
 | --- | ---: | --- |

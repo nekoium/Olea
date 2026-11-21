@@ -6,7 +6,7 @@
 
 ## Evidence and authority
 
-**OBSERVED**: Read current [AGENTS.md](../../../AGENTS.md), [PRODUCT.md](../../../PRODUCT.md), [DESIGN.md](../../../DESIGN.md), [PROGRESS.md](../../PROGRESS.md), [scenario board](../scenario-board-02.html), [demo logic](../scenario-demo.js), and [coverage record](../../../delegations/ui-design/coverage-09.md). Maintained-source references below are observations from source, not fresh device or provider results. The workspace contains concurrent edits; they were left untouched.
+**OBSERVED**: Read current [AGENTS.md](../../../AGENTS.md), [PRODUCT.md](../../../PRODUCT.md), [DESIGN.md](../../../DESIGN.md), [PROGRESS.md](../../archive/PROGRESS_LOG_2026-11.md), [scenario board](../scenario-board-02.html), [demo logic](../scenario-demo.js), and [coverage record](../../archive/release-0.1.0/workers/ui-design/coverage-09.md). Maintained-source references below are observations from source, not fresh device or provider results. The workspace contains concurrent edits; they were left untouched.
 
 **USER DECISION**: Setup comes before tasks; choose one agent explicitly; optional phone capabilities may be skipped. One agent belongs to each session. Users can leave working sessions and start others. Done means turn completion, Needs you means an explicit action requirement, Error means execution failure, and Stopped remains distinct. Source: DESIGN.md, First use, Starting and continuing conversations, and Session states and intervention. These recorded decisions govern this audit; incidental fixture behavior does not.
 

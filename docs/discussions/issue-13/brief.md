@@ -18,7 +18,7 @@
 
 **OBSERVED**: The issue reports a viewer struggling to see useful applications and the browser objection. It supplies no task goal, prior agent experience, demo recording, time comparison or successful alternative workflow. Fetched read-only, including comments; no comments were present.
 
-**OBSERVED**: [Physical acceptance](../../releases/0.1.0-phone-acceptance.md) records these bounded results on Android 14 ARM64:
+**OBSERVED**: [Physical acceptance](../../archive/release-0.1.0/0.1.0-phone-acceptance.md) records these bounded results on Android 14 ARM64:
 
 - Pi created/read a synthetic workspace file; native preview independently confirmed its contents.
 - Pi continued saved model context after STOP/reopen, and streaming cancellation was exercised.

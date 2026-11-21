@@ -36,4 +36,4 @@ Use existing visual studies and create unique local studies when useful. Preserv
 
 No new design has been selected in this session. Start by inviting the user to resolve the existing new-conversation setup choice.
 
-Authority source: [UI design handoff](../../docs/UI_DESIGN_HANDOFF.md).
+Authority source: [UI design handoff](../../../UI_DESIGN_HANDOFF.md).

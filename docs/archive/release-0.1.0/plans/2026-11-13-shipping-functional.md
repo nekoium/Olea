@@ -8,7 +8,7 @@
 
 **Tech Stack:** Kotlin/Android, Bash packaging, TypeScript/Node, stock Pi/Codex/Claude Code.
 
-**Spec:** [Product decisions](../../../PRODUCT.md#shipping-today-decisions) and [provider/device preflight](../../../delegations/shipping-preflight/result.md).
+**Spec:** [Product decisions](../../../../PRODUCT.md#shipping-today-decisions) and [provider/device preflight](../workers/shipping-preflight/result.md).
 
 ## Global constraints
 

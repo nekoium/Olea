@@ -49,7 +49,7 @@ Current integrated debug artifact: `.setup/core/arm64-v8a/olea-arm64-v8a-debug.a
 
 **OPEN**: Provider-backed on-phone Codex/Claude smoke tests require successful installation. Pi cancellation and STOP/reopen acceptance remain open. Native Compose UI, final 1.0.0 signed build/device acceptance, redistribution materials, final exact-snapshot credential review, and private GitHub release remain open.
 
-**OBSERVED**: The latest concurrent UI discussion confirms onboarding, an Olea-managed workspace, Android-folder connection feasibility, and multiple live sessions as user decisions; mandatory-vs-optional permissions, all-workspace view, shared-storage root behavior, and exact session-state presentation remain open. Source: [experience-map discussion](../docs/ui/EXPERIENCE_MAP_DISCUSSION.md). This does not approve production UI changes.
+**OBSERVED**: The latest concurrent UI discussion confirms onboarding, an Olea-managed workspace, Android-folder connection feasibility, and multiple live sessions as user decisions; mandatory-vs-optional permissions, all-workspace view, shared-storage root behavior, and exact session-state presentation remain open. Source: [experience-map discussion](../../../../ui/EXPERIENCE_MAP_DISCUSSION.md). This does not approve production UI changes.
 
 **OBSERVED**: Android lint initially found three errors. Commit `07ceadd` fixes API-26 stderr draining and explicit location-permission revocation handling. ARM64 `compileDebugKotlin` and `lintDebug` now pass with zero errors; eight warnings remain (target SDK, single-ABI ChromeOS suggestion, backup rules, application icon, context static-field analysis, and UI localization strings). These need review against product/UI decisions, not blanket suppression.
 
