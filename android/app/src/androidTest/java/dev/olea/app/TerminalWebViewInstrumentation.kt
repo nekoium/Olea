@@ -432,7 +432,10 @@ class TerminalWebViewInstrumentation : Instrumentation() {
                 stage("prepare isolated diagnostic environment")
                 startedBackend = true
                 runtime.prepareEnvironment()
-                awaitCondition(1200, "isolated environment preparation") { runtime.environmentReady() && runtime.environmentRunning() && !RuntimeService.busy }
+                awaitCondition(1200, "isolated environment preparation") {
+                    check(RuntimeService.busy || runtime.environmentReady()) { "Environment preparation stopped: ${RuntimeService.status}" }
+                    runtime.environmentReady() && runtime.environmentRunning() && !RuntimeService.busy
+                }
             }
             check(runtime.environmentReady()) { "Actual diagnostic requires the already-prepared environment" }
             if (!runtime.environmentRunning()) {
@@ -610,6 +613,32 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             painted("olea-after-interrupt-$tag", "returnedFromOtherWorkspace")
             command(first, "final-output")
             receipt.put("secondWorkspaceAndReturn", "pass")
+
+            stage("ordinary palette selection preserves a live PTY")
+            val preferences = targetContext.getSharedPreferences("olea-ui", android.content.Context.MODE_PRIVATE)
+            val appearanceBefore = preferences.getString("appearance", "system")
+            if (ui { view.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) == true }) hideKeyboard()
+            clickLabel("Back")
+            clickLabel("Back")
+            clickLabel("Open app menu")
+            clickLabel("Settings")
+            clickLabel("Soft purple")
+            check(preferences.getString("palette", "green") == "purple")
+            check(preferences.getString("appearance", "system") == appearanceBefore)
+            clickLabel("Back")
+            clickLabel("Workspaces")
+            clickLabel(workspace.name)
+            clickLabel("Details")
+            val beforePaletteReturn = view
+            clickLabel("Terminal")
+            adoptViewport(host, listOf(beforePaletteReturn))
+            painted("olea-final-output-$tag", "paletteReturn")
+            val dark = appearanceBefore == "dark" || (appearanceBefore == "system" && (targetContext.resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES)
+            val expected = JSONObject((if (dark) softPalette("purple").dark else softPalette("purple").light).terminalTheme()).getString("background")
+            awaitScript("terminal.options.theme.background === ${JSONObject.quote(expected)}")
+            check(shell(first).state == "running")
+            command(first, "after-palette")
+            receipt.put("palettePreservesLivePtyAndAppearance", "pass").put("terminalPaletteBackground", expected)
         } finally {
             shells.forEach { runtime.closeTerminal(it) }
         }

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
@@ -134,6 +135,8 @@ class SoftUiInstrumentation : Instrumentation() {
             check(replyBlocks("## Heading\n\n```sh\nprintf '**literal**'\n```\n\nAfter").map { it.text } == listOf("Heading", "printf '**literal**'", "After"))
             checks.put("Palette default/invalid fallback and fenced-code preservation")
             if (variant == "phone") phone()
+            else if (variant == "folder") folder()
+            else if (variant == "terminal-fixture") terminalFixture()
             else if (variant == "narrow") narrow()
             else fixtures()
             passed = true
@@ -193,6 +196,43 @@ class SoftUiInstrumentation : Instrumentation() {
         render(stopped); click("Conversation details"); click("Workspace details"); click("Terminal"); Thread.sleep(1000); capture("terminal-lost", "fixture shell; real xterm WebView")
         checks.put("Onboarding, conversation states, management, sheets, files and terminal fixture routes rendered")
         callbackChecks()
+    }
+    private fun terminalFixture() {
+        stage("terminal viewport bounds and native header visibility")
+        render(); click("Conversation details"); click("Workspace details"); click("Terminal"); Thread.sleep(1500)
+        val screenshot = checkNotNull(uiAutomation.takeScreenshot())
+        val headerY = ui { (host.window.decorView.rootWindowInsets?.getInsets(android.view.WindowInsets.Type.statusBars())?.top ?: 0) + (30 * host.resources.displayMetrics.density).toInt() }
+        val headerPixel = screenshot.getPixel(8, headerY)
+        screenshot.recycle()
+        val viewportBounds = ui {
+            fun find(view: android.view.View): android.webkit.WebView? {
+                if (view is android.webkit.WebView) return view
+                if (view is android.view.ViewGroup) for (index in 0 until view.childCount) find(view.getChildAt(index))?.let { return it }
+                return null
+            }
+            val view = checkNotNull(find(host.window.decorView))
+            val location = IntArray(2).also { view.getLocationOnScreen(it) }
+            "${location.toList()} ${view.width}x${view.height} clip=${view.clipToOutline} parent=${view.parent.javaClass.simpleName}"
+        }
+        check(headerPixel == lightColors.surface.toArgb()) { "Terminal overpainted native header: ${Integer.toHexString(headerPixel)}; viewport $viewportBounds" }
+        capture("terminal", "fixture shell; real clipped xterm WebView")
+        click("Notes shell"); capture("terminal-switch"); click("Close dialog"); click("Close"); capture("terminal-close")
+        val lost = snapshot().let { it.copy(terminals = it.terminals.map { shell -> shell.copy(state = "stopped") }) }
+        render(lost); click("Conversation details"); click("Workspace details"); click("Terminal"); Thread.sleep(1500)
+        capture("terminal-lost", "fixture disconnected shell; real clipped xterm WebView")
+        render(narrow = true); click("Conversation details"); click("Workspace details"); click("Terminal"); Thread.sleep(1500)
+        capture("terminal-narrow-font150", "320 dp fixture shell; 1.5 text scale; horizontally scrolling 48 dp extra keys")
+        checks.put("Native header pixel remains the exact light surface while WebView paints its dark terminal; shell picker and close controls remain reachable")
+    }
+    private fun folder() {
+        stage("actual connected-folder activity without an Android all-files grant")
+        check(!AndroidSharedFolders(targetContext).access().available)
+        prefs.edit().putString("appearance", "light").putString("palette", "green").commit()
+        ui { host.startActivity(Intent(host, SharedFolderActivity::class.java)) }
+        await("native folder screen") { find("Bring your files") != null }
+        capture("connect-folder", "actual Android grant-required state; no phone folder content read")
+        click("Cancel")
+        checks.put("Actual connected-folder entry shows permission-required state and preserves cancellation; no grant changed or folder connected")
     }
     private fun callbackChecks() {
         stage("composer acceptance/rejection and cancel binding without a provider")

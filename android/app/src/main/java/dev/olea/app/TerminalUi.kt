@@ -14,10 +14,13 @@ import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -97,6 +100,8 @@ internal fun terminalKeyScript(data: String) = "window.oleaKey(${JSONObject.quot
 internal fun createTerminalWebView(context: Context, input: (String) -> Unit, resize: (Int, Int) -> Unit, loaded: () -> Unit, failed: (String) -> Unit): WebView =
     WebView(context).apply {
         setBackgroundColor(android.graphics.Color.rgb(40, 50, 32))
+        outlineProvider = android.view.ViewOutlineProvider.BOUNDS
+        clipToOutline = true
         settings.javaScriptEnabled = true
         settings.allowFileAccess = false; settings.allowContentAccess = false
         settings.domStorageEnabled = false; settings.blockNetworkLoads = true
@@ -176,7 +181,7 @@ internal fun createTerminalWebView(context: Context, input: (String) -> Unit, re
     val canInput = terminal.state == "running"
     val latestId by rememberUpdatedState(terminal.id)
     val latestCanInput by rememberUpdatedState(canInput)
-    Column(modifier.fillMaxWidth().background(colors.terminalBg)) {
+    Column(modifier.fillMaxWidth().clipToBounds().background(colors.terminalBg)) {
         loadError?.let { Notice("Terminal display failed: $it. Reopen the terminal to retry.", true) }
         key(terminal.id) {
             AndroidView(factory = {
@@ -191,13 +196,14 @@ internal fun createTerminalWebView(context: Context, input: (String) -> Unit, re
                     { if (loadError == null) ready = true },
                     { error -> if (loadError == null) loadError = error; ready = false }
                 ).also { browser = it }
-            }, modifier = Modifier.weight(1f).fillMaxWidth(), onRelease = { browser = null; it.removeJavascriptInterface("OleaTerminal"); it.destroy() })
+            }, modifier = Modifier.weight(1f).fillMaxWidth().clipToBounds(), onRelease = { browser = null; it.removeJavascriptInterface("OleaTerminal"); it.destroy() })
         }
         CompositionLocalProvider(LocalFlat provides colors.copy(surface = colors.terminalBg, ink = colors.terminalInk, muted = colors.terminalMuted, accent = colors.terminalAccent, soft = colors.terminalNotice)) {
-            Row(Modifier.fillMaxWidth().background(colors.terminalKeys).padding(horizontal = 3.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
-                listOf("Esc" to "\u001b", "Ctrl" to "", "Tab" to "\t", "←" to "\u001b[D", "↓" to "\u001b[B", "↑" to "\u001b[A", "→" to "\u001b[C").forEach { (label, data) ->
-                    Box(Modifier.weight(1f)) {
-                        Action(label, primary = label == "Ctrl" && ctrl, enabled = canInput && ready, compact = true) {
+            BoxWithConstraints(Modifier.fillMaxWidth().background(colors.terminalKeys)) {
+                val keyWidth = maxOf(48.dp, (maxWidth - 6.dp) / 7)
+                Row(Modifier.horizontalScroll(rememberScrollState()).padding(horizontal = 3.dp)) {
+                    listOf("Esc" to "\u001b", "Ctrl" to "", "Tab" to "\t", "←" to "\u001b[D", "↓" to "\u001b[B", "↑" to "\u001b[A", "→" to "\u001b[C").forEach { (label, data) ->
+                        Action(label, Modifier.width(keyWidth), primary = label == "Ctrl" && ctrl, enabled = canInput && ready, compact = true) {
                             if (label == "Ctrl") ctrl = !ctrl else browser?.evaluateJavascript(terminalKeyScript(data), null)
                         }
                     }
