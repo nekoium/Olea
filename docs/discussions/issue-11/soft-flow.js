@@ -1,5 +1,6 @@
 window.OLEA_SOFT_FLOW = {
   decision: {status:'USER DECISION',source:'User in issue #11 chat: “the soft, the purple one, its design is great … drop the two other directions … go with that soft direction.”',scope:'Soft visual direction selected. Detailed layouts and behavior below remain AGENT PLAN.'},
+  paletteDecision:{status:'USER DECISION',source:'User in issue #11 chat: “purple … should work only as … one of the options … main tone to be green” and “make a palette option in the mood board … also add the select palette option in the app … design principles … should be consistent.”',scope:'Green is the default; purple is an alternative. Share Soft typography, spacing, geometry and hierarchy across palettes. Exact color values remain AGENT PLAN.'},
   groups:[
     {id:'first-use',title:'First use',note:'Choose an agent, prepare the environment, and recover from setup failure.',screens:['welcome','choose-agent','prepare','setup-error','install','setup-provider']},
     {id:'finish-setup',title:'Finish setup',note:'Choose a workspace, review optional phone access, and enter the app.',screens:['setup-workspace','setup-access','ready']},
@@ -51,7 +52,7 @@ window.OLEA_SOFT_FLOW = {
     providers:{title:'Provider connections',kind:'providers',next:'provider',back:'menu',note:'Connections are agent-specific. The interface does not imply shared authentication support.'},
     provider:{title:'Pi connection',kind:'provider',next:'providers',back:'providers',note:'Connection fields and supported auth variants must match each real adapter.'},
     environment:{title:'Local environment',kind:'environment',next:'reconnect',back:'menu',note:'Status summary with diagnostics on demand. Updates and broad lifecycle guarantees are not established.'},
-    settings:{title:'Settings',kind:'settings',next:'history',back:'menu',note:'Resume/fresh-chat entry and light/dark appearance. Exact controls are proposals.'},
+    settings:{title:'Settings',kind:'settings',next:'history',back:'menu',note:'Resume/fresh-chat entry, light/dark appearance and palette selection. Green default and purple choice are USER DECISION; exact controls and colors remain proposals.'},
     about:{title:'About Olea',kind:'about',next:'menu',back:'menu',note:'Product information and licenses. No performance promises.'},
     'phone-access':{title:'Phone access',kind:'phone-access',next:'accessibility',back:'menu',note:'User-granted capabilities remain separate. No blanket phone access.'},
     accessibility:{title:'Accessibility access',kind:'accessibility',next:'phone-access',back:'phone-access',note:'Android settings route is simulated. No actual permission is changed.'},

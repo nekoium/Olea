@@ -1,0 +1,185 @@
+{
+  "engine": "Chromium",
+  "results": [
+    "204 screen/palette/theme combinations fit; paired palette geometry and typography match",
+    "Fresh default is green",
+    "App palette persists across navigation and reload",
+    "Board palette updates loaded previews",
+    "Settings palette updates board and all loaded specimens",
+    "Dark mode retains selected palette",
+    "Newly loaded journeys use current palette",
+    "Mobile board palette control fits",
+    "Shared body, secondary, accent and terminal text pairs meet 4.5:1"
+  ],
+  "contrasts": [
+    {
+      "palette": "green",
+      "theme": "light",
+      "pair": "ink/bg",
+      "ratio": 11.46
+    },
+    {
+      "palette": "green",
+      "theme": "light",
+      "pair": "muted/bg",
+      "ratio": 4.57
+    },
+    {
+      "palette": "green",
+      "theme": "light",
+      "pair": "muted/paper",
+      "ratio": 4.8
+    },
+    {
+      "palette": "green",
+      "theme": "light",
+      "pair": "accent/bg",
+      "ratio": 5.97
+    },
+    {
+      "palette": "green",
+      "theme": "light",
+      "pair": "accent/soft",
+      "ratio": 5.39
+    },
+    {
+      "palette": "green",
+      "theme": "light",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.37
+    },
+    {
+      "palette": "green",
+      "theme": "light",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 11.61
+    },
+    {
+      "palette": "green",
+      "theme": "dark",
+      "pair": "ink/bg",
+      "ratio": 12.52
+    },
+    {
+      "palette": "green",
+      "theme": "dark",
+      "pair": "muted/bg",
+      "ratio": 7.42
+    },
+    {
+      "palette": "green",
+      "theme": "dark",
+      "pair": "muted/paper",
+      "ratio": 6.29
+    },
+    {
+      "palette": "green",
+      "theme": "dark",
+      "pair": "accent/bg",
+      "ratio": 8.64
+    },
+    {
+      "palette": "green",
+      "theme": "dark",
+      "pair": "accent/soft",
+      "ratio": 5.95
+    },
+    {
+      "palette": "green",
+      "theme": "dark",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 6.86
+    },
+    {
+      "palette": "green",
+      "theme": "dark",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 12.49
+    },
+    {
+      "palette": "purple",
+      "theme": "light",
+      "pair": "ink/bg",
+      "ratio": 12.76
+    },
+    {
+      "palette": "purple",
+      "theme": "light",
+      "pair": "muted/bg",
+      "ratio": 4.54
+    },
+    {
+      "palette": "purple",
+      "theme": "light",
+      "pair": "muted/paper",
+      "ratio": 4.76
+    },
+    {
+      "palette": "purple",
+      "theme": "light",
+      "pair": "accent/bg",
+      "ratio": 6.44
+    },
+    {
+      "palette": "purple",
+      "theme": "light",
+      "pair": "accent/soft",
+      "ratio": 5.66
+    },
+    {
+      "palette": "purple",
+      "theme": "light",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 5.64
+    },
+    {
+      "palette": "purple",
+      "theme": "light",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 11.89
+    },
+    {
+      "palette": "purple",
+      "theme": "dark",
+      "pair": "ink/bg",
+      "ratio": 13.32
+    },
+    {
+      "palette": "purple",
+      "theme": "dark",
+      "pair": "muted/bg",
+      "ratio": 7.09
+    },
+    {
+      "palette": "purple",
+      "theme": "dark",
+      "pair": "muted/paper",
+      "ratio": 6.24
+    },
+    {
+      "palette": "purple",
+      "theme": "dark",
+      "pair": "accent/bg",
+      "ratio": 8.65
+    },
+    {
+      "palette": "purple",
+      "theme": "dark",
+      "pair": "accent/soft",
+      "ratio": 6.63
+    },
+    {
+      "palette": "purple",
+      "theme": "dark",
+      "pair": "terminal-muted/terminal-bg",
+      "ratio": 5.93
+    },
+    {
+      "palette": "purple",
+      "theme": "dark",
+      "pair": "terminal-ink/terminal-bg",
+      "ratio": 12.51
+    }
+  ],
+  "limit": "Browser prototype; this is not a full accessibility audit or native implementation test."
+}
