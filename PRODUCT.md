@@ -10,6 +10,8 @@ Status: evolving product scope and decision record. The maintained core directio
 
 **USER DECISION**: Use [scenario board 02](docs/ui/scenario-board-02.html) as the production interface and functionality reference, preserving its design language while completing flows and correcting logic flaws. Use `docs/ui/branding/seed-icon.png` as the app icon and `docs/ui/branding/seed-poster-landscape.png` as the public README banner. Write a clear promotional README that explains value and use to nontechnical readers. Source: the same release instruction.
 
+**USER DECISION**: The app icon uses the same rounded artwork as the README title, [`assets/readme/olea-icon-rounded.png`](assets/readme/olea-icon-rounded.png), superseding the original square seed icon selection below. Source: the user's icon-change instruction, “The app icon should be changed to the same as the round corner icon used in the readme file.”
+
 **USER DECISION**: Audit repository files and Git history for private credentials and sensitive information before publication. Use the supplied local signing identity; keep signing material and temporary test credentials outside tracked files. Provider testing uses GPT for Pi/Codex and Claude for Claude Code, cheapest working models for connectivity/run checks, and Pi with `gpt-6.1-sol` only for real functionality and phone-use testing. Source: the same release instruction.
 
 ## Issue triage decisions
