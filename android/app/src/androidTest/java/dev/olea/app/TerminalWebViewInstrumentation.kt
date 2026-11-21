@@ -145,7 +145,7 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             stage("starting native activity")
             val host = startActivitySync(Intent(targetContext, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             activity = host
-            if (selected == "actual") {
+            if (selected == "actual" || selected == "palette") {
                 actual(host as MainActivity, receipt)
                 passed = true
                 return
@@ -384,7 +384,7 @@ class TerminalWebViewInstrumentation : Instrumentation() {
 
     private fun accessibilityNode(label: String): AccessibilityNodeInfo? {
         fun find(node: AccessibilityNodeInfo): AccessibilityNodeInfo? {
-            if (node.packageName?.toString() == targetContext.packageName &&
+            if (node.packageName?.toString() == targetContext.packageName && node.isVisibleToUser &&
                 (node.text?.toString() == label || node.contentDescription?.toString() == label)) return node
             for (index in 0 until node.childCount) {
                 val child = node.getChild(index) ?: continue
@@ -395,10 +395,31 @@ class TerminalWebViewInstrumentation : Instrumentation() {
         return uiAutomation.rootInActiveWindow?.let(::find)
     }
     private fun clickLabel(label: String) {
+        fun scroll(forward: Boolean): Boolean {
+            fun find(node: AccessibilityNodeInfo): AccessibilityNodeInfo? {
+                if (node.isScrollable) return node
+                for (index in 0 until node.childCount) node.getChild(index)?.let { child -> find(child)?.let { return it } }
+                return null
+            }
+            return uiAutomation.rootInActiveWindow?.let(::find)?.performAction(if (forward) AccessibilityNodeInfo.ACTION_SCROLL_FORWARD else AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD) == true
+        }
+        if (accessibilityNode(label) == null) {
+            for (forward in listOf(true, false)) repeat(8) {
+                if (accessibilityNode(label) == null && scroll(forward)) Thread.sleep(150)
+            }
+        }
         awaitCondition(8, "ordinary UI control $label") { accessibilityNode(label) != null }
         var node = accessibilityNode(label)
         while (node != null && !node.isClickable) node = node.parent
-        check(node?.performAction(AccessibilityNodeInfo.ACTION_CLICK) == true) { "Cannot click ordinary UI control $label" }
+        if (node?.performAction(AccessibilityNodeInfo.ACTION_CLICK) != true) {
+            val bounds = android.graphics.Rect()
+            checkNotNull(node).getBoundsInScreen(bounds)
+            check(!bounds.isEmpty && bounds.centerY() in 1 until targetContext.resources.displayMetrics.heightPixels) { "Control is outside the visible screen: $label $bounds" }
+            val now = SystemClock.uptimeMillis()
+            val down = MotionEvent.obtain(now, now, MotionEvent.ACTION_DOWN, bounds.centerX().toFloat(), bounds.centerY().toFloat(), 0)
+            val up = MotionEvent.obtain(now, now + 50, MotionEvent.ACTION_UP, bounds.centerX().toFloat(), bounds.centerY().toFloat(), 0)
+            try { sendPointerSync(down); sendPointerSync(up) } finally { down.recycle(); up.recycle() }
+        }
         Thread.sleep(250)
     }
     private fun activitySnapshot(host: MainActivity, receipt: JSONObject, label: String) {
@@ -421,7 +442,8 @@ class TerminalWebViewInstrumentation : Instrumentation() {
         awaitCondition(10, "RuntimeService creation") { RuntimeService.current != null }
         val runtime = RuntimeService.current!!
         val selectedBefore = runtime.activeConversation().id
-        val workspace = runtime.store.createWorkspace("Terminal regression first ${SystemClock.uptimeMillis()}")
+        val workspace = if (selected == "palette") runtime.store.workspaces().first { it.id == "default" }
+            else runtime.store.createWorkspace("Terminal regression first ${SystemClock.uptimeMillis()}")
         val wasRunning = runtime.environmentRunning()
         check(wasRunning || !RuntimeService.busy) { "Another environment operation is active" }
         var startedBackend = false
@@ -486,7 +508,8 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             check(visible.getInt("sampledBright") >= 50 && (visible.optJSONObject("rows")?.optInt("textChars", 0) ?: 0) >= 20) {
                 "Real WebView draw lacks text-sized pixels (cursor alone is insufficient): $visible"
             }
-            actualRegression(host, receipt, runtime, workspace, id, "olea-actual-$tag")
+            if (selected == "palette") actualPalette(host, receipt, runtime, workspace, id, "olea-actual-$tag")
+            else actualRegression(host, receipt, runtime, workspace, id, "olea-actual-$tag")
             activitySnapshot(host, receipt, "actualFinalSnapshot")
             receipt.put("ordinaryActivityTerminal", "pass")
         } catch (error: Throwable) {
@@ -614,34 +637,44 @@ class TerminalWebViewInstrumentation : Instrumentation() {
             command(first, "final-output")
             receipt.put("secondWorkspaceAndReturn", "pass")
 
-            stage("ordinary palette selection preserves a live PTY")
-            val preferences = targetContext.getSharedPreferences("olea-ui", android.content.Context.MODE_PRIVATE)
-            val appearanceBefore = preferences.getString("appearance", "system")
-            if (ui { view.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) == true }) hideKeyboard()
-            clickLabel("Back")
-            clickLabel("Back")
-            clickLabel("Open app menu")
-            clickLabel("Settings")
-            clickLabel("Soft purple")
-            check(preferences.getString("palette", "green") == "purple")
-            check(preferences.getString("appearance", "system") == appearanceBefore)
-            clickLabel("Back")
-            clickLabel("Workspaces")
-            clickLabel(workspace.name)
-            clickLabel("Details")
-            val beforePaletteReturn = view
-            clickLabel("Terminal")
-            adoptViewport(host, listOf(beforePaletteReturn))
-            painted("olea-final-output-$tag", "paletteReturn")
-            val dark = appearanceBefore == "dark" || (appearanceBefore == "system" && (targetContext.resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES)
-            val expected = JSONObject((if (dark) softPalette("purple").dark else softPalette("purple").light).terminalTheme()).getString("background")
-            awaitScript("terminal.options.theme.background === ${JSONObject.quote(expected)}")
-            check(shell(first).state == "running")
-            command(first, "after-palette")
-            receipt.put("palettePreservesLivePtyAndAppearance", "pass").put("terminalPaletteBackground", expected)
+            actualPalette(host, receipt, runtime, workspace, first, "olea-final-output-$tag")
         } finally {
             shells.forEach { runtime.closeTerminal(it) }
         }
+    }
+
+    private fun actualPalette(host: MainActivity, receipt: JSONObject, runtime: RuntimeService, workspace: WorkspaceInfo, terminalId: String, previousMarker: String) {
+        stage("ordinary palette selection preserves a live PTY")
+        val preferences = targetContext.getSharedPreferences("olea-ui", android.content.Context.MODE_PRIVATE)
+        val appearanceBefore = preferences.getString("appearance", "system")
+        val target = if (preferences.getString("palette", "green") == "purple") softPalette("blue") else softPalette("purple")
+        if (ui { view.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) == true }) {
+            sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
+            awaitCondition(5, "keyboard hidden") { ui { view.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) == false } }
+        }
+        clickLabel("Back")
+        clickLabel("Back")
+        clickLabel("Open app menu")
+        clickLabel("Settings")
+        clickLabel(target.name)
+        check(preferences.getString("palette", "green") == target.id)
+        check(preferences.getString("appearance", "system") == appearanceBefore)
+        clickLabel("Back")
+        clickLabel("Details")
+        val beforePaletteReturn = view
+        clickLabel("Terminal")
+        adoptViewport(host, listOf(beforePaletteReturn))
+        awaitScript(bufferContains(previousMarker))
+        val dark = appearanceBefore == "dark" || (appearanceBefore == "system" && (targetContext.resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES)
+        val expected = JSONObject((if (dark) target.dark else target.light).terminalTheme()).getString("background")
+        awaitScript("terminal.options.theme.background === ${JSONObject.quote(expected)}")
+        check(runtime.terminals(workspace.id).single { it.id == terminalId }.state == "running")
+        val marker = "after-palette-${SystemClock.uptimeMillis()}"
+        evaluate(terminalKeyScript("printf '\\n%s\\n' '$marker'\r"))
+        awaitCondition(8, "same PTY receives command after palette selection") { runtime.terminals(workspace.id).single { it.id == terminalId }.output.contains(marker) }
+        awaitScript(bufferContains(marker))
+        capture(receipt, "paletteReturn")
+        receipt.put("palettePreservesLivePtyAndAppearance", "pass").put("terminalPaletteBackground", expected).put("palette", target.id)
     }
 
     private fun pty(host: MainActivity, receipt: JSONObject) {
