@@ -164,6 +164,15 @@ class RuntimeService : Service() {
             check(staged.renameTo(target))
         }
     }
+    fun sharedStorageStatus(): String = synchronized(lock) {
+        val access = AndroidSharedFolders(this).access()
+        val currentPath = access.takeIf { it.available }?.folder?.path
+        val restart = backend && child?.isAlive == true && currentPath != environment.boundSharedStoragePath
+        if (restart) "${access.message} STOP the environment, then Start to refresh phone file access."
+        else if (access.available) "Phone files are available at /sdcard and /storage when the environment starts. Workspaces set the starting folder, not file reach. Android still protects private app data."
+        else access.message
+    }
+
     fun runtimeSummary(): String = synchronized(lock) {
         val active = displays.values.filter { it.ready || it.opening }
         "Backend: ${if (backend && child?.isAlive == true) "running" else "stopped"}\nActive sessions: ${active.size}/2\n" +
@@ -253,6 +262,8 @@ class RuntimeService : Service() {
         }
     }
     private fun taskWorkspacePath(workspaceId: String): String {
+        val currentPath = AndroidSharedFolders(this).access().takeIf { it.available }?.folder?.path
+        check(currentPath == environment.boundSharedStoragePath) { sharedStorageStatus() }
         val guest = workspaceFolders.workspacePath(workspaceId)
         if (workspaceFolders.isConnected(workspaceId)) check(guest in environment.boundWorkspacePaths) {
             "This folder was unavailable when the environment started. STOP the environment, restore folder access, then start it again."

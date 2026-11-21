@@ -1,0 +1,9 @@
+// Storage checks must coexist with user installations; never change the normal app identity.
+gradle.beforeProject { project ->
+    project.pluginManager.withPlugin('com.android.application') {
+        project.extensions.getByName('androidComponents').finalizeDsl { android ->
+            android.defaultConfig.applicationId = 'dev.olea.broadtest'
+            android.defaultConfig.testInstrumentationRunner = 'dev.olea.app.BroadStorageInstrumentation'
+        }
+    }
+}

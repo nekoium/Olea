@@ -39,6 +39,15 @@ if [ -n "${OLEA_WORKSPACE_BINDS:-}" ]; then
     set -- -b "$source:$guest" "$@"
   done < "$OLEA_WORKSPACE_BINDS"
 fi
+# Bind Android shared storage only after the host checks the actual all-files grant.
+# /sdcard is discoverable with ordinary file tools; /storage retains Android volume paths.
+# Access remains subject to Android permissions and private-app restrictions.
+if [ -n "${OLEA_SHARED_STORAGE:-}" ]; then
+  storage_user=${OLEA_SHARED_STORAGE#/storage/emulated/}
+  case "$storage_user" in ''|*[!0-9]*) echo 'Invalid shared storage root' >&2; exit 2;; esac
+  [ -d "$OLEA_SHARED_STORAGE" ] && [ -r "$OLEA_SHARED_STORAGE" ] || { echo 'Shared storage unavailable; restore Android access and restart.' >&2; exit 2; }
+  set -- -b /storage:/storage -b "$OLEA_SHARED_STORAGE:$OLEA_SHARED_STORAGE" -b "$OLEA_SHARED_STORAGE:/sdcard" "$@"
+fi
 exec "$NATIVE/libproot.so" --link2symlink -0 -r "$BASE/runtime/rootfs" -b /dev -b /proc -b /sys \
   -b /system -b /apex -b "$NATIVE" \
   -b "$BASE/data/workspace:/workspace" -b "$BASE/data/home:/root" \

@@ -53,6 +53,20 @@ Optional consolidation cases are `-e case consolidation` (two real Pi sessions, 
 
 Never point these commands at historical evidence packages. Do not clear app data or reinstall by uninstalling. Installation updates must use `-r`; workspace, agent home and session state must remain under `files/data/`, outside `files/runtime/rootfs/`.
 
+## Shared phone-file access check
+
+Use the isolated storage diagnostic for changes to grants or Linux storage binds. It always builds `dev.olea.broadtest`, preserving normal installations and their signing identities:
+
+```bash
+OLEA_ABI=x86_64 bash runtime/build.sh --init-script "$PWD/android/broad-storage-diagnostic.init.gradle" :app:assembleDebugAndroidTest
+adb -s <device-serial> install -r android/app/build/outputs/apk/debug/app-debug.apk
+adb -s <device-serial> install -r android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+adb -s <device-serial> shell am instrument -w -e mode bootstrap dev.olea.broadtest.test/dev.olea.app.BroadStorageInstrumentation
+adb -s <device-serial> shell am instrument -w -e mode denied dev.olea.broadtest.test/dev.olea.app.BroadStorageInstrumentation
+```
+
+Bootstrap extracts packaged Linux/Node and downloads stock Pi; it makes no model requests. In Android's all-files settings, grant access to the test installation, then run the same instrumentation command with `-e mode granted`. This creates only `Olea-broad-access-synthetic`, reads/edits its note through stock Pi tools and ordinary shell commands outside cwd, and verifies connected-folder cwd separately. It refuses a preexisting fixture and removes only its own note/folder. Revoke the test installation's all-files grant and rerun with `-e mode revoked`; managed cwd must remain available without shared binds. These separate invocations exercise bind refresh across process starts; permission-screen UX and live in-flight revocation need separate targeted checks when relevant. Never change grants on another installation for this diagnostic.
+
 ## Provider tests
 
 Provider-backed tests require explicit user authorization and an allocation for that task. Never infer permission from credentials being present. For the 0.1.0 release assignment, the user authorized GPT for Pi/Codex and Claude for Claude Code: use the cheapest working model for connectivity-only checks, and Pi with `gpt-6.1-sol` for real functionality and phone-use tests. Keep credentials in ignored local configuration; exclude them from prompts, logs, reports, screenshots and Git history. Later work requires its own authorization.

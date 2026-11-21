@@ -102,11 +102,17 @@ class Environment(private val context: Context) {
     @Volatile var boundWorkspacePaths: Set<String> = emptySet()
         private set
 
+    @Volatile var boundSharedStoragePath: String? = null
+        private set
+
     fun linux(vararg args: String) = listOf("/system/bin/sh", File(base, "linux.sh").path) + args
     fun builder(command: List<String>) = ProcessBuilder(command).directory(base).apply {
         val bindings = WorkspaceFolders(context, SessionStore(base)).writeBindings()
         boundWorkspacePaths = bindings.readLines().filter { it.isNotEmpty() }.map { it.substringAfter('\t') }.toSet()
         environment()["OLEA_WORKSPACE_BINDS"] = bindings.path
+        // A grant exposes shared phone files independently of workspace selection and phone-tool toggles.
+        boundSharedStoragePath = AndroidSharedFolders(context).access().takeIf { it.available }?.folder?.path
+        environment()["OLEA_SHARED_STORAGE"] = boundSharedStoragePath.orEmpty()
         environment()["OLEA_APP_BASE"] = base.path
         environment()["OLEA_NATIVE_DIR"] = context.applicationInfo.nativeLibraryDir
     }

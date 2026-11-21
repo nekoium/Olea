@@ -1,6 +1,6 @@
 # Olea backend
 
-One shared Node backend supervises stock Pi RPC and Codex app-server processes. Android owns phone permissions, consent and STOP. The runtime binds durable workspaces and agent/session storage independently of replaceable agent installations.
+One shared Node backend supervises stock Pi RPC and Codex app-server processes. Android owns phone permissions, consent and STOP. The runtime binds durable workspaces and agent/session storage independently of replaceable agent installations. After the actual Android all-files grant, shared storage is also bound at `/sdcard` and `/storage`; workspace validation selects cwd and session identity, not a filesystem access boundary. Android still enforces its private-data and storage restrictions. Grant changes require stopping and starting the runtime to refresh bindings; managed workspaces remain usable without the grant.
 
 Run `npm ci`, `npm test`, then `node dist/server.js`. Node 22.19 or later is required. Tests use local protocol fixtures and synthetic configuration; they make no provider requests.
 

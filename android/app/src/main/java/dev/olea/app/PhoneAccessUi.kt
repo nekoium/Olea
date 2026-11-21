@@ -109,7 +109,7 @@ internal enum class PhoneAccessAction {
                         }
                         "folder" -> {
                             Chip(state.folder)
-                            Label("Choose one Android folder for phone tools to read and write through Android’s document access. This does not turn it into an agent workspace.", muted = true)
+                            Label("Choose one Android folder for the document-provider phone tools. This optional selection is separate from broad shared-file access at /sdcard after Android’s all-files grant, and does not change the agent’s workspace.", muted = true)
                             Action("Choose folder for read and write", Modifier.fillMaxWidth(), primary = true, enabled = state.available) { perform(PhoneAccessAction.Folder) }
                             if (state.folder == "Granted") Action("Revoke folder access", Modifier.fillMaxWidth()) { perform(PhoneAccessAction.RevokeFolder) }
                             Label("Cancel the Android picker to keep the current selection. Restore lost access by selecting the folder again.", size = 14, muted = true)
@@ -147,7 +147,7 @@ internal enum class PhoneAccessAction {
                     }
                     Spacer(Modifier.height(4.dp))
                     Action(if (page.isEmpty()) "Continue without changing access" else "Return to Olea", Modifier.fillMaxWidth()) { perform(PhoneAccessAction.Return) }
-                    Label("Android permissions remain under your control. Disabling phone tools stops their use by agents; revoke Android grants in the relevant settings.", size = 12, muted = true)
+                    Label("Android permissions remain under your control. Disabling phone tools stops these bridge operations. Shared-file access through stock file tools follows Android’s separate all-files grant; revoke it in Android settings.", size = 12, muted = true)
                 }
             }
         }

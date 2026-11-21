@@ -239,6 +239,9 @@ class PhoneBridge(context: Context) : AutoCloseable {
     }
 
     private fun capabilities(): JSONObject = JSONObject().put("phoneEnabled", enabled).put("accessibility", PhoneAccessibility.active != null)
+        .put("sharedStorage", JSONObject().put("state", AndroidSharedFolders(context).access().state.name.lowercase())
+            .put("message", RuntimeService.current?.sharedStorageStatus() ?: AndroidSharedFolders(context).access().message)
+            .put("linuxPath", "/sdcard").put("independentOfPhoneTools", true))
         .put("folderSelected", selectedFolder() != null).put("folderReadWriteGranted", folderGranted()).put("notificationAccess", PhoneNotifications.connected)
         .put("locationPermission", locationPermission()).put("cooperatingAppConfigured", cooperatingComponent().isNotEmpty())
         .put("captureStatus", capture?.optString("status") ?: if (requestId != null) "consent_pending" else "idle")

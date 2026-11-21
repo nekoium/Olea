@@ -62,9 +62,13 @@ One conversation keeps one agent. To use another, create a new conversation. Age
 
 ## Choose where your files live
 
-A **managed workspace** keeps files inside Olea. A **connected folder** works directly with an existing folder in your phone's primary shared storage—the built-in storage you see in a file manager. Agent edits change those original files immediately; Olea does not make a separate working copy.
+A **managed workspace** keeps its project files inside Olea. A **connected folder** works directly with an existing folder in your phone's primary shared storage—the built-in storage you see in a file manager. Agent edits change those original files immediately; Olea does not make a separate working copy. Workspaces organize conversations and choose the agent's starting directory; they do not limit which files the agent can reach.
 
-Stop the environment before connecting a folder. Under **Workspaces → Create workspace**, choose **Connect existing folder**. Follow **Open Android storage settings** to grant **All files access**, return to Olea, browse to your folder and choose **Connect this folder**. You can also explicitly create a visible Olea folder there. This broad Android grant covers more than the chosen folder; it is not a permission limited to that one workspace. Android still protects other apps' private data. Use a managed workspace if you do not want to grant it.
+In current source builds on Android 11 or later, **Phone access → Android phone file access** opens Android's **All files access** settings. Once granted, ordinary agent file tools and terminals can discover, read and edit Android-accessible shared phone files through `/sdcard` and `/storage`, including files outside the selected workspace. No per-folder authorization or phone-tools toggle is required for this access. Android still protects other apps' private data and restricted directories such as `Android/data` and `Android/obb`. Published 0.1.0 exposes connected folders to Linux; broad storage access requires a newer source build.
+
+After granting or revoking access, **STOP** the environment and **Start** it again to refresh its storage bindings. Denying access leaves managed workspace work available. Revocation is enforced by Android; restore the grant to use shared files again.
+
+Stop the environment before connecting a folder. Under **Workspaces → Create workspace**, choose **Connect existing folder**. Follow **Open Android storage settings** to grant **All files access**, return to Olea, browse to your folder and choose **Connect this folder**. You can also explicitly create a visible Olea folder there. Connecting chooses the project's starting directory; the Android grant gives agents broader shared-file access. Use managed workspace files without this grant if you do not want agents to access shared phone files.
 
 Connected folders support reading and writing ordinary files. Shared storage restricts running program files directly, symbolic links and some Linux file behavior, so package installation and projects that depend on those features may fail there. Keep executable tools and such projects in a managed workspace. Removable cards and cloud/document-provider folders are not supported as connected workspaces.
 
@@ -86,7 +90,7 @@ Olea cannot bypass Android permissions or read every app's private data. Give ag
 
 ## Your files, privacy and recovery
 
-Managed workspace files, saved conversations, agent settings and credentials are kept in Olea's private app storage. Connected workspace files stay in the shared folder you chose. The model provider receives the messages and tool results the agent sends, which can include file contents and phone information. Commands and installed tools may also contact external services. Running the agent locally does not make its work offline or confidential from your chosen provider.
+Managed workspace files, saved conversations, agent settings and credentials are kept in Olea's private app storage. Connected workspace files stay in the shared folder you chose. With all-files access, agents can also use other shared phone files outside that folder. The model provider receives the messages and tool results the agent sends, which can include file contents and phone information. Commands and installed tools may also contact external services. Running the agent locally does not make its work offline or confidential from your chosen provider.
 
 Agents can execute commands and change files with broad authority. Olea's Linux environment provides compatibility, **not a security sandbox between agents, files and credentials**. Review generated work and avoid placing sensitive material in reach of an agent you do not trust.
 

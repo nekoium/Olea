@@ -28,7 +28,7 @@ class AndroidSharedFolders(context: Context) {
     /** Call on foreground return and before every external task/terminal start; never caches a grant. */
     fun access(path: String? = null): Access {
         if (Build.VERSION.SDK_INT < 30) return Access(State.UNSUPPORTED,
-            "Connected folders require Android 11 or later. Use an Olea-managed workspace on this device.")
+            "Phone file access requires Android 11 or later. Use an Olea-managed workspace on this device.")
         if (!Environment.isExternalStorageManager()) {
             val state = when {
                 observed.getBoolean("ever-granted", false) -> State.PERMISSION_REVOKED
@@ -36,15 +36,15 @@ class AndroidSharedFolders(context: Context) {
                 else -> State.PERMISSION_REQUIRED
             }
             return Access(state, when (state) {
-                State.PERMISSION_REVOKED -> "Shared-storage access was revoked. Open Android settings and allow all-files access for Olea again."
-                State.PERMISSION_DENIED -> "Shared-storage access was not granted. Open Android settings and allow all-files access, or use an Olea-managed workspace."
-                else -> "Allow all-files access in Android settings to connect a folder from primary shared storage."
+                State.PERMISSION_REVOKED -> "Phone file access was revoked. Open Android settings and allow all-files access for Olea again; managed workspaces remain available."
+                State.PERMISSION_DENIED -> "Phone file access was not granted. Open Android settings and allow all-files access, or continue with managed workspace files."
+                else -> "Allow all-files access in Android settings so agents can use shared phone files beyond their workspace."
             })
         }
         if (!observed.getBoolean("ever-granted", false)) observed.edit().putBoolean("ever-granted", true).apply()
         val storage = Environment.getExternalStorageState()
         if (storage == Environment.MEDIA_MOUNTED_READ_ONLY) return Access(State.STORAGE_READ_ONLY,
-            "Primary shared storage is read-only. Restore writable storage before starting this workspace.")
+            "Primary shared storage is read-only. Restore writable storage before using phone files.")
         if (storage != Environment.MEDIA_MOUNTED) return Access(State.STORAGE_UNAVAILABLE,
             "Primary shared storage is unavailable. Reconnect or unlock storage, then retry. Saved conversations are preserved.")
         return try {

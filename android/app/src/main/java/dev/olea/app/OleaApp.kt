@@ -167,7 +167,8 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                             }
                             2 -> {
                                 Heading("Choose a workspace")
-                                Label("Keep a project’s conversations and files together.", muted = true)
+                                Label("Workspaces organize conversations and set the starting folder. After Android all-files access, agents can also use shared phone files outside any workspace.", muted = true)
+                                SharedStorageAccess(sourceRevision)
                                 snapshot.workspaces.forEach { item ->
                                     val source = workspaceSourceStatus(item.id, sourceRevision)
                                     val detail = when {
@@ -220,6 +221,7 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                             6 -> {
                                 Heading("Phone access")
                                 Label("Optional access lets agents interact with your phone. Android controls each grant separately. You can review this later.", muted = true)
+                                SharedStorageAccess(sourceRevision)
                                 PhoneSummary()
                                 Action("Review Android access", onClick = phoneAccess)
                                 Action("Skip optional capabilities", primary = true) { step(7) }
@@ -349,11 +351,13 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
                     "phone" -> Page {
                         Heading("Phone access")
                         Label("Enable only the capabilities you want. STOP disables phone tools. Android grants can remain enabled; tools must be explicitly enabled again.", muted = true)
+                        SharedStorageAccess(sourceRevision)
                         PhoneSummary(); Action("Manage Android access", primary = true, onClick = phoneAccess)
                     }
                     "environment" -> Page {
                         Heading("Environment")
                         Notice(snapshot.status, snapshot.status.contains("failed", true))
+                        SharedStorageAccess(sourceRevision)
                         SelectionContainer { Label(snapshot.summary, mono = true, size = 13) }
                         Label(if (snapshot.environmentReady) "Linux is prepared." else "Linux preparation is required before agents can run.", muted = true)
                         Action(if (snapshot.busy) "Starting or working…" else "Start / reconnect selected conversation", primary = true, enabled = snapshot.available && !snapshot.busy) { perform { runtime().startEnvironment() } }
@@ -431,6 +435,19 @@ private fun agentName(id: String?) = agentNames[id] ?: "Choose agent"
             content()
         }
     }
+}
+
+@Composable private fun SharedStorageAccess(revision: Long) {
+    val context = LocalContext.current
+    var error by remember { mutableStateOf("") }
+    val message = remember(revision) { RuntimeService.current?.sharedStorageStatus() ?: AndroidSharedFolders(context).access().message }
+    Notice(message)
+    if (error.isNotEmpty()) Notice(error, true)
+    Action("Android phone file access", enabled = android.os.Build.VERSION.SDK_INT >= 30) {
+        runCatching { context.startActivity(AndroidSharedFolders(context).settingsIntent()) }
+            .onFailure { error = "Open Android Settings › Special app access › All files access › Olea. Android storage settings could not open here." }
+    }
+    Label("The Android all-files grant exposes shared storage to stock file tools at /sdcard and /storage, independently of phone tools. After changing it, STOP and Start the environment. Other apps’ private files remain protected.", size = 12, muted = true)
 }
 
 @Composable private fun PhoneSummary() {
