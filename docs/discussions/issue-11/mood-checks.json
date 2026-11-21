@@ -1,0 +1,24 @@
+{
+  "engine": "Chromium",
+  "results": [
+    "crisp chat light fits",
+    "crisp chat dark fits",
+    "crisp agents light fits",
+    "crisp agents dark fits",
+    "crisp provider light fits",
+    "crisp provider dark fits",
+    "soft chat light fits",
+    "soft chat dark fits",
+    "soft agents light fits",
+    "soft agents dark fits",
+    "soft provider light fits",
+    "soft provider dark fits",
+    "field chat light fits",
+    "field chat dark fits",
+    "field agents light fits",
+    "field agents dark fits",
+    "field provider light fits",
+    "field provider dark fits"
+  ],
+  "limit": "Visual proposals only; no native or WebKit validation."
+}
